@@ -99,9 +99,66 @@ export interface NetAssetTransfers {
 
 export type TransactionContextType = {
   type?: string;
-  category?: 'MULTICHAIN' | 'FUNGIBLE_TOKEN' | 'NFT' | 'CATCHALL' | 'IDENTITY' | 'CORE' | 'OTHER' | 'DEV' | 'UNKNOWN';
+  category?:
+  | 'MULTICHAIN'
+  | 'FUNGIBLE_TOKEN'
+  | 'NFT'
+  | 'IDENTITY'
+  | 'CORE'
+  | 'OTHER'
+  | 'DEV'
+  | 'UNKNOWN';
   outcomes?: Record<string, ContextOutcomeType[]>;
   crossChainTx?: Transaction[];
+};
+
+export type ContextAction =
+  | 'Bought'
+  | 'Bridged'
+  | 'Deployed'
+  | 'Minted'
+  | 'Swapped'
+  | 'Wrapped'
+  | 'Sent'
+  | 'Received'
+  | 'Unwrapped'
+  | 'Registered'
+  | 'Renewed'
+  | 'Committed to'
+  | 'Received airdrop'
+  | 'Gave access to'
+  | 'Interacted with'
+  | 'Sent message';
+
+export type ContextSummaryVariableType =
+  | string
+  | {
+    type: 'emphasis' | 'address' | 'transaction' | 'eth';
+    value: string;
+  }
+  | {
+    type: 'contextAction';
+    value: ContextAction;
+  }
+  | {
+    type: 'erc20';
+    token: string;
+    value: string;
+  }
+  | {
+    type: 'erc721';
+    token: string;
+    tokenId: string;
+  }
+  | {
+    type: 'erc1155';
+    token: string;
+    tokenId: string;
+    value: string;
+  };
+export type ContextSummaryDefaultType = {
+  desc: string;
+  [key: string]: ContextSummaryVariableType;
 };
 
 export type ContextOutcomeType = {
