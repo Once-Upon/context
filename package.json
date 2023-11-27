@@ -1,11 +1,13 @@
 {
-  "name": "evm-context",
+  "name": "@once-upon/evm-context",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "tsc",
+    "prepublish": "npm run build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "grab-transaction": "node ./scripts/grab-transaction.js"
