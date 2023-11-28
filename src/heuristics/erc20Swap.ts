@@ -1,4 +1,4 @@
-import { Transaction } from '../types/transaction';
+import { ContextSummaryDefaultType, Transaction } from '../types/transaction';
 
 export function erc20SwapContextualizer(transaction: Transaction): Transaction {
   const isERC20Swap = detectERC20Swap(transaction);
@@ -57,6 +57,30 @@ function generateERC20SwapContext(transaction: Transaction): Transaction {
 
     if (sentCount === 1 && receivedCount === 1 && sent[0].type === 'erc20') {
       transaction.context.outcomes['default'] = [
+        {
+          key: 'Summary',
+          value: {
+            desc: '[[swapper]] [[swapped]] [[sentToken]] for [[receivedToken]]',
+            swapper: {
+              type: 'address',
+              value: address,
+            },
+            swapped: {
+              type: 'contextAction',
+              value: 'Swapped',
+            },
+            sentToken: {
+              token: sent[0].asset,
+              type: sent[0].type,
+              value: sent[0].value,
+            },
+            receivedToken: {
+              token: received[0].asset,
+              type: received[0].type,
+              value: received[0].value,
+            },
+          } as ContextSummaryDefaultType
+        },
         {
           key: 'Swapper',
           value: {
