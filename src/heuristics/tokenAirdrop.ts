@@ -114,7 +114,7 @@ function generateTokenAirdropContext(transaction: Transaction): Transaction {
         variables: {
           receivedAirdrop: {
             type: 'contextAction',
-            value: 'Received airdrop',
+            value: 'received airdrop',
           },
         },
       },

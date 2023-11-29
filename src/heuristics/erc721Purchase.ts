@@ -139,7 +139,7 @@ function generateERC21PurchaseContext(transaction: Transaction): Transaction {
         variables: {
           bought: {
             type: 'contextAction',
-            value: 'Bought',
+            value: 'bought',
           },
         },
       },

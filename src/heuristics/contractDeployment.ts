@@ -39,7 +39,7 @@ function generateContractDeploymentContext(
         variables: {
           deployed: {
             type: 'contextAction',
-            value: 'Deployed',
+            value: 'deployed',
           },
         },
       },

@@ -72,7 +72,7 @@ function generateTokenApprovalContext(transaction: Transaction): Transaction {
         variables: {
           gaveAccessTo: {
             type: 'contextAction',
-            value: 'Gave access to',
+            value: 'gave access to',
           },
         },
       },

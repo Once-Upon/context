@@ -109,7 +109,7 @@ export type ContextAction =
   | 'bridged'
   | 'deployed'
   | 'minted'
-  | 'wwapped'
+  | 'swapped'
   | 'wrapped'
   | 'sent'
   | 'received'

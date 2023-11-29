@@ -52,7 +52,7 @@ export function generateSuperchainFaucetTransaction(
         variables: {
           received: {
             type: 'contextAction',
-            value: 'Received',
+            value: 'received',
           },
         },
       },
