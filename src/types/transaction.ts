@@ -98,17 +98,8 @@ export interface NetAssetTransfers {
 }
 
 export type TransactionContextType = {
-  type?: string;
-  category?:
-  | 'MULTICHAIN'
-  | 'FUNGIBLE_TOKEN'
-  | 'NFT'
-  | 'IDENTITY'
-  | 'CORE'
-  | 'OTHER'
-  | 'DEV'
-  | 'UNKNOWN';
-  outcomes?: Record<string, ContextOutcomeType[]>;
+  variables?: ContextVariable;
+  summaries?: ContextSummaryType;
   crossChainTx?: Transaction[];
 };
 
@@ -130,40 +121,47 @@ export type ContextAction =
   | 'Interacted with'
   | 'Sent message';
 
-export type ContextSummaryVariableType =
+  export type ContextSummaryVariableType =
   | string
   | {
-    type: 'emphasis' | 'address' | 'transaction' | 'eth';
-    value: string;
-  }
+      type: 'emphasis' | 'address' | 'transaction' | 'eth';
+      value: string;
+    }
   | {
-    type: 'contextAction';
-    value: ContextAction;
-  }
+      type: 'contextAction';
+      value: ContextAction;
+    }
   | {
-    type: 'erc20';
-    token: string;
-    value: string;
-  }
-  | {
-    type: 'erc721';
-    token: string;
-    tokenId: string;
-  }
-  | {
-    type: 'erc1155';
-    token: string;
-    tokenId: string;
-    value: string;
-  };
+      type: 'eth' | 'erc20' | 'erc721' | 'erc1155';
+      tokenId?: string;
+      token: string;
+      value?: string;
+    };
+
 export type ContextSummaryDefaultType = {
   desc: string;
   [key: string]: ContextSummaryVariableType;
 };
 
-export type ContextOutcomeType = {
-  key: string;
-  value: Record<string, any>;
+export type ContextVariable = {
+  [key: string]: ContextSummaryVariableType;
+};
+
+export type ContextSummaryType = {
+  category?:
+    | 'MULTICHAIN'
+    | 'FUNGIBLE_TOKEN'
+    | 'NFT'
+    | 'IDENTITY'
+    | 'CORE'
+    | 'OTHER'
+    | 'DEV'
+    | 'UNKNOWN';
+  en: {
+    title: string;
+    default: string;
+    variables?: ContextVariable;
+  };
 };
 
 // MongoDB document
