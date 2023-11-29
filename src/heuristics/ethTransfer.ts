@@ -1,15 +1,15 @@
 import { Transaction } from '../types';
 
-export async function ethTransferContextualizer(
+export function ethTransferContextualizer(
   transaction: Transaction,
-): Promise<Transaction> {
-  const isEthTransfer = await detectETHTransfer(transaction);
+): Transaction {
+  const isEthTransfer = detectETHTransfer(transaction);
   if (!isEthTransfer) return transaction;
 
   return generateETHTransferContext(transaction);
 }
 
-async function detectETHTransfer(transaction: Transaction): Promise<boolean> {
+export function detectETHTransfer(transaction: Transaction): boolean {
   // TODO; check logs from transaction
   if (
     (transaction.input === '0x' || transaction.input === '') &&
@@ -22,7 +22,9 @@ async function detectETHTransfer(transaction: Transaction): Promise<boolean> {
   return false;
 }
 
-function generateETHTransferContext(transaction: Transaction): Transaction {
+export function generateETHTransferContext(
+  transaction: Transaction,
+): Transaction {
   transaction.context = {
     variables: {
       sender: {
