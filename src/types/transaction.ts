@@ -120,7 +120,8 @@ export type ContextAction =
   | 'Received airdrop'
   | 'Gave access to'
   | 'Interacted with'
-  | 'Sent message';
+  | 'Sent message'
+  | 'Set reverse ens to';
 
 export type ContextSummaryVariableType =
   | string
