@@ -3,7 +3,7 @@ import {
   detectTokenTransfer,
   generateTokenTransferContext,
 } from './tokenTransfer';
-import tokenTransfer0xcfba5dee from '../test-data/transactions/tokenTransfer-0xcfba5dee.json';
+import tokenTransfer0xcfba5dee from '../test/transactions/tokenTransfer-0xcfba5dee.json';
 
 describe('Token Transfer', () => {
   it('Should detect token transfer transaction', () => {

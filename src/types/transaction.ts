@@ -121,7 +121,7 @@ export type ContextAction =
   | 'Interacted with'
   | 'Sent message';
 
-  export type ContextSummaryVariableType =
+export type ContextSummaryVariableType =
   | string
   | {
       type: 'emphasis' | 'address' | 'transaction' | 'eth';
@@ -195,5 +195,5 @@ export interface Transaction {
   decode?: TransactionDescription;
   netAssetTransfers?: NetAssetTransfers;
   receipt?: Receipt;
-  context: TransactionContextType;
+  context?: TransactionContextType;
 }

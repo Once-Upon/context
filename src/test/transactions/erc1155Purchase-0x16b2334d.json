@@ -1,0 +1,617 @@
+{
+  "blockHash": "0x32a2de013993fe2e73882972faa854e1f94ecd535527c3adf0e2801ce6add990",
+  "blockNumber": 15948609,
+  "from": "0x8da3582320cc6420316af0ae145f95af8344af2d",
+  "gas": 182512,
+  "gasPrice": "17798664107",
+  "maxPriorityFeePerGas": "1500000000",
+  "maxFeePerGas": "26450119002",
+  "hash": "0x16b20a9f22e9b4cdd324c68b9af8cbeed92633714675b8b4f7b30c3f8331334d",
+  "input": "0xe7acab24000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000006600000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000052000000000000000000000000000000000000000000000000000000000000005a000000000000000000000000081465ae33349c85b171c37bc07304370d74a8db4000000000000000000000000004c00500000ad104d7dbd00e3ae0a5c00560c0000000000000000000000000000000000000000000000000000000000000001600000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000000000000000000000000000000636a8385000000000000000000000000000000000000000000000000000000006373bd980000000000000000000000000000000000000000000000000000000000000000360c6ebe00000000000000000000000000000000000000003497537beaacd04e0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000000000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc20000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000002386f26fc1000000000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000003000000000000000000000000f7f18a919bb12246aa32b2a62bb0230a6a27f56200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000200000000000000000000000081465ae33349c85b171c37bc07304370d74a8db40000000000000000000000000000000000000000000000000000000000000001000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e35fa931a0000000000000000000000000000000000000000000000000000000e35fa931a0000000000000000000000000000000a26b00c1f0df003000390027140000faa7190000000000000000000000000000000000000000000000000000000000000001000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001c6bf526340000000000000000000000000000000000000000000000000000001c6bf5263400000000000000000000000000002085755fa2636a2d6bfb11d98a07618231a1c8d0000000000000000000000000000000000000000000000000000000000000041b146819645dc39328605009dee671b0a47e450e22b4aed900a9a2c465319767111e1fd0d98017704e3f6fa8206298b5b63592b6ff7d839b7ae6c5805f48b70da1b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000360c6ebe",
+  "nonce": 35,
+  "to": "0x00000000006c3852cbef3e08e8df289169ede581",
+  "transactionIndex": 146,
+  "value": "0",
+  "type": 2,
+  "accessList": [],
+  "chainId": 1,
+  "v": "0x0",
+  "r": "0xa17205a9c2bd685247716c1340e738a178a393fbda27ecb79b8720ba8b6dde0",
+  "s": "0xd2b9e279ba8a488a04897b6b7a0dc5d4aa11cfe3610be7e09fab401b4371fd0",
+  "timestamp": 1668191855,
+  "isoTimestamp": "2022-11-11T18:37:35.000Z",
+  "fork": "paris",
+  "baseFeePerGas": 16298664107,
+  "burntFees": "2816278768376744",
+  "minerFees": "259188000000000",
+  "transactionFee": "3075466768376744",
+  "assetTransfers": [
+    {
+      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "from": "0x81465ae33349c85b171c37bc07304370d74a8db4",
+      "to": "0x8da3582320cc6420316af0ae145f95af8344af2d",
+      "value": "5000000000000000",
+      "type": "erc20"
+    },
+    {
+      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "from": "0x8da3582320cc6420316af0ae145f95af8344af2d",
+      "to": "0x0000a26b00c1f0df003000390027140000faa719",
+      "value": "125000000000000",
+      "type": "erc20"
+    },
+    {
+      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "from": "0x8da3582320cc6420316af0ae145f95af8344af2d",
+      "to": "0x02085755fa2636a2d6bfb11d98a07618231a1c8d",
+      "value": "250000000000000",
+      "type": "erc20"
+    },
+    {
+      "asset": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+      "from": "0x8da3582320cc6420316af0ae145f95af8344af2d",
+      "to": "0x81465ae33349c85b171c37bc07304370d74a8db4",
+      "tokenId": "0",
+      "value": "1",
+      "type": "erc1155"
+    }
+  ],
+  "sigHash": "0xe7acab24",
+  "internalSigHashes": [
+    {
+      "from": "0x8da3582320cc6420316af0ae145f95af8344af2d",
+      "to": "0x00000000006c3852cbef3e08e8df289169ede581",
+      "sigHash": "0xe7acab24"
+    },
+    {
+      "from": "0x00000000006c3852cbef3e08e8df289169ede581",
+      "to": "0x004c00500000ad104d7dbd00e3ae0a5c00560c00",
+      "sigHash": "0x0e1d31dc"
+    },
+    {
+      "from": "0x00000000006c3852cbef3e08e8df289169ede581",
+      "to": "0x1e0049783f008a0085193e00003d00cd54003c71",
+      "sigHash": "0x4ce34aa2"
+    },
+    {
+      "from": "0x1e0049783f008a0085193e00003d00cd54003c71",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "sigHash": "0x23b872dd"
+    },
+    {
+      "from": "0x1e0049783f008a0085193e00003d00cd54003c71",
+      "to": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+      "sigHash": "0xf242432a"
+    },
+    {
+      "from": "0x1e0049783f008a0085193e00003d00cd54003c71",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "sigHash": "0x23b872dd"
+    },
+    {
+      "from": "0x1e0049783f008a0085193e00003d00cd54003c71",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "sigHash": "0x23b872dd"
+    }
+  ],
+  "parties": [
+    "0x8da3582320cc6420316af0ae145f95af8344af2d",
+    "0x00000000006c3852cbef3e08e8df289169ede581",
+    "0x004c00500000ad104d7dbd00e3ae0a5c00560c00",
+    "0x1e0049783f008a0085193e00003d00cd54003c71",
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+    "0x81465ae33349c85b171c37bc07304370d74a8db4",
+    "0x0000a26b00c1f0df003000390027140000faa719",
+    "0x02085755fa2636a2d6bfb11d98a07618231a1c8d",
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2-5000000000000000",
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2-125000000000000",
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2-250000000000000",
+    "0x0000000000000000000000000000000000000000"
+  ],
+  "decode": {
+    "fragment": {
+      "type": "function",
+      "inputs": [
+        {
+          "name": "advancedOrder",
+          "type": "tuple",
+          "baseType": "tuple",
+          "components": [
+            {
+              "name": "parameters",
+              "type": "tuple",
+              "baseType": "tuple",
+              "components": [
+                {
+                  "name": "offerer",
+                  "type": "address",
+                  "baseType": "address",
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                },
+                {
+                  "name": "zone",
+                  "type": "address",
+                  "baseType": "address",
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                },
+                {
+                  "name": "offer",
+                  "type": "tuple[]",
+                  "baseType": "array",
+                  "components": null,
+                  "arrayLength": -1,
+                  "arrayChildren": {
+                    "name": "",
+                    "type": "tuple",
+                    "baseType": "tuple",
+                    "components": [
+                      {
+                        "name": "itemType",
+                        "type": "uint8",
+                        "baseType": "uint8",
+                        "components": null,
+                        "arrayLength": null,
+                        "arrayChildren": null
+                      },
+                      {
+                        "name": "token",
+                        "type": "address",
+                        "baseType": "address",
+                        "components": null,
+                        "arrayLength": null,
+                        "arrayChildren": null
+                      },
+                      {
+                        "name": "identifierOrCriteria",
+                        "type": "uint256",
+                        "baseType": "uint256",
+                        "components": null,
+                        "arrayLength": null,
+                        "arrayChildren": null
+                      },
+                      {
+                        "name": "startAmount",
+                        "type": "uint256",
+                        "baseType": "uint256",
+                        "components": null,
+                        "arrayLength": null,
+                        "arrayChildren": null
+                      },
+                      {
+                        "name": "endAmount",
+                        "type": "uint256",
+                        "baseType": "uint256",
+                        "components": null,
+                        "arrayLength": null,
+                        "arrayChildren": null
+                      }
+                    ],
+                    "arrayLength": null,
+                    "arrayChildren": null
+                  }
+                },
+                {
+                  "name": "consideration",
+                  "type": "tuple[]",
+                  "baseType": "array",
+                  "components": null,
+                  "arrayLength": -1,
+                  "arrayChildren": {
+                    "name": "",
+                    "type": "tuple",
+                    "baseType": "tuple",
+                    "components": [
+                      {
+                        "name": "itemType",
+                        "type": "uint8",
+                        "baseType": "uint8",
+                        "components": null,
+                        "arrayLength": null,
+                        "arrayChildren": null
+                      },
+                      {
+                        "name": "token",
+                        "type": "address",
+                        "baseType": "address",
+                        "components": null,
+                        "arrayLength": null,
+                        "arrayChildren": null
+                      },
+                      {
+                        "name": "identifierOrCriteria",
+                        "type": "uint256",
+                        "baseType": "uint256",
+                        "components": null,
+                        "arrayLength": null,
+                        "arrayChildren": null
+                      },
+                      {
+                        "name": "startAmount",
+                        "type": "uint256",
+                        "baseType": "uint256",
+                        "components": null,
+                        "arrayLength": null,
+                        "arrayChildren": null
+                      },
+                      {
+                        "name": "endAmount",
+                        "type": "uint256",
+                        "baseType": "uint256",
+                        "components": null,
+                        "arrayLength": null,
+                        "arrayChildren": null
+                      },
+                      {
+                        "name": "recipient",
+                        "type": "address",
+                        "baseType": "address",
+                        "components": null,
+                        "arrayLength": null,
+                        "arrayChildren": null
+                      }
+                    ],
+                    "arrayLength": null,
+                    "arrayChildren": null
+                  }
+                },
+                {
+                  "name": "orderType",
+                  "type": "uint8",
+                  "baseType": "uint8",
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                },
+                {
+                  "name": "startTime",
+                  "type": "uint256",
+                  "baseType": "uint256",
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                },
+                {
+                  "name": "endTime",
+                  "type": "uint256",
+                  "baseType": "uint256",
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                },
+                {
+                  "name": "zoneHash",
+                  "type": "bytes32",
+                  "baseType": "bytes32",
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                },
+                {
+                  "name": "salt",
+                  "type": "uint256",
+                  "baseType": "uint256",
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                },
+                {
+                  "name": "conduitKey",
+                  "type": "bytes32",
+                  "baseType": "bytes32",
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                },
+                {
+                  "name": "totalOriginalConsiderationItems",
+                  "type": "uint256",
+                  "baseType": "uint256",
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                }
+              ],
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "numerator",
+              "type": "uint120",
+              "baseType": "uint120",
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "denominator",
+              "type": "uint120",
+              "baseType": "uint120",
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "signature",
+              "type": "bytes",
+              "baseType": "bytes",
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "extraData",
+              "type": "bytes",
+              "baseType": "bytes",
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "arrayLength": null,
+          "arrayChildren": null
+        },
+        {
+          "name": "criteriaResolvers",
+          "type": "tuple[]",
+          "baseType": "array",
+          "components": null,
+          "arrayLength": -1,
+          "arrayChildren": {
+            "name": "",
+            "type": "tuple",
+            "baseType": "tuple",
+            "components": [
+              {
+                "name": "orderIndex",
+                "type": "uint256",
+                "baseType": "uint256",
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null
+              },
+              {
+                "name": "side",
+                "type": "uint8",
+                "baseType": "uint8",
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null
+              },
+              {
+                "name": "index",
+                "type": "uint256",
+                "baseType": "uint256",
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null
+              },
+              {
+                "name": "identifier",
+                "type": "uint256",
+                "baseType": "uint256",
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null
+              },
+              {
+                "name": "criteriaProof",
+                "type": "bytes32[]",
+                "baseType": "array",
+                "components": null,
+                "arrayLength": -1,
+                "arrayChildren": {
+                  "name": "",
+                  "type": "bytes32",
+                  "baseType": "bytes32",
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                }
+              }
+            ],
+            "arrayLength": null,
+            "arrayChildren": null
+          }
+        },
+        {
+          "name": "fulfillerConduitKey",
+          "type": "bytes32",
+          "baseType": "bytes32",
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        },
+        {
+          "name": "recipient",
+          "type": "address",
+          "baseType": "address",
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        }
+      ],
+      "name": "fulfillAdvancedOrder",
+      "constant": false,
+      "outputs": [
+        {
+          "name": "fulfilled",
+          "type": "bool",
+          "baseType": "bool",
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        }
+      ],
+      "stateMutability": "payable",
+      "payable": true,
+      "gas": null
+    },
+    "name": "fulfillAdvancedOrder",
+    "args": [
+      "0x81465Ae33349C85b171C37Bc07304370d74A8Db4,0x004C00500000aD104D7DBd00e3ae0A5C00560C00,1,0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2,0,10000000000000000,10000000000000000,3,0xf7f18a919bB12246AA32B2a62BB0230a6A27F562,0,2,2,0x81465Ae33349C85b171C37Bc07304370d74A8Db4,1,0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2,0,250000000000000,250000000000000,0x0000a26b00c1F0DF003000390027140000fAa719,1,0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2,0,500000000000000,500000000000000,0x02085755Fa2636a2d6BFB11D98a07618231A1c8d,3,1667924869,1668529560,0x0000000000000000000000000000000000000000000000000000000000000000,24446860302761739304752683030156737591518664810215442929804172277838391332942,0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000,3,1,2,0xb146819645dc39328605009dee671b0a47e450e22b4aed900a9a2c465319767111e1fd0d98017704e3f6fa8206298b5b63592b6ff7d839b7ae6c5805f48b70da1b,0x",
+      "",
+      "0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000",
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "signature": "fulfillAdvancedOrder(((address,address,(uint8,address,uint256,uint256,uint256)[],(uint8,address,uint256,uint256,uint256,address)[],uint8,uint256,uint256,bytes32,uint256,bytes32,uint256),uint120,uint120,bytes,bytes),(uint256,uint8,uint256,uint256,bytes32[])[],bytes32,address)",
+    "selector": "0xe7acab24",
+    "value": "0"
+  },
+  "netAssetTransfers": {
+    "0x81465ae33349c85b171c37bc07304370d74a8db4": {
+      "received": [
+        {
+          "asset": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+          "id": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562-0",
+          "tokenId": "0",
+          "type": "erc1155",
+          "value": "1"
+        }
+      ],
+      "sent": [
+        {
+          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "type": "erc20",
+          "value": "5000000000000000"
+        }
+      ]
+    },
+    "0x8da3582320cc6420316af0ae145f95af8344af2d": {
+      "received": [
+        {
+          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "type": "erc20",
+          "value": "4625000000000000"
+        }
+      ],
+      "sent": [
+        {
+          "asset": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+          "id": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562-0",
+          "tokenId": "0",
+          "type": "erc1155",
+          "value": "1"
+        }
+      ]
+    },
+    "0x0000a26b00c1f0df003000390027140000faa719": {
+      "received": [
+        {
+          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "type": "erc20",
+          "value": "125000000000000"
+        }
+      ],
+      "sent": []
+    },
+    "0x02085755fa2636a2d6bfb11d98a07618231a1c8d": {
+      "received": [
+        {
+          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "type": "erc20",
+          "value": "250000000000000"
+        }
+      ],
+      "sent": []
+    }
+  },
+  "receipt": {
+    "blockHash": "0x32a2de013993fe2e73882972faa854e1f94ecd535527c3adf0e2801ce6add990",
+    "blockNumber": 15948609,
+    "contractAddress": null,
+    "cumulativeGasUsed": 11059168,
+    "effectiveGasPrice": 17798664107,
+    "from": "0x8da3582320cc6420316af0ae145f95af8344af2d",
+    "gasUsed": 172792,
+    "logsBloom": "0x00000000000000000080000000020028000000000000000000000000000000000000000000000200000000000000000002000000080000000000000000002000000000000000000028000008000000000000000000000000000000000800000000000000000200000000000000000000000000000000000800000010000000040000000000020000000000000000000000000000000000010000000000000000880001000000400000000000000000000000000000000002000000000000000000000002000000000000000000000000000000400008000800040800200000000000200000000000000000000000200000000001000810000000080000000000",
+    "status": true,
+    "to": "0x00000000006c3852cbef3e08e8df289169ede581",
+    "transactionHash": "0x16b20a9f22e9b4cdd324c68b9af8cbeed92633714675b8b4f7b30c3f8331334d",
+    "transactionIndex": 146,
+    "type": "0x2"
+  },
+  "attributes": [
+    {
+      "key": "blockNumber",
+      "value": 15948609
+    },
+    {
+      "key": "chainId",
+      "value": 1
+    },
+    {
+      "key": "from",
+      "value": "0x8da3582320cc6420316af0ae145f95af8344af2d"
+    },
+    {
+      "key": "parties",
+      "value": [
+        "0x8da3582320cc6420316af0ae145f95af8344af2d",
+        "0x00000000006c3852cbef3e08e8df289169ede581",
+        "0x004c00500000ad104d7dbd00e3ae0a5c00560c00",
+        "0x1e0049783f008a0085193e00003d00cd54003c71",
+        "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+        "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+        "0x81465ae33349c85b171c37bc07304370d74a8db4",
+        "0x0000a26b00c1f0df003000390027140000faa719",
+        "0x02085755fa2636a2d6bfb11d98a07618231a1c8d",
+        "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2-5000000000000000",
+        "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2-125000000000000",
+        "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2-250000000000000",
+        "0x0000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "key": "sigHash",
+      "value": "0xe7acab24"
+    },
+    {
+      "key": "timestamp",
+      "value": 1668191855
+    },
+    {
+      "key": "to",
+      "value": "0x00000000006c3852cbef3e08e8df289169ede581"
+    },
+    {
+      "key": "value",
+      "value": 0
+    },
+    {
+      "key": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2Transactors",
+      "value": [
+        "0x81465ae33349c85b171c37bc07304370d74a8db4",
+        "0x8da3582320cc6420316af0ae145f95af8344af2d",
+        "0x0000a26b00c1f0df003000390027140000faa719",
+        "0x02085755fa2636a2d6bfb11d98a07618231a1c8d"
+      ]
+    },
+    {
+      "key": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562Transactors",
+      "value": [
+        "0x8da3582320cc6420316af0ae145f95af8344af2d",
+        "0x1e0049783f008a0085193e00003d00cd54003c71"
+      ]
+    },
+    {
+      "key": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "value": [0.005, 0.004625, 0.000125, 0.00025]
+    },
+    {
+      "key": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+      "value": [1e-18]
+    }
+  ],
+  "context": {
+    "type": ""
+  }
+}

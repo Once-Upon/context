@@ -1,7 +1,7 @@
 import { Transaction } from '../types';
 import { detectSuperchainFaucetTransaction } from './superchainFaucet';
-import superchainFaucet0xd9dedf29 from '../test-data/transactions/superchainFaucet-0xd9dedf29.json';
-import superchainFaucet0x443037b3 from '../test-data/transactions/superchainFaucet-0x443037b3.json';
+import superchainFaucet0xd9dedf29 from '../test/transactions/superchainFaucet-0xd9dedf29.json';
+import superchainFaucet0x443037b3 from '../test/transactions/superchainFaucet-0x443037b3.json';
 
 describe('Superchain Faucet', () => {
   it('Should detect superchain faucet transaction', () => {

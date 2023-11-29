@@ -1,8 +1,8 @@
 import { Transaction } from '../types';
 import { detectTokenApproval } from './tokenApproval';
-import tokenApproval0x567130ba from '../test-data/transactions/tokenApproval-0x567130ba.json';
-import tokenApproval0x06f15d49 from '../test-data/transactions/tokenApproval-0x06f15d49.json';
-import tokenApproval0xa0c2a425 from '../test-data/transactions/tokenApproval-0xa0c2a425.json';
+import tokenApproval0x567130ba from '../test/transactions/tokenApproval-0x567130ba.json';
+import tokenApproval0x06f15d49 from '../test/transactions/tokenApproval-0x06f15d49.json';
+import tokenApproval0xa0c2a425 from '../test/transactions/tokenApproval-0xa0c2a425.json';
 
 describe('Token Approval', () => {
   it('Should detect token approval transaction', () => {

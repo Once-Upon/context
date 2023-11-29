@@ -1,9 +1,9 @@
 import { Transaction } from '../types';
 import { detectTokenMint } from './tokenMint';
-import tokenMint0x2c8a3ed1 from '../test-data/transactions/tokenMint-0x2c8a3ed1.json';
-import tokenMint0x45d1ed7b from '../test-data/transactions/tokenMint-0x45d1ed7b.json';
-import tokenMint0x35f54999 from '../test-data/transactions/tokenMint-0x35f54999.json';
-import erc20Swap0xd55dc9b2 from '../test-data/transactions/erc20Swap-0xd55dc9b2.json';
+import tokenMint0x2c8a3ed1 from '../test/transactions/tokenMint-0x2c8a3ed1.json';
+import tokenMint0x45d1ed7b from '../test/transactions/tokenMint-0x45d1ed7b.json';
+import tokenMint0x35f54999 from '../test/transactions/tokenMint-0x35f54999.json';
+import erc20Swap0xd55dc9b2 from '../test/transactions/erc20Swap-0xd55dc9b2.json';
 
 describe('Token Mint', () => {
   it('Should detect token mint transaction', () => {
