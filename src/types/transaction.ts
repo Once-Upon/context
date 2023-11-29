@@ -1,3 +1,4 @@
+import { Log } from './log';
 export interface AssetTransfer {
   asset?: string;
   from: string;
@@ -196,4 +197,5 @@ export interface Transaction {
   netAssetTransfers?: NetAssetTransfers;
   receipt?: Receipt;
   context?: TransactionContextType;
+  logs?: Log[];
 }

@@ -9,15 +9,12 @@ export async function ethTransferContextualizer(
   return generateETHTransferContext(transaction);
 }
 
-async function detectETHTransfer(
-  transaction: Transaction,
-): Promise<boolean> {
-
+async function detectETHTransfer(transaction: Transaction): Promise<boolean> {
   // TODO; check logs from transaction
   if (
     (transaction.input === '0x' || transaction.input === '') &&
-    transaction.value !== '0' 
-    // && transaction.logs?.length === 0
+    transaction.value !== '0' &&
+    transaction.logs?.length === 0
   ) {
     return true;
   }
