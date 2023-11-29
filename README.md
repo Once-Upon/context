@@ -1,8 +1,8 @@
 # context
 
-By default, EVM based transactions are inscrutable and are lacking details about the context and intent of the transaction. Once Upon proposes standardizing a context layer on top of the protocol level data to help network operators, developers, and end users better understand what is happening onchain.
+> Context for Ethereum L1 and L2 transactions.
 
-The npm package can be found [here](https://www.npmjs.com/package/@once-upon/evm-context).
+By default, EVM based transactions are inscrutable and are lacking details about the context and intent of the transaction. Once Upon proposes standardizing a context layer on top of the protocol level data to help network operators, developers, and end users better understand what is happening onchain.
 
 ## Quick start
 
