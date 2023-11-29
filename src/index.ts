@@ -1,1 +1,2 @@
-export * from './heuristics/erc20Swap';
+export * from './heuristics';
+export * from './protocol';

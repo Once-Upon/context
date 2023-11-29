@@ -52,5 +52,8 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "dependencies": {
+    "ethers": "^5.6.4"
   }
 }

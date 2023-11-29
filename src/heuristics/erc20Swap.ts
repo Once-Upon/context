@@ -1,4 +1,4 @@
-import { ContextSummaryDefaultType, Transaction } from '../types/transaction';
+import { Transaction } from '../types';
 
 export function erc20SwapContextualizer(transaction: Transaction): Transaction {
   const isERC20Swap = detectERC20Swap(transaction);
@@ -40,12 +40,6 @@ export function detectERC20Swap(transaction: Transaction): boolean {
 }
 
 function generateERC20SwapContext(transaction: Transaction): Transaction {
-  transaction.context = {
-    category: 'FUNGIBLE_TOKEN',
-    type: 'ERC20 Swap',
-    outcomes: {},
-  };
-
   const addresses = Object.keys(transaction.netAssetTransfers);
 
   for (const address of addresses) {
@@ -56,67 +50,40 @@ function generateERC20SwapContext(transaction: Transaction): Transaction {
     const receivedCount = received?.length || 0;
 
     if (sentCount === 1 && receivedCount === 1 && sent[0].type === 'erc20') {
-      transaction.context.outcomes['default'] = [
-        {
-          key: 'Summary',
-          value: {
-            desc: '[[swapper]] [[swapped]] [[sentToken]] for [[receivedToken]]',
-            swapper: {
-              type: 'address',
-              value: address,
-            },
-            swapped: {
-              type: 'contextAction',
-              value: 'Swapped',
-            },
-            sentToken: {
-              token: sent[0].asset,
-              type: sent[0].type,
-              value: sent[0].value,
-            },
-            receivedToken: {
-              token: received[0].asset,
-              type: received[0].type,
-              value: received[0].value,
-            },
-          } as ContextSummaryDefaultType
+      transaction.context = {
+        variables: {
+          swapper: {
+            type: 'address',
+            value: address,
+          },
+
+          sentToken: {
+            token: sent[0].asset,
+            type: sent[0].type,
+            value: sent[0].value,
+          },
+          receivedToken: {
+            token: received[0].asset,
+            type: received[0].type,
+            value: received[0].value,
+          },
         },
-        {
-          key: 'Swapper',
-          value: {
-            desc: '[[swapper]]',
-            swapper: {
-              type: 'address',
-              value: address,
+        summaries: {
+          category: 'FUNGIBLE_TOKEN',
+          en: {
+            title: 'ERC20 Swap',
+            default:
+              '[[swapper]] [[swapped]] [[sentToken]] for [[receivedToken]]',
+            variables: {
+              swapped: {
+                type: 'contextAction',
+                value: 'Swapped',
+              },
             },
           },
         },
-        {
-          key: 'Sent',
-          value: {
-            desc: '[[sentToken]]',
-            sentToken: {
-              token: sent[0].asset,
-              type: sent[0].type,
-              value: sent[0].value,
-            },
-          },
-        },
-        {
-          key: 'Received',
-          value: {
-            desc: '[[receivedToken]]',
-            receivedToken: {
-              token: received[0].asset,
-              type: received[0].type,
-              value: received[0].value,
-            },
-          },
-        },
-      ];
-      break;
+      };
     }
   }
-
   return transaction;
 }
