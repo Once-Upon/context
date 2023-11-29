@@ -105,23 +105,23 @@ export type TransactionContextType = {
 };
 
 export type ContextAction =
-  | 'Bought'
-  | 'Bridged'
-  | 'Deployed'
-  | 'Minted'
-  | 'Swapped'
-  | 'Wrapped'
-  | 'Sent'
-  | 'Received'
-  | 'Unwrapped'
-  | 'Registered'
-  | 'Renewed'
-  | 'Committed to'
-  | 'Received airdrop'
-  | 'Gave access to'
-  | 'Interacted with'
-  | 'Sent message'
-  | 'Set reverse ens to';
+  | 'bought'
+  | 'bridged'
+  | 'deployed'
+  | 'minted'
+  | 'wwapped'
+  | 'wrapped'
+  | 'sent'
+  | 'received'
+  | 'unwrapped'
+  | 'registered'
+  | 'renewed'
+  | 'committed to'
+  | 'received airdrop'
+  | 'gave access to'
+  | 'interacted with'
+  | 'sent message'
+  | 'set reverse ens to';
 
 export type ContextSummaryVariableType =
   | string
