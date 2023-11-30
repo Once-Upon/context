@@ -149,7 +149,7 @@ export type ContextAction =
   | 'redeemed'
   | 'bonk revealed'
   | 'wheel revealed'
-  | 'wheel commit'
+  | 'wheel committed'
   | 'killed'
   | 'minted'
   | 'redeemed'
