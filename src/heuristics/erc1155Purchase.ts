@@ -10,14 +10,6 @@ export function erc1155PurchaseContextualizer(
   return generateERC1155PurchaseContext(transaction);
 }
 
-/**
- * Detection criteria
- *
- * A tx is an ERC1155 purchase when the tx.from sends and receives exactly 1 asset (look at netAssetTransfers).
- * The tx.from must receive exactly 1 ERC1155, where the value (special to 1155s) can be arbitrary
- * The tx.from must send either ETH/WETH/Blur ETH
- * There are no other recipients of ERC721/ERC20s/ERC1155s.
- */
 export function detectERC1155Purchase(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
@@ -31,23 +23,26 @@ export function detectERC1155Purchase(transaction: Transaction): boolean {
   const addresses = transaction.netAssetTransfers
     ? Object.keys(transaction.netAssetTransfers)
     : [];
-  // check if transfer.from sent and received one asset
-  const transfers = transaction.netAssetTransfers[transaction.from];
-  const nftsReceived = transfers.received.filter((t) => t.type === 'erc1155');
-  const nftsSent = transfers.sent.filter((t) => t.type === 'erc1155');
-  const tokenSent = transfers.sent.filter(
-    (t) => t.type === 'eth' || t.type === 'erc20',
-  );
-  const tokenReceived = transfers.received.filter(
-    (t) => t.type === 'eth' || t.type === 'erc20',
-  );
 
-  if (nftsReceived.length > 0 && tokenSent.length > 0) {
-    return true;
-  }
+  for (const address of addresses) {
+    const transfers = transaction.netAssetTransfers[address];
+    const nftsReceived = transfers.received.filter((t) => t.type === 'erc1155');
+    const nftsSent = transfers.sent.filter((t) => t.type === 'erc1155');
 
-  if (nftsSent.length > 0 && tokenReceived.length > 0) {
-    return true;
+    const ethOrErc20Sent = transfers.sent.filter(
+      (t) => t.type === 'eth' || t.type === 'erc20',
+    );
+    const ethOrErc20Received = transfers.received.filter(
+      (t) => t.type === 'eth' || t.type === 'erc20',
+    );
+
+    if (nftsReceived.length > 0 && ethOrErc20Sent.length > 0) {
+      return true;
+    }
+
+    if (nftsSent.length > 0 && ethOrErc20Received.length > 0) {
+      return true;
+    }
   }
 
   return false;
@@ -112,14 +107,14 @@ function generateERC1155PurchaseContext(transaction: Transaction): Transaction {
               value: receivedNfts[0].value,
             }
           : receivedNftContracts.length === 1
-            ? {
-                type: 'address',
-                value: receivedNftContracts[0],
-              }
-            : {
-                type: 'emphasis',
-                value: `${receivedNfts.length} NFTs`,
-              },
+          ? {
+              type: 'address',
+              value: receivedNftContracts[0],
+            }
+          : {
+              type: 'emphasis',
+              value: `${receivedNfts.length} NFTs`,
+            },
       price:
         totalPayments.length > 1
           ? {
@@ -127,15 +122,15 @@ function generateERC1155PurchaseContext(transaction: Transaction): Transaction {
               value: `${totalPayments.length} Assets`,
             }
           : totalPayments[0].type === 'eth'
-            ? {
-                type: 'eth',
-                value: totalPayments[0].value,
-              }
-            : {
-                type: 'erc20',
-                token: totalPayments[0].asset,
-                value: totalPayments[0].value,
-              },
+          ? {
+              type: 'eth',
+              value: totalPayments[0].value,
+            }
+          : {
+              type: 'erc20',
+              token: totalPayments[0].asset,
+              value: totalPayments[0].value,
+            },
     },
     summaries: {
       category: 'NFT',
