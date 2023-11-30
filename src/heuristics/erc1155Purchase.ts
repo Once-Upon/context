@@ -31,26 +31,23 @@ export function detectERC1155Purchase(transaction: Transaction): boolean {
   const addresses = transaction.netAssetTransfers
     ? Object.keys(transaction.netAssetTransfers)
     : [];
+  // check if transfer.from sent and received one asset
+  const transfers = transaction.netAssetTransfers[transaction.from];
+  const nftsReceived = transfers.received.filter((t) => t.type === 'erc1155');
+  const nftsSent = transfers.sent.filter((t) => t.type === 'erc1155');
+  const tokenSent = transfers.sent.filter(
+    (t) => t.type === 'eth' || t.type === 'erc20',
+  );
+  const tokenReceived = transfers.received.filter(
+    (t) => t.type === 'eth' || t.type === 'erc20',
+  );
 
-  for (const address of addresses) {
-    const transfers = transaction.netAssetTransfers[address];
-    const nftsReceived = transfers.received.filter((t) => t.type === 'erc1155');
-    const nftsSent = transfers.sent.filter((t) => t.type === 'erc1155');
+  if (nftsReceived.length > 0 && tokenSent.length > 0) {
+    return true;
+  }
 
-    const ethOrErc20Sent = transfers.sent.filter(
-      (t) => t.type === 'eth' || t.type === 'erc20',
-    );
-    const ethOrErc20Received = transfers.received.filter(
-      (t) => t.type === 'eth' || t.type === 'erc20',
-    );
-
-    if (nftsReceived.length > 0 && ethOrErc20Sent.length > 0) {
-      return true;
-    }
-
-    if (nftsSent.length > 0 && ethOrErc20Received.length > 0) {
-      return true;
-    }
+  if (nftsSent.length > 0 && tokenReceived.length > 0) {
+    return true;
   }
 
   return false;
