@@ -1,0 +1,58 @@
+import { Transaction } from '../types';
+
+export const {{lowercaseName}}Contextualizer = (transaction: Transaction): Transaction => {
+  const is{{camelCaseName}} = detect{{camelCaseName}}(transaction);
+  if (!is{{camelCaseName}}) return transaction;
+
+  return generate{{camelCaseName}}Context(transaction);
+};
+
+export const detect{{camelCaseName}} = (transaction: Transaction): boolean => {
+  /** implement your detection logic */
+  if (!transaction.value) {
+    return false;
+  }
+
+  return true;
+};
+
+// Contextualize for mined txs
+export const generate{{camelCaseName}}Context = (transaction: Transaction): Transaction => {
+  /** implement your context generation logic */
+  transaction.context = {
+    variables: {
+      subject: {
+        type: '',
+        value: '',
+      },
+      asset1: {
+        type: '',
+        value: '',
+      },
+      asset2: {
+        type: '',
+        value: '',
+      },
+      userCount: {
+        type: 'emphasis',
+        value: 70,
+      },
+    },
+    summaries: {
+      category: '<CATEGORY>', // e.g. FUNGIBLE_TOKEN
+      en: {
+        title: '<TITLE>', // e.g. ERC20 Swap
+        variables: {
+          contextAction: {
+            type: 'contextAction',
+            value: '<ACTION_TEXT>', // text should be lowercase. e.g. purchased
+          },
+        },
+        default:
+          '[[subject]] [[contextAction]] [[asset1]] for [[asset2]] [[userCount]] users',
+      },
+    },
+  };
+
+  return transaction;
+};
