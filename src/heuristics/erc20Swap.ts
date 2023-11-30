@@ -39,7 +39,7 @@ export function detectERC20Swap(transaction: Transaction): boolean {
   if (addresses.length > 4) {
     return false;
   }
-  // check if transfer.from sent and receive one asset
+  // check if transfer.from sent and received one asset
   const sent = transaction.netAssetTransfers[transaction.from].sent;
   const received = transaction.netAssetTransfers[transaction.from].received;
   const sentCount = sent?.length || 0;
