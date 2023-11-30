@@ -10,6 +10,14 @@ export function erc1155PurchaseContextualizer(
   return generateERC1155PurchaseContext(transaction);
 }
 
+/**
+ * Detection criteria
+ *
+ * A tx is an ERC1155 purchase when the tx.from sends and receives exactly 1 asset (look at netAssetTransfers).
+ * The tx.from must receive exactly 1 ERC1155, where the value (special to 1155s) can be arbitrary
+ * The tx.from must send either ETH/WETH/Blur ETH
+ * There are no other recipients of ERC721/ERC20s/ERC1155s.
+ */
 export function detectERC1155Purchase(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
@@ -107,14 +115,14 @@ function generateERC1155PurchaseContext(transaction: Transaction): Transaction {
               value: receivedNfts[0].value,
             }
           : receivedNftContracts.length === 1
-          ? {
-              type: 'address',
-              value: receivedNftContracts[0],
-            }
-          : {
-              type: 'emphasis',
-              value: `${receivedNfts.length} NFTs`,
-            },
+            ? {
+                type: 'address',
+                value: receivedNftContracts[0],
+              }
+            : {
+                type: 'emphasis',
+                value: `${receivedNfts.length} NFTs`,
+              },
       price:
         totalPayments.length > 1
           ? {
@@ -122,15 +130,15 @@ function generateERC1155PurchaseContext(transaction: Transaction): Transaction {
               value: `${totalPayments.length} Assets`,
             }
           : totalPayments[0].type === 'eth'
-          ? {
-              type: 'eth',
-              value: totalPayments[0].value,
-            }
-          : {
-              type: 'erc20',
-              token: totalPayments[0].asset,
-              value: totalPayments[0].value,
-            },
+            ? {
+                type: 'eth',
+                value: totalPayments[0].value,
+              }
+            : {
+                type: 'erc20',
+                token: totalPayments[0].asset,
+                value: totalPayments[0].value,
+              },
     },
     summaries: {
       category: 'NFT',
