@@ -67,6 +67,9 @@ function generateTokenAirdropContext(transaction: Transaction): Transaction {
     value: firstAssetTransfer.value,
   };
 
+  const category =
+    firstAssetTransfer.type === 'erc721' ? 'NFT' : 'FUNGIBLE_TOKEN';
+
   transaction.context = {
     variables: {
       recipient:
@@ -103,7 +106,7 @@ function generateTokenAirdropContext(transaction: Transaction): Transaction {
             },
     },
     summaries: {
-      category: 'FUNGIBLE_TOKEN',
+      category,
       en: {
         title: 'Token Airdrop',
         default: `[[recipient]] [[receivedAirdrop]] [[token]]${
