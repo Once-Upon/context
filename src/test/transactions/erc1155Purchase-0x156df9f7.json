@@ -1,0 +1,707 @@
+{
+  "blockHash": "0x1dafbe13d2405cfa0211f2e24387b138b5e2c557cb0e8da5f5d59c0de0abe054",
+  "blockNumber": 17867693,
+  "from": "0x02085755fa2636a2d6bfb11d98a07618231a1c8d",
+  "gas": 333187,
+  "gasPrice": "25247528479",
+  "maxFeePerGas": "33350484205",
+  "maxPriorityFeePerGas": "100000000",
+  "hash": "0x156d113afa25d937390a95cc9fb9106e9ac4805a719a9a44dd1c54ac3cf3f9f7",
+  "input": "0x87201b4100000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000000000000000000bc00000000000000000000000000000000000000000000000000000000000000be00000000000000000000000000000000000000000000000000000000000000d000000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000052000000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000046000000000000000000000000000000000000000000000000000000000000004c000000000000000000000000078f8c78a212d64ce1148355dee3f26a6e029ebba000000000000000000000000004c00500000ad104d7dbd00e3ae0a5c00560c000000000000000000000000000000000000000000000000000000000000000160000000000000000000000000000000000000000000000000000000000000022000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000064bdd8c00000000000000000000000000000000000000000000000000000000065b06cbd0000000000000000000000000000000000000000000000000000000000000000360c6ebe000000000000000000000000000000000000000044e151b9952a60e00000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000003000000000000000000000000f7f18a919bb12246aa32b2a62bb0230a6a27f56200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000022a392c68f60000000000000000000000000000000000000000000000000000022a392c68f600000000000000000000000000078f8c78a212d64ce1148355dee3f26a6e029ebba0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e35fa931a0000000000000000000000000000000000000000000000000000000e35fa931a0000000000000000000000000000000a26b00c1f0df003000390027140000faa719000000000000000000000000000000000000000000000000000000000000004080d92f8eacffe29c5830cc48ae2b73896ae6c56b2c6a917bf079a33eaff8e14634c2da88b5accce209c7eaafcac6753c8cc4d0359f69573cd726fb8636311721000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000005200000000000000000000000000000000000000000000000000000000000000580000000000000000000000000c03847169a0acf76cfd8cf844f27e98b7cf199a0000000000000000000000000004c00500000ad104d7dbd00e3ae0a5c00560c000000000000000000000000000000000000000000000000000000000000000160000000000000000000000000000000000000000000000000000000000000022000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000064b491580000000000000000000000000000000000000000000000000000000064d5137c0000000000000000000000000000000000000000000000000000000000000000360c6ebe00000000000000000000000000000000000000003d74c1c0d5ef62720000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000000000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000003000000000000000000000000f7f18a919bb12246aa32b2a62bb0230a6a27f56200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000041b9a6e85840000000000000000000000000000000000000000000000000000041b9a6e8584000000000000000000000000000c03847169a0acf76cfd8cf844f27e98b7cf199a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001c6bf526340000000000000000000000000000000000000000000000000000001c6bf526340000000000000000000000000000000a26b00c1f0df003000390027140000faa71900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000038d7ea4c6800000000000000000000000000000000000000000000000000000038d7ea4c6800000000000000000000000000002085755fa2636a2d6bfb11d98a07618231a1c8d00000000000000000000000000000000000000000000000000000000000000405402141806bbcf859bbd7a3223aea60a8bcad08ef6bc25394ba60a947eef970f688d21447879305b02d2b919ad2e2a7ea2f72745f99dc83f1aca0420b9408a58000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000e0000000000000000000000000000000000000000000000000000000000000018000000000000000000000000000000000000000000000000000000000000001e000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000002a3bb4bb8360c6ebe",
+  "nonce": 216,
+  "to": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+  "transactionIndex": 104,
+  "value": "30000000000000000",
+  "type": 2,
+  "accessList": [],
+  "chainId": 1,
+  "v": "0x1",
+  "r": "0x281b085a111b581410628fecbc8cc05ff6aea7e494baf3e37882cc14ae52e899",
+  "s": "0x2606b765cd73ab278b56cec0814ae8acdb4906a4c2b2dc13c19763d65e730335",
+  "timestamp": 1691467355,
+  "isoTimestamp": "2023-08-08T04:02:35.000Z",
+  "fork": "shanghai",
+  "baseFeePerGas": 25147528479,
+  "burntFees": "6133431900971142",
+  "minerFees": "24389800000000",
+  "transactionFee": "6157821700971142",
+  "assetTransfers": [
+    {
+      "from": "0x02085755fa2636a2d6bfb11d98a07618231a1c8d",
+      "to": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "type": "eth",
+      "value": "30000000000000000"
+    },
+    {
+      "from": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "to": "0x78f8c78a212d64ce1148355dee3f26a6e029ebba",
+      "type": "eth",
+      "value": "9750000000000000"
+    },
+    {
+      "from": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "to": "0x0000a26b00c1f0df003000390027140000faa719",
+      "type": "eth",
+      "value": "750000000000000"
+    },
+    {
+      "from": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "to": "0xc03847169a0acf76cfd8cf844f27e98b7cf199a0",
+      "type": "eth",
+      "value": "18500000000000000"
+    },
+    {
+      "from": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "to": "0x02085755fa2636a2d6bfb11d98a07618231a1c8d",
+      "type": "eth",
+      "value": "1000000000000000"
+    },
+    {
+      "asset": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+      "from": "0x78f8c78a212d64ce1148355dee3f26a6e029ebba",
+      "to": "0x02085755fa2636a2d6bfb11d98a07618231a1c8d",
+      "tokenId": "0",
+      "value": "1",
+      "type": "erc1155"
+    },
+    {
+      "asset": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+      "from": "0xc03847169a0acf76cfd8cf844f27e98b7cf199a0",
+      "to": "0x02085755fa2636a2d6bfb11d98a07618231a1c8d",
+      "tokenId": "0",
+      "value": "1",
+      "type": "erc1155"
+    }
+  ],
+  "sigHash": "0x87201b41",
+  "internalSigHashes": [
+    {
+      "from": "0x02085755fa2636a2d6bfb11d98a07618231a1c8d",
+      "to": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "sigHash": "0x87201b41"
+    },
+    {
+      "from": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "to": "0x78f8c78a212d64ce1148355dee3f26a6e029ebba",
+      "sigHash": "0x"
+    },
+    {
+      "from": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "to": "0x0000a26b00c1f0df003000390027140000faa719",
+      "sigHash": "0x"
+    },
+    {
+      "from": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "to": "0xc03847169a0acf76cfd8cf844f27e98b7cf199a0",
+      "sigHash": "0x"
+    },
+    {
+      "from": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "to": "0x02085755fa2636a2d6bfb11d98a07618231a1c8d",
+      "sigHash": "0x"
+    },
+    {
+      "from": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+      "to": "0x1e0049783f008a0085193e00003d00cd54003c71",
+      "sigHash": "0x4ce34aa2"
+    },
+    {
+      "from": "0x1e0049783f008a0085193e00003d00cd54003c71",
+      "to": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+      "sigHash": "0xf242432a"
+    },
+    {
+      "from": "0x1e0049783f008a0085193e00003d00cd54003c71",
+      "to": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+      "sigHash": "0xf242432a"
+    }
+  ],
+  "parties": [
+    "0x02085755fa2636a2d6bfb11d98a07618231a1c8d",
+    "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+    "0x78f8c78a212d64ce1148355dee3f26a6e029ebba",
+    "0x0000a26b00c1f0df003000390027140000faa719",
+    "0xc03847169a0acf76cfd8cf844f27e98b7cf199a0",
+    "0x1e0049783f008a0085193e00003d00cd54003c71",
+    "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+    "0x004c00500000ad104d7dbd00e3ae0a5c00560c00",
+    "0x0000000000000000000000000000000000000000"
+  ],
+  "decode": {
+    "fragment": {
+      "type": "function",
+      "inputs": [
+        {
+          "name": "",
+          "type": "tuple((address,address,(uint8,address,uint256,uint256,uint256)[],(uint8,address,uint256,uint256,uint256,address)[],uint8,uint256,uint256,bytes32,uint256,bytes32,uint256),uint120,uint120,bytes,bytes)[]",
+          "baseType": "array",
+          "indexed": null,
+          "components": null,
+          "arrayLength": -1,
+          "arrayChildren": {
+            "name": "",
+            "type": "tuple((address,address,(uint8,address,uint256,uint256,uint256)[],(uint8,address,uint256,uint256,uint256,address)[],uint8,uint256,uint256,bytes32,uint256,bytes32,uint256),uint120,uint120,bytes,bytes)",
+            "baseType": "tuple",
+            "indexed": null,
+            "components": [
+              {
+                "name": "",
+                "type": "tuple(address,address,(uint8,address,uint256,uint256,uint256)[],(uint8,address,uint256,uint256,uint256,address)[],uint8,uint256,uint256,bytes32,uint256,bytes32,uint256)",
+                "baseType": "tuple",
+                "indexed": null,
+                "components": [
+                  {
+                    "name": "",
+                    "type": "address",
+                    "baseType": "address",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": null,
+                    "arrayChildren": null
+                  },
+                  {
+                    "name": "",
+                    "type": "address",
+                    "baseType": "address",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": null,
+                    "arrayChildren": null
+                  },
+                  {
+                    "name": "",
+                    "type": "tuple(uint8,address,uint256,uint256,uint256)[]",
+                    "baseType": "array",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": -1,
+                    "arrayChildren": {
+                      "name": "",
+                      "type": "tuple(uint8,address,uint256,uint256,uint256)",
+                      "baseType": "tuple",
+                      "indexed": null,
+                      "components": [
+                        {
+                          "name": "",
+                          "type": "uint8",
+                          "baseType": "uint8",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        },
+                        {
+                          "name": "",
+                          "type": "address",
+                          "baseType": "address",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        },
+                        {
+                          "name": "",
+                          "type": "uint256",
+                          "baseType": "uint256",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        },
+                        {
+                          "name": "",
+                          "type": "uint256",
+                          "baseType": "uint256",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        },
+                        {
+                          "name": "",
+                          "type": "uint256",
+                          "baseType": "uint256",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        }
+                      ],
+                      "arrayLength": null,
+                      "arrayChildren": null
+                    }
+                  },
+                  {
+                    "name": "",
+                    "type": "tuple(uint8,address,uint256,uint256,uint256,address)[]",
+                    "baseType": "array",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": -1,
+                    "arrayChildren": {
+                      "name": "",
+                      "type": "tuple(uint8,address,uint256,uint256,uint256,address)",
+                      "baseType": "tuple",
+                      "indexed": null,
+                      "components": [
+                        {
+                          "name": "",
+                          "type": "uint8",
+                          "baseType": "uint8",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        },
+                        {
+                          "name": "",
+                          "type": "address",
+                          "baseType": "address",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        },
+                        {
+                          "name": "",
+                          "type": "uint256",
+                          "baseType": "uint256",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        },
+                        {
+                          "name": "",
+                          "type": "uint256",
+                          "baseType": "uint256",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        },
+                        {
+                          "name": "",
+                          "type": "uint256",
+                          "baseType": "uint256",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        },
+                        {
+                          "name": "",
+                          "type": "address",
+                          "baseType": "address",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        }
+                      ],
+                      "arrayLength": null,
+                      "arrayChildren": null
+                    }
+                  },
+                  {
+                    "name": "",
+                    "type": "uint8",
+                    "baseType": "uint8",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": null,
+                    "arrayChildren": null
+                  },
+                  {
+                    "name": "",
+                    "type": "uint256",
+                    "baseType": "uint256",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": null,
+                    "arrayChildren": null
+                  },
+                  {
+                    "name": "",
+                    "type": "uint256",
+                    "baseType": "uint256",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": null,
+                    "arrayChildren": null
+                  },
+                  {
+                    "name": "",
+                    "type": "bytes32",
+                    "baseType": "bytes32",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": null,
+                    "arrayChildren": null
+                  },
+                  {
+                    "name": "",
+                    "type": "uint256",
+                    "baseType": "uint256",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": null,
+                    "arrayChildren": null
+                  },
+                  {
+                    "name": "",
+                    "type": "bytes32",
+                    "baseType": "bytes32",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": null,
+                    "arrayChildren": null
+                  },
+                  {
+                    "name": "",
+                    "type": "uint256",
+                    "baseType": "uint256",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": null,
+                    "arrayChildren": null
+                  }
+                ],
+                "arrayLength": null,
+                "arrayChildren": null
+              },
+              {
+                "name": "",
+                "type": "uint120",
+                "baseType": "uint120",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null
+              },
+              {
+                "name": "",
+                "type": "uint120",
+                "baseType": "uint120",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null
+              },
+              {
+                "name": "",
+                "type": "bytes",
+                "baseType": "bytes",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null
+              },
+              {
+                "name": "",
+                "type": "bytes",
+                "baseType": "bytes",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null
+              }
+            ],
+            "arrayLength": null,
+            "arrayChildren": null
+          }
+        },
+        {
+          "name": "",
+          "type": "tuple(uint256,uint8,uint256,uint256,bytes32[])[]",
+          "baseType": "array",
+          "indexed": null,
+          "components": null,
+          "arrayLength": -1,
+          "arrayChildren": {
+            "name": "",
+            "type": "tuple(uint256,uint8,uint256,uint256,bytes32[])",
+            "baseType": "tuple",
+            "indexed": null,
+            "components": [
+              {
+                "name": "",
+                "type": "uint256",
+                "baseType": "uint256",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null
+              },
+              {
+                "name": "",
+                "type": "uint8",
+                "baseType": "uint8",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null
+              },
+              {
+                "name": "",
+                "type": "uint256",
+                "baseType": "uint256",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null
+              },
+              {
+                "name": "",
+                "type": "uint256",
+                "baseType": "uint256",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null
+              },
+              {
+                "name": "",
+                "type": "bytes32[]",
+                "baseType": "array",
+                "indexed": null,
+                "components": null,
+                "arrayLength": -1,
+                "arrayChildren": {
+                  "name": "",
+                  "type": "bytes32",
+                  "baseType": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                }
+              }
+            ],
+            "arrayLength": null,
+            "arrayChildren": null
+          }
+        },
+        {
+          "name": "",
+          "type": "tuple(uint256,uint256)[][]",
+          "baseType": "array",
+          "indexed": null,
+          "components": null,
+          "arrayLength": -1,
+          "arrayChildren": {
+            "name": "",
+            "type": "tuple(uint256,uint256)[]",
+            "baseType": "array",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": "",
+              "type": "tuple(uint256,uint256)",
+              "baseType": "tuple",
+              "indexed": null,
+              "components": [
+                {
+                  "name": "",
+                  "type": "uint256",
+                  "baseType": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                },
+                {
+                  "name": "",
+                  "type": "uint256",
+                  "baseType": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                }
+              ],
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          }
+        },
+        {
+          "name": "",
+          "type": "tuple(uint256,uint256)[][]",
+          "baseType": "array",
+          "indexed": null,
+          "components": null,
+          "arrayLength": -1,
+          "arrayChildren": {
+            "name": "",
+            "type": "tuple(uint256,uint256)[]",
+            "baseType": "array",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": "",
+              "type": "tuple(uint256,uint256)",
+              "baseType": "tuple",
+              "indexed": null,
+              "components": [
+                {
+                  "name": "",
+                  "type": "uint256",
+                  "baseType": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                },
+                {
+                  "name": "",
+                  "type": "uint256",
+                  "baseType": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null
+                }
+              ],
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          }
+        },
+        {
+          "name": "",
+          "type": "bytes32",
+          "baseType": "bytes32",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        },
+        {
+          "name": "",
+          "type": "address",
+          "baseType": "address",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "baseType": "uint256",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        }
+      ],
+      "name": "fulfillAvailableAdvancedOrders",
+      "constant": false,
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "payable": false,
+      "gas": null
+    },
+    "name": "fulfillAvailableAdvancedOrders",
+    "args": [
+      "0x78f8C78a212d64CE1148355DEE3F26a6e029EbBa,0x004C00500000aD104D7DBd00e3ae0A5C00560C00,3,0xf7f18a919bB12246AA32B2a62BB0230a6A27F562,0,1,1,0,0x0000000000000000000000000000000000000000,0,9750000000000000,9750000000000000,0x78f8C78a212d64CE1148355DEE3F26a6e029EbBa,0,0x0000000000000000000000000000000000000000,0,250000000000000,250000000000000,0x0000a26b00c1F0DF003000390027140000fAa719,1,1690163392,1706060989,0x0000000000000000000000000000000000000000000000000000000000000000,24446860302761739304752683030156737591518664810215442929805346026557104873696,0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000,2,1,1,0x80d92f8eacffe29c5830cc48ae2b73896ae6c56b2c6a917bf079a33eaff8e14634c2da88b5accce209c7eaafcac6753c8cc4d0359f69573cd726fb8636311721,0x,0xc03847169A0acf76cfd8cf844F27E98B7Cf199a0,0x004C00500000aD104D7DBd00e3ae0A5C00560C00,3,0xf7f18a919bB12246AA32B2a62BB0230a6A27F562,0,1,1,0,0x0000000000000000000000000000000000000000,0,18500000000000000,18500000000000000,0xc03847169A0acf76cfd8cf844F27E98B7Cf199a0,0,0x0000000000000000000000000000000000000000,0,500000000000000,500000000000000,0x0000a26b00c1F0DF003000390027140000fAa719,0,0x0000000000000000000000000000000000000000,0,1000000000000000,1000000000000000,0x02085755Fa2636a2d6BFB11D98a07618231A1c8d,1,1689555288,1691685756,0x0000000000000000000000000000000000000000000000000000000000000000,24446860302761739304752683030156737591518664810215442929804811065802831651442,0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000,3,1,1,0x5402141806bbcf859bbd7a3223aea60a8bcad08ef6bc25394ba60a947eef970f688d21447879305b02d2b919ad2e2a7ea2f72745f99dc83f1aca0420b9408a58,0x",
+      "",
+      "0,0,1,0",
+      "0,0,0,1,1,1,1,0,1,2",
+      "0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000",
+      "0x0000000000000000000000000000000000000000",
+      "2"
+    ],
+    "signature": "fulfillAvailableAdvancedOrders(((address,address,(uint8,address,uint256,uint256,uint256)[],(uint8,address,uint256,uint256,uint256,address)[],uint8,uint256,uint256,bytes32,uint256,bytes32,uint256),uint120,uint120,bytes,bytes)[],(uint256,uint8,uint256,uint256,bytes32[])[],(uint256,uint256)[][],(uint256,uint256)[][],bytes32,address,uint256)",
+    "selector": "0x87201b41",
+    "value": "0"
+  },
+  "netAssetTransfers": {
+    "0x02085755fa2636a2d6bfb11d98a07618231a1c8d": {
+      "received": [
+        {
+          "asset": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+          "id": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562-0",
+          "tokenId": "0",
+          "type": "erc1155",
+          "value": "2"
+        }
+      ],
+      "sent": [
+        {
+          "asset": "eth",
+          "id": "eth",
+          "type": "eth",
+          "value": "29000000000000000"
+        }
+      ]
+    },
+    "0x78f8c78a212d64ce1148355dee3f26a6e029ebba": {
+      "received": [
+        {
+          "asset": "eth",
+          "id": "eth",
+          "type": "eth",
+          "value": "9750000000000000"
+        }
+      ],
+      "sent": [
+        {
+          "asset": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+          "id": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562-0",
+          "tokenId": "0",
+          "type": "erc1155",
+          "value": "1"
+        }
+      ]
+    },
+    "0x0000a26b00c1f0df003000390027140000faa719": {
+      "received": [
+        {
+          "asset": "eth",
+          "id": "eth",
+          "type": "eth",
+          "value": "750000000000000"
+        }
+      ],
+      "sent": []
+    },
+    "0xc03847169a0acf76cfd8cf844f27e98b7cf199a0": {
+      "received": [
+        {
+          "asset": "eth",
+          "id": "eth",
+          "type": "eth",
+          "value": "18500000000000000"
+        }
+      ],
+      "sent": [
+        {
+          "asset": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562",
+          "id": "0xf7f18a919bb12246aa32b2a62bb0230a6a27f562-0",
+          "tokenId": "0",
+          "type": "erc1155",
+          "value": "1"
+        }
+      ]
+    }
+  },
+  "receipt": {
+    "blockHash": "0x1dafbe13d2405cfa0211f2e24387b138b5e2c557cb0e8da5f5d59c0de0abe054",
+    "blockNumber": 17867693,
+    "contractAddress": null,
+    "cumulativeGasUsed": 14798644,
+    "effectiveGasPrice": 25247528479,
+    "from": "0x02085755fa2636a2d6bfb11d98a07618231a1c8d",
+    "gasUsed": 243898,
+    "logsBloom": "0x00000000400000000000000000000028400000000000000000000000000000000000000000000200000000000000000000000000000000008000000000002000000000000008000020000000000000000000000000000080000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000080000010000000000000000880001000000400000000000100000000000000000000002000000000000000000000000000000000000000000000000000000000008000800000000000000000000000000000000000000000000000000000001000810000000080000400000",
+    "status": true,
+    "to": "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+    "transactionHash": "0x156d113afa25d937390a95cc9fb9106e9ac4805a719a9a44dd1c54ac3cf3f9f7",
+    "transactionIndex": 104,
+    "type": "0x2"
+  }
+}

@@ -1,55 +1,57 @@
 import { ethers } from 'ethers';
 import { Asset, Transaction } from '../types';
 
-export function erc721PurchaseContextualizer(
+export function erc1155SaleContextualizer(
   transaction: Transaction,
 ): Transaction {
-  const isERC721PurchaseTransaction = detectERC721Purchase(transaction);
+  const isERC1155Sale = detectERC1155Sale(transaction);
+  if (!isERC1155Sale) return transaction;
 
-  if (!isERC721PurchaseTransaction) return transaction;
-
-  return generateERC21PurchaseContext(transaction);
+  return generateERC1155SaleContext(transaction);
 }
 
 /**
  * Detection criteria
  *
- * Transaction.from sends ETH/WETH/blur eth and receives only NFTs.
- * Nothing is minted (exception being weth)
- * In netAssetTransfers, the address that sent the NFTs receives either eth/weth/blur eth.
- * The rest of the parties only receive eth/weth/blur eth (royalties/fees)
+ * A tx is an ERC1155 sale when the tx.from sends and receives exactly 1 asset (look at netAssetTransfers).
+ * The tx.from must send exactly 1 ERC1155, where the value (special to 1155s) can be arbitrary
+ * The tx.from must receive either ETH/WETH/Blur ETH
+ * There are no other recipients of ERC721/ERC20s/ERC1155s.
  */
-export function detectERC721Purchase(transaction: Transaction): boolean {
+export function detectERC1155Sale(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
-   *  and while this might seem redundant, maintaining the 'detect' function aligns with
+   * and while this might seem redundant, maintaining the 'detect' function aligns with
    * established patterns in our other modules. This consistency is beneficial,
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
+
   if (!transaction.netAssetTransfers) return false;
 
+  const addresses = transaction.netAssetTransfers
+    ? Object.keys(transaction.netAssetTransfers)
+    : [];
+  // check if transfer.from sent and received one asset
   const transfers = transaction.netAssetTransfers[transaction.from];
-  const nftsReceived = transfers.received.filter((t) => t.type === 'erc721');
-  const tokenSent = transfers.sent.filter(
+  const nftsSent = transfers.sent.filter((t) => t.type === 'erc1155');
+  const tokenReceived = transfers.received.filter(
     (t) => t.type === 'eth' || t.type === 'erc20',
   );
 
-  if (nftsReceived.length > 0 && tokenSent.length > 0) {
+  if (nftsSent.length > 0 && tokenReceived.length > 0) {
     return true;
   }
 
   return false;
 }
 
-export function generateERC21PurchaseContext(
-  transaction: Transaction,
-): Transaction {
+function generateERC1155SaleContext(transaction: Transaction): Transaction {
   const receivingAddresses: string[] = [];
   const receivedNfts: Asset[] = [];
   const sentPayments: { type: string; asset: string; value: string }[] = [];
 
   for (const [address, data] of Object.entries(transaction.netAssetTransfers)) {
-    const nftTransfers = data.received.filter((t) => t.type === 'erc721');
+    const nftTransfers = data.received.filter((t) => t.type === 'erc1155');
     const paymentTransfers = data.sent.filter(
       (t) => t.type === 'erc20' || t.type === 'eth',
     );
@@ -96,9 +98,10 @@ export function generateERC21PurchaseContext(
       tokenOrTokens:
         receivedNfts.length === 1
           ? {
-              type: 'erc721',
+              type: 'erc1155',
               token: receivedNfts[0].asset,
               tokenId: receivedNfts[0].tokenId,
+              value: receivedNfts[0].value,
             }
           : receivedNftContracts.length === 1
             ? {
