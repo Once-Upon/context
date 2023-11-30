@@ -50,7 +50,7 @@ export const generateENSContext = (transaction: Transaction): Transaction => {
             variables: {
               registered: {
                 type: 'contextAction',
-                value: 'Registered',
+                value: 'registered',
               },
             },
           },
@@ -84,7 +84,7 @@ export const generateENSContext = (transaction: Transaction): Transaction => {
             variables: {
               committedTo: {
                 type: 'contextAction',
-                value: 'Committed to',
+                value: 'committed to',
               },
             },
           },
@@ -114,7 +114,7 @@ export const generateENSContext = (transaction: Transaction): Transaction => {
             variables: {
               renewed: {
                 type: 'contextAction',
-                value: 'Renewed',
+                value: 'renewed',
               },
             },
           },

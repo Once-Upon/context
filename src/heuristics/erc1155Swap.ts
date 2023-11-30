@@ -84,7 +84,7 @@ function generateERC1155SwapContext(transaction: Transaction): Transaction {
               variables: {
                 swapped: {
                   type: 'contextAction',
-                  value: 'Swapped',
+                  value: 'swapped',
                 },
               },
             },

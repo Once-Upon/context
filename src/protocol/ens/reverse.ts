@@ -43,7 +43,7 @@ export const generateENSReverseContext = (
             variables: {
               reversed: {
                 type: 'contextAction',
-                value: 'Set reverse ens to',
+                value: 'set reverse ens to',
               },
             },
           },

@@ -66,7 +66,7 @@ export function generateTokenTransferContext(
         variables: {
           sent: {
             type: 'contextAction',
-            value: 'Sent',
+            value: 'sent',
           },
         },
       },

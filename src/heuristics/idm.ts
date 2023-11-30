@@ -45,7 +45,7 @@ function generateIdmContext(transaction: Transaction): Transaction {
         variables: {
           sentMessage: {
             type: 'contextAction',
-            value: 'Sent message',
+            value: 'sent message',
           },
         },
       },

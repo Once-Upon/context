@@ -41,7 +41,7 @@ export const generateWethContext = (transaction: Transaction): Transaction => {
             title: 'WETH',
             default: `[[from]] [[wrapped]] [[value]]`,
             variables: {
-              wrapped: { type: 'contextAction', value: 'Wrapped' },
+              wrapped: { type: 'contextAction', value: 'wrapped' },
             },
           },
         },
@@ -81,7 +81,7 @@ export const generateWethContext = (transaction: Transaction): Transaction => {
             title: 'WETH',
             default: `[[from]] [[unwrapped]] [[value]]`,
             variables: {
-              unwrapped: { type: 'contextAction', value: 'Unwrapped' },
+              unwrapped: { type: 'contextAction', value: 'unwrapped' },
             },
           },
         },
