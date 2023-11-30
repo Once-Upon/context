@@ -110,18 +110,52 @@ export type ContextAction =
   | 'deployed'
   | 'minted'
   | 'swapped'
-  | 'wrapped'
   | 'sent'
   | 'received'
-  | 'unwrapped'
-  | 'registered'
-  | 'renewed'
   | 'committed to'
   | 'received airdrop'
   | 'gave access to'
   | 'interacted with'
   | 'sent message'
-  | 'set reverse ens to';
+  // WETH
+  | 'wrapped'
+  | 'unwrapped'
+  // ENS
+  | 'registered'
+  | 'renewed'
+  | 'set reverse ens to'
+  // CryptoPunks
+  | 'minted punk'
+  | 'listed punk'
+  | 'withdrew bid for'
+  | 'bid on punk'
+  | 'withdrew from contract'
+  | 'bought punk'
+  | 'transffered punk'
+  | 'unlisted punk'
+  // Leeroy
+  | 'tipped'
+  | 'updated user details'
+  | 'replied to'
+  | 'reposted'
+  | 'registered username'
+  | 'followed'
+  | 'unfollowed'
+  | 'posted'
+  // fren.pet
+  | 'set pet name'
+  | 'bought accessory'
+  | 'attacked'
+  | 'redeemed'
+  | 'bonk revealed'
+  | 'wheel revealed'
+  | 'wheel commit'
+  | 'killed'
+  | 'minted'
+  | 'redeemed'
+  | 'sold item'
+  | 'joined dice game'
+  | 'dice game settled';
 
 export type ContextSummaryVariableType =
   | string
