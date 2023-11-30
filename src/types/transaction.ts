@@ -131,7 +131,7 @@ export type ContextAction =
   | 'bid on punk'
   | 'withdrew from contract'
   | 'bought punk'
-  | 'transffered punk'
+  | 'transferred punk'
   | 'unlisted punk'
   // Leeroy
   | 'tipped'
