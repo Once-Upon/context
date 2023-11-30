@@ -8,7 +8,7 @@ export function erc721SaleContextualizer(
 
   if (!isERC721SaleTransaction) return transaction;
 
-  return generateERC21PurchaseContext(transaction);
+  return generateERC21SaleContext(transaction);
 }
 
 /**
@@ -45,7 +45,7 @@ export function detectERC721Sale(transaction: Transaction): boolean {
   return false;
 }
 
-function generateERC21PurchaseContext(transaction: Transaction): Transaction {
+function generateERC21SaleContext(transaction: Transaction): Transaction {
   const receivingAddresses: string[] = [];
   const receivedNfts: Asset[] = [];
   const sentPayments: { type: string; asset: string; value: string }[] = [];
