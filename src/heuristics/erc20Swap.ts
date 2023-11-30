@@ -7,6 +7,18 @@ export function erc20SwapContextualizer(transaction: Transaction): Transaction {
   return generateERC20SwapContext(transaction);
 }
 
+/**
+ * Detection criteria
+ *
+ * We should detect an ERC20 swap if:
+ * The from account sent and received 1 asset. The sent and received must be either ETH OR an ERC20.
+ * Only 1 other account sends and receives assets (the liquidity pool).
+ * This is a simple check against the other addresses in netAssetTransfers (sent.length === 1 && received.length===1)
+ * Only 4 addresses max in netAssetTransfers.
+ *
+ * This is because when using a router there are likely other parties receiving fees. Some erc20s take a fee for any transfers as well. 4 addresses should be safe.
+ * To generate the erc20 swap, only look at the tx.from address in netAssetTransfers to pull out the sent/received (i.e., swapped from token X <> to token Y)
+ */
 export function detectERC20Swap(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
@@ -23,17 +35,22 @@ export function detectERC20Swap(transaction: Transaction): boolean {
   if (!addresses.includes(transaction.from.toLowerCase())) {
     return false;
   }
-
-  for (const address of addresses) {
-    const sent = transaction.netAssetTransfers[address].sent;
-    const received = transaction.netAssetTransfers[address].received;
-
-    const sentCount = sent?.length || 0;
-    const receivedCount = received?.length || 0;
-
-    if (sentCount === 1 && receivedCount === 1 && sent[0].type === 'erc20') {
-      return true;
-    }
+  // check netAssetTransfer addresses
+  if (addresses.length > 4) {
+    return false;
+  }
+  // check if transfer.from sent and receive one asset
+  const sent = transaction.netAssetTransfers[transaction.from].sent;
+  const received = transaction.netAssetTransfers[transaction.from].received;
+  const sentCount = sent?.length || 0;
+  const receivedCount = received?.length || 0;
+  // check if only one asset was transferred
+  if (sentCount !== 1 || receivedCount !== 1) {
+    return false;
+  }
+  // check if asset transferred is erc20 or eth
+  if (sent[0].type === 'erc20' || sent[0].type === 'eth') {
+    return true;
   }
 
   return false;
