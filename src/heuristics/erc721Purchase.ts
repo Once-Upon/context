@@ -48,7 +48,9 @@ export function detectERC721Purchase(transaction: Transaction): boolean {
   return false;
 }
 
-function generateERC21PurchaseContext(transaction: Transaction): Transaction {
+export function generateERC21PurchaseContext(
+  transaction: Transaction,
+): Transaction {
   const receivingAddresses: string[] = [];
   const receivedNfts: Asset[] = [];
   const sentPayments: { type: string; asset: string; value: string }[] = [];
@@ -106,14 +108,14 @@ function generateERC21PurchaseContext(transaction: Transaction): Transaction {
               tokenId: receivedNfts[0].tokenId,
             }
           : receivedNftContracts.length === 1
-          ? {
-              type: 'address',
-              value: receivedNftContracts[0],
-            }
-          : {
-              type: 'emphasis',
-              value: `${receivedNfts.length} NFTs`,
-            },
+            ? {
+                type: 'address',
+                value: receivedNftContracts[0],
+              }
+            : {
+                type: 'emphasis',
+                value: `${receivedNfts.length} NFTs`,
+              },
       price:
         totalPayments.length > 1
           ? {
@@ -121,15 +123,15 @@ function generateERC21PurchaseContext(transaction: Transaction): Transaction {
               value: `${totalPayments.length} Assets`,
             }
           : totalPayments[0].type === 'eth'
-          ? {
-              type: 'eth',
-              value: totalPayments[0].value,
-            }
-          : {
-              type: 'erc20',
-              token: totalPayments[0].asset,
-              value: totalPayments[0].value,
-            },
+            ? {
+                type: 'eth',
+                value: totalPayments[0].value,
+              }
+            : {
+                type: 'erc20',
+                token: totalPayments[0].asset,
+                value: totalPayments[0].value,
+              },
     },
     summaries: {
       category: 'NFT',
