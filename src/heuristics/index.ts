@@ -11,4 +11,3 @@ export * from './tokenAirdrop';
 export * from './tokenApproval';
 export * from './tokenMint';
 export * from './tokenTransfer';
-export * from './superchainFaucet';
