@@ -11,6 +11,14 @@ export function erc721PurchaseContextualizer(
   return generateERC21PurchaseContext(transaction);
 }
 
+/**
+ * Detection criteria
+ *
+ * Transaction.from sends ETH/WETH/blur eth and receives only NFTs.
+ * Nothing is minted (exception being weth)
+ * In netAssetTransfers, the address that sent the NFTs receives either eth/weth/blur eth.
+ * The rest of the parties only receive eth/weth/blur eth (royalties/fees)
+ */
 export function detectERC721Purchase(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
@@ -20,29 +28,14 @@ export function detectERC721Purchase(transaction: Transaction): boolean {
    */
   if (!transaction.netAssetTransfers) return false;
 
-  const addresses = transaction.netAssetTransfers
-    ? Object.keys(transaction.netAssetTransfers)
-    : [];
+  const transfers = transaction.netAssetTransfers[transaction.from];
+  const nftsReceived = transfers.received.filter((t) => t.type === 'erc721');
+  const tokenSent = transfers.sent.filter(
+    (t) => t.type === 'eth' || t.type === 'erc20',
+  );
 
-  for (const address of addresses) {
-    const transfers = transaction.netAssetTransfers[address];
-    const nftsReceived = transfers.received.filter((t) => t.type === 'erc721');
-    const nftsSent = transfers.sent.filter((t) => t.type === 'erc721');
-
-    const ethOrErc20Sent = transfers.sent.filter(
-      (t) => t.type === 'eth' || t.type === 'erc20',
-    );
-    const ethOrErc20Received = transfers.received.filter(
-      (t) => t.type === 'eth' || t.type === 'erc20',
-    );
-
-    if (nftsReceived.length > 0 && ethOrErc20Sent.length > 0) {
-      return true;
-    }
-
-    if (nftsSent.length > 0 && ethOrErc20Received.length > 0) {
-      return true;
-    }
+  if (nftsReceived.length > 0 && tokenSent.length > 0) {
+    return true;
   }
 
   return false;
