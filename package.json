@@ -57,7 +57,6 @@
   "dependencies": {
     "commander": "^11.1.0",
     "ethers": "^5.6.4",
-    "fs": "^0.0.1-security",
     "handlebars": "^4.7.8",
     "path": "^0.12.7"
   }
