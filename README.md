@@ -8,7 +8,7 @@ By default, EVM based transactions are inscrutable and are lacking details about
 
 ### Generating a new contextualization
 
-Run this command `npm run create:contextualizer -- --name [name of protocol]`
+Run this command `npm run create:contextualizer [name of protocol]`
 
 This will generate a new file called `protocol/[name of protocol].ts` and a test file called `protocol/[name of protocol].spec.ts`.
 
