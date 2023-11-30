@@ -21,7 +21,7 @@ export function erc1155SaleContextualizer(
 export function detectERC1155Sale(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
-   *  and while this might seem redundant, maintaining the 'detect' function aligns with
+   * and while this might seem redundant, maintaining the 'detect' function aligns with
    * established patterns in our other modules. This consistency is beneficial,
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
