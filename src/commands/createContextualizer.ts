@@ -2,13 +2,16 @@ import * as fs from 'fs';
 import * as Handlebars from 'handlebars';
 import * as path from 'path';
 import { program } from './main';
+import { shortenTxHash } from '../helpers/utils';
+import { grabTx } from './utils';
 
 export function registerCreateContextualizerCommand() {
   program
     .command('create-contextualizer')
     .description('Create a new contextualizer')
     .argument('<name>', 'name of contextualizer')
-    .action((name, options) => {
+    .option('-h, --hash <hash>', 'transaction hash')
+    .action(async (name, options) => {
       const srcDir = path.join(__dirname, '..', '..', 'src');
       const contextualizerTemplateFilePath = path.join(
         srcDir,
@@ -53,9 +56,21 @@ export function registerCreateContextualizerCommand() {
         };
         // Replace with actual contextualizer name
         const contextualizerContent = contextualizerTemplate(data);
-        const contextualizerSpecContent = contextualizerSpecTemplate(data);
         // Write the modified contents to the new contextualizer file
         fs.writeFileSync(newContextualizerFilePath, contextualizerContent);
+        // fetch transaction if hash is provided
+        if (options.hash) {
+          const txHashShorten = shortenTxHash(options.hash);
+          // grab transaction from api and save it in test/transactions
+          await grabTx(options.hash, name);
+          // add test transaction file name to template data
+          data['txHashShorten'] = txHashShorten;
+        } else {
+          // TODO; set default shorten hash
+          data['txHashShorten'] = '<INSERT_TX_HASH_HERE>';
+        }
+        // write spec template
+        const contextualizerSpecContent = contextualizerSpecTemplate(data);
         fs.writeFileSync(
           newContextualizerSpecFilePath,
           contextualizerSpecContent,

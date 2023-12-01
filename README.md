@@ -20,7 +20,7 @@ If you want your protocol to work well across all of web3, contribute to **EVM C
 
 ### Generating a new contextualization
 
-Run this command `npm run create:contextualizer [name of protocol]`
+Run this command `npm run create:contextualizer [name of protocol] -- -h [transaction hash]`
 
 This will generate a new file called `protocol/[name of protocol].ts` and a test file called `protocol/[name of protocol].spec.ts`.
 

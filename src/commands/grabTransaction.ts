@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { program } from './main';
 import { shortenTxHash } from '../helpers/utils';
+import { grabTx } from './utils';
 
 export function registerGrabTransactionCommand() {
   program
@@ -22,15 +23,8 @@ export function registerGrabTransactionCommand() {
 
       try {
         console.log(`Fetching transaction from transaction api: ${hash}`);
-        // grab a transaction
-        const defaultApiUrl = 'https://api.onceupon.gg';
-        const API_URL = process.env.API_URL || defaultApiUrl;
-        const transaction = await fetch(
-          `${API_URL}/v1/transactions/${hash}?withContext=false`,
-        ).then((res) => res.json());
-
-        // write to file
-        fs.writeFileSync(txFilePath, JSON.stringify(transaction, null, 2));
+        // grab transaction from api and save it in test/transactions
+        await grabTx(hash, prefix);
         console.log(`Transaction saved to ${txFilePath}.json`);
         process.exit(0); // Successful exit
       } catch (error) {
