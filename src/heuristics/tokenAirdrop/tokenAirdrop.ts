@@ -1,5 +1,7 @@
 import { Transaction } from '../../types';
-import { AIRDROP_THRESHOLD, KNOWN_ADDRESSES } from '../../helpers/constants';
+import { KNOWN_ADDRESSES } from '../../helpers/constants';
+
+const AIRDROP_THRESHOLD = 10;
 
 export function tokenAirdropContextualizer(
   transaction: Transaction,
@@ -28,28 +30,39 @@ export function detectTokenAirdrop(transaction: Transaction): boolean {
     return false;
   }
 
-  const airdropTracker: Record<
-    string,
-    { amount: number; assetTransfers: Set<any> }
-  > = {};
-
-  for (const assetTransfer of transaction.assetTransfers) {
-    const transferKey = `${assetTransfer.from}-${assetTransfer.asset}-${assetTransfer.type}`;
-    if (!airdropTracker[transferKey]) {
-      airdropTracker[transferKey] = {
-        amount: 0,
-        assetTransfers: new Set(),
-      };
+  // check if only 1 address is sending
+  const sendAddresses = Object.keys(transaction.netAssetTransfers).filter(
+    (address) => transaction.netAssetTransfers[address].sent.length > 0,
+  );
+  if (sendAddresses.length > 1) {
+    return false;
+  }
+  // check if all other addresses are receiving
+  for (const address in transaction.netAssetTransfers) {
+    if (address === sendAddresses[0]) {
+      continue;
     }
-    airdropTracker[transferKey].amount++;
-    airdropTracker[transferKey].assetTransfers.add(assetTransfer);
 
-    if (airdropTracker[transferKey].amount > AIRDROP_THRESHOLD) {
-      return true;
+    const sent = transaction.netAssetTransfers[address].sent;
+    const received = transaction.netAssetTransfers[address].received;
+    if (sent.length > 0 || received.length === 0) {
+      return false;
     }
   }
+  // check if all assets sent are the same contract
+  const assetsSent = transaction.netAssetTransfers[sendAddresses[0]].sent;
+  if (!assetsSent.every((ele) => ele.asset === assetsSent[0].asset)) {
+    return false;
+  }
+  // check if there are more than AIRDROP_THRESHOLD number of receivers
+  if (
+    Object.keys(transaction.netAssetTransfers).length - 1 <
+    AIRDROP_THRESHOLD
+  ) {
+    return false;
+  }
 
-  return false;
+  return true;
 }
 
 function generateTokenAirdropContext(transaction: Transaction): Transaction {
