@@ -1,8 +1,13 @@
 import { Transaction } from '../types';
 import { detect{{camelCaseName}}, generate{{camelCaseName}}Context } from './{{lowercaseName}}';
+import {{name}}{{txHashShorten}} from '../test/transactions/{{name}}-{{txHashShorten}}.json';
 
 describe('{{camelCaseName}}', () => {
   it('Should detect {{camelCaseName}} transaction', () => {
+    const {{camelCaseName}}1 = detect{{camelCaseName}}(
+      {{name}}{{txHashShorten}} as Transaction,
+    );
+    expect({{camelCaseName}}1).toBe(true);
   });
 
   it('Should generate {{camelCaseName}} context', () => {

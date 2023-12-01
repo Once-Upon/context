@@ -77,6 +77,9 @@ export function registerCreateContextualizerCommand() {
           fs.writeFileSync(txFilePath, JSON.stringify(transaction, null, 2));
           // add test transaction file name to template data
           data['txHashShorten'] = txHashShorten;
+        } else {
+          // TODO; set default shorten hash
+          data['txHashShorten'] = '0x20f3ee91';
         }
         // write spec template
         const contextualizerSpecContent = contextualizerSpecTemplate(data);
