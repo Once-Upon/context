@@ -36,12 +36,11 @@ export function detectERC1155Purchase(transaction: Transaction): boolean {
       (t) => t.type === 'eth' || t.type === 'erc20',
     );
 
-    if (!nftsReceived || !nftsSent || !ethOrErc20Sent || !ethOrErc20Received) return false;
-    if (nftsReceived.length > 0 && ethOrErc20Sent.length > 0) {
+    if (nftsReceived && nftsReceived.length > 0 && ethOrErc20Sent && ethOrErc20Sent.length > 0) {
       return true;
     }
 
-    if (nftsSent.length > 0 && ethOrErc20Received.length > 0) {
+    if (nftsSent && nftsSent.length > 0 && ethOrErc20Received && ethOrErc20Received.length > 0) {
       return true;
     }
   }
