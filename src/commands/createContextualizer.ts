@@ -67,7 +67,7 @@ export function registerCreateContextualizerCommand() {
           data['txHashShorten'] = txHashShorten;
         } else {
           // TODO; set default shorten hash
-          data['txHashShorten'] = '0x20f3ee91';
+          data['txHashShorten'] = '<INSERT_TX_HASH_HERE>';
         }
         // write spec template
         const contextualizerSpecContent = contextualizerSpecTemplate(data);
