@@ -53,3 +53,7 @@ Once that's ready, please open a PR on this repo and request review from `pcowgi
 ##### Protocol
 
 ##### Heuristic
+
+## License
+
+See the [LICENSE](LICENSE.txt) file for license rights and limitations (MIT).
