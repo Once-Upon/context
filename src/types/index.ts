@@ -1,3 +1,3 @@
 export * from './transaction';
 export * from './log';
-export * from './ContextAction';
+export * from './contextAction';
