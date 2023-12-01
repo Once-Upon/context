@@ -8,5 +8,10 @@ describe('Contract Deployed', () => {
       contractDeployed0x88e7d866 as Transaction,
     );
     expect(contractDeployed1).toBe(true);
+
+    const notContractDeployed1 = detectContractDeployment(
+      contractDeployed0x88e7d866 as Transaction,
+    );
+    expect(contractDeployed1).toBe(true);
   });
 });
