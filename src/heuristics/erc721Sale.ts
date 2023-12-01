@@ -33,11 +33,12 @@ export function detectERC721Sale(transaction: Transaction): boolean {
     : [];
 
   const transfers = transaction.netAssetTransfers[transaction.from];
-  const nftsSent = transfers.sent.filter((t) => t.type === 'erc721');
-  const tokenReceived = transfers.received.filter(
+  const nftsSent = transfers?.sent.filter((t) => t.type === 'erc721');
+  const tokenReceived = transfers?.received.filter(
     (t) => t.type === 'eth' || t.type === 'erc20',
   );
 
+  if (!nftsSent || !tokenReceived) return false;
   if (nftsSent.length > 0 && tokenReceived.length > 0) {
     return true;
   }

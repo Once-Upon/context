@@ -33,11 +33,12 @@ export function detectERC1155Sale(transaction: Transaction): boolean {
     : [];
   // check if transfer.from sent and received one asset
   const transfers = transaction.netAssetTransfers[transaction.from];
-  const nftsSent = transfers.sent.filter((t) => t.type === 'erc1155');
-  const tokenReceived = transfers.received.filter(
+  const nftsSent = transfers?.sent.filter((t) => t.type === 'erc1155');
+  const tokenReceived = transfers?.received.filter(
     (t) => t.type === 'eth' || t.type === 'erc20',
   );
 
+  if (!nftsSent || !tokenReceived) return false;
   if (nftsSent.length > 0 && tokenReceived.length > 0) {
     return true;
   }

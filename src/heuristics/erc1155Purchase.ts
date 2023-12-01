@@ -26,16 +26,17 @@ export function detectERC1155Purchase(transaction: Transaction): boolean {
 
   for (const address of addresses) {
     const transfers = transaction.netAssetTransfers[address];
-    const nftsReceived = transfers.received.filter((t) => t.type === 'erc1155');
-    const nftsSent = transfers.sent.filter((t) => t.type === 'erc1155');
+    const nftsReceived = transfers?.received.filter((t) => t.type === 'erc1155');
+    const nftsSent = transfers?.sent.filter((t) => t.type === 'erc1155');
 
-    const ethOrErc20Sent = transfers.sent.filter(
+    const ethOrErc20Sent = transfers?.sent.filter(
       (t) => t.type === 'eth' || t.type === 'erc20',
     );
-    const ethOrErc20Received = transfers.received.filter(
+    const ethOrErc20Received = transfers?.received.filter(
       (t) => t.type === 'eth' || t.type === 'erc20',
     );
 
+    if (!nftsReceived || !nftsSent || !ethOrErc20Sent || !ethOrErc20Received)
     if (nftsReceived.length > 0 && ethOrErc20Sent.length > 0) {
       return true;
     }
