@@ -34,26 +34,6 @@ You can do this by running `npm run grab:transaction [txHash] [nickname for the 
 
 Once that's ready, please open a PR on this repo and request review from `pcowgill` and `jordanmessina`
 
-# Overview
-
-## Definitions
-
-### Template Variables
-
-### Summary
-
-#### Description
-
-#### Title
-
-#### Context Action
-
-## Types of contextualizations
-
-##### Protocol
-
-##### Heuristic
-
 ## License
 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
