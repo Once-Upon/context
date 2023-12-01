@@ -4,6 +4,7 @@ import {
   generateTokenTransferContext,
 } from './tokenTransfer';
 import tokenTransfer0xcfba5dee from '../test/transactions/tokenTransfer-0xcfba5dee.json';
+import catchall0xc35c01ac from '../test/transactions/catchall-0xc35c01ac.json';
 
 describe('Token Transfer', () => {
   it('Should detect token transfer transaction', () => {
@@ -11,6 +12,11 @@ describe('Token Transfer', () => {
       tokenTransfer0xcfba5dee as Transaction,
     );
     expect(tokenMint1).toBe(true);
+  });
+
+  it('Should not detect token transfer transaction', () => {
+    const tokenMint1 = detectTokenTransfer(catchall0xc35c01ac as Transaction);
+    expect(tokenMint1).toBe(false);
   });
 
   it('Should detect token transfer context', () => {

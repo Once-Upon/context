@@ -4,6 +4,7 @@ import tokenMint0x2c8a3ed1 from '../test/transactions/tokenMint-0x2c8a3ed1.json'
 import tokenMint0x45d1ed7b from '../test/transactions/tokenMint-0x45d1ed7b.json';
 import tokenMint0x35f54999 from '../test/transactions/tokenMint-0x35f54999.json';
 import erc20Swap0xd55dc9b2 from '../test/transactions/erc20Swap-0xd55dc9b2.json';
+import catchall0xc35c01ac from '../test/transactions/catchall-0xc35c01ac.json';
 
 describe('Token Mint', () => {
   it('Should detect token mint transaction', () => {
@@ -20,5 +21,8 @@ describe('Token Mint', () => {
   it('Should not detect as TokenMint', () => {
     const isTokenMint1 = detectTokenMint(erc20Swap0xd55dc9b2 as Transaction);
     expect(isTokenMint1).toBe(false);
+
+    const isTokenMint2 = detectTokenMint(catchall0xc35c01ac as Transaction);
+    expect(isTokenMint2).toBe(false);
   });
 });
