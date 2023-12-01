@@ -23,7 +23,7 @@ export function registerGrabTransactionCommand() {
       try {
         console.log(`Fetching transaction from transaction api: ${hash}`);
         // grab a transaction
-        const defaultApiUrl = 'https://api.onceupon.gg/v1';
+        const defaultApiUrl = 'https://api.onceupon.gg';
         const API_URL = process.env.API_URL || defaultApiUrl;
         const transaction = await fetch(
           `${API_URL}/v1/transactions/${hash}?withContext=false`,
