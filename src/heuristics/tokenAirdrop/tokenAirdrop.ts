@@ -10,6 +10,13 @@ export function tokenAirdropContextualizer(
   return generateTokenAirdropContext(transaction);
 }
 
+/**
+ * Detection criteria
+ *
+ * Only 1 address in netAssetTransfers is sending, all other addresses are receiving. It's ok if the only sending address is the null (airdrop via mints)
+ * All assets sent are the same asset (contract address)
+ * There are more than AIRDROP_THRESHOLD number of receivers. A receiver can receive more than one airdrop.
+ */
 export function detectTokenAirdrop(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
