@@ -15,3 +15,8 @@ export const countValidChars = (stringToCount: string) => {
   }
   return count;
 };
+
+export function shortenTxHash(hash: string): string {
+  if (hash.length <= 10) return hash;
+  return hash.substr(0, 6) + hash.substr(-4);
+}

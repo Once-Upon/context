@@ -1,4 +1,6 @@
 import { Log } from './log';
+import { ContextAction } from './contextAction';
+
 export interface AssetTransfer {
   asset?: string;
   from: string;
@@ -104,25 +106,6 @@ export type TransactionContextType = {
   crossChainTx?: Transaction[];
 };
 
-export type ContextAction =
-  | 'bought'
-  | 'bridged'
-  | 'deployed'
-  | 'minted'
-  | 'swapped'
-  | 'wrapped'
-  | 'sent'
-  | 'received'
-  | 'unwrapped'
-  | 'registered'
-  | 'renewed'
-  | 'committed to'
-  | 'received airdrop'
-  | 'gave access to'
-  | 'interacted with'
-  | 'sent message'
-  | 'set reverse ens to';
-
 export type ContextSummaryVariableType =
   | string
   | {
@@ -158,6 +141,14 @@ export type ContextSummaryType = {
     | 'CORE'
     | 'OTHER'
     | 'DEV'
+    | 'GOVERNANCE'
+    | 'MULTISIG'
+    | 'ACCOUNT_ABSTRACTION'
+    | 'PROTOCOL_1'
+    | 'PROTOCOL_2'
+    | 'PROTOCOL_3'
+    | 'PROTOCOL_4'
+    | 'PROTOCOL_5'
     | 'UNKNOWN';
   en: {
     title: string;

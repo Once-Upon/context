@@ -1,6 +1,6 @@
 {
   "name": "@once-upon/evm-context",
-  "version": "0.0.12",
+  "version": "0.0.17",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,8 @@
     "prepublishOnly": "npm run build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "grab-transaction": "node ./scripts/grab-transaction.js"
+    "grab:transaction": "npm run build && node ./dist/commands/main.js grab-transaction",
+    "create:contextualizer": "npm run build && node ./dist/commands/main.js create-contextualizer"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,7 @@
     "transaction"
   ],
   "author": "",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Once-Upon/context/issues"
   },
@@ -54,6 +55,9 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "ethers": "^5.6.4"
+    "commander": "^11.1.0",
+    "ethers": "^5.6.4",
+    "handlebars": "^4.7.8",
+    "path": "^0.12.7"
   }
 }

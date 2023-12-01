@@ -1,25 +1,25 @@
 import { ethers } from 'ethers';
 import { Asset, Transaction } from '../types';
 
-export function erc721PurchaseContextualizer(
+export function erc721SaleContextualizer(
   transaction: Transaction,
 ): Transaction {
-  const isERC721PurchaseTransaction = detectERC721Purchase(transaction);
+  const isERC721SaleTransaction = detectERC721Sale(transaction);
 
-  if (!isERC721PurchaseTransaction) return transaction;
+  if (!isERC721SaleTransaction) return transaction;
 
-  return generateERC21PurchaseContext(transaction);
+  return generateERC21SaleContext(transaction);
 }
 
 /**
  * Detection criteria
  *
- * Transaction.from sends ETH/WETH/blur eth and receives only NFTs.
+ * Transaction.from receives ETH/WETH/blur eth and sends only NFTs.
  * Nothing is minted (exception being weth)
  * In netAssetTransfers, the address that sent the NFTs receives either eth/weth/blur eth.
  * The rest of the parties only receive eth/weth/blur eth (royalties/fees)
  */
-export function detectERC721Purchase(transaction: Transaction): boolean {
+export function detectERC721Sale(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
    *  and while this might seem redundant, maintaining the 'detect' function aligns with
@@ -28,23 +28,25 @@ export function detectERC721Purchase(transaction: Transaction): boolean {
    */
   if (!transaction.netAssetTransfers) return false;
 
+  const addresses = transaction.netAssetTransfers
+    ? Object.keys(transaction.netAssetTransfers)
+    : [];
+
   const transfers = transaction.netAssetTransfers[transaction.from];
-  const nftsReceived = transfers?.received.filter((t) => t.type === 'erc721');
-  const tokenSent = transfers?.sent.filter(
+  const nftsSent = transfers?.sent.filter((t) => t.type === 'erc721');
+  const tokenReceived = transfers?.received.filter(
     (t) => t.type === 'eth' || t.type === 'erc20',
   );
 
-  if (!nftsReceived || !tokenSent) return false;
-  if (nftsReceived.length > 0 && tokenSent.length > 0) {
+  if (!nftsSent || !tokenReceived) return false;
+  if (nftsSent.length > 0 && tokenReceived.length > 0) {
     return true;
   }
 
   return false;
 }
 
-export function generateERC21PurchaseContext(
-  transaction: Transaction,
-): Transaction {
+function generateERC21SaleContext(transaction: Transaction): Transaction {
   const receivingAddresses: string[] = [];
   const receivedNfts: Asset[] = [];
   const sentPayments: { type: string; asset: string; value: string }[] = [];
