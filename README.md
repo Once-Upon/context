@@ -7,12 +7,14 @@ If you want your protocol to work well on your own app, you can stick with a pri
 If you want your protocol to work well across all of web3, contribute to **EVM Context**.
 
 ##### Ideal contributors
-* Protocol teams
+
+- Protocol teams
 
 ##### Ideal users
-* Wallets
-* Web3 browsing tools
-* Web3 analytics tools
+
+- Wallets
+- Web3 browsing tools
+- Web3 analytics tools
 
 ## Quick start
 
@@ -26,7 +28,7 @@ This will generate a new file called `protocol/[name of protocol].ts` and a test
 
 You should write unit tests for your PR using a real transaction.
 
-You can do this by running `npm run grab:transaction --hash [txHash] --prefix [nickname for the type of tx]`.
+You can do this by running `npm run grab:transaction [txHash] [nickname for the type of tx]`.
 
 ### Finishing your new contextualization
 
