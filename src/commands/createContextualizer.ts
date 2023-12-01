@@ -3,6 +3,7 @@ import * as Handlebars from 'handlebars';
 import * as path from 'path';
 import { program } from './main';
 import { shortenTxHash } from '../helpers/utils';
+import { grabTx } from './utils';
 
 export function registerCreateContextualizerCommand() {
   program
@@ -60,21 +61,8 @@ export function registerCreateContextualizerCommand() {
         // fetch transaction if hash is provided
         if (options.hash) {
           const txHashShorten = shortenTxHash(options.hash);
-          const fileName = name + '-' + txHashShorten;
-          const txFilePath = path.join(
-            srcDir,
-            'test',
-            'transactions',
-            `${fileName}.json`,
-          );
-          // grab a transaction
-          const defaultApiUrl = 'https://api.onceupon.gg';
-          const API_URL = process.env.API_URL || defaultApiUrl;
-          const transaction = await fetch(
-            `${API_URL}/v1/transactions/${options.hash}?withContext=false`,
-          ).then((res) => res.json());
-          // write to file
-          fs.writeFileSync(txFilePath, JSON.stringify(transaction, null, 2));
+          // grab transaction from api and save it in test/transactions
+          await grabTx(options.hash, name);
           // add test transaction file name to template data
           data['txHashShorten'] = txHashShorten;
         } else {
