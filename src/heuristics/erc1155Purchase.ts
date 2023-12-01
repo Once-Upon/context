@@ -36,7 +36,7 @@ export function detectERC1155Purchase(transaction: Transaction): boolean {
       (t) => t.type === 'eth' || t.type === 'erc20',
     );
 
-    if (!nftsReceived || !nftsSent || !ethOrErc20Sent || !ethOrErc20Received)
+    if (!nftsReceived || !nftsSent || !ethOrErc20Sent || !ethOrErc20Received) return false;
     if (nftsReceived.length > 0 && ethOrErc20Sent.length > 0) {
       return true;
     }
