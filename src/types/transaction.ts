@@ -192,6 +192,14 @@ export type ContextSummaryType = {
     | 'CORE'
     | 'OTHER'
     | 'DEV'
+    | 'GOVERNANCE'
+    | 'MULTISIG'
+    | 'ACCOUNT_ABSTRACTION'
+    | 'PROTOCOL_1'
+    | 'PROTOCOL_2'
+    | 'PROTOCOL_3'
+    | 'PROTOCOL_4'
+    | 'PROTOCOL_5'
     | 'UNKNOWN';
   en: {
     title: string;
