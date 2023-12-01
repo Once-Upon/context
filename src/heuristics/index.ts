@@ -9,3 +9,5 @@ export * from './tokenAirdrop';
 export * from './tokenApproval';
 export * from './tokenMint';
 export * from './tokenTransfer';
+export * from './erc721Sale';
+export * from './erc1155Sale';
