@@ -10,7 +10,7 @@
     "prepublishOnly": "npm run build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "grab-transaction": "node ./scripts/grab-transaction.js",
+    "grab:transaction": "npm run build && node ./dist/commands/main.js grab-transaction",
     "create:contextualizer": "npm run build && node ./dist/commands/main.js create-contextualizer"
   },
   "repository": {
