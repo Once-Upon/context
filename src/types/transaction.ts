@@ -1,4 +1,6 @@
 import { Log } from './log';
+import { ContextAction } from './contextAction';
+
 export interface AssetTransfer {
   asset?: string;
   from: string;
@@ -103,59 +105,6 @@ export type TransactionContextType = {
   summaries?: ContextSummaryType;
   crossChainTx?: Transaction[];
 };
-
-export type ContextAction =
-  | 'bought'
-  | 'bridged'
-  | 'deployed'
-  | 'minted'
-  | 'swapped'
-  | 'sent'
-  | 'received'
-  | 'committed to'
-  | 'received airdrop'
-  | 'gave access to'
-  | 'interacted with'
-  | 'sent message'
-  // WETH
-  | 'wrapped'
-  | 'unwrapped'
-  // ENS
-  | 'registered'
-  | 'renewed'
-  | 'set reverse ens to'
-  // CryptoPunks
-  | 'minted punk'
-  | 'listed punk'
-  | 'withdrew bid for'
-  | 'bid on punk'
-  | 'withdrew from contract'
-  | 'bought punk'
-  | 'transferred punk'
-  | 'unlisted punk'
-  // Leeroy
-  | 'tipped'
-  | 'updated user details'
-  | 'replied to'
-  | 'reposted'
-  | 'registered username'
-  | 'followed'
-  | 'unfollowed'
-  | 'posted'
-  // fren.pet
-  | 'set pet name'
-  | 'bought accessory'
-  | 'attacked'
-  | 'redeemed'
-  | 'bonk revealed'
-  | 'wheel revealed'
-  | 'wheel committed'
-  | 'killed'
-  | 'minted'
-  | 'redeemed'
-  | 'sold item'
-  | 'joined dice game'
-  | 'dice game settled';
 
 export type ContextSummaryVariableType =
   | string
