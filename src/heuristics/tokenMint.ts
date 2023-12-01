@@ -8,6 +8,13 @@ export function tokenMintContextualizer(transaction: Transaction): Transaction {
   return generateTokenMintContext(transaction);
 }
 
+/**
+ * Detection criteria
+ *
+ * 1 address receives NFTs, all must be from the same contract. All nfts are minted (meaning they're sent from null address in netAssetTransfers).
+ * The from address can send ETH
+ * The only other parties in netAssetTransfers are receiving ETH
+ */
 export function detectTokenMint(transaction: Transaction): boolean {
   if (
     !transaction.assetTransfers?.length ||
