@@ -27,33 +27,51 @@ export function detectERC20Swap(transaction: Transaction): boolean {
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
 
-  const addresses = transaction.netAssetTransfers
-    ? Object.keys(transaction.netAssetTransfers)
-    : [];
-
-  // if from address is not in netAssetTransfers, its not ERC20 swap
-  if (!addresses.includes(transaction.from.toLowerCase())) {
+  // All assets transferred are type ETH or ERC20
+  if (
+    transaction.assetTransfers.some(
+      (asset) => asset.type !== 'eth' && asset.type !== 'erc20',
+    )
+  ) {
     return false;
-  }
-  // check netAssetTransfer addresses
-  if (addresses.length > 4) {
-    return false;
-  }
-  // check if transfer.from sent and received one asset
-  const sent = transaction.netAssetTransfers[transaction.from].sent;
-  const received = transaction.netAssetTransfers[transaction.from].received;
-  const sentCount = sent?.length || 0;
-  const receivedCount = received?.length || 0;
-  // check if only one asset was transferred
-  if (sentCount !== 1 || receivedCount !== 1) {
-    return false;
-  }
-  // check if asset transferred is erc20 or eth
-  if (sent[0].type === 'erc20' || sent[0].type === 'eth') {
-    return true;
   }
 
-  return false;
+  // From account (swapper) sent and received 1 asset
+  if (
+    !(
+      transaction.netAssetTransfers[transaction.from]?.received?.length === 1 &&
+      transaction.netAssetTransfers[transaction.from]?.sent?.length === 1
+    )
+  ) {
+    return false;
+  }
+
+  const swapperSent = transaction.netAssetTransfers[transaction.from].sent[0];
+  const swapperReceived =
+    transaction.netAssetTransfers[transaction.from].received[0];
+
+  // Swapper did not send and receive the same type of asset
+  if (
+    swapperSent.type === swapperReceived.type &&
+    swapperSent.asset === swapperReceived.asset
+  ) {
+    return false;
+  }
+
+  // Only 1 other account sends and receives assets (the liquidity pool)
+  const nonSwapperAddresses = (address) =>
+    address !== transaction.from &&
+    transaction.netAssetTransfers[address]?.received?.length === 1 &&
+    transaction.netAssetTransfers[address]?.sent?.length === 1;
+
+  if (
+    Object.keys(transaction.netAssetTransfers).filter(nonSwapperAddresses)
+      .length > 1
+  ) {
+    return false;
+  }
+
+  return true;
 }
 
 function generateERC20SwapContext(transaction: Transaction): Transaction {
@@ -73,7 +91,6 @@ function generateERC20SwapContext(transaction: Transaction): Transaction {
             type: 'address',
             value: address,
           },
-
           sentToken: {
             token: sent[0].asset,
             type: sent[0].type,
