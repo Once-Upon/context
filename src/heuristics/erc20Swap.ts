@@ -1,4 +1,4 @@
-import { Transaction } from '../types';
+import { ContextSummaryVariableType, Transaction } from '../types';
 
 export function erc20SwapContextualizer(transaction: Transaction): Transaction {
   const isERC20Swap = detectERC20Swap(transaction);
@@ -29,7 +29,7 @@ export function detectERC20Swap(transaction: Transaction): boolean {
 
   // All assets transferred are type ETH or ERC20
   if (
-    transaction.assetTransfers.some(
+    transaction.assetTransfers?.some(
       (asset) => asset.type !== 'eth' && asset.type !== 'erc20',
     )
   ) {
@@ -39,8 +39,9 @@ export function detectERC20Swap(transaction: Transaction): boolean {
   // From account (swapper) sent and received 1 asset
   if (
     !(
-      transaction.netAssetTransfers[transaction.from]?.received?.length === 1 &&
-      transaction.netAssetTransfers[transaction.from]?.sent?.length === 1
+      transaction.netAssetTransfers?.[transaction.from]?.received?.length ===
+        1 &&
+      transaction.netAssetTransfers?.[transaction.from]?.sent?.length === 1
     )
   ) {
     return false;
@@ -58,66 +59,42 @@ export function detectERC20Swap(transaction: Transaction): boolean {
     return false;
   }
 
-  // Only 1 other account sends and receives assets (the liquidity pool)
-  const nonSwapperAddresses = (address) =>
-    address !== transaction.from &&
-    transaction.netAssetTransfers[address]?.received?.length === 1 &&
-    transaction.netAssetTransfers[address]?.sent?.length === 1;
-
-  if (
-    Object.keys(transaction.netAssetTransfers).filter(nonSwapperAddresses)
-      .length > 1
-  ) {
-    return false;
-  }
-
   return true;
 }
 
 function generateERC20SwapContext(transaction: Transaction): Transaction {
-  const addresses = Object.keys(transaction.netAssetTransfers);
+  const swapper: ContextSummaryVariableType = {
+    type: 'address',
+    value: transaction.from,
+  };
+  const swapFrom = transaction.netAssetTransfers[transaction.from]
+    .sent[0] as ContextSummaryVariableType;
+  // Net asset transfers calls the token contract 'asset' instead of 'token'
+  swapFrom['token'] = swapFrom['asset'];
+  const swapTo = transaction.netAssetTransfers[transaction.from]
+    .received[0] as ContextSummaryVariableType;
+  // Net asset transfers calls the token contract 'asset' instead of 'token'
+  swapTo['token'] = swapTo['asset'];
 
-  for (const address of addresses) {
-    const sent = transaction.netAssetTransfers[address].sent;
-    const received = transaction.netAssetTransfers[address].received;
-
-    const sentCount = sent?.length || 0;
-    const receivedCount = received?.length || 0;
-
-    if (sentCount === 1 && receivedCount === 1 && sent[0].type === 'erc20') {
-      transaction.context = {
+  transaction.context = {
+    variables: {
+      swapper,
+      swapFrom,
+      swapTo,
+    },
+    summaries: {
+      category: 'FUNGIBLE_TOKEN',
+      en: {
+        title: 'ERC20 Swap',
+        default: '[[swapper]] [[swapped]] [[swapFrom]] for [[swapTo]]',
         variables: {
-          swapper: {
-            type: 'address',
-            value: address,
-          },
-          sentToken: {
-            token: sent[0].asset,
-            type: sent[0].type,
-            value: sent[0].value,
-          },
-          receivedToken: {
-            token: received[0].asset,
-            type: received[0].type,
-            value: received[0].value,
+          swapped: {
+            type: 'contextAction',
+            value: 'swapped',
           },
         },
-        summaries: {
-          category: 'FUNGIBLE_TOKEN',
-          en: {
-            title: 'ERC20 Swap',
-            default:
-              '[[swapper]] [[swapped]] [[sentToken]] for [[receivedToken]]',
-            variables: {
-              swapped: {
-                type: 'contextAction',
-                value: 'swapped',
-              },
-            },
-          },
-        },
-      };
-    }
-  }
+      },
+    },
+  };
   return transaction;
 }
