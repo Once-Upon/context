@@ -50,7 +50,7 @@ export const generateStorageRegistryContext = (
           },
           fid: {
             type: 'emphasis',
-            value: `Farcaster ID #${decoded.args[0]}`,
+            value: decoded.args[0].toString(),
           },
           units: {
             type: 'emphasis',
@@ -61,7 +61,7 @@ export const generateStorageRegistryContext = (
           category: 'OTHER',
           en: {
             title: 'Farcaster',
-            default: '[[caller]] [[rented]] [[units]] for [[fid]]',
+            default: '[[caller]] [[rented]] [[units]] for Farcaster ID [[fid]]',
             variables: {
               rented: {
                 type: 'contextAction',

@@ -24,7 +24,7 @@ describe('StorageRegistry', () => {
         '0x3a4afca659f54922a0d7a7b0bebabf641dec66bb',
       );
       expect(transaction.context.variables.fid['value']).toBe(
-        'Farcaster ID #196573',
+        '196573',
       );
       expect(transaction.context.variables.units['value']).toBe(
         '1 storage unit',
@@ -39,7 +39,7 @@ describe('StorageRegistry', () => {
         '0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2',
       );
       expect(transaction.context.variables.fid['value']).toBe(
-        'Farcaster ID #12350',
+        '12350',
       );
       expect(transaction.context.variables.units['value']).toBe(
         '2 storage units',
