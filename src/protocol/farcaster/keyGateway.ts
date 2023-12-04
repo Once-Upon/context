@@ -88,7 +88,7 @@ export const generateKeyGatewayContext = (
             title: 'Farcaster',
             default: '[[caller]] [[addedKeyFor]] [[owner]]',
             variables: {
-              removedKeyFor: {
+              addedKeyFor: {
                 type: 'contextAction',
                 value: 'added a key for',
               },
