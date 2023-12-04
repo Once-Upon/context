@@ -10,6 +10,7 @@ export function registerGrabTransactionCommand() {
     .description('Grab a transaction from API')
     .argument('<hash>', 'transaction hash')
     .argument('<prefix>', 'file name prefix')
+    .option('-c, --context', 'include transaction context')
     .action(async (hash, prefix, options) => {
       const srcDir = path.join(__dirname, '..', '..', 'src');
       // generate a file name
@@ -24,7 +25,7 @@ export function registerGrabTransactionCommand() {
       try {
         console.log(`Fetching transaction from transaction api: ${hash}`);
         // grab transaction from api and save it in test/transactions
-        await grabTx(hash, prefix);
+        await grabTx(hash, prefix, options.context);
         console.log(`Transaction saved to ${txFilePath}.json`);
         process.exit(0); // Successful exit
       } catch (error) {
