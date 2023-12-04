@@ -61,6 +61,9 @@ export const fetchTransactions = async (): Promise<Transaction[]> => {
   };
   const transactions = await fetch(`${API_URL}/v1/transactions`, {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify(requestBody),
   }).then((res) => res.json());
 

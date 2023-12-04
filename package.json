@@ -11,7 +11,8 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "grab:transaction": "npm run build && node ./dist/commands/main.js grab-transaction",
-    "create:contextualizer": "npm run build && node ./dist/commands/main.js create-contextualizer"
+    "create:contextualizer": "npm run build && node ./dist/commands/main.js create-contextualizer",
+    "run:contextualizers": "npm run build && node ./dist/commands/main.js run-contextualizers"
   },
   "repository": {
     "type": "git",

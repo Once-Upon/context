@@ -14,34 +14,39 @@ export function registerRunContextualizersCommand() {
         console.log(`Fetching transactions`);
         const transactions = await fetchTransactions();
         console.log(`Running contextualizers`);
-        const contextualizersPromise = transactions.map((transaction) => {
-          // run heuristic contextualizers
-          for (const contextualizerName in heuristicContextualizers) {
-            const contextualizer = heuristicContextualizers[contextualizerName];
-            try {
-              const txResult = contextualizer(transaction);
-              if (!txResult.from) {
-                console.error(`failed to run ${contextualizerName}`);
+        const contextualizersPromise =
+          transactions &&
+          transactions.map((transaction) => {
+            // run heuristic contextualizers
+            for (const contextualizerName in heuristicContextualizers) {
+              const contextualizer =
+                heuristicContextualizers[contextualizerName];
+              try {
+                const txResult = contextualizer(transaction);
+                if (!txResult.from) {
+                  console.error(`failed to run ${contextualizerName}`);
+                }
+              } catch (err) {
+                console.error(err);
               }
-            } catch (err) {
-              console.error(err);
             }
-          }
-          // run protocol contextualizers
-          for (const contextualizerName in protocolContextualizers) {
-            const contextualizer = protocolContextualizers[contextualizerName];
-            try {
-              const txResult = contextualizer(transaction);
-              if (!txResult.from) {
-                console.error(`failed to run ${contextualizerName}`);
+            // run protocol contextualizers
+            for (const contextualizerName in protocolContextualizers) {
+              const contextualizer =
+                protocolContextualizers[contextualizerName];
+              try {
+                const txResult = contextualizer(transaction);
+                if (!txResult.from) {
+                  console.error(`failed to run ${contextualizerName}`);
+                }
+              } catch (err) {
+                console.error(err);
               }
-            } catch (err) {
-              console.error(err);
             }
-          }
-        });
+          });
 
         await Promise.all(contextualizersPromise);
+        console.log('Successfully ran contextualizers');
         process.exit(0); // Successful exit
       } catch (error) {
         console.error('Failed to grab the transaction:', error);
