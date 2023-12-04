@@ -45,7 +45,7 @@ export function detectTokenAirdrop(transaction: Transaction): boolean {
 
     const sent = transaction.netAssetTransfers[address].sent;
     const received = transaction.netAssetTransfers[address].received;
-    if (sent.length > 0 || received.length === 0) {
+    if (sent?.length || !received?.length) {
       return false;
     }
   }
