@@ -8,8 +8,16 @@ export function tokenMintContextualizer(transaction: Transaction): Transaction {
   return generateTokenMintContext(transaction);
 }
 
+/**
+ * Detection criteria
+ *
+ * 1 address receives NFTs, all must be from the same contract. All nfts are minted (meaning they're sent from null address in netAssetTransfers).
+ * The from address can send ETH
+ * The only other parties in netAssetTransfers are receiving ETH
+ */
 export function detectTokenMint(transaction: Transaction): boolean {
   if (
+    !transaction?.from ||
     !transaction.assetTransfers?.length ||
     transaction.netAssetTransfers === undefined // TODO: This is a hack because of an issue with netAssetTransfers transformer
   ) {
@@ -26,8 +34,18 @@ export function detectTokenMint(transaction: Transaction): boolean {
   if (mints.length == 0) {
     return false;
   }
-
-  // check if there are 2 transaction parties other than null address
+  // check if all minted assets are from the same contract
+  const isSameContract = mints.every((ele) => ele.asset === mints[0].asset);
+  if (!isSameContract) {
+    return false;
+  }
+  // transfer.from can send some eth
+  const assetTransfer = transaction.netAssetTransfers[transaction.from];
+  const assetSent = assetTransfer.sent;
+  if (assetSent.length > 0 && assetSent[0].type !== 'eth') {
+    return false;
+  }
+  // check if other transaction parties received ether
   const transactionParties: string[] = Object.keys(
     transaction.netAssetTransfers,
   )
@@ -35,10 +53,16 @@ export function detectTokenMint(transaction: Transaction): boolean {
       parties = [...new Set([...parties, address])];
       return parties;
     }, [])
-    .filter((address) => address !== KNOWN_ADDRESSES.NULL);
+    .filter(
+      (address) =>
+        address !== KNOWN_ADDRESSES.NULL && address !== transaction.from,
+    );
 
-  if (transactionParties.length > 2) {
-    return false;
+  for (const address of transactionParties) {
+    const assetReceived = transaction.netAssetTransfers[address]?.received;
+    if (assetReceived.length === 0 || assetReceived[0].type !== 'eth') {
+      return false;
+    }
   }
 
   return true;
