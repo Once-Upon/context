@@ -18,7 +18,13 @@ export const detectStorageRegistry = (transaction: Transaction): boolean => {
     return false;
   }
 
-  if (transaction.decode.name !== 'rent') {
+  const iface = new Interface(ABI);
+  const decoded = iface.parseTransaction({
+    data: transaction.input,
+    value: transaction.value,
+  });
+
+  if (!['rent'].includes(decoded.name)) {
     return false;
   }
 
