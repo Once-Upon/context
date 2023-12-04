@@ -56,11 +56,11 @@ export const generateIdRegistryContext = (
           category: 'OTHER',
           en: {
             title: 'Farcaster',
-            default: '[[owner]] [[changedRecoveryAddress]] [[recoveryAddress]]',
+            default: '[[owner]] [[changedRecoveryAddress]] to [[recoveryAddress]]',
             variables: {
               changedRecoveryAddress: {
                 type: 'contextAction',
-                value: 'changed recovery address to',
+                value: 'changed recovery address',
               },
             },
           },
@@ -85,11 +85,11 @@ export const generateIdRegistryContext = (
           category: 'OTHER',
           en: {
             title: 'Farcaster',
-            default: '[[owner]] [[transferredId]] [[to]]',
+            default: '[[owner]] [[transferredId]] to [[to]]',
             variables: {
               transferredId: {
                 type: 'contextAction',
-                value: 'transferred Farcaster ID to',
+                value: 'transferred Farcaster ID',
               },
             },
           },

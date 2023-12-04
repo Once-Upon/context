@@ -81,11 +81,11 @@ export const generateKeyRegistryContext = (
           category: 'OTHER',
           en: {
             title: 'Farcaster',
-            default: '[[caller]] [[removedKeyFor]] [[owner]]',
+            default: '[[caller]] [[removedKey]] for [[owner]]',
             variables: {
-              removedKeyFor: {
+              removedKey: {
                 type: 'contextAction',
-                value: 'removed a key for',
+                value: 'removed a key',
               },
             },
           },

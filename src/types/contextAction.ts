@@ -52,10 +52,8 @@ export type ContextAction =
   | 'dice game settled'
   // Farcaster
   | 'registered Farcaster ID'
-  | 'changed recovery address to'
-  | 'transferred Farcaster ID to'
+  | 'changed recovery address'
+  | 'transferred Farcaster ID'
   | 'rented'
   | 'removed a key'
-  | 'removed a key for'
-  | 'added a key'
-  | 'added a key for';
+  | 'added a key';

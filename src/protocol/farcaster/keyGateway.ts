@@ -81,11 +81,11 @@ export const generateKeyGatewayContext = (
           category: 'OTHER',
           en: {
             title: 'Farcaster',
-            default: '[[caller]] [[addedKeyFor]] [[owner]]',
+            default: '[[caller]] [[addedKey]] for [[owner]]',
             variables: {
-              addedKeyFor: {
+              addedKey: {
                 type: 'contextAction',
-                value: 'added a key for',
+                value: 'added a key',
               },
             },
           },
