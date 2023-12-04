@@ -6,11 +6,20 @@ import * as heuristicContextualizers from '../heuristics';
 export function registerRunContextualizersCommand() {
   program
     .command('run-contextualizers')
-    .description('Run contextualizers for the latest 25 transactions')
+    .description('Run contextualizers for the latest transactions')
+    .option('-l, --limit <limit>', 'number of transactions')
     .action(async (options) => {
+      const limit = options?.limit ? parseInt(options?.limit) : 25;
+      let transactions = [];
       try {
         console.log(`Fetching transactions`);
-        const transactions = await fetchTransactions();
+        transactions = await fetchTransactions(limit);
+        console.log('limit', limit, transactions);
+      } catch (err) {
+        console.error(`failed to fetch transactions: `, err);
+      }
+
+      try {
         console.log(`Running contextualizers`);
         const contextualizersPromise =
           transactions &&

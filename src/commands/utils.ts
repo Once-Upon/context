@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import 'dotenv/config';
 import { shortenTxHash } from '../helpers/utils';
 import { Transaction } from '../types';
 
@@ -25,9 +26,11 @@ export const grabTx = async (txHash: string, prefix: string) => {
   fs.writeFileSync(txFilePath, JSON.stringify(transaction, null, 2));
 };
 
-export const fetchTransactions = async (): Promise<Transaction[]> => {
+export const fetchTransactions = async (
+  limit: number,
+): Promise<Transaction[]> => {
   const defaultApiUrl = 'https://api.onceupon.gg';
-  const API_URL = process.env.API_URL || defaultApiUrl;
+  const API_URL = process.env.API_URL ?? defaultApiUrl;
   const requestBody = {
     contextAddress: {},
     filterAddresses: [],
@@ -41,6 +44,7 @@ export const fetchTransactions = async (): Promise<Transaction[]> => {
       7777777, // ZORA
       424, // PGN
     ],
+    limit,
     skip: 0,
     sort: -1,
   };
