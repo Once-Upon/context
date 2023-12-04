@@ -11,6 +11,7 @@ export const FarcasterContracts = {
     abi: [
       'function changeRecoveryAddressFor(address owner, address recovery, uint256 deadline, bytes calldata sig)',
       'function transfer(address to,uint256 deadline,bytes sig)',
+      'event Register(address indexed to, uint256 indexed id, address recovery)',
     ],
   },
   KeyGateway: {

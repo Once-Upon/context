@@ -67,7 +67,7 @@ export const generateBundlerContext = (
             variables: {
               registered: {
                 type: 'contextAction',
-                value: 'registered a Farcaster ID',
+                value: 'registered Farcaster ID',
               },
             },
           },

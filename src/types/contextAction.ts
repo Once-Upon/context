@@ -51,7 +51,7 @@ export type ContextAction =
   | 'joined dice game'
   | 'dice game settled'
   // Farcaster
-  | 'registered a Farcaster ID'
+  | 'registered Farcaster ID'
   | 'changed recovery address to'
   | 'transferred Farcaster ID to'
   | 'rented'

@@ -41,22 +41,46 @@ export const generateIdGatewayContext = (
 
   switch (decoded.name) {
     case 'register': {
+      // Capture FID
+      let fid = '';
+      if (transaction.receipt?.status) {
+        const registerLog = transaction.logs?.find((log) => {
+          return log.address === FarcasterContracts.IdRegistry.address;
+        });
+        if (registerLog) {
+          try {
+            const iface = new Interface(FarcasterContracts.IdRegistry.abi);
+            const decoded = iface.parseLog({
+              topics: registerLog.topics,
+              data: registerLog.data,
+            });
+            fid = decoded.args.id.toString();
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      }
+
       transaction.context = {
         variables: {
           owner: {
             type: 'address',
             value: transaction.from,
           },
+          fid: {
+            type: 'emphasis',
+            value: fid,
+          },
         },
         summaries: {
           category: 'OTHER',
           en: {
             title: 'Farcaster',
-            default: '[[owner]] [[registered]]',
+            default: `[[owner]] [[registered]] [[fid]]`,
             variables: {
               registered: {
                 type: 'contextAction',
-                value: 'registered a Farcaster ID',
+                value: 'registered Farcaster ID',
               },
             },
           },
