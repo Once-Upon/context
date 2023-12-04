@@ -25,6 +25,8 @@ If you want your protocol to work well _across all of web3_, contribute to **EVM
 npm run create:contextualizer [name of protocol] -- -h [transaction hash]`
 ```
 
+The transaction hash is optional.
+
 This will generate a new file called `protocol/[name of protocol].ts` and a test file called `protocol/[name of protocol].spec.ts`.
 
 ### Tests
@@ -35,17 +37,13 @@ This will generate a new file called `protocol/[name of protocol].ts` and a test
 npm run test
 ```
 
-### Running contextualizers
-
-```
-npm run run:contextualizers -- -l [number of transactions]
-```
-
-This will run contextualizers for the latest transactions.
-
 #### Writing tests
 
-You should write unit tests for your PR using a real transaction. Do this by running:
+You should write unit tests for your PR using a real transaction.
+
+If you used a tx hash when running `npm run create:contextualizer`, this is already set up for you.
+
+To include more transactions in your tests, you can do this by running:
 
 ```
 npm run grab:transaction [txHash] [nickname for the type of tx]
@@ -54,6 +52,14 @@ npm run grab:transaction [txHash] [nickname for the type of tx]
 ### Finishing your new contextualization
 
 Once that's ready, please open a PR on this repo and request review from [pcowgill](https://github.com/pcowgill) and [jordanmessina](https://github.com/jordanmessina)
+
+### Running contextualizers
+
+```
+npm run run:contextualizers -- -l [number of transactions]
+```
+
+This will run contextualizers for the latest transactions.
 
 ## License
 
