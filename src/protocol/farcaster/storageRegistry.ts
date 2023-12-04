@@ -54,14 +54,14 @@ export const generateStorageRegistryContext = (
           },
           units: {
             type: 'emphasis',
-            value: `${units} storage unit${units > 1 ? 's' : ''}`,
+            value: units.toString(),
           },
         },
         summaries: {
           category: 'OTHER',
           en: {
             title: 'Farcaster',
-            default: '[[caller]] [[rented]] [[units]] for Farcaster ID [[fid]]',
+            default: `[[caller]] [[rented]] [[units]] storage unit${units > 1 ? 's' : ''} for Farcaster ID [[fid]]`,
             variables: {
               rented: {
                 type: 'contextAction',
