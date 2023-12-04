@@ -2,11 +2,6 @@ import { Interface } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 
-const ABI = [
-  'function add(uint32 keyType, bytes key, uint8 metadataType, bytes metadata)',
-  'function addFor(address fidOwner, uint32 keyType, bytes key, uint8 metadataType, bytes metadata, uint256 deadline, bytes sig)',
-];
-
 export const keyGatewayContextualizer = (
   transaction: Transaction,
 ): Transaction => {
@@ -17,11 +12,11 @@ export const keyGatewayContextualizer = (
 };
 
 export const detectKeyGateway = (transaction: Transaction): boolean => {
-  if (transaction.to !== FarcasterContracts.KeyGateway) {
+  if (transaction.to !== FarcasterContracts.KeyGateway.address) {
     return false;
   }
 
-  const iface = new Interface(ABI);
+  const iface = new Interface(FarcasterContracts.KeyGateway.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,
     value: transaction.value,
@@ -38,7 +33,7 @@ export const detectKeyGateway = (transaction: Transaction): boolean => {
 export const generateKeyGatewayContext = (
   transaction: Transaction,
 ): Transaction => {
-  const iface = new Interface(ABI);
+  const iface = new Interface(FarcasterContracts.KeyGateway.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,
     value: transaction.value,

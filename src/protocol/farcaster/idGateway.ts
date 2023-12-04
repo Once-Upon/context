@@ -2,11 +2,6 @@ import { Interface } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 
-const ABI = [
-  'function register(address recovery) external payable returns (uint256, uint256)',
-  'function register(address recovery, uint256 extraStorage) external payable returns (uint256, uint256)',
-];
-
 export const idGatewayContextualizer = (
   transaction: Transaction,
 ): Transaction => {
@@ -17,11 +12,11 @@ export const idGatewayContextualizer = (
 };
 
 export const detectIdGateway = (transaction: Transaction): boolean => {
-  if (transaction.to !== FarcasterContracts.IdGateway) {
+  if (transaction.to !== FarcasterContracts.IdGateway.address) {
     return false;
   }
 
-  const iface = new Interface(ABI);
+  const iface = new Interface(FarcasterContracts.IdGateway.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,
     value: transaction.value,
@@ -38,7 +33,7 @@ export const detectIdGateway = (transaction: Transaction): boolean => {
 export const generateIdGatewayContext = (
   transaction: Transaction,
 ): Transaction => {
-  const iface = new Interface(ABI);
+  const iface = new Interface(FarcasterContracts.IdGateway.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,
     value: transaction.value,

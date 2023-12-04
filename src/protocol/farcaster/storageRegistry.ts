@@ -2,8 +2,6 @@ import { Interface } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 
-const ABI = ['function rent(uint256 fid, uint256 units)'];
-
 export const storageRegistryContextualizer = (
   transaction: Transaction,
 ): Transaction => {
@@ -14,11 +12,11 @@ export const storageRegistryContextualizer = (
 };
 
 export const detectStorageRegistry = (transaction: Transaction): boolean => {
-  if (transaction.to !== FarcasterContracts.StorageRegistry) {
+  if (transaction.to !== FarcasterContracts.StorageRegistry.address) {
     return false;
   }
 
-  const iface = new Interface(ABI);
+  const iface = new Interface(FarcasterContracts.StorageRegistry.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,
     value: transaction.value,
@@ -35,7 +33,7 @@ export const detectStorageRegistry = (transaction: Transaction): boolean => {
 export const generateStorageRegistryContext = (
   transaction: Transaction,
 ): Transaction => {
-  const iface = new Interface(ABI);
+  const iface = new Interface(FarcasterContracts.StorageRegistry.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,
     value: transaction.value,

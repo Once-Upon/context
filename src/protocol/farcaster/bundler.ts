@@ -2,10 +2,6 @@ import { Interface } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 
-const ABI = [
-  'function register(tuple(address to, address recovery, uint256 deadline, bytes sig) registerParams, tuple(uint32 keyType, bytes key, uint8 metadataType, bytes metadata, uint256 deadline, bytes sig)[] signerParams, uint256 extraStorage) external payable returns (uint256)',
-];
-
 export const bundlerContextualizer = (
   transaction: Transaction,
 ): Transaction => {
@@ -16,11 +12,11 @@ export const bundlerContextualizer = (
 };
 
 export const detectBundler = (transaction: Transaction): boolean => {
-  if (transaction.to !== FarcasterContracts.Bundler) {
+  if (transaction.to !== FarcasterContracts.Bundler.address) {
     return false;
   }
 
-  const iface = new Interface(ABI);
+  const iface = new Interface(FarcasterContracts.Bundler.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,
     value: transaction.value,
@@ -37,7 +33,7 @@ export const detectBundler = (transaction: Transaction): boolean => {
 export const generateBundlerContext = (
   transaction: Transaction,
 ): Transaction => {
-  const iface = new Interface(ABI);
+  const iface = new Interface(FarcasterContracts.Bundler.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,
     value: transaction.value,

@@ -2,11 +2,6 @@ import { Interface } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 
-const ABI = [
-  'function remove(bytes key)',
-  'function removeFor(address fidOwner, bytes key, uint256 deadline, bytes calldata sig)',
-];
-
 export const keyRegistryContextualizer = (
   transaction: Transaction,
 ): Transaction => {
@@ -17,11 +12,11 @@ export const keyRegistryContextualizer = (
 };
 
 export const detectKeyRegistry = (transaction: Transaction): boolean => {
-  if (transaction.to !== FarcasterContracts.KeyRegistry) {
+  if (transaction.to !== FarcasterContracts.KeyRegistry.address) {
     return false;
   }
 
-  const iface = new Interface(ABI);
+  const iface = new Interface(FarcasterContracts.KeyRegistry.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,
     value: transaction.value,
@@ -38,7 +33,7 @@ export const detectKeyRegistry = (transaction: Transaction): boolean => {
 export const generateKeyRegistryContext = (
   transaction: Transaction,
 ): Transaction => {
-  const iface = new Interface(ABI);
+  const iface = new Interface(FarcasterContracts.KeyRegistry.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,
     value: transaction.value,
