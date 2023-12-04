@@ -45,5 +45,14 @@ describe('KeyGateway', () => {
       const match = detectKeyGateway(catchall0xc35c01ac as Transaction);
       expect(match).toBe(false);
     });
+
+    it('Should not throw an unhandled error for methods not in abi', () => {
+      const mockTxn = {
+        ...catchall0xc35c01ac,
+        to: farcasterAdd0x9e5f9b45.to,
+      };
+
+      expect(() => detectKeyGateway(mockTxn as Transaction)).not.toThrow();
+    });
   });
 });

@@ -47,5 +47,14 @@ describe('KeyRegistry', () => {
       const match = detectKeyRegistry(catchall0xc35c01ac as Transaction);
       expect(match).toBe(false);
     });
+
+    it('Should not throw an unhandled error for methods not in abi', () => {
+      const mockTxn = {
+        ...catchall0xc35c01ac,
+        to: farcasterRemove0x742d8d1a.to,
+      };
+
+      expect(() => detectKeyRegistry(mockTxn as Transaction)).not.toThrow();
+    });
   });
 });

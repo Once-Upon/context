@@ -52,5 +52,14 @@ describe('IdRegistry', () => {
       const match = detectIdRegistry(catchall0xc35c01ac as Transaction);
       expect(match).toBe(false);
     });
+
+    it('Should not throw an unhandled error for methods not in abi', () => {
+      const mockTxn = {
+        ...catchall0xc35c01ac,
+        to: farcasterTransfer0x9344e0d0.to,
+      };
+
+      expect(() => detectIdRegistry(mockTxn as Transaction)).not.toThrow();
+    });
   });
 });

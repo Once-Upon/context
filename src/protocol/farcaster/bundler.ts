@@ -16,17 +16,17 @@ export const detectBundler = (transaction: Transaction): boolean => {
     return false;
   }
 
-  const iface = new Interface(FarcasterContracts.Bundler.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  try {
+    const iface = new Interface(FarcasterContracts.Bundler.abi);
+    const decoded = iface.parseTransaction({
+      data: transaction.input,
+      value: transaction.value,
+    });
 
-  if (!['register'].includes(decoded.name)) {
+    return ['register'].includes(decoded.name);
+  } catch (_) {
     return false;
   }
-
-  return true;
 };
 
 // Contextualize for mined txs

@@ -25,5 +25,14 @@ describe('IdGateway', () => {
       const match = detectIdGateway(catchall0xc35c01ac as Transaction);
       expect(match).toBe(false);
     });
+
+    it('Should not throw an unhandled error for methods not in abi', () => {
+      const mockTxn = {
+        ...catchall0xc35c01ac,
+        to: farcasterRegister0x6b0f32e0.to,
+      };
+
+      expect(() => detectIdGateway(mockTxn as Transaction)).not.toThrow();
+    });
   });
 });

@@ -16,17 +16,17 @@ export const detectKeyGateway = (transaction: Transaction): boolean => {
     return false;
   }
 
-  const iface = new Interface(FarcasterContracts.KeyGateway.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  try {
+    const iface = new Interface(FarcasterContracts.KeyGateway.abi);
+    const decoded = iface.parseTransaction({
+      data: transaction.input,
+      value: transaction.value,
+    });
 
-  if (!['add', 'addFor'].includes(decoded.name)) {
+    return ['add', 'addFor'].includes(decoded.name);
+  } catch (_) {
     return false;
   }
-
-  return true;
 };
 
 // Contextualize for mined txs

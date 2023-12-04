@@ -6,7 +6,9 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 describe('Bundler', () => {
   describe('register', () => {
     it('Should detect transaction', () => {
-      const match = detectBundler(farcasterBundlerRegister0x7b8fe471 as Transaction);
+      const match = detectBundler(
+        farcasterBundlerRegister0x7b8fe471 as Transaction,
+      );
       expect(match).toBe(true);
     });
 
@@ -27,6 +29,15 @@ describe('Bundler', () => {
     it('Should not detect transaction', () => {
       const match = detectBundler(catchall0xc35c01ac as Transaction);
       expect(match).toBe(false);
+    });
+
+    it('Should not throw an unhandled error for methods not in abi', () => {
+      const mockTxn = {
+        ...catchall0xc35c01ac,
+        to: farcasterBundlerRegister0x7b8fe471.to,
+      };
+
+      expect(() => detectBundler(mockTxn as Transaction)).not.toThrow();
     });
   });
 });

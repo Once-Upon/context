@@ -52,5 +52,14 @@ describe('StorageRegistry', () => {
       const match = detectStorageRegistry(catchall0xc35c01ac as Transaction);
       expect(match).toBe(false);
     });
+
+    it('Should not throw an unhandled error for methods not in abi', () => {
+      const mockTxn = {
+        ...catchall0xc35c01ac,
+        to: farcasterRent0x09794a62.to,
+      };
+
+      expect(() => detectStorageRegistry(mockTxn as Transaction)).not.toThrow();
+    });
   });
 });

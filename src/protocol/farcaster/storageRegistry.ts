@@ -16,17 +16,17 @@ export const detectStorageRegistry = (transaction: Transaction): boolean => {
     return false;
   }
 
-  const iface = new Interface(FarcasterContracts.StorageRegistry.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  try {
+    const iface = new Interface(FarcasterContracts.StorageRegistry.abi);
+    const decoded = iface.parseTransaction({
+      data: transaction.input,
+      value: transaction.value,
+    });
 
-  if (!['rent'].includes(decoded.name)) {
+    return ['rent'].includes(decoded.name);
+  } catch (_) {
     return false;
   }
-
-  return true;
 };
 
 // Contextualize for mined txs
