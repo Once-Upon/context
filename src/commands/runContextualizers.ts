@@ -24,7 +24,9 @@ export function registerRunContextualizersCommand() {
               try {
                 const txResult = contextualizer(transaction);
                 if (!txResult.from) {
-                  console.error(`failed to run ${contextualizerName}`);
+                  console.error(
+                    `failed to run ${contextualizerName} on ${transaction.hash}`,
+                  );
                 }
               } catch (err) {
                 console.error(err);
@@ -37,7 +39,9 @@ export function registerRunContextualizersCommand() {
               try {
                 const txResult = contextualizer(transaction);
                 if (!txResult.from) {
-                  console.error(`failed to run ${contextualizerName}`);
+                  console.error(
+                    `failed to run ${contextualizerName} on ${transaction.hash}`,
+                  );
                 }
               } catch (err) {
                 console.error(err);
@@ -53,8 +57,4 @@ export function registerRunContextualizersCommand() {
         process.exit(1); // Exit with error
       }
     });
-}
-
-function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
 }

@@ -55,7 +55,13 @@ export const fetchTransactions = async (): Promise<Transaction[]> => {
     functionSelectors: [],
     tokenTransfers: [],
     dateRange: {},
-    chainIds: [1, 10, 8453, 7777777, 424],
+    chainIds: [
+      1, // ETHEREUM
+      10, // OPTIMISM
+      8453, // BASE
+      7777777, // ZORA
+      424, // PGN
+    ],
     skip: 0,
     sort: -1,
   };
