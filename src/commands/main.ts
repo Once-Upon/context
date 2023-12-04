@@ -1,6 +1,8 @@
 const { Command } = require('commander');
 import { registerCreateContextualizerCommand } from './createContextualizer';
 import { registerGrabTransactionCommand } from './grabTransaction';
+import { registerRunContextualizersCommand } from './runContextualizers';
+
 export const program = new Command();
 
 program
@@ -10,5 +12,6 @@ program
 
 registerCreateContextualizerCommand();
 registerGrabTransactionCommand();
+registerRunContextualizersCommand();
 
 program.parse(process.argv);
