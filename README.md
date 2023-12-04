@@ -27,14 +27,6 @@ npm run create:contextualizer [name of protocol] -- -h [transaction hash]`
 
 This will generate a new file called `protocol/[name of protocol].ts` and a test file called `protocol/[name of protocol].spec.ts`.
 
-### Running contextualizers
-
-```
-npm run run:contextualizers
-```
-
-This will run contextualizers for the latest 25 transactions.
-
 ### Tests
 
 #### Running tests
@@ -42,6 +34,14 @@ This will run contextualizers for the latest 25 transactions.
 ```
 npm run test
 ```
+
+### Running contextualizers
+
+```
+npm run run:contextualizers -- -l [number of transactions]
+```
+
+This will run contextualizers for the latest transactions.
 
 #### Writing tests
 
