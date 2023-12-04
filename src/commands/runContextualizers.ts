@@ -1,9 +1,7 @@
 import { program } from './main';
-import {
-  fetchTransactions,
-  heuristicContextualizers,
-  protocolContextualizers,
-} from './utils';
+import { fetchTransactions } from './utils';
+import * as protocolContextualizers from '../protocol';
+import * as heuristicContextualizers from '../heuristics';
 
 export function registerRunContextualizersCommand() {
   program
@@ -37,14 +35,12 @@ export function registerRunContextualizersCommand() {
               const contextualizer =
                 protocolContextualizers[contextualizerName];
               try {
-                const txResult = contextualizer(transaction);
-                if (!txResult.from) {
-                  console.error(
-                    `failed to run ${contextualizerName} on ${transaction.hash}`,
-                  );
-                }
+                contextualizer(transaction);
               } catch (err) {
-                console.error(err);
+                console.error(
+                  `failed to run ${contextualizerName} on ${transaction.hash}: `,
+                  err,
+                );
               }
             }
           });

@@ -2,27 +2,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { shortenTxHash } from '../helpers/utils';
 import { Transaction } from '../types';
-import {
-  cancelPendingTransactionContextualizer,
-  contractDeploymentContextualizer,
-  erc20SwapContextualizer,
-  erc721PurchaseContextualizer,
-  erc721SaleContextualizer,
-  erc1155PurchaseContextualizer,
-  erc1155SaleContextualizer,
-  ethTransferContextualizer,
-  idmContextualizer,
-  tokenAirdropContextualizer,
-  tokenApprovalContextualizer,
-  tokenMintContextualizer,
-  tokenTransferContextualizer,
-} from '../heuristics';
-import {
-  ensContextualizer,
-  ensReverseContextualizer,
-  superchainFaucetContextualizer,
-  wethContextualizer,
-} from '../protocol';
 
 export const grabTx = async (txHash: string, prefix: string) => {
   const srcDir = path.join(__dirname, '..', '..', 'src');
@@ -74,27 +53,4 @@ export const fetchTransactions = async (): Promise<Transaction[]> => {
   }).then((res) => res.json());
 
   return transactions;
-};
-
-export const heuristicContextualizers = {
-  cancelPendingTransactionContextualizer:
-    cancelPendingTransactionContextualizer,
-  contractDeploymentContextualizer: contractDeploymentContextualizer,
-  erc20SwapContextualizer: erc20SwapContextualizer,
-  erc721PurchaseContextualizer: erc721PurchaseContextualizer,
-  erc721SaleContextualizer: erc721SaleContextualizer,
-  erc1155PurchaseContextualizer: erc1155PurchaseContextualizer,
-  erc1155SaleContextualizer: erc1155SaleContextualizer,
-  ethTransferContextualizer: ethTransferContextualizer,
-  idmContextualizer: idmContextualizer,
-  tokenAirdropContextualizer: tokenAirdropContextualizer,
-  tokenApprovalContextualizer: tokenApprovalContextualizer,
-  tokenMintContextualizer: tokenMintContextualizer,
-  tokenTransferContextualizer: tokenTransferContextualizer,
-};
-export const protocolContextualizers = {
-  ensContextualizer: ensContextualizer,
-  ensReverseContextualizer: ensReverseContextualizer,
-  superchainFaucetContextualizer: superchainFaucetContextualizer,
-  wethContextualizer: wethContextualizer,
 };
