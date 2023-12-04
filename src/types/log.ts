@@ -18,7 +18,7 @@ export type LogDescription = {
   fragment: {
     name: string;
     type: string;
-    inputs: ReadonlyArray<ethers.utils.ParamType>;
+    inputs: ReadonlyArray<Omit<ethers.utils.ParamType, "_isParamType" | "format">>;
     anonymous: boolean;
   };
   name: string;
