@@ -14,8 +14,6 @@ export const TOKEN_SWAP_CONTRACTS = [
   '0xdef1c0ded9bec7f1a1670819833240f027b25eff', // 0x Exchange Proxy. NOTE - This is both an erc20 swap and erc721 swap contract. This address is in both contract lists.
 ];
 
-export const AIRDROP_THRESHOLD = 10;
-
 export const KNOWN_ADDRESSES = {
   NULL: '0x0000000000000000000000000000000000000000',
   WETH: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
