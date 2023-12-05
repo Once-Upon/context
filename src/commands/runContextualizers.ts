@@ -14,7 +14,6 @@ export function registerRunContextualizersCommand() {
       try {
         console.log(`Fetching transactions`);
         transactions = await fetchTransactions(limit);
-        console.log('limit', limit, transactions);
       } catch (err) {
         console.error(`failed to fetch transactions: `, err);
       }

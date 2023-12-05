@@ -1,2 +1,2 @@
-export * from './registrar';
-export * from './reverse';
+export { ensContextualizer } from './registrar';
+export { ensReverseContextualizer } from './reverse';
