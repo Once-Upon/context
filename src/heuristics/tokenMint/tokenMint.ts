@@ -41,7 +41,7 @@ export function detectTokenMint(transaction: Transaction): boolean {
   }
   // transfer.from can send some eth
   const assetTransfer = transaction.netAssetTransfers[transaction.from];
-  const assetSent = assetTransfer.sent;
+  const assetSent = assetTransfer?.sent ?? [];
   if (assetSent.length > 0 && assetSent[0].type !== 'eth') {
     return false;
   }
