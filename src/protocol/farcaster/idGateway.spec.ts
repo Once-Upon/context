@@ -20,9 +20,7 @@ describe('IdGateway', () => {
       expect(transaction.context.variables.owner['value']).toBe(
         '0x177685ab0b27690cbdf7f44d6846d3c56b36382b',
       );
-      expect(transaction.context.variables.fid['value']).toBe(
-        '196379'
-      );
+      expect(transaction.context.variables.fid['value']).toBe('196379');
     });
   });
 

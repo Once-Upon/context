@@ -56,7 +56,8 @@ export const generateIdRegistryContext = (
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
-            default: '[[owner]] [[changedRecoveryAddress]] to [[recoveryAddress]]',
+            default:
+              '[[owner]] [[changedRecoveryAddress]] to [[recoveryAddress]]',
             variables: {
               changedRecoveryAddress: {
                 type: 'contextAction',
