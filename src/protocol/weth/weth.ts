@@ -1,4 +1,4 @@
-import { Transaction } from '../../types';
+import { ContextSummaryVariableType, Transaction } from '../../types';
 import { WETH_ADDRESSES } from '../../helpers/constants';
 import { WETH_ABI } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
@@ -21,16 +21,16 @@ export const detectWeth = (transaction: Transaction): boolean => {
     if (!WETH_ADDRESSES.includes(transaction.to.toLowerCase())) {
       return false;
     }
-    // decode input
-    const transactionDescriptor = decodeTransactionInput(
-      transaction.input,
-      WETH_ABI,
-    );
 
-    if (
-      transactionDescriptor.name !== 'deposit' &&
-      transactionDescriptor.name !== 'withdraw'
-    ) {
+    // decode input
+    let decode;
+    try {
+      decode = decodeTransactionInput(transaction.input, WETH_ABI);
+    } catch (e) {
+      return false;
+    }
+
+    if (decode.name !== 'deposit' && decode.name !== 'withdraw') {
       return false;
     }
     return true;
@@ -43,11 +43,8 @@ export const detectWeth = (transaction: Transaction): boolean => {
 // Contextualize for mined txs
 export const generateWethContext = (transaction: Transaction): Transaction => {
   // decode input
-  const transactionDescriptor = decodeTransactionInput(
-    transaction.input,
-    WETH_ABI,
-  );
-  switch (transactionDescriptor.name) {
+  const decode = decodeTransactionInput(transaction.input, WETH_ABI);
+  switch (decode.name) {
     case 'deposit': {
       transaction.context = {
         summaries: {
@@ -77,18 +74,15 @@ export const generateWethContext = (transaction: Transaction): Transaction => {
     }
 
     case 'withdraw': {
-      // get eth flow
-      let ethFlow = [];
-      for (const address in transaction.netAssetTransfers) {
-        const sent = transaction.netAssetTransfers[address].sent;
-        const received = transaction.netAssetTransfers[address].received;
-
-        const ethSent = sent.filter((ele) => ele.asset === 'eth');
-        const ethReceived = received.filter((ele) => ele.asset === 'eth');
-
-        ethFlow = [...ethFlow, ...ethSent, ...ethReceived];
-      }
-
+      const decode = decodeTransactionInput(transaction.input, WETH_ABI);
+      const withdrawer: ContextSummaryVariableType = {
+        type: 'address',
+        value: transaction.from,
+      };
+      const withdraw: ContextSummaryVariableType = {
+        type: 'eth',
+        value: decode.args[0],
+      };
       transaction.context = {
         summaries: {
           category: 'FUNGIBLE_TOKEN',
@@ -101,14 +95,8 @@ export const generateWethContext = (transaction: Transaction): Transaction => {
           },
         },
         variables: {
-          value: {
-            type: 'eth',
-            value: ethFlow?.[0].value,
-          },
-          from: {
-            type: 'address',
-            value: transaction.from,
-          },
+          withdraw,
+          withdrawer,
         },
       };
 
