@@ -107,7 +107,6 @@ export type TransactionContextType = {
 };
 
 export type ContextSummaryVariableType =
-  | string
   | {
       type: 'emphasis' | 'address' | 'transaction' | 'eth';
       value: string;
@@ -122,11 +121,6 @@ export type ContextSummaryVariableType =
       token: string;
       value?: string;
     };
-
-export type ContextSummaryDefaultType = {
-  desc: string;
-  [key: string]: ContextSummaryVariableType;
-};
 
 export type ContextVariable = {
   [key: string]: ContextSummaryVariableType;
