@@ -1,0 +1,145 @@
+{
+  "accessList": [],
+  "blockHash": "0x080379aa2e324fea4af7f842c81968ce5d5582663abce77266485625a7d6df3d",
+  "blockNumber": 18716695,
+  "chainId": 1,
+  "from": "0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c",
+  "gas": 39603,
+  "gasPrice": "44772584024",
+  "hash": "0x0917702f09ab8f416307a2ac2abc4c0205ba8dc1fc25df4d4540569f618e947d",
+  "input": "0x2e1a7d4d00000000000000000000000000000000000000000000000000b1a2bc2ec50000",
+  "maxFeePerGas": "77984563528",
+  "maxPriorityFeePerGas": "300000000",
+  "nonce": 897,
+  "r": "0x5cf18ec44d519367764c52e633b9e80034ea7f70a7bab53504fff522b2e4ed7d",
+  "s": "0x5aae34e167dd74e9b5ab0ad2eb378b98ac47ad57746632bd01799bd7feac236a",
+  "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+  "transactionIndex": 62,
+  "type": 2,
+  "v": "0x0",
+  "value": "0",
+  "assetTransfers": [
+    {
+      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "from": "0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c",
+      "to": "0x0000000000000000000000000000000000000000",
+      "value": "50000000000000000",
+      "type": "erc20"
+    },
+    {
+      "from": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "to": "0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c",
+      "type": "eth",
+      "value": "50000000000000000"
+    }
+  ],
+  "baseFeePerGas": 44472584024,
+  "burntFees": "1565079176972608",
+  "minerFees": "10557600000000",
+  "transactionFee": "1575636776972608",
+  "fork": "shanghai",
+  "sigHash": "0x2e1a7d4d",
+  "internalSigHashes": [
+    {
+      "from": "0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "sigHash": "0x2e1a7d4d"
+    },
+    {
+      "from": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "to": "0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c",
+      "sigHash": "0x"
+    }
+  ],
+  "timestamp": 1701737507,
+  "isoTimestamp": "2023-12-05T00:51:47.000Z",
+  "netAssetTransfers": {
+    "0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c": {
+      "received": [
+        {
+          "asset": "eth",
+          "id": "eth",
+          "type": "eth",
+          "value": "50000000000000000"
+        }
+      ],
+      "sent": [
+        {
+          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "type": "erc20",
+          "value": "50000000000000000"
+        }
+      ]
+    },
+    "0x0000000000000000000000000000000000000000": {
+      "received": [
+        {
+          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "type": "erc20",
+          "value": "50000000000000000"
+        }
+      ],
+      "sent": []
+    },
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+      "received": [],
+      "sent": [
+        {
+          "asset": "eth",
+          "id": "eth",
+          "type": "eth",
+          "value": "50000000000000000"
+        }
+      ]
+    }
+  },
+  "decode": {
+    "fragment": {
+      "type": "function",
+      "inputs": [
+        {
+          "name": "wad",
+          "type": "uint256",
+          "baseType": "uint256",
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        }
+      ],
+      "name": "withdraw",
+      "constant": false,
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "payable": false,
+      "gas": null
+    },
+    "name": "withdraw",
+    "args": [
+      "50000000000000000"
+    ],
+    "signature": "withdraw(uint256)",
+    "selector": "0x2e1a7d4d",
+    "value": "0"
+  },
+  "parties": [
+    "0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c",
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+  ],
+  "receipt": {
+    "blockHash": "0x080379aa2e324fea4af7f842c81968ce5d5582663abce77266485625a7d6df3d",
+    "blockNumber": 18716695,
+    "contractAddress": null,
+    "cumulativeGasUsed": 7295670,
+    "effectiveGasPrice": 44772584024,
+    "from": "0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c",
+    "gasUsed": 35192,
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000080000000000000000000000100000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000200000000000000200000000000000000000000000000000002000000000",
+    "status": true,
+    "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "transactionHash": "0x0917702f09ab8f416307a2ac2abc4c0205ba8dc1fc25df4d4540569f618e947d",
+    "transactionIndex": 62,
+    "type": "0x2"
+  }
+}
