@@ -49,7 +49,7 @@ export const generateKeyGatewayContext = (
           },
         },
         summaries: {
-          category: 'OTHER',
+          category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: '[[owner]] [[addedKey]]',
@@ -78,7 +78,7 @@ export const generateKeyGatewayContext = (
           },
         },
         summaries: {
-          category: 'OTHER',
+          category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: '[[caller]] [[addedKey]] for [[owner]]',

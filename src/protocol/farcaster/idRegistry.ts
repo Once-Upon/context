@@ -53,7 +53,7 @@ export const generateIdRegistryContext = (
           },
         },
         summaries: {
-          category: 'OTHER',
+          category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: '[[owner]] [[changedRecoveryAddress]] to [[recoveryAddress]]',
@@ -82,7 +82,7 @@ export const generateIdRegistryContext = (
           },
         },
         summaries: {
-          category: 'OTHER',
+          category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: '[[owner]] [[transferredId]] to [[to]]',

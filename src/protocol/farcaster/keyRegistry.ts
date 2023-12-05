@@ -49,7 +49,7 @@ export const generateKeyRegistryContext = (
           },
         },
         summaries: {
-          category: 'OTHER',
+          category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: '[[owner]] [[removedKey]]',
@@ -78,7 +78,7 @@ export const generateKeyRegistryContext = (
           },
         },
         summaries: {
-          category: 'OTHER',
+          category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: '[[caller]] [[removedKey]] for [[owner]]',

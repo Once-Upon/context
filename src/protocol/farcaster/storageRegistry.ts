@@ -58,7 +58,7 @@ export const generateStorageRegistryContext = (
           },
         },
         summaries: {
-          category: 'OTHER',
+          category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: `[[caller]] [[rented]] [[units]] storage unit${units > 1 ? 's' : ''} for Farcaster ID [[fid]]`,

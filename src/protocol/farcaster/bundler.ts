@@ -58,7 +58,7 @@ export const generateBundlerContext = (
           },
         },
         summaries: {
-          category: 'OTHER',
+          category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: callerIsOwner
