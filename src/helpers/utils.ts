@@ -1,3 +1,6 @@
+import { utils } from 'ethers';
+import { InterfaceAbi } from '../types/Abi';
+
 const VALID_CHARS =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.? ';
 
@@ -19,4 +22,16 @@ export const countValidChars = (stringToCount: string) => {
 export function shortenTxHash(hash: string): string {
   if (hash.length <= 10) return hash;
   return hash.substr(0, 6) + hash.substr(-4);
+}
+
+export function decodeTransactionInput(
+  input: string,
+  abi: InterfaceAbi,
+): utils.TransactionDescription {
+  const iface = new utils.Interface(abi);
+  const transactionDescriptor = iface.parseTransaction({
+    data: input,
+  });
+
+  return transactionDescriptor;
 }
