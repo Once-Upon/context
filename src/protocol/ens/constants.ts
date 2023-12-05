@@ -2,19 +2,19 @@ export const ENSContracts = {
   RegistrarV2: {
     address: '0x283af0b28c62c092c9727f1ee09c02ca627eb7f5',
     abi: [
-      'commit(bytes32 commitment)',
-      'register(string name, address owner, uint256 duration, bytes32 secret)',
-      'registerWithConfig(string name, address owner, uint256 duration, bytes32 secret, address resolver, address addr)',
-      'renew(string name, uint256 duration)',
+      'function commit(bytes32 commitment)',
+      'function register(string name, address owner, uint256 duration, bytes32 secret)',
+      'function registerWithConfig(string name, address owner, uint256 duration, bytes32 secret, address resolver, address addr)',
+      'function renew(string name, uint256 duration)',
     ],
   },
   RegistrarV3: {
     address: '0x253553366da8546fc250f225fe3d25d0c782303b',
     abi: [
-      'commit(bytes32 commitment)',
-      'register(string name, address owner, uint256 duration, bytes32 secret)',
-      'registerWithConfig(string name, address owner, uint256 duration, bytes32 secret, address resolver, address addr)',
-      'renew(string name, uint256 duration)',
+      'function commit(bytes32 commitment)',
+      'function register(string name, address owner, uint256 duration, bytes32 secret)',
+      'function registerWithConfig(string name, address owner, uint256 duration, bytes32 secret, address resolver, address addr)',
+      'function renew(string name, uint256 duration)',
     ],
   },
   ReverseRegistrar: {
@@ -27,6 +27,6 @@ export const ENSContracts = {
   },
   Reverse: {
     address: '0x084b1c3c81545d370f3634392de611caabff8148',
-    abi: ['setName(string name)'],
+    abi: ['function setName(string name)'],
   },
 };
