@@ -17,8 +17,10 @@ export interface Log {
 export type LogDescription = {
   fragment: {
     name: string;
-    type: ethers.utils.ParamType;
-    inputs: ReadonlyArray<ethers.utils.ParamType>;
+    type: string;
+    inputs: ReadonlyArray<
+      Omit<ethers.utils.ParamType, '_isParamType' | 'format'>
+    >;
     anonymous: boolean;
   };
   name: string;

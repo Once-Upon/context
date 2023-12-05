@@ -49,4 +49,11 @@ export type ContextAction =
   | 'redeemed'
   | 'sold item'
   | 'joined dice game'
-  | 'dice game settled';
+  | 'dice game settled'
+  // Farcaster
+  | 'registered Farcaster ID'
+  | 'changed recovery address'
+  | 'transferred Farcaster ID'
+  | 'rented'
+  | 'removed a key'
+  | 'added a key';

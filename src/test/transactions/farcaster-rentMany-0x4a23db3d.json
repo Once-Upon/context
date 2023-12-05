@@ -1,0 +1,197 @@
+{
+  "accessList": [],
+  "blockHash": "0x5806b6ca6bf23558442130abf54534b82344ac811cf2af78a59cdbff3c001431",
+  "blockNumber": 112689041,
+  "chainId": 10,
+  "from": "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
+  "gas": 48512,
+  "gasPrice": "8272127",
+  "hash": "0x4a23ce4359682b74ef91a172c3233902225521d48f570c97cb8afa921213db3d",
+  "input": "0x783a112b000000000000000000000000000000000000000000000000000000000000303e0000000000000000000000000000000000000000000000000000000000000002",
+  "maxFeePerGas": "8805632",
+  "maxPriorityFeePerGas": "1000000",
+  "nonce": 9144,
+  "r": "0xe71081b5bc3bd29cfc9184991677836ebe36b998d9a3c64a99f53ad3ff13860f",
+  "s": "0x4bfc70b61546a30d5617e3a3243f40d894ea726d07ea06aca9f83e94add6412b",
+  "to": "0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d",
+  "transactionIndex": 9,
+  "type": 2,
+  "v": "0x0",
+  "value": "6708158984485627",
+  "assetTransfers": [
+    {
+      "from": "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
+      "to": "0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d",
+      "type": "eth",
+      "value": "6708158984485627"
+    }
+  ],
+  "baseFeePerGas": 7272127,
+  "burntFees": "352785425024",
+  "minerFees": "48512000000",
+  "transactionFee": "401297425024",
+  "sigHash": "0x783a112b",
+  "internalSigHashes": [
+    {
+      "from": "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
+      "to": "0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d",
+      "sigHash": "0x783a112b"
+    }
+  ],
+  "timestamp": 1700976859,
+  "isoTimestamp": "2023-11-26T05:34:19.000Z",
+  "netAssetTransfers": {
+    "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2": {
+      "received": [],
+      "sent": [
+        {
+          "asset": "eth",
+          "id": "eth",
+          "type": "eth",
+          "value": "6708158984485627"
+        }
+      ]
+    },
+    "0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d": {
+      "received": [
+        {
+          "asset": "eth",
+          "id": "eth",
+          "type": "eth",
+          "value": "6708158984485627"
+        }
+      ],
+      "sent": []
+    }
+  },
+  "decode": {
+    "fragment": {
+      "type": "function",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "baseType": "uint256",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "baseType": "uint256",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        }
+      ],
+      "name": "rent",
+      "constant": false,
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "payable": false,
+      "gas": null
+    },
+    "name": "rent",
+    "args": [
+      "12350",
+      "2"
+    ],
+    "signature": "rent(uint256,uint256)",
+    "selector": "0x783a112b",
+    "value": "0"
+  },
+  "neighbor": {
+    "address": "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
+    "neighbor": "0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d"
+  },
+  "parties": [
+    "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
+    "0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d"
+  ],
+  "receipt": {
+    "blockHash": "0x5806b6ca6bf23558442130abf54534b82344ac811cf2af78a59cdbff3c001431",
+    "blockNumber": 112689041,
+    "contractAddress": null,
+    "cumulativeGasUsed": 1469873,
+    "effectiveGasPrice": 8272127,
+    "from": "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
+    "gasUsed": 48512,
+    "l1Fee": "0x199d776dac00",
+    "l1FeeScalar": "0.684",
+    "l1GasPrice": "0x411b46cd0",
+    "l1GasUsed": "0x934",
+    "logsBloom": "0x00000000010000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000400008000000000000000000000000000000000000000000000000000000000000000000000001000020000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000800000000001000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d",
+    "transactionHash": "0x4a23ce4359682b74ef91a172c3233902225521d48f570c97cb8afa921213db3d",
+    "transactionIndex": 9,
+    "type": "0x2"
+  },
+  "logs": [
+    {
+      "address": "0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d",
+      "blockHash": "0x5806b6ca6bf23558442130abf54534b82344ac811cf2af78a59cdbff3c001431",
+      "blockNumber": 112689041,
+      "data": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "logIndex": 31,
+      "removed": false,
+      "topics": [
+        "0xaabd75b90fb7114eb9587a54f00ce5ebe8cb4a70627f3a6c26e506ffd771fe2f",
+        "0x0000000000000000000000002d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
+        "0x000000000000000000000000000000000000000000000000000000000000303e"
+      ],
+      "transactionHash": "0x4a23ce4359682b74ef91a172c3233902225521d48f570c97cb8afa921213db3d",
+      "transactionIndex": 9,
+      "id": "log_f89dfd82",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "payer",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "fid",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "units",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Rent",
+          "anonymous": false
+        },
+        "name": "Rent",
+        "signature": "Rent(address,uint256,uint256)",
+        "topic": "0xaabd75b90fb7114eb9587a54f00ce5ebe8cb4a70627f3a6c26e506ffd771fe2f",
+        "args": [
+          "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
+          "12350",
+          "2"
+        ]
+      },
+      "chainId": 10
+    }
+  ],
+  "contractsCreated": []
+}
