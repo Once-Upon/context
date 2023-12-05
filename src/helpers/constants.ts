@@ -1,3 +1,5 @@
+import { InterfaceAbi } from '../types/Abi';
+
 export const TOKEN_SWAP_CONTRACTS = [
   '0xe592427a0aece92de3edee1f18e0157c05861564', // Uniswap V3 Router
   '0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45', // Uniswap V3router2
@@ -24,4 +26,29 @@ export const WETH_ADDRESSES = [
   '0x4200000000000000000000000000000000000006', // Optimism
   '0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f', // Linea
   '0x0000000000a39bb272e79075ade125fd351887ac', // Blur
+];
+export const WETH_ABI: InterfaceAbi = [
+  {
+    constant: false,
+    inputs: [],
+    name: 'deposit',
+    outputs: [],
+    payable: true,
+    stateMutability: 'payable',
+    type: 'function',
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        name: 'wad',
+        type: 'uint256',
+      },
+    ],
+    name: 'withdraw',
+    outputs: [],
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
 ];

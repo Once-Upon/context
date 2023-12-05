@@ -1,5 +1,7 @@
+import { ethers } from 'ethers';
 import { Transaction } from '../types';
-import { WETH_ADDRESSES } from '../helpers/constants';
+import { WETH_ADDRESSES, WETH_ABI } from '../helpers/constants';
+import { decodeTransactionInput } from '../helpers/utils';
 
 export const wethContextualizer = (transaction: Transaction): Transaction => {
   const isWeth = detectWeth(transaction);
@@ -11,28 +13,41 @@ export const wethContextualizer = (transaction: Transaction): Transaction => {
 };
 
 export const detectWeth = (transaction: Transaction): boolean => {
-  if (transaction.decode === null || !transaction.to) {
+  try {
+    if (!transaction.to) {
+      return false;
+    }
+    // check contract address
+    if (!WETH_ADDRESSES.includes(transaction.to.toLowerCase())) {
+      return false;
+    }
+    // decode input
+    const transactionDescriptor = decodeTransactionInput(
+      transaction.input,
+      WETH_ABI,
+    );
+
+    if (
+      transactionDescriptor.name !== 'deposit' &&
+      transactionDescriptor.name !== 'withdraw'
+    ) {
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error('Error in detectWeth function:', err);
     return false;
   }
-
-  // check contract address
-  if (!WETH_ADDRESSES.includes(transaction.to.toLowerCase())) {
-    return false;
-  }
-
-  if (
-    transaction.decode.name !== 'deposit' &&
-    transaction.decode.name !== 'withdraw'
-  ) {
-    return false;
-  }
-
-  return true;
 };
 
 // Contextualize for mined txs
 export const generateWethContext = (transaction: Transaction): Transaction => {
-  switch (transaction.decode.name) {
+  // decode input
+  const transactionDescriptor = decodeTransactionInput(
+    transaction.input,
+    WETH_ABI,
+  );
+  switch (transactionDescriptor.name) {
     case 'deposit': {
       transaction.context = {
         summaries: {
