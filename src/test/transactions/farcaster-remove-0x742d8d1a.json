@@ -89,5 +89,25 @@
     "transactionHash": "0x742dc00d2a3facff9240233884f8f07761c671aa5b8753243dd9089ddf5c8d1a",
     "transactionIndex": 2,
     "type": "0x2"
-  }
+  },
+  "logs": [
+    {
+      "address": "0x00000000fc1237824fb747abde0ff18990e59b7e",
+      "blockHash": "0x3b00042dc9882977076708d12ca94c7c2eb618e8cac61b4ffa3804dca843d63d",
+      "blockNumber": 112957720,
+      "data": "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002033bc0898fdec65bf70aecf143cd5374dc85ded8e90d16ad9555d7d917d7a5ae9",
+      "logIndex": 3,
+      "removed": false,
+      "topics": [
+        "0x09e77066e0155f46785be12f6938a6b2e4be4381e59058129ce15f355cb96958",
+        "0x000000000000000000000000000000000000000000000000000000000002ffad",
+        "0x938b12aa8164332d4b3e047ae3e77bbc2e406c66e4a02f84b521aef708019ae0"
+      ],
+      "transactionHash": "0x742dc00d2a3facff9240233884f8f07761c671aa5b8753243dd9089ddf5c8d1a",
+      "transactionIndex": 2,
+      "id": "log_f768db56",
+      "chainId": 10
+    }
+  ],
+  "contractsCreated": []
 }

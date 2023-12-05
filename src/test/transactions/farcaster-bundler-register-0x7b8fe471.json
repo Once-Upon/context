@@ -167,5 +167,148 @@
     "transactionHash": "0x7b8ff55ed1a74cfe37e7d72e785b18c9b58bdfa8d3191d4ff70bb0da9eb4e471",
     "transactionIndex": 30,
     "type": "0x2"
-  }
+  },
+  "logs": [
+    {
+      "address": "0x00000000fc6c5f01fc30151999387bb99a9f489b",
+      "blockHash": "0x52cb7d90e402d8d9320aefe82f85ed9db5b4583e98685a11fc6d5b50e7cbea4e",
+      "blockNumber": 112968522,
+      "data": "0x00000000000000000000000000000000fcb080a4d6c39a9354da9eb9bc104cd7",
+      "logIndex": 118,
+      "removed": false,
+      "topics": [
+        "0xf2e19a901b0748d8b08e428d0468896a039ac751ec4fec49b44b7b9c28097e45",
+        "0x000000000000000000000000109408193a2b17e1a641740655fb798d929a7554",
+        "0x000000000000000000000000000000000000000000000000000000000002ffbd"
+      ],
+      "transactionHash": "0x7b8ff55ed1a74cfe37e7d72e785b18c9b58bdfa8d3191d4ff70bb0da9eb4e471",
+      "transactionIndex": 30,
+      "id": "log_720ff9b8",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "_account",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "_id",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "_referral",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Register",
+          "anonymous": false
+        },
+        "name": "Register",
+        "signature": "Register(address,uint256,address)",
+        "topic": "0xf2e19a901b0748d8b08e428d0468896a039ac751ec4fec49b44b7b9c28097e45",
+        "args": [
+          "0x109408193a2b17e1a641740655fb798d929a7554",
+          "335881908393215111986363189255470075095",
+          "0x000000000000000000000000000000000002ffbd"
+        ]
+      },
+      "chainId": 10
+    },
+    {
+      "address": "0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d",
+      "blockHash": "0x52cb7d90e402d8d9320aefe82f85ed9db5b4583e98685a11fc6d5b50e7cbea4e",
+      "blockNumber": 112968522,
+      "data": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "logIndex": 119,
+      "removed": false,
+      "topics": [
+        "0xaabd75b90fb7114eb9587a54f00ce5ebe8cb4a70627f3a6c26e506ffd771fe2f",
+        "0x00000000000000000000000000000000fc25870c6ed6b6c7e41fb078b7656f69",
+        "0x000000000000000000000000000000000000000000000000000000000002ffbd"
+      ],
+      "transactionHash": "0x7b8ff55ed1a74cfe37e7d72e785b18c9b58bdfa8d3191d4ff70bb0da9eb4e471",
+      "transactionIndex": 30,
+      "id": "log_c1cd93fc",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "payer",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "fid",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "units",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Rent",
+          "anonymous": false
+        },
+        "name": "Rent",
+        "signature": "Rent(address,uint256,uint256)",
+        "topic": "0xaabd75b90fb7114eb9587a54f00ce5ebe8cb4a70627f3a6c26e506ffd771fe2f",
+        "args": [
+          "0x00000000fc25870c6ed6b6c7e41fb078b7656f69",
+          "196541",
+          "1"
+        ]
+      },
+      "chainId": 10
+    },
+    {
+      "address": "0x00000000fc1237824fb747abde0ff18990e59b7e",
+      "blockHash": "0x52cb7d90e402d8d9320aefe82f85ed9db5b4583e98685a11fc6d5b50e7cbea4e",
+      "blockNumber": 112968522,
+      "data": "0x0000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020f32290e5a8c08232da15698474d6d86efd67c094d3ff2f62eec0874217304ccb0000000000000000000000000000000000000000000000000000000000000120000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000023c000000000000000000000000002ef790dd7993a35fd847c053eddae940d055596000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000656b629f0000000000000000000000000000000000000000000000000000000000000041a009c4654541af0664c127dec4fc5c0805d13b1a91d93339dbb3533075f75e5a4bccb4ba31fb880c876cbf51f79dc32484a674b528fc823b03f97cd6f9f2d8181c00000000000000000000000000000000000000000000000000000000000000",
+      "logIndex": 120,
+      "removed": false,
+      "topics": [
+        "0x7d285df41058466977811345cd453c0c52e8d841ffaabc74fc050f277ad4de02",
+        "0x000000000000000000000000000000000000000000000000000000000002ffbd",
+        "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "0x5f2cc8aa990016f2487bdf00736c8ee8f005e59329c40d70671e884feb428c2a"
+      ],
+      "transactionHash": "0x7b8ff55ed1a74cfe37e7d72e785b18c9b58bdfa8d3191d4ff70bb0da9eb4e471",
+      "transactionIndex": 30,
+      "id": "log_7db2c7f0",
+      "chainId": 10
+    }
+  ],
+  "contractsCreated": []
 }

@@ -150,5 +150,70 @@
     "transactionHash": "0x93440001ae5dc6219f4ff83b3f45cf99d0f176177d7a75552728456e0fcbe0d0",
     "transactionIndex": 5,
     "type": "0x2"
-  }
+  },
+  "logs": [
+    {
+      "address": "0x00000000fc6c5f01fc30151999387bb99a9f489b",
+      "blockHash": "0xf18e189469f7157da334931f6e5d0fbdcb3411c1293350960f9c4df1ed987877",
+      "blockNumber": 112531878,
+      "data": "0x",
+      "logIndex": 32,
+      "removed": false,
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x0000000000000000000000003111bb74979c77969282660d299fff3edfd363e3",
+        "0x000000000000000000000000bc04652b7657e9a7c2778f04b425683955de88c1",
+        "0x000000000000000000000000000000000000000000000000000000000002ee8d"
+      ],
+      "transactionHash": "0x93440001ae5dc6219f4ff83b3f45cf99d0f176177d7a75552728456e0fcbe0d0",
+      "transactionIndex": 5,
+      "id": "log_5507465e",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "from",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "to",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "tokenId",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Transfer",
+          "anonymous": false
+        },
+        "name": "Transfer",
+        "signature": "Transfer(address,address,uint256)",
+        "topic": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "args": [
+          "0x3111bb74979c77969282660d299fff3edfd363e3",
+          "0xbc04652b7657e9a7c2778f04b425683955de88c1",
+          "192141"
+        ]
+      },
+      "chainId": 10
+    }
+  ],
+  "contractsCreated": []
 }
