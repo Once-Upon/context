@@ -3,4 +3,4 @@
 export * from './weth/index';
 export * from './ens/index';
 export * from './superchainFaucet/index';
-export * from './farcaster'; // TODO: Port this over to the new /index style
+export * from './farcaster/index';
