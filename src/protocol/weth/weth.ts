@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
-import { Transaction } from '../types';
-import { WETH_ADDRESSES, WETH_ABI } from '../helpers/constants';
-import { decodeTransactionInput } from '../helpers/utils';
+import { Transaction } from '../../types';
+import { WETH_ADDRESSES, WETH_ABI } from '../../helpers/constants';
+import { decodeTransactionInput } from '../../helpers/utils';
 
 export const wethContextualizer = (transaction: Transaction): Transaction => {
   const isWeth = detectWeth(transaction);

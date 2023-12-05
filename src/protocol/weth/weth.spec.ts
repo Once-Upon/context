@@ -1,8 +1,8 @@
-import { Transaction } from '../types';
+import { Transaction } from '../../types';
 import { detectWeth, generateWethContext } from './weth';
-import weth0x8ae756d0 from '../test/transactions/weth-0x8ae756d0.json';
-import weth0x0917947d from '../test/transactions/weth-0x0917947d.json';
-import catchall0xc35c01ac from '../test/transactions/catchall-0xc35c01ac.json';
+import weth0x8ae756d0 from '../../test/transactions/weth-0x8ae756d0.json';
+import weth0x0917947d from '../../test/transactions/weth-0x0917947d.json';
+import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 
 describe('Weth', () => {
   it('Should detect weth', () => {
