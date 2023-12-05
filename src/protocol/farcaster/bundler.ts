@@ -46,6 +46,26 @@ export const generateBundlerContext = (
 
   switch (decoded.name) {
     case 'register': {
+      // Capture FID
+      let fid = '';
+      if (transaction.receipt?.status) {
+        const registerLog = transaction.logs?.find((log) => {
+          return log.address === FarcasterContracts.IdRegistry.address;
+        });
+        if (registerLog) {
+          try {
+            const iface = new Interface(FarcasterContracts.IdRegistry.abi);
+            const decoded = iface.parseLog({
+              topics: registerLog.topics,
+              data: registerLog.data,
+            });
+            fid = decoded.args.id.toString();
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      }
+
       transaction.context = {
         variables: {
           caller: {
@@ -56,14 +76,18 @@ export const generateBundlerContext = (
             type: 'address',
             value: owner,
           },
+          fid: {
+            type: 'emphasis',
+            value: fid,
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: callerIsOwner
-              ? '[[caller]] [[registered]]'
-              : '[[caller]] [[registered]] for [[owner]]',
+              ? '[[caller]] [[registered]] [[fid]]'
+              : '[[caller]] [[registered]] [[fid]] for [[owner]]',
             variables: {
               registered: {
                 type: 'contextAction',

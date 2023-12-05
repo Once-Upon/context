@@ -22,6 +22,9 @@ describe('Bundler', () => {
       expect(transaction.context.variables.owner['value']).toBe(
         '0x109408193a2b17e1a641740655fB798d929A7554',
       );
+      expect(transaction.context.variables.fid['value']).toBe(
+        '196541'
+      );
     });
   });
 
