@@ -1,6 +1,6 @@
-import { ethers } from 'ethers';
 import { Transaction } from '../../types';
-import { WETH_ADDRESSES, WETH_ABI } from '../../helpers/constants';
+import { WETH_ADDRESSES } from '../../helpers/constants';
+import { WETH_ABI } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
 export const wethContextualizer = (transaction: Transaction): Transaction => {
