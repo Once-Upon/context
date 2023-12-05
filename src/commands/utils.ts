@@ -4,7 +4,7 @@ import 'dotenv/config';
 import { shortenTxHash } from '../helpers/utils';
 import { Transaction } from '../types';
 
-export const grabTx = async (txHash: string, prefix: string, withContext: boolean = false) => {
+export const grabTx = async (txHash: string, prefix: string) => {
   const srcDir = path.join(__dirname, '..', '..', 'src');
 
   const txHashShorten = shortenTxHash(txHash);
@@ -19,7 +19,7 @@ export const grabTx = async (txHash: string, prefix: string, withContext: boolea
   const defaultApiUrl = 'https://api.onceupon.gg';
   const API_URL = process.env.API_URL || defaultApiUrl;
   const transaction = await fetch(
-    `${API_URL}/v1/transactions/${txHash}?withContext=${withContext}`,
+    `${API_URL}/v1/transactions/${txHash}?withContext=false`,
   ).then((res) => res.json());
 
   // write to file
