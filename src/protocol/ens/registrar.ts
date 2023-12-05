@@ -17,10 +17,15 @@ export const detectENS = (transaction: Transaction): boolean => {
     return false;
   }
 
-  const decode = decodeTransactionInput(
-    transaction.input,
-    ENSContracts.RegistrarV2.abi,
-  );
+  let decode;
+  try {
+    decode = decodeTransactionInput(
+      transaction.input,
+      ENSContracts.RegistrarV2.abi,
+    );
+  } catch (e) {
+    return false;
+  }
 
   if (
     decode.name !== 'registerWithConfig' &&

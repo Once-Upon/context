@@ -16,10 +16,15 @@ export const detectReverseENS = (transaction: Transaction): boolean => {
     return false;
   }
 
-  const decode = decodeTransactionInput(
-    transaction.input,
-    ENSContracts.Reverse.abi,
-  );
+  let decode;
+  try {
+    decode = decodeTransactionInput(
+      transaction.input,
+      ENSContracts.Reverse.abi,
+    );
+  } catch (e) {
+    return false;
+  }
 
   if (decode.name !== 'setName') {
     return false;
