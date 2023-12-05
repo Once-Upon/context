@@ -30,6 +30,7 @@ export const detectWeth = (transaction: Transaction): boolean => {
       return false;
     }
 
+    if (!decode || !decode.name) return false;
     if (decode.name !== 'deposit' && decode.name !== 'withdraw') {
       return false;
     }
