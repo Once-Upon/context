@@ -2,6 +2,8 @@ import { Interface } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 
+// Contextualizer for the KeyGateway contract:
+// https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IKeyGateway.sol
 export const keyGatewayContextualizer = (
   transaction: Transaction,
 ): Transaction => {

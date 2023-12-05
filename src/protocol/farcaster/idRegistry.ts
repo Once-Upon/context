@@ -2,6 +2,12 @@ import { Interface } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 
+// Contextualizer for the IdRegistry contract:
+// https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IIdRegistry.sol
+//
+// Context is not generated for functions that are only callable by the contract owner.
+//
+// TODO: Add context for changeRecoveryAddress, recover, recoverFor, transferAndChangeRecovery, transferFor, transferAndChangeRecoveryFor
 export const idRegistryContextualizer = (
   transaction: Transaction,
 ): Transaction => {

@@ -2,6 +2,12 @@ import { Interface } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 
+// Contextualizer for the StorageRegistry contract:
+// https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IStorageRegistry.sol
+//
+// Context is not generated for functions that are only callable by the contract owner.
+//
+// TODO: Add context for batchRent
 export const storageRegistryContextualizer = (
   transaction: Transaction,
 ): Transaction => {

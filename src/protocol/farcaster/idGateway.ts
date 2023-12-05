@@ -2,6 +2,12 @@ import { Interface } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 
+// Contextualizer for the IdGateway contract:
+// https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IIdGateway.sol
+//
+// Context is not generated for functions that are only callable by the contract owner.
+//
+// TODO: Add context for registerFor
 export const idGatewayContextualizer = (
   transaction: Transaction,
 ): Transaction => {

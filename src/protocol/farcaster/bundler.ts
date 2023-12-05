@@ -2,6 +2,8 @@ import { Interface } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 
+// Contextualizer for the Bundler contract:
+// https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IBundler.sol
 export const bundlerContextualizer = (
   transaction: Transaction,
 ): Transaction => {
