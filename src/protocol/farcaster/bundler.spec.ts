@@ -16,6 +16,9 @@ describe('Bundler', () => {
       const transaction = generateBundlerContext(
         farcasterBundlerRegister0x7b8fe471 as Transaction,
       );
+      expect(transaction.context.summaries.en.variables.registered?.type).toBe(
+        'contextAction',
+      );
       expect(transaction.context.variables.caller['value']).toBe(
         '0x56ad2cd6ad6f52c72181b93ac66d5dc887c3d0bd',
       );
