@@ -22,9 +22,19 @@ describe('Weth', () => {
     const weth1 = generateWethContext(weth0x8ae756d0 as Transaction);
     expect(weth1.context.summaries.en.title).toBe('WETH');
     expect(weth1.context.summaries.en.variables.wrapped).toBeDefined();
+    expect(weth1.context.summaries.en.variables.wrapped.type).toBe(
+      'contextAction',
+    );
+    expect(weth1.context.summaries.en.variables.wrapped.value).toBe('wrapped');
 
     const weth2 = generateWethContext(weth0x0917947d as Transaction);
     expect(weth2.context.summaries.en.title).toBe('WETH');
     expect(weth2.context.summaries.en.variables.unwrapped).toBeDefined();
+    expect(weth2.context.summaries.en.variables.unwrapped.type).toBe(
+      'contextAction',
+    );
+    expect(weth2.context.summaries.en.variables.unwrapped.value).toBe(
+      'unwrapped',
+    );
   });
 });
