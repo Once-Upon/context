@@ -1,5 +1,6 @@
 import { utils } from 'ethers';
 import { InterfaceAbi } from '../types/Abi';
+import {TransactionContextType} from "../types/transaction"
 
 const VALID_CHARS =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.? ';
@@ -34,4 +35,70 @@ export function decodeTransactionInput(
   });
 
   return transactionDescriptor;
+}
+
+export function ContextSummary(
+  context: TransactionContextType ) {
+  const summaryTemplate = context.summaries.en.default;
+  if (!summaryTemplate) return null;
+
+  const regex = /(\[\[.*?\]\])/;
+  const parts = summaryTemplate.split(regex).filter((x) => x);
+
+  const formattedParts = parts.map((part, i) => {
+    if (isVariable(part)) {
+      const variableName = part.slice(2, -2);
+
+      const varContext =
+        context.variables[variableName] ||
+        context.summaries.en.variables[variableName];
+      return formatSection( varContext, i);
+    } else {
+      return part
+    }
+  });
+
+  return formattedParts
+}
+
+function isVariable(str) {
+  return str.startsWith("[[") && str.endsWith("]]");
+}
+
+
+function formatSection( section, i) {
+  const varContext = section;
+  const varKey = i;
+
+  if (varContext?.type === "contextAction") {
+    return varContext?.value
+  }
+
+  if (varContext?.type === "emphasis") {
+    return varContext?.value;
+  }
+
+  if (varContext?.type === "address")
+    return `${varContext?.value}:${chainId}`
+
+  if (varContext?.type === "eth")
+    return`${formatToken(varContext?.value)} ETH`
+
+  if (varContext?.type === "erc721" || varContext?.type === "erc1155") {
+    return `${varContext.token}-${varContext.tokenId}:${chainId}`
+  }
+
+  if (varContext?.type === "erc20")
+    return (
+      <FormatToken
+        key={varKey}
+        tokenContract={varContext?.token}
+        chainId={chainId}
+        value={varContext?.value}
+        className={styles.inlineLink}
+      />
+    );
+
+  if (varContext?.type === "transaction")
+  return varContext?.value
 }
