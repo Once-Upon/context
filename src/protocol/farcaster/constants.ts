@@ -1,3 +1,6 @@
+// TODO: Add these:
+// SignedKeyRequestValidator | 0x00000000fc700472606ed4fa22623acf62c60553
+// RecoveryProxy | 0x00000000fcb080a4d6c39a9354da9eb9bc104cd7
 export const FarcasterContracts = {
   IdGateway: {
     address: '0x00000000fc25870c6ed6b6c7e41fb078b7656f69',
