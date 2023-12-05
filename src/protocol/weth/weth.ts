@@ -80,7 +80,7 @@ export const generateWethContext = (transaction: Transaction): Transaction => {
         type: 'address',
         value: transaction.from,
       };
-      const withdraw: ContextSummaryVariableType = {
+      const withdrawalAmount: ContextSummaryVariableType = {
         type: 'eth',
         value: decode.args[0],
       };
@@ -89,14 +89,14 @@ export const generateWethContext = (transaction: Transaction): Transaction => {
           category: 'FUNGIBLE_TOKEN',
           en: {
             title: 'WETH',
-            default: `[[from]] [[unwrapped]] [[value]]`,
+            default: `[[withdrawer]] [[unwrapped]] [[withdrawalAmount]]`,
             variables: {
               unwrapped: { type: 'contextAction', value: 'unwrapped' },
             },
           },
         },
         variables: {
-          withdraw,
+          withdrawalAmount,
           withdrawer,
         },
       };
