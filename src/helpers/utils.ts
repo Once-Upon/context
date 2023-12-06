@@ -66,7 +66,6 @@ function isVariable(str) {
 
 function formatSection(section, i) {
   const varContext = section;
-  const varKey = i;
 
   if (varContext?.type === 'eth')
     return `${utils.formatEther(varContext?.value)} ETH`;
