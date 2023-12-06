@@ -3,8 +3,8 @@ import { ContextSummaryVariableType, Transaction } from '../../types';
 import { LeeroyContracts } from './constants';
 
 export const leeroyContextualizer = (transaction: Transaction): Transaction => {
-  const isENS = detectLeeroy(transaction);
-  if (!isENS) return transaction;
+  const isLeeroy = detectLeeroy(transaction);
+  if (!isLeeroy) return transaction;
 
   return generateLeeroyContext(transaction);
 };
@@ -94,7 +94,7 @@ export const generateLeeroyContext = (
           },
         };
       }
-      return;
+      break;
     }
     case '0xa66b7748': {
       // follow(bytes32)
@@ -150,7 +150,7 @@ export const generateLeeroyContext = (
           },
         };
       }
-      return;
+      break;
     }
     case '0x4b91ab35': {
       // unfollow(bytes32)
@@ -206,7 +206,7 @@ export const generateLeeroyContext = (
           },
         };
       }
-      return;
+      break;
     }
     case '0x7e93163b': {
       // tip(bytes32,bytes32) NOTE -
@@ -274,7 +274,7 @@ export const generateLeeroyContext = (
           },
         };
       }
-      return;
+      break;
     }
     case '0x9d7eb375': {
       // updateUserDetails(string)
@@ -335,7 +335,7 @@ export const generateLeeroyContext = (
           },
         };
       }
-      return;
+      break;
     }
     case '0xa83b1e21': {
       // reply(string,bytes32)
@@ -395,7 +395,7 @@ export const generateLeeroyContext = (
           },
         };
       }
-      return;
+      break;
     }
     case '0x3a4de190': {
       // repost(bytes32)
@@ -451,7 +451,7 @@ export const generateLeeroyContext = (
           },
         };
       }
-      return;
+      break;
     }
     case '0x66e34dc6': {
       // registerUsername(bytes32)
@@ -510,10 +510,10 @@ export const generateLeeroyContext = (
           },
         };
       }
-      return;
+      break;
     }
     default: {
-      return;
+      break;
     }
   }
   return transaction;
