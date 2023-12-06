@@ -37,7 +37,7 @@ describe('Weth', () => {
     expect(weth2.context.summaries.en.variables.unwrapped.value).toBe(
       'unwrapped',
     );
-    const wethDesc2 = ContextSummary(weth2.context);
+    const wethDesc2 = contextSummary(weth2.context);
     expect(wethDesc2).toBe(
       '0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c unwrapped 0.05 ETH',
     );

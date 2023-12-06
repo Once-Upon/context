@@ -37,7 +37,7 @@ export function decodeTransactionInput(
   return transactionDescriptor;
 }
 
-export function ContextSummary(context: TransactionContextType): string {
+export function contextSummary(context: TransactionContextType): string {
   const summaryTemplate = context.summaries.en.default;
   if (!summaryTemplate) return null;
 
