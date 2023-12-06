@@ -5,3 +5,4 @@ export * from './ens/index';
 export * from './superchainFaucet/index';
 export * from './farcaster/index';
 export * from './leeroy/index';
+export * from './frenpet/index';
