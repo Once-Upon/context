@@ -1,6 +1,6 @@
 import { utils } from 'ethers';
 import { InterfaceAbi } from '../types/Abi';
-import {TransactionContextType} from "../types/transaction"
+import { TransactionContextType } from '../types/transaction';
 
 const VALID_CHARS =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.? ';
@@ -37,8 +37,7 @@ export function decodeTransactionInput(
   return transactionDescriptor;
 }
 
-export function ContextSummary(
-  context: TransactionContextType ) {
+export function ContextSummary(context: TransactionContextType): string {
   const summaryTemplate = context.summaries.en.default;
   if (!summaryTemplate) return null;
 
@@ -52,53 +51,32 @@ export function ContextSummary(
       const varContext =
         context.variables[variableName] ||
         context.summaries.en.variables[variableName];
-      return formatSection( varContext, i);
+      return formatSection(varContext, i);
     } else {
-      return part
+      return part;
     }
   });
 
-  return formattedParts
+  return formattedParts.join('');
 }
 
 function isVariable(str) {
-  return str.startsWith("[[") && str.endsWith("]]");
+  return str.startsWith('[[') && str.endsWith(']]');
 }
 
-
-function formatSection( section, i) {
+function formatSection(section, i) {
   const varContext = section;
   const varKey = i;
 
-  if (varContext?.type === "contextAction") {
-    return varContext?.value
+  if (varContext?.type === 'eth')
+    return `${utils.formatEther(varContext?.value)} ETH`;
+
+  if (varContext?.type === 'erc721' || varContext?.type === 'erc1155') {
+    return `${varContext.token} #${varContext.tokenId}`;
   }
 
-  if (varContext?.type === "emphasis") {
-    return varContext?.value;
-  }
+  if (varContext?.type === 'erc20')
+    return `${varContext.value} ${varContext.token}`;
 
-  if (varContext?.type === "address")
-    return `${varContext?.value}:${chainId}`
-
-  if (varContext?.type === "eth")
-    return`${formatToken(varContext?.value)} ETH`
-
-  if (varContext?.type === "erc721" || varContext?.type === "erc1155") {
-    return `${varContext.token}-${varContext.tokenId}:${chainId}`
-  }
-
-  if (varContext?.type === "erc20")
-    return (
-      <FormatToken
-        key={varKey}
-        tokenContract={varContext?.token}
-        chainId={chainId}
-        value={varContext?.value}
-        className={styles.inlineLink}
-      />
-    );
-
-  if (varContext?.type === "transaction")
-  return varContext?.value
+  return varContext?.value;
 }

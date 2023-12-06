@@ -1,5 +1,6 @@
 import { Transaction } from '../../types';
 import { detectWeth, generateWethContext } from './weth';
+import { ContextSummary } from '../../helpers/utils';
 import weth0x8ae756d0 from '../../test/transactions/weth-0x8ae756d0.json';
 import weth0x0917947d from '../../test/transactions/weth-0x0917947d.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
@@ -35,6 +36,10 @@ describe('Weth', () => {
     );
     expect(weth2.context.summaries.en.variables.unwrapped.value).toBe(
       'unwrapped',
+    );
+    const wethDesc2 = ContextSummary(weth2.context);
+    expect(wethDesc2).toBe(
+      '0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c unwrapped 0.05 ETH',
     );
   });
 });
