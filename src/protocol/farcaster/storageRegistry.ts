@@ -55,7 +55,7 @@ export const generateStorageRegistryContext = (
             value: transaction.from,
           },
           fid: {
-            type: 'emphasis',
+            type: 'farcasterID',
             value: decoded.args[0].toString(),
           },
           units: {

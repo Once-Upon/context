@@ -108,7 +108,7 @@ export type TransactionContextType = {
 
 export type ContextSummaryVariableType =
   | {
-      type: 'emphasis' | 'address' | 'transaction' | 'eth';
+      type: 'emphasis' | 'address' | 'transaction' | 'eth' | 'farcasterID';
       value: string;
     }
   | {

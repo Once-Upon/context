@@ -79,7 +79,7 @@ export const generateBundlerContext = (
             value: owner,
           },
           fid: {
-            type: 'emphasis',
+            type: 'farcasterID',
             value: fid,
           },
         },
