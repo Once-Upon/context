@@ -46,28 +46,29 @@ export function generateERC21PurchaseContext(
   transaction: Transaction,
 ): Transaction {
   const receivingAddresses: string[] = [];
-  const receivedNfts: Asset[] = [];
-  const sentPayments: { type: string; asset: string; value: string }[] = [];
+  let receivedNfts: Asset[] = [];
+  let sentPayments: { type: string; asset: string; value: string }[] = [];
 
-  for (const [address, data] of Object.entries(transaction.netAssetTransfers)) {
+  Object.entries(transaction.netAssetTransfers).forEach(([address, data]) => {
     const nftTransfers = data.received.filter((t) => t.type === 'erc721');
     const paymentTransfers = data.sent.filter(
       (t) => t.type === 'erc20' || t.type === 'eth',
     );
     if (nftTransfers.length > 0) {
       receivingAddresses.push(address);
-      nftTransfers.forEach((nft) => receivedNfts.push(nft));
+      receivedNfts = [...receivedNfts, ...nftTransfers];
     }
     if (paymentTransfers.length > 0) {
-      paymentTransfers.forEach((payment) =>
-        sentPayments.push({
+      sentPayments = [
+        ...sentPayments,
+        ...paymentTransfers.map((payment) => ({
           type: payment.type,
           asset: payment.asset,
           value: payment.value,
-        }),
-      );
+        })),
+      ];
     }
-  }
+  });
 
   const receivedNftContracts = Array.from(
     new Set(receivedNfts.map((x) => x.asset)),
