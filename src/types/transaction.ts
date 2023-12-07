@@ -120,6 +120,10 @@ export type ContextSummaryVariableType =
       tokenId?: string;
       token: string;
       value?: string;
+    }
+  | {
+      type: 'chainID';
+      value: number;
     };
 
 export type ContextVariable = {
