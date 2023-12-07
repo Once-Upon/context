@@ -122,7 +122,7 @@ export type ContextSummaryVariableType =
       value?: string;
     }
   | {
-      type: 'chainId';
+      type: 'chainID';
       value: number;
     };
 

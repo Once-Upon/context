@@ -58,5 +58,3 @@ export type ContextAction =
   | 'removed a key'
   | 'added a key'
   // Optimism Bridge
-  | 'send to'
-  | 'resulting in';
