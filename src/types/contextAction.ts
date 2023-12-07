@@ -56,4 +56,4 @@ export type ContextAction =
   | 'transferred Farcaster ID'
   | 'rented'
   | 'removed a key'
-  | 'added a key'
+  | 'added a key';
