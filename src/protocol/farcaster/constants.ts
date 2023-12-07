@@ -7,6 +7,8 @@ export const FarcasterContracts = {
     abi: [
       'function register(address recovery) external payable returns (uint256, uint256)',
       'function register(address recovery, uint256 extraStorage) external payable returns (uint256, uint256)',
+      'function registerFor(address to, address recovery, uint256 deadline, bytes calldata sig) external payable returns (uint256 fid, uint256 overpayment)',
+      'function registerFor(address to, address recovery, uint256 deadline, bytes calldata sig, uint256 extraStorage) external payable returns (uint256 fid, uint256 overpayment)',
     ],
   },
   IdRegistry: {
