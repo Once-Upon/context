@@ -14,7 +14,7 @@ export const bundlerContextualizer = (
 };
 
 export const detectBundler = (transaction: Transaction): boolean => {
-  if (transaction.to !== FarcasterContracts.Bundler.address) {
+  if (transaction.to !== FarcasterContracts.Bundler.address && transaction.to !== FarcasterContracts.BundlerOld.address) {
     return false;
   }
 
