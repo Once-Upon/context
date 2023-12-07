@@ -17,34 +17,58 @@ export const detectENS = (transaction: Transaction): boolean => {
     return false;
   }
 
+  // check if v2
+  try {
+    const decode = decodeTransactionInput(
+      transaction.input,
+      ENSContracts.RegistrarV2.abi,
+    );
+
+    if (
+      decode.name === 'registerWithConfig' ||
+      decode.name === 'register' ||
+      decode.name === 'commit' ||
+      decode.name === 'renew'
+    ) {
+      return true;
+    }
+  } catch (e) {
+    // check if v3
+    try {
+      const decode = decodeTransactionInput(
+        transaction.input,
+        ENSContracts.RegistrarV3.abi,
+      );
+
+      if (
+        decode.name === 'register' ||
+        decode.name === 'commit' ||
+        decode.name === 'renew'
+      ) {
+        return true;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
+
+  return false;
+};
+
+// Contextualize for mined txs
+export const generateENSContext = (transaction: Transaction): Transaction => {
   let decode;
   try {
     decode = decodeTransactionInput(
       transaction.input,
       ENSContracts.RegistrarV2.abi,
     );
-  } catch (e) {
-    return false;
+  } catch (error) {
+    decode = decodeTransactionInput(
+      transaction.input,
+      ENSContracts.RegistrarV3.abi,
+    );
   }
-
-  if (
-    decode.name !== 'registerWithConfig' &&
-    decode.name !== 'register' &&
-    decode.name !== 'commit' &&
-    decode.name !== 'renew'
-  ) {
-    return false;
-  }
-
-  return true;
-};
-
-// Contextualize for mined txs
-export const generateENSContext = (transaction: Transaction): Transaction => {
-  const decode = decodeTransactionInput(
-    transaction.input,
-    ENSContracts.RegistrarV2.abi,
-  );
   switch (decode.name) {
     case 'registerWithConfig':
     case 'register': {

@@ -12,8 +12,7 @@ export const ENSContracts = {
     address: '0x253553366da8546fc250f225fe3d25d0c782303b',
     abi: [
       'function commit(bytes32 commitment)',
-      'function register(string name, address owner, uint256 duration, bytes32 secret)',
-      'function registerWithConfig(string name, address owner, uint256 duration, bytes32 secret, address resolver, address addr)',
+      'function register(string name, address owner, uint256 duration, bytes32 secret, address resolver, bytes[] data, bool reverseRecord, uint16 ownerControlledFuses)',
       'function renew(string name, uint256 duration)',
     ],
   },
