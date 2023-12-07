@@ -41,4 +41,10 @@ export const FarcasterContracts = {
       'function register(tuple(address to, address recovery, uint256 deadline, bytes sig) registerParams, tuple(uint32 keyType, bytes key, uint8 metadataType, bytes metadata, uint256 deadline, bytes sig)[] signerParams, uint256 extraStorage) external payable returns (uint256)',
     ],
   },
+  BundlerOld: {
+    address: '0x00000000fc94856f3967b047325f88d47bc225d0',
+    abi: [
+      'function register(tuple(address to, address recovery, uint256 deadline, bytes sig) registerParams, tuple(uint32 keyType, bytes key, uint8 metadataType, bytes metadata, uint256 deadline, bytes sig)[] signerParams, uint256 extraStorage) external payable returns (uint256)',
+    ],
+  }
 };
