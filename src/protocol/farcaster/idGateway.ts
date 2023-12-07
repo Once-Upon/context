@@ -74,7 +74,7 @@ export const generateIdGatewayContext = (
             value: transaction.from,
           },
           fid: {
-            type: 'emphasis',
+            type: 'farcasterID',
             value: fid,
           },
         },
