@@ -25,7 +25,7 @@ export function registerGrabTransactionCommand() {
         console.log(`Fetching transaction from transaction api: ${hash}`);
         // grab transaction from api and save it in test/transactions
         await grabTx(hash, prefix);
-        console.log(`Transaction saved to ${txFilePath}.json`);
+        console.log(`Transaction saved to ${txFilePath}`);
         process.exit(0); // Successful exit
       } catch (error) {
         console.error('Failed to grab the transaction:', error);
