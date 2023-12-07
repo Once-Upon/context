@@ -11,7 +11,7 @@ export const frenPetContextualizer = (
   return generateFrenPetContext(transaction);
 };
 
-const detectFrenPet = (transaction: Transaction): boolean => {
+export const detectFrenPet = (transaction: Transaction): boolean => {
   if (
     transaction.chainId === 8453 &&
     transaction.to === contracts.frenPetGameplayContractV1
@@ -23,7 +23,9 @@ const detectFrenPet = (transaction: Transaction): boolean => {
 };
 
 // Contextualize for mined txs
-const generateFrenPetContext = (transaction: Transaction): Transaction => {
+export const generateFrenPetContext = (
+  transaction: Transaction,
+): Transaction => {
   switch (transaction.sigHash) {
     case '0x715488b0': {
       // buyAccessory(uint256,uint256)
