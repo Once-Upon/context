@@ -57,4 +57,3 @@ export type ContextAction =
   | 'rented'
   | 'removed a key'
   | 'added a key'
-  // Optimism Bridge
