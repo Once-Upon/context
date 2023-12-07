@@ -22,7 +22,7 @@ If you want your protocol to work well _across all of web3_, contribute to **EVM
 ### Generating a new contextualization
 
 ```
-npm run create:contextualizer [name of protocol] -- -h [transaction hash]`
+npm run create:contextualizer [name of protocol] -- -h [transaction hash]
 ```
 
 The transaction hash is optional.
