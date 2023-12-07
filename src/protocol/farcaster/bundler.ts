@@ -97,7 +97,7 @@ export const generateBundlerContext = (
           en: {
             title: 'Farcaster',
             default: callerIsOwner
-              ? '[[caller]] [[registered]] [[fid]]'
+              ? '[[caller]] [[registered]] [[fid]] for [[cost]]'
               : '[[caller]] [[registered]] [[fid]] for [[owner]] for [[cost]]',
             variables: {
               registered: {
