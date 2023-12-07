@@ -1,5 +1,5 @@
 import { Interface } from 'ethers/lib/utils';
-import { Transaction } from '../../types';
+import { ContextSummaryVariableType, Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 
 // Contextualizer for the Bundler contract:
@@ -14,7 +14,10 @@ export const bundlerContextualizer = (
 };
 
 export const detectBundler = (transaction: Transaction): boolean => {
-  if (transaction.to !== FarcasterContracts.Bundler.address && transaction.to !== FarcasterContracts.BundlerOld.address) {
+  if (
+    transaction.to !== FarcasterContracts.Bundler.address &&
+    transaction.to !== FarcasterContracts.BundlerOld.address
+  ) {
     return false;
   }
 
@@ -48,6 +51,11 @@ export const generateBundlerContext = (
 
   switch (decoded.name) {
     case 'register': {
+      // Capture cost to register
+      const cost: ContextSummaryVariableType = {
+        type: 'eth',
+        value: transaction.value,
+      };
       // Capture FID
       let fid = '';
       if (transaction.receipt?.status) {
@@ -82,14 +90,15 @@ export const generateBundlerContext = (
             type: 'farcasterID',
             value: fid,
           },
+          cost,
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: callerIsOwner
-              ? '[[caller]] [[registered]] [[fid]]'
-              : '[[caller]] [[registered]] [[fid]] for [[owner]]',
+              ? '[[caller]] [[registered]] [[fid]] for [[cost]]'
+              : '[[caller]] [[registered]] [[fid]] for [[owner]] for [[cost]]',
             variables: {
               registered: {
                 type: 'contextAction',
