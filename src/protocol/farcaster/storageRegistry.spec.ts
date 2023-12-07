@@ -2,6 +2,7 @@ import { Transaction } from '../../types';
 import { detect, generate } from './storageRegistry';
 import farcasterRent0x09794a62 from '../../test/transactions/farcaster-rent-0x09794a62.json';
 import farcasterRentMany0x4a23db3d from '../../test/transactions/farcaster-rentMany-0x4a23db3d.json';
+import farcasterBatchRentMOCK from '../../test/transactions/farcaster-batchRent-MOCK.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 
 describe('StorageRegistry', () => {
@@ -35,6 +36,33 @@ describe('StorageRegistry', () => {
       expect(transaction.context.variables.units['value']).toBe('2');
       expect(
         transaction.context.summaries.en.default.includes('storage units'),
+      ).toBe(true);
+    });
+  });
+
+  // TODO: this function has as of 2023-12-07 never been called on mainnet so
+  // we're using a mock transaction in the test. replace with an actual
+  // transaction
+  describe('batchRent', () => {
+    it('Should detect transaction', () => {
+      const match = detect(farcasterBatchRentMOCK as unknown as Transaction);
+      expect(match).toBe(true);
+    });
+
+    it('Should generate context', () => {
+      const transaction = generate(
+        farcasterBatchRentMOCK as unknown as Transaction,
+      );
+      expect(transaction.context.summaries.en.variables.rented?.type).toBe(
+        'contextAction',
+      );
+      expect(transaction.context.variables.caller['value']).toBe(
+        '0xbdfeb5439f5daecb78a17ff846645a8bdbbf5725',
+      );
+      expect(transaction.context.variables.fids['value']).toBe('2');
+      expect(transaction.context.variables.units['value']).toBe('7');
+      expect(
+        transaction.context.summaries.en.default.includes('storage units '),
       ).toBe(true);
     });
   });

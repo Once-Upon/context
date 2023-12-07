@@ -6,8 +6,6 @@ import { FarcasterContracts } from './constants';
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IStorageRegistry.sol
 //
 // Context is not generated for functions that are only callable by the contract owner.
-//
-// TODO: Add context for batchRent
 export const contextualize = (transaction: Transaction): Transaction => {
   const isStorageRegistry = detect(transaction);
   if (!isStorageRegistry) return transaction;
@@ -27,7 +25,7 @@ export const detect = (transaction: Transaction): boolean => {
       value: transaction.value,
     });
 
-    return ['rent'].includes(decoded.name);
+    return ['rent', 'batchRent'].includes(decoded.name);
   } catch (_) {
     return false;
   }
@@ -66,6 +64,45 @@ export const generate = (transaction: Transaction): Transaction => {
             default: `[[caller]] [[rented]] [[units]] storage unit${
               units > 1 ? 's' : ''
             } for Farcaster ID [[fid]]`,
+            variables: {
+              rented: {
+                type: 'contextAction',
+                value: 'rented',
+              },
+            },
+          },
+        },
+      };
+      return transaction;
+    }
+
+    case 'batchRent': {
+      const fids = decoded.args[0].length;
+      const units = decoded.args[1]
+        .reduce((acc, curr) => acc.add(curr))
+        .toString();
+      transaction.context = {
+        variables: {
+          caller: {
+            type: 'address',
+            value: transaction.from,
+          },
+          fids: {
+            type: 'emphasis',
+            value: fids.toString(),
+          },
+          units: {
+            type: 'emphasis',
+            value: units.toString(),
+          },
+        },
+        summaries: {
+          category: 'PROTOCOL_1',
+          en: {
+            title: 'Farcaster',
+            default: `[[caller]] [[rented]] [[units]] storage unit${
+              units > 1 ? 's' : ''
+            } for [[fids]] Farcaster ID${fids > 1 ? 's' : ''}`,
             variables: {
               rented: {
                 type: 'contextAction',
