@@ -86,9 +86,6 @@ function generateERC1155PurchaseContext(transaction: Transaction): Transaction {
     }
   });
 
-  const receivedNftContracts = Array.from(
-    new Set(receivedNfts.map((x) => x.asset)),
-  );
   const totalPayments = Object.values(
     sentPayments.reduce((acc, next) => {
       acc[next.asset] = {
@@ -119,10 +116,10 @@ function generateERC1155PurchaseContext(transaction: Transaction): Transaction {
               tokenId: receivedNfts[0].tokenId,
               value: receivedNfts[0].value,
             }
-          : receivedNftContracts.length === 1
+          : receivedNfts.length === 1
             ? {
                 type: 'address',
-                value: receivedNftContracts[0],
+                value: receivedNfts[0].asset,
               }
             : {
                 type: 'emphasis',

@@ -70,9 +70,6 @@ export function generateERC21PurchaseContext(
     }
   });
 
-  const receivedNftContracts = Array.from(
-    new Set(receivedNfts.map((x) => x.asset)),
-  );
   const totalPayments = Object.values(
     sentPayments.reduce((acc, next) => {
       acc[next.asset] = {
@@ -102,10 +99,10 @@ export function generateERC21PurchaseContext(
               token: receivedNfts[0].asset,
               tokenId: receivedNfts[0].tokenId,
             }
-          : receivedNftContracts.length === 1
+          : receivedNfts.length === 1
             ? {
                 type: 'address',
-                value: receivedNftContracts[0],
+                value: receivedNfts[0].asset,
               }
             : {
                 type: 'emphasis',
