@@ -1,1 +1,1 @@
-export { cancelPendingTransactionContextualizer } from './cancelPendingTransaction';
+export { contextualize as cancelPendingTransactionContextualizer } from './cancelPendingTransaction';

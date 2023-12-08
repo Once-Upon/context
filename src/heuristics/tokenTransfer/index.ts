@@ -1,1 +1,1 @@
-export { tokenTransferContextualizer } from './tokenTransfer';
+export { contextualize as tokenTransferContextualizer } from './tokenTransfer';

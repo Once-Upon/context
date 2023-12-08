@@ -1,19 +1,14 @@
 import { Transaction } from '../../types';
 
-export function cancelPendingTransactionContextualizer(
-  transaction: Transaction,
-): Transaction {
-  const isCanceledPendingTransaction =
-    detectCancelPendingTransaction(transaction);
+export function contextualize(transaction: Transaction): Transaction {
+  const isCanceledPendingTransaction = detect(transaction);
 
   if (!isCanceledPendingTransaction) return transaction;
 
-  return generateCancelPendingTransactionContext(transaction);
+  return generate(transaction);
 }
 
-export function detectCancelPendingTransaction(
-  transaction: Transaction,
-): boolean {
+export function detect(transaction: Transaction): boolean {
   // Check if user cancelled pending transaction
   if (
     transaction.to === transaction.from &&
@@ -26,9 +21,7 @@ export function detectCancelPendingTransaction(
   return false;
 }
 
-export function generateCancelPendingTransactionContext(
-  transaction: Transaction,
-): Transaction {
+export function generate(transaction: Transaction): Transaction {
   transaction.context = {
     summaries: {
       category: 'DEV',

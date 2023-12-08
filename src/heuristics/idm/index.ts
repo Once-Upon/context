@@ -1,1 +1,1 @@
-export { idmContextualizer } from './idm';
+export { contextualize as idmContextualizer } from './idm';

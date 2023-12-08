@@ -1,1 +1,1 @@
-export { erc721PurchaseContextualizer } from './erc721Purchase';
+export { contextualize as erc721PurchaseContextualizer } from './erc721Purchase';

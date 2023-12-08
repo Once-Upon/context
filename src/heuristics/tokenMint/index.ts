@@ -1,1 +1,1 @@
-export { tokenMintContextualizer } from './tokenMint';
+export { contextualize as tokenMintContextualizer } from './tokenMint';

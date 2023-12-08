@@ -1,25 +1,21 @@
 import { Transaction } from '../../types';
 
-export function contractDeploymentContextualizer(
-  transaction: Transaction,
-): Transaction {
-  const isContractDeployment = detectContractDeployment(transaction);
+export function contextualize(transaction: Transaction): Transaction {
+  const isContractDeployment = detect(transaction);
 
   if (!isContractDeployment) return transaction;
 
-  return generateContractDeploymentContext(transaction);
+  return generate(transaction);
 }
 
-export function detectContractDeployment(transaction: Transaction): boolean {
+export function detect(transaction: Transaction): boolean {
   if (transaction.to === null && transaction.receipt?.contractAddress) {
     return true;
   }
   return false;
 }
 
-function generateContractDeploymentContext(
-  transaction: Transaction,
-): Transaction {
+function generate(transaction: Transaction): Transaction {
   transaction.context = {
     variables: {
       deployerAddress: {

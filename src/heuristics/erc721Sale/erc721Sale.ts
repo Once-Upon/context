@@ -1,14 +1,12 @@
 import { ethers } from 'ethers';
 import { Asset, Transaction } from '../../types';
 
-export function erc721SaleContextualizer(
-  transaction: Transaction,
-): Transaction {
-  const isERC721SaleTransaction = detectERC721Sale(transaction);
+export function contextualize(transaction: Transaction): Transaction {
+  const isERC721SaleTransaction = detect(transaction);
 
   if (!isERC721SaleTransaction) return transaction;
 
-  return generateERC21SaleContext(transaction);
+  return generate(transaction);
 }
 
 /**
@@ -19,7 +17,7 @@ export function erc721SaleContextualizer(
  * In netAssetTransfers, the address that sent the NFTs receives either eth/weth/blur eth.
  * The rest of the parties only receive eth/weth/blur eth (royalties/fees)
  */
-export function detectERC721Sale(transaction: Transaction): boolean {
+export function detect(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
    *  and while this might seem redundant, maintaining the 'detect' function aligns with
@@ -42,7 +40,7 @@ export function detectERC721Sale(transaction: Transaction): boolean {
   return false;
 }
 
-function generateERC21SaleContext(transaction: Transaction): Transaction {
+function generate(transaction: Transaction): Transaction {
   const receivingAddresses: string[] = [];
   const receivedNfts: Asset[] = [];
   const sentPayments: { type: string; asset: string; value: string }[] = [];

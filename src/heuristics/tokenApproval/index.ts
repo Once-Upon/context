@@ -1,1 +1,1 @@
-export { tokenApprovalContextualizer } from './tokenApproval';
+export { contextualize as tokenApprovalContextualizer } from './tokenApproval';

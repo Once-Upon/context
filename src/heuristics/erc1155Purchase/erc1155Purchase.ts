@@ -1,16 +1,14 @@
 import { ethers } from 'ethers';
 import { Asset, Transaction } from '../../types';
 
-export function erc1155PurchaseContextualizer(
-  transaction: Transaction,
-): Transaction {
-  const isERC1155Purchase = detectERC1155Purchase(transaction);
+export function contextualize(transaction: Transaction): Transaction {
+  const isERC1155Purchase = detect(transaction);
   if (!isERC1155Purchase) return transaction;
 
-  return generateERC1155PurchaseContext(transaction);
+  return generate(transaction);
 }
 
-export function detectERC1155Purchase(transaction: Transaction): boolean {
+export function detect(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
    *  and while this might seem redundant, maintaining the 'detect' function aligns with
@@ -60,7 +58,7 @@ export function detectERC1155Purchase(transaction: Transaction): boolean {
   return false;
 }
 
-function generateERC1155PurchaseContext(transaction: Transaction): Transaction {
+function generate(transaction: Transaction): Transaction {
   const receivingAddresses: string[] = [];
   let receivedNfts: Asset[] = [];
   let sentPayments: { type: string; asset: string; value: string }[] = [];

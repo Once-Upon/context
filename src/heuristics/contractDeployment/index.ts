@@ -1,1 +1,1 @@
-export { contractDeploymentContextualizer } from './contractDeployment';
+export { contextualize as contractDeploymentContextualizer } from './contractDeployment';

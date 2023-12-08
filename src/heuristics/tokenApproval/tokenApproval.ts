@@ -1,15 +1,13 @@
 import { Transaction } from '../../types';
 
-export function tokenApprovalContextualizer(
-  transaction: Transaction,
-): Transaction {
-  const isTokenApproval = detectTokenApproval(transaction);
+export function contextualize(transaction: Transaction): Transaction {
+  const isTokenApproval = detect(transaction);
   if (!isTokenApproval) return transaction;
 
-  return generateTokenApprovalContext(transaction);
+  return generate(transaction);
 }
 
-export function detectTokenApproval(transaction: Transaction): boolean {
+export function detect(transaction: Transaction): boolean {
   if (!transaction.decode) {
     return false;
   }
@@ -43,7 +41,7 @@ export function detectTokenApproval(transaction: Transaction): boolean {
   return false;
 }
 
-function generateTokenApprovalContext(transaction: Transaction): Transaction {
+function generate(transaction: Transaction): Transaction {
   const { args } = transaction.decode;
   const approver = transaction.from;
   const token = transaction.to;
