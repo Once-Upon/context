@@ -1,5 +1,5 @@
 import { Transaction } from '../../types';
-import { ENS_CONTRACTs } from './constants';
+import { ENS_CONTRACTS } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
 export const ensContextualizer = (transaction: Transaction): Transaction => {
@@ -10,7 +10,7 @@ export const ensContextualizer = (transaction: Transaction): Transaction => {
 };
 
 export const detectENS = (transaction: Transaction): boolean => {
-  if (!Object.keys(ENS_CONTRACTs.registrar).includes(transaction.to)) {
+  if (!Object.keys(ENS_CONTRACTS.registrar).includes(transaction.to)) {
     return false;
   }
 
