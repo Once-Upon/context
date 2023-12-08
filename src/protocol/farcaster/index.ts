@@ -1,4 +1,4 @@
-import { Transaction } from '../../types';
+import { makeContextualize } from '../../helpers/utils';
 import { contextualize as bundlerContextualizer } from './bundler';
 import { contextualize as idGatewayContextualizer } from './idGateway';
 import { contextualize as idRegistryContextualizer } from './idRegistry';
@@ -15,14 +15,7 @@ const children = {
   keyGatewayContextualizer,
 };
 
-const contextualize = (transaction: Transaction): Transaction => {
-  for (const childContextualizer of Object.values(children)) {
-    const result = childContextualizer(transaction);
-    if (result.context?.summaries?.category) {
-      return result;
-    }
-  }
-};
+const contextualize = makeContextualize(children);
 
 export const farcasterContextualizer = {
   contextualize,
