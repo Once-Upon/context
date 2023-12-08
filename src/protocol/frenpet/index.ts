@@ -7,5 +7,4 @@ const contextualize = makeContextualize(children);
 
 export const frenPetContextualizer = {
   contextualize,
-  children,
 };
