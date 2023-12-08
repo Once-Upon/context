@@ -1,1 +1,1 @@
-export { ethTransferContextualizer } from './ethTransfer';
+export { contextualize as ethTransferContextualizer } from './ethTransfer';

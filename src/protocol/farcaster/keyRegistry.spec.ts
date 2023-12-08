@@ -1,5 +1,5 @@
 import { Transaction } from '../../types';
-import { detectKeyRegistry, generateKeyRegistryContext } from './keyRegistry';
+import { detect, generate } from './keyRegistry';
 import farcasterRemove0x742d8d1a from '../../test/transactions/farcaster-remove-0x742d8d1a.json';
 import farcasterRemoveFor0xc199aa16 from '../../test/transactions/farcaster-removeFor-0xc199aa16.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
@@ -7,14 +7,12 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 describe('KeyRegistry', () => {
   describe('remove', () => {
     it('Should detect transaction', () => {
-      const match = detectKeyRegistry(farcasterRemove0x742d8d1a as Transaction);
+      const match = detect(farcasterRemove0x742d8d1a as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generateKeyRegistryContext(
-        farcasterRemove0x742d8d1a as Transaction,
-      );
+      const transaction = generate(farcasterRemove0x742d8d1a as Transaction);
       expect(transaction.context.summaries.en.variables.removedKey?.type).toBe(
         'contextAction',
       );
@@ -26,16 +24,12 @@ describe('KeyRegistry', () => {
 
   describe('removeFor', () => {
     it('Should detect transaction', () => {
-      const match = detectKeyRegistry(
-        farcasterRemoveFor0xc199aa16 as Transaction,
-      );
+      const match = detect(farcasterRemoveFor0xc199aa16 as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generateKeyRegistryContext(
-        farcasterRemoveFor0xc199aa16 as Transaction,
-      );
+      const transaction = generate(farcasterRemoveFor0xc199aa16 as Transaction);
       expect(transaction.context.summaries.en.variables.removedKey?.type).toBe(
         'contextAction',
       );
@@ -50,7 +44,7 @@ describe('KeyRegistry', () => {
 
   describe('Other transactions', () => {
     it('Should not detect transaction', () => {
-      const match = detectKeyRegistry(catchall0xc35c01ac as Transaction);
+      const match = detect(catchall0xc35c01ac as Transaction);
       expect(match).toBe(false);
     });
 
@@ -60,7 +54,7 @@ describe('KeyRegistry', () => {
         to: farcasterRemove0x742d8d1a.to,
       };
 
-      expect(() => detectKeyRegistry(mockTxn as Transaction)).not.toThrow();
+      expect(() => detect(mockTxn as Transaction)).not.toThrow();
     });
   });
 });

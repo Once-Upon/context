@@ -4,16 +4,14 @@ import { FarcasterContracts } from './constants';
 
 // Contextualizer for the Bundler contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IBundler.sol
-export const bundlerContextualizer = (
-  transaction: Transaction,
-): Transaction => {
-  const isBundler = detectBundler(transaction);
+export const contextualize = (transaction: Transaction): Transaction => {
+  const isBundler = detect(transaction);
   if (!isBundler) return transaction;
 
-  return generateBundlerContext(transaction);
+  return generate(transaction);
 };
 
-export const detectBundler = (transaction: Transaction): boolean => {
+export const detect = (transaction: Transaction): boolean => {
   if (
     transaction.to !== FarcasterContracts.Bundler.address &&
     transaction.to !== FarcasterContracts.BundlerOld.address
@@ -35,9 +33,7 @@ export const detectBundler = (transaction: Transaction): boolean => {
 };
 
 // Contextualize for mined txs
-export const generateBundlerContext = (
-  transaction: Transaction,
-): Transaction => {
+export const generate = (transaction: Transaction): Transaction => {
   const iface = new Interface(FarcasterContracts.Bundler.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,

@@ -1,14 +1,14 @@
 import { Transaction } from '../../types';
 import { hexToString, countValidChars } from '../../helpers/utils';
 
-export function idmContextualizer(transaction: Transaction): Transaction {
-  const isIdm = detectIdm(transaction);
+export function contextualize(transaction: Transaction): Transaction {
+  const isIdm = detect(transaction);
   if (!isIdm) return transaction;
 
-  return generateIdmContext(transaction);
+  return generate(transaction);
 }
 
-export function detectIdm(transaction: Transaction): boolean {
+export function detect(transaction: Transaction): boolean {
   if (
     transaction.input !== '0x0' &&
     transaction.input &&
@@ -25,7 +25,7 @@ export function detectIdm(transaction: Transaction): boolean {
   return false;
 }
 
-function generateIdmContext(transaction: Transaction): Transaction {
+function generate(transaction: Transaction): Transaction {
   transaction.context = {
     variables: {
       messageSender: {

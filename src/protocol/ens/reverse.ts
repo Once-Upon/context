@@ -2,16 +2,14 @@ import { Transaction } from '../../types';
 import { ENS_CONTRACTS } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
-export const ensReverseContextualizer = (
-  transaction: Transaction,
-): Transaction => {
-  const isENS = detectReverseENS(transaction);
+export const contextualize = (transaction: Transaction): Transaction => {
+  const isENS = detect(transaction);
   if (!isENS) return transaction;
 
-  return generateENSReverseContext(transaction);
+  return generate(transaction);
 };
 
-export const detectReverseENS = (transaction: Transaction): boolean => {
+export const detect = (transaction: Transaction): boolean => {
   if (Object.keys(ENS_CONTRACTS.reverse).includes(transaction.to)) {
     return false;
   }
@@ -32,9 +30,7 @@ export const detectReverseENS = (transaction: Transaction): boolean => {
   }
 };
 
-export const generateENSReverseContext = (
-  transaction: Transaction,
-): Transaction => {
+export const generate = (transaction: Transaction): Transaction => {
   const decode = decodeTransactionInput(
     transaction.input,
     ENS_CONTRACTS.reverse[transaction.to].abi,

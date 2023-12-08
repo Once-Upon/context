@@ -1,1 +1,1 @@
-export { tokenAirdropContextualizer } from './tokenAirdrop';
+export { contextualize as tokenAirdropContextualizer } from './tokenAirdrop';

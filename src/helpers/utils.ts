@@ -1,6 +1,6 @@
 import { utils } from 'ethers';
 import { InterfaceAbi } from '../types/Abi';
-import { TransactionContextType } from '../types/transaction';
+import { TransactionContextType, Transaction } from '../types/transaction';
 
 const VALID_CHARS =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.? ';
@@ -79,3 +79,16 @@ function formatSection(section) {
 
   return varContext?.value;
 }
+
+export const makeContextualize = (
+  children: Record<string, (transaction: Transaction) => Transaction>,
+) => {
+  return (transaction: Transaction): Transaction => {
+    for (const childContextualizer of Object.values(children)) {
+      const result = childContextualizer(transaction);
+      if (result.context?.summaries?.category) {
+        return result;
+      }
+    }
+  };
+};

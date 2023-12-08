@@ -2,16 +2,14 @@ import { ethers } from 'ethers';
 import { contracts, abiMapping, frenPetItemsMapping } from './constants';
 import { ContextSummaryVariableType, Transaction } from '../../types';
 
-export const frenPetContextualizer = (
-  transaction: Transaction,
-): Transaction => {
-  const isFrenPet = detectFrenPet(transaction);
+export const contextualize = (transaction: Transaction): Transaction => {
+  const isFrenPet = detect(transaction);
   if (!isFrenPet) return transaction;
 
-  return generateFrenPetContext(transaction);
+  return generate(transaction);
 };
 
-export const detectFrenPet = (transaction: Transaction): boolean => {
+export const detect = (transaction: Transaction): boolean => {
   if (
     transaction.chainId === 8453 &&
     transaction.to === contracts.frenPetGameplayContractV1
@@ -23,9 +21,7 @@ export const detectFrenPet = (transaction: Transaction): boolean => {
 };
 
 // Contextualize for mined txs
-export const generateFrenPetContext = (
-  transaction: Transaction,
-): Transaction => {
+export const generate = (transaction: Transaction): Transaction => {
   switch (transaction.sigHash) {
     case '0x715488b0': {
       // buyAccessory(uint256,uint256)

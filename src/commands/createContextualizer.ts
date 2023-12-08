@@ -23,19 +23,34 @@ export function registerCreateContextualizerCommand() {
         'template',
         'contextualizer.spec.template.hbs',
       );
+      const contextualizerIndexTemplateFilePath = path.join(
+        srcDir,
+        'template',
+        'index.template.hbs',
+      );
       const newContextualizerFilePath = path.join(
         srcDir,
         'protocol',
+        name,
         `${name}.ts`,
       );
       const newContextualizerSpecFilePath = path.join(
         srcDir,
         'protocol',
+        name,
         `${name}.spec.ts`,
+      );
+      const newContextualizerIndexPath = path.join(
+        srcDir,
+        'protocol',
+        name,
+        `index.ts`,
       );
 
       try {
         console.log(`Creating a new contextualizer: ${name}`);
+        // create directory
+        ensureDirectoryExistence(newContextualizerIndexPath);
 
         const contextualizerSource = fs.readFileSync(
           contextualizerTemplateFilePath,
@@ -45,9 +60,16 @@ export function registerCreateContextualizerCommand() {
           contextualizerSpecTemplateFilePath,
           'utf8',
         );
+        const contextualizerIndexSource = fs.readFileSync(
+          contextualizerIndexTemplateFilePath,
+          'utf8',
+        );
         const contextualizerTemplate = Handlebars.compile(contextualizerSource);
         const contextualizerSpecTemplate = Handlebars.compile(
           contextualizerSpecSource,
+        );
+        const contextualizerIndexTemplate = Handlebars.compile(
+          contextualizerIndexSource,
         );
         // Data to replace variables
         const data = {
@@ -67,13 +89,19 @@ export function registerCreateContextualizerCommand() {
           data['txHashShorten'] = txHashShorten;
         } else {
           // TODO; set default shorten hash
-          data['txHashShorten'] = '<INSERT_TX_HASH_HERE>';
+          data['txHashShorten'] = '[INSERT_TX_HASH_HERE]';
         }
         // write spec template
         const contextualizerSpecContent = contextualizerSpecTemplate(data);
         fs.writeFileSync(
           newContextualizerSpecFilePath,
           contextualizerSpecContent,
+        );
+        // write index template
+        const contextualizerIndexContent = contextualizerIndexTemplate(data);
+        fs.writeFileSync(
+          newContextualizerIndexPath,
+          contextualizerIndexContent,
         );
 
         console.log(
@@ -90,4 +118,13 @@ export function registerCreateContextualizerCommand() {
 
 function capitalize(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// Function to ensure that a directory exists
+function ensureDirectoryExistence(filePath) {
+  const dirname = path.dirname(filePath);
+  if (fs.existsSync(dirname)) {
+    return true;
+  }
+  fs.mkdirSync(dirname);
 }

@@ -1,10 +1,10 @@
 import { ContextSummaryVariableType, Transaction } from '../../types';
 
-export function erc20SwapContextualizer(transaction: Transaction): Transaction {
-  const isERC20Swap = detectERC20Swap(transaction);
+export function contextualize(transaction: Transaction): Transaction {
+  const isERC20Swap = detect(transaction);
   if (!isERC20Swap) return transaction;
 
-  return generateERC20SwapContext(transaction);
+  return generate(transaction);
 }
 
 /**
@@ -19,7 +19,7 @@ export function erc20SwapContextualizer(transaction: Transaction): Transaction {
  * This is because when using a router there are likely other parties receiving fees. Some erc20s take a fee for any transfers as well. 4 addresses should be safe.
  * To generate the erc20 swap, only look at the tx.from address in netAssetTransfers to pull out the sent/received (i.e., swapped from token X <> to token Y)
  */
-export function detectERC20Swap(transaction: Transaction): boolean {
+export function detect(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
    *  and while this might seem redundant, maintaining the 'detect' function aligns with
@@ -62,7 +62,7 @@ export function detectERC20Swap(transaction: Transaction): boolean {
   return true;
 }
 
-function generateERC20SwapContext(transaction: Transaction): Transaction {
+function generate(transaction: Transaction): Transaction {
   const swapper: ContextSummaryVariableType = {
     type: 'address',
     value: transaction.from,

@@ -1,1 +1,1 @@
-export { erc721SaleContextualizer } from './erc721Sale';
+export { contextualize as erc721SaleContextualizer } from './erc721Sale';

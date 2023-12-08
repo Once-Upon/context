@@ -3,13 +3,11 @@ import { KNOWN_ADDRESSES } from '../../helpers/constants';
 
 const AIRDROP_THRESHOLD = 10;
 
-export function tokenAirdropContextualizer(
-  transaction: Transaction,
-): Transaction {
-  const isTokenAirdrop = detectTokenAirdrop(transaction);
+export function contextualize(transaction: Transaction): Transaction {
+  const isTokenAirdrop = detect(transaction);
   if (!isTokenAirdrop) return transaction;
 
-  return generateTokenAirdropContext(transaction);
+  return generate(transaction);
 }
 
 /**
@@ -19,7 +17,7 @@ export function tokenAirdropContextualizer(
  * All assets sent are the same asset (contract address)
  * There are more than AIRDROP_THRESHOLD number of receivers. A receiver can receive more than one airdrop.
  */
-export function detectTokenAirdrop(transaction: Transaction): boolean {
+export function detect(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
    *  and while this might seem redundant, maintaining the 'detect' function aligns with
@@ -65,7 +63,7 @@ export function detectTokenAirdrop(transaction: Transaction): boolean {
   return true;
 }
 
-function generateTokenAirdropContext(transaction: Transaction): Transaction {
+function generate(transaction: Transaction): Transaction {
   // Summary context
   const tokenTransfers = transaction.assetTransfers.filter(
     (x) => x.type === 'erc721' || x.type === 'erc1155' || x.type === 'erc20',

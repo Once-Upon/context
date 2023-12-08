@@ -1,15 +1,13 @@
 import { Transaction } from '../../types';
 
-export function tokenTransferContextualizer(
-  transaction: Transaction,
-): Transaction {
-  const isTokenTransfer = detectTokenTransfer(transaction);
+export function contextualize(transaction: Transaction): Transaction {
+  const isTokenTransfer = detect(transaction);
   if (!isTokenTransfer) return transaction;
 
-  return generateTokenTransferContext(transaction);
+  return generate(transaction);
 }
 
-export function detectTokenTransfer(transaction: Transaction): boolean {
+export function detect(transaction: Transaction): boolean {
   if (!transaction.assetTransfers || transaction.assetTransfers.length !== 1) {
     return false;
   }
@@ -28,9 +26,7 @@ export function detectTokenTransfer(transaction: Transaction): boolean {
   return false;
 }
 
-export function generateTokenTransferContext(
-  transaction: Transaction,
-): Transaction {
+export function generate(transaction: Transaction): Transaction {
   // We do this so we can use the assetTransfer var directly in the outcomes for contextualizations
   // The contextualizations expect a property "token", not "asset"
   const assetTransfer = {

@@ -1,15 +1,13 @@
 import { Transaction } from '../../types';
 
-export function ethTransferContextualizer(
-  transaction: Transaction,
-): Transaction {
-  const isEthTransfer = detectETHTransfer(transaction);
+export function contextualize(transaction: Transaction): Transaction {
+  const isEthTransfer = detect(transaction);
   if (!isEthTransfer) return transaction;
 
-  return generateETHTransferContext(transaction);
+  return generate(transaction);
 }
 
-export function detectETHTransfer(transaction: Transaction): boolean {
+export function detect(transaction: Transaction): boolean {
   // TODO; check logs from transaction
   if (
     (transaction.input === '0x' || transaction.input === '') &&
@@ -22,9 +20,7 @@ export function detectETHTransfer(transaction: Transaction): boolean {
   return false;
 }
 
-export function generateETHTransferContext(
-  transaction: Transaction,
-): Transaction {
+export function generate(transaction: Transaction): Transaction {
   transaction.context = {
     variables: {
       sender: {

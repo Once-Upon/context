@@ -1,8 +1,7 @@
-import { contextualize as ensRegistrar } from './registrar';
-import { contextualize as ensReverse } from './reverse';
+import { contextualize as {{camelCaseName}} } from './{{camelCaseName}}';
 import { makeContextualize } from '../../helpers/utils';
 
-const children = { ensRegistrar, ensReverse };
+const children = { {{camelCaseName}} };
 
 const contextualize = makeContextualize(children);
 

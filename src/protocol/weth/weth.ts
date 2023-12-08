@@ -3,16 +3,16 @@ import { WETH_ADDRESSES } from '../../helpers/constants';
 import { WETH_ABI } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
-export const wethContextualizer = (transaction: Transaction): Transaction => {
-  const isWeth = detectWeth(transaction);
+export const contextualize = (transaction: Transaction): Transaction => {
+  const isWeth = detect(transaction);
   if (!isWeth) {
     return transaction;
   }
 
-  return generateWethContext(transaction);
+  return generate(transaction);
 };
 
-export const detectWeth = (transaction: Transaction): boolean => {
+export const detect = (transaction: Transaction): boolean => {
   try {
     if (!transaction.to) {
       return false;
@@ -36,13 +36,13 @@ export const detectWeth = (transaction: Transaction): boolean => {
     }
     return true;
   } catch (err) {
-    console.error('Error in detectWeth function:', err);
+    console.error('Error in detect function:', err);
     return false;
   }
 };
 
 // Contextualize for mined txs
-export const generateWethContext = (transaction: Transaction): Transaction => {
+export const generate = (transaction: Transaction): Transaction => {
   // decode input
   const decode = decodeTransactionInput(transaction.input, WETH_ABI);
   switch (decode.name) {

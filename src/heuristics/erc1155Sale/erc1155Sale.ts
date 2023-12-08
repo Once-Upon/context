@@ -1,13 +1,11 @@
 import { ethers } from 'ethers';
 import { Asset, Transaction } from '../../types';
 
-export function erc1155SaleContextualizer(
-  transaction: Transaction,
-): Transaction {
-  const isERC1155Sale = detectERC1155Sale(transaction);
+export function contextualize(transaction: Transaction): Transaction {
+  const isERC1155Sale = detect(transaction);
   if (!isERC1155Sale) return transaction;
 
-  return generateERC1155SaleContext(transaction);
+  return generate(transaction);
 }
 
 /**
@@ -18,7 +16,7 @@ export function erc1155SaleContextualizer(
  * The tx.from must receive either ETH/WETH/Blur ETH
  * There are no other recipients of ERC721/ERC20s/ERC1155s.
  */
-export function detectERC1155Sale(transaction: Transaction): boolean {
+export function detect(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
    * and while this might seem redundant, maintaining the 'detect' function aligns with
@@ -43,7 +41,7 @@ export function detectERC1155Sale(transaction: Transaction): boolean {
   return false;
 }
 
-function generateERC1155SaleContext(transaction: Transaction): Transaction {
+function generate(transaction: Transaction): Transaction {
   const receivingAddresses: string[] = [];
   const receivedNfts: Asset[] = [];
   const sentPayments: { type: string; asset: string; value: string }[] = [];

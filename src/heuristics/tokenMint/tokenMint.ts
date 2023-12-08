@@ -1,11 +1,11 @@
 import { Transaction } from '../../types';
 import { KNOWN_ADDRESSES, WETH_ADDRESSES } from '../../helpers/constants';
 
-export function tokenMintContextualizer(transaction: Transaction): Transaction {
-  const isTokenMint = detectTokenMint(transaction);
+export function contextualize(transaction: Transaction): Transaction {
+  const isTokenMint = detect(transaction);
   if (!isTokenMint) return transaction;
 
-  return generateTokenMintContext(transaction);
+  return generate(transaction);
 }
 
 /**
@@ -15,7 +15,7 @@ export function tokenMintContextualizer(transaction: Transaction): Transaction {
  * The from address can send ETH
  * The only other parties in netAssetTransfers are receiving ETH
  */
-export function detectTokenMint(transaction: Transaction): boolean {
+export function detect(transaction: Transaction): boolean {
   if (
     !transaction?.from ||
     !transaction.assetTransfers?.length ||
@@ -68,7 +68,7 @@ export function detectTokenMint(transaction: Transaction): boolean {
   return true;
 }
 
-function generateTokenMintContext(transaction: Transaction): Transaction {
+function generate(transaction: Transaction): Transaction {
   // Get all the mints where from account == to account for the mint transfer
   const mints = transaction.assetTransfers.filter((transfer) => {
     return transfer.from === KNOWN_ADDRESSES.NULL;

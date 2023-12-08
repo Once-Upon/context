@@ -2,14 +2,14 @@ import { Transaction } from '../../types';
 import { ENS_CONTRACTS } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
-export const ensContextualizer = (transaction: Transaction): Transaction => {
-  const isENS = detectENS(transaction);
+export const contextualize = (transaction: Transaction): Transaction => {
+  const isENS = detect(transaction);
   if (!isENS) return transaction;
 
-  return generateENSContext(transaction);
+  return generate(transaction);
 };
 
-export const detectENS = (transaction: Transaction): boolean => {
+export const detect = (transaction: Transaction): boolean => {
   if (!Object.keys(ENS_CONTRACTS.registrar).includes(transaction.to)) {
     return false;
   }
@@ -36,7 +36,7 @@ export const detectENS = (transaction: Transaction): boolean => {
 };
 
 // Contextualize for mined txs
-export const generateENSContext = (transaction: Transaction): Transaction => {
+export const generate = (transaction: Transaction): Transaction => {
   let decode;
   try {
     decode = decodeTransactionInput(
