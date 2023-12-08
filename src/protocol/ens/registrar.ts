@@ -1,5 +1,5 @@
 import { Transaction } from '../../types';
-import { ENSContracts } from './constants';
+import { ENS_CONTRACTs } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
 export const ensContextualizer = (transaction: Transaction): Transaction => {
@@ -10,18 +10,14 @@ export const ensContextualizer = (transaction: Transaction): Transaction => {
 };
 
 export const detectENS = (transaction: Transaction): boolean => {
-  if (
-    transaction.to !== ENSContracts.RegistrarV2.address &&
-    transaction.to !== ENSContracts.RegistrarV3.address
-  ) {
+  if (!Object.keys(ENS_CONTRACTs.registrar).includes(transaction.to)) {
     return false;
   }
 
-  // check if v2
   try {
     const decode = decodeTransactionInput(
       transaction.input,
-      ENSContracts.RegistrarV2.abi,
+      ENS_CONTRACTs.registrar[transaction.to].abi,
     );
 
     if (
@@ -32,27 +28,11 @@ export const detectENS = (transaction: Transaction): boolean => {
     ) {
       return true;
     }
+
+    return false;
   } catch (e) {
-    // check if v3
-    try {
-      const decode = decodeTransactionInput(
-        transaction.input,
-        ENSContracts.RegistrarV3.abi,
-      );
-
-      if (
-        decode.name === 'register' ||
-        decode.name === 'commit' ||
-        decode.name === 'renew'
-      ) {
-        return true;
-      }
-    } catch (e) {
-      return false;
-    }
+    return false;
   }
-
-  return false;
 };
 
 // Contextualize for mined txs
@@ -61,14 +41,12 @@ export const generateENSContext = (transaction: Transaction): Transaction => {
   try {
     decode = decodeTransactionInput(
       transaction.input,
-      ENSContracts.RegistrarV2.abi,
+      ENS_CONTRACTs.registrar[transaction.to].abi,
     );
   } catch (error) {
-    decode = decodeTransactionInput(
-      transaction.input,
-      ENSContracts.RegistrarV3.abi,
-    );
+    return transaction;
   }
+
   switch (decode.name) {
     case 'registerWithConfig':
     case 'register': {

@@ -1,5 +1,5 @@
 import { Transaction } from '../../types';
-import { ENSContracts } from './constants';
+import { ENS_CONTRACTs } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
 export const ensReverseContextualizer = (
@@ -12,25 +12,24 @@ export const ensReverseContextualizer = (
 };
 
 export const detectReverseENS = (transaction: Transaction): boolean => {
-  if (transaction.to !== ENSContracts.Reverse.address) {
+  if (Object.keys(ENS_CONTRACTs.reverse).includes(transaction.to)) {
     return false;
   }
 
-  let decode;
   try {
-    decode = decodeTransactionInput(
+    const decode = decodeTransactionInput(
       transaction.input,
-      ENSContracts.Reverse.abi,
+      ENS_CONTRACTs.reverse[transaction.to].abi,
     );
+
+    if (decode.name === 'setName') {
+      return true;
+    }
+
+    return false;
   } catch (e) {
     return false;
   }
-
-  if (decode.name !== 'setName') {
-    return false;
-  }
-
-  return true;
 };
 
 export const generateENSReverseContext = (
@@ -38,7 +37,7 @@ export const generateENSReverseContext = (
 ): Transaction => {
   const decode = decodeTransactionInput(
     transaction.input,
-    ENSContracts.Reverse.abi,
+    ENS_CONTRACTs.reverse[transaction.to].abi,
   );
   switch (decode.name) {
     case 'setName': {
