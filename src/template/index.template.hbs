@@ -1,0 +1,11 @@
+import { contextualize as {{camelCaseName}} } from './{{camelCaseName}}';
+import { makeContextualize } from '../../helpers/utils';
+
+const children = { {{camelCaseName}} };
+
+const contextualize = makeContextualize(children);
+
+export const ensContextualizer = {
+  contextualize,
+  children,
+};
