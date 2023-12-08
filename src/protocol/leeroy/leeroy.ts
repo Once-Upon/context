@@ -2,14 +2,14 @@ import { ethers } from 'ethers';
 import { ContextSummaryVariableType, Transaction } from '../../types';
 import { LeeroyContracts } from './constants';
 
-export const leeroyContextualizer = (transaction: Transaction): Transaction => {
-  const isLeeroy = detectLeeroy(transaction);
+export const contextualize = (transaction: Transaction): Transaction => {
+  const isLeeroy = detect(transaction);
   if (!isLeeroy) return transaction;
 
-  return generateLeeroyContext(transaction);
+  return generate(transaction);
 };
 
-export const detectLeeroy = (transaction: Transaction): boolean => {
+export const detect = (transaction: Transaction): boolean => {
   if (transaction.decode === null) {
     return false;
   }
@@ -38,9 +38,7 @@ export const detectLeeroy = (transaction: Transaction): boolean => {
 };
 
 // Contextualize for mined txs
-export const generateLeeroyContext = (
-  transaction: Transaction,
-): Transaction => {
+export const generate = (transaction: Transaction): Transaction => {
   switch (transaction.sigHash) {
     case '0x8ee93cf3': {
       // post(string)
