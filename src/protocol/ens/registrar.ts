@@ -17,7 +17,7 @@ export const detectENS = (transaction: Transaction): boolean => {
   try {
     const decode = decodeTransactionInput(
       transaction.input,
-      ENS_CONTRACTs.registrar[transaction.to].abi,
+      ENS_CONTRACTS.registrar[transaction.to].abi,
     );
 
     if (
@@ -41,7 +41,7 @@ export const generateENSContext = (transaction: Transaction): Transaction => {
   try {
     decode = decodeTransactionInput(
       transaction.input,
-      ENS_CONTRACTs.registrar[transaction.to].abi,
+      ENS_CONTRACTS.registrar[transaction.to].abi,
     );
   } catch (error) {
     return transaction;

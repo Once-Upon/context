@@ -1,5 +1,5 @@
 import { Transaction } from '../../types';
-import { ENS_CONTRACTs } from './constants';
+import { ENS_CONTRACTS } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
 export const ensReverseContextualizer = (
