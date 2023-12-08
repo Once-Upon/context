@@ -1,12 +1,18 @@
 import { Transaction } from '../../types';
-import { ensContextualizer as ensRegistrarContextualizer } from './registrar';
-import { ensReverseContextualizer } from './reverse';
-export { ensRegistrarContextualizer, ensReverseContextualizer };
+import { contextualize as ensRegistrarContextualizer } from './registrar';
+import { contextualize as ensReverseContextualizer } from './reverse';
 
-export const ensContextualizer = (transaction: Transaction): Transaction => {
+const children = { ensRegistrarContextualizer, ensReverseContextualizer };
+
+export const contextualize = (transaction: Transaction): Transaction => {
   const result = ensRegistrarContextualizer(transaction);
   if (result.context?.summaries?.category) {
     return result;
   }
   return ensReverseContextualizer(transaction);
+};
+
+export const ensContextualizer = {
+  contextualize,
+  children,
 };
