@@ -7,9 +7,19 @@ export const contracts = {
 export const abiMapping = {
   buyAccessoryFunction: 'function buyAccessory(uint256,uint256)',
   attackFunction: 'function attack(uint256,uint256)',
+  bonkRevealFunction: 'function bonkReveal(uint256,bytes32)',
+  bonkCommitFunction:
+    'function bonkCommit(uint256,uint256,bytes32,bytes32,bytes)',
+  killFunction: 'function kill(uint256,uint256)',
   setPetNameFunction: 'function setPetName(uint256,string)',
+  wheelCommitFunction: 'function wheelCommit(uint256,uint256,bytes32,bytes)',
+  wheelRevealFunction: 'function wheelReveal(uint256,bytes32)',
+  redeemFunction: 'function redeem(uint256)',
   attackEvent:
     'event Attack(uint256 attacker, uint256 winner, uint256 loser, uint256 scoresWon)',
+  bonkTooSlowEvent: 'event BonkTooSlow(uint256,uint256)',
+  sellItemEvent: 'event SellItem(uint256,address,uint256)',
+  redeemRewardsEvent: 'event RedeemRewards(uint256 indexed, uint256)',
 };
 
 export const frenPetItemsMapping = {
