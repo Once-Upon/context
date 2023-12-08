@@ -25,6 +25,7 @@ export function registerRunContextualizersCommand() {
           transactions.map((transaction) => {
             // run heuristic contextualizers
             for (const contextualizerName in heuristicContextualizers) {
+              console.log(`Running ${contextualizerName}`);
               const contextualizer =
                 heuristicContextualizers[contextualizerName];
               try {
@@ -40,17 +41,17 @@ export function registerRunContextualizersCommand() {
             }
             // run protocol contextualizers
             for (const contextualizerName in protocolContextualizers) {
+              console.log(`Running ${contextualizerName}`);
               const contextualize =
                 protocolContextualizers[contextualizerName].contextualize;
-              console.log('contextualizerName', contextualizerName);
-              // try {
-              //   contextualize(transaction);
-              // } catch (err) {
-              //   console.error(
-              //     `failed to run ${contextualizerName} on ${transaction.hash}: `,
-              //     err,
-              //   );
-              // }
+              try {
+                contextualize(transaction);
+              } catch (err) {
+                console.error(
+                  `failed to run ${contextualizerName} on ${transaction.hash}: `,
+                  err,
+                );
+              }
             }
           });
 
