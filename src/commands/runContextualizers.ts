@@ -43,14 +43,14 @@ export function registerRunContextualizersCommand() {
               const contextualize =
                 protocolContextualizers[contextualizerName].contextualize;
               console.log('contextualizerName', contextualizerName);
-              try {
-                contextualize(transaction);
-              } catch (err) {
-                console.error(
-                  `failed to run ${contextualizerName} on ${transaction.hash}: `,
-                  err,
-                );
-              }
+              // try {
+              //   contextualize(transaction);
+              // } catch (err) {
+              //   console.error(
+              //     `failed to run ${contextualizerName} on ${transaction.hash}: `,
+              //     err,
+              //   );
+              // }
             }
           });
 

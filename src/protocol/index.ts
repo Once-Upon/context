@@ -2,7 +2,7 @@
 // from elsewhere in the dir won't be exported as well
 // export * from './weth/index';
 export * from './ens';
-// export * from './superchainFaucet/index';
+export * from './superchainFaucet';
 export * from './farcaster';
-// export * from './leeroy/index';
-// export * from './frenpet/index';
+export * from './leeroy';
+export * from './frenpet';

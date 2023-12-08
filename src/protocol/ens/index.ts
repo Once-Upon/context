@@ -1,8 +1,8 @@
 import { Transaction } from '../../types';
-import { contextualize as ensRegistrarContextualizer } from './registrar';
-import { contextualize as ensReverseContextualizer } from './reverse';
+import { contextualize as ensRegistrar } from './registrar';
+import { contextualize as ensReverse } from './reverse';
 
-const children = { ensRegistrarContextualizer, ensReverseContextualizer };
+const children = { ensRegistrar, ensReverse };
 
 const contextualize = (transaction: Transaction): Transaction => {
   for (const childContextualizer of Object.values(children)) {
