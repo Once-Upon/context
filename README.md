@@ -77,6 +77,7 @@ transaction.context = {
     },
     asset1: {
       type: 'erc20',
+      address: '0xdef...456'
       value: '200',
     },
   },
@@ -94,6 +95,8 @@ transaction.context = {
         // ...
       },
       // default is the main sentence version, with others optionally defined below
+      // this could be rendered however a UI wants
+      // the most basic version would be "0xabc...123 sent 200 0xdef...456"
       default:
         '[[sender]] [[contextAction]] [[asset1]]',
     },
