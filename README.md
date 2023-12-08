@@ -77,7 +77,7 @@ transaction.context = {
     },
     asset1: {
       type: 'erc20',
-      address: '0xdef...456'
+      token: '0xdef...456', // the contract address
       value: '200',
     },
   },
