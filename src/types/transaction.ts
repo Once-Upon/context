@@ -124,6 +124,10 @@ export type ContextSummaryVariableType =
   | {
       type: 'chainID';
       value: number;
+    }
+  | {
+      type: 'crosschain';
+      value: Transaction;
     };
 
 export type ContextVariable = {
