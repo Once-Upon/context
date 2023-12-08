@@ -12,14 +12,14 @@ export const ensReverseContextualizer = (
 };
 
 export const detectReverseENS = (transaction: Transaction): boolean => {
-  if (Object.keys(ENS_CONTRACTs.reverse).includes(transaction.to)) {
+  if (Object.keys(ENS_CONTRACTS.reverse).includes(transaction.to)) {
     return false;
   }
 
   try {
     const decode = decodeTransactionInput(
       transaction.input,
-      ENS_CONTRACTs.reverse[transaction.to].abi,
+      ENS_CONTRACTS.reverse[transaction.to].abi,
     );
 
     if (decode.name === 'setName') {
@@ -37,7 +37,7 @@ export const generateENSReverseContext = (
 ): Transaction => {
   const decode = decodeTransactionInput(
     transaction.input,
-    ENS_CONTRACTs.reverse[transaction.to].abi,
+    ENS_CONTRACTS.reverse[transaction.to].abi,
   );
   switch (decode.name) {
     case 'setName': {
