@@ -1,5 +1,3 @@
-import { InterfaceAbi } from '../types/Abi';
-
 export const WETH_ADDRESSES = [
   '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2', // Ethereum
   '0x4200000000000000000000000000000000000006', // OP Stack

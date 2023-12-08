@@ -28,9 +28,6 @@ export function detectERC1155Sale(transaction: Transaction): boolean {
 
   if (!transaction.netAssetTransfers) return false;
 
-  const addresses = transaction.netAssetTransfers
-    ? Object.keys(transaction.netAssetTransfers)
-    : [];
   // check if transfer.from sent and received one asset
   const transfers = transaction.netAssetTransfers[transaction.from];
   const nftsSent = transfers?.sent.filter((t) => t.type === 'erc1155');

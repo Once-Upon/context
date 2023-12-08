@@ -28,10 +28,6 @@ export function detectERC721Sale(transaction: Transaction): boolean {
    */
   if (!transaction.netAssetTransfers) return false;
 
-  const addresses = transaction.netAssetTransfers
-    ? Object.keys(transaction.netAssetTransfers)
-    : [];
-
   const transfers = transaction.netAssetTransfers[transaction.from];
   const nftsSent = transfers?.sent.filter((t) => t.type === 'erc721');
   const tokenReceived = transfers?.received.filter(

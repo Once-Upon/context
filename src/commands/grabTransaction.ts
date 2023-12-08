@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import * as path from 'path';
 import { program } from './main';
 import { shortenTxHash } from '../helpers/utils';
@@ -32,8 +31,4 @@ export function registerGrabTransactionCommand() {
         process.exit(1); // Exit with error
       }
     });
-}
-
-function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
 }
