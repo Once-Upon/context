@@ -1,5 +1,5 @@
 import { Transaction } from '../../types';
-import { detectIdRegistry, generateIdRegistryContext } from './idRegistry';
+import { detect, generate } from './idRegistry';
 import farcasterChangeRecoveryFor0x07c03c85 from '../../test/transactions/farcaster-changeRecoveryFor-0x07c03c85.json';
 import farcasterTransfer0x9344e0d0 from '../../test/transactions/farcaster-transfer-0x9344e0d0.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
@@ -7,14 +7,12 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 describe('IdRegistry', () => {
   describe('changeRecoveryAddressFor', () => {
     it('Should detect transaction', () => {
-      const match = detectIdRegistry(
-        farcasterChangeRecoveryFor0x07c03c85 as Transaction,
-      );
+      const match = detect(farcasterChangeRecoveryFor0x07c03c85 as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generateIdRegistryContext(
+      const transaction = generate(
         farcasterChangeRecoveryFor0x07c03c85 as Transaction,
       );
       expect(
@@ -31,16 +29,12 @@ describe('IdRegistry', () => {
 
   describe('transfer', () => {
     it('Should detect transaction', () => {
-      const match = detectIdRegistry(
-        farcasterTransfer0x9344e0d0 as Transaction,
-      );
+      const match = detect(farcasterTransfer0x9344e0d0 as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generateIdRegistryContext(
-        farcasterTransfer0x9344e0d0 as Transaction,
-      );
+      const transaction = generate(farcasterTransfer0x9344e0d0 as Transaction);
       expect(
         transaction.context.summaries.en.variables.transferredId?.type,
       ).toBe('contextAction');
@@ -55,7 +49,7 @@ describe('IdRegistry', () => {
 
   describe('Other transactions', () => {
     it('Should not detect transaction', () => {
-      const match = detectIdRegistry(catchall0xc35c01ac as Transaction);
+      const match = detect(catchall0xc35c01ac as Transaction);
       expect(match).toBe(false);
     });
 
@@ -65,7 +59,7 @@ describe('IdRegistry', () => {
         to: farcasterTransfer0x9344e0d0.to,
       };
 
-      expect(() => detectIdRegistry(mockTxn as Transaction)).not.toThrow();
+      expect(() => detect(mockTxn as Transaction)).not.toThrow();
     });
   });
 });

@@ -4,12 +4,13 @@ import { contextualize as ensReverseContextualizer } from './reverse';
 
 const children = { ensRegistrarContextualizer, ensReverseContextualizer };
 
-export const contextualize = (transaction: Transaction): Transaction => {
-  const result = ensRegistrarContextualizer(transaction);
-  if (result.context?.summaries?.category) {
-    return result;
+const contextualize = (transaction: Transaction): Transaction => {
+  for (const childContextualizer of Object.values(children)) {
+    const result = childContextualizer(transaction);
+    if (result.context?.summaries?.category) {
+      return result;
+    }
   }
-  return ensReverseContextualizer(transaction);
 };
 
 export const ensContextualizer = {

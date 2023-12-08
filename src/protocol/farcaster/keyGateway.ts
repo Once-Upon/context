@@ -4,16 +4,14 @@ import { FarcasterContracts } from './constants';
 
 // Contextualizer for the KeyGateway contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IKeyGateway.sol
-export const keyGatewayContextualizer = (
-  transaction: Transaction,
-): Transaction => {
-  const isKeyGateway = detectKeyGateway(transaction);
+export const contextualize = (transaction: Transaction): Transaction => {
+  const isKeyGateway = detect(transaction);
   if (!isKeyGateway) return transaction;
 
-  return generateKeyGatewayContext(transaction);
+  return generate(transaction);
 };
 
-export const detectKeyGateway = (transaction: Transaction): boolean => {
+export const detect = (transaction: Transaction): boolean => {
   if (transaction.to !== FarcasterContracts.KeyGateway.address) {
     return false;
   }
@@ -32,9 +30,7 @@ export const detectKeyGateway = (transaction: Transaction): boolean => {
 };
 
 // Contextualize for mined txs
-export const generateKeyGatewayContext = (
-  transaction: Transaction,
-): Transaction => {
+export const generate = (transaction: Transaction): Transaction => {
   const iface = new Interface(FarcasterContracts.KeyGateway.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,

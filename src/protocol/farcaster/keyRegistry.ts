@@ -6,16 +6,14 @@ import { FarcasterContracts } from './constants';
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IKeyRegistry.sol
 //
 // Context is not generated for functions that are only callable by the contract owner.
-export const keyRegistryContextualizer = (
-  transaction: Transaction,
-): Transaction => {
-  const isKeyRegistry = detectKeyRegistry(transaction);
+export const contextualize = (transaction: Transaction): Transaction => {
+  const isKeyRegistry = detect(transaction);
   if (!isKeyRegistry) return transaction;
 
-  return generateKeyRegistryContext(transaction);
+  return generate(transaction);
 };
 
-export const detectKeyRegistry = (transaction: Transaction): boolean => {
+export const detect = (transaction: Transaction): boolean => {
   if (transaction.to !== FarcasterContracts.KeyRegistry.address) {
     return false;
   }
@@ -34,9 +32,7 @@ export const detectKeyRegistry = (transaction: Transaction): boolean => {
 };
 
 // Contextualize for mined txs
-export const generateKeyRegistryContext = (
-  transaction: Transaction,
-): Transaction => {
+export const generate = (transaction: Transaction): Transaction => {
   const iface = new Interface(FarcasterContracts.KeyRegistry.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,

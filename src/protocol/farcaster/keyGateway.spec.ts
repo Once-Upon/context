@@ -1,5 +1,5 @@
 import { Transaction } from '../../types';
-import { detectKeyGateway, generateKeyGatewayContext } from './keyGateway';
+import { detect, generate } from './keyGateway';
 import farcasterAdd0x9e5f9b45 from '../../test/transactions/farcaster-add-0x9e5f8b45.json';
 import farcasterAddFor0x3152d411 from '../../test/transactions/farcaster-addFor-0x3152d411.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
@@ -7,14 +7,12 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 describe('KeyGateway', () => {
   describe('add', () => {
     it('Should detect transaction', () => {
-      const match = detectKeyGateway(farcasterAdd0x9e5f9b45 as Transaction);
+      const match = detect(farcasterAdd0x9e5f9b45 as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generateKeyGatewayContext(
-        farcasterAdd0x9e5f9b45 as Transaction,
-      );
+      const transaction = generate(farcasterAdd0x9e5f9b45 as Transaction);
       expect(transaction.context.summaries.en.variables.addedKey?.type).toBe(
         'contextAction',
       );
@@ -26,14 +24,12 @@ describe('KeyGateway', () => {
 
   describe('addFor', () => {
     it('Should detect transaction', () => {
-      const match = detectKeyGateway(farcasterAddFor0x3152d411 as Transaction);
+      const match = detect(farcasterAddFor0x3152d411 as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generateKeyGatewayContext(
-        farcasterAddFor0x3152d411 as Transaction,
-      );
+      const transaction = generate(farcasterAddFor0x3152d411 as Transaction);
       expect(transaction.context.summaries.en.variables.addedKey?.type).toBe(
         'contextAction',
       );
@@ -48,7 +44,7 @@ describe('KeyGateway', () => {
 
   describe('Other transactions', () => {
     it('Should not detect transaction', () => {
-      const match = detectKeyGateway(catchall0xc35c01ac as Transaction);
+      const match = detect(catchall0xc35c01ac as Transaction);
       expect(match).toBe(false);
     });
 
@@ -58,7 +54,7 @@ describe('KeyGateway', () => {
         to: farcasterAdd0x9e5f9b45.to,
       };
 
-      expect(() => detectKeyGateway(mockTxn as Transaction)).not.toThrow();
+      expect(() => detect(mockTxn as Transaction)).not.toThrow();
     });
   });
 });

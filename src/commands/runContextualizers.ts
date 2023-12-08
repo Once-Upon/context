@@ -40,10 +40,11 @@ export function registerRunContextualizersCommand() {
             }
             // run protocol contextualizers
             for (const contextualizerName in protocolContextualizers) {
-              const contextualizer =
-                protocolContextualizers[contextualizerName];
+              const contextualize =
+                protocolContextualizers[contextualizerName].contextualize;
+              console.log('contextualizerName', contextualizerName);
               try {
-                contextualizer(transaction);
+                contextualize(transaction);
               } catch (err) {
                 console.error(
                   `failed to run ${contextualizerName} on ${transaction.hash}: `,

@@ -8,16 +8,14 @@ import { FarcasterContracts } from './constants';
 // Context is not generated for functions that are only callable by the contract owner.
 //
 // TODO: Add context for registerFor
-export const idGatewayContextualizer = (
-  transaction: Transaction,
-): Transaction => {
-  const isIdGateway = detectIdGateway(transaction);
+export const contextualize = (transaction: Transaction): Transaction => {
+  const isIdGateway = detect(transaction);
   if (!isIdGateway) return transaction;
 
-  return generateIdGatewayContext(transaction);
+  return generate(transaction);
 };
 
-export const detectIdGateway = (transaction: Transaction): boolean => {
+export const detect = (transaction: Transaction): boolean => {
   if (transaction.to !== FarcasterContracts.IdGateway.address) {
     return false;
   }
@@ -36,9 +34,7 @@ export const detectIdGateway = (transaction: Transaction): boolean => {
 };
 
 // Contextualize for mined txs
-export const generateIdGatewayContext = (
-  transaction: Transaction,
-): Transaction => {
+export const generate = (transaction: Transaction): Transaction => {
   const iface = new Interface(FarcasterContracts.IdGateway.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,

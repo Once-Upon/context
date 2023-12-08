@@ -8,16 +8,14 @@ import { FarcasterContracts } from './constants';
 // Context is not generated for functions that are only callable by the contract owner.
 //
 // TODO: Add context for changeRecoveryAddress, recover, recoverFor, transferAndChangeRecovery, transferFor, transferAndChangeRecoveryFor
-export const idRegistryContextualizer = (
-  transaction: Transaction,
-): Transaction => {
-  const isIdRegistry = detectIdRegistry(transaction);
+export const contextualize = (transaction: Transaction): Transaction => {
+  const isIdRegistry = detect(transaction);
   if (!isIdRegistry) return transaction;
 
-  return generateIdRegistryContext(transaction);
+  return generate(transaction);
 };
 
-export const detectIdRegistry = (transaction: Transaction): boolean => {
+export const detect = (transaction: Transaction): boolean => {
   if (transaction.to !== FarcasterContracts.IdRegistry.address) {
     return false;
   }
@@ -36,9 +34,7 @@ export const detectIdRegistry = (transaction: Transaction): boolean => {
 };
 
 // Contextualize for mined txs
-export const generateIdRegistryContext = (
-  transaction: Transaction,
-): Transaction => {
+export const generate = (transaction: Transaction): Transaction => {
   const iface = new Interface(FarcasterContracts.IdRegistry.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,

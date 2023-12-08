@@ -8,16 +8,14 @@ import { FarcasterContracts } from './constants';
 // Context is not generated for functions that are only callable by the contract owner.
 //
 // TODO: Add context for batchRent
-export const storageRegistryContextualizer = (
-  transaction: Transaction,
-): Transaction => {
-  const isStorageRegistry = detectStorageRegistry(transaction);
+export const contextualize = (transaction: Transaction): Transaction => {
+  const isStorageRegistry = detect(transaction);
   if (!isStorageRegistry) return transaction;
 
-  return generateStorageRegistryContext(transaction);
+  return generate(transaction);
 };
 
-export const detectStorageRegistry = (transaction: Transaction): boolean => {
+export const detect = (transaction: Transaction): boolean => {
   if (transaction.to !== FarcasterContracts.StorageRegistry.address) {
     return false;
   }
@@ -36,9 +34,7 @@ export const detectStorageRegistry = (transaction: Transaction): boolean => {
 };
 
 // Contextualize for mined txs
-export const generateStorageRegistryContext = (
-  transaction: Transaction,
-): Transaction => {
+export const generate = (transaction: Transaction): Transaction => {
   const iface = new Interface(FarcasterContracts.StorageRegistry.abi);
   const decoded = iface.parseTransaction({
     data: transaction.input,
