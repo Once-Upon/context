@@ -22,11 +22,11 @@ export const generate = (transaction: Transaction): Transaction => {
   transaction.context = {
     variables: {
       subject: {
-        type: '',
-        value: '',
+        type: '<TYPE>', // e.g. 'address'
+        value: '', // e.g. '0xabc...123'
       },
       asset1: {
-        type: '',
+        type: '<TYPE>', // e.g. 'erc20'
         value: '',
       },
       asset2: {
@@ -39,9 +39,9 @@ export const generate = (transaction: Transaction): Transaction => {
       },
     },
     summaries: {
-      category: '<CATEGORY>', // e.g. FUNGIBLE_TOKEN
+      category: 'PROTOCOL_1', // can be 1-5, with 1 being the "most important"
       en: {
-        title: '<TITLE>', // e.g. ERC20 Swap
+        title: '<Name of protocol>', // e.g. Farcaster
         variables: {
           contextAction: {
             type: 'contextAction',
