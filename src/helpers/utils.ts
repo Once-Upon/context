@@ -44,14 +44,14 @@ export function contextSummary(context: TransactionContextType): string {
   const regex = /(\[\[.*?\]\])/;
   const parts = summaryTemplate.split(regex).filter((x) => x);
 
-  const formattedParts = parts.map((part, i) => {
+  const formattedParts = parts.map((part) => {
     if (isVariable(part)) {
       const variableName = part.slice(2, -2);
 
       const varContext =
         context.variables[variableName] ||
         context.summaries.en.variables[variableName];
-      return formatSection(varContext, i);
+      return formatSection(varContext);
     } else {
       return part;
     }
@@ -64,9 +64,8 @@ function isVariable(str) {
   return str.startsWith('[[') && str.endsWith(']]');
 }
 
-function formatSection(section, i) {
+function formatSection(section) {
   const varContext = section;
-  const varKey = i;
 
   if (varContext?.type === 'eth')
     return `${utils.formatEther(varContext?.value)} ETH`;

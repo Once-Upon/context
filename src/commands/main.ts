@@ -1,4 +1,4 @@
-const { Command } = require('commander');
+import { Command } from 'commander';
 import { registerCreateContextualizerCommand } from './createContextualizer';
 import { registerGrabTransactionCommand } from './grabTransaction';
 import { registerRunContextualizersCommand } from './runContextualizers';
