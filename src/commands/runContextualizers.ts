@@ -57,7 +57,7 @@ export function registerRunContextualizersCommand() {
         console.log('Successfully ran contextualizers');
         process.exit(0); // Successful exit
       } catch (error) {
-        console.error('Failed to grab the transaction:', error);
+        console.error('Running contextualizers failed:', error);
         process.exit(1); // Exit with error
       }
     });
