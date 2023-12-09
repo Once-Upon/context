@@ -21,43 +21,39 @@ export function registerRunContextualizersCommand() {
 
       try {
         console.log(`Running contextualizers`);
-        const contextualizersPromise =
-          transactions &&
-          transactions.map((transaction) => {
-            // run heuristic contextualizers
-            for (const [contextualizerName, contextualizer] of Object.entries(
-              heuristicContextualizers,
-            )) {
-              console.log(`Running ${contextualizerName}`);
-              try {
-                const txResult = contextualizer(transaction);
-                if (!txResult.from) {
-                  console.error(
-                    `failed to run ${contextualizerName} on ${transaction.hash}`,
-                  );
-                }
-              } catch (err) {
-                console.error(err);
-              }
-            }
-            // run protocol contextualizers
-            for (const [
-              contextualizerName,
-              { contextualize },
-            ] of Object.entries(protocolContextualizers)) {
-              console.log(`Running ${contextualizerName}`);
-              try {
-                contextualize(transaction);
-              } catch (err) {
+        transactions.forEach((transaction) => {
+          // run heuristic contextualizers
+          for (const [contextualizerName, contextualizer] of Object.entries(
+            heuristicContextualizers,
+          )) {
+            console.log(`Running ${contextualizerName}`);
+            try {
+              const txResult = contextualizer(transaction);
+              if (!txResult.from) {
                 console.error(
-                  `failed to run ${contextualizerName} on ${transaction.hash}: `,
-                  err,
+                  `failed to run ${contextualizerName} on ${transaction.hash}`,
                 );
               }
+            } catch (err) {
+              console.error(err);
             }
-          });
+          }
+          // run protocol contextualizers
+          for (const [contextualizerName, { contextualize }] of Object.entries(
+            protocolContextualizers,
+          )) {
+            console.log(`Running ${contextualizerName}`);
+            try {
+              contextualize(transaction);
+            } catch (err) {
+              console.error(
+                `failed to run ${contextualizerName} on ${transaction.hash}: `,
+                err,
+              );
+            }
+          }
+        });
 
-        await Promise.all(contextualizersPromise);
         console.log('Successfully ran contextualizers');
         process.exit(0); // Successful exit
       } catch (error) {
