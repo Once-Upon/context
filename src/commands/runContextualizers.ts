@@ -25,10 +25,10 @@ export function registerRunContextualizersCommand() {
           transactions &&
           transactions.map((transaction) => {
             // run heuristic contextualizers
-            for (const contextualizerName in heuristicContextualizers) {
+            for (const [contextualizerName, contextualizer] of Object.entries(
+              heuristicContextualizers,
+            )) {
               console.log(`Running ${contextualizerName}`);
-              const contextualizer =
-                heuristicContextualizers[contextualizerName];
               try {
                 const txResult = contextualizer(transaction);
                 if (!txResult.from) {
@@ -41,10 +41,11 @@ export function registerRunContextualizersCommand() {
               }
             }
             // run protocol contextualizers
-            for (const contextualizerName in protocolContextualizers) {
+            for (const [
+              contextualizerName,
+              { contextualize },
+            ] of Object.entries(protocolContextualizers)) {
               console.log(`Running ${contextualizerName}`);
-              const contextualize =
-                protocolContextualizers[contextualizerName].contextualize;
               try {
                 contextualize(transaction);
               } catch (err) {
