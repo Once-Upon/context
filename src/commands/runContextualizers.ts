@@ -1,5 +1,6 @@
 import { program } from './main';
 import { fetchTransactions } from './utils';
+import { Transaction } from '../types';
 import * as protocolContextualizers from '../protocol';
 import * as heuristicContextualizers from '../heuristics';
 
@@ -10,7 +11,7 @@ export function registerRunContextualizersCommand() {
     .option('-l, --limit <limit>', 'number of transactions')
     .action(async (options) => {
       const limit = options?.limit ? parseInt(options?.limit) : 25;
-      let transactions = [];
+      let transactions: Transaction[];
       try {
         console.log(`Fetching transactions`);
         transactions = await fetchTransactions(limit);
