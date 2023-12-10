@@ -46,10 +46,17 @@ export type FarcasterContextAction =
   | 'REMOVED_A_KEY'
   | 'ADDED_A_KEY';
 
+export type EASContextAction =
+  | 'attested'
+  | 'revoked'
+  | 'timestamped'
+  | 'registered';
+
 export type ProtocolContextAction =
   | WETHContextAction
   | ENSContextAction
   | CryptoPunksContextAction
   | LeeroyContextAction
   | FrenpetContextAction
-  | FarcasterContextAction;
+  | FarcasterContextAction
+  | EASContextAction;
