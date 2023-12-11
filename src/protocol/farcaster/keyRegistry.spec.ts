@@ -13,7 +13,7 @@ describe('KeyRegistry', () => {
 
     it('Should generate context', () => {
       const transaction = generate(farcasterRemove0x742d8d1a as Transaction);
-      expect(transaction.context.summaries.en.variables.removedKey?.type).toBe(
+      expect(transaction.context.variables.removedKey?.type).toBe(
         'contextAction',
       );
       expect(transaction.context.variables.owner['value']).toBe(
@@ -30,7 +30,7 @@ describe('KeyRegistry', () => {
 
     it('Should generate context', () => {
       const transaction = generate(farcasterRemoveFor0xc199aa16 as Transaction);
-      expect(transaction.context.summaries.en.variables.removedKey?.type).toBe(
+      expect(transaction.context.variables.removedKey?.type).toBe(
         'contextAction',
       );
       expect(transaction.context.variables.caller['value']).toBe(

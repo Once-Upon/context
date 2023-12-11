@@ -13,7 +13,7 @@ describe('KeyGateway', () => {
 
     it('Should generate context', () => {
       const transaction = generate(farcasterAdd0x9e5f9b45 as Transaction);
-      expect(transaction.context.summaries.en.variables.addedKey?.type).toBe(
+      expect(transaction.context.variables.addedKey?.type).toBe(
         'contextAction',
       );
       expect(transaction.context.variables.owner['value']).toBe(
@@ -30,7 +30,7 @@ describe('KeyGateway', () => {
 
     it('Should generate context', () => {
       const transaction = generate(farcasterAddFor0x3152d411 as Transaction);
-      expect(transaction.context.summaries.en.variables.addedKey?.type).toBe(
+      expect(transaction.context.variables.addedKey?.type).toBe(
         'contextAction',
       );
       expect(transaction.context.variables.caller['value']).toBe(

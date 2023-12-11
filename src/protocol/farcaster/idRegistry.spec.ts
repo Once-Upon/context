@@ -15,9 +15,9 @@ describe('IdRegistry', () => {
       const transaction = generate(
         farcasterChangeRecoveryFor0x07c03c85 as Transaction,
       );
-      expect(
-        transaction.context.summaries.en.variables.changedRecoveryAddress?.type,
-      ).toBe('contextAction');
+      expect(transaction.context.variables.changedRecoveryAddress?.type).toBe(
+        'contextAction',
+      );
       expect(transaction.context.variables.owner['value']).toBe(
         '0x71414dDe8eeEa49e916D77D1633366E602785ea4',
       );
@@ -35,9 +35,9 @@ describe('IdRegistry', () => {
 
     it('Should generate context', () => {
       const transaction = generate(farcasterTransfer0x9344e0d0 as Transaction);
-      expect(
-        transaction.context.summaries.en.variables.transferredId?.type,
-      ).toBe('contextAction');
+      expect(transaction.context.variables.transferredId?.type).toBe(
+        'contextAction',
+      );
       expect(transaction.context.variables.owner['value']).toBe(
         '0x3111bb74979c77969282660d299fff3edfd363e3',
       );
