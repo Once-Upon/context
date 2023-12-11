@@ -54,13 +54,6 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
-    summaries: {
-      category: 'FUNGIBLE_TOKEN',
-      en: {
-        title: 'Token Transfer',
-        default: '[[sender]] [[sent]] [[token]] to [[recipient]]',
-      },
-    },
     variables: {
       sender: {
         type: 'address',
@@ -78,6 +71,13 @@ export function generate(transaction: Transaction): Transaction {
       sent: {
         type: 'contextAction',
         value: 'SENT',
+      },
+    },
+    summaries: {
+      category: 'FUNGIBLE_TOKEN',
+      en: {
+        title: 'Token Transfer',
+        default: '[[sender]] [[sent]] [[token]] to [[recipient]]',
       },
     },
   };
