@@ -61,18 +61,16 @@ function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: token,
       },
+      gaveAccessTo: {
+        type: 'contextAction',
+        value: 'GAVE_ACCESS_TO',
+      },
     },
     summaries: {
       category: 'FUNGIBLE_TOKEN',
       en: {
         title: 'Token Approval',
         default: '[[approver]] [[gaveAccessTo]] [[operator]] for [[token]]',
-        variables: {
-          gaveAccessTo: {
-            type: 'contextAction',
-            value: 'GAVE_ACCESS_TO',
-          },
-        },
       },
     },
   };

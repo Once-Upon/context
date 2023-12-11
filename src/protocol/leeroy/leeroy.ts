@@ -57,18 +57,16 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context = {
           variables: {
             poster,
+            contextAction: {
+              type: 'contextAction',
+              value: 'POSTED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `[[poster]] [[contextAction]] ${post.text}`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'POSTED',
-                },
-              },
             },
           },
         };
@@ -76,18 +74,16 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context = {
           variables: {
             poster,
+            contextAction: {
+              type: 'contextAction',
+              value: 'POSTED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `Failed: [[poster]] [[contextAction]] ${post.text}`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'POSTED',
-                },
-              },
             },
           },
         };
@@ -113,18 +109,16 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context = {
           variables: {
             user,
+            contextAction: {
+              type: 'contextAction',
+              value: 'FOLLOWED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `[[user]] [[contextAction]] ${username}`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'FOLLOWED',
-                },
-              },
             },
           },
         };
@@ -132,18 +126,16 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context = {
           variables: {
             user,
+            contextAction: {
+              type: 'contextAction',
+              value: 'FOLLOWED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `Failed: [[user]] [[contextAction]] ${username}`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'FOLLOWED',
-                },
-              },
             },
           },
         };
@@ -169,18 +161,16 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context = {
           variables: {
             user,
+            contextAction: {
+              type: 'contextAction',
+              value: 'UNFOLLOWED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `[[user]] [[contextAction]] ${username}`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'UNFOLLOWED',
-                },
-              },
             },
           },
         };
@@ -188,18 +178,16 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context = {
           variables: {
             user,
+            contextAction: {
+              type: 'contextAction',
+              value: 'UNFOLLOWED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `Failed: [[user]] [[contextAction]] ${username}`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'UNFOLLOWED',
-                },
-              },
             },
           },
         };
@@ -236,18 +224,16 @@ export const generate = (transaction: Transaction): Transaction => {
             tipper,
             tipAmount,
             leeroyTake,
+            contextAction: {
+              type: 'contextAction',
+              value: 'TIPPED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `[[tipper]] [[contextAction]] ${username} [[tipAmount]] (Leeroy fee: [[leeroyTake]])`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'TIPPED',
-                },
-              },
             },
           },
         };
@@ -256,18 +242,16 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             tipper,
             tipAmount,
+            contextAction: {
+              type: 'contextAction',
+              value: 'TIPPED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `Failed: [[tipper]] [[contextAction]] ${username} [[tipAmount]]`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'TIPPED',
-                },
-              },
             },
           },
         };
@@ -294,6 +278,10 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context = {
           variables: {
             user,
+            contextAction: {
+              type: 'contextAction',
+              value: 'UPDATED_USER_DETAILS',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
@@ -302,12 +290,6 @@ export const generate = (transaction: Transaction): Transaction => {
               default: `[[user]] [[contextAction]] ${JSON.stringify(
                 userDetails,
               )}`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'UPDATED_USER_DETAILS',
-                },
-              },
             },
           },
         };
@@ -315,6 +297,10 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context = {
           variables: {
             user,
+            contextAction: {
+              type: 'contextAction',
+              value: 'UPDATED_USER_DETAILS',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
@@ -323,12 +309,6 @@ export const generate = (transaction: Transaction): Transaction => {
               default: `Failed: [[user]] [[contextAction]] ${JSON.stringify(
                 userDetails,
               )}`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'UPDATED_USER_DETAILS',
-                },
-              },
             },
           },
         };
@@ -357,18 +337,16 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             user,
             transactionHash,
+            contextAction: {
+              type: 'contextAction',
+              value: 'REPLIED_TO',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `[[user]] [[contextAction]] [[transactionHash]] ${post.text}`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'REPLIED_TO',
-                },
-              },
             },
           },
         };
@@ -377,18 +355,16 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             user,
             transactionHash,
+            contextAction: {
+              type: 'contextAction',
+              value: 'REPLIED_TO',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `Failed: [[user]] [[contextAction]] [[transactionHash]] ${post.text}`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'REPLIED_TO',
-                },
-              },
             },
           },
         };
@@ -413,18 +389,16 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             user,
             transactionHash,
+            contextAction: {
+              type: 'contextAction',
+              value: 'REPOSTED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `[[user]] [[contextAction]] [[transactionHash]]`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'REPOSTED',
-                },
-              },
             },
           },
         };
@@ -433,18 +407,16 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             user,
             transactionHash,
+            contextAction: {
+              type: 'contextAction',
+              value: 'REPOSTED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `Failed: [[user]] [[contextAction]] [[transactionHash]]`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'REPOSTED',
-                },
-              },
             },
           },
         };
@@ -473,18 +445,16 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context = {
           variables: {
             user,
+            contextAction: {
+              type: 'contextAction',
+              value: 'REGISTERED_USERNAME',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `[[user]] [[contextAction]] ${username}`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'REGISTERED_USERNAME',
-                },
-              },
             },
           },
         };
@@ -492,18 +462,16 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context = {
           variables: {
             user,
+            contextAction: {
+              type: 'contextAction',
+              value: 'REGISTERED_USERNAME',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
               default: `Failed: [[user]] [[contextAction]] ${username}`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'REGISTERED_USERNAME',
-                },
-              },
             },
           },
         };

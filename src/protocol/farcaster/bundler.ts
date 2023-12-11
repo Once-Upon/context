@@ -87,6 +87,10 @@ export const generate = (transaction: Transaction): Transaction => {
             value: fid,
           },
           cost,
+          registered: {
+            type: 'contextAction',
+            value: 'REGISTERED_FARCASTER_ID',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
@@ -95,12 +99,6 @@ export const generate = (transaction: Transaction): Transaction => {
             default: callerIsOwner
               ? '[[caller]] [[registered]] [[fid]] for [[cost]]'
               : '[[caller]] [[registered]] [[fid]] for [[owner]] for [[cost]]',
-            variables: {
-              registered: {
-                type: 'contextAction',
-                value: 'REGISTERED_FARCASTER_ID',
-              },
-            },
           },
         },
       };

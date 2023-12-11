@@ -120,18 +120,16 @@ export function generate(transaction: Transaction): Transaction {
                 token: totalPayments[0].asset,
                 value: totalPayments[0].value,
               },
+      bought: {
+        type: 'contextAction',
+        value: 'BOUGHT',
+      },
     },
     summaries: {
       category: 'NFT',
       en: {
         title: 'NFT Purchase',
         default: '[[userOrUsers]] [[bought]] [[tokenOrTokens]] for [[price]]',
-        variables: {
-          bought: {
-            type: 'contextAction',
-            value: 'BOUGHT',
-          },
-        },
       },
     },
   };

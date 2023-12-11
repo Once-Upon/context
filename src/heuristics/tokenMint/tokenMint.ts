@@ -108,15 +108,13 @@ function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: recipient,
       },
+      minted: { type: 'contextAction', value: 'MINTED' },
     },
     summaries: {
       category: 'FUNGIBLE_TOKEN',
       en: {
         title: 'Token Mint',
         default: '[[recipient]] [[minted]] [[token]]',
-        variables: {
-          minted: { type: 'contextAction', value: 'MINTED' },
-        },
       },
     },
   };

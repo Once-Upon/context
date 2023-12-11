@@ -36,18 +36,16 @@ function generate(transaction: Transaction): Transaction {
         type: 'emphasis',
         value: hexToString(transaction.input.slice(2)),
       },
+      sentMessage: {
+        type: 'contextAction',
+        value: 'SENT_MESSAGE',
+      },
     },
     summaries: {
       category: 'OTHER',
       en: {
         title: 'Input Data Message',
         default: '[[messageSender]] [[sentMessage]][[br]][[message]]',
-        variables: {
-          sentMessage: {
-            type: 'contextAction',
-            value: 'SENT_MESSAGE',
-          },
-        },
       },
     },
   };

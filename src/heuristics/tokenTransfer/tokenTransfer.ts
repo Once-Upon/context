@@ -59,12 +59,6 @@ export function generate(transaction: Transaction): Transaction {
       en: {
         title: 'Token Transfer',
         default: '[[sender]] [[sent]] [[token]] to [[recipient]]',
-        variables: {
-          sent: {
-            type: 'contextAction',
-            value: 'SENT',
-          },
-        },
       },
     },
     variables: {
@@ -80,6 +74,10 @@ export function generate(transaction: Transaction): Transaction {
       recipient: {
         type: 'address',
         value: recipient,
+      },
+      sent: {
+        type: 'contextAction',
+        value: 'SENT',
       },
     },
   };
