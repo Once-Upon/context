@@ -1,24 +1,8 @@
-export type ContextAction =
-  | 'bought'
-  | 'bridged'
-  | 'deployed'
-  | 'minted'
-  | 'swapped'
-  | 'sent'
-  | 'received'
-  | 'committed to'
-  | 'received airdrop'
-  | 'gave access to'
-  | 'interacted with'
-  | 'sent message'
-  // WETH
-  | 'wrapped'
-  | 'unwrapped'
-  // ENS
-  | 'registered'
-  | 'renewed'
-  | 'set reverse ens to'
-  // CryptoPunks
+export type WETHContextAction = 'wrapped' | 'unwrapped';
+
+export type ENSContextAction = 'registered' | 'renewed' | 'set reverse ens to';
+
+export type CryptoPunksContextAction =
   | 'minted punk'
   | 'listed punk'
   | 'withdrew bid for'
@@ -26,8 +10,9 @@ export type ContextAction =
   | 'withdrew from contract'
   | 'bought punk'
   | 'transferred punk'
-  | 'unlisted punk'
-  // Leeroy
+  | 'unlisted punk';
+
+export type LeeroyContextAction =
   | 'tipped'
   | 'updated user details'
   | 'replied to'
@@ -35,8 +20,9 @@ export type ContextAction =
   | 'registered username'
   | 'followed'
   | 'unfollowed'
-  | 'posted'
-  // fren.pet
+  | 'posted';
+
+export type FrenpetContextAction =
   | 'set pet name'
   | 'bought accessory'
   | 'attacked'
@@ -50,11 +36,20 @@ export type ContextAction =
   | 'redeemed'
   | 'sold item'
   | 'joined dice game'
-  | 'dice game settled'
-  // Farcaster
+  | 'dice game settled';
+
+export type FarcasterContextAction =
   | 'registered Farcaster ID'
   | 'changed recovery address'
   | 'transferred Farcaster ID'
   | 'rented'
   | 'removed a key'
   | 'added a key';
+
+export type ProtocolContextAction =
+  | WETHContextAction
+  | ENSContextAction
+  | CryptoPunksContextAction
+  | LeeroyContextAction
+  | FrenpetContextAction
+  | FarcasterContextAction;
