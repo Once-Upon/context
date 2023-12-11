@@ -1,50 +1,50 @@
-export type WETHContextAction = 'wrapped' | 'unwrapped';
+export type WETHContextAction = 'WRAPPED' | 'UNWRAPPED';
 
-export type ENSContextAction = 'registered' | 'renewed' | 'set reverse ens to';
+export type ENSContextAction = 'REGISTERED' | 'RENEWED' | 'SET_REVERSE_ENS_TO';
 
 export type CryptoPunksContextAction =
-  | 'minted punk'
-  | 'listed punk'
-  | 'withdrew bid for'
-  | 'bid on punk'
-  | 'withdrew from contract'
-  | 'bought punk'
-  | 'transferred punk'
-  | 'unlisted punk';
+  | 'MINTED_PUNK'
+  | 'LISTED_PUNK'
+  | 'WITHDREW_BID_FOR'
+  | 'BID_ON_PUNK'
+  | 'WITHDREW_FROM_CONTRACT'
+  | 'BOUGHT_PUNK'
+  | 'TRANSFERRED_PUNK'
+  | 'UNLISTED_PUNK';
 
 export type LeeroyContextAction =
-  | 'tipped'
-  | 'updated user details'
-  | 'replied to'
-  | 'reposted'
-  | 'registered username'
-  | 'followed'
-  | 'unfollowed'
-  | 'posted';
+  | 'TIPPED'
+  | 'UPDATED_USER_DETAILS'
+  | 'REPLIED_TO'
+  | 'REPOSTED'
+  | 'REGISTERED_USERNAME'
+  | 'FOLLOWED'
+  | 'UNFOLLOWED'
+  | 'POSTED';
 
 export type FrenpetContextAction =
-  | 'set pet name'
-  | 'bought accessory'
-  | 'attacked'
-  | 'redeemed'
-  | 'committed to attacking'
-  | 'too slow to attack'
-  | 'wheel revealed'
-  | 'wheel committed'
-  | 'killed'
-  | 'minted'
-  | 'redeemed'
-  | 'sold item'
-  | 'joined dice game'
-  | 'dice game settled';
+  | 'SET_PET_NAME'
+  | 'BOUGHT_ACCESSORY'
+  | 'ATTACKED'
+  | 'REDEEMED'
+  | 'COMMITTED_TO_ATTACKING'
+  | 'TOO_SLOW_TO_ATTACK'
+  | 'WHEEL_REVEALED'
+  | 'WHEEL_COMMITTED'
+  | 'KILLED'
+  | 'MINTED'
+  | 'REDEEMED'
+  | 'SOLD_ITEM'
+  | 'JOINED_DICE_GAME'
+  | 'DICE_GAME_SETTLED';
 
 export type FarcasterContextAction =
-  | 'registered Farcaster ID'
-  | 'changed recovery address'
-  | 'transferred Farcaster ID'
-  | 'rented'
-  | 'removed a key'
-  | 'added a key';
+  | 'REGISTERED_FARCASTER_ID'
+  | 'CHANGED_RECOVERY_ADDRESS'
+  | 'TRANSFERRED_FARCASTER_ID'
+  | 'RENTED'
+  | 'REMOVED_A_KEY'
+  | 'ADDED_A_KEY';
 
 export type ProtocolContextAction =
   | WETHContextAction

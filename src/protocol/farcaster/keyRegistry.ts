@@ -47,18 +47,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: transaction.from,
           },
+          removedKey: {
+            type: 'contextAction',
+            value: 'REMOVED_A_KEY',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: '[[owner]] [[removedKey]]',
-            variables: {
-              removedKey: {
-                type: 'contextAction',
-                value: 'removed a key',
-              },
-            },
           },
         },
       };
@@ -76,18 +74,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: decoded.args[0],
           },
+          removedKey: {
+            type: 'contextAction',
+            value: 'REMOVED_A_KEY',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: '[[caller]] [[removedKey]] for [[owner]]',
-            variables: {
-              removedKey: {
-                type: 'contextAction',
-                value: 'removed a key',
-              },
-            },
           },
         },
       };

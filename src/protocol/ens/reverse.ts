@@ -44,12 +44,6 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'ENS',
             default: `[[setter]] [[reversed]] [[name]]`,
-            variables: {
-              reversed: {
-                type: 'contextAction',
-                value: 'set reverse ens to',
-              },
-            },
           },
         },
         variables: {
@@ -60,6 +54,10 @@ export const generate = (transaction: Transaction): Transaction => {
           name: {
             type: 'emphasis',
             value: name,
+          },
+          reversed: {
+            type: 'contextAction',
+            value: 'SET_REVERSE_ENS_TO',
           },
         },
       };

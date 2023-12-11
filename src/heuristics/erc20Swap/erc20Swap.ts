@@ -81,18 +81,16 @@ function generate(transaction: Transaction): Transaction {
       swapper,
       swapFrom,
       swapTo,
+      swapped: {
+        type: 'contextAction',
+        value: 'SWAPPED',
+      },
     },
     summaries: {
       category: 'FUNGIBLE_TOKEN',
       en: {
         title: 'ERC20 Swap',
         default: '[[swapper]] [[swapped]] [[swapFrom]] for [[swapTo]]',
-        variables: {
-          swapped: {
-            type: 'contextAction',
-            value: 'swapped',
-          },
-        },
       },
     },
   };

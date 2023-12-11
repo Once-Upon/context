@@ -60,12 +60,6 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'ENS',
             default: `[[registerer]] [[registered]] [[name]] for [[duration]]`,
-            variables: {
-              registered: {
-                type: 'contextAction',
-                value: 'registered',
-              },
-            },
           },
         },
         variables: {
@@ -81,6 +75,10 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'emphasis',
             value: `${durationInDays} days`,
           },
+          registered: {
+            type: 'contextAction',
+            value: 'REGISTERED',
+          },
         },
       };
 
@@ -94,18 +92,16 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'ENS',
             default: `[[committer]] [[committedTo]] registering an ENS name`,
-            variables: {
-              committedTo: {
-                type: 'contextAction',
-                value: 'committed to',
-              },
-            },
           },
         },
         variables: {
           committer: {
             type: 'address',
             value: transaction.from,
+          },
+          committedTo: {
+            type: 'contextAction',
+            value: 'COMMITTED_TO',
           },
         },
       };
@@ -124,12 +120,6 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'ENS',
             default: `[[renewer]] [[renewed]] [[name]] for [[duration]]`,
-            variables: {
-              renewed: {
-                type: 'contextAction',
-                value: 'renewed',
-              },
-            },
           },
         },
         variables: {
@@ -144,6 +134,10 @@ export const generate = (transaction: Transaction): Transaction => {
           duration: {
             type: 'emphasis',
             value: `${durationInDays} days`,
+          },
+          renewed: {
+            type: 'contextAction',
+            value: 'RENEWED',
           },
         },
       };

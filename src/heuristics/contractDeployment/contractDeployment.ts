@@ -26,18 +26,16 @@ function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: transaction.receipt?.contractAddress,
       },
+      deployed: {
+        type: 'contextAction',
+        value: 'DEPLOYED',
+      },
     },
     summaries: {
       category: 'DEV',
       en: {
         title: 'Contract Deployed',
         default: '[[deployerAddress]] [[deployed]] [[contractAddress]]',
-        variables: {
-          deployed: {
-            type: 'contextAction',
-            value: 'deployed',
-          },
-        },
       },
     },
   };
