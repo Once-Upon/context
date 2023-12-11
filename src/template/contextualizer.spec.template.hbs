@@ -4,9 +4,7 @@ import {{camelCaseName}}{{txHashShorten}} from '../test/transactions/{{camelCase
 
 describe('{{pascalCaseName}}', () => {
   it('Should detect {{pascalCaseName}} transaction', () => {
-    const {{camelCaseName}}1 = detect(
-      {{camelCaseName}}{{txHashShorten}} as Transaction,
-    );
+    const {{camelCaseName}}1 = detect({{camelCaseName}}{{txHashShorten}} as Transaction);
     expect({{camelCaseName}}1).toBe(true);
   });
 
