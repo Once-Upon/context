@@ -134,7 +134,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'multiAttest': {
       const schemas = decoded.args[0].length;
-      const count = decoded.args[0].map(v => v.data).flat().length;
+      const count = decoded.args[0].map((v) => v.data).flat().length;
 
       transaction.context = {
         variables: {
@@ -169,8 +169,10 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'multiAttestByDelegation': {
       const schemas = decoded.args[0].length;
-      const attesters = Array.from(new Set(decoded.args[0].map(v => v.attester))).length;
-      const count = decoded.args[0].map(v => v.data).flat().length;
+      const attesters = Array.from(
+        new Set(decoded.args[0].map((v) => v.attester)),
+      ).length;
+      const count = decoded.args[0].map((v) => v.data).flat().length;
 
       transaction.context = {
         variables: {
@@ -273,7 +275,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'multiRevoke': {
       const schemas = decoded.args[0].length;
-      const count = decoded.args[0].map(v => v.data).flat().length;
+      const count = decoded.args[0].map((v) => v.data).flat().length;
 
       transaction.context = {
         variables: {
@@ -308,8 +310,10 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'multiRevokeByDelegation': {
       const schemas = decoded.args[0].length;
-      const revokers = Array.from(new Set(decoded.args[0].map(v => v.revoker))).length;
-      const count = decoded.args[0].map(v => v.data).flat().length;
+      const revokers = Array.from(
+        new Set(decoded.args[0].map((v) => v.revoker)),
+      ).length;
+      const count = decoded.args[0].map((v) => v.data).flat().length;
 
       transaction.context = {
         variables: {
