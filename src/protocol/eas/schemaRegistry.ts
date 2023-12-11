@@ -76,18 +76,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'emphasis',
             value: id,
           },
+          registered: {
+            type: 'contextAction',
+            value: 'REGISTERED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
             default: '[[from]] [[registered]] new schema with id [[id]]',
-            variables: {
-              registered: {
-                type: 'contextAction',
-                value: 'REGISTERED',
-              },
-            },
           },
         },
       };

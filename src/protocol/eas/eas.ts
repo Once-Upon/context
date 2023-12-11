@@ -74,6 +74,10 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: recipient,
           },
+          attested: {
+            type: 'contextAction',
+            value: 'ATTESTED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
@@ -82,12 +86,6 @@ export const generate = (transaction: Transaction): Transaction => {
             default: recipient
               ? '[[from]] [[attested]] to [[recipient ]] with schema [[schema]]'
               : '[[from]] [[attested]] with schema [[schema]]',
-            variables: {
-              attested: {
-                type: 'contextAction',
-                value: 'ATTESTED',
-              },
-            },
           },
         },
       };
@@ -116,6 +114,10 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: recipient,
           },
+          attested: {
+            type: 'contextAction',
+            value: 'ATTESTED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
@@ -124,12 +126,6 @@ export const generate = (transaction: Transaction): Transaction => {
             default: recipient
               ? '[[attester]] [[attested]] to [[recipient]] with schema [[schema]] by delegation via [[from]]'
               : '[[attester]] [[attested]] with schema [[schema]] by delegation via [[from]]',
-            variables: {
-              attested: {
-                type: 'contextAction',
-                value: 'ATTESTED',
-              },
-            },
           },
         },
       };
@@ -154,6 +150,10 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'emphasis',
             value: count.toString(),
           },
+          attested: {
+            type: 'contextAction',
+            value: 'ATTESTED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
@@ -161,12 +161,6 @@ export const generate = (transaction: Transaction): Transaction => {
             title: 'EAS',
             default:
               '[[from]] [[attested]] [[count]] times with [[schemas]] schemas',
-            variables: {
-              attested: {
-                type: 'contextAction',
-                value: 'ATTESTED',
-              },
-            },
           },
         },
       };
@@ -196,6 +190,10 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'emphasis',
             value: count.toString(),
           },
+          attested: {
+            type: 'contextAction',
+            value: 'ATTESTED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
@@ -203,12 +201,6 @@ export const generate = (transaction: Transaction): Transaction => {
             title: 'EAS',
             default:
               '[[attesters]] accounts [[attested]] [[count]] times with [[schemas]] schemas by delegation via [[from]]',
-            variables: {
-              attested: {
-                type: 'contextAction',
-                value: 'ATTESTED',
-              },
-            },
           },
         },
       };
@@ -228,6 +220,10 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'emphasis',
             value: schema,
           },
+          revoked: {
+            type: 'contextAction',
+            value: 'REVOKED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
@@ -235,12 +231,6 @@ export const generate = (transaction: Transaction): Transaction => {
             title: 'EAS',
             default:
               '[[from]] [[revoked]] an attestation with schema [[schema]]',
-            variables: {
-              revoked: {
-                type: 'contextAction',
-                value: 'REVOKED',
-              },
-            },
           },
         },
       };
@@ -264,6 +254,10 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: revoker,
           },
+          revoked: {
+            type: 'contextAction',
+            value: 'REVOKED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
@@ -271,12 +265,6 @@ export const generate = (transaction: Transaction): Transaction => {
             title: 'EAS',
             default:
               '[[revoker]] [[revoked]] an attestation with schema [[schema]] by delegation via [[from]]',
-            variables: {
-              revoked: {
-                type: 'contextAction',
-                value: 'REVOKED',
-              },
-            },
           },
         },
       };
@@ -301,6 +289,10 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'emphasis',
             value: count.toString(),
           },
+          revoked: {
+            type: 'contextAction',
+            value: 'REVOKED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
@@ -308,12 +300,6 @@ export const generate = (transaction: Transaction): Transaction => {
             title: 'EAS',
             default:
               '[[from]] [[revoked]] [[count]] attestations with [[schemas]] schemas',
-            variables: {
-              revoked: {
-                type: 'contextAction',
-                value: 'REVOKED',
-              },
-            },
           },
         },
       };
@@ -343,6 +329,10 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: revokers.toString(),
           },
+          revoked: {
+            type: 'contextAction',
+            value: 'REVOKED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
@@ -350,12 +340,6 @@ export const generate = (transaction: Transaction): Transaction => {
             title: 'EAS',
             default:
               '[[revokers]] accounts [[revoked]] [[count]] attestations with [[schemas]] schemas by delegation via [[from]]',
-            variables: {
-              revoked: {
-                type: 'contextAction',
-                value: 'REVOKED',
-              },
-            },
           },
         },
       };
@@ -369,18 +353,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: transaction.from,
           },
+          timestamped: {
+            type: 'contextAction',
+            value: 'TIMESTAMPED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
             default: '[[from]] [[timestamped]] data',
-            variables: {
-              timestamped: {
-                type: 'contextAction',
-                value: 'TIMESTAMPED',
-              },
-            },
           },
         },
       };
@@ -399,18 +381,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'emphasis',
             value: data.length.toString(),
           },
+          timestamped: {
+            type: 'contextAction',
+            value: 'TIMESTAMPED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
             default: '[[from]] [[timestamped]] [[count]] data',
-            variables: {
-              timestamped: {
-                type: 'contextAction',
-                value: 'TIMESTAMPED',
-              },
-            },
           },
         },
       };
@@ -424,18 +404,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: transaction.from,
           },
+          revoked: {
+            type: 'contextAction',
+            value: 'REVOKED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
             default: '[[from]] [[revoked]] offchain data',
-            variables: {
-              revoked: {
-                type: 'contextAction',
-                value: 'REVOKED',
-              },
-            },
           },
         },
       };
@@ -454,18 +432,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'emphasis',
             value: data.length.toString(),
           },
+          revoked: {
+            type: 'contextAction',
+            value: 'REVOKED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
             default: '[[from]] [[revoked]] [[count]] offchain data',
-            variables: {
-              revoked: {
-                type: 'contextAction',
-                value: 'REVOKED',
-              },
-            },
           },
         },
       };
