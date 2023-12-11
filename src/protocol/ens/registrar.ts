@@ -63,7 +63,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               registered: {
                 type: 'contextAction',
-                value: 'registered',
+                value: 'REGISTERED',
               },
             },
           },
@@ -97,7 +97,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               committedTo: {
                 type: 'contextAction',
-                value: 'committed to',
+                value: 'COMMITTED_TO',
               },
             },
           },
@@ -127,7 +127,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               renewed: {
                 type: 'contextAction',
-                value: 'renewed',
+                value: 'RENEWED',
               },
             },
           },

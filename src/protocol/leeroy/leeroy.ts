@@ -66,7 +66,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'posted',
+                  value: 'POSTED',
                 },
               },
             },
@@ -85,7 +85,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'posted',
+                  value: 'POSTED',
                 },
               },
             },
@@ -122,7 +122,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'followed',
+                  value: 'FOLLOWED',
                 },
               },
             },
@@ -141,7 +141,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'followed',
+                  value: 'FOLLOWED',
                 },
               },
             },
@@ -178,7 +178,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'unfollowed',
+                  value: 'UNFOLLOWED',
                 },
               },
             },
@@ -197,7 +197,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'unfollowed',
+                  value: 'UNFOLLOWED',
                 },
               },
             },
@@ -245,7 +245,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'tipped',
+                  value: 'TIPPED',
                 },
               },
             },
@@ -265,7 +265,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'tipped',
+                  value: 'TIPPED',
                 },
               },
             },
@@ -305,7 +305,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'updated user details',
+                  value: 'UPDATED_USER_DETAILS',
                 },
               },
             },
@@ -326,7 +326,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'updated user details',
+                  value: 'UPDATED_USER_DETAILS',
                 },
               },
             },
@@ -366,7 +366,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'replied to',
+                  value: 'REPLIED_TO',
                 },
               },
             },
@@ -386,7 +386,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'replied to',
+                  value: 'REPLIED_TO',
                 },
               },
             },
@@ -422,7 +422,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'reposted',
+                  value: 'REPOSTED',
                 },
               },
             },
@@ -442,7 +442,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'reposted',
+                  value: 'REPOSTED',
                 },
               },
             },
@@ -482,7 +482,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'registered username',
+                  value: 'REGISTERED_USERNAME',
                 },
               },
             },
@@ -501,7 +501,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'registered username',
+                  value: 'REGISTERED_USERNAME',
                 },
               },
             },

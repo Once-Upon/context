@@ -47,7 +47,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               reversed: {
                 type: 'contextAction',
-                value: 'set reverse ens to',
+                value: 'SET_REVERSE_ENS_TO',
               },
             },
           },

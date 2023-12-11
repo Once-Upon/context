@@ -35,7 +35,7 @@ function generate(transaction: Transaction): Transaction {
         variables: {
           deployed: {
             type: 'contextAction',
-            value: 'deployed',
+            value: 'DEPLOYED',
           },
         },
       },

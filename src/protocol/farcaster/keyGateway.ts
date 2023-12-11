@@ -54,7 +54,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               addedKey: {
                 type: 'contextAction',
-                value: 'added a key',
+                value: 'ADDED_A_KEY',
               },
             },
           },
@@ -83,7 +83,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               addedKey: {
                 type: 'contextAction',
-                value: 'added a key',
+                value: 'ADDED_A_KEY',
               },
             },
           },

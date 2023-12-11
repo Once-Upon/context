@@ -115,7 +115,7 @@ function generate(transaction: Transaction): Transaction {
         title: 'Token Mint',
         default: '[[recipient]] [[minted]] [[token]]',
         variables: {
-          minted: { type: 'contextAction', value: 'minted' },
+          minted: { type: 'contextAction', value: 'MINTED' },
         },
       },
     },

@@ -63,7 +63,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               changedRecoveryAddress: {
                 type: 'contextAction',
-                value: 'changed recovery address',
+                value: 'CHANGED_RECOVERY_ADDRESS',
               },
             },
           },
@@ -92,7 +92,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               transferredId: {
                 type: 'contextAction',
-                value: 'transferred Farcaster ID',
+                value: 'TRANSFERRED_FARCASTER_ID',
               },
             },
           },

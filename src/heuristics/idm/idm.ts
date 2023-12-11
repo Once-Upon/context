@@ -45,7 +45,7 @@ function generate(transaction: Transaction): Transaction {
         variables: {
           sentMessage: {
             type: 'contextAction',
-            value: 'sent message',
+            value: 'SENT_MESSAGE',
           },
         },
       },

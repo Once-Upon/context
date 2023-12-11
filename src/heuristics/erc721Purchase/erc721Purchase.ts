@@ -129,7 +129,7 @@ export function generate(transaction: Transaction): Transaction {
         variables: {
           bought: {
             type: 'contextAction',
-            value: 'bought',
+            value: 'BOUGHT',
           },
         },
       },

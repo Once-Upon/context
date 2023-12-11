@@ -90,7 +90,7 @@ function generate(transaction: Transaction): Transaction {
         variables: {
           swapped: {
             type: 'contextAction',
-            value: 'swapped',
+            value: 'SWAPPED',
           },
         },
       },

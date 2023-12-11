@@ -45,7 +45,7 @@ export function generate(transaction: Transaction): Transaction {
         variables: {
           received: {
             type: 'contextAction',
-            value: 'received',
+            value: 'RECEIVED',
           },
         },
       },

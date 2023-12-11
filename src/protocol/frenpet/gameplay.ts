@@ -64,7 +64,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'bought accessory',
+                  value: 'BOUGHT_ACCESSORY',
                 },
               },
             },
@@ -84,7 +84,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'bought accessory',
+                  value: 'BOUGHT_ACCESSORY',
                 },
               },
             },
@@ -138,7 +138,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'attacked',
+                  value: 'ATTACKED',
                 },
               },
             },
@@ -158,7 +158,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'attacked',
+                  value: 'ATTACKED',
                 },
               },
             },
@@ -200,7 +200,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'minted',
+                  value: 'MINTED',
                 },
               },
             },
@@ -219,7 +219,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'minted',
+                  value: 'MINTED',
                 },
               },
             },
@@ -259,7 +259,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               contextAction: {
                 type: 'contextAction',
-                value: 'set pet name',
+                value: 'SET_PET_NAME',
               },
             },
           },
@@ -286,7 +286,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'wheel committed',
+                  value: 'WHEEL_COMMITTED',
                 },
               },
             },
@@ -305,7 +305,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'wheel committed',
+                  value: 'WHEEL_COMMITTED',
                 },
               },
             },
@@ -348,7 +348,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'redeemed',
+                  value: 'REDEEMED',
                 },
               },
             },
@@ -379,7 +379,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'redeemed',
+                  value: 'REDEEMED',
                 },
               },
             },
@@ -428,7 +428,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               contextAction: {
                 type: 'contextAction',
-                value: 'committed to attacking',
+                value: 'COMMITTED_TO_ATTACKING',
               },
             },
           },
@@ -481,7 +481,7 @@ export const generate = (transaction: Transaction): Transaction => {
                 variables: {
                   contextAction: {
                     type: 'contextAction',
-                    value: 'too slow to attack',
+                    value: 'TOO_SLOW_TO_ATTACK',
                   },
                 },
               },
@@ -518,7 +518,7 @@ export const generate = (transaction: Transaction): Transaction => {
                 variables: {
                   contextAction: {
                     type: 'contextAction',
-                    value: 'attacked',
+                    value: 'ATTACKED',
                   },
                 },
               },
@@ -539,7 +539,7 @@ export const generate = (transaction: Transaction): Transaction => {
               variables: {
                 contextAction: {
                   type: 'contextAction',
-                  value: 'attacked',
+                  value: 'ATTACKED',
                 },
               },
             },
@@ -586,7 +586,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               contextAction: {
                 type: 'contextAction',
-                value: 'killed',
+                value: 'KILLED',
               },
             },
           },
@@ -613,7 +613,6 @@ export const generate = (transaction: Transaction): Transaction => {
         token: contracts.frenPetNFTTokenContract,
         tokenId: parsed.args[0].toString(),
       };
-      const gameId = parsed.args[1].toString();
       transaction.context = {
         variables: {
           user,
@@ -627,7 +626,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               contextAction: {
                 type: 'contextAction',
-                value: 'wheel committed',
+                value: 'WHEEL_COMMITTED',
               },
             },
           },
@@ -667,7 +666,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               contextAction: {
                 type: 'contextAction',
-                value: 'wheel revealed',
+                value: 'WHEEL_REVEALED',
               },
             },
           },

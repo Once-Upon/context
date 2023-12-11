@@ -135,7 +135,7 @@ function generate(transaction: Transaction): Transaction {
         variables: {
           receivedAirdrop: {
             type: 'contextAction',
-            value: 'received airdrop',
+            value: 'RECEIVED_AIRDROP',
           },
         },
       },

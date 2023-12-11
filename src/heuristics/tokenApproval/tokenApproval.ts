@@ -70,7 +70,7 @@ function generate(transaction: Transaction): Transaction {
         variables: {
           gaveAccessTo: {
             type: 'contextAction',
-            value: 'gave access to',
+            value: 'GAVE_ACCESS_TO',
           },
         },
       },

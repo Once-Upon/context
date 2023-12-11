@@ -62,7 +62,7 @@ export function generate(transaction: Transaction): Transaction {
         variables: {
           sent: {
             type: 'contextAction',
-            value: 'sent',
+            value: 'SENT',
           },
         },
       },

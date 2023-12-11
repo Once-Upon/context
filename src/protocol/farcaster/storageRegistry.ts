@@ -69,7 +69,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               rented: {
                 type: 'contextAction',
-                value: 'rented',
+                value: 'RENTED',
               },
             },
           },
