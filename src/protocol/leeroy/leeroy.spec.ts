@@ -14,7 +14,7 @@ describe('Leeroy', () => {
     expect(leeroy1.context?.summaries.category).toBe('PROTOCOL_1');
     expect(leeroy1.context?.summaries.en.title).toBe('Leeroy');
     expect(leeroy1.context?.summaries.en.variables?.contextAction?.value).toBe(
-      'posted',
+      'POSTED',
     );
   });
 

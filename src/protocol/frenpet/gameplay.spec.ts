@@ -16,7 +16,7 @@ describe('Frenpet', () => {
     expect(frenpet1.context.summaries.category).toBe('PROTOCOL_1');
     const desc1 = contextSummary(frenpet1.context);
     expect(desc1).toBe(
-      '0x30e49549da679ec277301ffe4e66ac76aa1cc413 set pet name for 0x5b51cf49cb48617084ef35e7c7d7a21914769ff1 #13759 to Folded Space NFT #30',
+      '0x30e49549da679ec277301ffe4e66ac76aa1cc413 SET_PET_NAME for 0x5b51cf49cb48617084ef35e7c7d7a21914769ff1 #13759 to Folded Space NFT #30',
     );
   });
 

@@ -26,7 +26,7 @@ describe('Weth', () => {
     expect(weth1.context.summaries.en.variables.wrapped.type).toBe(
       'contextAction',
     );
-    expect(weth1.context.summaries.en.variables.wrapped.value).toBe('wrapped');
+    expect(weth1.context.summaries.en.variables.wrapped.value).toBe('WRAPPED');
 
     const weth2 = generate(weth0x0917947d as Transaction);
     expect(weth2.context.summaries.en.title).toBe('WETH');
@@ -35,11 +35,11 @@ describe('Weth', () => {
       'contextAction',
     );
     expect(weth2.context.summaries.en.variables.unwrapped.value).toBe(
-      'unwrapped',
+      'UNWRAPPED',
     );
     const wethDesc2 = contextSummary(weth2.context);
     expect(wethDesc2).toBe(
-      '0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c unwrapped 0.05 ETH',
+      '0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c UNWRAPPED 0.05 ETH',
     );
   });
 });
