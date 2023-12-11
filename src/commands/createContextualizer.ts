@@ -73,8 +73,8 @@ export function registerCreateContextualizerCommand() {
         );
         // Data to replace variables
         const data = {
-          lowercaseName: name,
-          camelCaseName: capitalize(name),
+          camelCaseName: name,
+          pascalCaseName: capitalize(name),
         };
         // Replace with actual contextualizer name
         const contextualizerContent = contextualizerTemplate(data);
