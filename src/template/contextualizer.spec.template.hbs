@@ -4,9 +4,7 @@ import {{lowercaseName}}{{txHashShorten}} from '../test/transactions/{{lowercase
 
 describe('{{camelCaseName}}', () => {
   it('Should detect {{camelCaseName}} transaction', () => {
-    const {{lowercaseName}}1 = detect(
-      {{lowercaseName}}{{txHashShorten}} as Transaction,
-    );
+    const {{lowercaseName}}1 = detect({{lowercaseName}}{{txHashShorten}} as Transaction);
     expect({{lowercaseName}}1).toBe(true);
   });
 
