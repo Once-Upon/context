@@ -84,7 +84,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default: recipient
-              ? '[[from]] [[attested]] to [[recipient ]] with schema [[schema]]'
+              ? '[[from]] [[attested]] to [[recipient]] with schema [[schema]]'
               : '[[from]] [[attested]] with schema [[schema]]',
           },
         },
