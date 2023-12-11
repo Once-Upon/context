@@ -85,7 +85,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               registered: {
                 type: 'contextAction',
-                value: 'registered',
+                value: 'REGISTERED',
               },
             },
           },

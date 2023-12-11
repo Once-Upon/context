@@ -85,7 +85,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               attested: {
                 type: 'contextAction',
-                value: 'attested',
+                value: 'ATTESTED',
               },
             },
           },
@@ -127,7 +127,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               attested: {
                 type: 'contextAction',
-                value: 'attested',
+                value: 'ATTESTED',
               },
             },
           },
@@ -164,7 +164,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               attested: {
                 type: 'contextAction',
-                value: 'attested',
+                value: 'ATTESTED',
               },
             },
           },
@@ -206,7 +206,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               attested: {
                 type: 'contextAction',
-                value: 'attested',
+                value: 'ATTESTED',
               },
             },
           },
@@ -238,7 +238,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               revoked: {
                 type: 'contextAction',
-                value: 'revoked',
+                value: 'REVOKED',
               },
             },
           },
@@ -274,7 +274,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               revoked: {
                 type: 'contextAction',
-                value: 'revoked',
+                value: 'REVOKED',
               },
             },
           },
@@ -311,7 +311,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               revoked: {
                 type: 'contextAction',
-                value: 'revoked',
+                value: 'REVOKED',
               },
             },
           },
@@ -353,7 +353,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               revoked: {
                 type: 'contextAction',
-                value: 'revoked',
+                value: 'REVOKED',
               },
             },
           },
@@ -378,7 +378,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               timestamped: {
                 type: 'contextAction',
-                value: 'timestamped',
+                value: 'TIMESTAMPED',
               },
             },
           },
@@ -408,7 +408,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               timestamped: {
                 type: 'contextAction',
-                value: 'timestamped',
+                value: 'TIMESTAMPED',
               },
             },
           },
@@ -433,7 +433,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               revoked: {
                 type: 'contextAction',
-                value: 'revoked',
+                value: 'REVOKED',
               },
             },
           },
@@ -463,7 +463,7 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               revoked: {
                 type: 'contextAction',
-                value: 'revoked',
+                value: 'REVOKED',
               },
             },
           },

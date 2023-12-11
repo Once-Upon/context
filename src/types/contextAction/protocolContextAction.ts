@@ -47,10 +47,10 @@ export type FarcasterContextAction =
   | 'ADDED_A_KEY';
 
 export type EASContextAction =
-  | 'attested'
-  | 'revoked'
-  | 'timestamped'
-  | 'registered';
+  | 'ATTESTED'
+  | 'REVOKED'
+  | 'TIMESTAMPED'
+  | 'REGISTERED';
 
 export type ProtocolContextAction =
   | WETHContextAction
