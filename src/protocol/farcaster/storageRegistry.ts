@@ -44,6 +44,10 @@ export const generate = (transaction: Transaction): Transaction => {
       const units = decoded.args[1];
       transaction.context = {
         variables: {
+          rented: {
+            type: 'contextAction',
+            value: 'RENTED',
+          },
           caller: {
             type: 'address',
             value: transaction.from,
@@ -55,10 +59,6 @@ export const generate = (transaction: Transaction): Transaction => {
           units: {
             type: 'emphasis',
             value: units.toString(),
-          },
-          rented: {
-            type: 'contextAction',
-            value: 'RENTED',
           },
         },
         summaries: {
@@ -81,6 +81,10 @@ export const generate = (transaction: Transaction): Transaction => {
         .toString();
       transaction.context = {
         variables: {
+          rented: {
+            type: 'contextAction',
+            value: 'RENTED',
+          },
           caller: {
             type: 'address',
             value: transaction.from,
@@ -101,12 +105,6 @@ export const generate = (transaction: Transaction): Transaction => {
             default: `[[caller]] [[rented]] [[units]] storage unit${
               units > 1 ? 's' : ''
             } for [[fids]] Farcaster ID${fids > 1 ? 's' : ''}`,
-            variables: {
-              rented: {
-                type: 'contextAction',
-                value: 'rented',
-              },
-            },
           },
         },
       };

@@ -36,7 +36,7 @@ describe('IdGateway', () => {
       const transaction = generate(
         farcasterRegisterForMOCK as unknown as Transaction,
       );
-      expect(transaction.context.summaries.en.variables.registered?.type).toBe(
+      expect(transaction.context.variables.registered?.type).toBe(
         'contextAction',
       );
       expect(transaction.context.variables.owner['value']).toBe(

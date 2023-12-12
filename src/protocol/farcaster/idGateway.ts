@@ -102,18 +102,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'farcasterID',
             value: fid,
           },
+          registered: {
+            type: 'contextAction',
+            value: 'REGISTERED_FARCASTER_ID',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: '[[caller]] [[registered]] [[fid]] for [[owner]]',
-            variables: {
-              registered: {
-                type: 'contextAction',
-                value: 'registered Farcaster ID',
-              },
-            },
           },
         },
       };

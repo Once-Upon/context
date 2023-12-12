@@ -51,9 +51,7 @@ describe('StorageRegistry', () => {
       const transaction = generate(
         farcasterBatchRentMOCK as unknown as Transaction,
       );
-      expect(transaction.context.summaries.en.variables.rented?.type).toBe(
-        'contextAction',
-      );
+      expect(transaction.context.variables.rented?.type).toBe('contextAction');
       expect(transaction.context.variables.caller['value']).toBe(
         '0xbdfeb5439f5daecb78a17ff846645a8bdbbf5725',
       );
