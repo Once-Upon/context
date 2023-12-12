@@ -13,73 +13,41 @@ export function registerCreateContextualizerCommand() {
     .option('-h, --hash <hash>', 'transaction hash')
     .action(async (name, options) => {
       const srcDir = path.join(__dirname, '..', '..', 'src');
-      const contextualizerTemplateFilePath = path.join(
-        srcDir,
-        'template',
-        'contextualizer.template.hbs',
-      );
-      const contextualizerSpecTemplateFilePath = path.join(
-        srcDir,
-        'template',
-        'contextualizer.spec.template.hbs',
-      );
-      const contextualizerIndexTemplateFilePath = path.join(
-        srcDir,
-        'template',
-        'index.template.hbs',
-      );
-      const newContextualizerFilePath = path.join(
-        srcDir,
-        'protocol',
-        name,
-        `${name}.ts`,
-      );
-      const newContextualizerSpecFilePath = path.join(
-        srcDir,
-        'protocol',
-        name,
-        `${name}.spec.ts`,
-      );
-      const newContextualizerIndexPath = path.join(
-        srcDir,
-        'protocol',
-        name,
-        `index.ts`,
-      );
+      const templateDir = path.join(srcDir, 'template');
+      const protocolDir = path.join(srcDir, 'protocol', name);
+
+      const TEMPLATE_PATHS = {
+        index: {
+          template: 'index.template.hbs',
+          src: 'index.ts',
+        },
+        template: {
+          template: 'contextualizer.template.hbs',
+          src: `${name}.ts`,
+        },
+        spec: {
+          template: 'contextualizer.spec.template.hbs',
+          src: `${name}.spec.ts`,
+        },
+        constants: {
+          template: 'constants.template.hbs',
+          src: `constants.ts`,
+        },
+        abis: {
+          template: 'abi/abi.template.hbs',
+          src: `abis/${camelToCapitalCase(name)}.json`,
+        },
+      };
+      // Data to replace variables
+      const data = {
+        camelCaseName: name,
+        pascalCaseName: camelToPascalCase(name),
+        capitalCaseName: camelToCapitalCase(name),
+      };
 
       try {
         console.log(`Creating a new contextualizer: ${name}`);
-        // create directory
-        ensureDirectoryExistence(newContextualizerIndexPath);
 
-        const contextualizerSource = fs.readFileSync(
-          contextualizerTemplateFilePath,
-          'utf8',
-        );
-        const contextualizerSpecSource = fs.readFileSync(
-          contextualizerSpecTemplateFilePath,
-          'utf8',
-        );
-        const contextualizerIndexSource = fs.readFileSync(
-          contextualizerIndexTemplateFilePath,
-          'utf8',
-        );
-        const contextualizerTemplate = Handlebars.compile(contextualizerSource);
-        const contextualizerSpecTemplate = Handlebars.compile(
-          contextualizerSpecSource,
-        );
-        const contextualizerIndexTemplate = Handlebars.compile(
-          contextualizerIndexSource,
-        );
-        // Data to replace variables
-        const data = {
-          camelCaseName: name,
-          pascalCaseName: capitalize(name),
-        };
-        // Replace with actual contextualizer name
-        const contextualizerContent = contextualizerTemplate(data);
-        // Write the modified contents to the new contextualizer file
-        fs.writeFileSync(newContextualizerFilePath, contextualizerContent);
         // fetch transaction if hash is provided
         if (options.hash) {
           const txHashShorten = shortenTxHash(options.hash);
@@ -91,21 +59,31 @@ export function registerCreateContextualizerCommand() {
           // TODO; set default shorten hash
           data['txHashShorten'] = '[INSERT_TX_HASH_HERE]';
         }
-        // write spec template
-        const contextualizerSpecContent = contextualizerSpecTemplate(data);
-        fs.writeFileSync(
-          newContextualizerSpecFilePath,
-          contextualizerSpecContent,
-        );
-        // write index template
-        const contextualizerIndexContent = contextualizerIndexTemplate(data);
-        fs.writeFileSync(
-          newContextualizerIndexPath,
-          contextualizerIndexContent,
-        );
+
+        // create directory
+        for (const key in TEMPLATE_PATHS) {
+          ensureDirectoryExistence(
+            path.join(protocolDir, TEMPLATE_PATHS[key].src),
+          );
+        }
+        // copy template
+        for (const key in TEMPLATE_PATHS) {
+          const templateSource = fs.readFileSync(
+            path.join(templateDir, TEMPLATE_PATHS[key].template),
+            'utf8',
+          );
+          const template = Handlebars.compile(templateSource);
+          // Replace with actual contextualizer name
+          const srcContent = template(data);
+          // write file
+          fs.writeFileSync(
+            path.join(protocolDir, TEMPLATE_PATHS[key].src),
+            srcContent,
+          );
+        }
 
         console.log(
-          `Successfully created a new contextualizer: ${newContextualizerFilePath}`,
+          `Successfully created a new contextualizer: ${protocolDir}`,
         );
 
         process.exit(0); // Successful exit
@@ -116,8 +94,12 @@ export function registerCreateContextualizerCommand() {
     });
 }
 
-function capitalize(str: string) {
+function camelToPascalCase(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function camelToCapitalCase(str: string) {
+  return str.replace(/([a-z])([A-Z])/g, '$1_$2').toUpperCase();
 }
 
 // Function to ensure that a directory exists
