@@ -1,8 +1,8 @@
 import { program } from './main';
 import { fetchTransactions } from './utils';
 import { Transaction } from '../types';
-import * as protocolContextualizers from '../protocol';
-import * as heuristicContextualizers from '../heuristics';
+import { protocolContextualizer } from '../protocol';
+import { heuristicContextualizer } from '../heuristics';
 
 export function registerRunContextualizersCommand() {
   program
@@ -24,7 +24,7 @@ export function registerRunContextualizersCommand() {
         transactions.forEach((transaction) => {
           // run heuristic contextualizers
           for (const [contextualizerName, contextualizer] of Object.entries(
-            heuristicContextualizers,
+            heuristicContextualizer.children,
           )) {
             console.log(`Running ${contextualizerName}`);
             try {
@@ -40,7 +40,7 @@ export function registerRunContextualizersCommand() {
           }
           // run protocol contextualizers
           for (const [contextualizerName, { contextualize }] of Object.entries(
-            protocolContextualizers,
+            protocolContextualizer.children,
           )) {
             console.log(`Running ${contextualizerName}`);
             try {
