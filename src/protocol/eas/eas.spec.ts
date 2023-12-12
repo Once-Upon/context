@@ -62,7 +62,7 @@ describe('EAS', () => {
       const transaction = generate(easMultiAttest0x9bab2b2e as Transaction);
       expect(transaction.context.summaries.en.title).toBe('EAS');
       expect(contextSummary(transaction.context)).toBe(
-        '0x0fb166cddf1387c5b63ffa25721299fd7b068f3f ATTESTED 2 times with 1 schemas',
+        '0x0fb166cddf1387c5b63ffa25721299fd7b068f3f ATTESTED 2 times with 1 schema',
       );
     });
   });

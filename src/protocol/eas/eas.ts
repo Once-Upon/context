@@ -55,6 +55,10 @@ export const detect = (transaction: Transaction): boolean => {
   }
 };
 
+const pluralize = (word: string, n: number): string => {
+  return `${word}${n !== 1 ? "s" : ""}`;
+}
+
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInput(transaction.input, ABIs.EAS);
@@ -164,7 +168,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default:
-              '[[from]] [[attested]] [[count]] times with [[schemas]] schemas',
+              `[[from]] [[attested]] [[count]] ${pluralize("time", count)} with [[schemas]] ${pluralize("schema", schemas)}`,
           },
         },
       };
@@ -206,7 +210,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default:
-              '[[attesters]] accounts [[attested]] [[count]] times with [[schemas]] schemas by delegation via [[from]]',
+              `[[attesters]] ${pluralize("account", attesters)} [[attested]] [[count]] ${pluralize("time", count)} with [[schemas]] ${pluralize("schema", schemas)} by delegation via [[from]]`,
           },
         },
       };
@@ -305,7 +309,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default:
-              '[[from]] [[revoked]] [[count]] attestations with [[schemas]] schemas',
+              `[[from]] [[revoked]] [[count]] ${pluralize("attestation", count)} with [[schemas]] ${pluralize("schema", schemas)}`,
           },
         },
       };
@@ -347,7 +351,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default:
-              '[[revokers]] accounts [[revoked]] [[count]] attestations with [[schemas]] schemas by delegation via [[from]]',
+              `[[revokers]] ${pluralize("account", revokers)} [[revoked]] [[count]] ${pluralize("attestation", count)} with [[schemas]] ${pluralize("schema", schemas)} by delegation via [[from]]`,
           },
         },
       };
