@@ -21,6 +21,10 @@ export const generate = (transaction: Transaction): Transaction => {
   /** implement your context generation logic */
   transaction.context = {
     variables: {
+      contextAction: {
+        type: 'contextAction',
+        value: '<ACTION_TEXT>', // text should be SCREAMING_SNAKE_CASE e.g. PURCHASED
+      },
       subject: {
         type: '<TYPE>', // e.g. 'address'
         value: '', // e.g. '0xabc...123'
@@ -43,10 +47,6 @@ export const generate = (transaction: Transaction): Transaction => {
       en: {
         title: '<Name of protocol>', // e.g. Farcaster
         variables: {
-          contextAction: {
-            type: 'contextAction',
-            value: '<ACTION_TEXT>', // text should be lowercase. e.g. purchased
-          },
         },
         default:
           '[[subject]] [[contextAction]] [[asset1]] for [[asset2]] [[userCount]] users',
