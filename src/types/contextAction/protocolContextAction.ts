@@ -46,10 +46,36 @@ export type FarcasterContextAction =
   | 'REMOVED_A_KEY'
   | 'ADDED_A_KEY';
 
+// Foundation
+export type FoundationOriginalMarketContextAction =
+  | 'PLACED_BID' // reserve auction
+  | 'CREATED_RESERVE_AUCTION' // reserve auction
+  | 'FINALIZED_RESERVE_AUCTION' // reserve auction
+  | 'SET_BUY_PRICE' // buy now
+  | 'ACCEPTED_BUY_PRICE' // buy now
+  | 'MADE_OFFER' // offers
+  | 'ACCEPTED_OFFER' // offers
+  | 'UNLISTED'; // both reserve auction and buy now
+
+// TODO: Add drop reveal
+export type FoundationDropMarketContextAction =
+  | 'CREATED_FIXED_PRICE_SALE'
+  | 'CREATED_FIXED_PRICE_SALE_WITH_ALLOWLIST'
+  | 'MINTED_FROM_FIXED_PRICE_SALE_WITH_ALLOWLIST';
+
+export type FoundationWorldsContextAction =
+  | 'ACCEPTED_TRANSFER'
+  | 'BEGAN_TRANSFER'
+  | 'SET_PAYMENT_ADDRESS'
+  | 'ADDED_TO_WORLD_BY_SPLIT'
+  | 'MIGRATED_FROM_EXHIBITION'
+  | 'REMOVED_FROM_ALLOWLIST_BY_SELLER';
+
 export type ProtocolContextAction =
   | WETHContextAction
   | ENSContextAction
   | CryptoPunksContextAction
   | LeeroyContextAction
   | FrenpetContextAction
-  | FarcasterContextAction;
+  | FarcasterContextAction
+  | FoundationOriginalMarketContextAction;

@@ -113,7 +113,8 @@ export type ContextSummaryVariableType =
         | 'address'
         | 'transaction'
         | 'eth'
-        | 'farcasterID'
+        | 'farcasterID' // TODO: Move to Farcaster protocol
+        | 'auctionID' // TODO: Move to Foundation protocol
         | 'crosschain';
       value: string;
     }
