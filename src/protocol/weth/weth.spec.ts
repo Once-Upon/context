@@ -47,7 +47,7 @@ describe('Weth', () => {
     expect(weth3.context.variables.unwrapped.value).toBe('UNWRAPPED');
     const wethDesc3 = contextSummary(weth3.context);
     expect(wethDesc3).toBe(
-      '0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c UNWRAPPED 0.05 ETH',
+      '0x50509d22b1bd2f10de15515140e80a7e48f74b44 UNWRAPPED 0.41031062797756485 ETH',
     );
   });
 });

@@ -1,3 +1,4 @@
+import { ethers } from 'ethers';
 import { ContextSummaryVariableType, Transaction } from '../../types';
 import { WETH_ADDRESSES } from '../../helpers/constants';
 import { WETH_ABI } from './constants';
@@ -80,7 +81,7 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       const withdrawalAmount: ContextSummaryVariableType = {
         type: 'eth',
-        value: decode.args[0],
+        value: ethers.BigNumber.from(decode.args[0]).toString(),
       };
       transaction.context = {
         summaries: {
