@@ -16,6 +16,15 @@ export const detect = (transaction: Transaction): boolean => {
       return false;
     }
 
+    // NOTE: There is one other contract deployed on mainnet that has the same function
+    // signature for 'register' so we filter out transactions to that contract
+    if (
+      transaction.to === '0xD85Fac03804a3e44D29c494f3761D11A2262cBBe' &&
+      transaction.chainId === 1
+    ) {
+      return false;
+    }
+
     // decode input
     let decoded: TransactionDescription;
     try {
