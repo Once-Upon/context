@@ -1,7 +1,7 @@
 import { Interface, TransactionDescription } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { decodeTransactionInput } from '../../helpers/utils';
-import { SCHEMA_REGISTRY_ADDRESSES, ABIs } from './constants';
+import { ABIs } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isBundler = detect(transaction);
@@ -16,17 +16,11 @@ export const detect = (transaction: Transaction): boolean => {
       return false;
     }
 
-    // check contract address
-    if (!SCHEMA_REGISTRY_ADDRESSES.includes(transaction.to.toLowerCase())) {
-      return false;
-    }
-
     // decode input
     let decoded: TransactionDescription;
     try {
       decoded = decodeTransactionInput(transaction.input, ABIs.SchemaRegistry);
-    } catch (e) {
-      console.log(e);
+    } catch (_) {
       return false;
     }
 
@@ -50,8 +44,18 @@ export const generate = (transaction: Transaction): Transaction => {
       let id = '';
       if (transaction.receipt?.status) {
         const registerLog = transaction.logs?.find((log) => {
-          return SCHEMA_REGISTRY_ADDRESSES.includes(log.address.toLowerCase());
+          try {
+            const iface = new Interface(ABIs.SchemaRegistry);
+            const decoded = iface.parseLog({
+              topics: log.topics,
+              data: log.data,
+            });
+            return decoded.name === 'Registered';
+          } catch (_) {
+            return false;
+          }
         });
+
         if (registerLog) {
           try {
             const iface = new Interface(ABIs.SchemaRegistry);
@@ -60,8 +64,8 @@ export const generate = (transaction: Transaction): Transaction => {
               data: registerLog.data,
             });
             id = decoded.args.uid.toString();
-          } catch (e) {
-            console.error(e);
+          } catch (err) {
+            console.error(err);
           }
         }
       }

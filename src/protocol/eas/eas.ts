@@ -1,7 +1,7 @@
 import { TransactionDescription } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { decodeTransactionInput } from '../../helpers/utils';
-import { EAS_ADDRESSES, ABIs } from './constants';
+import { ABIs } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isBundler = detect(transaction);
@@ -16,17 +16,11 @@ export const detect = (transaction: Transaction): boolean => {
       return false;
     }
 
-    // check contract address
-    if (!EAS_ADDRESSES.includes(transaction.to.toLowerCase())) {
-      return false;
-    }
-
     // decode input
     let decoded: TransactionDescription;
     try {
       decoded = decodeTransactionInput(transaction.input, ABIs.EAS);
-    } catch (e) {
-      console.log(e);
+    } catch (_) {
       return false;
     }
 
