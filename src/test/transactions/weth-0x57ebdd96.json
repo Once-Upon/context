@@ -1,0 +1,197 @@
+{
+  "accessList": [],
+  "blockHash": "0x9a81c3fab7503ba3c5533f92e1c0c87f53dcb6f9849df251d14ffc6bb15fb852",
+  "blockNumber": 18771374,
+  "chainId": 1,
+  "from": "0x50509d22b1bd2f10de15515140e80a7e48f74b44",
+  "gas": 41805,
+  "gasPrice": "50421751728",
+  "hash": "0x57eb604d15dadcc4d5e1c0678077c90c59691cce3615e1c393a9daa2c69add96",
+  "input": "0x2e1a7d4d00000000000000000000000000000000000000000000000005b1b7579c2b92b2",
+  "maxFeePerGas": "56314725453",
+  "maxPriorityFeePerGas": "100000000",
+  "nonce": 13,
+  "r": "0xede0569be03e5cdf44637d8de9534dd08fe7a8acebfc7eb64ff93550d5e78f67",
+  "s": "0xb8d0e7ea6afc862b76a42b2cf3456045bec8bfd5fe0398d3279d2ff1e609d6a",
+  "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+  "transactionIndex": 122,
+  "type": 2,
+  "v": "0x1",
+  "value": "0",
+  "assetTransfers": [
+    {
+      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "from": "0x50509d22b1bd2f10de15515140e80a7e48f74b44",
+      "to": "0x0000000000000000000000000000000000000000",
+      "value": "410310627977564850",
+      "type": "erc20"
+    },
+    {
+      "from": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "to": "0x50509d22b1bd2f10de15515140e80a7e48f74b44",
+      "type": "eth",
+      "value": "410310627977564850"
+    }
+  ],
+  "baseFeePerGas": 50321751728,
+  "burntFees": "1772734669873984",
+  "minerFees": "3522800000000",
+  "transactionFee": "1776257469873984",
+  "fork": "shanghai",
+  "sigHash": "0x2e1a7d4d",
+  "internalSigHashes": [
+    {
+      "from": "0x50509d22b1bd2f10de15515140e80a7e48f74b44",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "sigHash": "0x2e1a7d4d"
+    },
+    {
+      "from": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "to": "0x50509d22b1bd2f10de15515140e80a7e48f74b44",
+      "sigHash": "0x"
+    }
+  ],
+  "timestamp": 1702399451,
+  "isoTimestamp": "2023-12-12T16:44:11.000Z",
+  "netAssetTransfers": {
+    "0x50509d22b1bd2f10de15515140e80a7e48f74b44": {
+      "received": [
+        {
+          "asset": "eth",
+          "id": "eth",
+          "type": "eth",
+          "value": "410310627977564850"
+        }
+      ],
+      "sent": [
+        {
+          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "type": "erc20",
+          "value": "410310627977564850"
+        }
+      ]
+    },
+    "0x0000000000000000000000000000000000000000": {
+      "received": [
+        {
+          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "type": "erc20",
+          "value": "410310627977564850"
+        }
+      ],
+      "sent": []
+    },
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+      "received": [],
+      "sent": [
+        {
+          "asset": "eth",
+          "id": "eth",
+          "type": "eth",
+          "value": "410310627977564850"
+        }
+      ]
+    }
+  },
+  "decode": {
+    "fragment": {
+      "type": "function",
+      "inputs": [
+        {
+          "name": "wad",
+          "type": "uint256",
+          "baseType": "uint256",
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        }
+      ],
+      "name": "withdraw",
+      "constant": false,
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "payable": false,
+      "gas": null
+    },
+    "name": "withdraw",
+    "args": [
+      "410310627977564850"
+    ],
+    "signature": "withdraw(uint256)",
+    "selector": "0x2e1a7d4d",
+    "value": "0"
+  },
+  "parties": [
+    "0x50509d22b1bd2f10de15515140e80a7e48f74b44",
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+  ],
+  "receipt": {
+    "blockHash": "0x9a81c3fab7503ba3c5533f92e1c0c87f53dcb6f9849df251d14ffc6bb15fb852",
+    "blockNumber": 18771374,
+    "contractAddress": null,
+    "cumulativeGasUsed": 8202057,
+    "effectiveGasPrice": 50421751728,
+    "from": "0x50509d22b1bd2f10de15515140e80a7e48f74b44",
+    "gasUsed": 35228,
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000080002000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000200000000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "transactionHash": "0x57eb604d15dadcc4d5e1c0678077c90c59691cce3615e1c393a9daa2c69add96",
+    "transactionIndex": 122,
+    "type": "0x2"
+  },
+  "logs": [
+    {
+      "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "blockHash": "0x9a81c3fab7503ba3c5533f92e1c0c87f53dcb6f9849df251d14ffc6bb15fb852",
+      "blockNumber": 18771374,
+      "data": "0x00000000000000000000000000000000000000000000000005b1b7579c2b92b2",
+      "logIndex": 200,
+      "removed": false,
+      "topics": [
+        "0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65",
+        "0x00000000000000000000000050509d22b1bd2f10de15515140e80a7e48f74b44"
+      ],
+      "transactionHash": "0x57eb604d15dadcc4d5e1c0678077c90c59691cce3615e1c393a9daa2c69add96",
+      "transactionIndex": 122,
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "src",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "wad",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Withdrawal",
+          "anonymous": false
+        },
+        "name": "Withdrawal",
+        "signature": "Withdrawal(address,uint256)",
+        "topic": "0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65",
+        "args": [
+          "0x50509d22b1bd2f10de15515140e80a7e48f74b44",
+          "410310627977564850"
+        ]
+      },
+      "chainId": 1
+    }
+  ],
+  "contractsCreated": []
+}
