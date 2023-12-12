@@ -1,0 +1,149 @@
+{
+  "blockHash": "0x99710a1895e7fd738525a52475fe6b4a25fd2bb1cb88ce82cd05463b56322ed7",
+  "blockNumber": 18011522,
+  "from": "0xb2370e24dabd855bfcf87087740ca6bdb77ebd50",
+  "gas": 46365,
+  "gasPrice": "17937192901",
+  "maxFeePerGas": "25536597801",
+  "maxPriorityFeePerGas": "100000000",
+  "hash": "0xf38b220368332f890b29cb6157abc5a2c5dd559e703db1f9f8c976cd295b96d0",
+  "input": "0xcf190f3403bd6c8681bcf689a283fe59d1e6efb57b5592a55d35b7d2aef53cef6a8c4e9d",
+  "nonce": 2,
+  "to": "0xa1207f3bba224e2c9c3c6d5af63d0eb1582ce587",
+  "transactionIndex": 62,
+  "value": "0",
+  "type": 2,
+  "accessList": [],
+  "chainId": 1,
+  "v": "0x0",
+  "r": "0x1a5b2025eaff64ba27577454ff2d423bafae74e71e3cf6226342177353a6c4c8",
+  "s": "0x60eeeadffe4f96bdb8f4ed209f7b88534becbff88d17920e2c79060d394fbf99",
+  "timestamp": 1693206131,
+  "isoTimestamp": "2023-08-28T07:02:11.000Z",
+  "fork": "shanghai",
+  "baseFeePerGas": 17837192901,
+  "burntFees": "827021448854865",
+  "minerFees": "4636500000000",
+  "transactionFee": "831657948854865",
+  "sigHash": "0xcf190f34",
+  "internalSigHashes": [
+    {
+      "from": "0xb2370e24dabd855bfcf87087740ca6bdb77ebd50",
+      "to": "0xa1207f3bba224e2c9c3c6d5af63d0eb1582ce587",
+      "sigHash": "0xcf190f34"
+    }
+  ],
+  "parties": [
+    "0xb2370e24dabd855bfcf87087740ca6bdb77ebd50",
+    "0xa1207f3bba224e2c9c3c6d5af63d0eb1582ce587"
+  ],
+  "decode": {
+    "fragment": {
+      "type": "function",
+      "inputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "baseType": "bytes32",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        }
+      ],
+      "name": "revokeOffchain",
+      "constant": false,
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "payable": false,
+      "gas": null
+    },
+    "name": "revokeOffchain",
+    "args": [
+      "0x03bd6c8681bcf689a283fe59d1e6efb57b5592a55d35b7d2aef53cef6a8c4e9d"
+    ],
+    "signature": "revokeOffchain(bytes32)",
+    "selector": "0xcf190f34",
+    "value": "0"
+  },
+  "receipt": {
+    "blockHash": "0x99710a1895e7fd738525a52475fe6b4a25fd2bb1cb88ce82cd05463b56322ed7",
+    "blockNumber": 18011522,
+    "contractAddress": null,
+    "cumulativeGasUsed": 5312492,
+    "effectiveGasPrice": 17937192901,
+    "from": "0xb2370e24dabd855bfcf87087740ca6bdb77ebd50",
+    "gasUsed": 46365,
+    "logsBloom": "0x00000000001000000000000000000000000000000000000000000000000000000000000002000000000000000000040000000000000000000000004000001000000000000000080000000000000000000000010000000000000000000000000000000000000000000000010000004000000000000000000000000000000000000200000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000080000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000008000",
+    "status": true,
+    "to": "0xa1207f3bba224e2c9c3c6d5af63d0eb1582ce587",
+    "transactionHash": "0xf38b220368332f890b29cb6157abc5a2c5dd559e703db1f9f8c976cd295b96d0",
+    "transactionIndex": 62,
+    "type": "0x2"
+  },
+  "logs": [
+    {
+      "address": "0xa1207f3bba224e2c9c3c6d5af63d0eb1582ce587",
+      "topics": [
+        "0x92a1f7a41a7c585a8b09e25b195e225b1d43248daca46b0faf9e0792777a2229",
+        "0x000000000000000000000000b2370e24dabd855bfcf87087740ca6bdb77ebd50",
+        "0x03bd6c8681bcf689a283fe59d1e6efb57b5592a55d35b7d2aef53cef6a8c4e9d",
+        "0x0000000000000000000000000000000000000000000000000000000064ec4673"
+      ],
+      "data": "0x",
+      "blockNumber": 18011522,
+      "transactionHash": "0xf38b220368332f890b29cb6157abc5a2c5dd559e703db1f9f8c976cd295b96d0",
+      "transactionIndex": 62,
+      "blockHash": "0x99710a1895e7fd738525a52475fe6b4a25fd2bb1cb88ce82cd05463b56322ed7",
+      "logIndex": 181,
+      "removed": false,
+      "id": "log_0aefcff9",
+      "chainId": 1,
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "revoker",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "data",
+              "type": "bytes32",
+              "baseType": "bytes32",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "timestamp",
+              "type": "uint64",
+              "baseType": "uint64",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "RevokedOffchain",
+          "anonymous": false
+        },
+        "name": "RevokedOffchain",
+        "signature": "RevokedOffchain(address,bytes32,uint64)",
+        "topic": "0x92a1f7a41a7c585a8b09e25b195e225b1d43248daca46b0faf9e0792777a2229",
+        "args": [
+          "0xb2370e24dabd855bfcf87087740ca6bdb77ebd50",
+          "0x03bd6c8681bcf689a283fe59d1e6efb57b5592a55d35b7d2aef53cef6a8c4e9d",
+          "1693206131"
+        ]
+      }
+    }
+  ],
+  "contractsCreated": []
+}
