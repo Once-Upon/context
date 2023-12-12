@@ -6,8 +6,6 @@ import { FarcasterContracts } from './constants';
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IIdGateway.sol
 //
 // Context is not generated for functions that are only callable by the contract owner.
-//
-// TODO: Add context for registerFor
 export const contextualize = (transaction: Transaction): Transaction => {
   const isIdGateway = detect(transaction);
   if (!isIdGateway) return transaction;
@@ -27,7 +25,7 @@ export const detect = (transaction: Transaction): boolean => {
       value: transaction.value,
     });
 
-    return ['register'].includes(decoded.name);
+    return ['register', 'registerFor'].includes(decoded.name);
   } catch (_) {
     return false;
   }
@@ -41,28 +39,28 @@ export const generate = (transaction: Transaction): Transaction => {
     value: transaction.value,
   });
 
+  // Capture FID
+  let fid = '';
+  if (transaction.receipt?.status) {
+    const registerLog = transaction.logs?.find((log) => {
+      return log.address === FarcasterContracts.IdRegistry.address;
+    });
+    if (registerLog) {
+      try {
+        const iface = new Interface(FarcasterContracts.IdRegistry.abi);
+        const decoded = iface.parseLog({
+          topics: registerLog.topics,
+          data: registerLog.data,
+        });
+        fid = decoded.args.id.toString();
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }
+
   switch (decoded.name) {
     case 'register': {
-      // Capture FID
-      let fid = '';
-      if (transaction.receipt?.status) {
-        const registerLog = transaction.logs?.find((log) => {
-          return log.address === FarcasterContracts.IdRegistry.address;
-        });
-        if (registerLog) {
-          try {
-            const iface = new Interface(FarcasterContracts.IdRegistry.abi);
-            const decoded = iface.parseLog({
-              topics: registerLog.topics,
-              data: registerLog.data,
-            });
-            fid = decoded.args.id.toString();
-          } catch (e) {
-            console.error(e);
-          }
-        }
-      }
-
       transaction.context = {
         variables: {
           owner: {
@@ -83,6 +81,37 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'Farcaster',
             default: `[[owner]] [[registered]] [[fid]]`,
+          },
+        },
+      };
+      return transaction;
+    }
+
+    case 'registerFor': {
+      transaction.context = {
+        variables: {
+          caller: {
+            type: 'address',
+            value: transaction.from,
+          },
+          owner: {
+            type: 'address',
+            value: decoded.args[0],
+          },
+          fid: {
+            type: 'farcasterID',
+            value: fid,
+          },
+          registered: {
+            type: 'contextAction',
+            value: 'REGISTERED_FARCASTER_ID',
+          },
+        },
+        summaries: {
+          category: 'PROTOCOL_1',
+          en: {
+            title: 'Farcaster',
+            default: '[[caller]] [[registered]] [[fid]] for [[owner]]',
           },
         },
       };

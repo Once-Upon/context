@@ -7,6 +7,8 @@ export const FarcasterContracts = {
     abi: [
       'function register(address recovery) external payable returns (uint256, uint256)',
       'function register(address recovery, uint256 extraStorage) external payable returns (uint256, uint256)',
+      'function registerFor(address to, address recovery, uint256 deadline, bytes calldata sig) external payable returns (uint256 fid, uint256 overpayment)',
+      'function registerFor(address to, address recovery, uint256 deadline, bytes calldata sig, uint256 extraStorage) external payable returns (uint256 fid, uint256 overpayment)',
     ],
   },
   IdRegistry: {
@@ -33,7 +35,10 @@ export const FarcasterContracts = {
   },
   StorageRegistry: {
     address: '0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d',
-    abi: ['function rent(uint256 fid, uint256 units)'],
+    abi: [
+      'function rent(uint256 fid, uint256 units)',
+      'function batchRent(uint256[] calldata fids, uint256[] calldata units)',
+    ],
   },
   Bundler: {
     address: '0x00000000fc04c910a0b5fea33b03e0447ad0b0aa',
