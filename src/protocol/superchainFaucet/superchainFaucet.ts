@@ -36,18 +36,16 @@ export function generate(transaction: Transaction): Transaction {
         type: 'eth',
         value: transaction.assetTransfers[1].value,
       },
+      received: {
+        type: 'contextAction',
+        value: 'RECEIVED',
+      },
     },
     summaries: {
       category: 'CORE',
       en: {
         title: 'Faucet Deposit',
         default: '[[depositee]] [[received]] [[amount]] from [[depositer]]',
-        variables: {
-          received: {
-            type: 'contextAction',
-            value: 'received',
-          },
-        },
       },
     },
   };

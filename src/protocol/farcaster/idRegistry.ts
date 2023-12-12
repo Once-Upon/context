@@ -53,6 +53,10 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: decoded.args[1],
           },
+          changedRecoveryAddress: {
+            type: 'contextAction',
+            value: 'CHANGED_RECOVERY_ADDRESS',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
@@ -60,12 +64,6 @@ export const generate = (transaction: Transaction): Transaction => {
             title: 'Farcaster',
             default:
               '[[owner]] [[changedRecoveryAddress]] to [[recoveryAddress]]',
-            variables: {
-              changedRecoveryAddress: {
-                type: 'contextAction',
-                value: 'changed recovery address',
-              },
-            },
           },
         },
       };
@@ -83,18 +81,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: decoded.args[0],
           },
+          transferredId: {
+            type: 'contextAction',
+            value: 'TRANSFERRED_FARCASTER_ID',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: '[[owner]] [[transferredId]] to [[to]]',
-            variables: {
-              transferredId: {
-                type: 'contextAction',
-                value: 'transferred Farcaster ID',
-              },
-            },
           },
         },
       };

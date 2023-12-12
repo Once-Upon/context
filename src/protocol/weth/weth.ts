@@ -53,9 +53,6 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'WETH',
             default: `[[from]] [[wrapped]] [[value]]`,
-            variables: {
-              wrapped: { type: 'contextAction', value: 'wrapped' },
-            },
           },
         },
         variables: {
@@ -68,6 +65,7 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: transaction.from,
           },
+          wrapped: { type: 'contextAction', value: 'WRAPPED' },
         },
       };
 
@@ -90,14 +88,12 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'WETH',
             default: `[[withdrawer]] [[unwrapped]] [[withdrawalAmount]]`,
-            variables: {
-              unwrapped: { type: 'contextAction', value: 'unwrapped' },
-            },
           },
         },
         variables: {
           withdrawalAmount,
           withdrawer,
+          unwrapped: { type: 'contextAction', value: 'UNWRAPPED' },
         },
       };
 

@@ -45,18 +45,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: transaction.from,
           },
+          addedKey: {
+            type: 'contextAction',
+            value: 'ADDED_A_KEY',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: '[[owner]] [[addedKey]]',
-            variables: {
-              addedKey: {
-                type: 'contextAction',
-                value: 'added a key',
-              },
-            },
           },
         },
       };
@@ -74,18 +72,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: decoded.args[0],
           },
+          addedKey: {
+            type: 'contextAction',
+            value: 'ADDED_A_KEY',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
             default: '[[caller]] [[addedKey]] for [[owner]]',
-            variables: {
-              addedKey: {
-                type: 'contextAction',
-                value: 'added a key',
-              },
-            },
           },
         },
       };

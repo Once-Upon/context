@@ -1,8 +1,8 @@
 import { Transaction } from '../../types';
 
 export const contextualize = (transaction: Transaction): Transaction => {
-  const is{{camelCaseName}} = detect(transaction);
-  if (!is{{camelCaseName}}) return transaction;
+  const is{{pascalCaseName}} = detect(transaction);
+  if (!is{{pascalCaseName}}) return transaction;
 
   return generate(transaction);
 };

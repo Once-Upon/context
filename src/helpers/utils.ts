@@ -1,6 +1,10 @@
 import { utils } from 'ethers';
 import { InterfaceAbi } from '../types/Abi';
-import { TransactionContextType, Transaction } from '../types/transaction';
+import {
+  TransactionContextType,
+  Transaction,
+  ContextSummaryVariableType,
+} from '../types/transaction';
 
 const VALID_CHARS =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.? ';
@@ -60,11 +64,11 @@ export function contextSummary(context: TransactionContextType): string {
   return formattedParts.join('');
 }
 
-function isVariable(str) {
+function isVariable(str: string) {
   return str.startsWith('[[') && str.endsWith(']]');
 }
 
-function formatSection(section) {
+function formatSection(section: ContextSummaryVariableType) {
   const varContext = section;
 
   if (varContext?.type === 'eth')

@@ -13,7 +13,7 @@ describe('IdGateway', () => {
 
     it('Should generate context', () => {
       const transaction = generate(farcasterRegister0x6b0f32e0 as Transaction);
-      expect(transaction.context.summaries.en.variables.registered?.type).toBe(
+      expect(transaction.context.variables.registered?.type).toBe(
         'contextAction',
       );
       expect(transaction.context.variables.owner['value']).toBe(

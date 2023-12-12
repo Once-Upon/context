@@ -36,18 +36,16 @@ export function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: transaction.to,
       },
+      sent: {
+        type: 'contextAction',
+        value: 'SENT',
+      },
     },
     summaries: {
       category: 'CORE',
       en: {
         title: 'ETH Transfer',
         default: '[[sender]] [[sent]] [[amount]] to [[to]]',
-        variables: {
-          sent: {
-            type: 'contextAction',
-            value: 'sent',
-          },
-        },
       },
     },
   };

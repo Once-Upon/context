@@ -14,9 +14,7 @@ describe('StorageRegistry', () => {
 
     it('Should generate context', () => {
       const transaction = generate(farcasterRent0x09794a62 as Transaction);
-      expect(transaction.context.summaries.en.variables.rented?.type).toBe(
-        'contextAction',
-      );
+      expect(transaction.context.variables.rented?.type).toBe('contextAction');
       expect(transaction.context.variables.caller['value']).toBe(
         '0x3a4afca659f54922a0d7a7b0bebabf641dec66bb',
       );

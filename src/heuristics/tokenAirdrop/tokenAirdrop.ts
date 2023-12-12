@@ -122,6 +122,10 @@ function generate(transaction: Transaction): Transaction {
               type: 'emphasis',
               value: `${senders.length} Senders`,
             },
+      receivedAirdrop: {
+        type: 'contextAction',
+        value: 'RECEIVED_AIRDROP',
+      },
     },
     summaries: {
       category,
@@ -132,12 +136,6 @@ function generate(transaction: Transaction): Transaction {
             ? ' from [[sender]]'
             : ''
         }`,
-        variables: {
-          receivedAirdrop: {
-            type: 'contextAction',
-            value: 'received airdrop',
-          },
-        },
       },
     },
   };

@@ -55,18 +55,16 @@ export const generate = (transaction: Transaction): Transaction => {
             buyer,
             pet,
             purchasePrice,
+            contextAction: {
+              type: 'contextAction',
+              value: 'BOUGHT_ACCESSORY',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
               default: `[[buyer]] [[contextAction]] ${accessory} for [[pet]] for [[purchasePrice]]`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'bought accessory',
-                },
-              },
             },
           },
         };
@@ -75,18 +73,16 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             buyer,
             pet,
+            contextAction: {
+              type: 'contextAction',
+              value: 'BOUGHT_ACCESSORY',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
               default: `Failed: [[buyer]] [[contextAction]] ${accessory} for [[pet]]`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'bought accessory',
-                },
-              },
             },
           },
         };
@@ -129,18 +125,16 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             attacker,
             attacked,
+            contextAction: {
+              type: 'contextAction',
+              value: 'ATTACKED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
               default: `[[attacker]] [[contextAction]] [[attacked]] and ${winOrLose} ${scoresWon} points`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'attacked',
-                },
-              },
             },
           },
         };
@@ -149,18 +143,16 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             attacker,
             attacked,
+            contextAction: {
+              type: 'contextAction',
+              value: 'ATTACKED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
               default: `Failed: [[attacker]] [[contextAction]] [[attacked]]`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'attacked',
-                },
-              },
             },
           },
         };
@@ -191,18 +183,16 @@ export const generate = (transaction: Transaction): Transaction => {
             minter,
             pet,
             cost,
+            contextAction: {
+              type: 'contextAction',
+              value: 'MINTED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
               default: `[[minter]] [[contextAction]] [[pet]] for [[cost]]`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'minted',
-                },
-              },
             },
           },
         };
@@ -210,18 +200,16 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context = {
           variables: {
             minter,
+            contextAction: {
+              type: 'contextAction',
+              value: 'MINTED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
               default: `Failed: [[minter]] [[contextAction]] a Fren Pet`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'minted',
-                },
-              },
             },
           },
         };
@@ -250,18 +238,16 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           user,
           pet,
+          contextAction: {
+            type: 'contextAction',
+            value: 'SET_PET_NAME',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Fren Pet',
             default: `[[user]] [[contextAction]] for [[pet]] to ${name}`,
-            variables: {
-              contextAction: {
-                type: 'contextAction',
-                value: 'set pet name',
-              },
-            },
           },
         },
       };
@@ -277,18 +263,16 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context = {
           variables: {
             user,
+            contextAction: {
+              type: 'contextAction',
+              value: 'WHEEL_COMMITTED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
               default: `[[user]] [[contextAction]]`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'wheel committed',
-                },
-              },
             },
           },
         };
@@ -296,18 +280,16 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context = {
           variables: {
             user,
+            contextAction: {
+              type: 'contextAction',
+              value: 'WHEEL_COMMITTED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
               default: `[[user]] [[contextAction]]`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'wheel committed',
-                },
-              },
             },
           },
         };
@@ -339,18 +321,16 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             user,
             pet,
+            contextAction: {
+              type: 'contextAction',
+              value: 'REDEEMED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
               default: `[[user]] [[contextAction]] for [[pet]]`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'redeemed',
-                },
-              },
             },
           },
         };
@@ -370,18 +350,16 @@ export const generate = (transaction: Transaction): Transaction => {
             user,
             pet,
             redeemedAmount,
+            contextAction: {
+              type: 'contextAction',
+              value: 'REDEEMED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
               default: `[[user]] [[contextAction]] [[redeemedAmount]] for [[pet]]`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'redeemed',
-                },
-              },
             },
           },
         };
@@ -419,18 +397,16 @@ export const generate = (transaction: Transaction): Transaction => {
           user,
           attacker,
           target,
+          contextAction: {
+            type: 'contextAction',
+            value: 'COMMITTED_TO_ATTACKING',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Fren Pet',
             default: `[[user]] [[contextAction]] with [[attacker]] attacking [[target]]`,
-            variables: {
-              contextAction: {
-                type: 'contextAction',
-                value: 'committed to attacking',
-              },
-            },
           },
         },
       };
@@ -472,18 +448,16 @@ export const generate = (transaction: Transaction): Transaction => {
             variables: {
               user,
               attacker,
+              contextAction: {
+                type: 'contextAction',
+                value: 'TOO_SLOW_TO_ATTACK',
+              },
             },
             summaries: {
               category: 'PROTOCOL_1',
               en: {
                 title: 'Fren Pet',
                 default: `[[user]] [[contextAction]] with [[attacker]]`,
-                variables: {
-                  contextAction: {
-                    type: 'contextAction',
-                    value: 'too slow to attack',
-                  },
-                },
               },
             },
           };
@@ -509,18 +483,16 @@ export const generate = (transaction: Transaction): Transaction => {
               winner,
               loser,
               scoresWonFormatted,
+              contextAction: {
+                type: 'contextAction',
+                value: 'ATTACKED',
+              },
             },
             summaries: {
               category: 'PROTOCOL_1',
               en: {
                 title: 'Fren Pet',
                 default: `[[user]] [[contextAction]] with [[attacker]] attacking [[loser]] and ${winOrLose} ${scoresWonFormatted} points`,
-                variables: {
-                  contextAction: {
-                    type: 'contextAction',
-                    value: 'attacked',
-                  },
-                },
               },
             },
           };
@@ -530,18 +502,16 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             user,
             attacker,
+            contextAction: {
+              type: 'contextAction',
+              value: 'ATTACKED',
+            },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
               default: `[[user]] [[contextAction]] with [[attacker]]`,
-              variables: {
-                contextAction: {
-                  type: 'contextAction',
-                  value: 'attacked',
-                },
-              },
             },
           },
         };
@@ -577,18 +547,16 @@ export const generate = (transaction: Transaction): Transaction => {
           user,
           dead,
           killer,
+          contextAction: {
+            type: 'contextAction',
+            value: 'KILLED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Fren Pet',
             default: `[[user]] [[contextAction]] [[dead]] with [[killer]]`,
-            variables: {
-              contextAction: {
-                type: 'contextAction',
-                value: 'killed',
-              },
-            },
           },
         },
       };
@@ -613,23 +581,20 @@ export const generate = (transaction: Transaction): Transaction => {
         token: contracts.frenPetNFTTokenContract,
         tokenId: parsed.args[0].toString(),
       };
-      const gameId = parsed.args[1].toString();
       transaction.context = {
         variables: {
           user,
           pet,
+          contextAction: {
+            type: 'contextAction',
+            value: 'WHEEL_COMMITTED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Fren Pet',
             default: `[[user]] [[contextAction]] with [[pet]]`,
-            variables: {
-              contextAction: {
-                type: 'contextAction',
-                value: 'wheel committed',
-              },
-            },
           },
         },
       };
@@ -658,18 +623,16 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           user,
           pet,
+          contextAction: {
+            type: 'contextAction',
+            value: 'WHEEL_REVEALED',
+          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Fren Pet',
             default: `[[user]] [[contextAction]] with [[pet]]`,
-            variables: {
-              contextAction: {
-                type: 'contextAction',
-                value: 'wheel revealed',
-              },
-            },
           },
         },
       };
