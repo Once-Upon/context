@@ -2,11 +2,17 @@ import { Transaction } from '../../types';
 import { contextSummary } from '../../helpers/utils';
 import { detect, generate } from './{{camelCaseName}}';
 import {{camelCaseName}}{{txHashShorten}} from '../../test/transactions/{{camelCaseName}}-{{txHashShorten}}.json';
+import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 
 describe('{{pascalCaseName}}', () => {
   it('Should detect {{pascalCaseName}} transaction', () => {
     const {{camelCaseName}}1 = detect({{camelCaseName}}{{txHashShorten}} as Transaction);
     expect({{camelCaseName}}1).toBe(true);
+  });
+
+  it('Should not detect as {{pascalCaseName}}', () => {
+    const {{camelCaseName}}1 = detect(catchall0xc35c01ac as Transaction);
+    expect({{camelCaseName}}1).toBe(false);
   });
 
   it('Should generate {{pascalCaseName}} context', () => {
