@@ -1,4 +1,5 @@
 import { Transaction } from '../../types';
+import { contextSummary } from '../../helpers/utils';
 import { detect, generate } from './{{camelCaseName}}';
 import {{camelCaseName}}{{txHashShorten}} from '../test/transactions/{{camelCaseName}}-{{txHashShorten}}.json';
 
@@ -9,5 +10,8 @@ describe('{{pascalCaseName}}', () => {
   });
 
   it('Should generate {{pascalCaseName}} context', () => {
+    const {{camelCaseName}}1 = generate({{camelCaseName}}{{txHashShorten}} as Transaction);
+    const desc1 = contextSummary({{camelCaseName}}1.context);
+    expect(desc1).toBe('YOUR_DESCRIPTION_HERE');
   });
 });
