@@ -16,6 +16,16 @@ export const detect = (transaction: Transaction): boolean => {
       return false;
     }
 
+    // NOTE: For some reason there are many transactions on mainnet to the
+    // address of the EAS contract on OP stack chains (maybe misconfigured dApps?),
+    // so we filter out those
+    if (
+      transaction.to === '0x4200000000000000000000000000000000000021' &&
+      transaction.chainId === 1
+    ) {
+      return false;
+    }
+
     // decode input
     let decoded: TransactionDescription;
     try {
