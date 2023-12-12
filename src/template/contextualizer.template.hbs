@@ -1,4 +1,5 @@
 import { Transaction } from '../../types';
+import {{pascalCaseName}} from './abis/{{pascalCaseName}}.json';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const is{{pascalCaseName}} = detect(transaction);
