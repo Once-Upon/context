@@ -94,5 +94,6 @@ export const makeContextualize = (
         return result;
       }
     }
+    return transaction;
   };
 };
