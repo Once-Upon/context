@@ -34,7 +34,7 @@ export function registerCreateContextualizerCommand() {
           src: `constants.ts`,
         },
         abis: {
-          template: 'abi/abi.template.hbs',
+          template: 'abis/abi.template.hbs',
           src: `abis/${camelToCapitalCase(name)}.json`,
         },
       };
