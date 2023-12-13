@@ -56,8 +56,8 @@ export const detect = (transaction: Transaction): boolean => {
 };
 
 const pluralize = (word: string, n: number): string => {
-  return `${word}${n !== 1 ? "s" : ""}`;
-}
+  return `${word}${n !== 1 ? 's' : ''}`;
+};
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
@@ -75,8 +75,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           schema: {
-            type: 'emphasis',
+            type: 'string',
             value: schema,
+            emphasis: true,
           },
           recipient: {
             type: 'address',
@@ -115,8 +116,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: attester,
           },
           schema: {
-            type: 'emphasis',
+            type: 'string',
             value: schema,
+            emphasis: true,
           },
           recipient: {
             type: 'address',
@@ -151,12 +153,14 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           schemas: {
-            type: 'emphasis',
+            type: 'string',
             value: schemas.toString(),
+            emphasis: true,
           },
           count: {
-            type: 'emphasis',
+            type: 'string',
             value: count.toString(),
+            emphasis: true,
           },
           attested: {
             type: 'contextAction',
@@ -167,8 +171,10 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default:
-              `[[from]] [[attested]] [[count]] ${pluralize("time", count)} with [[schemas]] ${pluralize("schema", schemas)}`,
+            default: `[[from]] [[attested]] [[count]] ${pluralize(
+              'time',
+              count,
+            )} with [[schemas]] ${pluralize('schema', schemas)}`,
           },
         },
       };
@@ -189,15 +195,18 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           attesters: {
-            type: 'emphasis',
+            type: 'string',
             value: attesters.toString(),
+            emphasis: true,
           },
           schemas: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: schemas.toString(),
           },
           count: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: count.toString(),
           },
           attested: {
@@ -209,8 +218,16 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default:
-              `[[attesters]] ${pluralize("account", attesters)} [[attested]] [[count]] ${pluralize("time", count)} with [[schemas]] ${pluralize("schema", schemas)} by delegation via [[from]]`,
+            default: `[[attesters]] ${pluralize(
+              'account',
+              attesters,
+            )} [[attested]] [[count]] ${pluralize(
+              'time',
+              count,
+            )} with [[schemas]] ${pluralize(
+              'schema',
+              schemas,
+            )} by delegation via [[from]]`,
           },
         },
       };
@@ -227,7 +244,8 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           schema: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: schema,
           },
           revoked: {
@@ -257,7 +275,8 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           schema: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: schema,
           },
           revoker: {
@@ -292,11 +311,13 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           schema: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: schemas.toString(),
           },
           count: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: count.toString(),
           },
           revoked: {
@@ -308,8 +329,10 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default:
-              `[[from]] [[revoked]] [[count]] ${pluralize("attestation", count)} with [[schemas]] ${pluralize("schema", schemas)}`,
+            default: `[[from]] [[revoked]] [[count]] ${pluralize(
+              'attestation',
+              count,
+            )} with [[schemas]] ${pluralize('schema', schemas)}`,
           },
         },
       };
@@ -330,11 +353,13 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           schemas: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: schemas.toString(),
           },
           count: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: count.toString(),
           },
           revokers: {
@@ -350,8 +375,16 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default:
-              `[[revokers]] ${pluralize("account", revokers)} [[revoked]] [[count]] ${pluralize("attestation", count)} with [[schemas]] ${pluralize("schema", schemas)} by delegation via [[from]]`,
+            default: `[[revokers]] ${pluralize(
+              'account',
+              revokers,
+            )} [[revoked]] [[count]] ${pluralize(
+              'attestation',
+              count,
+            )} with [[schemas]] ${pluralize(
+              'schema',
+              schemas,
+            )} by delegation via [[from]]`,
           },
         },
       };
@@ -390,7 +423,8 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           count: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: data.length.toString(),
           },
           timestamped: {
@@ -441,7 +475,8 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           count: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: data.length.toString(),
           },
           revoked: {

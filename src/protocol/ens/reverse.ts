@@ -52,7 +52,8 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           name: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: name,
           },
           reversed: {

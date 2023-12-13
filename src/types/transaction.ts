@@ -108,7 +108,13 @@ export type TransactionContextType = {
 
 export type ContextSummaryVariableType =
   | {
-      type: 'address' | 'transaction' | 'eth' | 'farcasterID' | 'crosschain';
+      type:
+        | 'address'
+        | 'transaction'
+        | 'eth'
+        | 'farcasterID'
+        | 'crosschain'
+        | 'string';
       value: string;
       indexed?: boolean;
       emphasis?: boolean;

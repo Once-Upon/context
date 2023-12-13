@@ -68,11 +68,13 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           name: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: `${name}.eth`,
           },
           duration: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: `${durationInDays} days`,
           },
           registered: {
@@ -128,11 +130,13 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           name: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: `${name}.eth`,
           },
           duration: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: `${durationInDays} days`,
           },
           renewed: {
