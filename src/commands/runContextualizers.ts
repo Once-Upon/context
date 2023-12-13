@@ -22,21 +22,6 @@ export function registerRunContextualizersCommand() {
       try {
         console.log(`Running contextualizers`);
         transactions.forEach((transaction) => {
-          // run heuristic contextualizer
-          try {
-            console.log(`Running heuristic contextualizer`);
-            const txResult = heuristicContextualizer.contextualize(transaction);
-            if (!txResult.from) {
-              console.error(
-                `No matching heuristic contextualizers on ${transaction.hash}`,
-              );
-            }
-          } catch (err) {
-            console.error(
-              `failed to run heuristic contextualizer on ${transaction.hash}: `,
-              err,
-            );
-          }
           // run protocol contextualizer
           console.log(`Running protocol contextualizer`);
           try {
@@ -49,6 +34,22 @@ export function registerRunContextualizersCommand() {
           } catch (err) {
             console.error(
               `failed to run protocol contextualizer on ${transaction.hash}: `,
+              err,
+            );
+          }
+
+          // run heuristic contextualizer
+          try {
+            console.log(`Running heuristic contextualizer`);
+            const txResult = heuristicContextualizer.contextualize(transaction);
+            if (!txResult.from) {
+              console.error(
+                `No matching heuristic contextualizers on ${transaction.hash}`,
+              );
+            }
+          } catch (err) {
+            console.error(
+              `failed to run heuristic contextualizer on ${transaction.hash}: `,
               err,
             );
           }
