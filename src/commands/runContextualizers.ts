@@ -22,35 +22,35 @@ export function registerRunContextualizersCommand() {
       try {
         console.log(`Running contextualizers`);
         transactions.forEach((transaction) => {
-          // run heuristic contextualizers
-          for (const [contextualizerName, contextualizer] of Object.entries(
-            heuristicContextualizer.children,
-          )) {
-            console.log(`Running ${contextualizerName}`);
-            try {
-              const txResult = contextualizer(transaction);
-              if (!txResult.from) {
-                console.error(
-                  `failed to run ${contextualizerName} on ${transaction.hash}`,
-                );
-              }
-            } catch (err) {
-              console.error(err);
-            }
-          }
-          // run protocol contextualizers
-          for (const [contextualizerName, { contextualize }] of Object.entries(
-            protocolContextualizer.children,
-          )) {
-            console.log(`Running ${contextualizerName}`);
-            try {
-              contextualize(transaction);
-            } catch (err) {
+          // run heuristic contextualizer
+          try {
+            console.log(`Running heuristic contextualizer`);
+            const txResult = heuristicContextualizer.contextualize(transaction);
+            if (!txResult.from) {
               console.error(
-                `failed to run ${contextualizerName} on ${transaction.hash}: `,
-                err,
+                `No matching heuristic contextualizers on ${transaction.hash}`,
               );
             }
+          } catch (err) {
+            console.error(
+              `failed to run heuristic contextualizer on ${transaction.hash}: `,
+              err,
+            );
+          }
+          // run protocol contextualizer
+          console.log(`Running protocol contextualizer`);
+          try {
+            const txResult = protocolContextualizer.contextualize(transaction);
+            if (!txResult.from) {
+              console.error(
+                `No matching protocol contextualizer on ${transaction.hash}`,
+              );
+            }
+          } catch (err) {
+            console.error(
+              `failed to run protocol contextualizer on ${transaction.hash}: `,
+              err,
+            );
           }
         });
 
