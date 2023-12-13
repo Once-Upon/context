@@ -138,6 +138,11 @@ export type ContextSummaryVariableType =
       value: number;
       indexed?: boolean;
       emphasis?: boolean;
+    }
+  | {
+      type: 'link' | 'schemaID';
+      value: string;
+      link: string;
     };
 
 export type ContextVariable = {

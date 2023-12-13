@@ -15,6 +15,8 @@ export const SCHEMA_REGISTRY_ADDRESSES = [
   '0xd2cdf46556543316e7d34e8edc4624e2bb95e3b6', // Scroll
 ];
 
+export const EAS_LINK = 'https://easscan.org/schema/view/';
+
 export const ABIs = {
   EAS,
   SchemaRegistry,

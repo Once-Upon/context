@@ -1,7 +1,7 @@
 import { TransactionDescription } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { decodeTransactionInput } from '../../helpers/utils';
-import { ABIs } from './constants';
+import { ABIs, EAS_LINK } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isBundler = detect(transaction);
@@ -75,9 +75,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           schema: {
-            type: 'string',
+            type: 'schemaID',
             value: schema,
-            emphasis: true,
+            link: `${EAS_LINK}/${schema}`,
           },
           recipient: {
             type: 'address',
@@ -116,9 +116,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: attester,
           },
           schema: {
-            type: 'string',
+            type: 'schemaID',
             value: schema,
-            emphasis: true,
+            link: `${EAS_LINK}/${schema}`,
           },
           recipient: {
             type: 'address',
@@ -244,9 +244,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           schema: {
-            type: 'string',
-            emphasis: true,
+            type: 'schemaID',
             value: schema,
+            link: `${EAS_LINK}/${schema}`,
           },
           revoked: {
             type: 'contextAction',
@@ -275,9 +275,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           schema: {
-            type: 'string',
-            emphasis: true,
+            type: 'schemaID',
             value: schema,
+            link: `${EAS_LINK}/${schema}`,
           },
           revoker: {
             type: 'address',
@@ -311,9 +311,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           schema: {
-            type: 'string',
-            emphasis: true,
+            type: 'schemaID',
             value: schemas.toString(),
+            link: `${EAS_LINK}/${schemas.toString()}`,
           },
           count: {
             type: 'string',
