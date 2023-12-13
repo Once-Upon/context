@@ -140,14 +140,8 @@ export type ContextSummaryVariableType =
       emphasis?: boolean;
     }
   | {
-      type: 'link';
+      type: 'link' | 'schemaID';
       value: string;
-      link: string;
-    }
-  | {
-      type: 'schemaID';
-      value: string;
-      linkText: string;
       link: string;
     };
 
