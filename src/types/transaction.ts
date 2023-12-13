@@ -116,20 +116,24 @@ export type ContextSummaryVariableType =
         | 'farcasterID'
         | 'crosschain';
       value: string;
+      indexed?: boolean;
     }
   | {
       type: 'contextAction';
       value: ContextAction;
+      indexed?: boolean;
     }
   | {
       type: 'eth' | 'erc20' | 'erc721' | 'erc1155';
       tokenId?: string;
       token: string;
       value?: string;
+      indexed?: boolean;
     }
   | {
       type: 'chainID';
       value: number;
+      indexed?: boolean;
     };
 
 export type ContextVariable = {
