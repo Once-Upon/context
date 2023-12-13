@@ -90,7 +90,7 @@ export const makeContextualize = (
   return (transaction: Transaction): Transaction => {
     for (const childContextualizer of Object.values(children)) {
       const result = childContextualizer(transaction);
-      if (result.context?.summaries?.category) {
+      if (result.context?.summaries?.en.title) {
         return result;
       }
     }
