@@ -109,27 +109,35 @@ export type TransactionContextType = {
 export type ContextSummaryVariableType =
   | {
       type:
-        | 'emphasis'
         | 'address'
         | 'transaction'
         | 'eth'
         | 'farcasterID'
-        | 'crosschain';
+        | 'crosschain'
+        | 'string';
       value: string;
+      indexed?: boolean;
+      emphasis?: boolean;
     }
   | {
       type: 'contextAction';
       value: ContextAction;
+      indexed?: boolean;
+      emphasis?: boolean;
     }
   | {
       type: 'eth' | 'erc20' | 'erc721' | 'erc1155';
       tokenId?: string;
       token: string;
       value?: string;
+      indexed?: boolean;
+      emphasis?: boolean;
     }
   | {
-      type: 'chainID';
+      type: 'chainID' | 'number';
       value: number;
+      indexed?: boolean;
+      emphasis?: boolean;
     };
 
 export type ContextVariable = {

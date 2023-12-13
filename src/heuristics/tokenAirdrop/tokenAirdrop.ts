@@ -97,8 +97,9 @@ function generate(transaction: Transaction): Transaction {
               value: recipients[0],
             }
           : {
-              type: 'emphasis',
+              type: 'string',
               value: `${recipients.length} Users`,
+              emphasis: true,
             },
       token:
         transaction.assetTransfers.length === 1
@@ -109,8 +110,9 @@ function generate(transaction: Transaction): Transaction {
                 value: firstAssetTransfer.asset,
               }
             : {
-                type: 'emphasis',
+                type: 'string',
                 value: `${transaction.assetTransfers.length} Assets`,
+                emphasis: true,
               },
       sender:
         senders.length === 1
@@ -119,8 +121,9 @@ function generate(transaction: Transaction): Transaction {
               value: senders[0],
             }
           : {
-              type: 'emphasis',
+              type: 'string',
               value: `${senders.length} Senders`,
+              emphasis: true,
             },
       receivedAirdrop: {
         type: 'contextAction',

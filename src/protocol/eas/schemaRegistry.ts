@@ -86,8 +86,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           id: {
-            type: 'emphasis',
+            type: 'string',
             value: id,
+            emphasis: true,
           },
           registered: {
             type: 'contextAction',

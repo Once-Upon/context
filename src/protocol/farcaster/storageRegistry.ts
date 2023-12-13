@@ -57,7 +57,8 @@ export const generate = (transaction: Transaction): Transaction => {
             value: decoded.args[0].toString(),
           },
           units: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: units.toString(),
           },
         },
@@ -90,11 +91,13 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           fids: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: fids.toString(),
           },
           units: {
-            type: 'emphasis',
+            type: 'string',
+            emphasis: true,
             value: units.toString(),
           },
         },
