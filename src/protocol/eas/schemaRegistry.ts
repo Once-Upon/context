@@ -1,7 +1,7 @@
 import { Interface, TransactionDescription } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { decodeTransactionInput } from '../../helpers/utils';
-import { ABIs, EAS_LINK } from './constants';
+import { ABIs, EAS_LINKS } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isBundler = detect(transaction);
@@ -88,7 +88,7 @@ export const generate = (transaction: Transaction): Transaction => {
           id: {
             type: 'schemaID',
             value: id,
-            link: `${EAS_LINK}/${id}`,
+            link: `${EAS_LINKS[transaction.chainId]}/${id}`,
           },
           registered: {
             type: 'contextAction',

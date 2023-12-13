@@ -15,7 +15,12 @@ export const SCHEMA_REGISTRY_ADDRESSES = [
   '0xd2cdf46556543316e7d34e8edc4624e2bb95e3b6', // Scroll
 ];
 
-export const EAS_LINK = 'https://easscan.org/schema/view';
+export const EAS_LINKS = {
+  1: 'https://easscan.org/schema/view',
+  10: 'https://optimism.easscan.org/schema/view',
+  8453: 'https://base.easscan.org/schema/view',
+  // TODO: Add the Goerli and Sepolia links
+};
 
 export const ABIs = {
   EAS,

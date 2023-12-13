@@ -1,7 +1,7 @@
 import { TransactionDescription } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { decodeTransactionInput } from '../../helpers/utils';
-import { ABIs, EAS_LINK } from './constants';
+import { ABIs, EAS_LINKS } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isBundler = detect(transaction);
@@ -77,7 +77,7 @@ export const generate = (transaction: Transaction): Transaction => {
           schema: {
             type: 'schemaID',
             value: schema,
-            link: `${EAS_LINK}/${schema}`,
+            link: `${EAS_LINKS[transaction.chainId]}/${schema}`,
           },
           recipient: {
             type: 'address',
@@ -118,7 +118,7 @@ export const generate = (transaction: Transaction): Transaction => {
           schema: {
             type: 'schemaID',
             value: schema,
-            link: `${EAS_LINK}/${schema}`,
+            link: `${EAS_LINKS[transaction.chainId]}/${schema}`,
           },
           recipient: {
             type: 'address',
@@ -246,7 +246,7 @@ export const generate = (transaction: Transaction): Transaction => {
           schema: {
             type: 'schemaID',
             value: schema,
-            link: `${EAS_LINK}/${schema}`,
+            link: `${EAS_LINKS[transaction.chainId]}/${schema}`,
           },
           revoked: {
             type: 'contextAction',
@@ -277,7 +277,7 @@ export const generate = (transaction: Transaction): Transaction => {
           schema: {
             type: 'schemaID',
             value: schema,
-            link: `${EAS_LINK}/${schema}`,
+            link: `${EAS_LINKS[transaction.chainId]}/${schema}`,
           },
           revoker: {
             type: 'address',
@@ -313,7 +313,7 @@ export const generate = (transaction: Transaction): Transaction => {
           schema: {
             type: 'schemaID',
             value: schemas.toString(),
-            link: `${EAS_LINK}/${schemas.toString()}`,
+            link: `${EAS_LINKS[transaction.chainId]}/${schemas.toString()}`,
           },
           count: {
             type: 'string',
