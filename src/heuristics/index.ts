@@ -16,6 +16,7 @@ import { erc1155SaleContextualizer } from './erc1155Sale';
 const children = {
   cancelPendingTransactionContextualizer,
   contractDeploymentContextualizer,
+  tokenMintContextualizer,
   erc20SwapContextualizer,
   erc721PurchaseContextualizer,
   erc1155PurchaseContextualizer,
@@ -23,7 +24,6 @@ const children = {
   idmContextualizer,
   tokenAirdropContextualizer,
   tokenApprovalContextualizer,
-  tokenMintContextualizer,
   tokenTransferContextualizer,
   erc721SaleContextualizer,
   erc1155SaleContextualizer,
