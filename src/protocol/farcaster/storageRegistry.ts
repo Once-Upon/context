@@ -1,6 +1,7 @@
-import { Interface } from 'ethers/lib/utils';
-import { Transaction } from '../../types';
+import { Abi } from 'viem';
+import { Transaction, HexadecimalString } from '../../types';
 import { FarcasterContracts } from './constants';
+import { decodeTransactionInputViem } from '../../helpers/utils';
 
 // Contextualizer for the StorageRegistry contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IStorageRegistry.sol
@@ -19,13 +20,12 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const iface = new Interface(FarcasterContracts.StorageRegistry.abi);
-    const decoded = iface.parseTransaction({
-      data: transaction.input,
-      value: transaction.value,
-    });
+    const decoded = decodeTransactionInputViem(
+      transaction.input as HexadecimalString,
+      FarcasterContracts.StorageRegistry.abi as Abi,
+    );
 
-    return ['rent', 'batchRent'].includes(decoded.name);
+    return ['rent', 'batchRent'].includes(decoded.functionName);
   } catch (_) {
     return false;
   }
@@ -33,15 +33,14 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const iface = new Interface(FarcasterContracts.StorageRegistry.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  const decoded = decodeTransactionInputViem(
+    transaction.input as HexadecimalString,
+    FarcasterContracts.StorageRegistry.abi as Abi,
+  );
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'rent': {
-      const units = decoded.args[1];
+      const units = decoded.args[1] as number;
       transaction.context = {
         variables: {
           rented: {
@@ -76,10 +75,10 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'batchRent': {
-      const fids = decoded.args[0].length;
-      const units = decoded.args[1]
-        .reduce((acc, curr) => acc.add(curr))
-        .toString();
+      const fidsArg = decoded.args[0] as bigint[];
+      const fids = fidsArg.length;
+      const unitsArg = decoded.args[1] as bigint[];
+      const units = unitsArg.reduce((acc, curr) => acc + curr);
       transaction.context = {
         variables: {
           rented: {
