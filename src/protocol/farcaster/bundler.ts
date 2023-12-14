@@ -1,6 +1,12 @@
+import { Abi } from 'viem';
 import { Interface } from 'ethers/lib/utils';
-import { ContextSummaryVariableType, Transaction } from '../../types';
+import {
+  ContextSummaryVariableType,
+  HexadecimalString,
+  Transaction,
+} from '../../types';
 import { FarcasterContracts } from './constants';
+import { decodeTransactionInputViem } from '../../helpers/utils';
 
 // Contextualizer for the Bundler contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IBundler.sol
@@ -20,13 +26,12 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const iface = new Interface(FarcasterContracts.Bundler.abi);
-    const decoded = iface.parseTransaction({
-      data: transaction.input,
-      value: transaction.value,
-    });
+    const decoded = decodeTransactionInputViem(
+      transaction.input as HexadecimalString,
+      FarcasterContracts.Bundler.abi as Abi,
+    );
 
-    return ['register'].includes(decoded.name);
+    return ['register'].includes(decoded.functionName);
   } catch (_) {
     return false;
   }
@@ -34,18 +39,21 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const iface = new Interface(FarcasterContracts.Bundler.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  const decoded = decodeTransactionInputViem(
+    transaction.input as HexadecimalString,
+    FarcasterContracts.Bundler.abi as Abi,
+  );
+
+  const registerParams = decoded.args[0] as {
+    to: string;
+  };
 
   const caller = transaction.from;
-  const owner = decoded.args.registerParams.to;
+  const owner = registerParams.to;
 
   const callerIsOwner = owner.toLowerCase() === caller.toLowerCase();
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'register': {
       // Capture cost to register
       const cost: ContextSummaryVariableType = {

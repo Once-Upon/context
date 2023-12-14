@@ -83,7 +83,7 @@ export const generate = (transaction: Transaction): Transaction => {
         }
       }
 
-      const args = decoded.args as string[];
+      const code = decoded.args[0] as string;
       transaction.context = {
         variables: {
           from: {
@@ -99,7 +99,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           schema: {
             type: 'code',
-            value: args[0],
+            value: code,
           },
           registered: {
             type: 'contextAction',
