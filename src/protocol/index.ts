@@ -6,6 +6,7 @@ import { superchainFaucetContextualizer } from './superchainFaucet';
 import { farcasterContextualizer } from './farcaster';
 import { leeroyContextualizer } from './leeroy';
 import { frenPetContextualizer } from './frenpet';
+import { cryptopunksContextualizer } from './cryptopunks';
 
 const children = {
   wethContextualizer,
@@ -15,6 +16,7 @@ const children = {
   farcasterContextualizer,
   leeroyContextualizer,
   frenPetContextualizer,
+  cryptopunksContextualizer,
 };
 
 const protocolContextualizers = Object.fromEntries(
