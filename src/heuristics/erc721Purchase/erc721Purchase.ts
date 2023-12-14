@@ -109,7 +109,7 @@ export function generate(transaction: Transaction): Transaction {
                 type: 'number',
                 value: receivedNfts.length,
                 emphasis: true,
-                units: 'NFTS',
+                units: 'NFTs',
               },
       price:
         totalPayments.length > 1

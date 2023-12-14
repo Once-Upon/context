@@ -123,12 +123,14 @@ export type ContextSummaryVariableType =
   | {
       type: 'code';
       value: string;
+      units?: string;
     }
   | {
       type: 'contextAction';
       value: ContextAction;
       indexed?: boolean;
       emphasis?: boolean;
+      units?: string;
     }
   | {
       type: 'eth' | 'erc20' | 'erc721' | 'erc1155';
@@ -137,6 +139,7 @@ export type ContextSummaryVariableType =
       value?: string;
       indexed?: boolean;
       emphasis?: boolean;
+      units?: string;
     }
   | {
       type: 'chainID' | 'number';
@@ -149,6 +152,7 @@ export type ContextSummaryVariableType =
       type: 'link' | 'schemaID';
       value: string;
       link: string;
+      units?: string;
     };
 
 export type ContextVariable = {
