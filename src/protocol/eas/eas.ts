@@ -48,7 +48,7 @@ export const detect = (transaction: Transaction): boolean => {
       'timestamp',
       'multiTimestamp',
       'revokeOffchain',
-      'multiRevokeOffChain',
+      'multiRevokeOffchain',
     ];
 
     return handledFunctions.includes(decoded.functionName);
