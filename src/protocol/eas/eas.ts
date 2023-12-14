@@ -1,4 +1,5 @@
 import { Hex } from 'viem';
+import { ExtractAbiFunctionNames } from 'abitype';
 import { Transaction } from '../../types';
 import { decodeTransactionInputViem } from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
@@ -27,18 +28,15 @@ export const detect = (transaction: Transaction): boolean => {
     }
 
     // decode input
-    let decoded;
+    let decoded: ReturnType<typeof decodeTransactionInputViem<typeof ABIs.EAS>>;
     try {
-      decoded = decodeTransactionInputViem(
-        transaction.input as Hex,
-        ABIs.EAS,
-      );
+      decoded = decodeTransactionInputViem(transaction.input as Hex, ABIs.EAS);
     } catch (err) {
       return false;
     }
 
     if (!decoded || !decoded.functionName) return false;
-    return [
+    const handledFunctions: ExtractAbiFunctionNames<typeof ABIs.EAS>[] = [
       'attest',
       'attestByDelegation',
       'multiAttest',
@@ -51,7 +49,9 @@ export const detect = (transaction: Transaction): boolean => {
       'multiTimestamp',
       'revokeOffchain',
       'multiRevokeOffChain',
-    ].includes(decoded.functionName);
+    ];
+
+    return handledFunctions.includes(decoded.functionName);
   } catch (err) {
     console.error('Error in detect function:', err);
     return false;
