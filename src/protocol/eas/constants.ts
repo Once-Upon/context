@@ -22,8 +22,9 @@ export const EAS_LINKS = {
   42161: 'https://arbitrum.easscan.org/schema/view',
   // Testnets
   11155111: 'https://sepolia.easscan.org/schema/view',
-  420: 'https://arbitrum.easscan.org/schema/view',
+  420: 'https://optimism-goerli-bedrock.easscan.org/schema/view',
   84531: 'https://base-goerli.easscan.org/schema/view',
+  11155420: 'https://optimism-sepolia.easscan.org/schema/view',
 };
 
 export const ABIs = {
