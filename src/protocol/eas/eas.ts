@@ -77,7 +77,9 @@ export const generate = (transaction: Transaction): Transaction => {
           schema: {
             type: 'schemaID',
             value: schema,
-            link: `${EAS_LINKS[transaction.chainId]}/${schema}`,
+            link: EAS_LINKS[transaction.chainId]
+              ? `${EAS_LINKS[transaction.chainId]}/${schema}`
+              : '',
           },
           recipient: {
             type: 'address',
@@ -118,7 +120,9 @@ export const generate = (transaction: Transaction): Transaction => {
           schema: {
             type: 'schemaID',
             value: schema,
-            link: `${EAS_LINKS[transaction.chainId]}/${schema}`,
+            link: EAS_LINKS[transaction.chainId]
+              ? `${EAS_LINKS[transaction.chainId]}/${schema}`
+              : '',
           },
           recipient: {
             type: 'address',
@@ -246,7 +250,9 @@ export const generate = (transaction: Transaction): Transaction => {
           schema: {
             type: 'schemaID',
             value: schema,
-            link: `${EAS_LINKS[transaction.chainId]}/${schema}`,
+            link: EAS_LINKS[transaction.chainId]
+              ? `${EAS_LINKS[transaction.chainId]}/${schema}`
+              : '',
           },
           revoked: {
             type: 'contextAction',
@@ -277,7 +283,9 @@ export const generate = (transaction: Transaction): Transaction => {
           schema: {
             type: 'schemaID',
             value: schema,
-            link: `${EAS_LINKS[transaction.chainId]}/${schema}`,
+            link: EAS_LINKS[transaction.chainId]
+              ? `${EAS_LINKS[transaction.chainId]}/${schema}`
+              : '',
           },
           revoker: {
             type: 'address',
@@ -313,7 +321,9 @@ export const generate = (transaction: Transaction): Transaction => {
           schema: {
             type: 'schemaID',
             value: schemas.toString(),
-            link: `${EAS_LINKS[transaction.chainId]}/${schemas.toString()}`,
+            link: EAS_LINKS[transaction.chainId]
+              ? `${EAS_LINKS[transaction.chainId]}/${schemas.toString()}`
+              : '',
           },
           count: {
             type: 'string',
