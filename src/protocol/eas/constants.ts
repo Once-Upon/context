@@ -1,4 +1,4 @@
-import EAS from './abis/EAS.json';
+import EAS from './abis/EAS';
 import SchemaRegistry from './abis/SchemaRegistry.json';
 
 export const EAS_ADDRESSES = [
