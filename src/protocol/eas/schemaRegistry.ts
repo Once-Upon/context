@@ -92,6 +92,10 @@ export const generate = (transaction: Transaction): Transaction => {
               ? `${EAS_LINKS[transaction.chainId]}/${id}`
               : '',
           },
+          schema: {
+            type: 'code',
+            value: decoded.args[0],
+          },
           registered: {
             type: 'contextAction',
             value: 'REGISTERED',
@@ -102,6 +106,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default: '[[from]] [[registered]] new schema with id [[id]]',
+            long: '[[from]] [[registered]] new schema with id [[id]] and schema [[schema]]',
           },
         },
       };

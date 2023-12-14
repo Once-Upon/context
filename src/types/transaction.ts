@@ -120,6 +120,10 @@ export type ContextSummaryVariableType =
       emphasis?: boolean;
     }
   | {
+      type: 'code';
+      value: string;
+    }
+  | {
       type: 'contextAction';
       value: ContextAction;
       indexed?: boolean;
@@ -171,6 +175,7 @@ export type ContextSummaryType = {
     title: string;
     default: string;
     variables?: ContextVariable;
+    long?: string;
   };
 };
 
