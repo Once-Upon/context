@@ -1,21 +1,15 @@
+import RegistrarV3Abi from './abis/RegistrarV3.json';
+import RegistrarV2Abi from './abis/RegistrarV2.json';
+
 export const ENS_CONTRACTS = {
   registrar: {
     '0x283af0b28c62c092c9727f1ee09c02ca627eb7f5': {
       id: 'RegistrarV2',
-      abi: [
-        'function commit(bytes32 commitment)',
-        'function register(string name, address owner, uint256 duration, bytes32 secret)',
-        'function registerWithConfig(string name, address owner, uint256 duration, bytes32 secret, address resolver, address addr)',
-        'function renew(string name, uint256 duration)',
-      ],
+      abi: RegistrarV2Abi,
     },
     '0x253553366da8546fc250f225fe3d25d0c782303b': {
       id: 'RegistrarV3',
-      abi: [
-        'function commit(bytes32 commitment)',
-        'function register(string name, address owner, uint256 duration, bytes32 secret, address resolver, bytes[] data, bool reverseRecord, uint16 ownerControlledFuses)',
-        'function renew(string name, uint256 duration)',
-      ],
+      abi: RegistrarV3Abi,
     },
   },
   reverse: {
