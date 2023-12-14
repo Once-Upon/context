@@ -1,10 +1,5 @@
 import { utils } from 'ethers';
-import {
-  formatEther,
-  decodeErrorResult,
-  Abi,
-  DecodeErrorResultReturnType,
-} from 'viem';
+import { formatEther, Abi, decodeFunctionData } from 'viem';
 import {
   TransactionContextType,
   Transaction,
@@ -48,11 +43,8 @@ export function decodeTransactionInput(
   return transactionDescriptor;
 }
 
-export function decodeTransactionInputViem(
-  input: HexadecimalString,
-  abi: Abi,
-): DecodeErrorResultReturnType {
-  const result = decodeErrorResult({
+export function decodeTransactionInputViem(input: HexadecimalString, abi: Abi) {
+  const result = decodeFunctionData({
     abi,
     data: input,
   });

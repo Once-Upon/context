@@ -1,6 +1,10 @@
+import { Abi } from 'viem';
 import { TransactionDescription } from 'ethers/lib/utils';
-import { Transaction } from '../../types';
-import { decodeTransactionInput } from '../../helpers/utils';
+import { HexadecimalString, Transaction } from '../../types';
+import {
+  decodeTransactionInput,
+  decodeTransactionInputViem,
+} from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -27,14 +31,20 @@ export const detect = (transaction: Transaction): boolean => {
     }
 
     // decode input
-    let decoded: TransactionDescription;
+    let decoded;
     try {
-      decoded = decodeTransactionInput(transaction.input, ABIs.EAS);
-    } catch (_) {
+      decoded = decodeTransactionInputViem(
+        transaction.input as HexadecimalString,
+        ABIs.EAS as Abi,
+      );
+
+      console.log('decoded', decoded);
+    } catch (err) {
+      console.error('error', err);
       return false;
     }
 
-    if (!decoded || !decoded.name) return false;
+    if (!decoded || !decoded.functionName) return false;
     return [
       'attest',
       'attestByDelegation',
@@ -48,7 +58,7 @@ export const detect = (transaction: Transaction): boolean => {
       'multiTimestamp',
       'revokeOffchain',
       'multiRevokeOffChain',
-    ].includes(decoded.name);
+    ].includes(decoded.functionName);
   } catch (err) {
     console.error('Error in detect function:', err);
     return false;
