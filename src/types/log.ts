@@ -26,3 +26,8 @@ export type LogDescription = {
   args: string[];
   topic: string;
 };
+
+export type EventLogTopics = [
+  signature: `0x${string}`,
+  ...args: `0x${string}`[],
+];

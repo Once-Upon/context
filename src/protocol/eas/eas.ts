@@ -1,5 +1,5 @@
-import { Abi } from 'viem';
-import { HexadecimalString, Transaction } from '../../types';
+import { Abi, Hex } from 'viem';
+import { Transaction } from '../../types';
 import { decodeTransactionInputViem } from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
@@ -30,7 +30,7 @@ export const detect = (transaction: Transaction): boolean => {
     let decoded;
     try {
       decoded = decodeTransactionInputViem(
-        transaction.input as HexadecimalString,
+        transaction.input as Hex,
         ABIs.EAS as Abi,
       );
     } catch (err) {
@@ -65,7 +65,7 @@ const pluralize = (word: string, n: number): string => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInputViem(
-    transaction.input as HexadecimalString,
+    transaction.input as Hex,
     ABIs.EAS as Abi,
   );
 

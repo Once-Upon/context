@@ -1,9 +1,5 @@
-import { Abi } from 'viem';
-import {
-  ContextSummaryVariableType,
-  Transaction,
-  HexadecimalString,
-} from '../../types';
+import { Abi, Hex } from 'viem';
+import { ContextSummaryVariableType, Transaction } from '../../types';
 import { WETH_ADDRESSES } from '../../helpers/constants';
 import { WETH_ABI } from './constants';
 import { decodeTransactionInputViem } from '../../helpers/utils';
@@ -31,7 +27,7 @@ export const detect = (transaction: Transaction): boolean => {
     let decode;
     try {
       decode = decodeTransactionInputViem(
-        transaction.input as HexadecimalString,
+        transaction.input as Hex,
         WETH_ABI as Abi,
       );
     } catch (e) {
@@ -56,7 +52,7 @@ export const detect = (transaction: Transaction): boolean => {
 export const generate = (transaction: Transaction): Transaction => {
   // decode input
   const decode = decodeTransactionInputViem(
-    transaction.input as HexadecimalString,
+    transaction.input as Hex,
     WETH_ABI as Abi,
   );
   switch (decode.functionName) {
@@ -88,7 +84,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'withdraw': {
       const decode = decodeTransactionInputViem(
-        transaction.input as HexadecimalString,
+        transaction.input as Hex,
         WETH_ABI as Abi,
       );
       const withdrawer: ContextSummaryVariableType = {

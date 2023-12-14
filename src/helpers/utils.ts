@@ -1,11 +1,17 @@
 import { utils } from 'ethers';
-import { formatEther, Abi, decodeFunctionData } from 'viem';
+import {
+  formatEther,
+  Abi,
+  decodeFunctionData,
+  decodeEventLog,
+  Hex,
+} from 'viem';
 import {
   TransactionContextType,
   Transaction,
   ContextSummaryVariableType,
   InterfaceAbi,
-  HexadecimalString,
+  EventLogTopics,
 } from '../types';
 
 const VALID_CHARS =
@@ -43,10 +49,20 @@ export function decodeTransactionInput(
   return transactionDescriptor;
 }
 
-export function decodeTransactionInputViem(input: HexadecimalString, abi: Abi) {
+export function decodeTransactionInputViem(input: Hex, abi: Abi) {
   const result = decodeFunctionData({
     abi,
     data: input,
+  });
+
+  return result;
+}
+
+export function decodeLog(abi: Abi, data: Hex, topics: EventLogTopics) {
+  const result = decodeEventLog({
+    abi,
+    data,
+    topics,
   });
 
   return result;
