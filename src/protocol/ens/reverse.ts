@@ -1,6 +1,7 @@
-import { Transaction } from '../../types';
+import { Abi } from 'viem';
+import { HexadecimalString, Transaction } from '../../types';
 import { ENS_CONTRACTS } from './constants';
-import { decodeTransactionInput } from '../../helpers/utils';
+import { decodeTransactionInputViem } from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isENS = detect(transaction);
@@ -15,12 +16,12 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const decode = decodeTransactionInput(
-      transaction.input,
-      ENS_CONTRACTS.reverse[transaction.to].abi,
+    const decode = decodeTransactionInputViem(
+      transaction.input as HexadecimalString,
+      ENS_CONTRACTS.reverse[transaction.to].abi as Abi,
     );
 
-    if (decode.name === 'setName') {
+    if (decode.functionName === 'setName') {
       return true;
     }
 
@@ -31,13 +32,13 @@ export const detect = (transaction: Transaction): boolean => {
 };
 
 export const generate = (transaction: Transaction): Transaction => {
-  const decode = decodeTransactionInput(
-    transaction.input,
-    ENS_CONTRACTS.reverse[transaction.to].abi,
+  const decode = decodeTransactionInputViem(
+    transaction.input as HexadecimalString,
+    ENS_CONTRACTS.reverse[transaction.to].abi as Abi,
   );
-  switch (decode.name) {
+  switch (decode.functionName) {
     case 'setName': {
-      const name = decode.args[0];
+      const name = decode.args[0] as string;
       transaction.context = {
         summaries: {
           category: 'IDENTITY',
