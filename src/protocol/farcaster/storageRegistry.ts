@@ -57,18 +57,17 @@ export const generate = (transaction: Transaction): Transaction => {
             value: decoded.args[0].toString(),
           },
           units: {
-            type: 'string',
+            type: 'number',
             emphasis: true,
-            value: units.toString(),
+            value: units,
+            units: `storage unit${units > 1 ? 's' : ''}`,
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
-            default: `[[caller]] [[rented]] [[units]] storage unit${
-              units > 1 ? 's' : ''
-            } for Farcaster ID [[fid]]`,
+            default: `[[caller]] [[rented]] [[units]] for Farcaster ID [[fid]]`,
           },
         },
       };
@@ -91,23 +90,23 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           fids: {
-            type: 'string',
+            type: 'number',
             emphasis: true,
-            value: fids.toString(),
+            value: fids,
+            units: `Farcaster ID${fids > 1 ? 's' : ''}`,
           },
           units: {
-            type: 'string',
+            type: 'number',
             emphasis: true,
-            value: units.toString(),
+            value: units,
+            units: `storage unit${units > 1 ? 's' : ''}`,
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
-            default: `[[caller]] [[rented]] [[units]] storage unit${
-              units > 1 ? 's' : ''
-            } for [[fids]] Farcaster ID${fids > 1 ? 's' : ''}`,
+            default: `[[caller]] [[rented]] [[units]] for [[fids]]`,
           },
         },
       };
