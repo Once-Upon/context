@@ -1,4 +1,4 @@
-import { Abi, Hex } from 'viem';
+import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { decodeTransactionInputViem } from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
@@ -31,7 +31,7 @@ export const detect = (transaction: Transaction): boolean => {
     try {
       decoded = decodeTransactionInputViem(
         transaction.input as Hex,
-        ABIs.EAS as Abi,
+        ABIs.EAS,
       );
     } catch (err) {
       return false;
@@ -66,7 +66,7 @@ const pluralize = (word: string, n: number): string => {
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInputViem(
     transaction.input as Hex,
-    ABIs.EAS as Abi,
+    ABIs.EAS,
   );
 
   switch (decoded.functionName) {
