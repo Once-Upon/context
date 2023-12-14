@@ -1,4 +1,10 @@
 import { utils } from 'ethers';
+import {
+  formatEther,
+  decodeErrorResult,
+  Abi,
+  DecodeErrorResultReturnType,
+} from 'viem';
 import { InterfaceAbi } from '../types/Abi';
 import {
   TransactionContextType,
@@ -41,6 +47,18 @@ export function decodeTransactionInput(
   return transactionDescriptor;
 }
 
+export function decodeTransactionInputViem(
+  input: `0x${string}`,
+  abi: Abi,
+): DecodeErrorResultReturnType {
+  const result = decodeErrorResult({
+    abi,
+    data: input,
+  });
+
+  return result;
+}
+
 export function contextSummary(context: TransactionContextType): string {
   const summaryTemplate = context.summaries.en.default;
   if (!summaryTemplate) return null;
@@ -72,7 +90,7 @@ function formatSection(section: ContextSummaryVariableType) {
   const varContext = section;
 
   if (varContext?.type === 'eth')
-    return `${utils.formatEther(varContext?.value)} ETH`;
+    return `${formatEther(BigInt(varContext?.value))} ETH`;
 
   if (varContext?.type === 'erc721' || varContext?.type === 'erc1155') {
     return `${varContext.token} #${varContext.tokenId}`;

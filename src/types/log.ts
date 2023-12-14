@@ -1,4 +1,4 @@
-import { ethers } from 'ethers';
+import { ParamType } from './transaction';
 
 export interface Log {
   address: string;
@@ -18,9 +18,7 @@ export type LogDescription = {
   fragment: {
     name: string;
     type: string;
-    inputs: ReadonlyArray<
-      Omit<ethers.utils.ParamType, '_isParamType' | 'format'>
-    >;
+    inputs: ReadonlyArray<ParamType>;
     anonymous: boolean;
   };
   name: string;
