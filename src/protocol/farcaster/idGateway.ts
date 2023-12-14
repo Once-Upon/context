@@ -1,6 +1,8 @@
+import { Abi } from 'viem';
 import { Interface } from 'ethers/lib/utils';
-import { Transaction } from '../../types';
+import { HexadecimalString, Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
+import { decodeTransactionInputViem } from '../../helpers/utils';
 
 // Contextualizer for the IdGateway contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IIdGateway.sol
@@ -19,13 +21,12 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const iface = new Interface(FarcasterContracts.IdGateway.abi);
-    const decoded = iface.parseTransaction({
-      data: transaction.input,
-      value: transaction.value,
-    });
+    const decoded = decodeTransactionInputViem(
+      transaction.input as HexadecimalString,
+      FarcasterContracts.IdGateway.abi as Abi,
+    );
 
-    return ['register', 'registerFor'].includes(decoded.name);
+    return ['register', 'registerFor'].includes(decoded.functionName);
   } catch (_) {
     return false;
   }
@@ -33,11 +34,10 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const iface = new Interface(FarcasterContracts.IdGateway.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  const decoded = decodeTransactionInputViem(
+    transaction.input as HexadecimalString,
+    FarcasterContracts.IdGateway.abi as Abi,
+  );
 
   // Capture FID
   let fid = '';
@@ -59,7 +59,7 @@ export const generate = (transaction: Transaction): Transaction => {
     }
   }
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'register': {
       transaction.context = {
         variables: {
@@ -96,7 +96,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           owner: {
             type: 'address',
-            value: decoded.args[0],
+            value: decoded.args[0] as string,
           },
           fid: {
             type: 'farcasterID',
