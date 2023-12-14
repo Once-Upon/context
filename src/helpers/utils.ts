@@ -49,13 +49,11 @@ export function decodeTransactionInput(
   return transactionDescriptor;
 }
 
-export function decodeTransactionInputViem(input: Hex, abi: Abi) {
-  const result = decodeFunctionData({
+export function decodeTransactionInputViem<TAbi extends Abi>(input: Hex, abi: TAbi) {
+  return decodeFunctionData({
     abi,
     data: input,
   });
-
-  return result;
 }
 
 export function decodeLog(abi: Abi, data: Hex, topics: EventLogTopics) {
