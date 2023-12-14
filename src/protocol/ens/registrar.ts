@@ -1,6 +1,7 @@
-import { Transaction } from '../../types';
+import { Abi } from 'viem';
+import { HexadecimalString, Transaction } from '../../types';
 import { ENS_CONTRACTS } from './constants';
-import { decodeTransactionInput } from '../../helpers/utils';
+import { decodeTransactionInputViem } from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isENS = detect(transaction);
@@ -13,24 +14,34 @@ export const detect = (transaction: Transaction): boolean => {
   if (!Object.keys(ENS_CONTRACTS.registrar).includes(transaction.to)) {
     return false;
   }
-
   try {
-    const decode = decodeTransactionInput(
-      transaction.input,
-      ENS_CONTRACTS.registrar[transaction.to].abi,
+    const decode = decodeTransactionInputViem(
+      transaction.input as HexadecimalString,
+      ENS_CONTRACTS.registrar[transaction.to].abi as Abi,
     );
 
+    console.log('decode', decode);
+
     if (
-      decode.name === 'registerWithConfig' ||
-      decode.name === 'register' ||
-      decode.name === 'commit' ||
-      decode.name === 'renew'
+      decode.functionName === 'registerWithConfig' ||
+      decode.functionName === 'register' ||
+      decode.functionName === 'commit' ||
+      decode.functionName === 'renew'
     ) {
       return true;
     }
 
     return false;
   } catch (e) {
+    console.log('decode error', e);
+
+    console.log(
+      'decode abi',
+      transaction.hash,
+      transaction.to,
+      ENS_CONTRACTS.registrar[transaction.to].abi,
+    );
+
     return false;
   }
 };
@@ -39,15 +50,15 @@ export const detect = (transaction: Transaction): boolean => {
 export const generate = (transaction: Transaction): Transaction => {
   let decode;
   try {
-    decode = decodeTransactionInput(
-      transaction.input,
-      ENS_CONTRACTS.registrar[transaction.to].abi,
+    decode = decodeTransactionInputViem(
+      transaction.input as HexadecimalString,
+      ENS_CONTRACTS.registrar[transaction.to].abi as Abi,
     );
   } catch (error) {
     return transaction;
   }
 
-  switch (decode.name) {
+  switch (decode.functionName) {
     case 'registerWithConfig':
     case 'register': {
       const name = decode.args[0];
