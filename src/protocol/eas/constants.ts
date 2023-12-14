@@ -19,7 +19,12 @@ export const EAS_LINKS = {
   1: 'https://easscan.org/schema/view',
   10: 'https://optimism.easscan.org/schema/view',
   8453: 'https://base.easscan.org/schema/view',
-  // TODO: Add the Goerli and Sepolia links
+  42161: 'https://arbitrum.easscan.org/schema/view',
+  // Testnets
+  11155111: 'https://sepolia.easscan.org/schema/view',
+  420: 'https://optimism-goerli-bedrock.easscan.org/schema/view',
+  84531: 'https://base-goerli.easscan.org/schema/view',
+  11155420: 'https://optimism-sepolia.easscan.org/schema/view',
 };
 
 export const ABIs = {
