@@ -1,9 +1,6 @@
 import { Abi } from 'viem';
 import { HexadecimalString, Transaction } from '../../types';
-import {
-  decodeTransactionInput,
-  decodeTransactionInputViem,
-} from '../../helpers/utils';
+import { decodeTransactionInputViem } from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -37,7 +34,6 @@ export const detect = (transaction: Transaction): boolean => {
         ABIs.EAS as Abi,
       );
     } catch (err) {
-      console.error('error', err);
       return false;
     }
 
@@ -68,12 +64,23 @@ const pluralize = (word: string, n: number): string => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const decoded = decodeTransactionInput(transaction.input, ABIs.EAS);
+  const decoded = decodeTransactionInputViem(
+    transaction.input as HexadecimalString,
+    ABIs.EAS as Abi,
+  );
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'attest': {
-      const { schema, data } = decoded.args[0];
-      const { recipient } = data;
+      const args = decoded.args as [
+        {
+          schema: string;
+          data: {
+            recipient: string;
+          };
+        },
+      ];
+      const schema = args[0]?.schema;
+      const recipient = args[0]?.data?.recipient;
 
       transaction.context = {
         variables: {
@@ -111,8 +118,18 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'attestByDelegation': {
-      const { schema, attester, data } = decoded.args[0];
-      const { recipient } = data;
+      const args = decoded.args as [
+        {
+          schema: string;
+          attester: string;
+          data: {
+            recipient: string;
+          };
+        },
+      ];
+      const schema = args[0]?.schema;
+      const attester = args[0]?.attester;
+      const recipient = args[0]?.data?.recipient;
 
       transaction.context = {
         variables: {
@@ -154,8 +171,20 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'multiAttest': {
-      const schemas = decoded.args[0].length;
-      const count = decoded.args[0].map((v) => v.data).flat().length;
+      const args = decoded.args as [
+        [
+          {
+            schema: string;
+            data: [
+              {
+                recipient: string;
+              },
+            ];
+          },
+        ],
+      ];
+      const schemas = args[0].length;
+      const count = args[0].map((v) => v.data).flat().length;
 
       transaction.context = {
         variables: {
@@ -193,11 +222,24 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'multiAttestByDelegation': {
-      const schemas = decoded.args[0].length;
+      const args = decoded.args as [
+        [
+          {
+            schema: string;
+            attester: string;
+            data: [
+              {
+                recipient: string;
+              },
+            ];
+          },
+        ],
+      ];
+      const schemas = args[0].length;
       const attesters = Array.from(
-        new Set(decoded.args[0].map((v) => v.attester)),
+        new Set(args[0].map((v) => v.attester)),
       ).length;
-      const count = decoded.args[0].map((v) => v.data).flat().length;
+      const count = args[0].map((v) => v.data).flat().length;
 
       transaction.context = {
         variables: {
@@ -246,7 +288,12 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'revoke': {
-      const { schema } = decoded.args[0];
+      const args = decoded.args as [
+        {
+          schema: string;
+        },
+      ];
+      const schema = args[0].schema;
 
       transaction.context = {
         variables: {
@@ -279,7 +326,13 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'revokeByDelegation': {
-      const { schema, revoker } = decoded.args[0];
+      const args = decoded.args as [
+        {
+          schema: string;
+          revoker: string;
+        },
+      ];
+      const { schema, revoker } = args[0];
 
       transaction.context = {
         variables: {
@@ -316,8 +369,20 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'multiRevoke': {
-      const schemas = decoded.args[0].length;
-      const count = decoded.args[0].map((v) => v.data).flat().length;
+      const args = decoded.args as [
+        [
+          {
+            schema: string;
+            data: [
+              {
+                recipient: string;
+              },
+            ];
+          },
+        ],
+      ];
+      const schemas = args[0].length;
+      const count = args[0].map((v) => v.data).flat().length;
 
       transaction.context = {
         variables: {
@@ -357,11 +422,22 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'multiRevokeByDelegation': {
-      const schemas = decoded.args[0].length;
+      const args = decoded.args as [
+        [
+          {
+            schema: string;
+            revoker: string;
+            data: {
+              recipient: string;
+            };
+          },
+        ],
+      ];
+      const schemas = args[0].length;
       const revokers = Array.from(
-        new Set(decoded.args[0].map((v) => v.revoker)),
+        new Set(args[0].map((v) => v.revoker)),
       ).length;
-      const count = decoded.args[0].map((v) => v.data).flat().length;
+      const count = args[0].map((v) => v.data).flat().length;
 
       transaction.context = {
         variables: {
@@ -432,7 +508,16 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'multiTimestamp': {
-      const data = decoded.args[0];
+      const args = decoded.args as [
+        {
+          data: [
+            {
+              recipient: string;
+            },
+          ];
+        },
+      ];
+      const data = args[0]?.data;
       transaction.context = {
         variables: {
           from: {
@@ -484,7 +569,16 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'multiRevokeOffChain': {
-      const data = decoded.args[0];
+      const args = decoded.args as [
+        {
+          data: [
+            {
+              recipient: string;
+            },
+          ];
+        },
+      ];
+      const data = args[0]?.data;
       transaction.context = {
         variables: {
           from: {
