@@ -118,6 +118,7 @@ export type ContextSummaryVariableType =
       value: string;
       indexed?: boolean;
       emphasis?: boolean;
+      units?: string;
     }
   | {
       type: 'code';
@@ -142,6 +143,7 @@ export type ContextSummaryVariableType =
       value: number;
       indexed?: boolean;
       emphasis?: boolean;
+      units?: string;
     }
   | {
       type: 'link' | 'schemaID';
