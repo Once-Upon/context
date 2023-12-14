@@ -1,6 +1,6 @@
-import { Abi } from 'viem';
+import { Abi, Hex } from 'viem';
 import { Interface } from 'ethers/lib/utils';
-import { HexadecimalString, Transaction } from '../../types';
+import { Transaction } from '../../types';
 import { decodeTransactionInputViem } from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
@@ -30,7 +30,7 @@ export const detect = (transaction: Transaction): boolean => {
     let decoded;
     try {
       decoded = decodeTransactionInputViem(
-        transaction.input as HexadecimalString,
+        transaction.input as Hex,
         ABIs.SchemaRegistry as Abi,
       );
     } catch (_) {
@@ -48,7 +48,7 @@ export const detect = (transaction: Transaction): boolean => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInputViem(
-    transaction.input as HexadecimalString,
+    transaction.input as Hex,
     ABIs.SchemaRegistry as Abi,
   );
 

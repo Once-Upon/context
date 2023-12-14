@@ -1,5 +1,5 @@
-import { Abi } from 'viem';
-import { Transaction, HexadecimalString } from '../../types';
+import { Abi, Hex } from 'viem';
+import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 import { decodeTransactionInputViem } from '../../helpers/utils';
 
@@ -21,7 +21,7 @@ export const detect = (transaction: Transaction): boolean => {
 
   try {
     const decoded = decodeTransactionInputViem(
-      transaction.input as HexadecimalString,
+      transaction.input as Hex,
       FarcasterContracts.KeyRegistry.abi as Abi,
     );
 
@@ -34,7 +34,7 @@ export const detect = (transaction: Transaction): boolean => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInputViem(
-    transaction.input as HexadecimalString,
+    transaction.input as Hex,
     FarcasterContracts.KeyRegistry.abi as Abi,
   );
 

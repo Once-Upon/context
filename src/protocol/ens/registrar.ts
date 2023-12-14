@@ -1,5 +1,5 @@
-import { Abi } from 'viem';
-import { HexadecimalString, Transaction } from '../../types';
+import { Abi, Hex } from 'viem';
+import { Transaction } from '../../types';
 import { ENS_CONTRACTS } from './constants';
 import { decodeTransactionInputViem } from '../../helpers/utils';
 
@@ -16,7 +16,7 @@ export const detect = (transaction: Transaction): boolean => {
   }
   try {
     const decode = decodeTransactionInputViem(
-      transaction.input as HexadecimalString,
+      transaction.input as Hex,
       ENS_CONTRACTS.registrar[transaction.to].abi as Abi,
     );
 
@@ -40,7 +40,7 @@ export const generate = (transaction: Transaction): Transaction => {
   let decode;
   try {
     decode = decodeTransactionInputViem(
-      transaction.input as HexadecimalString,
+      transaction.input as Hex,
       ENS_CONTRACTS.registrar[transaction.to].abi as Abi,
     );
   } catch (error) {

@@ -1,10 +1,6 @@
-import { Abi } from 'viem';
+import { Abi, Hex } from 'viem';
 import { Interface } from 'ethers/lib/utils';
-import {
-  ContextSummaryVariableType,
-  HexadecimalString,
-  Transaction,
-} from '../../types';
+import { ContextSummaryVariableType, Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 import { decodeTransactionInputViem } from '../../helpers/utils';
 
@@ -27,7 +23,7 @@ export const detect = (transaction: Transaction): boolean => {
 
   try {
     const decoded = decodeTransactionInputViem(
-      transaction.input as HexadecimalString,
+      transaction.input as Hex,
       FarcasterContracts.Bundler.abi as Abi,
     );
 
@@ -40,7 +36,7 @@ export const detect = (transaction: Transaction): boolean => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInputViem(
-    transaction.input as HexadecimalString,
+    transaction.input as Hex,
     FarcasterContracts.Bundler.abi as Abi,
   );
 
