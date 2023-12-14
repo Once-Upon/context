@@ -1,6 +1,7 @@
-import { Interface } from 'ethers/lib/utils';
-import { Transaction } from '../../types';
+import { Abi } from 'viem';
+import { Transaction, HexadecimalString } from '../../types';
 import { FarcasterContracts } from './constants';
+import { decodeTransactionInputViem } from '../../helpers/utils';
 
 // Contextualizer for the IdRegistry contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IIdRegistry.sol
@@ -21,13 +22,14 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const iface = new Interface(FarcasterContracts.IdRegistry.abi);
-    const decoded = iface.parseTransaction({
-      data: transaction.input,
-      value: transaction.value,
-    });
+    const decoded = decodeTransactionInputViem(
+      transaction.input as HexadecimalString,
+      FarcasterContracts.IdRegistry.abi as Abi,
+    );
 
-    return ['changeRecoveryAddressFor', 'transfer'].includes(decoded.name);
+    return ['changeRecoveryAddressFor', 'transfer'].includes(
+      decoded.functionName,
+    );
   } catch (_) {
     return false;
   }
@@ -35,23 +37,22 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const iface = new Interface(FarcasterContracts.IdRegistry.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  const decoded = decodeTransactionInputViem(
+    transaction.input as HexadecimalString,
+    FarcasterContracts.IdRegistry.abi as Abi,
+  );
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'changeRecoveryAddressFor': {
       transaction.context = {
         variables: {
           owner: {
             type: 'address',
-            value: decoded.args[0],
+            value: decoded.args[0] as string,
           },
           recoveryAddress: {
             type: 'address',
-            value: decoded.args[1],
+            value: decoded.args[1] as string,
           },
           changedRecoveryAddress: {
             type: 'contextAction',
@@ -79,7 +80,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           to: {
             type: 'address',
-            value: decoded.args[0],
+            value: decoded.args[0] as string,
           },
           transferredId: {
             type: 'contextAction',

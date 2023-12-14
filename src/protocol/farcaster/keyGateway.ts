@@ -1,6 +1,7 @@
-import { Interface } from 'ethers/lib/utils';
-import { Transaction } from '../../types';
+import { Abi } from 'viem';
+import { Transaction, HexadecimalString } from '../../types';
 import { FarcasterContracts } from './constants';
+import { decodeTransactionInputViem } from '../../helpers/utils';
 
 // Contextualizer for the KeyGateway contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IKeyGateway.sol
@@ -17,13 +18,12 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const iface = new Interface(FarcasterContracts.KeyGateway.abi);
-    const decoded = iface.parseTransaction({
-      data: transaction.input,
-      value: transaction.value,
-    });
+    const decoded = decodeTransactionInputViem(
+      transaction.input as HexadecimalString,
+      FarcasterContracts.KeyGateway.abi as Abi,
+    );
 
-    return ['add', 'addFor'].includes(decoded.name);
+    return ['add', 'addFor'].includes(decoded.functionName);
   } catch (_) {
     return false;
   }
@@ -31,13 +31,12 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const iface = new Interface(FarcasterContracts.KeyGateway.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  const decoded = decodeTransactionInputViem(
+    transaction.input as HexadecimalString,
+    FarcasterContracts.KeyGateway.abi as Abi,
+  );
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'add': {
       transaction.context = {
         variables: {
@@ -70,7 +69,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           owner: {
             type: 'address',
-            value: decoded.args[0],
+            value: decoded.args[0] as string,
           },
           addedKey: {
             type: 'contextAction',
