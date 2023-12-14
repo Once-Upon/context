@@ -1,6 +1,7 @@
-import { Interface, TransactionDescription } from 'ethers/lib/utils';
-import { Transaction } from '../../types';
-import { decodeTransactionInput } from '../../helpers/utils';
+import { Abi } from 'viem';
+import { Interface } from 'ethers/lib/utils';
+import { HexadecimalString, Transaction } from '../../types';
+import { decodeTransactionInputViem } from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -26,15 +27,18 @@ export const detect = (transaction: Transaction): boolean => {
     }
 
     // decode input
-    let decoded: TransactionDescription;
+    let decoded;
     try {
-      decoded = decodeTransactionInput(transaction.input, ABIs.SchemaRegistry);
+      decoded = decodeTransactionInputViem(
+        transaction.input as HexadecimalString,
+        ABIs.SchemaRegistry as Abi,
+      );
     } catch (_) {
       return false;
     }
 
-    if (!decoded || !decoded.name) return false;
-    return ['register'].includes(decoded.name);
+    if (!decoded || !decoded.functionName) return false;
+    return ['register'].includes(decoded.functionName);
   } catch (err) {
     console.error('Error in detect function:', err);
     return false;
@@ -43,12 +47,12 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const decoded = decodeTransactionInput(
-    transaction.input,
-    ABIs.SchemaRegistry,
+  const decoded = decodeTransactionInputViem(
+    transaction.input as HexadecimalString,
+    ABIs.SchemaRegistry as Abi,
   );
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'register': {
       let id = '';
       if (transaction.receipt?.status) {
@@ -79,6 +83,7 @@ export const generate = (transaction: Transaction): Transaction => {
         }
       }
 
+      const args = decoded.args as string[];
       transaction.context = {
         variables: {
           from: {
@@ -94,7 +99,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           schema: {
             type: 'code',
-            value: decoded.args[0],
+            value: args[0],
           },
           registered: {
             type: 'contextAction',
