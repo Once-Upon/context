@@ -6,10 +6,7 @@ import {
 } from '../../types';
 import { WETH_ADDRESSES } from '../../helpers/constants';
 import { WETH_ABI } from './constants';
-import {
-  decodeTransactionInput,
-  decodeTransactionInputViem,
-} from '../../helpers/utils';
+import { decodeTransactionInputViem } from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isWeth = detect(transaction);
@@ -90,14 +87,17 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'withdraw': {
-      const decode = decodeTransactionInput(transaction.input, WETH_ABI);
+      const decode = decodeTransactionInputViem(
+        transaction.input as HexadecimalString,
+        WETH_ABI as Abi,
+      );
       const withdrawer: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
       };
       const withdrawalAmount: ContextSummaryVariableType = {
         type: 'eth',
-        value: BigInt(decode.args[0]).toString(),
+        value: BigInt(decode.args[0] as string).toString(),
       };
       transaction.context = {
         summaries: {

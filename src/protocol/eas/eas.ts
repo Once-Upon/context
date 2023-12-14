@@ -36,10 +36,8 @@ export const detect = (transaction: Transaction): boolean => {
         transaction.input as HexadecimalString,
         ABIs.EAS as Abi,
       );
-
-      console.log('decoded', decoded);
     } catch (err) {
-      console.error('error', err, ABIs.EAS);
+      console.error('error', err);
       return false;
     }
 
