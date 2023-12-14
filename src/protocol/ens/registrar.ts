@@ -20,8 +20,6 @@ export const detect = (transaction: Transaction): boolean => {
       ENS_CONTRACTS.registrar[transaction.to].abi as Abi,
     );
 
-    console.log('decode', decode);
-
     if (
       decode.functionName === 'registerWithConfig' ||
       decode.functionName === 'register' ||
@@ -33,15 +31,6 @@ export const detect = (transaction: Transaction): boolean => {
 
     return false;
   } catch (e) {
-    console.log('decode error', e);
-
-    console.log(
-      'decode abi',
-      transaction.hash,
-      transaction.to,
-      ENS_CONTRACTS.registrar[transaction.to].abi,
-    );
-
     return false;
   }
 };
