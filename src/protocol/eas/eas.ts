@@ -487,7 +487,7 @@ export const generate = (transaction: Transaction): Transaction => {
       return transaction;
     }
 
-    case 'multiRevokeOffChain': {
+    case 'multiRevokeOffchain': {
       const data = decoded.args[0];
       transaction.context = {
         variables: {
