@@ -103,7 +103,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
         };
       }
-      return;
+      return transaction;
     }
     case 'offerPunkForSale': {
       const seller: ContextSummaryVariableType = {
@@ -159,7 +159,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
         };
       }
-      return;
+      return transaction;
     }
     case 'withdrawBidForPunk': {
       const bidder: ContextSummaryVariableType = {
@@ -215,7 +215,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
         };
       }
-      return;
+      return transaction;
     }
     case 'enterBidForPunk': {
       const buyer: ContextSummaryVariableType = {
@@ -271,7 +271,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
         };
       }
-      return;
+      return transaction;
     }
     case 'withdraw': {
       const withdrawer: ContextSummaryVariableType = {
@@ -319,7 +319,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
         };
       }
-      return;
+      return transaction;
     }
     case 'buyPunk': {
       const buyer: ContextSummaryVariableType = {
@@ -386,7 +386,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
         };
       }
-      return;
+      return transaction;
     }
     case 'transferPunk': {
       const sender: ContextSummaryVariableType = {
@@ -442,7 +442,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
         };
       }
-      return;
+      return transaction;
     }
     case 'punkNoLongerForSale': {
       const seller: ContextSummaryVariableType = {
@@ -492,7 +492,7 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       }
 
-      return;
+      return transaction;
     }
     case 'offerPunkForSaleToAddress': {
       const seller: ContextSummaryVariableType = {
@@ -555,8 +555,9 @@ export const generate = (transaction: Transaction): Transaction => {
           },
         };
       }
-      return;
+      return transaction;
     }
   }
+
   return transaction;
 };
