@@ -1,5 +1,4 @@
 import { Abi } from 'viem';
-import { TransactionDescription } from 'ethers/lib/utils';
 import { HexadecimalString, Transaction } from '../../types';
 import {
   decodeTransactionInput,
@@ -40,7 +39,7 @@ export const detect = (transaction: Transaction): boolean => {
 
       console.log('decoded', decoded);
     } catch (err) {
-      console.error('error', err);
+      console.error('error', err, ABIs.EAS);
       return false;
     }
 

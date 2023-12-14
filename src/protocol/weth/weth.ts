@@ -41,8 +41,11 @@ export const detect = (transaction: Transaction): boolean => {
       return false;
     }
 
-    if (!decode || !decode.name) return false;
-    if (decode.name !== 'deposit' && decode.name !== 'withdraw') {
+    if (!decode || !decode.functionName) return false;
+    if (
+      decode.functionName !== 'deposit' &&
+      decode.functionName !== 'withdraw'
+    ) {
       return false;
     }
     return true;
@@ -55,8 +58,11 @@ export const detect = (transaction: Transaction): boolean => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   // decode input
-  const decode = decodeTransactionInput(transaction.input, WETH_ABI);
-  switch (decode.name) {
+  const decode = decodeTransactionInputViem(
+    transaction.input as HexadecimalString,
+    WETH_ABI as Abi,
+  );
+  switch (decode.functionName) {
     case 'deposit': {
       transaction.context = {
         summaries: {
