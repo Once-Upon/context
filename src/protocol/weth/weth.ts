@@ -1,7 +1,15 @@
-import { ContextSummaryVariableType, Transaction } from '../../types';
+import { Abi } from 'viem';
+import {
+  ContextSummaryVariableType,
+  Transaction,
+  HexadecimalString,
+} from '../../types';
 import { WETH_ADDRESSES } from '../../helpers/constants';
 import { WETH_ABI } from './constants';
-import { decodeTransactionInput } from '../../helpers/utils';
+import {
+  decodeTransactionInput,
+  decodeTransactionInputViem,
+} from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isWeth = detect(transaction);
@@ -25,7 +33,10 @@ export const detect = (transaction: Transaction): boolean => {
     // decode input
     let decode;
     try {
-      decode = decodeTransactionInput(transaction.input, WETH_ABI);
+      decode = decodeTransactionInputViem(
+        transaction.input as HexadecimalString,
+        WETH_ABI as Abi,
+      );
     } catch (e) {
       return false;
     }

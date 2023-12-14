@@ -5,12 +5,13 @@ import {
   Abi,
   DecodeErrorResultReturnType,
 } from 'viem';
-import { InterfaceAbi } from '../types/Abi';
 import {
   TransactionContextType,
   Transaction,
   ContextSummaryVariableType,
-} from '../types/transaction';
+  InterfaceAbi,
+  HexadecimalString,
+} from '../types';
 
 const VALID_CHARS =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.? ';
@@ -48,7 +49,7 @@ export function decodeTransactionInput(
 }
 
 export function decodeTransactionInputViem(
-  input: `0x${string}`,
+  input: HexadecimalString,
   abi: Abi,
 ): DecodeErrorResultReturnType {
   const result = decodeErrorResult({
