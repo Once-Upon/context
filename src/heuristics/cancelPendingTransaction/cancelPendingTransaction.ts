@@ -23,11 +23,25 @@ export function detect(transaction: Transaction): boolean {
 
 export function generate(transaction: Transaction): Transaction {
   transaction.context = {
+    variables: {
+      subject: {
+        type: 'address',
+        value: transaction.from,
+      },
+      cancelled: {
+        type: 'contextAction',
+        value: 'CANCELED_A_PENDING_TRANSACTION',
+      },
+      nonce: {
+        type: 'number',
+        value: transaction.nonce,
+      },
+    },
     summaries: {
       category: 'DEV',
       en: {
         title: 'cancelPendingTransaction',
-        default: '',
+        default: '[[subject]] [[cancelled]] with nonce [[nonce]]',
       },
     },
   };
