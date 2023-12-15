@@ -5,7 +5,7 @@ const children = { friendTech };
 
 const contextualize = makeContextualize(children);
 
-export const ensContextualizer = {
+export const friendTechContextualizer = {
   contextualize,
   children,
 };

@@ -13,7 +13,7 @@ export const contextualize = (transaction: Transaction): Transaction => {
 export const detect = (transaction: Transaction): boolean => {
   /** implement your detection logic */
   if (transaction.to !== FRIEND_TECH_ADDRESSES || !transaction.logs) {
-    return null;
+    return false;
   }
   // buyShares(address sharesSubject, uint256 amount)
   if (transaction.sigHash === '0x6945b123') {
