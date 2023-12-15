@@ -82,6 +82,11 @@ export function generate(transaction: Transaction): Transaction {
   };
   delete assetTransfer.asset;
   const recipient = assetTransfer.to;
+  const amount =
+    assetTransfer.type === 'erc20'
+      ? assetTransfer.value
+      : mints.filter((ele) => ele.type === assetTransfer.type).length;
+  const price = transaction.netAssetTransfers[transaction.from]?.sent[0].value;
 
   const tokenDetails =
     assetTransfer.type === 'erc721'
@@ -111,12 +116,22 @@ export function generate(transaction: Transaction): Transaction {
         value: recipient,
       },
       minted: { type: 'contextAction', value: 'MINTED' },
+      amount: {
+        type: 'number',
+        value: amount,
+        unit: 'x',
+      },
+      price: {
+        type: 'eth',
+        value: price,
+        unit: 'wei',
+      },
     },
     summaries: {
       category: 'FUNGIBLE_TOKEN',
       en: {
         title: 'Token Mint',
-        default: '[[recipient]] [[minted]] [[token]]',
+        default: '[[recipient]] [[minted]] [[amount]] [[token]] for [[price]]',
       },
     },
   };
