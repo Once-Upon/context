@@ -1,5 +1,5 @@
-import RegistrarV3Abi from './abis/RegistrarV3.json';
-import RegistrarV2Abi from './abis/RegistrarV2.json';
+import RegistrarV3Abi from './abis/RegistrarV3';
+import RegistrarV2Abi from './abis/RegistrarV2';
 
 export const ENS_CONTRACTS = {
   registrar: {

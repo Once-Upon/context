@@ -1,4 +1,4 @@
-import { Abi, Hex } from 'viem';
+import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { ENS_CONTRACTS } from './constants';
 import { decodeTransactionInputViem } from '../../helpers/utils';
@@ -15,10 +15,9 @@ export const detect = (transaction: Transaction): boolean => {
     return false;
   }
   try {
-    const decode = decodeTransactionInputViem(
-      transaction.input as Hex,
-      ENS_CONTRACTS.registrar[transaction.to].abi as Abi,
-    );
+    const abi = ENS_CONTRACTS.registrar[transaction.to].abi;
+    const decode: ReturnType<typeof decodeTransactionInputViem<typeof abi>> =
+      decodeTransactionInputViem(transaction.input as Hex, abi);
 
     if (
       decode.functionName === 'registerWithConfig' ||
@@ -37,12 +36,10 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  let decode;
+  const abi = ENS_CONTRACTS.registrar[transaction.to].abi;
+  let decode: ReturnType<typeof decodeTransactionInputViem<typeof abi>>;
   try {
-    decode = decodeTransactionInputViem(
-      transaction.input as Hex,
-      ENS_CONTRACTS.registrar[transaction.to].abi as Abi,
-    );
+    decode = decodeTransactionInputViem(transaction.input as Hex, abi);
   } catch (error) {
     return transaction;
   }
@@ -51,7 +48,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'registerWithConfig':
     case 'register': {
       const name = decode.args[0];
-      const duration = parseInt(decode.args[2]);
+      const duration = parseInt(decode.args[2] as string);
       const durationInDays = Math.trunc(duration / 60 / 60 / 24);
 
       transaction.context = {
@@ -113,7 +110,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'renew': {
       const name = decode.args[0];
-      const duration = parseInt(decode.args[1]);
+      const duration = parseInt(decode.args[1] as string);
       const durationInDays = Math.trunc(duration / 60 / 60 / 24);
 
       transaction.context = {

@@ -49,7 +49,10 @@ export function decodeTransactionInput(
   return transactionDescriptor;
 }
 
-export function decodeTransactionInputViem<TAbi extends Abi>(input: Hex, abi: TAbi) {
+export function decodeTransactionInputViem<TAbi extends Abi>(
+  input: Hex,
+  abi: TAbi,
+) {
   return decodeFunctionData({
     abi,
     data: input,

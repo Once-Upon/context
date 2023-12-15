@@ -27,11 +27,13 @@ export const detect = (transaction: Transaction): boolean => {
     }
 
     // decode input
-    let decoded;
+    let decoded: ReturnType<
+      typeof decodeTransactionInputViem<typeof ABIs.SchemaRegistry>
+    >;
     try {
       decoded = decodeTransactionInputViem(
         transaction.input as Hex,
-        ABIs.SchemaRegistry as Abi,
+        ABIs.SchemaRegistry,
       );
     } catch (_) {
       return false;

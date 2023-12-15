@@ -1,4 +1,4 @@
-import { Abi, Hex } from 'viem';
+import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { ENS_CONTRACTS } from './constants';
 import { decodeTransactionInputViem } from '../../helpers/utils';
@@ -16,10 +16,9 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const decode = decodeTransactionInputViem(
-      transaction.input as Hex,
-      ENS_CONTRACTS.reverse[transaction.to].abi as Abi,
-    );
+    const abi = ENS_CONTRACTS.reverse[transaction.to].abi;
+    const decode: ReturnType<typeof decodeTransactionInputViem<typeof abi>> =
+      decodeTransactionInputViem(transaction.input as Hex, abi);
 
     if (decode.functionName === 'setName') {
       return true;
@@ -32,10 +31,10 @@ export const detect = (transaction: Transaction): boolean => {
 };
 
 export const generate = (transaction: Transaction): Transaction => {
-  const decode = decodeTransactionInputViem(
-    transaction.input as Hex,
-    ENS_CONTRACTS.reverse[transaction.to].abi as Abi,
-  );
+  const abi = ENS_CONTRACTS.reverse[transaction.to].abi;
+  const decode: ReturnType<typeof decodeTransactionInputViem<typeof abi>> =
+    decodeTransactionInputViem(transaction.input as Hex, abi);
+
   switch (decode.functionName) {
     case 'setName': {
       const name = decode.args[0] as string;

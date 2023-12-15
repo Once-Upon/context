@@ -1,5 +1,5 @@
 import EAS from './abis/EAS';
-import SchemaRegistry from './abis/SchemaRegistry.json';
+import SchemaRegistry from './abis/SchemaRegistry';
 
 export const EAS_ADDRESSES = [
   '0xa1207f3bba224e2c9c3c6d5af63d0eb1582ce587', // Ethereum
