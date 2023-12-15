@@ -70,23 +70,21 @@ function isVariable(str: string) {
 
 function formatSection(section: ContextSummaryVariableType) {
   const varContext = section;
-  const units = varContext.units;
+  const unit = varContext['unit'];
 
   if (varContext?.type === 'eth')
-    return `${utils.formatEther(varContext?.value)} ETH${
-      units ? ` ${units}` : ''
-    }`;
+    return `${utils.formatEther(varContext?.value)}${unit ? ` ${unit}` : ''}`;
 
   if (varContext?.type === 'erc721' || varContext?.type === 'erc1155') {
     return `${varContext.token} #${varContext.tokenId}${
-      units ? ` ${units}` : ''
+      unit ? ` ${unit}` : ''
     }`;
   }
 
   if (varContext?.type === 'erc20')
-    return `${varContext.value} ${varContext.token}${units ? ` ${units}` : ''}`;
+    return `${varContext.value} ${varContext.token}${unit ? ` ${unit}` : ''}`;
 
-  return `${varContext.value}${units ? ` ${units}` : ''}`;
+  return `${varContext.value}${unit ? ` ${unit}` : ''}`;
 }
 
 export const makeContextualize = (

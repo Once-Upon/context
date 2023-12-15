@@ -35,6 +35,7 @@ export function generate(transaction: Transaction): Transaction {
       amount: {
         type: 'eth',
         value: transaction.assetTransfers[1].value,
+        unit: 'wei',
       },
       received: {
         type: 'contextAction',
