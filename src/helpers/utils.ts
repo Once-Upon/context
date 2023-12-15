@@ -73,7 +73,7 @@ function formatSection(section: ContextSummaryVariableType) {
   const unit = varContext['unit'];
 
   if (varContext?.type === 'eth')
-    return `${utils.formatEther(varContext?.value)}${unit ? ` ${unit}` : ''}`;
+    return `${utils.formatEther(varContext?.value)}${unit ? ` ETH` : ''}`;
 
   if (varContext?.type === 'erc721' || varContext?.type === 'erc1155') {
     return `${varContext.token} #${varContext.tokenId}${

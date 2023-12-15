@@ -79,14 +79,8 @@ function generate(transaction: Transaction): Transaction {
     return transaction;
   }
 
-  const tokenType =
-    firstAssetTransfer.type === 'erc20'
-      ? 'erc20'
-      : firstAssetTransfer.type === 'erc721'
-        ? 'erc721'
-        : 'erc1155';
   const firstToken = {
-    type: tokenType,
+    type: firstAssetTransfer.type,
     token: firstAssetTransfer.asset,
     tokenId: firstAssetTransfer.tokenId,
     value: firstAssetTransfer.value,

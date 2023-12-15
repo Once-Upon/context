@@ -18,7 +18,7 @@ describe('ERC721 Purchase', () => {
     const eRC721Purchase1 = generate(erc721Purchase0x2558f104 as Transaction);
     expect(eRC721Purchase1.context.summaries.en.title).toBe('NFT Purchase');
     expect(eRC721Purchase1.context.variables['tokenOrTokens'].value).toBe(2);
-    expect(eRC721Purchase1.context.variables['tokenOrTokens'].units).toBe(
+    expect(eRC721Purchase1.context.variables['tokenOrTokens']['unit']).toBe(
       'NFTs',
     );
     const desc1 = contextSummary(eRC721Purchase1.context);
@@ -29,7 +29,7 @@ describe('ERC721 Purchase', () => {
     const eRC721Purchase2 = generate(erc721Purchase0x97a38a23 as Transaction);
     expect(eRC721Purchase2.context.summaries.en.title).toBe('NFT Purchase');
     expect(eRC721Purchase2.context.variables['tokenOrTokens'].value).toBe(5);
-    expect(eRC721Purchase2.context.variables['tokenOrTokens'].units).toBe(
+    expect(eRC721Purchase2.context.variables['tokenOrTokens']['unit']).toBe(
       'NFTs',
     );
     const desc2 = contextSummary(eRC721Purchase2.context);

@@ -41,7 +41,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
   switch (decoded.name) {
     case 'rent': {
-      const units = decoded.args[1];
+      const units = Number(decoded.args[1]);
       transaction.context = {
         variables: {
           rented: {
@@ -56,7 +56,7 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'farcasterID',
             value: decoded.args[0].toString(),
           },
-          unit: {
+          units: {
             type: 'number',
             emphasis: true,
             value: units,
@@ -95,7 +95,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: fids,
             unit: `Farcaster ID${fids > 1 ? 's' : ''}`,
           },
-          unit: {
+          units: {
             type: 'number',
             emphasis: true,
             value: units,

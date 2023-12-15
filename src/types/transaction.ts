@@ -131,20 +131,13 @@ export type ContextSummaryVariableType =
       emphasis?: boolean;
     }
   | {
-      type: 'erc20' | 'erc721' | 'erc1155';
+      type: 'eth' | 'erc20' | 'erc721' | 'erc1155';
       tokenId?: string;
-      token: string;
+      token?: string;
       value?: string;
       indexed?: boolean;
       emphasis?: boolean;
       unit?: string;
-    }
-  | {
-      type: 'eth';
-      value?: string;
-      indexed?: boolean;
-      emphasis?: boolean;
-      unit: string;
     }
   | {
       type: 'chainID';
