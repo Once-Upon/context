@@ -1,4 +1,4 @@
-import { Abi, Hex } from 'viem';
+import { Hex } from 'viem';
 import { Interface } from 'ethers/lib/utils';
 import { ContextSummaryVariableType, Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
@@ -22,9 +22,11 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const decoded = decodeTransactionInputViem(
+    const decoded: ReturnType<
+      typeof decodeTransactionInputViem<typeof FarcasterContracts.Bundler.abi>
+    > = decodeTransactionInputViem(
       transaction.input as Hex,
-      FarcasterContracts.Bundler.abi as Abi,
+      FarcasterContracts.Bundler.abi,
     );
 
     return ['register'].includes(decoded.functionName);
@@ -35,22 +37,20 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const decoded = decodeTransactionInputViem(
+  const decoded: ReturnType<
+    typeof decodeTransactionInputViem<typeof FarcasterContracts.Bundler.abi>
+  > = decodeTransactionInputViem(
     transaction.input as Hex,
-    FarcasterContracts.Bundler.abi as Abi,
+    FarcasterContracts.Bundler.abi,
   );
 
-  const registerParams = decoded.args[0] as {
-    to: string;
-  };
-
   const caller = transaction.from;
-  const owner = registerParams.to;
-
-  const callerIsOwner = owner.toLowerCase() === caller.toLowerCase();
 
   switch (decoded.functionName) {
     case 'register': {
+      const owner = decoded.args[0].to;
+      const callerIsOwner = owner.toLowerCase() === caller.toLowerCase();
+
       // Capture cost to register
       const cost: ContextSummaryVariableType = {
         type: 'eth',

@@ -1,4 +1,4 @@
-import { Abi, Hex } from 'viem';
+import { Hex } from 'viem';
 import { Interface } from 'ethers/lib/utils';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
@@ -23,7 +23,7 @@ export const detect = (transaction: Transaction): boolean => {
   try {
     const decoded = decodeTransactionInputViem(
       transaction.input as Hex,
-      FarcasterContracts.IdGateway.abi as Abi,
+      FarcasterContracts.IdGateway.abi,
     );
 
     return ['register', 'registerFor'].includes(decoded.functionName);
@@ -36,7 +36,7 @@ export const detect = (transaction: Transaction): boolean => {
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInputViem(
     transaction.input as Hex,
-    FarcasterContracts.IdGateway.abi as Abi,
+    FarcasterContracts.IdGateway.abi,
   );
 
   // Capture FID
@@ -96,7 +96,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           owner: {
             type: 'address',
-            value: decoded.args[0] as string,
+            value: decoded.args[0],
           },
           fid: {
             type: 'farcasterID',

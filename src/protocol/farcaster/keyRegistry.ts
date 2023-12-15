@@ -1,4 +1,4 @@
-import { Abi, Hex } from 'viem';
+import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 import { decodeTransactionInputViem } from '../../helpers/utils';
@@ -22,7 +22,7 @@ export const detect = (transaction: Transaction): boolean => {
   try {
     const decoded = decodeTransactionInputViem(
       transaction.input as Hex,
-      FarcasterContracts.KeyRegistry.abi as Abi,
+      FarcasterContracts.KeyRegistry.abi,
     );
 
     return ['remove', 'removeFor'].includes(decoded.functionName);
@@ -35,7 +35,7 @@ export const detect = (transaction: Transaction): boolean => {
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInputViem(
     transaction.input as Hex,
-    FarcasterContracts.KeyRegistry.abi as Abi,
+    FarcasterContracts.KeyRegistry.abi,
   );
 
   switch (decoded.functionName) {
@@ -71,7 +71,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           owner: {
             type: 'address',
-            value: decoded.args[0] as string,
+            value: decoded.args[0],
           },
           removedKey: {
             type: 'contextAction',

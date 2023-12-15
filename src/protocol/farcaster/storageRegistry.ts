@@ -1,4 +1,4 @@
-import { Abi, Hex } from 'viem';
+import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 import { decodeTransactionInputViem } from '../../helpers/utils';
@@ -22,7 +22,7 @@ export const detect = (transaction: Transaction): boolean => {
   try {
     const decoded = decodeTransactionInputViem(
       transaction.input as Hex,
-      FarcasterContracts.StorageRegistry.abi as Abi,
+      FarcasterContracts.StorageRegistry.abi,
     );
 
     return ['rent', 'batchRent'].includes(decoded.functionName);
@@ -35,12 +35,12 @@ export const detect = (transaction: Transaction): boolean => {
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInputViem(
     transaction.input as Hex,
-    FarcasterContracts.StorageRegistry.abi as Abi,
+    FarcasterContracts.StorageRegistry.abi,
   );
 
   switch (decoded.functionName) {
     case 'rent': {
-      const units = decoded.args[1] as number;
+      const units = decoded.args[1];
       transaction.context = {
         variables: {
           rented: {
@@ -75,9 +75,9 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'batchRent': {
-      const fidsArg = decoded.args[0] as bigint[];
+      const fidsArg = decoded.args[0];
       const fids = fidsArg.length;
-      const unitsArg = decoded.args[1] as bigint[];
+      const unitsArg = decoded.args[1];
       const units = unitsArg.reduce((acc, curr) => acc + curr);
       transaction.context = {
         variables: {

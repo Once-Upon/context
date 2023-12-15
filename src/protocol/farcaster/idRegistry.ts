@@ -1,4 +1,4 @@
-import { Abi, Hex } from 'viem';
+import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 import { decodeTransactionInputViem } from '../../helpers/utils';
@@ -24,7 +24,7 @@ export const detect = (transaction: Transaction): boolean => {
   try {
     const decoded = decodeTransactionInputViem(
       transaction.input as Hex,
-      FarcasterContracts.IdRegistry.abi as Abi,
+      FarcasterContracts.IdRegistry.abi,
     );
 
     return ['changeRecoveryAddressFor', 'transfer'].includes(
@@ -39,7 +39,7 @@ export const detect = (transaction: Transaction): boolean => {
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInputViem(
     transaction.input as Hex,
-    FarcasterContracts.IdRegistry.abi as Abi,
+    FarcasterContracts.IdRegistry.abi,
   );
 
   switch (decoded.functionName) {
@@ -48,11 +48,11 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           owner: {
             type: 'address',
-            value: decoded.args[0] as string,
+            value: decoded.args[0],
           },
           recoveryAddress: {
             type: 'address',
-            value: decoded.args[1] as string,
+            value: decoded.args[1],
           },
           changedRecoveryAddress: {
             type: 'contextAction',
@@ -80,7 +80,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           to: {
             type: 'address',
-            value: decoded.args[0] as string,
+            value: decoded.args[0],
           },
           transferredId: {
             type: 'contextAction',

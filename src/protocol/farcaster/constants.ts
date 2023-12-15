@@ -1,10 +1,10 @@
-import IdGatewayAbi from './abis/IdGateway.json';
-import IdRegistryAbi from './abis/IdRegistry.json';
-import KeyGatewayAbi from './abis/KeyGateway.json';
-import KeyRegistryAbi from './abis/KeyRegistry.json';
-import StorageRegistryAbi from './abis/StorageRegistry.json';
-import BundlerAbi from './abis/Bundler.json';
-import BundlerOldAbi from './abis/BundlerOld.json';
+import IdGatewayAbi from './abis/IdGateway';
+import IdRegistryAbi from './abis/IdRegistry';
+import KeyGatewayAbi from './abis/KeyGateway';
+import KeyRegistryAbi from './abis/KeyRegistry';
+import StorageRegistryAbi from './abis/StorageRegistry';
+import BundlerAbi from './abis/Bundler';
+import BundlerOldAbi from './abis/BundlerOld';
 
 // TODO: Add these:
 // SignedKeyRequestValidator | 0x00000000fc700472606ed4fa22623acf62c60553
