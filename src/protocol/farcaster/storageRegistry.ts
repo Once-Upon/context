@@ -98,7 +98,7 @@ export const generate = (transaction: Transaction): Transaction => {
           units: {
             type: 'number',
             emphasis: true,
-            value: units,
+            value: Number(units),
             unit: `storage unit${units > 1 ? 's' : ''}`,
           },
         },
