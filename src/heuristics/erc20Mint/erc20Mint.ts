@@ -1,4 +1,4 @@
-import { ContextSummaryVariableType, Transaction } from '../../types';
+import { Transaction } from '../../types';
 import { KNOWN_ADDRESSES, WETH_ADDRESSES } from '../../helpers/constants';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -32,6 +32,10 @@ export function detect(transaction: Transaction): boolean {
   );
 
   if (mints.length == 0) {
+    return false;
+  }
+  // check if its erc20
+  if (mints[0].type !== 'erc20') {
     return false;
   }
   // check if all minted assets are from the same contract
@@ -82,44 +86,25 @@ export function generate(transaction: Transaction): Transaction {
   };
   delete assetTransfer.asset;
   const recipient = assetTransfer.to;
-  const amount =
-    assetTransfer.type === 'erc20'
-      ? Number(assetTransfer.value)
-      : mints.filter((ele) => ele.type === assetTransfer.type).length;
+  const amount = BigInt(assetTransfer.value).toString();
 
   const assetSent = transaction.netAssetTransfers[transaction.from]?.sent;
   const price = assetSent[0]?.value;
 
-  const tokenDetails =
-    assetTransfer.type === 'erc721'
-      ? {
-          tokenId: assetTransfer.tokenId,
-          type: assetTransfer.type,
-          token: assetTransfer.token,
-        }
-      : assetTransfer.type === 'erc1155'
-        ? {
-            tokenId: assetTransfer.tokenId,
-            value: assetTransfer.value,
-            type: assetTransfer.type,
-            token: assetTransfer.token,
-          }
-        : ({
-            value: assetTransfer.value,
-            type: assetTransfer.type,
-            token: assetTransfer.token,
-          } as ContextSummaryVariableType);
-
   transaction.context = {
     variables: {
-      token: tokenDetails,
+      token: {
+        type: assetTransfer.type,
+        token: assetTransfer.token,
+        value: assetTransfer.value,
+      },
       recipient: {
         type: 'address',
         value: recipient,
       },
       minted: { type: 'contextAction', value: 'MINTED' },
       amount: {
-        type: 'number',
+        type: 'string',
         value: amount,
         unit: 'x',
       },
@@ -130,7 +115,7 @@ export function generate(transaction: Transaction): Transaction {
       },
     },
     summaries: {
-      category: assetTransfer.type === 'erc20' ? 'FUNGIBLE_TOKEN' : 'NFT',
+      category: 'FUNGIBLE_TOKEN',
       en: {
         title: 'Token Mint',
         default: '[[recipient]] [[minted]] [[amount]] [[token]] for [[price]]',

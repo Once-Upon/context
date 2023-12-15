@@ -1,5 +1,5 @@
 import { Transaction } from '../../types';
-import { detect, generate } from './tokenMint';
+import { detect, generate } from './erc20Mint';
 import tokenMint0x2c8a3ed1 from '../../test/transactions/tokenMint-0x2c8a3ed1.json';
 import tokenMint0x45d1ed7b from '../../test/transactions/tokenMint-0x45d1ed7b.json';
 import tokenMint0x35f54999 from '../../test/transactions/tokenMint-0x35f54999.json';

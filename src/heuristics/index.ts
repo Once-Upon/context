@@ -8,7 +8,9 @@ import { ethTransferContextualizer } from './ethTransfer';
 import { idmContextualizer } from './idm';
 import { tokenAirdropContextualizer } from './tokenAirdrop';
 import { tokenApprovalContextualizer } from './tokenApproval';
-import { tokenMintContextualizer } from './tokenMint';
+import { erc20MintContextualizer } from './erc20Mint';
+import { erc721MintContextualizer } from './erc721Mint';
+import { erc1155MintContextualizer } from './erc1155Mint';
 import { tokenTransferContextualizer } from './tokenTransfer';
 import { erc721SaleContextualizer } from './erc721Sale';
 import { erc1155SaleContextualizer } from './erc1155Sale';
@@ -16,7 +18,9 @@ import { erc1155SaleContextualizer } from './erc1155Sale';
 const children = {
   cancelPendingTransactionContextualizer,
   contractDeploymentContextualizer,
-  tokenMintContextualizer,
+  erc20MintContextualizer,
+  erc721MintContextualizer,
+  erc1155MintContextualizer,
   erc20SwapContextualizer,
   erc721PurchaseContextualizer,
   erc1155PurchaseContextualizer,
