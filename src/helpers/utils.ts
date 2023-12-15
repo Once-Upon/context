@@ -5,6 +5,7 @@ import {
   decodeFunctionData,
   decodeEventLog,
   Hex,
+  parseAbi,
 } from 'viem';
 import {
   TransactionContextType,
@@ -53,6 +54,14 @@ export function decodeTransactionInputViem<TAbi extends Abi>(
   input: Hex,
   abi: TAbi,
 ) {
+  return decodeFunctionData({
+    abi,
+    data: input,
+  });
+}
+
+export function decodeFunction(input: Hex, functionSig: string[]) {
+  const abi = parseAbi(functionSig);
   return decodeFunctionData({
     abi,
     data: input,

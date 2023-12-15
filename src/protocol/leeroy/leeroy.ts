@@ -1,6 +1,8 @@
+import { Hex } from 'viem';
 import { ethers } from 'ethers';
 import { ContextSummaryVariableType, Transaction } from '../../types';
 import { LeeroyContracts } from './constants';
+import { decodeFunction } from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isLeeroy = detect(transaction);
@@ -43,8 +45,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case '0x8ee93cf3': {
       // post(string)
       const functionSig = `function post(string)`;
-      const iface = new ethers.utils.Interface([functionSig]);
-      const decoded = iface.decodeFunctionData('post', transaction.input);
+      const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
       let post = { text: '' };
       try {
         post = JSON.parse(decoded[0]);
@@ -93,8 +94,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case '0xa66b7748': {
       // follow(bytes32)
       const functionSig = `function follow(bytes32)`;
-      const iface = new ethers.utils.Interface([functionSig]);
-      const decoded = iface.decodeFunctionData('follow', transaction.input);
+      const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -145,8 +145,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case '0x4b91ab35': {
       // unfollow(bytes32)
       const functionSig = `function unfollow(bytes32)`;
-      const iface = new ethers.utils.Interface([functionSig]);
-      const decoded = iface.decodeFunctionData('unfollow', transaction.input);
+      const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -197,8 +196,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case '0x7e93163b': {
       // tip(bytes32,bytes32) NOTE -
       const functionSig = `function tip(bytes32,bytes32)`;
-      const iface = new ethers.utils.Interface([functionSig]);
-      const decoded = iface.decodeFunctionData('tip', transaction.input);
+      const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
       const tipper: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -261,11 +259,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case '0x9d7eb375': {
       // updateUserDetails(string)
       const functionSig = `function updateUserDetails(string)`;
-      const iface = new ethers.utils.Interface([functionSig]);
-      const decoded = iface.decodeFunctionData(
-        'updateUserDetails',
-        transaction.input,
-      );
+      const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -318,8 +312,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case '0xa83b1e21': {
       // reply(string,bytes32)
       const functionSig = `function reply(string,bytes32)`;
-      const iface = new ethers.utils.Interface([functionSig]);
-      const decoded = iface.decodeFunctionData('reply', transaction.input);
+      const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -374,8 +367,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case '0x3a4de190': {
       // repost(bytes32)
       const functionSig = `function repost(bytes32)`;
-      const iface = new ethers.utils.Interface([functionSig]);
-      const decoded = iface.decodeFunctionData('repost', transaction.input);
+      const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -426,11 +418,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case '0x66e34dc6': {
       // registerUsername(bytes32)
       const functionSig = `function registerUsername(bytes32)`;
-      const iface = new ethers.utils.Interface([functionSig]);
-      const decoded = iface.decodeFunctionData(
-        'registerUsername',
-        transaction.input,
-      );
+      const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,

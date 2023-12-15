@@ -1,4 +1,4 @@
-import { Abi, Hex } from 'viem';
+import { Hex } from 'viem';
 import { contracts, FRENPET_ABIS, frenPetItemsMapping } from './constants';
 import {
   ContextSummaryVariableType,
@@ -27,7 +27,7 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const abi = FRENPET_ABIS[transaction.to] as Abi;
+  const abi = FRENPET_ABIS[transaction.to];
   const parsed = decodeTransactionInputViem(transaction.input as Hex, abi);
 
   switch (transaction.sigHash) {
@@ -358,10 +358,7 @@ export const generate = (transaction: Transaction): Transaction => {
       // bonkCommit(uint256 attackerId,uint256 targetId,bytes32 nonce,bytes32 commit,bytes signature)
       // first argument is the attackerId
       // second argument is the targetId
-      const parsed = decodeTransactionInputViem(
-        transaction.input as Hex,
-        abi as Abi,
-      );
+      const parsed = decodeTransactionInputViem(transaction.input as Hex, abi);
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,

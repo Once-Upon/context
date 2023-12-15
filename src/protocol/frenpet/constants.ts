@@ -1,6 +1,6 @@
-import frenPetGameplayContractV1Abi from './abis/FrenPetGameplayContractV1.json';
-import frenPetERC20TokenContractAbi from './abis/FrenPetERC20TokenContract.json';
-import frenPetNFTTokenContractAbi from './abis/FrenPetNFTTokenContract.json';
+import frenPetGameplayContractV1Abi from './abis/FrenPetGameplayContractV1';
+import frenPetERC20TokenContractAbi from './abis/FrenPetERC20TokenContract';
+import frenPetNFTTokenContractAbi from './abis/FrenPetNFTTokenContract';
 
 export const contracts = {
   frenPetGameplayContractV1: '0x0e22b5f3e11944578b37ed04f5312dfc246f443c',
