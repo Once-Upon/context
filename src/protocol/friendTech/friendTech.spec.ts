@@ -18,6 +18,8 @@ describe('FriendTech', () => {
   it('Should generate FriendTech context', () => {
     const friendTech1 = generate(friendTech0xde5ce243 as Transaction);
     const desc1 = contextSummary(friendTech1.context);
-    expect(desc1).toBe('YOUR_DESCRIPTION_HERE');
+    expect(desc1).toBe(
+      '0x306dd2B26F1383c62925F58151263D9E5656E86E BOUGHT_SHARES of 0xD6820270E904A5E4527d765afF9534f07E55d2BD for 0.004 ETH',
+    );
   });
 });

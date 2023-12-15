@@ -28,7 +28,7 @@ export const detect = (transaction: Transaction): boolean => {
   return false;
 };
 
-// Contextualize for mined txs
+// Contextualize for txs
 export const generate = (transaction: Transaction): Transaction => {
   // Failed transaction
   if (!transaction.receipt?.status) {
@@ -62,7 +62,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'Friendtech',
             default:
-              '[[buyer]] [[failedToBuyShares]] from [[subject]] for [[price]]',
+              '[[buyer]] [[failedToBuyShares]] of [[subject]] for [[price]]',
           },
         },
       };
@@ -79,25 +79,26 @@ export const generate = (transaction: Transaction): Transaction => {
         log.topics as EventLogTopics,
       );
 
+      const trader = parsedLog.args['trader'];
+      const subject = parsedLog.args['subject'];
+      const ethAmount = parsedLog.args['ethAmount'];
+      const supply = parsedLog.args['supply'];
+
       // Check if this is a user signing up
-      if (
-        parsedLog.args.trader === parsedLog.args.subject &&
-        parsedLog.args.ethAmount.toString() === '0' &&
-        parsedLog.args.supply.toString() === '1'
-      ) {
+      if (trader === subject && ethAmount === '0' && supply === '1') {
         transaction.context = {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: 'Friendtech',
               default:
-                '[[buyer]] [[boughtShares]] from [[subject]] for [[price]]',
+                '[[buyer]] [[boughtShares]] of [[subject]] for [[price]]',
             },
           },
           variables: {
             subject: {
               type: 'address',
-              value: parsedLog.args.subject,
+              value: subject,
             },
           },
         };
@@ -108,15 +109,15 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           price: {
             type: 'eth',
-            value: parsedLog.args.ethAmount.toString(),
+            value: ethAmount,
           },
           subject: {
             type: 'address',
-            value: parsedLog.args.subject,
+            value: subject,
           },
           buyer: {
             type: 'address',
-            value: parsedLog.args.trader,
+            value: trader,
           },
           boughtShares: {
             type: 'contextAction',
@@ -127,8 +128,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Friendtech',
-            default:
-              '[[buyer]] [[boughtShares]] from [[subject]] for [[price]]',
+            default: '[[buyer]] [[boughtShares]] of [[subject]] for [[price]]',
           },
         },
       };
@@ -150,19 +150,23 @@ export const generate = (transaction: Transaction): Transaction => {
         log.topics as EventLogTopics,
       );
 
+      const trader = parsedLog.args['trader'];
+      const subject = parsedLog.args['subject'];
+      const ethAmount = parsedLog.args['ethAmount'];
+
       transaction.context = {
         variables: {
           price: {
             type: 'eth',
-            value: parsedLog.args.ethAmount.toString(),
+            value: ethAmount,
           },
           subject: {
             type: 'address',
-            value: parsedLog.args.subject,
+            value: subject,
           },
           trader: {
             type: 'address',
-            value: parsedLog.args.trader,
+            value: trader,
           },
           soldShares: {
             type: 'contextAction',
