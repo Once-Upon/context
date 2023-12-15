@@ -1,5 +1,7 @@
-import { Transaction } from '../../types';
+import { Hex } from 'viem';
+import { EventLogTopics, Transaction } from '../../types';
 import { ABIs, FRIEND_TECH_ADDRESSES } from './constants';
+import { decodeTransactionInput, decodeLog } from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isFriendTech = detect(transaction);
@@ -13,7 +15,6 @@ export const detect = (transaction: Transaction): boolean => {
   if (transaction.to !== FRIEND_TECH_ADDRESSES || !transaction.logs) {
     return null;
   }
-  // Failed transaction
   // buyShares(address sharesSubject, uint256 amount)
   if (transaction.sigHash === '0x6945b123') {
     return true;
@@ -33,54 +34,50 @@ export const generate = (transaction: Transaction): Transaction => {
   if (!transaction.receipt?.status) {
     // buyShares(address sharesSubject, uint256 amount)
     if (transaction.sigHash === '0x6945b123') {
-      const iface = new Interface(friendtechABI);
-      const parsedTx = iface.parseTransaction({ data: transaction.input });
+      const parsedTx = decodeTransactionInput(
+        transaction.input as Hex,
+        ABIs.FriendTech,
+      );
       transaction.context = {
-        type: 'Failed Buy Shares',
-        outcomes: {
-          default: [
-            {
-              key: 'Price',
-              value: {
-                desc: `[[price]]`,
-                price: {
-                  type: 'eth',
-                  value: parsedTx.args.amount.toString(),
-                },
-              },
-            },
-            {
-              key: 'Subject',
-              value: {
-                desc: `[[subject]]`,
-                subject: {
-                  type: 'address',
-                  value: parsedTx.args.sharesSubject,
-                },
-              },
-            },
-            {
-              key: 'Buyer',
-              value: {
-                desc: `[[buyer]]`,
-                buyer: {
-                  type: 'address',
-                  value: transaction.from,
-                },
-              },
-            },
-          ],
+        variables: {
+          price: {
+            type: 'eth',
+            value: parsedTx.args[1].toString(),
+          },
+          subject: {
+            type: 'address',
+            value: parsedTx.args[0].toString(),
+          },
+          buyer: {
+            type: 'address',
+            value: transaction.from,
+          },
+          failedToBuyShares: {
+            type: 'contextAction',
+            value: 'FAILED_TO_BUY_SHARES',
+          },
+        },
+        summaries: {
+          category: 'PROTOCOL_1',
+          en: {
+            title: 'Friendtech',
+            default:
+              '[[buyer]] [[failedToBuyShares]] from [[subject]] for [[price]]',
+          },
         },
       };
     }
   }
 
-  const iface = new Interface(ABIs.FriendTech);
-
   // buyShares(address sharesSubject, uint256 amount)
   if (transaction.sigHash === '0x6945b123') {
     try {
-      const parsedLog = iface.parseLog(transaction.logs[0]);
+      const log = transaction.logs[0];
+      const parsedLog = decodeLog(
+        ABIs.FriendTech,
+        log.data as Hex,
+        log.topics as EventLogTopics,
+      );
 
       // Check if this is a user signing up
       if (
@@ -89,63 +86,53 @@ export const generate = (transaction: Transaction): Transaction => {
         parsedLog.args.supply.toString() === '1'
       ) {
         transaction.context = {
-          type: 'User Sign Up',
-          outcomes: {
-            default: [
-              {
-                key: 'New User',
-                value: {
-                  desc: `[[subject]]`,
-                  subject: {
-                    type: 'address',
-                    value: parsedLog.args.subject,
-                  },
-                },
-              },
-            ],
+          summaries: {
+            category: 'PROTOCOL_1',
+            en: {
+              title: 'Friendtech',
+              default:
+                '[[buyer]] [[boughtShares]] from [[subject]] for [[price]]',
+            },
+          },
+          variables: {
+            subject: {
+              type: 'address',
+              value: parsedLog.args.subject,
+            },
           },
         };
         return transaction;
       }
 
       transaction.context = {
-        type: 'Buy Shares',
+        variables: {
+          price: {
+            type: 'eth',
+            value: parsedLog.args.ethAmount.toString(),
+          },
+          subject: {
+            type: 'address',
+            value: parsedLog.args.subject,
+          },
+          buyer: {
+            type: 'address',
+            value: parsedLog.args.trader,
+          },
+          boughtShares: {
+            type: 'contextAction',
+            value: 'BOUGHT_SHARES',
+          },
+        },
+        summaries: {
+          category: 'PROTOCOL_1',
+          en: {
+            title: 'Friendtech',
+            default:
+              '[[buyer]] [[boughtShares]] from [[subject]] for [[price]]',
+          },
+        },
       };
 
-      transaction.context.outcomes = {
-        default: [
-          {
-            key: 'Price',
-            value: {
-              desc: `[[price]]`,
-              price: {
-                type: 'eth',
-                value: parsedLog.args.ethAmount.toString(),
-              },
-            },
-          },
-          {
-            key: 'Subject',
-            value: {
-              desc: `[[subject]]`,
-              subject: {
-                type: 'address',
-                value: parsedLog.args.subject,
-              },
-            },
-          },
-          {
-            key: 'Buyer',
-            value: {
-              desc: `[[buyer]]`,
-              buyer: {
-                type: 'address',
-                value: parsedLog.args.trader,
-              },
-            },
-          },
-        ],
-      };
       return transaction;
     } catch (e) {
       console.log(e);
@@ -156,45 +143,39 @@ export const generate = (transaction: Transaction): Transaction => {
   // sellShares(address sharesSubject, uint256 amount)
   if (transaction.sigHash === '0xb51d0534') {
     try {
-      const parsedLog = iface.parseLog(transaction.logs[0]);
+      const log = transaction.logs[0];
+      const parsedLog = decodeLog(
+        ABIs.FriendTech,
+        log.data as Hex,
+        log.topics as EventLogTopics,
+      );
 
       transaction.context = {
-        type: 'Sell Shares',
-      };
-
-      transaction.context.outcomes = {
-        default: [
-          {
-            key: 'Price',
-            value: {
-              desc: `[[price]]`,
-              price: {
-                type: 'eth',
-                value: parsedLog.args.ethAmount.toString(),
-              },
-            },
+        variables: {
+          price: {
+            type: 'eth',
+            value: parsedLog.args.ethAmount.toString(),
           },
-          {
-            key: 'Subject',
-            value: {
-              desc: `[[subject]]`,
-              subject: {
-                type: 'address',
-                value: parsedLog.args.subject,
-              },
-            },
+          subject: {
+            type: 'address',
+            value: parsedLog.args.subject,
           },
-          {
-            key: 'Seller',
-            value: {
-              desc: `[[buyer]]`,
-              buyer: {
-                type: 'address',
-                value: parsedLog.args.trader,
-              },
-            },
+          trader: {
+            type: 'address',
+            value: parsedLog.args.trader,
           },
-        ],
+          soldShares: {
+            type: 'contextAction',
+            value: 'SOLD_SHARES',
+          },
+        },
+        summaries: {
+          category: 'PROTOCOL_1',
+          en: {
+            title: 'Friendtech',
+            default: '[[trader]] [[soldShares]] from [[subject]] for [[price]]',
+          },
+        },
       };
       return transaction;
     } catch (e) {
