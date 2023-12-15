@@ -1,7 +1,6 @@
 import { Abi, Hex } from 'viem';
-import { Interface } from 'ethers/lib/utils';
-import { Transaction } from '../../types';
-import { decodeTransactionInputViem } from '../../helpers/utils';
+import { EventLogTopics, Transaction } from '../../types';
+import { decodeTransactionInput, decodeLog } from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -28,10 +27,10 @@ export const detect = (transaction: Transaction): boolean => {
 
     // decode input
     let decoded: ReturnType<
-      typeof decodeTransactionInputViem<typeof ABIs.SchemaRegistry>
+      typeof decodeTransactionInput<typeof ABIs.SchemaRegistry>
     >;
     try {
-      decoded = decodeTransactionInputViem(
+      decoded = decodeTransactionInput(
         transaction.input as Hex,
         ABIs.SchemaRegistry,
       );
@@ -49,7 +48,7 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const decoded = decodeTransactionInputViem(
+  const decoded = decodeTransactionInput(
     transaction.input as Hex,
     ABIs.SchemaRegistry as Abi,
   );
@@ -60,12 +59,12 @@ export const generate = (transaction: Transaction): Transaction => {
       if (transaction.receipt?.status) {
         const registerLog = transaction.logs?.find((log) => {
           try {
-            const iface = new Interface(ABIs.SchemaRegistry);
-            const decoded = iface.parseLog({
-              topics: log.topics,
-              data: log.data,
-            });
-            return decoded.name === 'Registered';
+            const decoded = decodeLog(
+              ABIs.SchemaRegistry,
+              log.data as Hex,
+              log.topics as EventLogTopics,
+            );
+            return decoded.eventName === 'Registered';
           } catch (_) {
             return false;
           }
@@ -73,12 +72,12 @@ export const generate = (transaction: Transaction): Transaction => {
 
         if (registerLog) {
           try {
-            const iface = new Interface(ABIs.SchemaRegistry);
-            const decoded = iface.parseLog({
-              topics: registerLog.topics,
-              data: registerLog.data,
-            });
-            id = decoded.args.uid.toString();
+            const decoded = decodeLog(
+              ABIs.SchemaRegistry,
+              registerLog.data as Hex,
+              registerLog.topics as EventLogTopics,
+            );
+            id = decoded.args['uid'];
           } catch (err) {
             console.error(err);
           }

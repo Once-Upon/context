@@ -1,7 +1,7 @@
 import { Hex } from 'viem';
 import { ExtractAbiFunctionNames } from 'abitype';
 import { Transaction } from '../../types';
-import { decodeTransactionInputViem } from '../../helpers/utils';
+import { decodeTransactionInput } from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -28,9 +28,9 @@ export const detect = (transaction: Transaction): boolean => {
     }
 
     // decode input
-    let decoded: ReturnType<typeof decodeTransactionInputViem<typeof ABIs.EAS>>;
+    let decoded: ReturnType<typeof decodeTransactionInput<typeof ABIs.EAS>>;
     try {
-      decoded = decodeTransactionInputViem(transaction.input as Hex, ABIs.EAS);
+      decoded = decodeTransactionInput(transaction.input as Hex, ABIs.EAS);
     } catch (err) {
       return false;
     }
@@ -64,10 +64,7 @@ const pluralize = (word: string, n: number): string => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const decoded = decodeTransactionInputViem(
-    transaction.input as Hex,
-    ABIs.EAS,
-  );
+  const decoded = decodeTransactionInput(transaction.input as Hex, ABIs.EAS);
 
   switch (decoded.functionName) {
     case 'attest': {

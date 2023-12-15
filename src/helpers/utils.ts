@@ -1,4 +1,3 @@
-import { utils } from 'ethers';
 import {
   formatEther,
   Abi,
@@ -11,7 +10,6 @@ import {
   TransactionContextType,
   Transaction,
   ContextSummaryVariableType,
-  InterfaceAbi,
   EventLogTopics,
 } from '../types';
 
@@ -38,19 +36,7 @@ export function shortenTxHash(hash: string): string {
   return hash.substr(0, 6) + hash.substr(-4);
 }
 
-export function decodeTransactionInput(
-  input: string,
-  abi: InterfaceAbi,
-): utils.TransactionDescription {
-  const iface = new utils.Interface(abi);
-  const transactionDescriptor = iface.parseTransaction({
-    data: input,
-  });
-
-  return transactionDescriptor;
-}
-
-export function decodeTransactionInputViem<TAbi extends Abi>(
+export function decodeTransactionInput<TAbi extends Abi>(
   input: Hex,
   abi: TAbi,
 ) {
@@ -68,14 +54,16 @@ export function decodeFunction(input: Hex, functionSig: string[]) {
   });
 }
 
-export function decodeLog(abi: Abi, data: Hex, topics: EventLogTopics) {
-  const result = decodeEventLog({
+export function decodeLog<TAbi extends Abi>(
+  abi: TAbi,
+  data: Hex,
+  topics: EventLogTopics,
+) {
+  return decodeEventLog({
     abi,
     data,
     topics,
   });
-
-  return result;
 }
 
 export function contextSummary(context: TransactionContextType): string {

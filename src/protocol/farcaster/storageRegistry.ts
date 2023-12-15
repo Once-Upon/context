@@ -1,7 +1,7 @@
 import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
-import { decodeTransactionInputViem } from '../../helpers/utils';
+import { decodeTransactionInput } from '../../helpers/utils';
 
 // Contextualizer for the StorageRegistry contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IStorageRegistry.sol
@@ -20,7 +20,7 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const decoded = decodeTransactionInputViem(
+    const decoded = decodeTransactionInput(
       transaction.input as Hex,
       FarcasterContracts.StorageRegistry.abi,
     );
@@ -33,7 +33,7 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const decoded = decodeTransactionInputViem(
+  const decoded = decodeTransactionInput(
     transaction.input as Hex,
     FarcasterContracts.StorageRegistry.abi,
   );

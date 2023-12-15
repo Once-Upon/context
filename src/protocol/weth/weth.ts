@@ -2,7 +2,7 @@ import { Abi, Hex } from 'viem';
 import { ContextSummaryVariableType, Transaction } from '../../types';
 import { WETH_ADDRESSES } from '../../helpers/constants';
 import { WETH_ABI } from './constants';
-import { decodeTransactionInputViem } from '../../helpers/utils';
+import { decodeTransactionInput } from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isWeth = detect(transaction);
@@ -26,7 +26,7 @@ export const detect = (transaction: Transaction): boolean => {
     // decode input
     let decode;
     try {
-      decode = decodeTransactionInputViem(
+      decode = decodeTransactionInput(
         transaction.input as Hex,
         WETH_ABI as Abi,
       );
@@ -51,7 +51,7 @@ export const detect = (transaction: Transaction): boolean => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   // decode input
-  const decode = decodeTransactionInputViem(
+  const decode = decodeTransactionInput(
     transaction.input as Hex,
     WETH_ABI as Abi,
   );
@@ -83,7 +83,7 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'withdraw': {
-      const decode = decodeTransactionInputViem(
+      const decode = decodeTransactionInput(
         transaction.input as Hex,
         WETH_ABI as Abi,
       );

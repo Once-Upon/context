@@ -1,7 +1,7 @@
 import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { ENS_CONTRACTS } from './constants';
-import { decodeTransactionInputViem } from '../../helpers/utils';
+import { decodeTransactionInput } from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isENS = detect(transaction);
@@ -16,8 +16,8 @@ export const detect = (transaction: Transaction): boolean => {
   }
   try {
     const abi = ENS_CONTRACTS.registrar[transaction.to].abi;
-    const decode: ReturnType<typeof decodeTransactionInputViem<typeof abi>> =
-      decodeTransactionInputViem(transaction.input as Hex, abi);
+    const decode: ReturnType<typeof decodeTransactionInput<typeof abi>> =
+      decodeTransactionInput(transaction.input as Hex, abi);
 
     if (
       decode.functionName === 'registerWithConfig' ||
@@ -37,9 +37,9 @@ export const detect = (transaction: Transaction): boolean => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   const abi = ENS_CONTRACTS.registrar[transaction.to].abi;
-  let decode: ReturnType<typeof decodeTransactionInputViem<typeof abi>>;
+  let decode: ReturnType<typeof decodeTransactionInput<typeof abi>>;
   try {
-    decode = decodeTransactionInputViem(transaction.input as Hex, abi);
+    decode = decodeTransactionInput(transaction.input as Hex, abi);
   } catch (error) {
     return transaction;
   }

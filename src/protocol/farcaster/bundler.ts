@@ -1,8 +1,11 @@
 import { Hex } from 'viem';
-import { Interface } from 'ethers/lib/utils';
-import { ContextSummaryVariableType, Transaction } from '../../types';
+import {
+  ContextSummaryVariableType,
+  EventLogTopics,
+  Transaction,
+} from '../../types';
 import { FarcasterContracts } from './constants';
-import { decodeTransactionInputViem } from '../../helpers/utils';
+import { decodeTransactionInput, decodeLog } from '../../helpers/utils';
 
 // Contextualizer for the Bundler contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IBundler.sol
@@ -23,8 +26,8 @@ export const detect = (transaction: Transaction): boolean => {
 
   try {
     const decoded: ReturnType<
-      typeof decodeTransactionInputViem<typeof FarcasterContracts.Bundler.abi>
-    > = decodeTransactionInputViem(
+      typeof decodeTransactionInput<typeof FarcasterContracts.Bundler.abi>
+    > = decodeTransactionInput(
       transaction.input as Hex,
       FarcasterContracts.Bundler.abi,
     );
@@ -38,8 +41,8 @@ export const detect = (transaction: Transaction): boolean => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   const decoded: ReturnType<
-    typeof decodeTransactionInputViem<typeof FarcasterContracts.Bundler.abi>
-  > = decodeTransactionInputViem(
+    typeof decodeTransactionInput<typeof FarcasterContracts.Bundler.abi>
+  > = decodeTransactionInput(
     transaction.input as Hex,
     FarcasterContracts.Bundler.abi,
   );
@@ -64,12 +67,12 @@ export const generate = (transaction: Transaction): Transaction => {
         });
         if (registerLog) {
           try {
-            const iface = new Interface(FarcasterContracts.IdRegistry.abi);
-            const decoded = iface.parseLog({
-              topics: registerLog.topics,
-              data: registerLog.data,
-            });
-            fid = decoded.args.id.toString();
+            const decoded = decodeLog(
+              FarcasterContracts.IdRegistry.abi,
+              registerLog.data as Hex,
+              registerLog.topics as EventLogTopics,
+            );
+            fid = BigInt(decoded.args['id']).toString();
           } catch (e) {
             console.error(e);
           }
