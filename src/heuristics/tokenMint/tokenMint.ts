@@ -68,7 +68,7 @@ export function detect(transaction: Transaction): boolean {
   return true;
 }
 
-function generate(transaction: Transaction): Transaction {
+export function generate(transaction: Transaction): Transaction {
   // Get all the mints where from account == to account for the mint transfer
   const mints = transaction.assetTransfers.filter((transfer) => {
     return transfer.from === KNOWN_ADDRESSES.NULL;
