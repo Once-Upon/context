@@ -1,17 +1,25 @@
-import frenPetGameplayContractV1Abi from './abis/FrenPetGameplayContractV1';
-import frenPetERC20TokenContractAbi from './abis/FrenPetERC20TokenContract';
-import frenPetNFTTokenContractAbi from './abis/FrenPetNFTTokenContract';
-
 export const contracts = {
   frenPetGameplayContractV1: '0x0e22b5f3e11944578b37ed04f5312dfc246f443c',
   frenPetERC20TokenContract: '0xff0c532fdb8cd566ae169c1cb157ff2bdc83e105',
   frenPetNFTTokenContract: '0x5b51cf49cb48617084ef35e7c7d7a21914769ff1',
 };
 
-export const FRENPET_ABIS = {
-  '0x0e22b5f3e11944578b37ed04f5312dfc246f443c': frenPetGameplayContractV1Abi,
-  '0xff0c532fdb8cd566ae169c1cb157ff2bdc83e105': frenPetERC20TokenContractAbi,
-  '0x5b51cf49cb48617084ef35e7c7d7a21914769ff1': frenPetNFTTokenContractAbi,
+export const abiMapping = {
+  buyAccessoryFunction: 'function buyAccessory(uint256,uint256)',
+  attackFunction: 'function attack(uint256,uint256)',
+  bonkRevealFunction: 'function bonkReveal(uint256,bytes32)',
+  bonkCommitFunction:
+    'function bonkCommit(uint256,uint256,bytes32,bytes32,bytes)',
+  killFunction: 'function kill(uint256,uint256)',
+  setPetNameFunction: 'function setPetName(uint256,string)',
+  wheelCommitFunction: 'function wheelCommit(uint256,uint256,bytes32,bytes)',
+  wheelRevealFunction: 'function wheelReveal(uint256,bytes32)',
+  redeemFunction: 'function redeem(uint256)',
+  attackEvent:
+    'event Attack(uint256 attacker, uint256 winner, uint256 loser, uint256 scoresWon)',
+  bonkTooSlowEvent: 'event BonkTooSlow(uint256,uint256)',
+  sellItemEvent: 'event SellItem(uint256,address,uint256)',
+  redeemRewardsEvent: 'event RedeemRewards(uint256 indexed, uint256)',
 };
 
 export const frenPetItemsMapping = {

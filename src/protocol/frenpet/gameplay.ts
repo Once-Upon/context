@@ -1,11 +1,11 @@
-import { Hex } from 'viem';
-import { contracts, FRENPET_ABIS, frenPetItemsMapping } from './constants';
+import { Hex, parseAbi } from 'viem';
+import { contracts, abiMapping, frenPetItemsMapping } from './constants';
 import {
   ContextSummaryVariableType,
   Transaction,
   EventLogTopics,
 } from '../../types';
-import { decodeTransactionInputViem, decodeLog } from '../../helpers/utils';
+import { decodeFunction, decodeLog } from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isFrenPet = detect(transaction);
@@ -27,14 +27,13 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const abi = FRENPET_ABIS[transaction.to];
-  const parsed = decodeTransactionInputViem(transaction.input as Hex, abi);
-
   switch (transaction.sigHash) {
     case '0x715488b0': {
       // buyAccessory(uint256,uint256)
       // first argument is the petId
       // second argument is the accessoryId
+      const abi = [abiMapping.buyAccessoryFunction];
+      const parsed = decodeFunction(transaction.input as Hex, abi);
       const buyer: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -98,6 +97,9 @@ export const generate = (transaction: Transaction): Transaction => {
       // emits Attack (uint256 attacker, uint256 winner, uint256 loser, uint256 scoresWon)
       // first argument is the attacker petId
       // second argument is the defender petId
+      const abi = [abiMapping.attackFunction, abiMapping.attackEvent];
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const attacker: ContextSummaryVariableType = {
         type: 'erc721',
         token: contracts.frenPetNFTTokenContract,
@@ -110,7 +112,7 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       if (transaction.receipt?.status) {
         const parsedLog = decodeLog(
-          abi,
+          parseAbi(abi),
           transaction.logs[0]?.data as Hex,
           transaction.logs[0]?.topics as EventLogTopics,
         );
@@ -216,6 +218,9 @@ export const generate = (transaction: Transaction): Transaction => {
     }
     case '0x4d578c93': {
       // setPetName(uint256,string)
+      const abi = [abiMapping.setPetNameFunction];
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -292,6 +297,9 @@ export const generate = (transaction: Transaction): Transaction => {
     case '0xdb006a75': {
       // redeem(uint256)
       // first argument is the petId
+      const abi = [abiMapping.redeemFunction, abiMapping.redeemRewardsEvent];
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const petId = parsed.args[0].toString();
       const pet: ContextSummaryVariableType = {
         type: 'erc721',
@@ -322,7 +330,7 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         const parsedLog = decodeLog(
-          abi,
+          parseAbi(abi),
           transaction.logs[0]?.data as Hex,
           transaction.logs[0]?.topics as EventLogTopics,
         );
@@ -358,7 +366,9 @@ export const generate = (transaction: Transaction): Transaction => {
       // bonkCommit(uint256 attackerId,uint256 targetId,bytes32 nonce,bytes32 commit,bytes signature)
       // first argument is the attackerId
       // second argument is the targetId
-      const parsed = decodeTransactionInputViem(transaction.input as Hex, abi);
+      const abi = [abiMapping.bonkCommitFunction];
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -397,6 +407,14 @@ export const generate = (transaction: Transaction): Transaction => {
     case '0xa4333d91': {
       // bonkReveal(uint256 attackerId,bytes32 reveal)
       // first argument is the attackerId
+      const abi = [
+        abiMapping.bonkRevealFunction,
+        abiMapping.attackEvent,
+        abiMapping.sellItemEvent,
+        abiMapping.bonkTooSlowEvent,
+      ];
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -439,7 +457,7 @@ export const generate = (transaction: Transaction): Transaction => {
               '0xcf2d586a11b0df2dc974a66369ad4e68566a0635fd2448e810592eac3d3bedae', // Attack(uint256 attacker, uint256 winner, uint256 loser, uint256 scoresWon)
           )[0];
           const parsedLog = decodeLog(
-            abi,
+            parseAbi(abi),
             attackLog.data as Hex,
             attackLog.topics as EventLogTopics,
           );
@@ -506,6 +524,9 @@ export const generate = (transaction: Transaction): Transaction => {
       //kill(uint256,uint256)
       // first argument is the deadId
       // second argument is the killer id
+      const abi = [abiMapping.killFunction];
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -544,6 +565,9 @@ export const generate = (transaction: Transaction): Transaction => {
       // wheelCommit(uint256,uint256,bytes32,bytes)
       // first argument is the petId
       // second argument is gameId
+      const abi = [abiMapping.wheelCommitFunction];
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -576,6 +600,9 @@ export const generate = (transaction: Transaction): Transaction => {
     case '0xc86d8bb0': {
       // wheelReveal(uint256,bytes32)
       // first argument is the petId
+      const abi = [abiMapping.wheelRevealFunction];
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
