@@ -56,11 +56,11 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'farcasterID',
             value: decoded.args[0].toString(),
           },
-          units: {
+          unit: {
             type: 'number',
             emphasis: true,
             value: units,
-            units: `storage unit${units > 1 ? 's' : ''}`,
+            unit: `storage unit${units > 1 ? 's' : ''}`,
           },
         },
         summaries: {
@@ -93,13 +93,13 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'number',
             emphasis: true,
             value: fids,
-            units: `Farcaster ID${fids > 1 ? 's' : ''}`,
+            unit: `Farcaster ID${fids > 1 ? 's' : ''}`,
           },
-          units: {
+          unit: {
             type: 'number',
             emphasis: true,
             value: units,
-            units: `storage unit${units > 1 ? 's' : ''}`,
+            unit: `storage unit${units > 1 ? 's' : ''}`,
           },
         },
         summaries: {

@@ -78,8 +78,15 @@ function generate(transaction: Transaction): Transaction {
   if (!firstAssetTransfer) {
     return transaction;
   }
+
+  const tokenType =
+    firstAssetTransfer.type === 'erc20'
+      ? 'erc20'
+      : firstAssetTransfer.type === 'erc721'
+        ? 'erc721'
+        : 'erc1155';
   const firstToken = {
-    type: firstAssetTransfer.type,
+    type: tokenType,
     token: firstAssetTransfer.asset,
     tokenId: firstAssetTransfer.tokenId,
     value: firstAssetTransfer.value,
@@ -100,7 +107,7 @@ function generate(transaction: Transaction): Transaction {
               type: 'number',
               value: recipients.length,
               emphasis: true,
-              units: 'Users',
+              unit: 'users',
             },
       token:
         transaction.assetTransfers.length === 1
@@ -114,7 +121,7 @@ function generate(transaction: Transaction): Transaction {
                 type: 'number',
                 value: transaction.assetTransfers.length,
                 emphasis: true,
-                units: 'Assets',
+                unit: 'assets',
               },
       sender:
         senders.length === 1
@@ -126,7 +133,7 @@ function generate(transaction: Transaction): Transaction {
               type: 'number',
               value: senders.length,
               emphasis: true,
-              units: 'Senders',
+              unit: 'senders',
             },
       receivedAirdrop: {
         type: 'contextAction',

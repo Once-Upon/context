@@ -160,13 +160,13 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'number',
             value: schemas.toString(),
             emphasis: true,
-            units: pluralize('schema', schemas),
+            unit: pluralize('schema', schemas),
           },
           count: {
             type: 'number',
             value: count,
             emphasis: true,
-            units: pluralize('time', count),
+            unit: pluralize('time', count),
           },
           attested: {
             type: 'contextAction',
@@ -201,19 +201,19 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'number',
             value: attesters,
             emphasis: true,
-            units: pluralize('account', attesters),
+            unit: pluralize('account', attesters),
           },
           schemas: {
             type: 'number',
             emphasis: true,
             value: schemas,
-            units: pluralize('schema', schemas),
+            unit: pluralize('schema', schemas),
           },
           count: {
             type: 'number',
             emphasis: true,
             value: count,
-            units: pluralize('time', count),
+            unit: pluralize('time', count),
           },
           attested: {
             type: 'contextAction',
@@ -322,7 +322,7 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'number',
             emphasis: true,
             value: count,
-            units: pluralize('attestation', count),
+            unit: pluralize('attestation', count),
           },
           revoked: {
             type: 'contextAction',
@@ -357,18 +357,17 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'number',
             emphasis: true,
             value: schemas,
-            units: pluralize('schema', schemas),
+            unit: pluralize('schema', schemas),
           },
           count: {
             type: 'number',
             emphasis: true,
             value: count,
-            units: pluralize('attestation', count),
+            unit: pluralize('attestation', count),
           },
           revokers: {
             type: 'address',
             value: revokers.toString(),
-            units: pluralize('account', revokers),
           },
           revoked: {
             type: 'contextAction',
@@ -379,7 +378,10 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default: `[[revokers]] [[revoked]] [[count]] with [[schemas]] by delegation via [[from]]`,
+            default: `[[revokers]] [[revoked]] ${pluralize(
+              'account',
+              revokers,
+            )} [[count]] with [[schemas]] by delegation via [[from]]`,
           },
         },
       };

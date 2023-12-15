@@ -89,7 +89,7 @@ function generate(transaction: Transaction): Transaction {
               type: 'number',
               value: receivingAddresses.length,
               emphasis: true,
-              units: 'Users',
+              unit: 'users',
             }
           : {
               type: 'address',
@@ -111,7 +111,7 @@ function generate(transaction: Transaction): Transaction {
                 type: 'number',
                 value: receivedNfts.length,
                 emphasis: true,
-                units: 'NFTs',
+                unit: 'NFTs',
               },
       price:
         totalPayments.length > 1
@@ -119,12 +119,13 @@ function generate(transaction: Transaction): Transaction {
               type: 'number',
               value: totalPayments.length,
               emphasis: true,
-              units: 'Assets',
+              unit: 'assets',
             }
           : totalPayments[0].type === 'eth'
             ? {
                 type: 'eth',
                 value: totalPayments[0].value,
+                unit: 'wei',
               }
             : {
                 type: 'erc20',

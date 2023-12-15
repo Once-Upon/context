@@ -76,7 +76,7 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'number',
             emphasis: true,
             value: durationInDays,
-            units: 'days',
+            unit: 'days',
           },
           registered: {
             type: 'contextAction',
@@ -139,7 +139,7 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'number',
             emphasis: true,
             value: durationInDays,
-            units: 'days',
+            unit: 'days',
           },
           renewed: {
             type: 'contextAction',
