@@ -108,51 +108,61 @@ export type TransactionContextType = {
 
 export type ContextSummaryVariableType =
   | {
-      type:
-        | 'address'
-        | 'transaction'
-        | 'eth'
-        | 'farcasterID'
-        | 'crosschain'
-        | 'string';
+      type: 'string';
       value: string;
       indexed?: boolean;
       emphasis?: boolean;
-      units?: string;
+      unit?: string;
+    }
+  | {
+      type: 'address' | 'transaction' | 'farcasterID' | 'crosschain';
+      value: string;
+      indexed?: boolean;
+      emphasis?: boolean;
     }
   | {
       type: 'code';
       value: string;
-      units?: string;
     }
   | {
       type: 'contextAction';
       value: ContextAction;
       indexed?: boolean;
       emphasis?: boolean;
-      units?: string;
     }
   | {
-      type: 'eth' | 'erc20' | 'erc721' | 'erc1155';
+      type: 'erc20' | 'erc721' | 'erc1155';
       tokenId?: string;
       token: string;
       value?: string;
       indexed?: boolean;
       emphasis?: boolean;
-      units?: string;
+      unit: string;
     }
   | {
-      type: 'chainID' | 'number';
+      type: 'eth';
+      value?: string;
+      indexed?: boolean;
+      emphasis?: boolean;
+      unit: string;
+    }
+  | {
+      type: 'chainID';
       value: number;
       indexed?: boolean;
       emphasis?: boolean;
-      units?: string;
+    }
+  | {
+      type: 'number';
+      value: number;
+      indexed?: boolean;
+      emphasis?: boolean;
+      unit: string;
     }
   | {
       type: 'link' | 'schemaID';
       value: string;
       link: string;
-      units?: string;
     };
 
 export type ContextVariable = {
