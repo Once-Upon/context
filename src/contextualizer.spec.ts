@@ -27,9 +27,9 @@ import tokenApproval0x567130ba from './test/transactions/tokenApproval-0x567130b
 import tokenApproval0x06f15d49 from './test/transactions/tokenApproval-0x06f15d49.json';
 import tokenApproval0xa0c2a425 from './test/transactions/tokenApproval-0xa0c2a425.json';
 // token mint
-import tokenMint0x2c8a3ed1 from './test/transactions/tokenMint-0x2c8a3ed1.json';
-import tokenMint0x45d1ed7b from './test/transactions/tokenMint-0x45d1ed7b.json';
-import tokenMint0x35f54999 from './test/transactions/tokenMint-0x35f54999.json';
+import erc721MintMint0x2c8a3ed1 from './test/transactions/erc721Mint-0x2c8a3ed1.json';
+import erc1155Mint0x45d1ed7b from './test/transactions/erc1155Mint-0x45d1ed7b.json';
+import erc721Mint0x35f54999 from './test/transactions/erc721Mint-0x35f54999.json';
 // token transfer
 import tokenTransfer0xcfba5dee from './test/transactions/tokenTransfer-0xcfba5dee.json';
 
@@ -128,21 +128,23 @@ describe('ContextualizerService', () => {
       expect(tokenApproval3.context.summaries.en.title).toBe('Token Approval');
     });
 
-    it('Should detect Token Mint', async () => {
-      const tokenMint1 = await contextualize(
-        tokenMint0x2c8a3ed1 as Transaction,
+    it('Should detect ERC721 Mint', async () => {
+      const erc721Mint1 = await contextualize(
+        erc721MintMint0x2c8a3ed1 as Transaction,
       );
-      expect(tokenMint1.context.summaries.en.title).toBe('Token Mint');
+      expect(erc721Mint1.context.summaries.en.title).toBe('Token Mint');
 
-      const tokenMint2 = await contextualize(
-        tokenMint0x45d1ed7b as Transaction,
+      const erc721Mint2 = await contextualize(
+        erc721Mint0x35f54999 as Transaction,
       );
-      expect(tokenMint2.context.summaries.en.title).toBe('Token Mint');
+      expect(erc721Mint2.context.summaries.en.title).toBe('Token Mint');
+    });
 
-      const tokenMint3 = await contextualize(
-        tokenMint0x35f54999 as Transaction,
+    it('Should detect ERC1155 Mint', async () => {
+      const erc1155Mint1 = await contextualize(
+        erc1155Mint0x45d1ed7b as Transaction,
       );
-      expect(tokenMint3.context.summaries.en.title).toBe('Token Mint');
+      expect(erc1155Mint1.context.summaries.en.title).toBe('Token Mint');
     });
 
     it('Should detect Token Transfer', async () => {
