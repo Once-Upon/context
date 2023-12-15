@@ -6,6 +6,7 @@ import tokenMint0x35f54999 from '../../test/transactions/tokenMint-0x35f54999.js
 import erc721Mint0x02e0551e from '../../test/transactions/erc721Mint-0x02e0551e.json';
 import erc20Swap0xd55dc9b2 from '../../test/transactions/erc20Swap-0xd55dc9b2.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
+import { contextSummary } from '../../helpers/utils';
 
 describe('Token Mint', () => {
   it('Should detect token mint transaction', () => {
@@ -32,6 +33,10 @@ describe('Token Mint', () => {
 
   it('Should generate a context for token mint', () => {
     const tokenMint1 = generate(erc721Mint0x02e0551e as Transaction);
-    expect(tokenMint1.context.summaries.category).toBe('FUNGIBLE_TOKEN');
+    expect(tokenMint1.context.summaries.category).toBe('NFT');
+    const desc1 = contextSummary(tokenMint1.context);
+    expect(desc1).toBe(
+      '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 MINTED 10 x 0x251c3246642dbcc5473ae8700a14a11522a4302c #105 for 0.1 ETH',
+    );
   });
 });

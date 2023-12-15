@@ -84,9 +84,11 @@ export function generate(transaction: Transaction): Transaction {
   const recipient = assetTransfer.to;
   const amount =
     assetTransfer.type === 'erc20'
-      ? assetTransfer.value
+      ? Number(assetTransfer.value)
       : mints.filter((ele) => ele.type === assetTransfer.type).length;
-  const price = transaction.netAssetTransfers[transaction.from]?.sent[0].value;
+
+  const assetSent = transaction.netAssetTransfers[transaction.from]?.sent;
+  const price = assetSent[0]?.value;
 
   const tokenDetails =
     assetTransfer.type === 'erc721'
@@ -128,7 +130,7 @@ export function generate(transaction: Transaction): Transaction {
       },
     },
     summaries: {
-      category: 'FUNGIBLE_TOKEN',
+      category: assetTransfer.type === 'erc20' ? 'FUNGIBLE_TOKEN' : 'NFT',
       en: {
         title: 'Token Mint',
         default: '[[recipient]] [[minted]] [[amount]] [[token]] for [[price]]',
