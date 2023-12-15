@@ -1,3 +1,4 @@
+import { Hex } from 'viem';
 import { ContextSummaryVariableType, Transaction } from '../../types';
 import { CryptopunksContracts, CRYPTOPUNK_ABIS } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
@@ -23,20 +24,20 @@ export const detect = (transaction: Transaction): boolean => {
 
   try {
     const decoded = decodeTransactionInput(
-      transaction.input,
+      transaction.input as Hex,
       CRYPTOPUNK_ABIS[transaction.to],
     );
 
     if (
-      decoded.name !== 'getPunk' &&
-      decoded.name !== 'offerPunkForSale' &&
-      decoded.name !== 'withdrawBidForPunk' &&
-      decoded.name !== 'enterBidForPunk' &&
-      decoded.name !== 'withdraw' &&
-      decoded.name !== 'buyPunk' &&
-      decoded.name !== 'transferPunk' &&
-      decoded.name !== 'punkNoLongerForSale' &&
-      decoded.name !== 'offerPunkForSaleToAddress'
+      decoded.functionName !== 'getPunk' &&
+      decoded.functionName !== 'offerPunkForSale' &&
+      decoded.functionName !== 'withdrawBidForPunk' &&
+      decoded.functionName !== 'enterBidForPunk' &&
+      decoded.functionName !== 'withdraw' &&
+      decoded.functionName !== 'buyPunk' &&
+      decoded.functionName !== 'transferPunk' &&
+      decoded.functionName !== 'punkNoLongerForSale' &&
+      decoded.functionName !== 'offerPunkForSaleToAddress'
       //decoded.name !== 'acceptBidForPunk'  TODO!!!
     ) {
       return false;
@@ -51,16 +52,16 @@ export const detect = (transaction: Transaction): boolean => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInput(
-    transaction.input,
+    transaction.input as Hex,
     CRYPTOPUNK_ABIS[transaction.to],
   );
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'getPunk': {
       const punk: ContextSummaryVariableType = {
         type: 'erc721',
         token: CryptopunksContracts.New,
-        tokenId: BigInt(decoded.args[0]).toString(),
+        tokenId: BigInt(decoded.args[0] as bigint).toString(),
       };
       const minter: ContextSummaryVariableType = {
         type: 'address',
@@ -113,11 +114,11 @@ export const generate = (transaction: Transaction): Transaction => {
       const punk: ContextSummaryVariableType = {
         type: 'erc721',
         token: CryptopunksContracts.New,
-        tokenId: BigInt(decoded.args[0]).toString(),
+        tokenId: BigInt(decoded.args[0] as bigint).toString(),
       };
       const price: ContextSummaryVariableType = {
         type: 'eth',
-        value: BigInt(decoded.args[1]).toString(),
+        value: (decoded.args[1] as bigint).toString(),
       };
       if (transaction.receipt?.status) {
         transaction.context = {
@@ -169,7 +170,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const punk: ContextSummaryVariableType = {
         type: 'erc721',
         token: CryptopunksContracts.New,
-        tokenId: BigInt(decoded.args[0]).toString(),
+        tokenId: BigInt(decoded.args[0] as bigint).toString(),
       };
       const price: ContextSummaryVariableType = {
         type: 'eth',
@@ -225,7 +226,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const punk: ContextSummaryVariableType = {
         type: 'erc721',
         token: CryptopunksContracts.New,
-        tokenId: BigInt(decoded.args[0]).toString(),
+        tokenId: BigInt(decoded.args[0] as bigint).toString(),
       };
       const price: ContextSummaryVariableType = {
         type: 'eth',
@@ -329,7 +330,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const punk: ContextSummaryVariableType = {
         type: 'erc721',
         token: CryptopunksContracts.New,
-        tokenId: BigInt(decoded.args[0]).toString(),
+        tokenId: BigInt(decoded.args[0] as bigint).toString(),
       };
       const price: ContextSummaryVariableType = {
         type: 'eth',
@@ -396,11 +397,11 @@ export const generate = (transaction: Transaction): Transaction => {
       const punk: ContextSummaryVariableType = {
         type: 'erc721',
         token: CryptopunksContracts.New,
-        tokenId: BigInt(decoded.args[1]).toString(),
+        tokenId: BigInt(decoded.args[1] as bigint).toString(),
       };
       const receiver: ContextSummaryVariableType = {
         type: 'address',
-        value: decoded.args[0],
+        value: decoded.args[0] as string,
       };
       if (transaction.receipt?.status) {
         transaction.context = {
@@ -452,7 +453,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const punk: ContextSummaryVariableType = {
         type: 'erc721',
         token: CryptopunksContracts.New,
-        tokenId: BigInt(decoded.args[0]).toString(),
+        tokenId: BigInt(decoded.args[0] as bigint).toString(),
       };
       if (transaction.receipt?.status) {
         transaction.context = {
@@ -502,15 +503,15 @@ export const generate = (transaction: Transaction): Transaction => {
       const punk: ContextSummaryVariableType = {
         type: 'erc721',
         token: CryptopunksContracts.New,
-        tokenId: BigInt(decoded.args[0]).toString(),
+        tokenId: BigInt(decoded.args[0] as bigint).toString(),
       };
       const price: ContextSummaryVariableType = {
         type: 'eth',
-        value: BigInt(decoded.args[1]).toString(),
+        value: (decoded.args[1] as bigint).toString(),
       };
       const buyer: ContextSummaryVariableType = {
         type: 'address',
-        value: decoded.args[2],
+        value: decoded.args[2] as string,
       };
       if (transaction.receipt?.status) {
         transaction.context = {
