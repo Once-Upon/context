@@ -1,5 +1,4 @@
-import { Hex } from 'viem';
-import { ethers } from 'ethers';
+import { Hex, toBytes } from 'viem';
 import { ContextSummaryVariableType, Transaction } from '../../types';
 import { LeeroyContracts } from './constants';
 import { decodeFunction } from '../../helpers/utils';
@@ -100,7 +99,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const bytesUsername = decoded[0];
-      const byteArrayUsername = ethers.utils.arrayify(bytesUsername);
+      const byteArrayUsername = toBytes(bytesUsername);
       let username = '';
       byteArrayUsername.forEach((charCode: number) => {
         username += String.fromCharCode(charCode);
@@ -151,7 +150,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const bytesUsername = decoded[0];
-      const byteArrayUsername = ethers.utils.arrayify(bytesUsername);
+      const byteArrayUsername = toBytes(bytesUsername);
       let username = '';
       byteArrayUsername.forEach((charCode: number) => {
         username += String.fromCharCode(charCode);
@@ -206,7 +205,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.value,
       };
       const bytesUsername = decoded[0];
-      const byteArrayUsername = ethers.utils.arrayify(bytesUsername);
+      const byteArrayUsername = toBytes(bytesUsername);
       let username = '';
       byteArrayUsername.forEach((charCode: number) => {
         username += String.fromCharCode(charCode);
@@ -424,7 +423,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const bytesUsername = decoded[0];
-      const byteArrayUsername = ethers.utils.arrayify(bytesUsername);
+      const byteArrayUsername = toBytes(bytesUsername);
       let username = '';
       byteArrayUsername.forEach((charCode: number) => {
         username += String.fromCharCode(charCode);
