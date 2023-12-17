@@ -18,7 +18,7 @@ describe('SchemaRegistry', () => {
       expect(transaction.context.summaries.en.title).toBe('EAS');
 
       expect(contextSummary(transaction.context)).toBe(
-        '0x4fa65b8e4d2018dff11c7aaf460548e413b844b1 REGISTERED new schema with id 0x5dcd6fd9212455e1d21d9236e0dfbdc8b35d37343a083d8f8d3c317352880ab5'
+        '0x4fa65b8e4d2018dff11c7aaf460548e413b844b1 REGISTERED new schema with id 0x5dcd6fd9212455e1d21d9236e0dfbdc8b35d37343a083d8f8d3c317352880ab5',
       );
     });
   });

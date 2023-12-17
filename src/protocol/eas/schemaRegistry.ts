@@ -1,4 +1,4 @@
-import { Abi, Hex } from 'viem';
+import { Hex } from 'viem';
 import { EventLogTopics, Transaction } from '../../types';
 import { decodeTransactionInput, decodeLog } from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
@@ -50,7 +50,7 @@ export const detect = (transaction: Transaction): boolean => {
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInput(
     transaction.input as Hex,
-    ABIs.SchemaRegistry as Abi,
+    ABIs.SchemaRegistry,
   );
 
   switch (decoded.functionName) {
@@ -84,7 +84,7 @@ export const generate = (transaction: Transaction): Transaction => {
         }
       }
 
-      const code = decoded.args[0] as string;
+      const code = decoded.args[0];
       transaction.context = {
         variables: {
           from: {
