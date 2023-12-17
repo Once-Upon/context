@@ -40,7 +40,7 @@ export function generate(transaction: Transaction): Transaction {
     summaries: {
       category: 'DEV',
       en: {
-        title: 'cancelPendingTransaction',
+        title: 'Cancellation',
         default: '[[subject]] [[canceled]] with nonce [[nonce]]',
       },
     },
