@@ -28,7 +28,7 @@ export function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: transaction.from,
       },
-      cancelled: {
+      canceled: {
         type: 'contextAction',
         value: 'CANCELED_A_PENDING_TRANSACTION',
       },
@@ -41,7 +41,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'DEV',
       en: {
         title: 'cancelPendingTransaction',
-        default: '[[subject]] [[cancelled]] with nonce [[nonce]]',
+        default: '[[subject]] [[canceled]] with nonce [[nonce]]',
       },
     },
   };

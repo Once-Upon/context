@@ -17,7 +17,7 @@ describe('Cancel Pending Transaction', () => {
       cancelPendingTransaction0x62bf9724 as Transaction,
     );
     expect(cancelPendingTransaction1.context.summaries.en.title).toBe(
-      'cancelPendingTransaction',
+      'Cancellation',
     );
     const desc = contextSummary(cancelPendingTransaction1.context);
     expect(desc).toBe(
