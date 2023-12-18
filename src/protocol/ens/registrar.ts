@@ -52,7 +52,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'registerWithConfig':
     case 'register': {
       const name = decode.args[0];
-      const duration = parseInt(decode.args[2].toString());
+      const duration = Number(decode.args[2]);
       const durationInDays = Math.trunc(duration / 60 / 60 / 24);
 
       transaction.context = {
@@ -115,7 +115,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'renew': {
       const name = decode.args[0];
-      const duration = parseInt(decode.args[1].toString());
+      const duration = Number(decode.args[1]);
       const durationInDays = Math.trunc(duration / 60 / 60 / 24);
 
       transaction.context = {
