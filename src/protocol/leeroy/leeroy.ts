@@ -1,5 +1,10 @@
 import { Hex, toBytes } from 'viem';
-import { ContextSummaryVariableType, Transaction } from '../../types';
+import {
+  AssetType,
+  ContextSummaryVariableType,
+  ETHAsset,
+  Transaction,
+} from '../../types';
 import { LeeroyContracts } from './constants';
 import { decodeFunction } from '../../helpers/utils';
 
@@ -201,7 +206,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const tipAmount: ContextSummaryVariableType = {
-        type: 'eth',
+        type: AssetType.ETH,
         value: transaction.value,
         unit: 'wei',
       };
@@ -212,10 +217,11 @@ export const generate = (transaction: Transaction): Transaction => {
         username += String.fromCharCode(charCode);
       });
       if (transaction.receipt?.status) {
+        const asset = transaction.netAssetTransfers[transaction.to]
+          .received[0] as ETHAsset;
         const leeroyTake: ContextSummaryVariableType = {
-          type: 'eth',
-          value:
-            transaction.netAssetTransfers[transaction.to].received[0].value,
+          type: AssetType.ETH,
+          value: asset.value,
           unit: 'wei',
         };
         transaction.context = {

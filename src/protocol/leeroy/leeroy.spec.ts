@@ -13,7 +13,7 @@ describe('Leeroy', () => {
     const leeroy1 = generate(leeroy0x9c6d7a1a as Transaction);
     expect(leeroy1.context?.summaries.category).toBe('PROTOCOL_1');
     expect(leeroy1.context?.summaries.en.title).toBe('Leeroy');
-    expect(leeroy1.context?.variables?.contextAction?.value).toBe('POSTED');
+    expect(leeroy1.context?.variables?.contextAction['value']).toBe('POSTED');
   });
 
   it('Should not detect as leeroy', () => {

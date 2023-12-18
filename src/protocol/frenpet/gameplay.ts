@@ -4,6 +4,11 @@ import {
   ContextSummaryVariableType,
   Transaction,
   EventLogTopics,
+  AssetType,
+  ContextERC20Type,
+  ERC20Asset,
+  ContextERC721Type,
+  ERC721Asset,
 } from '../../types';
 import { decodeFunction, decodeLog } from '../../helpers/utils';
 
@@ -40,16 +45,18 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       const petId = parsed.args[0].toString();
       const pet: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
         tokenId: petId,
       };
       const accessory = frenPetItemsMapping[parsed.args[1] as number];
       if (transaction.receipt?.status) {
-        const purchasePrice: ContextSummaryVariableType = {
-          type: 'erc20',
+        const asset = transaction.netAssetTransfers[transaction.from]
+          .sent[0] as ERC20Asset;
+        const purchasePrice: ContextERC20Type = {
+          type: AssetType.ERC20,
           token: contracts.frenPetERC20TokenContract,
-          value: transaction.netAssetTransfers[transaction.from].sent[0].value,
+          value: asset.value,
         };
         transaction.context = {
           variables: {
@@ -101,12 +108,12 @@ export const generate = (transaction: Transaction): Transaction => {
       const parsed = decodeFunction(transaction.input as Hex, abi);
 
       const attacker: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
         tokenId: parsed.args[0].toString(),
       };
       const attacked: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
         tokenId: parsed.args[1].toString(),
       };
@@ -167,16 +174,19 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       if (transaction.receipt?.status) {
-        const pet: ContextSummaryVariableType = {
-          type: 'erc721',
+        const assetReceived = transaction.netAssetTransfers[transaction.from]
+          .received[0] as ERC721Asset;
+        const assetSent = transaction.netAssetTransfers[transaction.from]
+          .sent[0] as ERC20Asset;
+        const pet: ContextERC721Type = {
+          type: AssetType.ERC721,
           token: contracts.frenPetNFTTokenContract,
-          tokenId:
-            transaction.netAssetTransfers[transaction.from].received[0].tokenId,
+          tokenId: assetReceived.tokenId,
         };
-        const cost: ContextSummaryVariableType = {
-          type: 'erc20',
+        const cost: ContextERC20Type = {
+          type: AssetType.ERC20,
           token: contracts.frenPetERC20TokenContract,
-          value: transaction.netAssetTransfers[transaction.from].sent[0].value,
+          value: assetSent.value,
         };
         transaction.context = {
           variables: {
@@ -226,7 +236,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const pet: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
         tokenId: parsed.args[0].toString(),
       };
@@ -302,7 +312,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
       const petId = parsed.args[0].toString();
       const pet: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
         tokenId: petId,
       };
@@ -336,7 +346,7 @@ export const generate = (transaction: Transaction): Transaction => {
         );
         const redeemedAmountString = parsedLog.args[1] as string;
         const redeemedAmount: ContextSummaryVariableType = {
-          type: 'erc20',
+          type: AssetType.ERC20,
           token: contracts.frenPetERC20TokenContract,
           value: redeemedAmountString,
         };
@@ -374,12 +384,12 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const attacker: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
         tokenId: parsed.args[0].toString(),
       };
       const target: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
         tokenId: parsed.args[1].toString(),
       };
@@ -420,7 +430,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const attacker: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
         tokenId: parsed.args[0].toString(),
       };
@@ -532,12 +542,12 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const dead: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
         tokenId: parsed.args[0].toString(),
       };
       const killer: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
         tokenId: parsed.args[1].toString(),
       };
@@ -573,7 +583,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const pet: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
         tokenId: parsed.args[0].toString(),
       };
@@ -608,7 +618,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const pet: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
         tokenId: parsed.args[0].toString(),
       };
