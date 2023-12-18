@@ -206,6 +206,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const tipAmount: ContextSummaryVariableType = {
         type: 'eth',
         value: transaction.value,
+        unit: 'wei',
       };
       const bytesUsername = decoded[0];
       const byteArrayUsername = ethers.utils.arrayify(bytesUsername);
@@ -218,6 +219,7 @@ export const generate = (transaction: Transaction): Transaction => {
           type: 'eth',
           value:
             transaction.netAssetTransfers[transaction.to].received[0].value,
+          unit: 'wei',
         };
         transaction.context = {
           variables: {

@@ -51,6 +51,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const cost: ContextSummaryVariableType = {
         type: 'eth',
         value: transaction.value,
+        unit: 'wei',
       };
       // Capture FID
       let fid = '';

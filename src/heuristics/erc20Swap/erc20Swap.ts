@@ -67,14 +67,16 @@ function generate(transaction: Transaction): Transaction {
     type: 'address',
     value: transaction.from,
   };
-  const swapFrom = transaction.netAssetTransfers[transaction.from]
-    .sent[0] as ContextSummaryVariableType;
+  const swapFrom = {
+    ...transaction.netAssetTransfers[transaction.from].sent[0],
+    token: transaction.netAssetTransfers[transaction.from].sent[0]?.asset,
+  } as ContextSummaryVariableType;
   // Net asset transfers calls the token contract 'asset' instead of 'token'
-  swapFrom['token'] = swapFrom['asset'];
-  const swapTo = transaction.netAssetTransfers[transaction.from]
-    .received[0] as ContextSummaryVariableType;
+  const swapTo = {
+    ...transaction.netAssetTransfers[transaction.from].received[0],
+    token: transaction.netAssetTransfers[transaction.from].received[0]?.asset,
+  } as ContextSummaryVariableType;
   // Net asset transfers calls the token contract 'asset' instead of 'token'
-  swapTo['token'] = swapTo['asset'];
 
   transaction.context = {
     variables: {

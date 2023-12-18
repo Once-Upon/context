@@ -81,14 +81,18 @@ export function generate(transaction: Transaction): Transaction {
 
   transaction.context = {
     variables: {
-      userOrUsers: {
-        type: receivingAddresses.length > 1 ? 'string' : 'address',
-        value:
-          receivingAddresses.length > 1
-            ? `${receivingAddresses.length} Users`
-            : receivingAddresses[0],
-        emphasis: receivingAddresses.length > 1,
-      },
+      userOrUsers:
+        receivingAddresses.length > 1
+          ? {
+              type: 'number',
+              value: receivingAddresses.length,
+              emphasis: true,
+              unit: 'users',
+            }
+          : {
+              type: 'address',
+              value: receivingAddresses[0],
+            },
       tokenOrTokens:
         receivedNfts.length === 1
           ? {
@@ -102,21 +106,24 @@ export function generate(transaction: Transaction): Transaction {
                 value: receivedNfts[0].asset,
               }
             : {
-                type: 'string',
-                value: `${receivedNfts.length} NFTs`,
+                type: 'number',
+                value: receivedNfts.length,
                 emphasis: true,
+                unit: 'NFTs',
               },
       price:
         totalPayments.length > 1
           ? {
-              type: 'string',
-              value: `${totalPayments.length} Assets`,
+              type: 'number',
+              value: totalPayments.length,
               emphasis: true,
+              unit: 'assets',
             }
           : totalPayments[0].type === 'eth'
             ? {
                 type: 'eth',
                 value: totalPayments[0].value,
+                unit: 'wei',
               }
             : {
                 type: 'erc20',

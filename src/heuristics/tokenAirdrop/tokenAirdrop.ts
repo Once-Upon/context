@@ -1,4 +1,4 @@
-import { Transaction } from '../../types';
+import { Transaction, ContextSummaryVariableType } from '../../types';
 import { KNOWN_ADDRESSES } from '../../helpers/constants';
 
 const AIRDROP_THRESHOLD = 10;
@@ -78,12 +78,13 @@ function generate(transaction: Transaction): Transaction {
   if (!firstAssetTransfer) {
     return transaction;
   }
+
   const firstToken = {
     type: firstAssetTransfer.type,
     token: firstAssetTransfer.asset,
     tokenId: firstAssetTransfer.tokenId,
     value: firstAssetTransfer.value,
-  };
+  } as ContextSummaryVariableType;
 
   const category =
     firstAssetTransfer.type === 'erc721' ? 'NFT' : 'FUNGIBLE_TOKEN';
@@ -97,9 +98,10 @@ function generate(transaction: Transaction): Transaction {
               value: recipients[0],
             }
           : {
-              type: 'string',
-              value: `${recipients.length} Users`,
+              type: 'number',
+              value: recipients.length,
               emphasis: true,
+              unit: 'users',
             },
       token:
         transaction.assetTransfers.length === 1
@@ -110,9 +112,10 @@ function generate(transaction: Transaction): Transaction {
                 value: firstAssetTransfer.asset,
               }
             : {
-                type: 'string',
-                value: `${transaction.assetTransfers.length} Assets`,
+                type: 'number',
+                value: transaction.assetTransfers.length,
                 emphasis: true,
+                unit: 'assets',
               },
       sender:
         senders.length === 1
@@ -121,9 +124,10 @@ function generate(transaction: Transaction): Transaction {
               value: senders[0],
             }
           : {
-              type: 'string',
-              value: `${senders.length} Senders`,
+              type: 'number',
+              value: senders.length,
               emphasis: true,
+              unit: 'senders',
             },
       receivedAirdrop: {
         type: 'contextAction',

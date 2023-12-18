@@ -31,6 +31,7 @@ export function generate(transaction: Transaction): Transaction {
       amount: {
         type: 'eth',
         value: transaction.value,
+        unit: 'wei',
       },
       to: {
         type: 'address',

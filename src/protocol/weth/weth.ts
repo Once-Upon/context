@@ -82,6 +82,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const withdrawalAmount: ContextSummaryVariableType = {
         type: 'eth',
         value: ethers.BigNumber.from(decode.args[0]).toString(),
+        unit: 'wei',
       };
       transaction.context = {
         summaries: {
