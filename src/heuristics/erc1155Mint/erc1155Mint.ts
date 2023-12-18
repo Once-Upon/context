@@ -96,7 +96,7 @@ export function generate(transaction: Transaction): Transaction {
   transaction.context = {
     variables: {
       token: {
-        type: assetTransfer.type,
+        type: 'erc1155',
         token: assetTransfer.token,
         tokenId: assetTransfer.tokenId,
         value: assetTransfer.value,
