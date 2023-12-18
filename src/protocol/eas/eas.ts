@@ -165,7 +165,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           schemas: {
             type: 'number',
-            value: schemas.toString(),
+            value: schemas,
             emphasis: true,
             unit: pluralize('schema', schemas),
           },
