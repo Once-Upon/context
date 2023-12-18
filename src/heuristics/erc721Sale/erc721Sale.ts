@@ -1,4 +1,3 @@
-import { ethers } from 'ethers';
 import { Asset, Transaction } from '../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -73,9 +72,9 @@ function generate(transaction: Transaction): Transaction {
       acc[next.asset] = {
         type: next.type,
         asset: next.asset,
-        value: ethers.BigNumber.from(acc[next.asset]?.value || '0')
-          .add(next.value)
-          .toString(),
+        value: (
+          BigInt(acc[next.asset]?.value || '0') + BigInt(next.value)
+        ).toString(),
       };
       return acc;
     }, {}),

@@ -1,6 +1,11 @@
-import { ethers } from 'ethers';
+import { Hex, parseAbi } from 'viem';
 import { contracts, abiMapping, frenPetItemsMapping } from './constants';
-import { ContextSummaryVariableType, Transaction } from '../../types';
+import {
+  ContextSummaryVariableType,
+  Transaction,
+  EventLogTopics,
+} from '../../types';
+import { decodeFunction, decodeLog } from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isFrenPet = detect(transaction);
@@ -28,11 +33,7 @@ export const generate = (transaction: Transaction): Transaction => {
       // first argument is the petId
       // second argument is the accessoryId
       const abi = [abiMapping.buyAccessoryFunction];
-      const iface = new ethers.utils.Interface(abi);
-      const parsed = iface.parseTransaction({
-        data: transaction.input,
-        value: transaction.value,
-      });
+      const parsed = decodeFunction(transaction.input as Hex, abi);
       const buyer: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -43,7 +44,7 @@ export const generate = (transaction: Transaction): Transaction => {
         token: contracts.frenPetNFTTokenContract,
         tokenId: petId,
       };
-      const accessory = frenPetItemsMapping[parsed.args[1].toNumber()];
+      const accessory = frenPetItemsMapping[parsed.args[1] as number];
       if (transaction.receipt?.status) {
         const purchasePrice: ContextSummaryVariableType = {
           type: 'erc20',
@@ -97,11 +98,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // first argument is the attacker petId
       // second argument is the defender petId
       const abi = [abiMapping.attackFunction, abiMapping.attackEvent];
-      const iface = new ethers.utils.Interface(abi);
-      const parsed = iface.parseTransaction({
-        data: transaction.input,
-        value: transaction.value,
-      });
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const attacker: ContextSummaryVariableType = {
         type: 'erc721',
         token: contracts.frenPetNFTTokenContract,
@@ -113,14 +111,16 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: parsed.args[1].toString(),
       };
       if (transaction.receipt?.status) {
-        const parsedLog = iface.parseLog({
-          topics: transaction.logs[0]?.topics,
-          data: transaction.logs[0]?.data,
-        });
-        const winner = parsedLog.args[1].toString();
-        let scoresWon = parsedLog.args[3];
-        scoresWon = scoresWon.div(100000000000).toString();
-        const winOrLose = attacker === winner ? 'won' : 'lost';
+        const parsedLog = decodeLog(
+          parseAbi(abi),
+          transaction.logs[0]?.data as Hex,
+          transaction.logs[0]?.topics as EventLogTopics,
+        );
+        const attackerArg = parsedLog.args[0] as string;
+        const winnerArg = parsedLog.args[1] as string;
+        const scoresWonArg = parsedLog.args[3] as bigint;
+        const scoresWon = (scoresWonArg / BigInt(100000000000)).toString();
+        const winOrLose = attackerArg === winnerArg ? 'won' : 'lost';
         transaction.context = {
           variables: {
             attacker,
@@ -219,11 +219,8 @@ export const generate = (transaction: Transaction): Transaction => {
     case '0x4d578c93': {
       // setPetName(uint256,string)
       const abi = [abiMapping.setPetNameFunction];
-      const iface = new ethers.utils.Interface(abi);
-      const parsed = iface.parseTransaction({
-        data: transaction.input,
-        value: transaction.value,
-      });
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -301,11 +298,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // redeem(uint256)
       // first argument is the petId
       const abi = [abiMapping.redeemFunction, abiMapping.redeemRewardsEvent];
-      const iface = new ethers.utils.Interface(abi);
-      const parsed = iface.parseTransaction({
-        data: transaction.input,
-        value: transaction.value,
-      });
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const petId = parsed.args[0].toString();
       const pet: ContextSummaryVariableType = {
         type: 'erc721',
@@ -335,11 +329,12 @@ export const generate = (transaction: Transaction): Transaction => {
           },
         };
       } else {
-        const parsedLog = iface.parseLog({
-          topics: transaction.logs[0]?.topics,
-          data: transaction.logs[0]?.data,
-        });
-        const redeemedAmountString = parsedLog.args[1].toString();
+        const parsedLog = decodeLog(
+          parseAbi(abi),
+          transaction.logs[0]?.data as Hex,
+          transaction.logs[0]?.topics as EventLogTopics,
+        );
+        const redeemedAmountString = parsedLog.args[1] as string;
         const redeemedAmount: ContextSummaryVariableType = {
           type: 'erc20',
           token: contracts.frenPetERC20TokenContract,
@@ -372,11 +367,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // first argument is the attackerId
       // second argument is the targetId
       const abi = [abiMapping.bonkCommitFunction];
-      const iface = new ethers.utils.Interface(abi);
-      const parsed = iface.parseTransaction({
-        data: transaction.input,
-        value: transaction.value,
-      });
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -421,11 +413,8 @@ export const generate = (transaction: Transaction): Transaction => {
         abiMapping.sellItemEvent,
         abiMapping.bonkTooSlowEvent,
       ];
-      const iface = new ethers.utils.Interface(abi);
-      const parsed = iface.parseTransaction({
-        data: transaction.input,
-        value: transaction.value,
-      });
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -467,22 +456,35 @@ export const generate = (transaction: Transaction): Transaction => {
               log.topics[0] ===
               '0xcf2d586a11b0df2dc974a66369ad4e68566a0635fd2448e810592eac3d3bedae', // Attack(uint256 attacker, uint256 winner, uint256 loser, uint256 scoresWon)
           )[0];
-          const parsedLog = iface.parseLog({
-            topics: attackLog.topics,
-            data: attackLog.data,
-          });
-          const winner = parsedLog.args[1].toString();
-          const loser = parsedLog.args[2].toString();
-          const scoresWon = parsedLog.args[3];
-          const winOrLose = attacker === winner ? 'won' : 'lost';
-          const scoresWonFormatted = scoresWon.div(100000000000).toString();
+          const parsedLog = decodeLog(
+            parseAbi(abi),
+            attackLog.data as Hex,
+            attackLog.topics as EventLogTopics,
+          );
+          const attackerArg = parsedLog.args[1] as string;
+          const winnerArg = parsedLog.args[1] as string;
+          const loserArg = parsedLog.args[2] as string;
+          const scoresWon = parsedLog.args[3] as bigint;
+          const winOrLose = attackerArg === winnerArg ? 'won' : 'lost';
+          const scoresWonFormatted = (
+            scoresWon / BigInt(100000000000)
+          ).toString();
           transaction.context = {
             variables: {
               user,
               attacker,
-              winner,
-              loser,
-              scoresWonFormatted,
+              winner: {
+                type: 'string',
+                value: winnerArg,
+              },
+              loser: {
+                type: 'string',
+                value: loserArg,
+              },
+              scoresWonFormatted: {
+                type: 'string',
+                value: scoresWonFormatted,
+              },
               contextAction: {
                 type: 'contextAction',
                 value: 'ATTACKED',
@@ -523,11 +525,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // first argument is the deadId
       // second argument is the killer id
       const abi = [abiMapping.killFunction];
-      const iface = new ethers.utils.Interface(abi);
-      const parsed = iface.parseTransaction({
-        data: transaction.input,
-        value: transaction.value,
-      });
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -567,11 +566,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // first argument is the petId
       // second argument is gameId
       const abi = [abiMapping.wheelCommitFunction];
-      const iface = new ethers.utils.Interface(abi);
-      const parsed = iface.parseTransaction({
-        data: transaction.input,
-        value: transaction.value,
-      });
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -605,11 +601,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // wheelReveal(uint256,bytes32)
       // first argument is the petId
       const abi = [abiMapping.wheelRevealFunction];
-      const iface = new ethers.utils.Interface(abi);
-      const parsed = iface.parseTransaction({
-        data: transaction.input,
-        value: transaction.value,
-      });
+      const parsed = decodeFunction(transaction.input as Hex, abi);
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,

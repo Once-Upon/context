@@ -1,6 +1,7 @@
-import { Interface } from 'ethers/lib/utils';
-import { Transaction } from '../../types';
+import { Hex } from 'viem';
+import { EventLogTopics, Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
+import { decodeLog, decodeTransactionInput } from '../../helpers/utils';
 
 // Contextualizer for the IdGateway contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IIdGateway.sol
@@ -19,13 +20,12 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const iface = new Interface(FarcasterContracts.IdGateway.abi);
-    const decoded = iface.parseTransaction({
-      data: transaction.input,
-      value: transaction.value,
-    });
+    const decoded = decodeTransactionInput(
+      transaction.input as Hex,
+      FarcasterContracts.IdGateway.abi,
+    );
 
-    return ['register', 'registerFor'].includes(decoded.name);
+    return ['register', 'registerFor'].includes(decoded.functionName);
   } catch (_) {
     return false;
   }
@@ -33,11 +33,10 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const iface = new Interface(FarcasterContracts.IdGateway.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  const decoded = decodeTransactionInput(
+    transaction.input as Hex,
+    FarcasterContracts.IdGateway.abi,
+  );
 
   // Capture FID
   let fid = '';
@@ -47,19 +46,19 @@ export const generate = (transaction: Transaction): Transaction => {
     });
     if (registerLog) {
       try {
-        const iface = new Interface(FarcasterContracts.IdRegistry.abi);
-        const decoded = iface.parseLog({
-          topics: registerLog.topics,
-          data: registerLog.data,
-        });
-        fid = decoded.args.id.toString();
+        const decoded = decodeLog(
+          FarcasterContracts.IdRegistry.abi,
+          registerLog.data as Hex,
+          registerLog.topics as EventLogTopics,
+        );
+        fid = BigInt(decoded.args['id']).toString();
       } catch (e) {
         console.error(e);
       }
     }
   }
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'register': {
       transaction.context = {
         variables: {

@@ -1,6 +1,7 @@
-import { Interface } from 'ethers/lib/utils';
+import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
+import { decodeTransactionInput } from '../../helpers/utils';
 
 // Contextualizer for the KeyRegistry contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IKeyRegistry.sol
@@ -19,13 +20,12 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const iface = new Interface(FarcasterContracts.KeyRegistry.abi);
-    const decoded = iface.parseTransaction({
-      data: transaction.input,
-      value: transaction.value,
-    });
+    const decoded = decodeTransactionInput(
+      transaction.input as Hex,
+      FarcasterContracts.KeyRegistry.abi,
+    );
 
-    return ['remove', 'removeFor'].includes(decoded.name);
+    return ['remove', 'removeFor'].includes(decoded.functionName);
   } catch (_) {
     return false;
   }
@@ -33,13 +33,12 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const iface = new Interface(FarcasterContracts.KeyRegistry.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  const decoded = decodeTransactionInput(
+    transaction.input as Hex,
+    FarcasterContracts.KeyRegistry.abi,
+  );
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'remove': {
       transaction.context = {
         variables: {

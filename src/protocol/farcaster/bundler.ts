@@ -1,6 +1,11 @@
-import { Interface } from 'ethers/lib/utils';
-import { ContextSummaryVariableType, Transaction } from '../../types';
+import { Hex } from 'viem';
+import {
+  ContextSummaryVariableType,
+  EventLogTopics,
+  Transaction,
+} from '../../types';
 import { FarcasterContracts } from './constants';
+import { decodeTransactionInput, decodeLog } from '../../helpers/utils';
 
 // Contextualizer for the Bundler contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IBundler.sol
@@ -20,13 +25,14 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const iface = new Interface(FarcasterContracts.Bundler.abi);
-    const decoded = iface.parseTransaction({
-      data: transaction.input,
-      value: transaction.value,
-    });
+    const decoded: ReturnType<
+      typeof decodeTransactionInput<typeof FarcasterContracts.Bundler.abi>
+    > = decodeTransactionInput(
+      transaction.input as Hex,
+      FarcasterContracts.Bundler.abi,
+    );
 
-    return ['register'].includes(decoded.name);
+    return ['register'].includes(decoded.functionName);
   } catch (_) {
     return false;
   }
@@ -34,19 +40,20 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const iface = new Interface(FarcasterContracts.Bundler.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  const decoded: ReturnType<
+    typeof decodeTransactionInput<typeof FarcasterContracts.Bundler.abi>
+  > = decodeTransactionInput(
+    transaction.input as Hex,
+    FarcasterContracts.Bundler.abi,
+  );
 
   const caller = transaction.from;
-  const owner = decoded.args.registerParams.to;
 
-  const callerIsOwner = owner.toLowerCase() === caller.toLowerCase();
-
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'register': {
+      const owner = decoded.args[0].to;
+      const callerIsOwner = owner.toLowerCase() === caller.toLowerCase();
+
       // Capture cost to register
       const cost: ContextSummaryVariableType = {
         type: 'eth',
@@ -61,12 +68,12 @@ export const generate = (transaction: Transaction): Transaction => {
         });
         if (registerLog) {
           try {
-            const iface = new Interface(FarcasterContracts.IdRegistry.abi);
-            const decoded = iface.parseLog({
-              topics: registerLog.topics,
-              data: registerLog.data,
-            });
-            fid = decoded.args.id.toString();
+            const decoded = decodeLog(
+              FarcasterContracts.IdRegistry.abi,
+              registerLog.data as Hex,
+              registerLog.topics as EventLogTopics,
+            );
+            fid = BigInt(decoded.args['id']).toString();
           } catch (e) {
             console.error(e);
           }

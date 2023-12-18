@@ -1,5 +1,5 @@
-import cryptoPunksOldAbi from './abis/CryptopunksOld.json';
-import cryptoPunksAbi from './abis/Cryptopunks.json';
+import cryptoPunksOldAbi from './abis/CryptopunksOld';
+import cryptoPunksAbi from './abis/Cryptopunks';
 
 export const CryptopunksContracts = {
   Old: '0x6ba6f2207e343923ba692e5cae646fb0f566db8d',

@@ -1,6 +1,7 @@
-import { Interface } from 'ethers/lib/utils';
+import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
+import { decodeTransactionInput } from '../../helpers/utils';
 
 // Contextualizer for the KeyGateway contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IKeyGateway.sol
@@ -17,13 +18,12 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const iface = new Interface(FarcasterContracts.KeyGateway.abi);
-    const decoded = iface.parseTransaction({
-      data: transaction.input,
-      value: transaction.value,
-    });
+    const decoded = decodeTransactionInput(
+      transaction.input as Hex,
+      FarcasterContracts.KeyGateway.abi,
+    );
 
-    return ['add', 'addFor'].includes(decoded.name);
+    return ['add', 'addFor'].includes(decoded.functionName);
   } catch (_) {
     return false;
   }
@@ -31,13 +31,12 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const iface = new Interface(FarcasterContracts.KeyGateway.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  const decoded = decodeTransactionInput(
+    transaction.input as Hex,
+    FarcasterContracts.KeyGateway.abi,
+  );
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'add': {
       transaction.context = {
         variables: {

@@ -1,6 +1,4 @@
-import { InterfaceAbi } from 'src/types/Abi';
-
-export const WETH_ABI: InterfaceAbi = [
+export const WETH_ABI = [
   {
     constant: false,
     inputs: [],

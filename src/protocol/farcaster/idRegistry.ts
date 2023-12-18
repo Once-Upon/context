@@ -1,6 +1,7 @@
-import { Interface } from 'ethers/lib/utils';
+import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
+import { decodeTransactionInput } from '../../helpers/utils';
 
 // Contextualizer for the IdRegistry contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IIdRegistry.sol
@@ -21,13 +22,14 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const iface = new Interface(FarcasterContracts.IdRegistry.abi);
-    const decoded = iface.parseTransaction({
-      data: transaction.input,
-      value: transaction.value,
-    });
+    const decoded = decodeTransactionInput(
+      transaction.input as Hex,
+      FarcasterContracts.IdRegistry.abi,
+    );
 
-    return ['changeRecoveryAddressFor', 'transfer'].includes(decoded.name);
+    return ['changeRecoveryAddressFor', 'transfer'].includes(
+      decoded.functionName,
+    );
   } catch (_) {
     return false;
   }
@@ -35,13 +37,12 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const iface = new Interface(FarcasterContracts.IdRegistry.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  const decoded = decodeTransactionInput(
+    transaction.input as Hex,
+    FarcasterContracts.IdRegistry.abi,
+  );
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'changeRecoveryAddressFor': {
       transaction.context = {
         variables: {

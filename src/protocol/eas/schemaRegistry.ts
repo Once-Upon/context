@@ -1,6 +1,6 @@
-import { Interface, TransactionDescription } from 'ethers/lib/utils';
-import { Transaction } from '../../types';
-import { decodeTransactionInput } from '../../helpers/utils';
+import { Hex } from 'viem';
+import { EventLogTopics, Transaction } from '../../types';
+import { decodeTransactionInput, decodeLog } from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -26,15 +26,20 @@ export const detect = (transaction: Transaction): boolean => {
     }
 
     // decode input
-    let decoded: TransactionDescription;
+    let decoded: ReturnType<
+      typeof decodeTransactionInput<typeof ABIs.SchemaRegistry>
+    >;
     try {
-      decoded = decodeTransactionInput(transaction.input, ABIs.SchemaRegistry);
+      decoded = decodeTransactionInput(
+        transaction.input as Hex,
+        ABIs.SchemaRegistry,
+      );
     } catch (_) {
       return false;
     }
 
-    if (!decoded || !decoded.name) return false;
-    return ['register'].includes(decoded.name);
+    if (!decoded || !decoded.functionName) return false;
+    return ['register'].includes(decoded.functionName);
   } catch (err) {
     console.error('Error in detect function:', err);
     return false;
@@ -44,22 +49,22 @@ export const detect = (transaction: Transaction): boolean => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInput(
-    transaction.input,
+    transaction.input as Hex,
     ABIs.SchemaRegistry,
   );
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'register': {
       let id = '';
       if (transaction.receipt?.status) {
         const registerLog = transaction.logs?.find((log) => {
           try {
-            const iface = new Interface(ABIs.SchemaRegistry);
-            const decoded = iface.parseLog({
-              topics: log.topics,
-              data: log.data,
-            });
-            return decoded.name === 'Registered';
+            const decoded = decodeLog(
+              ABIs.SchemaRegistry,
+              log.data as Hex,
+              log.topics as EventLogTopics,
+            );
+            return decoded.eventName === 'Registered';
           } catch (_) {
             return false;
           }
@@ -67,18 +72,19 @@ export const generate = (transaction: Transaction): Transaction => {
 
         if (registerLog) {
           try {
-            const iface = new Interface(ABIs.SchemaRegistry);
-            const decoded = iface.parseLog({
-              topics: registerLog.topics,
-              data: registerLog.data,
-            });
-            id = decoded.args.uid.toString();
+            const decoded = decodeLog(
+              ABIs.SchemaRegistry,
+              registerLog.data as Hex,
+              registerLog.topics as EventLogTopics,
+            );
+            id = decoded.args['uid'];
           } catch (err) {
             console.error(err);
           }
         }
       }
 
+      const code = decoded.args[0];
       transaction.context = {
         variables: {
           from: {
@@ -94,7 +100,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           schema: {
             type: 'code',
-            value: decoded.args[0],
+            value: code,
           },
           registered: {
             type: 'contextAction',

@@ -1,10 +1,17 @@
-import { utils } from 'ethers';
-import { InterfaceAbi } from '../types/Abi';
+import {
+  formatEther,
+  Abi,
+  decodeFunctionData,
+  decodeEventLog,
+  Hex,
+  parseAbi,
+} from 'viem';
 import {
   TransactionContextType,
   Transaction,
   ContextSummaryVariableType,
-} from '../types/transaction';
+  EventLogTopics,
+} from '../types';
 
 const VALID_CHARS =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.? ';
@@ -29,16 +36,34 @@ export function shortenTxHash(hash: string): string {
   return hash.substr(0, 6) + hash.substr(-4);
 }
 
-export function decodeTransactionInput(
-  input: string,
-  abi: InterfaceAbi,
-): utils.TransactionDescription {
-  const iface = new utils.Interface(abi);
-  const transactionDescriptor = iface.parseTransaction({
+export function decodeTransactionInput<TAbi extends Abi>(
+  input: Hex,
+  abi: TAbi,
+) {
+  return decodeFunctionData({
+    abi,
     data: input,
   });
+}
 
-  return transactionDescriptor;
+export function decodeFunction(input: Hex, functionSig: string[]) {
+  const abi = parseAbi(functionSig);
+  return decodeFunctionData({
+    abi,
+    data: input,
+  });
+}
+
+export function decodeLog<TAbi extends Abi>(
+  abi: TAbi,
+  data: Hex,
+  topics: EventLogTopics,
+) {
+  return decodeEventLog({
+    abi,
+    data,
+    topics,
+  });
 }
 
 export function contextSummary(context: TransactionContextType): string {
@@ -73,7 +98,7 @@ function formatSection(section: ContextSummaryVariableType) {
   const unit = varContext['unit'];
 
   if (varContext?.type === 'eth')
-    return `${utils.formatEther(varContext?.value)}${unit ? ` ETH` : ''}`;
+    return `${formatEther(BigInt(varContext?.value))}${unit ? ` ETH` : ''}`;
 
   if (varContext?.type === 'erc721' || varContext?.type === 'erc1155') {
     return `${varContext.token} #${varContext.tokenId}${

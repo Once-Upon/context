@@ -1,6 +1,7 @@
-import { Interface } from 'ethers/lib/utils';
+import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
+import { decodeTransactionInput } from '../../helpers/utils';
 
 // Contextualizer for the StorageRegistry contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IStorageRegistry.sol
@@ -19,13 +20,12 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
-    const iface = new Interface(FarcasterContracts.StorageRegistry.abi);
-    const decoded = iface.parseTransaction({
-      data: transaction.input,
-      value: transaction.value,
-    });
+    const decoded = decodeTransactionInput(
+      transaction.input as Hex,
+      FarcasterContracts.StorageRegistry.abi,
+    );
 
-    return ['rent', 'batchRent'].includes(decoded.name);
+    return ['rent', 'batchRent'].includes(decoded.functionName);
   } catch (_) {
     return false;
   }
@@ -33,13 +33,12 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const iface = new Interface(FarcasterContracts.StorageRegistry.abi);
-  const decoded = iface.parseTransaction({
-    data: transaction.input,
-    value: transaction.value,
-  });
+  const decoded = decodeTransactionInput(
+    transaction.input as Hex,
+    FarcasterContracts.StorageRegistry.abi,
+  );
 
-  switch (decoded.name) {
+  switch (decoded.functionName) {
     case 'rent': {
       const units = Number(decoded.args[1]);
       transaction.context = {
@@ -75,10 +74,10 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'batchRent': {
-      const fids = decoded.args[0].length;
-      const units = decoded.args[1]
-        .reduce((acc, curr) => acc.add(curr))
-        .toString();
+      const fidsArg = decoded.args[0];
+      const fids = fidsArg.length;
+      const unitsArg = decoded.args[1];
+      const units = unitsArg.reduce((acc, curr) => acc + curr);
       transaction.context = {
         variables: {
           rented: {

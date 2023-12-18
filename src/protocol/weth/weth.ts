@@ -1,4 +1,4 @@
-import { ethers } from 'ethers';
+import { Abi, Hex } from 'viem';
 import { ContextSummaryVariableType, Transaction } from '../../types';
 import { WETH_ADDRESSES } from '../../helpers/constants';
 import { WETH_ABI } from './constants';
@@ -26,13 +26,19 @@ export const detect = (transaction: Transaction): boolean => {
     // decode input
     let decode;
     try {
-      decode = decodeTransactionInput(transaction.input, WETH_ABI);
+      decode = decodeTransactionInput(
+        transaction.input as Hex,
+        WETH_ABI as Abi, // TODO: Remove this downcast and switch to ABI ts file
+      );
     } catch (e) {
       return false;
     }
 
-    if (!decode || !decode.name) return false;
-    if (decode.name !== 'deposit' && decode.name !== 'withdraw') {
+    if (!decode || !decode.functionName) return false;
+    if (
+      decode.functionName !== 'deposit' &&
+      decode.functionName !== 'withdraw'
+    ) {
       return false;
     }
     return true;
@@ -45,8 +51,11 @@ export const detect = (transaction: Transaction): boolean => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   // decode input
-  const decode = decodeTransactionInput(transaction.input, WETH_ABI);
-  switch (decode.name) {
+  const decode = decodeTransactionInput(
+    transaction.input as Hex,
+    WETH_ABI as Abi, // TODO: Remove this downcast and switch to ABI ts file
+  );
+  switch (decode.functionName) {
     case 'deposit': {
       transaction.context = {
         summaries: {
@@ -74,14 +83,17 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'withdraw': {
-      const decode = decodeTransactionInput(transaction.input, WETH_ABI);
+      const decode = decodeTransactionInput(
+        transaction.input as Hex,
+        WETH_ABI as Abi, // TODO: Remove this downcast and switch to ABI ts file
+      );
       const withdrawer: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
       };
       const withdrawalAmount: ContextSummaryVariableType = {
         type: 'eth',
-        value: ethers.BigNumber.from(decode.args[0]).toString(),
+        value: BigInt(decode.args[0] as string).toString(),
         unit: 'wei',
       };
       transaction.context = {

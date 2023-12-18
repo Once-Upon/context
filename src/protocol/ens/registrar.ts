@@ -1,3 +1,4 @@
+import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { ENS_CONTRACTS } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
@@ -13,18 +14,16 @@ export const detect = (transaction: Transaction): boolean => {
   if (!Object.keys(ENS_CONTRACTS.registrar).includes(transaction.to)) {
     return false;
   }
-
   try {
-    const decode = decodeTransactionInput(
-      transaction.input,
-      ENS_CONTRACTS.registrar[transaction.to].abi,
-    );
+    const abi = ENS_CONTRACTS.registrar[transaction.to].abi;
+    const decode: ReturnType<typeof decodeTransactionInput<typeof abi>> =
+      decodeTransactionInput(transaction.input as Hex, abi);
 
     if (
-      decode.name === 'registerWithConfig' ||
-      decode.name === 'register' ||
-      decode.name === 'commit' ||
-      decode.name === 'renew'
+      decode.functionName === 'registerWithConfig' ||
+      decode.functionName === 'register' ||
+      decode.functionName === 'commit' ||
+      decode.functionName === 'renew'
     ) {
       return true;
     }
@@ -37,21 +36,19 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  let decode;
+  const abi = ENS_CONTRACTS.registrar[transaction.to].abi;
+  let decode: ReturnType<typeof decodeTransactionInput<typeof abi>>;
   try {
-    decode = decodeTransactionInput(
-      transaction.input,
-      ENS_CONTRACTS.registrar[transaction.to].abi,
-    );
+    decode = decodeTransactionInput(transaction.input as Hex, abi);
   } catch (error) {
     return transaction;
   }
 
-  switch (decode.name) {
+  switch (decode.functionName) {
     case 'registerWithConfig':
     case 'register': {
       const name = decode.args[0];
-      const duration = parseInt(decode.args[2]);
+      const duration = parseInt(decode.args[2] as string);
       const durationInDays = Math.trunc(duration / 60 / 60 / 24);
 
       transaction.context = {
@@ -114,7 +111,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'renew': {
       const name = decode.args[0];
-      const duration = parseInt(decode.args[1]);
+      const duration = parseInt(decode.args[1] as string);
       const durationInDays = Math.trunc(duration / 60 / 60 / 24);
 
       transaction.context = {
