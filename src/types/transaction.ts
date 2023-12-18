@@ -108,13 +108,14 @@ export type TransactionContextType = {
 
 export type ContextSummaryVariableType =
   | {
-      type:
-        | 'address'
-        | 'transaction'
-        | 'eth'
-        | 'farcasterID'
-        | 'crosschain'
-        | 'string';
+      type: 'string';
+      value: string;
+      indexed?: boolean;
+      emphasis?: boolean;
+      unit?: string;
+    }
+  | {
+      type: 'address' | 'transaction' | 'farcasterID' | 'crosschain';
       value: string;
       indexed?: boolean;
       emphasis?: boolean;
@@ -130,7 +131,7 @@ export type ContextSummaryVariableType =
       emphasis?: boolean;
     }
   | {
-      type: 'eth' | 'erc20' | 'erc721' | 'erc1155';
+      type: 'erc20' | 'erc721' | 'erc1155';
       tokenId?: string;
       token: string;
       value?: string;
@@ -138,10 +139,24 @@ export type ContextSummaryVariableType =
       emphasis?: boolean;
     }
   | {
-      type: 'chainID' | 'number';
+      type: 'eth';
+      value: string;
+      indexed?: boolean;
+      emphasis?: boolean;
+      unit: string;
+    }
+  | {
+      type: 'chainID';
       value: number;
       indexed?: boolean;
       emphasis?: boolean;
+    }
+  | {
+      type: 'number';
+      value: number;
+      indexed?: boolean;
+      emphasis?: boolean;
+      unit?: string; // nonce is an example where there is no unit
     }
   | {
       type: 'link' | 'schemaID';

@@ -70,9 +70,10 @@ export const generate = (transaction: Transaction): Transaction => {
             value: `${name}.eth`,
           },
           duration: {
-            type: 'string',
+            type: 'number',
             emphasis: true,
-            value: `${durationInDays} days`,
+            value: durationInDays,
+            unit: 'days',
           },
           registered: {
             type: 'contextAction',
@@ -132,9 +133,10 @@ export const generate = (transaction: Transaction): Transaction => {
             value: `${name}.eth`,
           },
           duration: {
-            type: 'string',
+            type: 'number',
             emphasis: true,
-            value: `${durationInDays} days`,
+            value: durationInDays,
+            unit: 'days',
           },
           renewed: {
             type: 'contextAction',

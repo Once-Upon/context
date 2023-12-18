@@ -4,6 +4,7 @@ import farcasterRent0x09794a62 from '../../test/transactions/farcaster-rent-0x09
 import farcasterRentMany0x4a23db3d from '../../test/transactions/farcaster-rentMany-0x4a23db3d.json';
 import farcasterBatchRentMOCK from '../../test/transactions/farcaster-batchRent-MOCK.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
+import { contextSummary } from '../../helpers/utils';
 
 describe('StorageRegistry', () => {
   describe('rent', () => {
@@ -19,10 +20,11 @@ describe('StorageRegistry', () => {
         '0x3a4afca659f54922a0d7a7b0bebabf641dec66bb',
       );
       expect(transaction.context.variables.fid['value']).toBe('196573');
-      expect(transaction.context.variables.units['value']).toBe('1');
-      expect(
-        transaction.context.summaries.en.default.includes('storage unit '),
-      ).toBe(true);
+      expect(transaction.context.variables.units['value']).toBe(1);
+      const desc = contextSummary(transaction.context);
+      expect(desc).toBe(
+        '0x3a4afca659f54922a0d7a7b0bebabf641dec66bb RENTED 1 storage unit for Farcaster ID 196573',
+      );
     });
 
     it('Should pluralize units', () => {
@@ -31,10 +33,11 @@ describe('StorageRegistry', () => {
         '0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2',
       );
       expect(transaction.context.variables.fid['value']).toBe('12350');
-      expect(transaction.context.variables.units['value']).toBe('2');
-      expect(
-        transaction.context.summaries.en.default.includes('storage units'),
-      ).toBe(true);
+      expect(transaction.context.variables.units['value']).toBe(2);
+      const desc = contextSummary(transaction.context);
+      expect(desc).toBe(
+        '0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2 RENTED 2 storage units for Farcaster ID 12350',
+      );
     });
   });
 
@@ -55,11 +58,12 @@ describe('StorageRegistry', () => {
       expect(transaction.context.variables.caller['value']).toBe(
         '0xbdfeb5439f5daecb78a17ff846645a8bdbbf5725',
       );
-      expect(transaction.context.variables.fids['value']).toBe('2');
-      expect(transaction.context.variables.units['value']).toBe('7');
-      expect(
-        transaction.context.summaries.en.default.includes('storage units '),
-      ).toBe(true);
+      expect(transaction.context.variables.fids['value']).toBe(2);
+      expect(transaction.context.variables.units['value']).toBe(7);
+      const desc = contextSummary(transaction.context);
+      expect(desc).toBe(
+        '0xbdfeb5439f5daecb78a17ff846645a8bdbbf5725 RENTED 7 storage units for 2 Farcaster IDs',
+      );
     });
   });
 

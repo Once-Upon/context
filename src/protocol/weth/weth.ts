@@ -94,6 +94,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const withdrawalAmount: ContextSummaryVariableType = {
         type: 'eth',
         value: BigInt(decode.args[0] as string).toString(),
+        unit: 'wei',
       };
       transaction.context = {
         summaries: {

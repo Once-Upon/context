@@ -1,4 +1,4 @@
-import { Transaction } from '../../types';
+import { ContextSummaryVariableType, Transaction } from '../../types';
 import { KNOWN_ADDRESSES, WETH_ADDRESSES } from '../../helpers/constants';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -87,23 +87,25 @@ function generate(transaction: Transaction): Transaction {
     assetTransfer.type === 'erc721'
       ? {
           tokenId: assetTransfer.tokenId,
+          type: assetTransfer.type,
+          token: assetTransfer.token,
         }
       : assetTransfer.type === 'erc1155'
         ? {
             tokenId: assetTransfer.tokenId,
             value: assetTransfer.value,
+            type: assetTransfer.type,
+            token: assetTransfer.token,
           }
-        : {
+        : ({
             value: assetTransfer.value,
-          };
+            type: assetTransfer.type,
+            token: assetTransfer.token,
+          } as ContextSummaryVariableType);
 
   transaction.context = {
     variables: {
-      token: {
-        type: assetTransfer.type,
-        token: assetTransfer.token,
-        ...tokenDetails,
-      },
+      token: tokenDetails,
       recipient: {
         type: 'address',
         value: recipient,

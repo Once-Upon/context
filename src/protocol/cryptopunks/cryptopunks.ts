@@ -119,6 +119,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const price: ContextSummaryVariableType = {
         type: 'eth',
         value: (decoded.args[1] as bigint).toString(),
+        unit: 'wei',
       };
       if (transaction.receipt?.status) {
         transaction.context = {
@@ -175,6 +176,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const price: ContextSummaryVariableType = {
         type: 'eth',
         value: transaction.assetTransfers?.[0].value,
+        unit: 'wei',
       };
       if (transaction.receipt?.status) {
         transaction.context = {
@@ -231,6 +233,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const price: ContextSummaryVariableType = {
         type: 'eth',
         value: transaction.value,
+        unit: 'wei',
       };
       if (transaction.receipt?.status) {
         transaction.context = {
@@ -282,6 +285,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const amount: ContextSummaryVariableType = {
         type: 'eth',
         value: transaction.assetTransfers?.[0].value,
+        unit: 'wei',
       };
       if (transaction.receipt?.status) {
         transaction.context = {
@@ -335,6 +339,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const price: ContextSummaryVariableType = {
         type: 'eth',
         value: transaction.value,
+        unit: 'wei',
       };
       if (transaction.receipt?.status) {
         const transferTopic = transaction.logs.filter(
@@ -508,6 +513,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const price: ContextSummaryVariableType = {
         type: 'eth',
         value: (decoded.args[1] as bigint).toString(),
+        unit: 'wei',
       };
       const buyer: ContextSummaryVariableType = {
         type: 'address',
