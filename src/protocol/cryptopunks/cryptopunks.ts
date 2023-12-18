@@ -51,9 +51,16 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
+  if (
+    transaction.to !== CryptopunksContracts.Old &&
+    transaction.to !== CryptopunksContracts.New
+  ) {
+    return transaction;
+  }
+
   const decoded = decodeTransactionInput(
     transaction.input as Hex,
-    CRYPTOPUNK_ABIS[transaction.to], // TODO: Get this ABI from a separate typed abi ts file
+    CRYPTOPUNK_ABIS[transaction.to],
   );
 
   switch (decoded.functionName) {
