@@ -3,14 +3,24 @@ const abi = [
     constant: true,
     inputs: [],
     name: 'name',
-    outputs: [{ name: '', type: 'string' }],
+    outputs: [
+      {
+        name: '',
+        type: 'string',
+      },
+    ],
     payable: false,
     type: 'function',
     stateMutability: 'view',
   },
   {
     constant: false,
-    inputs: [{ name: 'maxForThisRun', type: 'uint256' }],
+    inputs: [
+      {
+        name: 'maxForThisRun',
+        type: 'uint256',
+      },
+    ],
     name: 'reservePunksForOwner',
     outputs: [],
     payable: false,
@@ -19,14 +29,34 @@ const abi = [
   },
   {
     constant: true,
-    inputs: [{ name: '', type: 'uint256' }],
+    inputs: [
+      {
+        name: '',
+        type: 'uint256',
+      },
+    ],
     name: 'punksOfferedForSale',
     outputs: [
-      { name: 'isForSale', type: 'bool' },
-      { name: 'punkIndex', type: 'uint256' },
-      { name: 'seller', type: 'address' },
-      { name: 'minValue', type: 'uint256' },
-      { name: 'onlySellTo', type: 'address' },
+      {
+        name: 'isForSale',
+        type: 'bool',
+      },
+      {
+        name: 'punkIndex',
+        type: 'uint256',
+      },
+      {
+        name: 'seller',
+        type: 'address',
+      },
+      {
+        name: 'minValue',
+        type: 'uint256',
+      },
+      {
+        name: 'onlySellTo',
+        type: 'address',
+      },
     ],
     payable: false,
     type: 'function',
@@ -36,7 +66,12 @@ const abi = [
     constant: true,
     inputs: [],
     name: 'totalSupply',
-    outputs: [{ name: '', type: 'uint256' }],
+    outputs: [
+      {
+        name: '',
+        type: 'uint256',
+      },
+    ],
     payable: false,
     type: 'function',
     stateMutability: 'view',
@@ -45,7 +80,12 @@ const abi = [
     constant: true,
     inputs: [],
     name: 'decimals',
-    outputs: [{ name: '', type: 'uint8' }],
+    outputs: [
+      {
+        name: '',
+        type: 'uint8',
+      },
+    ],
     payable: false,
     type: 'function',
     stateMutability: 'view',
@@ -63,7 +103,12 @@ const abi = [
     constant: true,
     inputs: [],
     name: 'imageHash',
-    outputs: [{ name: '', type: 'string' }],
+    outputs: [
+      {
+        name: '',
+        type: 'string',
+      },
+    ],
     payable: false,
     type: 'function',
     stateMutability: 'view',
@@ -72,16 +117,31 @@ const abi = [
     constant: true,
     inputs: [],
     name: 'nextPunkIndexToAssign',
-    outputs: [{ name: '', type: 'uint256' }],
+    outputs: [
+      {
+        name: '',
+        type: 'uint256',
+      },
+    ],
     payable: false,
     type: 'function',
     stateMutability: 'view',
   },
   {
     constant: true,
-    inputs: [{ name: '', type: 'uint256' }],
+    inputs: [
+      {
+        name: '',
+        type: 'uint256',
+      },
+    ],
     name: 'punkIndexToAddress',
-    outputs: [{ name: '', type: 'address' }],
+    outputs: [
+      {
+        name: '',
+        type: 'address',
+      },
+    ],
     payable: false,
     type: 'function',
     stateMutability: 'view',
@@ -90,23 +150,43 @@ const abi = [
     constant: true,
     inputs: [],
     name: 'standard',
-    outputs: [{ name: '', type: 'string' }],
+    outputs: [
+      {
+        name: '',
+        type: 'string',
+      },
+    ],
     payable: false,
     type: 'function',
     stateMutability: 'view',
   },
   {
     constant: true,
-    inputs: [{ name: '', type: 'address' }],
+    inputs: [
+      {
+        name: '',
+        type: 'address',
+      },
+    ],
     name: 'balanceOf',
-    outputs: [{ name: '', type: 'uint256' }],
+    outputs: [
+      {
+        name: '',
+        type: 'uint256',
+      },
+    ],
     payable: false,
     type: 'function',
     stateMutability: 'view',
   },
   {
     constant: false,
-    inputs: [{ name: 'punkIndex', type: 'uint256' }],
+    inputs: [
+      {
+        name: 'punkIndex',
+        type: 'uint256',
+      },
+    ],
     name: 'buyPunk',
     outputs: [],
     payable: true,
@@ -116,8 +196,14 @@ const abi = [
   {
     constant: false,
     inputs: [
-      { name: 'to', type: 'address' },
-      { name: 'punkIndex', type: 'uint256' },
+      {
+        name: 'to',
+        type: 'address',
+      },
+      {
+        name: 'punkIndex',
+        type: 'uint256',
+      },
     ],
     name: 'transferPunk',
     outputs: [],
@@ -129,7 +215,12 @@ const abi = [
     constant: true,
     inputs: [],
     name: 'symbol',
-    outputs: [{ name: '', type: 'string' }],
+    outputs: [
+      {
+        name: '',
+        type: 'string',
+      },
+    ],
     payable: false,
     type: 'function',
     stateMutability: 'view',
@@ -138,7 +229,12 @@ const abi = [
     constant: true,
     inputs: [],
     name: 'numberOfPunksToReserve',
-    outputs: [{ name: '', type: 'uint256' }],
+    outputs: [
+      {
+        name: '',
+        type: 'uint256',
+      },
+    ],
     payable: false,
     type: 'function',
     stateMutability: 'view',
@@ -147,7 +243,12 @@ const abi = [
     constant: true,
     inputs: [],
     name: 'numberOfPunksReserved',
-    outputs: [{ name: '', type: 'uint256' }],
+    outputs: [
+      {
+        name: '',
+        type: 'uint256',
+      },
+    ],
     payable: false,
     type: 'function',
     stateMutability: 'view',
@@ -155,9 +256,18 @@ const abi = [
   {
     constant: false,
     inputs: [
-      { name: 'punkIndex', type: 'uint256' },
-      { name: 'minSalePriceInWei', type: 'uint256' },
-      { name: 'toAddress', type: 'address' },
+      {
+        name: 'punkIndex',
+        type: 'uint256',
+      },
+      {
+        name: 'minSalePriceInWei',
+        type: 'uint256',
+      },
+      {
+        name: 'toAddress',
+        type: 'address',
+      },
     ],
     name: 'offerPunkForSaleToAddress',
     outputs: [],
@@ -169,7 +279,12 @@ const abi = [
     constant: true,
     inputs: [],
     name: 'punksRemainingToAssign',
-    outputs: [{ name: '', type: 'uint256' }],
+    outputs: [
+      {
+        name: '',
+        type: 'uint256',
+      },
+    ],
     payable: false,
     type: 'function',
     stateMutability: 'view',
@@ -177,8 +292,14 @@ const abi = [
   {
     constant: false,
     inputs: [
-      { name: 'punkIndex', type: 'uint256' },
-      { name: 'minSalePriceInWei', type: 'uint256' },
+      {
+        name: 'punkIndex',
+        type: 'uint256',
+      },
+      {
+        name: 'minSalePriceInWei',
+        type: 'uint256',
+      },
     ],
     name: 'offerPunkForSale',
     outputs: [],
@@ -188,7 +309,12 @@ const abi = [
   },
   {
     constant: false,
-    inputs: [{ name: 'punkIndex', type: 'uint256' }],
+    inputs: [
+      {
+        name: 'punkIndex',
+        type: 'uint256',
+      },
+    ],
     name: 'getPunk',
     outputs: [],
     payable: false,
@@ -197,16 +323,31 @@ const abi = [
   },
   {
     constant: true,
-    inputs: [{ name: '', type: 'address' }],
+    inputs: [
+      {
+        name: '',
+        type: 'address',
+      },
+    ],
     name: 'pendingWithdrawals',
-    outputs: [{ name: '', type: 'uint256' }],
+    outputs: [
+      {
+        name: '',
+        type: 'uint256',
+      },
+    ],
     payable: false,
     type: 'function',
     stateMutability: 'view',
   },
   {
     constant: false,
-    inputs: [{ name: 'punkIndex', type: 'uint256' }],
+    inputs: [
+      {
+        name: 'punkIndex',
+        type: 'uint256',
+      },
+    ],
     name: 'punkNoLongerForSale',
     outputs: [],
     payable: false,
@@ -222,8 +363,16 @@ const abi = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, name: 'to', type: 'address' },
-      { indexed: false, name: 'punkIndex', type: 'uint256' },
+      {
+        indexed: true,
+        name: 'to',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        name: 'punkIndex',
+        type: 'uint256',
+      },
     ],
     name: 'Assign',
     type: 'event',
@@ -231,9 +380,21 @@ const abi = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, name: 'from', type: 'address' },
-      { indexed: true, name: 'to', type: 'address' },
-      { indexed: false, name: 'value', type: 'uint256' },
+      {
+        indexed: true,
+        name: 'from',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        name: 'to',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        name: 'value',
+        type: 'uint256',
+      },
     ],
     name: 'Transfer',
     type: 'event',
@@ -241,9 +402,21 @@ const abi = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, name: 'from', type: 'address' },
-      { indexed: true, name: 'to', type: 'address' },
-      { indexed: false, name: 'punkIndex', type: 'uint256' },
+      {
+        indexed: true,
+        name: 'from',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        name: 'to',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        name: 'punkIndex',
+        type: 'uint256',
+      },
     ],
     name: 'PunkTransfer',
     type: 'event',
@@ -251,9 +424,21 @@ const abi = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, name: 'punkIndex', type: 'uint256' },
-      { indexed: false, name: 'minValue', type: 'uint256' },
-      { indexed: true, name: 'toAddress', type: 'address' },
+      {
+        indexed: true,
+        name: 'punkIndex',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        name: 'minValue',
+        type: 'uint256',
+      },
+      {
+        indexed: true,
+        name: 'toAddress',
+        type: 'address',
+      },
     ],
     name: 'PunkOffered',
     type: 'event',
@@ -261,17 +446,39 @@ const abi = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, name: 'punkIndex', type: 'uint256' },
-      { indexed: false, name: 'value', type: 'uint256' },
-      { indexed: true, name: 'fromAddress', type: 'address' },
-      { indexed: true, name: 'toAddress', type: 'address' },
+      {
+        indexed: true,
+        name: 'punkIndex',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        name: 'value',
+        type: 'uint256',
+      },
+      {
+        indexed: true,
+        name: 'fromAddress',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        name: 'toAddress',
+        type: 'address',
+      },
     ],
     name: 'PunkBought',
     type: 'event',
   },
   {
     anonymous: false,
-    inputs: [{ indexed: true, name: 'punkIndex', type: 'uint256' }],
+    inputs: [
+      {
+        indexed: true,
+        name: 'punkIndex',
+        type: 'uint256',
+      },
+    ],
     name: 'PunkNoLongerForSale',
     type: 'event',
   },
