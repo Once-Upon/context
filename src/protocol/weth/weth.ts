@@ -1,4 +1,4 @@
-import { Abi, Hex } from 'viem';
+import { Hex } from 'viem';
 import { ContextSummaryVariableType, Transaction } from '../../types';
 import { WETH_ADDRESSES } from '../../helpers/constants';
 import { WETH_ABI } from './constants';
@@ -24,15 +24,7 @@ export const detect = (transaction: Transaction): boolean => {
     }
 
     // decode input
-    let decode;
-    try {
-      decode = decodeTransactionInput(
-        transaction.input as Hex,
-        WETH_ABI as Abi, // TODO: Remove this downcast and switch to ABI ts file
-      );
-    } catch (e) {
-      return false;
-    }
+    const decode = decodeTransactionInput(transaction.input as Hex, WETH_ABI);
 
     if (!decode || !decode.functionName) return false;
     if (
@@ -51,10 +43,7 @@ export const detect = (transaction: Transaction): boolean => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   // decode input
-  const decode = decodeTransactionInput(
-    transaction.input as Hex,
-    WETH_ABI as Abi, // TODO: Remove this downcast and switch to ABI ts file
-  );
+  const decode = decodeTransactionInput(transaction.input as Hex, WETH_ABI);
   switch (decode.functionName) {
     case 'deposit': {
       transaction.context = {
@@ -83,17 +72,14 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'withdraw': {
-      const decode = decodeTransactionInput(
-        transaction.input as Hex,
-        WETH_ABI as Abi, // TODO: Remove this downcast and switch to ABI ts file
-      );
+      const decode = decodeTransactionInput(transaction.input as Hex, WETH_ABI);
       const withdrawer: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
       };
       const withdrawalAmount: ContextSummaryVariableType = {
         type: 'eth',
-        value: BigInt(decode.args[0] as string).toString(),
+        value: decode.args[0].toString(),
         unit: 'wei',
       };
       transaction.context = {
