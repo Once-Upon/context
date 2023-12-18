@@ -137,7 +137,6 @@ export type ContextSummaryVariableType =
       value?: string;
       indexed?: boolean;
       emphasis?: boolean;
-      unit?: string;
     }
   | {
       type: 'eth';
