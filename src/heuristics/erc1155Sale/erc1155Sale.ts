@@ -1,4 +1,10 @@
-import { Asset, Transaction } from '../../types';
+import {
+  AssetType,
+  ERC1155Asset,
+  ERC20Asset,
+  ETHAsset,
+  Transaction,
+} from '../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isERC1155Sale = detect(transaction);
@@ -42,14 +48,16 @@ export function detect(transaction: Transaction): boolean {
 
 function generate(transaction: Transaction): Transaction {
   const receivingAddresses: string[] = [];
-  const receivedNfts: Asset[] = [];
+  const receivedNfts: ERC1155Asset[] = [];
   const sentPayments: { type: string; asset: string; value: string }[] = [];
 
   for (const [address, data] of Object.entries(transaction.netAssetTransfers)) {
-    const nftTransfers = data.received.filter((t) => t.type === 'erc1155');
+    const nftTransfers = data.received.filter(
+      (t) => t.type === AssetType.ERC1155,
+    ) as ERC1155Asset[];
     const paymentTransfers = data.sent.filter(
-      (t) => t.type === 'erc20' || t.type === 'eth',
-    );
+      (t) => t.type === AssetType.ERC20 || t.type === AssetType.ETH,
+    ) as (ERC20Asset | ETHAsset)[];
     if (nftTransfers.length > 0) {
       receivingAddresses.push(address);
       nftTransfers.forEach((nft) => receivedNfts.push(nft));
@@ -98,7 +106,7 @@ function generate(transaction: Transaction): Transaction {
       tokenOrTokens:
         receivedNfts.length === 1
           ? {
-              type: 'erc1155',
+              type: AssetType.ERC1155,
               token: receivedNfts[0].asset,
               tokenId: receivedNfts[0].tokenId,
               value: receivedNfts[0].value,
@@ -122,14 +130,14 @@ function generate(transaction: Transaction): Transaction {
               emphasis: true,
               unit: 'assets',
             }
-          : totalPayments[0].type === 'eth'
+          : totalPayments[0].type === AssetType.ETH
             ? {
-                type: 'eth',
+                type: AssetType.ETH,
                 value: totalPayments[0].value,
                 unit: 'wei',
               }
             : {
-                type: 'erc20',
+                type: AssetType.ERC20,
                 token: totalPayments[0].asset,
                 value: totalPayments[0].value,
               },
