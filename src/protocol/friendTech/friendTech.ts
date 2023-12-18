@@ -43,6 +43,7 @@ export const generate = (transaction: Transaction): Transaction => {
           price: {
             type: 'eth',
             value: parsedTx.args[1].toString(),
+            unit: 'wei',
           },
           subject: {
             type: 'address',
@@ -110,6 +111,7 @@ export const generate = (transaction: Transaction): Transaction => {
           price: {
             type: 'eth',
             value: ethAmount,
+            unit: 'wei',
           },
           subject: {
             type: 'address',
@@ -159,6 +161,7 @@ export const generate = (transaction: Transaction): Transaction => {
           price: {
             type: 'eth',
             value: ethAmount,
+            unit: 'wei',
           },
           subject: {
             type: 'address',
