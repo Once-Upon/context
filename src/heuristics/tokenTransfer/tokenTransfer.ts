@@ -1,4 +1,8 @@
-import { ContextSummaryVariableType, Transaction } from '../../types';
+import {
+  AssetType,
+  ContextSummaryVariableType,
+  Transaction,
+} from '../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isTokenTransfer = detect(transaction);
@@ -31,31 +35,29 @@ export function generate(transaction: Transaction): Transaction {
   // The contextualizations expect a property "token", not "asset"
   const assetTransfer = {
     ...transaction.assetTransfers[0],
-    token: transaction.assetTransfers[0].asset,
   };
-  delete assetTransfer.asset;
   const sender = assetTransfer.from;
   const recipient = assetTransfer.to;
 
   let tokenDetails = {} as ContextSummaryVariableType;
-  if (assetTransfer.type === 'erc721') {
+  if (assetTransfer.type === AssetType.ERC721) {
     tokenDetails = {
+      type: AssetType.ERC721,
+      tokenId: assetTransfer.tokenId,
+      token: assetTransfer.asset,
+    };
+  } else if (assetTransfer.type === AssetType.ERC20) {
+    tokenDetails = {
+      type: AssetType.ERC20,
+      value: assetTransfer.value,
+      token: assetTransfer.asset,
+    };
+  } else if (assetTransfer.type === AssetType.ERC1155) {
+    tokenDetails = {
+      value: AssetType.ERC1155,
       tokenId: assetTransfer.tokenId,
       type: assetTransfer.type,
-      token: assetTransfer.token,
-    };
-  } else if (assetTransfer.type === 'erc20') {
-    tokenDetails = {
-      value: assetTransfer.value,
-      type: assetTransfer.type,
-      token: assetTransfer.token,
-    };
-  } else if (assetTransfer.type === 'erc1155') {
-    tokenDetails = {
-      tokenId: assetTransfer.tokenId,
-      value: assetTransfer.value,
-      type: assetTransfer.type,
-      token: assetTransfer.token,
+      token: assetTransfer.asset,
     };
   }
 

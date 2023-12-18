@@ -1,15 +1,6 @@
 import { Log } from './log';
 import { ContextVariable, ContextSummaryType } from './context';
-import { NetAssetTransfers } from './asset';
-
-export interface AssetTransfer {
-  asset?: string;
-  from: string;
-  to: string;
-  type: 'eth' | 'erc20' | 'erc721' | 'erc1155';
-  value?: string;
-  tokenId?: string;
-}
+import { NetAssetTransfers, AssetTransfer } from './asset';
 
 export type SigHash = {
   from: string;

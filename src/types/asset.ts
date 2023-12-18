@@ -42,3 +42,12 @@ export interface NetAssetTransfers {
     sent: Asset[];
   };
 }
+
+export interface AssetTransfer {
+  asset?: string;
+  from: string;
+  to: string;
+  type: AssetType;
+  value?: string;
+  tokenId?: string;
+}
