@@ -16,6 +16,7 @@ export const detect = (transaction: Transaction): boolean => {
   }
 
   try {
+    // TODO: Get the ABI from a separate typed abi ts file
     const abi = ENS_CONTRACTS.reverse[transaction.to].abi;
     const decode: ReturnType<typeof decodeTransactionInput<typeof abi>> =
       decodeTransactionInput(transaction.input as Hex, abi);
@@ -31,6 +32,7 @@ export const detect = (transaction: Transaction): boolean => {
 };
 
 export const generate = (transaction: Transaction): Transaction => {
+  // TODO: Get the ABI from a separate typed abi ts file
   const abi = ENS_CONTRACTS.reverse[transaction.to].abi;
   const decode: ReturnType<typeof decodeTransactionInput<typeof abi>> =
     decodeTransactionInput(transaction.input as Hex, abi);

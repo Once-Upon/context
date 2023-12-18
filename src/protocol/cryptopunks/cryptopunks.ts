@@ -53,7 +53,7 @@ export const detect = (transaction: Transaction): boolean => {
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInput(
     transaction.input as Hex,
-    CRYPTOPUNK_ABIS[transaction.to],
+    CRYPTOPUNK_ABIS[transaction.to], // TODO: Get this ABI from a separate typed abi ts file
   );
 
   switch (decoded.functionName) {

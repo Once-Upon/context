@@ -28,7 +28,7 @@ export const detect = (transaction: Transaction): boolean => {
     try {
       decode = decodeTransactionInput(
         transaction.input as Hex,
-        WETH_ABI as Abi,
+        WETH_ABI as Abi, // TODO: Remove this downcast and switch to ABI ts file
       );
     } catch (e) {
       return false;
@@ -53,7 +53,7 @@ export const generate = (transaction: Transaction): Transaction => {
   // decode input
   const decode = decodeTransactionInput(
     transaction.input as Hex,
-    WETH_ABI as Abi,
+    WETH_ABI as Abi, // TODO: Remove this downcast and switch to ABI ts file
   );
   switch (decode.functionName) {
     case 'deposit': {
@@ -85,7 +85,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'withdraw': {
       const decode = decodeTransactionInput(
         transaction.input as Hex,
-        WETH_ABI as Abi,
+        WETH_ABI as Abi, // TODO: Remove this downcast and switch to ABI ts file
       );
       const withdrawer: ContextSummaryVariableType = {
         type: 'address',
