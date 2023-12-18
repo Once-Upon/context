@@ -1,6 +1,6 @@
 import { Hex } from 'viem';
 import { Transaction } from '../../types';
-import { ENS_CONTRACTS } from './constants';
+import { ENS_CONTRACTS, ENS_ADDRESSES } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -11,15 +11,14 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
-  if (Object.keys(ENS_CONTRACTS.reverse).includes(transaction.to)) {
+  if (transaction.to !== ENS_ADDRESSES.reverse) {
     return false;
   }
 
   try {
     // TODO: Get the ABI from a separate typed abi ts file
     const abi = ENS_CONTRACTS.reverse[transaction.to].abi;
-    const decode: ReturnType<typeof decodeTransactionInput<typeof abi>> =
-      decodeTransactionInput(transaction.input as Hex, abi);
+    const decode = decodeTransactionInput(transaction.input as Hex, abi);
 
     if (decode.functionName === 'setName') {
       return true;
@@ -32,14 +31,17 @@ export const detect = (transaction: Transaction): boolean => {
 };
 
 export const generate = (transaction: Transaction): Transaction => {
-  // TODO: Get the ABI from a separate typed abi ts file
+  if (transaction.to !== ENS_ADDRESSES.reverse) {
+    return transaction;
+  }
+
   const abi = ENS_CONTRACTS.reverse[transaction.to].abi;
   const decode: ReturnType<typeof decodeTransactionInput<typeof abi>> =
     decodeTransactionInput(transaction.input as Hex, abi);
 
   switch (decode.functionName) {
     case 'setName': {
-      const name = decode.args[0] as string;
+      const name = decode.args[0];
       transaction.context = {
         summaries: {
           category: 'IDENTITY',
