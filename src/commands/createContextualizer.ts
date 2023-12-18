@@ -37,6 +37,10 @@ export function registerCreateContextualizerCommand() {
           template: 'abis/abi.template.hbs',
           src: `abis/${camelToPascalCase(name)}.json`,
         },
+        readme: {
+          template: 'readme.template.hbs',
+          src: `README.md`,
+        },
       };
       // Data to replace variables
       const data = {

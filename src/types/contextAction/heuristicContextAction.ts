@@ -10,4 +10,5 @@ export type HeuristicContextAction =
   | 'RECEIVED_AIRDROP'
   | 'GAVE_ACCESS_TO'
   | 'INTERACTED_WITH'
-  | 'SENT_MESSAGE';
+  | 'SENT_MESSAGE'
+  | 'CANCELED_A_PENDING_TRANSACTION';

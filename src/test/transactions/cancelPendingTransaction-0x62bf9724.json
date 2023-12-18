@@ -1,0 +1,59 @@
+{
+  "accessList": [],
+  "blockHash": "0xe0b110909c80527bf7a1d909e9e28aa870e3503f5bcfa1753256ae771e2dbdd5",
+  "blockNumber": 7861363,
+  "chainId": 8453,
+  "from": "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52",
+  "gas": 404247,
+  "gasPrice": "940903",
+  "hash": "0x62bfc1591cfeac98737df7e0eff88a917be443d466785aa2815caa56acac9724",
+  "input": "0x",
+  "maxFeePerGas": "940922",
+  "maxPriorityFeePerGas": "940852",
+  "nonce": 386,
+  "r": "0xdf15c1ca7e248afc004b7bfc18379ef930edc482a73d9e041de4c00ed0949fc2",
+  "s": "0x334f524de0d31f2e7abdbf18f93c226db817dbf7dc31b68ad11a3e35abf8c24a",
+  "to": "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52",
+  "transactionIndex": 5,
+  "type": 2,
+  "v": "0x0",
+  "value": "0",
+  "baseFeePerGas": 51,
+  "burntFees": "0",
+  "minerFees": "19758963000",
+  "transactionFee": "19758963000",
+  "sigHash": "0x",
+  "internalSigHashes": [
+    {
+      "from": "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52",
+      "to": "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52",
+      "sigHash": "0x"
+    }
+  ],
+  "timestamp": 1702512073,
+  "isoTimestamp": "2023-12-14T00:01:13.000Z",
+  "parties": [
+    "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52"
+  ],
+  "receipt": {
+    "blockHash": "0xe0b110909c80527bf7a1d909e9e28aa870e3503f5bcfa1753256ae771e2dbdd5",
+    "blockNumber": 7861363,
+    "contractAddress": null,
+    "cumulativeGasUsed": 321634,
+    "effectiveGasPrice": 940903,
+    "from": "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52",
+    "gasUsed": 21000,
+    "l1Fee": "0x42a57d65ebf2",
+    "l1FeeScalar": "0.684",
+    "l1GasPrice": "0xcacb57149",
+    "l1GasUsed": "0x7b0",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52",
+    "transactionHash": "0x62bfc1591cfeac98737df7e0eff88a917be443d466785aa2815caa56acac9724",
+    "transactionIndex": 5,
+    "type": "0x2"
+  },
+  "logs": [],
+  "contractsCreated": []
+}
