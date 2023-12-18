@@ -115,7 +115,7 @@ export function generate(transaction: Transaction): Transaction {
     summaries: {
       category: 'FUNGIBLE_TOKEN',
       en: {
-        title: 'Token Mint',
+        title: 'ERC20 Mint',
         default: '[[recipient]] [[minted]] [[amount]] [[token]] for [[price]]',
       },
     },

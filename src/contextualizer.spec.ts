@@ -132,19 +132,19 @@ describe('ContextualizerService', () => {
       const erc721Mint1 = await contextualize(
         erc721MintMint0x2c8a3ed1 as Transaction,
       );
-      expect(erc721Mint1.context.summaries.en.title).toBe('Token Mint');
+      expect(erc721Mint1.context.summaries.en.title).toBe('NFT Mint');
 
       const erc721Mint2 = await contextualize(
         erc721Mint0x35f54999 as Transaction,
       );
-      expect(erc721Mint2.context.summaries.en.title).toBe('Token Mint');
+      expect(erc721Mint2.context.summaries.en.title).toBe('NFT Mint');
     });
 
     it('Should detect ERC1155 Mint', async () => {
       const erc1155Mint1 = await contextualize(
         erc1155Mint0x45d1ed7b as Transaction,
       );
-      expect(erc1155Mint1.context.summaries.en.title).toBe('Token Mint');
+      expect(erc1155Mint1.context.summaries.en.title).toBe('NFT Mint');
     });
 
     it('Should detect Token Transfer', async () => {

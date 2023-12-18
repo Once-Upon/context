@@ -109,7 +109,7 @@ export function generate(transaction: Transaction): Transaction {
     summaries: {
       category: 'NFT',
       en: {
-        title: 'Token Mint',
+        title: 'NFT Mint',
         default: '[[recipient]] [[minted]] [[token]] for [[price]]',
       },
     },
