@@ -1,4 +1,4 @@
-import { Transaction } from '../../types';
+import { Transaction, ContextSummaryVariableType } from '../../types';
 import { KNOWN_ADDRESSES } from '../../helpers/constants';
 
 const AIRDROP_THRESHOLD = 10;
@@ -84,7 +84,7 @@ function generate(transaction: Transaction): Transaction {
     token: firstAssetTransfer.asset,
     tokenId: firstAssetTransfer.tokenId,
     value: firstAssetTransfer.value,
-  };
+  } as ContextSummaryVariableType;
 
   const category =
     firstAssetTransfer.type === 'erc721' ? 'NFT' : 'FUNGIBLE_TOKEN';

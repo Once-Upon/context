@@ -143,7 +143,7 @@ export type ContextSummaryVariableType =
       value: string;
       indexed?: boolean;
       emphasis?: boolean;
-      unit: string;  
+      unit: string;
     }
   | {
       type: 'chainID';
