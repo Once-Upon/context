@@ -156,7 +156,7 @@ export type ContextSummaryVariableType =
       value: number;
       indexed?: boolean;
       emphasis?: boolean;
-      unit: string;
+      unit?: string; // nonce is an example where there is no unit
     }
   | {
       type: 'link' | 'schemaID';
