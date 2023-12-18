@@ -7,7 +7,6 @@ export enum AssetType {
 
 export type ETHAsset = {
   id: string;
-  asset: string;
   type: AssetType.ETH;
   value: string;
 };
