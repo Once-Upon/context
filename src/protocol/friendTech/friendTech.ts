@@ -180,7 +180,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'friend.tech',
-            default: '[[trader]] [[soldShares]] from [[subject]] for [[price]]',
+            default: '[[trader]] [[soldShares]] of [[subject]] for [[price]]',
           },
         },
       };
