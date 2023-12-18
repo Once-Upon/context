@@ -61,7 +61,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Friendtech',
+            title: 'friend.tech',
             default:
               '[[buyer]] [[failedToBuyShares]] of [[subject]] for [[price]]',
           },
@@ -91,7 +91,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Friendtech',
+              title: 'friend.tech',
               default:
                 '[[buyer]] [[boughtShares]] of [[subject]] for [[price]]',
             },
@@ -179,7 +179,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Friendtech',
+            title: 'friend.tech',
             default: '[[trader]] [[soldShares]] from [[subject]] for [[price]]',
           },
         },
