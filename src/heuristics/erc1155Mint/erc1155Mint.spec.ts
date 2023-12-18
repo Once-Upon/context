@@ -24,7 +24,7 @@ describe('ERC1155 Mint', () => {
     expect(tokenMint1.context.summaries.category).toBe('NFT');
     const desc1 = contextSummary(tokenMint1.context);
     expect(desc1).toBe(
-      '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 MINTED 1 0xf4dd946d1406e215a87029db56c69e1bcf3e1773 #1 for 0 ETH',
+      '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 MINTED 1 0xf4dd946d1406e215a87029db56c69e1bcf3e1773 for 0 ETH',
     );
   });
 });
