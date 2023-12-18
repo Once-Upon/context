@@ -1,5 +1,5 @@
 import { Transaction } from '../../types';
-import { KNOWN_ADDRESSES, WETH_ADDRESSES } from '../../helpers/constants';
+import { KNOWN_ADDRESSES } from '../../helpers/constants';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isTokenMint = detect(transaction);
@@ -27,16 +27,10 @@ export function detect(transaction: Transaction): boolean {
   // Get all the mints where from account == to account for the mint transfer
   const mints = transaction.assetTransfers.filter(
     (transfer) =>
-      transfer.from === KNOWN_ADDRESSES.NULL &&
-      !WETH_ADDRESSES.includes(transfer.asset),
+      transfer.from === KNOWN_ADDRESSES.NULL && transfer.type === 'erc721',
   );
 
   if (mints.length == 0) {
-    return false;
-  }
-
-  // check if its erc721
-  if (mints[0].type !== 'erc721') {
     return false;
   }
 

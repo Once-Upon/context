@@ -28,16 +28,14 @@ export function detect(transaction: Transaction): boolean {
   const mints = transaction.assetTransfers.filter(
     (transfer) =>
       transfer.from === KNOWN_ADDRESSES.NULL &&
+      transfer.type === 'erc20' &&
       !WETH_ADDRESSES.includes(transfer.asset),
   );
 
   if (mints.length == 0) {
     return false;
   }
-  // check if its erc20
-  if (mints[0].type !== 'erc20') {
-    return false;
-  }
+
   // check if all minted assets are from the same contract
   const isSameContract = mints.every((ele) => ele.asset === mints[0].asset);
   if (!isSameContract) {
