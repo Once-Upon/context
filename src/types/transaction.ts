@@ -1,5 +1,6 @@
 import { Log } from './log';
-import { ContextAction } from './contextAction';
+import { ContextVariable, ContextSummaryType } from './context';
+import { NetAssetTransfers } from './asset';
 
 export interface AssetTransfer {
   asset?: string;
@@ -85,113 +86,10 @@ export type Receipt = {
   type: string;
 };
 
-export interface Asset {
-  asset: string;
-  id: string;
-  type: 'eth' | 'erc20' | 'erc721' | 'erc1155';
-  value?: string;
-  tokenId?: string;
-}
-
-export interface NetAssetTransfers {
-  [address: string]: {
-    received: Asset[];
-    sent: Asset[];
-  };
-}
-
 export type TransactionContextType = {
   variables?: ContextVariable;
   summaries?: ContextSummaryType;
   crossChainTx?: Transaction[];
-};
-
-export type ContextSummaryVariableType =
-  | {
-      type: 'string';
-      value: string;
-      indexed?: boolean;
-      emphasis?: boolean;
-      unit?: string;
-    }
-  | {
-      type: 'address' | 'transaction' | 'farcasterID' | 'crosschain';
-      value: string;
-      indexed?: boolean;
-      emphasis?: boolean;
-    }
-  | {
-      type: 'code';
-      value: string;
-    }
-  | {
-      type: 'contextAction';
-      value: ContextAction;
-      indexed?: boolean;
-      emphasis?: boolean;
-    }
-  | {
-      type: 'erc20' | 'erc721' | 'erc1155';
-      tokenId?: string;
-      token: string;
-      value?: string;
-      indexed?: boolean;
-      emphasis?: boolean;
-    }
-  | {
-      type: 'eth';
-      value: string;
-      indexed?: boolean;
-      emphasis?: boolean;
-      unit: string;
-    }
-  | {
-      type: 'chainID';
-      value: number;
-      indexed?: boolean;
-      emphasis?: boolean;
-    }
-  | {
-      type: 'number';
-      value: number;
-      indexed?: boolean;
-      emphasis?: boolean;
-      unit?: string; // nonce is an example where there is no unit
-    }
-  | {
-      type: 'link' | 'schemaID';
-      value: string;
-      link: string;
-    };
-
-export type ContextVariable = {
-  [key: string]: ContextSummaryVariableType;
-};
-
-export type ContextSummaryType = {
-  category?:
-    | 'MULTICHAIN'
-    | 'FUNGIBLE_TOKEN'
-    | 'NFT'
-    | 'IDENTITY'
-    | 'CORE'
-    | 'OTHER'
-    | 'DEV'
-    | 'GOVERNANCE'
-    | 'MULTISIG'
-    | 'ACCOUNT_ABSTRACTION'
-    | 'PROTOCOL_1'
-    | 'PROTOCOL_2'
-    | 'PROTOCOL_3'
-    | 'PROTOCOL_4'
-    | 'PROTOCOL_5'
-    | 'UNKNOWN';
-  en: {
-    title: string;
-    default: string;
-    variables?: ContextVariable;
-    long?: string;
-  };
 };
 
 // MongoDB document
