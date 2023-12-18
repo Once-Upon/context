@@ -6,6 +6,7 @@ const abi = [
     outputs: [{ name: '', type: 'string' }],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: true,
@@ -20,6 +21,7 @@ const abi = [
     ],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: false,
@@ -28,6 +30,7 @@ const abi = [
     outputs: [],
     payable: true,
     type: 'function',
+    stateMutability: 'payable',
   },
   {
     constant: true,
@@ -36,6 +39,7 @@ const abi = [
     outputs: [{ name: '', type: 'uint256' }],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: false,
@@ -47,6 +51,7 @@ const abi = [
     outputs: [],
     payable: false,
     type: 'function',
+    stateMutability: 'nonpayable',
   },
   {
     constant: true,
@@ -55,6 +60,7 @@ const abi = [
     outputs: [{ name: '', type: 'uint8' }],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: false,
@@ -66,6 +72,7 @@ const abi = [
     outputs: [],
     payable: false,
     type: 'function',
+    stateMutability: 'nonpayable',
   },
   {
     constant: false,
@@ -74,6 +81,7 @@ const abi = [
     outputs: [],
     payable: false,
     type: 'function',
+    stateMutability: 'nonpayable',
   },
   {
     constant: true,
@@ -82,6 +90,7 @@ const abi = [
     outputs: [{ name: '', type: 'string' }],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: true,
@@ -90,6 +99,7 @@ const abi = [
     outputs: [{ name: '', type: 'uint256' }],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: true,
@@ -98,6 +108,7 @@ const abi = [
     outputs: [{ name: '', type: 'address' }],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: true,
@@ -106,6 +117,7 @@ const abi = [
     outputs: [{ name: '', type: 'string' }],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: true,
@@ -119,6 +131,7 @@ const abi = [
     ],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: true,
@@ -127,6 +140,7 @@ const abi = [
     outputs: [{ name: '', type: 'uint256' }],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: false,
@@ -135,6 +149,7 @@ const abi = [
     outputs: [],
     payable: false,
     type: 'function',
+    stateMutability: 'nonpayable',
   },
   {
     constant: true,
@@ -143,6 +158,7 @@ const abi = [
     outputs: [{ name: '', type: 'bool' }],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: false,
@@ -151,6 +167,7 @@ const abi = [
     outputs: [],
     payable: true,
     type: 'function',
+    stateMutability: 'payable',
   },
   {
     constant: false,
@@ -162,6 +179,7 @@ const abi = [
     outputs: [],
     payable: false,
     type: 'function',
+    stateMutability: 'nonpayable',
   },
   {
     constant: true,
@@ -170,6 +188,7 @@ const abi = [
     outputs: [{ name: '', type: 'string' }],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: false,
@@ -178,6 +197,7 @@ const abi = [
     outputs: [],
     payable: false,
     type: 'function',
+    stateMutability: 'nonpayable',
   },
   {
     constant: false,
@@ -189,6 +209,7 @@ const abi = [
     outputs: [],
     payable: false,
     type: 'function',
+    stateMutability: 'nonpayable',
   },
   {
     constant: false,
@@ -201,6 +222,7 @@ const abi = [
     outputs: [],
     payable: false,
     type: 'function',
+    stateMutability: 'nonpayable',
   },
   {
     constant: true,
@@ -209,6 +231,7 @@ const abi = [
     outputs: [{ name: '', type: 'uint256' }],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: false,
@@ -220,6 +243,7 @@ const abi = [
     outputs: [],
     payable: false,
     type: 'function',
+    stateMutability: 'nonpayable',
   },
   {
     constant: false,
@@ -228,6 +252,7 @@ const abi = [
     outputs: [],
     payable: false,
     type: 'function',
+    stateMutability: 'nonpayable',
   },
   {
     constant: true,
@@ -236,6 +261,7 @@ const abi = [
     outputs: [{ name: '', type: 'uint256' }],
     payable: false,
     type: 'function',
+    stateMutability: 'view',
   },
   {
     constant: false,
@@ -244,8 +270,14 @@ const abi = [
     outputs: [],
     payable: false,
     type: 'function',
+    stateMutability: 'nonpayable',
   },
-  { inputs: [], payable: true, type: 'constructor' },
+  {
+    inputs: [],
+    payable: true,
+    type: 'constructor',
+    stateMutability: 'payable',
+  },
   {
     anonymous: false,
     inputs: [
