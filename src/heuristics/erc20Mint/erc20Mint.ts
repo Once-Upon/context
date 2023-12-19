@@ -86,7 +86,7 @@ export function generate(transaction: Transaction): Transaction {
   const recipient = assetTransfer.to;
 
   const assetSent = transaction.netAssetTransfers[transaction.from]?.sent;
-  const price = assetSent[0]?.value;
+  const price = assetSent[0]?.value ?? '0';
 
   transaction.context = {
     variables: {
