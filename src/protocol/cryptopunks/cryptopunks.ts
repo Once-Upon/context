@@ -87,7 +87,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Mint Punk',
+              title: 'CryptoPunks',
               default: '[[minter]] [[contextAction]] [[punk]]',
             },
           },
@@ -105,7 +105,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Mint Punk',
+              title: 'CryptoPunks',
               default: 'Failed: [[minter]] [[contextAction]] [[punk]]',
             },
           },
@@ -142,7 +142,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Offer Punk for Sale',
+              title: 'CryptoPunks',
               default: '[[seller]] [[contextAction]] [[punk]] for [[price]]',
             },
           },
@@ -161,7 +161,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Offer Punk for Sale',
+              title: 'CryptoPunks',
               default:
                 'Failed: [[seller]] [[contextAction]] [[punk]] for [[price]]',
             },
@@ -199,7 +199,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Withdraw Bid for Punk',
+              title: 'CryptoPunks',
               default: '[[bidder]] [[contextAction]] [[punk]] for [[price]]',
             },
           },
@@ -218,7 +218,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Withdraw Bid for Punk',
+              title: 'CryptoPunks',
               default:
                 'Failed: [[bidder]] [[contextAction]] [[punk]] for [[price]]',
             },
@@ -256,7 +256,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Enter Bid for Punk',
+              title: 'CryptoPunks',
               default: '[[buyer]] [[contextAction]] [[punk]] for [[price]]',
             },
           },
@@ -275,7 +275,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Enter Bid for Punk',
+              title: 'CryptoPunks',
               default:
                 'Failed: [[buyer]] [[contextAction]] [[punk]] for [[price]]',
             },
@@ -307,7 +307,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Withdraw',
+              title: 'CryptoPunks',
               default: '[[withdrawer]] [[contextAction]] [[amount]]',
             },
           },
@@ -325,7 +325,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Withdraw',
+              title: 'CryptoPunks',
               default: 'Failed: [[withdrawer]] [[contextAction]] [[amount]]',
             },
           },
@@ -372,7 +372,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Buy Punk',
+              title: 'CryptoPunks',
               default:
                 '[[buyer]] [[contextAction]] [[punk]] from [[seller]] for [[price]]',
             },
@@ -392,7 +392,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Buy Punk',
+              title: 'CryptoPunks',
               default:
                 'Failed: [[buyer]] [[contextAction]] [[punk]] for [[price]]',
             },
@@ -429,7 +429,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Transfer Punk',
+              title: 'CryptoPunks',
               default: '[[sender]] [[contextAction]] [[punk]] to [[receiver]]',
             },
           },
@@ -448,7 +448,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Transfer Punk',
+              title: 'CryptoPunks',
               default:
                 'Failed: [[sender]] [[contextAction]] [[punk]] to [[receiver]]',
             },
@@ -480,7 +480,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Punk No Longer for Sale',
+              title: 'CryptoPunks',
               default: '[[seller]] [[contextAction]] [[punk]]',
             },
           },
@@ -498,7 +498,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Punk No Longer for Sale',
+              title: 'CryptoPunks',
               default: 'Failed: [[seller]] [[contextAction]] [[punk]]',
             },
           },
@@ -541,7 +541,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Offer Punk for Sale to Address',
+              title: 'CryptoPunks',
               default:
                 '[[seller]] [[contextAction]] [[punk]] to [[buyer]] for [[price]]',
             },
@@ -562,7 +562,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Offer Punk for Sale to Address',
+              title: 'CryptoPunks',
               default:
                 'Failed: [[seller]] [[contextAction]] [[punk]] to [[buyer]] for [[price]]',
             },
