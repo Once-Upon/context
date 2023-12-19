@@ -122,7 +122,7 @@ export function generate(transaction: Transaction): Transaction {
       unit: 'x',
     };
     transaction.context.summaries.en.default =
-      '[[recipient]] [[minted]] [[amount]] [[token]]';
+      '[[recipient]] [[minted]] [[amount]] [[token]] for [[price]]';
   }
 
   return transaction;
