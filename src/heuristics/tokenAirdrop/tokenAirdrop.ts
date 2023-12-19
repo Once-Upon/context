@@ -1,4 +1,11 @@
-import { Transaction, ContextSummaryVariableType } from '../../types';
+import {
+  Transaction,
+  ContextSummaryVariableType,
+  AssetType,
+  ERC20Asset,
+  ERC1155Asset,
+  ERC721Asset,
+} from '../../types';
 import { KNOWN_ADDRESSES } from '../../helpers/constants';
 
 const AIRDROP_THRESHOLD = 10;
@@ -48,7 +55,13 @@ export function detect(transaction: Transaction): boolean {
     }
   }
   // check if all assets sent are the same contract
-  const assetsSent = transaction.netAssetTransfers[sendAddresses[0]].sent;
+  const assetsSent = transaction.netAssetTransfers[
+    sendAddresses[0]
+  ].sent.filter((ele) => ele.type !== AssetType.ETH) as (
+    | ERC20Asset
+    | ERC1155Asset
+    | ERC721Asset
+  )[];
   if (!assetsSent.every((ele) => ele.asset === assetsSent[0].asset)) {
     return false;
   }

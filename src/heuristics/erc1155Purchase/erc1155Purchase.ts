@@ -30,15 +30,17 @@ export function detect(transaction: Transaction): boolean {
   for (const address of addresses) {
     const transfers = transaction.netAssetTransfers[address];
     const nftsReceived = transfers?.received.filter(
-      (t) => t.type === 'erc1155',
+      (t) => t.type === AssetType.ERC1155,
     );
-    const nftsSent = transfers?.sent.filter((t) => t.type === 'erc1155');
+    const nftsSent = transfers?.sent.filter(
+      (t) => t.type === AssetType.ERC1155,
+    );
 
     const ethOrErc20Sent = transfers?.sent.filter(
-      (t) => t.type === 'eth' || t.type === 'erc20',
+      (t) => t.type === AssetType.ETH || t.type === AssetType.ERC20,
     );
     const ethOrErc20Received = transfers?.received.filter(
-      (t) => t.type === 'eth' || t.type === 'erc20',
+      (t) => t.type === AssetType.ETH || t.type === AssetType.ERC20,
     );
 
     if (
@@ -107,6 +109,9 @@ function generate(transaction: Transaction): Transaction {
     }
   });
 
+  const receivedNftContracts = Array.from(
+    new Set(receivedNfts.map((x) => x.asset)),
+  );
   const totalERC20Payment: Record<string, ERC20Asset> = erc20Payments.reduce(
     (acc, next) => {
       acc[next.asset] = {
@@ -150,10 +155,10 @@ function generate(transaction: Transaction): Transaction {
               tokenId: receivedNfts[0].tokenId,
               value: receivedNfts[0].value,
             }
-          : receivedNfts.length === 1
+          : receivedNftContracts.length === 1
             ? {
                 type: 'address',
-                value: receivedNfts[0].asset,
+                value: receivedNftContracts[0],
               }
             : {
                 type: 'number',
@@ -177,8 +182,8 @@ function generate(transaction: Transaction): Transaction {
               }
             : {
                 type: AssetType.ERC20,
-                token: totalERC20Payment[0].asset,
-                value: totalERC20Payment[0].value.toString(),
+                token: Object.values(totalERC20Payment)[0].asset,
+                value: Object.values(totalERC20Payment)[0].value.toString(),
               },
       bought: {
         type: 'contextAction',
