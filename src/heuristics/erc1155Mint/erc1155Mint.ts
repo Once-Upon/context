@@ -110,7 +110,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'NFT',
       en: {
         title: 'NFT Mint',
-        default: '[[recipient]] [[minted]] [[token]]',
+        default: '[[recipient]] [[minted]] [[token]] for [[price]]',
       },
     },
   };
@@ -123,14 +123,6 @@ export function generate(transaction: Transaction): Transaction {
     };
     transaction.context.summaries.en.default =
       '[[recipient]] [[minted]] [[amount]] [[token]]';
-  }
-  if (price && Number(price) > 0) {
-    transaction.context.variables['price'] = {
-      type: 'eth',
-      value: price,
-      unit: 'wei',
-    };
-    transaction.context.summaries.en.default += ' for [[price]]';
   }
 
   return transaction;

@@ -99,25 +99,21 @@ export function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: recipient,
       },
+      price: {
+        type: 'eth',
+        value: price,
+        unit: 'wei',
+      },
       minted: { type: 'contextAction', value: 'MINTED' },
     },
     summaries: {
       category: 'FUNGIBLE_TOKEN',
       en: {
         title: 'ERC20 Mint',
-        default: '[[recipient]] [[minted]] [[token]]',
+        default: '[[recipient]] [[minted]] [[token]] for [[price]]',
       },
     },
   };
-
-  if (price && Number(price) > 0) {
-    transaction.context.variables['price'] = {
-      type: 'eth',
-      value: price,
-      unit: 'wei',
-    };
-    transaction.context.summaries.en.default += ' for [[price]]';
-  }
 
   return transaction;
 }

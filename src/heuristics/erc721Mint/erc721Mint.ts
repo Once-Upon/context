@@ -98,6 +98,11 @@ export function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: recipient,
       },
+      price: {
+        type: 'eth',
+        value: price,
+        unit: 'wei',
+      },
       minted: { type: 'contextAction', value: 'MINTED' },
     },
     summaries: {
@@ -116,16 +121,7 @@ export function generate(transaction: Transaction): Transaction {
       unit: 'x',
     };
     transaction.context.summaries.en.default =
-      '[[recipient]] [[minted]] [[amount]] [[token]]';
-  }
-
-  if (price && Number(price) > 0) {
-    transaction.context.variables['price'] = {
-      type: 'eth',
-      value: price,
-      unit: 'wei',
-    };
-    transaction.context.summaries.en.default += ' for [[price]]';
+      '[[recipient]] [[minted]] [[amount]] [[token]] for [[price]]';
   }
 
   return transaction;
