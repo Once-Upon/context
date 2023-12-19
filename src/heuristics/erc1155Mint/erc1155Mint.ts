@@ -19,7 +19,7 @@ export function detect(transaction: Transaction): boolean {
   if (
     !transaction?.from ||
     !transaction.assetTransfers?.length ||
-    transaction.netAssetTransfers === undefined // TODO: This is a hack because of an issue with netAssetTransfers transformer
+    !transaction.netAssetTransfers
   ) {
     return false;
   }
