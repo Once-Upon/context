@@ -1,4 +1,4 @@
-import { ContextSummaryVariableType, Transaction } from '../../types';
+import { Transaction } from '../../types';
 import { KNOWN_ADDRESSES, WETH_ADDRESSES } from '../../helpers/constants';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -19,7 +19,7 @@ export function detect(transaction: Transaction): boolean {
   if (
     !transaction?.from ||
     !transaction.assetTransfers?.length ||
-    transaction.netAssetTransfers === undefined // TODO: This is a hack because of an issue with netAssetTransfers transformer
+    !transaction.netAssetTransfers
   ) {
     return false;
   }
@@ -28,12 +28,14 @@ export function detect(transaction: Transaction): boolean {
   const mints = transaction.assetTransfers.filter(
     (transfer) =>
       transfer.from === KNOWN_ADDRESSES.NULL &&
+      transfer.type === 'erc20' &&
       !WETH_ADDRESSES.includes(transfer.asset),
   );
 
   if (mints.length == 0) {
     return false;
   }
+
   // check if all minted assets are from the same contract
   const isSameContract = mints.every((ele) => ele.asset === mints[0].asset);
   if (!isSameContract) {
@@ -68,7 +70,7 @@ export function detect(transaction: Transaction): boolean {
   return true;
 }
 
-function generate(transaction: Transaction): Transaction {
+export function generate(transaction: Transaction): Transaction {
   // Get all the mints where from account == to account for the mint transfer
   const mints = transaction.assetTransfers.filter((transfer) => {
     return transfer.from === KNOWN_ADDRESSES.NULL;
@@ -82,41 +84,39 @@ function generate(transaction: Transaction): Transaction {
   };
   delete assetTransfer.asset;
   const recipient = assetTransfer.to;
+  const amount = BigInt(assetTransfer.value).toString();
 
-  const tokenDetails =
-    assetTransfer.type === 'erc721'
-      ? {
-          tokenId: assetTransfer.tokenId,
-          type: assetTransfer.type,
-          token: assetTransfer.token,
-        }
-      : assetTransfer.type === 'erc1155'
-        ? {
-            tokenId: assetTransfer.tokenId,
-            value: assetTransfer.value,
-            type: assetTransfer.type,
-            token: assetTransfer.token,
-          }
-        : ({
-            value: assetTransfer.value,
-            type: assetTransfer.type,
-            token: assetTransfer.token,
-          } as ContextSummaryVariableType);
+  const assetSent = transaction.netAssetTransfers[transaction.from]?.sent;
+  const price = assetSent[0]?.value;
 
   transaction.context = {
     variables: {
-      token: tokenDetails,
+      token: {
+        type: 'erc20',
+        token: assetTransfer.token,
+        value: assetTransfer.value,
+      },
       recipient: {
         type: 'address',
         value: recipient,
       },
       minted: { type: 'contextAction', value: 'MINTED' },
+      amount: {
+        type: 'string',
+        value: amount,
+        unit: 'x',
+      },
+      price: {
+        type: 'eth',
+        value: price,
+        unit: 'wei',
+      },
     },
     summaries: {
       category: 'FUNGIBLE_TOKEN',
       en: {
-        title: 'Token Mint',
-        default: '[[recipient]] [[minted]] [[token]]',
+        title: 'ERC20 Mint',
+        default: '[[recipient]] [[minted]] [[amount]] [[token]] for [[price]]',
       },
     },
   };

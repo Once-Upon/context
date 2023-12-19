@@ -100,14 +100,16 @@ function formatSection(section: ContextSummaryVariableType) {
   if (varContext?.type === 'eth')
     return `${formatEther(BigInt(varContext?.value))}${unit ? ` ETH` : ''}`;
 
-  if (varContext?.type === 'erc721' || varContext?.type === 'erc1155') {
-    return `${varContext.token} #${varContext.tokenId}${
-      unit ? ` ${unit}` : ''
-    }`;
+  if (varContext?.type === 'erc721') {
+    return `${varContext.token} #${varContext.tokenId}`;
+  }
+
+  if (varContext?.type === 'erc1155') {
+    return `${varContext.value} ${varContext.token} #${varContext.tokenId}`;
   }
 
   if (varContext?.type === 'erc20')
-    return `${varContext.value} ${varContext.token}${unit ? ` ${unit}` : ''}`;
+    return `${varContext.value} ${varContext.token}`;
 
   return `${varContext.value}${unit ? ` ${unit}` : ''}`;
 }
