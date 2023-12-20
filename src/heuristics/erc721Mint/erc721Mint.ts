@@ -91,11 +91,6 @@ export function generate(transaction: Transaction): Transaction {
 
   transaction.context = {
     variables: {
-      token: {
-        type: AssetType.ERC721,
-        token: assetTransfer.token,
-        tokenId: assetTransfer.tokenId,
-      },
       recipient: {
         type: 'address',
         value: recipient,
@@ -122,12 +117,20 @@ export function generate(transaction: Transaction): Transaction {
       value: amount,
       unit: 'x',
     };
-    transaction.context.variables['token'] = {
-      type: 'erc721',
+    transaction.context.variables['multipleERC721s'] = {
+      type: AssetType.ERC721,
       token: assetTransfer.token,
     };
     transaction.context.summaries.en.default =
-      '[[recipient]] [[minted]] [[amount]] [[token]] for [[price]]';
+      '[[recipient]] [[minted]] [[amount]] [[multipleERC721s]] for [[price]]';
+  } else {
+    transaction.context.variables['token'] = {
+      type: AssetType.ERC721,
+      token: assetTransfer.token,
+      tokenId: assetTransfer.tokenId,
+    };
+    transaction.context.summaries.en.default =
+      '[[recipient]] [[minted]] [[token]] for [[price]]';
   }
 
   return transaction;
