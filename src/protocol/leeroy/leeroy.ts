@@ -224,9 +224,11 @@ export const generate = (transaction: Transaction): Transaction => {
       byteArrayUsername.forEach((charCode: number) => {
         username += String.fromCharCode(charCode);
       });
-      if (transaction.receipt?.status) {
-        if (!transaction.netAssetTransfers) return transaction;
-
+      if (
+        transaction.receipt?.status &&
+        transaction.netAssetTransfers &&
+        transaction.to
+      ) {
         const asset = transaction.netAssetTransfers[transaction.to]
           .received[0] as ETHAsset;
         const leeroyTake: ContextSummaryVariableType = {

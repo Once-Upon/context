@@ -14,16 +14,16 @@ describe('Bundler', () => {
       const transaction = generate(
         farcasterBundlerRegister0x7b8fe471 as Transaction,
       );
-      expect(transaction.context.variables.registered?.type).toBe(
+      expect(transaction.context?.variables?.registered?.type).toBe(
         'contextAction',
       );
-      expect(transaction.context.variables.caller['value']).toBe(
+      expect(transaction.context?.variables?.caller['value']).toBe(
         '0x56ad2cd6ad6f52c72181b93ac66d5dc887c3d0bd',
       );
-      expect(transaction.context.variables.owner['value']).toBe(
+      expect(transaction.context?.variables?.owner['value']).toBe(
         '0x109408193a2b17e1a641740655fB798d929A7554',
       );
-      expect(transaction.context.variables.fid['value']).toBe('196541');
+      expect(transaction.context?.variables?.fid['value']).toBe('196541');
     });
   });
 
