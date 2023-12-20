@@ -45,6 +45,9 @@ export const generate = (transaction: Transaction): Transaction => {
         type: 'address',
         value: transaction.from,
       };
+      if (!parsed.args) {
+        return transaction;
+      }
       const petId = parsed.args[0].toString();
       const pet: ContextSummaryVariableType = {
         type: AssetType.ERC721,
@@ -52,7 +55,7 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: petId,
       };
       const accessory = frenPetItemsMapping[parsed.args[1] as number];
-      if (transaction.receipt?.status) {
+      if (transaction.receipt?.status && transaction.netAssetTransfers) {
         const asset = transaction.netAssetTransfers[transaction.from]
           .sent[0] as ERC20Asset;
         const purchasePrice: ContextERC20Type = {
@@ -121,6 +124,10 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: parsed.args[1].toString(),
       };
       if (transaction.receipt?.status) {
+        if (!transaction.logs || transaction.logs?.length) {
+          return transaction;
+        }
+
         const parsedLog = decodeLog(
           parseAbi(abi),
           transaction.logs[0]?.data as Hex,
@@ -178,7 +185,7 @@ export const generate = (transaction: Transaction): Transaction => {
         type: 'address',
         value: transaction.from,
       };
-      if (transaction.receipt?.status) {
+      if (transaction.receipt?.status && transaction.netAssetTransfers) {
         const assetReceived = transaction.netAssetTransfers[transaction.from]
           .received[0] as ERC721Asset;
         const assetSent = transaction.netAssetTransfers[transaction.from]
@@ -346,6 +353,9 @@ export const generate = (transaction: Transaction): Transaction => {
           },
         };
       } else {
+        if (!transaction || !transaction.logs?.length) {
+          return transaction;
+        }
         const parsedLog = decodeLog(
           parseAbi(abi),
           transaction.logs[0]?.data as Hex,
@@ -447,6 +457,7 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       if (transaction.receipt?.status) {
         if (
+          transaction.logs &&
           transaction.logs?.filter(
             (log) =>
               log.topics[0] ===
@@ -472,11 +483,16 @@ export const generate = (transaction: Transaction): Transaction => {
             },
           };
         } else {
-          const attackLog = transaction.logs?.filter(
+          const attackLogs = transaction.logs?.filter(
             (log) =>
               log.topics[0] ===
               '0xcf2d586a11b0df2dc974a66369ad4e68566a0635fd2448e810592eac3d3bedae', // Attack(uint256 attacker, uint256 winner, uint256 loser, uint256 scoresWon)
-          )[0];
+          );
+          if (!attackLogs || attackLogs?.length) {
+            return transaction;
+          }
+
+          const attackLog = attackLogs[0];
           const parsedLog = decodeLog(
             parseAbi(abi),
             attackLog.data as Hex,
