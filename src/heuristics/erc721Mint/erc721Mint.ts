@@ -120,6 +120,10 @@ export function generate(transaction: Transaction): Transaction {
       value: amount,
       unit: 'x',
     };
+    transaction.context.variables['token'] = {
+      type: 'erc721',
+      token: assetTransfer.token,
+    };
     transaction.context.summaries.en.default =
       '[[recipient]] [[minted]] [[amount]] [[token]] for [[price]]';
   }
