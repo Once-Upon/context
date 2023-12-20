@@ -16,9 +16,10 @@ describe('Cancel Pending Transaction', () => {
     const cancelPendingTransaction1 = generate(
       cancelPendingTransaction0x62bf9724 as Transaction,
     );
-    const context = cancelPendingTransaction1.context || {};
-    expect(context.summaries?.en.title).toBe('Cancellation');
-    const desc = contextSummary(context);
+    expect(cancelPendingTransaction1.context?.summaries?.en.title).toBe(
+      'Cancellation',
+    );
+    const desc = contextSummary(cancelPendingTransaction1.context);
     expect(desc).toBe(
       '0xc0899a4f231f69a8c97011820cd8ebd2e3611d52 CANCELED_A_PENDING_TRANSACTION with nonce 386',
     );

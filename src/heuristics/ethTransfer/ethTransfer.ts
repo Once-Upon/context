@@ -10,6 +10,7 @@ export function contextualize(transaction: Transaction): Transaction {
 export function detect(transaction: Transaction): boolean {
   // TODO; check logs from transaction
   if (
+    transaction.to &&
     (transaction.input === '0x' || transaction.input === '') &&
     transaction.value !== '0' &&
     transaction.logs?.length === 0
@@ -21,6 +22,10 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
+  if (!transaction.to) {
+    return transaction;
+  }
+
   transaction.context = {
     variables: {
       sender: {
