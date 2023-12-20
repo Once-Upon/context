@@ -12,8 +12,8 @@ export type ParamType = {
   name: string;
   type: string;
   baseType: string;
-  indexed?: boolean;
-  arrayLength: number;
+  indexed?: boolean | null;
+  arrayLength: number | null;
   arrayChildren: ParamType | null;
 };
 
@@ -71,7 +71,7 @@ export type Receipt = {
   l1GasUsed?: string;
   logsBloom: string;
   status: boolean;
-  to: string;
+  to: string | null;
   transactionHash: string;
   transactionIndex: number;
   type: string;
@@ -95,7 +95,7 @@ export interface Transaction {
   hash: string;
   input: string;
   nonce: number;
-  to: string;
+  to: string | null;
   transactionIndex: number;
   value: string;
   type: number;

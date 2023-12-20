@@ -21,8 +21,9 @@ describe('ERC20 Mint', () => {
 
   it('Should generate a context for ERC20 Mint', () => {
     const tokenMint1 = generate(erc20Mint0x5bc8b9a8 as Transaction);
-    expect(tokenMint1.context.summaries.en.title).toBe('ERC20 Mint');
-    const desc1 = contextSummary(tokenMint1.context);
+    const tokenMintContext1 = tokenMint1.context || {};
+    expect(tokenMintContext1.summaries?.en.title).toBe('ERC20 Mint');
+    const desc1 = contextSummary(tokenMintContext1);
     expect(desc1).toBe(
       '0x72b000b693ea3c16650fe8a2eae15402aaf76e57 MINTED 53868290929609838780 0xdbc3a41578bbfa47837a9cd8196a5bc7f44c8041 for 0 ETH',
     );
