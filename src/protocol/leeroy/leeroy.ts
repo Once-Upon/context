@@ -225,6 +225,8 @@ export const generate = (transaction: Transaction): Transaction => {
         username += String.fromCharCode(charCode);
       });
       if (transaction.receipt?.status) {
+        if (!transaction.netAssetTransfers) return transaction;
+
         const asset = transaction.netAssetTransfers[transaction.to]
           .received[0] as ETHAsset;
         const leeroyTake: ContextSummaryVariableType = {

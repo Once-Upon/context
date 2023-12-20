@@ -1,4 +1,4 @@
-import { AssetType, Transaction } from '../../types';
+import { AssetType, ETHAssetTransfer, Transaction } from '../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isSuperchainFaucetTransaction = detect(transaction);
@@ -21,6 +21,8 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
+  if (!transaction.assetTransfers) return transaction;
+  const ethTransfer = transaction.assetTransfers[1] as ETHAssetTransfer;
   // Pull out relevant data for faucet transaction
   transaction.context = {
     variables: {
@@ -30,11 +32,11 @@ export function generate(transaction: Transaction): Transaction {
       },
       depositee: {
         type: 'address',
-        value: transaction.assetTransfers[1].to,
+        value: ethTransfer.to,
       },
       amount: {
         type: AssetType.ETH,
-        value: transaction.assetTransfers[1].value,
+        value: ethTransfer.value,
         unit: 'wei',
       },
       received: {
