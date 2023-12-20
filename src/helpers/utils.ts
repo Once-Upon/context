@@ -101,7 +101,9 @@ function formatSection(section: ContextSummaryVariableType) {
     return `${formatEther(BigInt(varContext?.value))}${unit ? ` ETH` : ''}`;
 
   if (varContext?.type === 'erc721') {
-    return `${varContext.token} #${varContext.tokenId}`;
+    return `${varContext.token}${
+      varContext.tokenId ? ` #${varContext.tokenId}` : ''
+    }`;
   }
 
   if (varContext?.type === 'erc1155') {
