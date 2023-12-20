@@ -85,8 +85,10 @@ export function decodeLog<TAbi extends Abi>(
   }
 }
 
-export function contextSummary(context: TransactionContextType): string {
-  if (!context.summaries) return '';
+export function contextSummary(
+  context: TransactionContextType | undefined,
+): string {
+  if (!context || !context.summaries) return '';
   const summaryTemplate = context.summaries.en.default;
 
   const regex = /(\[\[.*?\]\])/;

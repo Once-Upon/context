@@ -42,7 +42,7 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
-  if (!transaction.decode) return transaction;
+  if (!transaction.decode || !transaction.to) return transaction;
 
   const { args } = transaction.decode;
   const approver = transaction.from;
