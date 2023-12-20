@@ -30,7 +30,7 @@ export function detect(transaction: Transaction): boolean {
 
   // check if only 1 address is sending
   const sendAddresses = Object.keys(transaction.netAssetTransfers).filter(
-    (address) => transaction.netAssetTransfers[address].sent.length > 0,
+    (address) => transaction.netAssetTransfers[address]?.sent.length > 0,
   );
   if (sendAddresses.length > 1) {
     return false;
