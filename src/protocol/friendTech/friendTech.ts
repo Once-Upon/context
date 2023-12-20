@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import { EventLogTopics, Transaction } from '../../types';
+import { AssetType, EventLogTopics, Transaction } from '../../types';
 import { ABIs, FRIEND_TECH_ADDRESSES } from './constants';
 import { decodeTransactionInput, decodeLog } from '../../helpers/utils';
 
@@ -41,7 +41,7 @@ export const generate = (transaction: Transaction): Transaction => {
       transaction.context = {
         variables: {
           price: {
-            type: 'eth',
+            type: AssetType.ETH,
             value: parsedTx.args[1].toString(),
             unit: 'wei',
           },
@@ -109,7 +109,7 @@ export const generate = (transaction: Transaction): Transaction => {
       transaction.context = {
         variables: {
           price: {
-            type: 'eth',
+            type: AssetType.ETH,
             value: ethAmount,
             unit: 'wei',
           },
@@ -159,7 +159,7 @@ export const generate = (transaction: Transaction): Transaction => {
       transaction.context = {
         variables: {
           price: {
-            type: 'eth',
+            type: AssetType.ETH,
             value: ethAmount,
             unit: 'wei',
           },
