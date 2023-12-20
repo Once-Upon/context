@@ -29,6 +29,7 @@ export function detect(transaction: Transaction): boolean {
     (transfer) =>
       transfer.from === KNOWN_ADDRESSES.NULL &&
       transfer.type === AssetType.ERC20 &&
+      transfer.asset &&
       !WETH_ADDRESSES.includes(transfer.asset),
   );
 
@@ -54,7 +55,7 @@ export function detect(transaction: Transaction): boolean {
     .reduce((parties, address) => {
       parties = [...new Set([...parties, address])];
       return parties;
-    }, [])
+    }, [] as string[])
     .filter(
       (address) =>
         address !== KNOWN_ADDRESSES.NULL && address !== transaction.from,
@@ -71,6 +72,9 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
+  if (!transaction.assetTransfers || !transaction.netAssetTransfers) {
+    return transaction;
+  }
   // Get all the mints where from account == to account for the mint transfer
   const mints = transaction.assetTransfers.filter((transfer) => {
     return transfer.from === KNOWN_ADDRESSES.NULL;
