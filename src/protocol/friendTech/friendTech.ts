@@ -53,9 +53,9 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: transaction.from,
           },
-          failedToBuyShares: {
+          failedToBuyKeys: {
             type: 'contextAction',
-            value: 'FAILED_TO_BUY_SHARES',
+            value: 'FAILED_TO_BUY_KEYS',
           },
         },
         summaries: {
@@ -63,7 +63,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'friend.tech',
             default:
-              '[[buyer]] [[failedToBuyShares]] of [[subject]] for [[price]]',
+              '[[buyer]] [[failedToBuyKeys]] of [[subject]] for [[price]]',
           },
         },
       };
@@ -121,16 +121,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: trader,
           },
-          boughtShares: {
+          boughtKeys: {
             type: 'contextAction',
-            value: 'BOUGHT_SHARES',
+            value: 'BOUGHT_KEYS',
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Friendtech',
-            default: '[[buyer]] [[boughtShares]] of [[subject]] for [[price]]',
+            default: '[[buyer]] [[boughtKeys]] of [[subject]] for [[price]]',
           },
         },
       };
@@ -171,16 +171,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: trader,
           },
-          soldShares: {
+          soldKeys: {
             type: 'contextAction',
-            value: 'SOLD_SHARES',
+            value: 'SOLD_KEYS',
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'friend.tech',
-            default: '[[trader]] [[soldShares]] of [[subject]] for [[price]]',
+            default: '[[trader]] [[soldKeys]] of [[subject]] for [[price]]',
           },
         },
       };

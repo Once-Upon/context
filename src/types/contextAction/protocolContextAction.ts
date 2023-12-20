@@ -53,9 +53,9 @@ export type EASContextAction =
   | 'REGISTERED';
 
 export type FriendTechContextAction =
-  | 'FAILED_TO_BUY_SHARES'
-  | 'BOUGHT_SHARES'
-  | 'SOLD_SHARES';
+  | 'FAILED_TO_BUY_KEYS'
+  | 'BOUGHT_KEYS'
+  | 'SOLD_KEYS';
 
 export type ProtocolContextAction =
   | WETHContextAction
