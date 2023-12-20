@@ -1,4 +1,9 @@
-import { Transaction, AssetType, ETHAsset } from '../../types';
+import {
+  Transaction,
+  AssetType,
+  ETHAsset,
+  ERC1155AssetTransfer,
+} from '../../types';
 import { KNOWN_ADDRESSES } from '../../helpers/constants';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -29,7 +34,7 @@ export function detect(transaction: Transaction): boolean {
     (transfer) =>
       transfer.from === KNOWN_ADDRESSES.NULL &&
       transfer.type === AssetType.ERC1155,
-  );
+  ) as ERC1155AssetTransfer[];
 
   if (mints.length == 0) {
     return false;
@@ -53,7 +58,7 @@ export function detect(transaction: Transaction): boolean {
     .reduce((parties, address) => {
       parties = [...new Set([...parties, address])];
       return parties;
-    }, [])
+    }, [] as string[])
     .filter(
       (address) =>
         address !== KNOWN_ADDRESSES.NULL && address !== transaction.from,
@@ -70,18 +75,19 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
+  if (!transaction.assetTransfers || !transaction.netAssetTransfers) {
+    return transaction;
+  }
   // Get all the mints where from account == to account for the mint transfer
-  const mints = transaction.assetTransfers.filter((transfer) => {
-    return transfer.from === KNOWN_ADDRESSES.NULL;
-  });
+  const mints = transaction.assetTransfers.filter(
+    (transfer) =>
+      transfer.from === KNOWN_ADDRESSES.NULL &&
+      transfer.type === AssetType.ERC1155,
+  ) as ERC1155AssetTransfer[];
 
   // We do this so we can use the assetTransfer var directly in the outcomes for contextualizations
   // The contextualizations expect a property "token", not "asset"
-  const assetTransfer = {
-    ...mints[0],
-    token: mints[0].asset,
-  };
-  delete assetTransfer.asset;
+  const assetTransfer = mints[0];
   const recipient = assetTransfer.to;
   const amount = mints.filter((ele) => ele.type === assetTransfer.type).length;
 
@@ -93,7 +99,7 @@ export function generate(transaction: Transaction): Transaction {
     variables: {
       token: {
         type: AssetType.ERC1155,
-        token: assetTransfer.token,
+        token: assetTransfer.asset,
         tokenId: assetTransfer.tokenId,
         value: assetTransfer.value,
       },
@@ -118,13 +124,21 @@ export function generate(transaction: Transaction): Transaction {
   };
 
   if (amount > 1) {
-    transaction.context.variables['amount'] = {
-      type: 'number',
-      value: amount,
-      unit: 'x',
+    transaction.context.variables = {
+      ...transaction.context.variables,
+      amount: {
+        type: 'number',
+        value: amount,
+        unit: 'x',
+      },
     };
-    transaction.context.summaries.en.default =
-      '[[recipient]] [[minted]] [[amount]] [[token]] for [[price]]';
+    transaction.context.summaries = {
+      ...transaction.context.summaries,
+      en: {
+        title: 'NFT Mint',
+        default: '[[recipient]] [[minted]] [[amount]] [[token]] for [[price]]',
+      },
+    };
   }
 
   return transaction;
