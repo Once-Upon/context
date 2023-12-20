@@ -1,5 +1,9 @@
 import { Hex } from 'viem';
-import { ContextSummaryVariableType, Transaction } from '../../types';
+import {
+  AssetType,
+  ContextSummaryVariableType,
+  Transaction,
+} from '../../types';
 import { WETH_ADDRESSES } from '../../helpers/constants';
 import { WETH_ABI } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
@@ -56,7 +60,7 @@ export const generate = (transaction: Transaction): Transaction => {
         },
         variables: {
           value: {
-            type: 'erc20',
+            type: AssetType.ERC20,
             token: transaction.to,
             value: transaction.value,
           },
@@ -78,7 +82,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const withdrawalAmount: ContextSummaryVariableType = {
-        type: 'eth',
+        type: AssetType.ETH,
         value: decode.args[0].toString(),
         unit: 'wei',
       };

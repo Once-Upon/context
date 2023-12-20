@@ -1,4 +1,4 @@
-import { Transaction } from '../../types';
+import { AssetType, ETHAsset, Transaction } from '../../types';
 import { KNOWN_ADDRESSES, WETH_ADDRESSES } from '../../helpers/constants';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -28,7 +28,7 @@ export function detect(transaction: Transaction): boolean {
   const mints = transaction.assetTransfers.filter(
     (transfer) =>
       transfer.from === KNOWN_ADDRESSES.NULL &&
-      transfer.type === 'erc20' &&
+      transfer.type === AssetType.ERC20 &&
       !WETH_ADDRESSES.includes(transfer.asset),
   );
 
@@ -44,7 +44,7 @@ export function detect(transaction: Transaction): boolean {
   // transfer.from can send some eth
   const assetTransfer = transaction.netAssetTransfers[transaction.from];
   const assetSent = assetTransfer?.sent ?? [];
-  if (assetSent.length > 0 && assetSent[0].type !== 'eth') {
+  if (assetSent.length > 0 && assetSent[0].type !== AssetType.ETH) {
     return false;
   }
   // check if other transaction parties received ether
@@ -62,7 +62,7 @@ export function detect(transaction: Transaction): boolean {
 
   for (const address of transactionParties) {
     const assetReceived = transaction.netAssetTransfers[address]?.received;
-    if (assetReceived.length === 0 || assetReceived[0].type !== 'eth') {
+    if (assetReceived.length === 0 || assetReceived[0].type !== AssetType.ETH) {
       return false;
     }
   }
@@ -85,13 +85,14 @@ export function generate(transaction: Transaction): Transaction {
   delete assetTransfer.asset;
   const recipient = assetTransfer.to;
 
-  const assetSent = transaction.netAssetTransfers[transaction.from]?.sent;
+  const assetSent = transaction.netAssetTransfers[transaction.from]
+    ?.sent as ETHAsset[];
   const price = assetSent[0]?.value ?? '0';
 
   transaction.context = {
     variables: {
       token: {
-        type: 'erc20',
+        type: AssetType.ERC20,
         token: assetTransfer.token,
         value: assetTransfer.value,
       },
@@ -100,7 +101,7 @@ export function generate(transaction: Transaction): Transaction {
         value: recipient,
       },
       price: {
-        type: 'eth',
+        type: AssetType.ETH,
         value: price,
         unit: 'wei',
       },

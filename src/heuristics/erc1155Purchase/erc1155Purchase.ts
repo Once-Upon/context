@@ -1,4 +1,10 @@
-import { Asset, Transaction } from '../../types';
+import {
+  AssetType,
+  ERC1155Asset,
+  ERC20Asset,
+  ETHAsset,
+  Transaction,
+} from '../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isERC1155Purchase = detect(transaction);
@@ -24,15 +30,17 @@ export function detect(transaction: Transaction): boolean {
   for (const address of addresses) {
     const transfers = transaction.netAssetTransfers[address];
     const nftsReceived = transfers?.received.filter(
-      (t) => t.type === 'erc1155',
+      (t) => t.type === AssetType.ERC1155,
     );
-    const nftsSent = transfers?.sent.filter((t) => t.type === 'erc1155');
+    const nftsSent = transfers?.sent.filter(
+      (t) => t.type === AssetType.ERC1155,
+    );
 
     const ethOrErc20Sent = transfers?.sent.filter(
-      (t) => t.type === 'eth' || t.type === 'erc20',
+      (t) => t.type === AssetType.ETH || t.type === AssetType.ERC20,
     );
     const ethOrErc20Received = transfers?.received.filter(
-      (t) => t.type === 'eth' || t.type === 'erc20',
+      (t) => t.type === AssetType.ETH || t.type === AssetType.ERC20,
     );
 
     if (
@@ -59,33 +67,55 @@ export function detect(transaction: Transaction): boolean {
 
 function generate(transaction: Transaction): Transaction {
   const receivingAddresses: string[] = [];
-  let receivedNfts: Asset[] = [];
-  let sentPayments: { type: string; asset: string; value: string }[] = [];
+  let receivedNfts: ERC1155Asset[] = [];
+  let erc20Payments: ERC20Asset[] = [];
+  let ethPayments: ETHAsset[] = [];
 
   Object.entries(transaction.netAssetTransfers).forEach(([address, data]) => {
-    const nftTransfers = data.received.filter((t) => t.type === 'erc1155');
-    const paymentTransfers = data.sent.filter(
-      (t) => t.type === 'erc20' || t.type === 'eth',
-    );
+    const nftTransfers = data.received.filter(
+      (t) => t.type === AssetType.ERC1155,
+    ) as ERC1155Asset[];
+    const erc20PaymentTransfers = data.sent.filter(
+      (t) => t.type === AssetType.ERC20,
+    ) as ERC20Asset[];
+    const ethPaymentTransfers = data.sent.filter(
+      (t) => t.type === AssetType.ETH,
+    ) as ETHAsset[];
+
     if (nftTransfers.length > 0) {
       receivingAddresses.push(address);
       receivedNfts = [...receivedNfts, ...nftTransfers];
     }
-    if (paymentTransfers.length > 0) {
-      sentPayments = [
-        ...sentPayments,
-        ...paymentTransfers.map((payment) => ({
+    if (erc20PaymentTransfers.length > 0) {
+      erc20Payments = [
+        ...erc20Payments,
+        ...erc20PaymentTransfers.map((payment) => ({
+          id: payment.id,
           type: payment.type,
           asset: payment.asset,
           value: payment.value,
         })),
       ];
     }
+    if (ethPaymentTransfers.length > 0) {
+      ethPayments = [
+        ...ethPayments,
+        ...ethPaymentTransfers.map((payment) => ({
+          id: payment.id,
+          type: payment.type,
+          value: payment.value,
+        })),
+      ];
+    }
   });
 
-  const totalPayments = Object.values(
-    sentPayments.reduce((acc, next) => {
+  const receivedNftContracts = Array.from(
+    new Set(receivedNfts.map((x) => x.asset)),
+  );
+  const totalERC20Payment: Record<string, ERC20Asset> = erc20Payments.reduce(
+    (acc, next) => {
       acc[next.asset] = {
+        id: next.asset,
         type: next.type,
         asset: next.asset,
         value: (
@@ -93,8 +123,15 @@ function generate(transaction: Transaction): Transaction {
         ).toString(),
       };
       return acc;
-    }, {}),
-  ) as { type: 'eth' | 'erc20'; asset: string; value: string }[];
+    },
+    {},
+  );
+
+  const totalETHPayment = ethPayments.reduce((acc, next) => {
+    acc = BigInt(acc) + BigInt(next.value);
+    return acc;
+  }, BigInt(0));
+  const totalAssets = erc20Payments.length + ethPayments.length;
 
   transaction.context = {
     variables: {
@@ -113,15 +150,15 @@ function generate(transaction: Transaction): Transaction {
       tokenOrTokens:
         receivedNfts.length === 1
           ? {
-              type: 'erc1155',
+              type: AssetType.ERC1155,
               token: receivedNfts[0].asset,
               tokenId: receivedNfts[0].tokenId,
               value: receivedNfts[0].value,
             }
-          : receivedNfts.length === 1
+          : receivedNftContracts.length === 1
             ? {
                 type: 'address',
-                value: receivedNfts[0].asset,
+                value: receivedNftContracts[0],
               }
             : {
                 type: 'number',
@@ -130,23 +167,23 @@ function generate(transaction: Transaction): Transaction {
                 unit: 'NFTs',
               },
       price:
-        totalPayments.length > 1
+        totalAssets > 1
           ? {
               type: 'number',
-              value: totalPayments.length,
+              value: totalAssets,
               emphasis: true,
               unit: 'assets',
             }
-          : totalPayments[0].type === 'eth'
+          : ethPayments.length > 0
             ? {
-                type: 'eth',
-                value: totalPayments[0].value,
+                type: AssetType.ETH,
+                value: totalETHPayment.toString(),
                 unit: 'wei',
               }
             : {
-                type: 'erc20',
-                token: totalPayments[0].asset,
-                value: totalPayments[0].value,
+                type: AssetType.ERC20,
+                token: Object.values(totalERC20Payment)[0].asset,
+                value: Object.values(totalERC20Payment)[0].value.toString(),
               },
       bought: {
         type: 'contextAction',

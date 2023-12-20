@@ -1,5 +1,9 @@
 import { Hex } from 'viem';
-import { ContextSummaryVariableType, Transaction } from '../../types';
+import {
+  AssetType,
+  ContextSummaryVariableType,
+  Transaction,
+} from '../../types';
 import { CryptopunksContracts, CRYPTOPUNK_ABIS } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
@@ -66,7 +70,7 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decoded.functionName) {
     case 'getPunk': {
       const punk: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: CryptopunksContracts.New,
         tokenId: decoded.args[0].toString(),
       };
@@ -119,12 +123,12 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const punk: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: CryptopunksContracts.New,
         tokenId: decoded.args[0].toString(),
       };
       const price: ContextSummaryVariableType = {
-        type: 'eth',
+        type: AssetType.ETH,
         value: decoded.args[1].toString(),
         unit: 'wei',
       };
@@ -176,12 +180,12 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const punk: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: CryptopunksContracts.New,
         tokenId: decoded.args[0].toString(),
       };
       const price: ContextSummaryVariableType = {
-        type: 'eth',
+        type: AssetType.ETH,
         value: transaction.assetTransfers?.[0].value,
         unit: 'wei',
       };
@@ -233,12 +237,12 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const punk: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: CryptopunksContracts.New,
         tokenId: decoded.args[0].toString(),
       };
       const price: ContextSummaryVariableType = {
-        type: 'eth',
+        type: AssetType.ETH,
         value: transaction.value,
         unit: 'wei',
       };
@@ -290,7 +294,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const amount: ContextSummaryVariableType = {
-        type: 'eth',
+        type: AssetType.ETH,
         value: transaction.assetTransfers?.[0].value,
         unit: 'wei',
       };
@@ -339,12 +343,12 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const punk: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: CryptopunksContracts.New,
         tokenId: decoded.args[0].toString(),
       };
       const price: ContextSummaryVariableType = {
-        type: 'eth',
+        type: AssetType.ETH,
         value: transaction.value,
         unit: 'wei',
       };
@@ -407,7 +411,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const punk: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: CryptopunksContracts.New,
         tokenId: decoded.args[1].toString(),
       };
@@ -463,7 +467,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const punk: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: CryptopunksContracts.New,
         tokenId: decoded.args[0].toString(),
       };
@@ -513,12 +517,12 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const punk: ContextSummaryVariableType = {
-        type: 'erc721',
+        type: AssetType.ERC721,
         token: CryptopunksContracts.New,
         tokenId: decoded.args[0].toString(),
       };
       const price: ContextSummaryVariableType = {
-        type: 'eth',
+        type: AssetType.ETH,
         value: decoded.args[1].toString(),
         unit: 'wei',
       };

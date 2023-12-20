@@ -1,5 +1,6 @@
 import { Hex } from 'viem';
 import {
+  AssetType,
   ContextSummaryVariableType,
   EventLogTopics,
   Transaction,
@@ -56,7 +57,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
       // Capture cost to register
       const cost: ContextSummaryVariableType = {
-        type: 'eth',
+        type: AssetType.ETH,
         value: transaction.value,
         unit: 'wei',
       };

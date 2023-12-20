@@ -1,4 +1,4 @@
-import { Transaction } from '../../types';
+import { AssetType, Transaction } from '../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isSuperchainFaucetTransaction = detect(transaction);
@@ -33,7 +33,7 @@ export function generate(transaction: Transaction): Transaction {
         value: transaction.assetTransfers[1].to,
       },
       amount: {
-        type: 'eth',
+        type: AssetType.ETH,
         value: transaction.assetTransfers[1].value,
         unit: 'wei',
       },

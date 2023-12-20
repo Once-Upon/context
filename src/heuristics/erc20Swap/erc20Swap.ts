@@ -1,4 +1,12 @@
-import { ContextSummaryVariableType, Transaction } from '../../types';
+import {
+  AssetType,
+  ContextHexType,
+  ERC20Asset,
+  Transaction,
+  ContextERC20Type,
+  ETHAsset,
+  ContextETHType,
+} from '../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isERC20Swap = detect(transaction);
@@ -30,7 +38,7 @@ export function detect(transaction: Transaction): boolean {
   // All assets transferred are type ETH or ERC20
   if (
     transaction.assetTransfers?.some(
-      (asset) => asset.type !== 'eth' && asset.type !== 'erc20',
+      (asset) => asset.type !== AssetType.ETH && asset.type !== AssetType.ERC20,
     )
   ) {
     return false;
@@ -47,9 +55,10 @@ export function detect(transaction: Transaction): boolean {
     return false;
   }
 
-  const swapperSent = transaction.netAssetTransfers[transaction.from].sent[0];
-  const swapperReceived =
-    transaction.netAssetTransfers[transaction.from].received[0];
+  const swapperSent = transaction.netAssetTransfers[transaction.from]
+    .sent[0] as ERC20Asset;
+  const swapperReceived = transaction.netAssetTransfers[transaction.from]
+    .received[0] as ERC20Asset;
 
   // Swapper did not send and receive the same type of asset
   if (
@@ -63,19 +72,37 @@ export function detect(transaction: Transaction): boolean {
 }
 
 function generate(transaction: Transaction): Transaction {
-  const swapper: ContextSummaryVariableType = {
+  const swapper: ContextHexType = {
     type: 'address',
     value: transaction.from,
   };
-  const swapFrom = {
-    ...transaction.netAssetTransfers[transaction.from].sent[0],
-    token: transaction.netAssetTransfers[transaction.from].sent[0]?.asset,
-  } as ContextSummaryVariableType;
+  const assetSent = transaction.netAssetTransfers[transaction.from].sent as (
+    | ERC20Asset
+    | ETHAsset
+  )[];
+  const assetReceived = transaction.netAssetTransfers[transaction.from]
+    .sent as (ERC20Asset | ETHAsset)[];
+  const swapFrom =
+    assetSent[0].type === AssetType.ERC20
+      ? ({
+          ...assetSent[0],
+          token: assetSent[0]?.asset,
+        } as ContextERC20Type)
+      : ({
+          ...assetSent[0],
+          unit: 'wei',
+        } as ContextETHType);
   // Net asset transfers calls the token contract 'asset' instead of 'token'
-  const swapTo = {
-    ...transaction.netAssetTransfers[transaction.from].received[0],
-    token: transaction.netAssetTransfers[transaction.from].received[0]?.asset,
-  } as ContextSummaryVariableType;
+  const swapTo =
+    assetReceived[0].type === AssetType.ERC20
+      ? ({
+          ...assetReceived[0],
+          token: assetReceived[0]?.asset,
+        } as ContextERC20Type)
+      : ({
+          ...assetReceived[0],
+          unit: 'wei',
+        } as ContextETHType);
   // Net asset transfers calls the token contract 'asset' instead of 'token'
 
   transaction.context = {

@@ -1,4 +1,4 @@
-import { Transaction } from '../../types';
+import { AssetType, ETHAsset, Transaction } from '../../types';
 import { KNOWN_ADDRESSES } from '../../helpers/constants';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -27,7 +27,8 @@ export function detect(transaction: Transaction): boolean {
   // Get all the mints where from account == to account for the mint transfer
   const mints = transaction.assetTransfers.filter(
     (transfer) =>
-      transfer.from === KNOWN_ADDRESSES.NULL && transfer.type === 'erc721',
+      transfer.from === KNOWN_ADDRESSES.NULL &&
+      transfer.type === AssetType.ERC721,
   );
 
   if (mints.length == 0) {
@@ -42,7 +43,7 @@ export function detect(transaction: Transaction): boolean {
   // transfer.from can send some eth
   const assetTransfer = transaction.netAssetTransfers[transaction.from];
   const assetSent = assetTransfer?.sent ?? [];
-  if (assetSent.length > 0 && assetSent[0].type !== 'eth') {
+  if (assetSent.length > 0 && assetSent[0].type !== AssetType.ETH) {
     return false;
   }
   // check if other transaction parties received ether
@@ -60,7 +61,7 @@ export function detect(transaction: Transaction): boolean {
 
   for (const address of transactionParties) {
     const assetReceived = transaction.netAssetTransfers[address]?.received;
-    if (assetReceived.length === 0 || assetReceived[0].type !== 'eth') {
+    if (assetReceived.length === 0 || assetReceived[0].type !== AssetType.ETH) {
       return false;
     }
   }
@@ -84,22 +85,18 @@ export function generate(transaction: Transaction): Transaction {
   const recipient = assetTransfer.to;
   const amount = mints.filter((ele) => ele.type === assetTransfer.type).length;
 
-  const assetSent = transaction.netAssetTransfers[transaction.from]?.sent;
+  const assetSent = transaction.netAssetTransfers[transaction.from]
+    ?.sent as ETHAsset[];
   const price = assetSent[0]?.value ?? '0';
 
   transaction.context = {
     variables: {
-      token: {
-        type: 'erc721',
-        token: assetTransfer.token,
-        tokenId: assetTransfer.tokenId,
-      },
       recipient: {
         type: 'address',
         value: recipient,
       },
       price: {
-        type: 'eth',
+        type: AssetType.ETH,
         value: price,
         unit: 'wei',
       },
@@ -120,12 +117,20 @@ export function generate(transaction: Transaction): Transaction {
       value: amount,
       unit: 'x',
     };
-    transaction.context.variables['token'] = {
-      type: 'erc721',
+    transaction.context.variables['multipleERC721s'] = {
+      type: AssetType.ERC721,
       token: assetTransfer.token,
     };
     transaction.context.summaries.en.default =
-      '[[recipient]] [[minted]] [[amount]] [[token]] for [[price]]';
+      '[[recipient]] [[minted]] [[amount]] [[multipleERC721s]] for [[price]]';
+  } else {
+    transaction.context.variables['token'] = {
+      type: AssetType.ERC721,
+      token: assetTransfer.token,
+      tokenId: assetTransfer.tokenId,
+    };
+    transaction.context.summaries.en.default =
+      '[[recipient]] [[minted]] [[token]] for [[price]]';
   }
 
   return transaction;

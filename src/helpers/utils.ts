@@ -11,6 +11,7 @@ import {
   Transaction,
   ContextSummaryVariableType,
   EventLogTopics,
+  AssetType,
 } from '../types';
 
 const VALID_CHARS =
@@ -97,12 +98,12 @@ function formatSection(section: ContextSummaryVariableType) {
   const varContext = section;
   const unit = varContext['unit'];
 
-  if (varContext?.type === 'eth')
+  if (varContext?.type === AssetType.ETH)
     return `${formatEther(BigInt(varContext?.value))}${unit ? ` ETH` : ''}`;
 
-  if (varContext?.type === 'erc721') {
+  if (varContext?.type === AssetType.ERC721) {
     return `${varContext.token}${
-      varContext.tokenId ? ` #${varContext.tokenId}` : ''
+      varContext['tokenId'] ? ` #${varContext['tokenId']}` : ''
     }`;
   }
 
