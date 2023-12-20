@@ -84,10 +84,9 @@ export function generate(transaction: Transaction): Transaction {
   };
   delete assetTransfer.asset;
   const recipient = assetTransfer.to;
-  const amount = BigInt(assetTransfer.value).toString();
 
   const assetSent = transaction.netAssetTransfers[transaction.from]?.sent;
-  const price = assetSent[0]?.value;
+  const price = assetSent[0]?.value ?? '0';
 
   transaction.context = {
     variables: {
@@ -100,23 +99,18 @@ export function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: recipient,
       },
-      minted: { type: 'contextAction', value: 'MINTED' },
-      amount: {
-        type: 'string',
-        value: amount,
-        unit: 'x',
-      },
       price: {
         type: 'eth',
         value: price,
         unit: 'wei',
       },
+      minted: { type: 'contextAction', value: 'MINTED' },
     },
     summaries: {
       category: 'FUNGIBLE_TOKEN',
       en: {
         title: 'ERC20 Mint',
-        default: '[[recipient]] [[minted]] [[amount]] [[token]] for [[price]]',
+        default: '[[recipient]] [[minted]] [[token]] for [[price]]',
       },
     },
   };

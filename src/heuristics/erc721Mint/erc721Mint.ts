@@ -98,12 +98,12 @@ export function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: recipient,
       },
-      minted: { type: 'contextAction', value: 'MINTED' },
       price: {
         type: 'eth',
         value: price,
         unit: 'wei',
       },
+      minted: { type: 'contextAction', value: 'MINTED' },
     },
     summaries: {
       category: 'NFT',
