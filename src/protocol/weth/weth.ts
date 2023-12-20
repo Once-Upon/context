@@ -79,7 +79,7 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       const withdrawalAmount: ContextSummaryVariableType = {
         type: AssetType.ETH,
-        value: decode.args[0].toString(),
+        value: decode.args ? decode.args[0].toString() : '0',
         unit: 'wei',
       };
       transaction.context = {
