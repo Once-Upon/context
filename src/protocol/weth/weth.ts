@@ -38,6 +38,7 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
+  if (!transaction.to) return transaction;
   // decode input
   const decode = decodeTransactionInput(transaction.input as Hex, WETH_ABI);
   if (!decode) return transaction;

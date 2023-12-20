@@ -21,7 +21,7 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
-  if (!transaction.assetTransfers) return transaction;
+  if (!transaction.assetTransfers || !transaction.to) return transaction;
   const ethTransfer = transaction.assetTransfers[1] as ETHAssetTransfer;
   // Pull out relevant data for faucet transaction
   transaction.context = {
