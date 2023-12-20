@@ -24,13 +24,13 @@ export function detect(transaction: Transaction): boolean {
    * established patterns in our other modules. This consistency is beneficial,
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
-  if (!transaction.assetTransfers?.length) {
+  if (!transaction.assetTransfers?.length || !transaction.netAssetTransfers) {
     return false;
   }
 
   // check if only 1 address is sending
   const sendAddresses = Object.keys(transaction.netAssetTransfers).filter(
-    (address) => transaction.netAssetTransfers[address].sent.length > 0,
+    (address) => transaction.netAssetTransfers[address]?.sent.length > 0,
   );
   if (sendAddresses.length > 1) {
     return false;
