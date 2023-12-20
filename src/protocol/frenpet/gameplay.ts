@@ -45,9 +45,6 @@ export const generate = (transaction: Transaction): Transaction => {
         type: 'address',
         value: transaction.from,
       };
-      if (!parsed.args) {
-        return transaction;
-      }
       const petId = parsed.args[0].toString();
       const pet: ContextSummaryVariableType = {
         type: AssetType.ERC721,
