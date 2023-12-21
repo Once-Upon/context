@@ -84,6 +84,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const subject = parsedLog.args['subject'];
       const ethAmount = parsedLog.args['ethAmount'];
       const supply = parsedLog.args['supply'];
+      const shareAmount = parsedLog.args['shareAmount'];
 
       // Check if this is a user signing up
       if (trader === subject && ethAmount === '0' && supply === '1') {
@@ -92,14 +93,17 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'friend.tech',
-              default:
-                '[[buyer]] [[boughtShares]] of [[subject]] for [[price]]',
+              default: '[[subject]] [[signedUp]]',
             },
           },
           variables: {
             subject: {
               type: 'address',
               value: subject,
+            },
+            signedUp: {
+              type: 'contextAction',
+              value: 'SIGNED_UP',
             },
           },
         };
@@ -121,6 +125,11 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: trader,
           },
+          numOfKeys: {
+            type: 'number',
+            value: shareAmount,
+            unit: 'keys',
+          },
           boughtKeys: {
             type: 'contextAction',
             value: 'BOUGHT_KEYS',
@@ -130,7 +139,8 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Friendtech',
-            default: '[[buyer]] [[boughtKeys]] of [[subject]] for [[price]]',
+            default:
+              '[[buyer]] [[boughtKeys]] [[numOfKeys]] of [[subject]] for [[price]]',
           },
         },
       };
@@ -155,6 +165,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const trader = parsedLog.args['trader'];
       const subject = parsedLog.args['subject'];
       const ethAmount = parsedLog.args['ethAmount'];
+      const shareAmount = parsedLog.args['shareAmount'];
 
       transaction.context = {
         variables: {
@@ -166,6 +177,11 @@ export const generate = (transaction: Transaction): Transaction => {
           subject: {
             type: 'address',
             value: subject,
+          },
+          numOfKeys: {
+            type: 'number',
+            value: shareAmount,
+            unit: 'keys',
           },
           trader: {
             type: 'address',
@@ -180,7 +196,8 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'friend.tech',
-            default: '[[trader]] [[soldKeys]] of [[subject]] for [[price]]',
+            default:
+              '[[trader]] [[soldKeys]] [[numOfKeys]] of [[subject]] for [[price]]',
           },
         },
       };

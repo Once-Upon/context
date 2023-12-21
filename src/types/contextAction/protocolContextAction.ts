@@ -55,7 +55,8 @@ export type EASContextAction =
 export type FriendTechContextAction =
   | 'FAILED_TO_BUY_KEYS'
   | 'BOUGHT_KEYS'
-  | 'SOLD_KEYS';
+  | 'SOLD_KEYS'
+  | 'SIGNED_UP';
 
 export type ProtocolContextAction =
   | WETHContextAction
