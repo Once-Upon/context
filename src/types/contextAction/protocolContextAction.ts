@@ -52,6 +52,12 @@ export type EASContextAction =
   | 'TIMESTAMPED'
   | 'REGISTERED';
 
+export type FriendTechContextAction =
+  | 'FAILED_TO_BUY_KEYS'
+  | 'BOUGHT_KEYS'
+  | 'SOLD_KEYS'
+  | 'SIGNED_UP';
+
 export type ProtocolContextAction =
   | WETHContextAction
   | ENSContextAction
@@ -59,4 +65,5 @@ export type ProtocolContextAction =
   | LeeroyContextAction
   | FrenpetContextAction
   | FarcasterContextAction
-  | EASContextAction;
+  | EASContextAction
+  | FriendTechContextAction;
