@@ -38,16 +38,23 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.input as Hex,
         ABIs.FriendTech,
       );
+      const subject = parsedTx.args[0].toString();
+      const shareAmount = Number(parsedTx.args[1]);
       transaction.context = {
         variables: {
           price: {
             type: AssetType.ETH,
-            value: parsedTx.args[1].toString(),
+            value: transaction.value,
             unit: 'wei',
+          },
+          numOfKeys: {
+            type: 'number',
+            value: shareAmount,
+            unit: shareAmount > 1 ? 'keys' : 'key',
           },
           subject: {
             type: 'address',
-            value: parsedTx.args[0].toString(),
+            value: subject,
           },
           buyer: {
             type: 'address',
@@ -63,10 +70,11 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'friend.tech',
             default:
-              '[[buyer]] [[failedToBuyKeys]] of [[subject]] for [[price]]',
+              '[[buyer]] [[failedToBuyKeys]] [[numOfKeys]] of [[subject]] for [[price]]',
           },
         },
       };
+      return transaction;
     }
   }
 
@@ -128,7 +136,7 @@ export const generate = (transaction: Transaction): Transaction => {
           numOfKeys: {
             type: 'number',
             value: shareAmount,
-            unit: 'keys',
+            unit: shareAmount > 1 ? 'keys' : 'key',
           },
           boughtKeys: {
             type: 'contextAction',
@@ -181,7 +189,7 @@ export const generate = (transaction: Transaction): Transaction => {
           numOfKeys: {
             type: 'number',
             value: shareAmount,
-            unit: 'keys',
+            unit: shareAmount > 1 ? 'keys' : 'key',
           },
           trader: {
             type: 'address',
