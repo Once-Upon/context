@@ -4,6 +4,7 @@ import { detect, generate } from './friendTech';
 import friendTech0xde5ce243 from '../../test/transactions/friendTech-0xde5ce243.json';
 import friendTech0xe65b4bd6 from '../../test/transactions/friendTech-0xe65b4bd6.json';
 import friendTech0xed2dd79e from '../../test/transactions/friendTech-0xed2dd79e.json';
+import friendTech0x703647d1 from '../../test/transactions/friendTech-0x703647d1.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 
 describe('FriendTech', () => {
@@ -16,6 +17,9 @@ describe('FriendTech', () => {
 
     const friendTech3 = detect(friendTech0xed2dd79e as Transaction);
     expect(friendTech3).toBe(true);
+
+    const friendTech4 = detect(friendTech0x703647d1 as Transaction);
+    expect(friendTech4).toBe(true);
   });
 
   it('Should not detect as FriendTech', () => {
@@ -41,5 +45,9 @@ describe('FriendTech', () => {
     expect(desc3).toBe(
       '0x61a562de165e078ac4e06150c7c025d1e81f8fa0 FAILED_TO_BUY_KEYS 1 key of 0x72dE51dd1954a0ef37143a9892B230FD4F59A4B6 for 0.00006875 ETH',
     );
+
+    const friendTech4 = generate(friendTech0x703647d1 as Transaction);
+    const desc4 = contextSummary(friendTech4.context);
+    expect(desc4).toBe('0x72dE51dd1954a0ef37143a9892B230FD4F59A4B6 SIGNED_UP');
   });
 });

@@ -90,12 +90,12 @@ export const generate = (transaction: Transaction): Transaction => {
 
       const trader = parsedLog.args['trader'];
       const subject = parsedLog.args['subject'];
-      const ethAmount = parsedLog.args['ethAmount'];
-      const supply = parsedLog.args['supply'];
-      const shareAmount = parsedLog.args['shareAmount'];
+      const ethAmount = String(parsedLog.args['ethAmount']);
+      const supply = Number(parsedLog.args['supply']);
+      const shareAmount = Number(parsedLog.args['shareAmount']);
 
       // Check if this is a user signing up
-      if (trader === subject && ethAmount === '0' && supply === '1') {
+      if (trader === subject && ethAmount === '0' && supply === 1) {
         transaction.context = {
           summaries: {
             category: 'PROTOCOL_1',
