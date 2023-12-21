@@ -173,7 +173,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const trader = parsedLog.args['trader'];
       const subject = parsedLog.args['subject'];
       const ethAmount = parsedLog.args['ethAmount'];
-      const shareAmount = parsedLog.args['shareAmount'];
+      const shareAmount = Number(parsedLog.args['shareAmount']);
 
       transaction.context = {
         variables: {
