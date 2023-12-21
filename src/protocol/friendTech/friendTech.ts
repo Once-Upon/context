@@ -50,7 +50,7 @@ export const generate = (transaction: Transaction): Transaction => {
           numOfKeys: {
             type: 'number',
             value: shareAmount,
-            unit: shareAmount > 1 ? 'keys' : 'key',
+            unit: shareAmount === 1 ? 'key' : 'keys',
           },
           subject: {
             type: 'address',
@@ -136,7 +136,7 @@ export const generate = (transaction: Transaction): Transaction => {
           numOfKeys: {
             type: 'number',
             value: shareAmount,
-            unit: shareAmount > 1 ? 'keys' : 'key',
+            unit: shareAmount === 1 ? 'key' : 'keys',
           },
           boughtKeys: {
             type: 'contextAction',
@@ -189,7 +189,7 @@ export const generate = (transaction: Transaction): Transaction => {
           numOfKeys: {
             type: 'number',
             value: shareAmount,
-            unit: shareAmount > 1 ? 'keys' : 'key',
+            unit: shareAmount === 1 ? 'key' : 'keys',
           },
           trader: {
             type: 'address',
