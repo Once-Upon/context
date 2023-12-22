@@ -1,31 +1,14 @@
 import { Hex } from 'viem';
 import { AssetType, EventLogTopics, Transaction } from '../../types';
-import { ABIs, FRIEND_TECH_ADDRESSES } from './constants';
+import { ABIs } from './constants';
 import { decodeTransactionInput, decodeLog } from '../../helpers/utils';
+import { detect } from './detect';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isFriendTech = detect(transaction);
   if (!isFriendTech) return transaction;
 
   return generate(transaction);
-};
-
-export const detect = (transaction: Transaction): boolean => {
-  /** implement your detection logic */
-  if (transaction.to !== FRIEND_TECH_ADDRESSES || !transaction.logs) {
-    return false;
-  }
-  // buyShares(address sharesSubject, uint256 amount)
-  if (transaction.sigHash === '0x6945b123') {
-    return true;
-  }
-
-  // sellShares(address sharesSubject, uint256 amount)
-  if (transaction.sigHash === '0xb51d0534') {
-    return true;
-  }
-
-  return false;
 };
 
 // Contextualize for txs
@@ -172,7 +155,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
       const trader = parsedLog.args['trader'];
       const subject = parsedLog.args['subject'];
-      const ethAmount = parsedLog.args['ethAmount'];
+      const ethAmount = String(parsedLog.args['ethAmount']);
       const shareAmount = Number(parsedLog.args['shareAmount']);
 
       transaction.context = {
