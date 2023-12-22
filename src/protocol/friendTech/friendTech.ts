@@ -21,6 +21,8 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.input as Hex,
         ABIs.FriendTech,
       );
+      if (!parsedTx) return transaction;
+
       const subject = parsedTx.args[0].toString();
       const shareAmount = Number(parsedTx.args[1]);
       transaction.context = {
@@ -70,6 +72,7 @@ export const generate = (transaction: Transaction): Transaction => {
         log.data as Hex,
         log.topics as EventLogTopics,
       );
+      if (!parsedLog) return transaction;
 
       const trader = parsedLog.args['trader'];
       const subject = parsedLog.args['subject'];
@@ -152,6 +155,7 @@ export const generate = (transaction: Transaction): Transaction => {
         log.data as Hex,
         log.topics as EventLogTopics,
       );
+      if (!parsedLog) return transaction;
 
       const trader = parsedLog.args['trader'];
       const subject = parsedLog.args['subject'];

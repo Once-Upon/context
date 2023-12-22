@@ -41,18 +41,32 @@ export function decodeTransactionInput<TAbi extends Abi>(
   input: Hex,
   abi: TAbi,
 ) {
-  return decodeFunctionData({
-    abi,
-    data: input,
-  });
+  try {
+    const result = decodeFunctionData({
+      abi,
+      data: input,
+    });
+
+    return result;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
 }
 
 export function decodeFunction(input: Hex, functionSig: string[]) {
-  const abi = parseAbi(functionSig);
-  return decodeFunctionData({
-    abi,
-    data: input,
-  });
+  try {
+    const abi = parseAbi(functionSig);
+    const result = decodeFunctionData({
+      abi,
+      data: input,
+    });
+
+    return result;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
 }
 
 export function decodeLog<TAbi extends Abi>(
@@ -60,11 +74,17 @@ export function decodeLog<TAbi extends Abi>(
   data: Hex,
   topics: EventLogTopics,
 ) {
-  return decodeEventLog({
-    abi,
-    data,
-    topics,
-  });
+  try {
+    const result = decodeEventLog({
+      abi,
+      data,
+      topics,
+    });
+    return result;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
 }
 
 export function contextSummary(context: TransactionContextType): string {

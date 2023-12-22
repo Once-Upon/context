@@ -26,17 +26,10 @@ export const detect = (transaction: Transaction): boolean => {
     }
 
     // decode input
-    let decoded: ReturnType<
-      typeof decodeTransactionInput<typeof ABIs.SchemaRegistry>
-    >;
-    try {
-      decoded = decodeTransactionInput(
-        transaction.input as Hex,
-        ABIs.SchemaRegistry,
-      );
-    } catch (_) {
-      return false;
-    }
+    const decoded = decodeTransactionInput(
+      transaction.input as Hex,
+      ABIs.SchemaRegistry,
+    );
 
     if (!decoded || !decoded.functionName) return false;
     return ['register'].includes(decoded.functionName);
@@ -58,29 +51,25 @@ export const generate = (transaction: Transaction): Transaction => {
       let id = '';
       if (transaction.receipt?.status) {
         const registerLog = transaction.logs?.find((log) => {
-          try {
-            const decoded = decodeLog(
-              ABIs.SchemaRegistry,
-              log.data as Hex,
-              log.topics as EventLogTopics,
-            );
-            return decoded.eventName === 'Registered';
-          } catch (_) {
-            return false;
-          }
+          const decoded = decodeLog(
+            ABIs.SchemaRegistry,
+            log.data as Hex,
+            log.topics as EventLogTopics,
+          );
+          if (!decoded) return false;
+
+          return decoded.eventName === 'Registered';
         });
 
         if (registerLog) {
-          try {
-            const decoded = decodeLog(
-              ABIs.SchemaRegistry,
-              registerLog.data as Hex,
-              registerLog.topics as EventLogTopics,
-            );
-            id = decoded.args['uid'];
-          } catch (err) {
-            console.error(err);
-          }
+          const decoded = decodeLog(
+            ABIs.SchemaRegistry,
+            registerLog.data as Hex,
+            registerLog.topics as EventLogTopics,
+          );
+          if (!decoded) return transaction;
+
+          id = decoded.args['uid'];
         }
       }
 

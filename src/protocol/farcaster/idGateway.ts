@@ -18,17 +18,13 @@ export const detect = (transaction: Transaction): boolean => {
   if (transaction.to !== FarcasterContracts.IdGateway.address) {
     return false;
   }
+  const decoded = decodeTransactionInput(
+    transaction.input as Hex,
+    FarcasterContracts.IdGateway.abi,
+  );
+  if (!decoded) return false;
 
-  try {
-    const decoded = decodeTransactionInput(
-      transaction.input as Hex,
-      FarcasterContracts.IdGateway.abi,
-    );
-
-    return ['register', 'registerFor'].includes(decoded.functionName);
-  } catch (_) {
-    return false;
-  }
+  return ['register', 'registerFor'].includes(decoded.functionName);
 };
 
 // Contextualize for mined txs
@@ -37,6 +33,7 @@ export const generate = (transaction: Transaction): Transaction => {
     transaction.input as Hex,
     FarcasterContracts.IdGateway.abi,
   );
+  if (!decoded) return transaction;
 
   // Capture FID
   let fid = '';
@@ -45,16 +42,14 @@ export const generate = (transaction: Transaction): Transaction => {
       return log.address === FarcasterContracts.IdRegistry.address;
     });
     if (registerLog) {
-      try {
-        const decoded = decodeLog(
-          FarcasterContracts.IdRegistry.abi,
-          registerLog.data as Hex,
-          registerLog.topics as EventLogTopics,
-        );
-        fid = BigInt(decoded.args['id']).toString();
-      } catch (e) {
-        console.error(e);
-      }
+      const decoded = decodeLog(
+        FarcasterContracts.IdRegistry.abi,
+        registerLog.data as Hex,
+        registerLog.topics as EventLogTopics,
+      );
+      if (!decoded) return transaction;
+
+      fid = BigInt(decoded.args['id']).toString();
     }
   }
 

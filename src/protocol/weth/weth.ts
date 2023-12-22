@@ -18,36 +18,30 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
-  try {
-    if (!transaction.to) {
-      return false;
-    }
-    // check contract address
-    if (!WETH_ADDRESSES.includes(transaction.to.toLowerCase())) {
-      return false;
-    }
-
-    // decode input
-    const decode = decodeTransactionInput(transaction.input as Hex, WETH_ABI);
-
-    if (!decode || !decode.functionName) return false;
-    if (
-      decode.functionName !== 'deposit' &&
-      decode.functionName !== 'withdraw'
-    ) {
-      return false;
-    }
-    return true;
-  } catch (err) {
-    console.error('Error in detect function:', err);
+  if (!transaction.to) {
     return false;
   }
+  // check contract address
+  if (!WETH_ADDRESSES.includes(transaction.to.toLowerCase())) {
+    return false;
+  }
+
+  // decode input
+  const decode = decodeTransactionInput(transaction.input as Hex, WETH_ABI);
+
+  if (!decode || !decode.functionName) return false;
+  if (decode.functionName !== 'deposit' && decode.functionName !== 'withdraw') {
+    return false;
+  }
+  return true;
 };
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   // decode input
   const decode = decodeTransactionInput(transaction.input as Hex, WETH_ABI);
+  if (!decode) return transaction;
+
   switch (decode.functionName) {
     case 'deposit': {
       transaction.context = {
@@ -77,6 +71,8 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'withdraw': {
       const decode = decodeTransactionInput(transaction.input as Hex, WETH_ABI);
+      if (!decode) return transaction;
+
       const withdrawer: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,

@@ -26,31 +26,29 @@ export const detect = (transaction: Transaction): boolean => {
     return false;
   }
 
-  try {
-    const decoded = decodeTransactionInput(
-      transaction.input as Hex,
-      CRYPTOPUNK_ABIS[transaction.to],
-    );
+  const decoded = decodeTransactionInput(
+    transaction.input as Hex,
+    CRYPTOPUNK_ABIS[transaction.to],
+  );
 
-    if (
-      decoded.functionName !== 'getPunk' &&
-      decoded.functionName !== 'offerPunkForSale' &&
-      decoded.functionName !== 'withdrawBidForPunk' &&
-      decoded.functionName !== 'enterBidForPunk' &&
-      decoded.functionName !== 'withdraw' &&
-      decoded.functionName !== 'buyPunk' &&
-      decoded.functionName !== 'transferPunk' &&
-      decoded.functionName !== 'punkNoLongerForSale' &&
-      decoded.functionName !== 'offerPunkForSaleToAddress'
-      //decoded.name !== 'acceptBidForPunk'  TODO!!!
-    ) {
-      return false;
-    }
+  if (!decoded) return false;
 
-    return true;
-  } catch (err) {
+  if (
+    decoded.functionName !== 'getPunk' &&
+    decoded.functionName !== 'offerPunkForSale' &&
+    decoded.functionName !== 'withdrawBidForPunk' &&
+    decoded.functionName !== 'enterBidForPunk' &&
+    decoded.functionName !== 'withdraw' &&
+    decoded.functionName !== 'buyPunk' &&
+    decoded.functionName !== 'transferPunk' &&
+    decoded.functionName !== 'punkNoLongerForSale' &&
+    decoded.functionName !== 'offerPunkForSaleToAddress'
+    //decoded.name !== 'acceptBidForPunk'  TODO!!!
+  ) {
     return false;
   }
+
+  return true;
 };
 
 // Contextualize for mined txs
@@ -66,6 +64,7 @@ export const generate = (transaction: Transaction): Transaction => {
     transaction.input as Hex,
     CRYPTOPUNK_ABIS[transaction.to],
   );
+  if (!decoded) return transaction;
 
   switch (decoded.functionName) {
     case 'getPunk': {

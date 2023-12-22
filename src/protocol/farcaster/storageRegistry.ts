@@ -19,16 +19,13 @@ export const detect = (transaction: Transaction): boolean => {
     return false;
   }
 
-  try {
-    const decoded = decodeTransactionInput(
-      transaction.input as Hex,
-      FarcasterContracts.StorageRegistry.abi,
-    );
+  const decoded = decodeTransactionInput(
+    transaction.input as Hex,
+    FarcasterContracts.StorageRegistry.abi,
+  );
+  if (!decoded) return false;
 
-    return ['rent', 'batchRent'].includes(decoded.functionName);
-  } catch (_) {
-    return false;
-  }
+  return ['rent', 'batchRent'].includes(decoded.functionName);
 };
 
 // Contextualize for mined txs
@@ -37,6 +34,7 @@ export const generate = (transaction: Transaction): Transaction => {
     transaction.input as Hex,
     FarcasterContracts.StorageRegistry.abi,
   );
+  if (!decoded) return transaction;
 
   switch (decoded.functionName) {
     case 'rent': {
