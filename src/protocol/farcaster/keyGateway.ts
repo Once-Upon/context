@@ -17,16 +17,13 @@ export const detect = (transaction: Transaction): boolean => {
     return false;
   }
 
-  try {
-    const decoded = decodeTransactionInput(
-      transaction.input as Hex,
-      FarcasterContracts.KeyGateway.abi,
-    );
+  const decoded = decodeTransactionInput(
+    transaction.input as Hex,
+    FarcasterContracts.KeyGateway.abi,
+  );
+  if (!decoded) return false;
 
-    return ['add', 'addFor'].includes(decoded.functionName);
-  } catch (_) {
-    return false;
-  }
+  return ['add', 'addFor'].includes(decoded.functionName);
 };
 
 // Contextualize for mined txs

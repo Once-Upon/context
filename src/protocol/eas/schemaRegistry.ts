@@ -26,17 +26,10 @@ export const detect = (transaction: Transaction): boolean => {
     }
 
     // decode input
-    let decoded: ReturnType<
-      typeof decodeTransactionInput<typeof ABIs.SchemaRegistry>
-    >;
-    try {
-      decoded = decodeTransactionInput(
-        transaction.input as Hex,
-        ABIs.SchemaRegistry,
-      );
-    } catch (_) {
-      return false;
-    }
+    const decoded = decodeTransactionInput(
+      transaction.input as Hex,
+      ABIs.SchemaRegistry,
+    );
 
     if (!decoded || !decoded.functionName) return false;
     return ['register'].includes(decoded.functionName);

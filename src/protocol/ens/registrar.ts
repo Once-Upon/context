@@ -17,23 +17,21 @@ export const detect = (transaction: Transaction): boolean => {
   ) {
     return false;
   }
-  try {
-    const abi = ENS_CONTRACTS.registrar[transaction.to].abi;
-    const decode = decodeTransactionInput(transaction.input as Hex, abi);
 
-    if (
-      decode.functionName === 'registerWithConfig' ||
-      decode.functionName === 'register' ||
-      decode.functionName === 'commit' ||
-      decode.functionName === 'renew'
-    ) {
-      return true;
-    }
+  const abi = ENS_CONTRACTS.registrar[transaction.to].abi;
+  const decode = decodeTransactionInput(transaction.input as Hex, abi);
+  if (!decode) return false;
 
-    return false;
-  } catch (e) {
-    return false;
+  if (
+    decode.functionName === 'registerWithConfig' ||
+    decode.functionName === 'register' ||
+    decode.functionName === 'commit' ||
+    decode.functionName === 'renew'
+  ) {
+    return true;
   }
+
+  return false;
 };
 
 // Contextualize for mined txs
@@ -47,6 +45,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
   const abi = ENS_CONTRACTS.registrar[transaction.to].abi;
   const decode = decodeTransactionInput(transaction.input as Hex, abi);
+  if (!decode) return transaction;
 
   switch (decode.functionName) {
     case 'registerWithConfig':

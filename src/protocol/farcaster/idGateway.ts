@@ -18,17 +18,13 @@ export const detect = (transaction: Transaction): boolean => {
   if (transaction.to !== FarcasterContracts.IdGateway.address) {
     return false;
   }
+  const decoded = decodeTransactionInput(
+    transaction.input as Hex,
+    FarcasterContracts.IdGateway.abi,
+  );
+  if (!decoded) return false;
 
-  try {
-    const decoded = decodeTransactionInput(
-      transaction.input as Hex,
-      FarcasterContracts.IdGateway.abi,
-    );
-
-    return ['register', 'registerFor'].includes(decoded.functionName);
-  } catch (_) {
-    return false;
-  }
+  return ['register', 'registerFor'].includes(decoded.functionName);
 };
 
 // Contextualize for mined txs
@@ -37,6 +33,7 @@ export const generate = (transaction: Transaction): Transaction => {
     transaction.input as Hex,
     FarcasterContracts.IdGateway.abi,
   );
+  if (!decoded) return transaction;
 
   // Capture FID
   let fid = '';

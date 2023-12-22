@@ -15,19 +15,14 @@ export const detect = (transaction: Transaction): boolean => {
     return false;
   }
 
-  try {
-    // TODO: Get the ABI from a separate typed abi ts file
-    const abi = ENS_CONTRACTS.reverse[transaction.to].abi;
-    const decode = decodeTransactionInput(transaction.input as Hex, abi);
+  const abi = ENS_CONTRACTS.reverse[transaction.to].abi;
+  const decode = decodeTransactionInput(transaction.input as Hex, abi);
 
-    if (decode.functionName === 'setName') {
-      return true;
-    }
-
-    return false;
-  } catch (e) {
-    return false;
+  if (decode.functionName === 'setName') {
+    return true;
   }
+
+  return false;
 };
 
 export const generate = (transaction: Transaction): Transaction => {
@@ -36,8 +31,8 @@ export const generate = (transaction: Transaction): Transaction => {
   }
 
   const abi = ENS_CONTRACTS.reverse[transaction.to].abi;
-  const decode: ReturnType<typeof decodeTransactionInput<typeof abi>> =
-    decodeTransactionInput(transaction.input as Hex, abi);
+  const decode = decodeTransactionInput(transaction.input as Hex, abi);
+  if (!decode) return transaction;
 
   switch (decode.functionName) {
     case 'setName': {

@@ -38,6 +38,8 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.input as Hex,
         ABIs.FriendTech,
       );
+      if (!parsedTx) return transaction;
+
       const subject = parsedTx.args[0].toString();
       const shareAmount = Number(parsedTx.args[1]);
       transaction.context = {

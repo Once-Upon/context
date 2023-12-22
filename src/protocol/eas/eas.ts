@@ -28,12 +28,7 @@ export const detect = (transaction: Transaction): boolean => {
     }
 
     // decode input
-    let decoded: ReturnType<typeof decodeTransactionInput<typeof ABIs.EAS>>;
-    try {
-      decoded = decodeTransactionInput(transaction.input as Hex, ABIs.EAS);
-    } catch (err) {
-      return false;
-    }
+    const decoded = decodeTransactionInput(transaction.input as Hex, ABIs.EAS);
 
     if (!decoded || !decoded.functionName) return false;
     const handledFunctions: ExtractAbiFunctionNames<typeof ABIs.EAS>[] = [
@@ -65,6 +60,7 @@ const pluralize = (word: string, n: number): string => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInput(transaction.input as Hex, ABIs.EAS);
+  if (!decoded) return transaction;
 
   switch (decoded.functionName) {
     case 'attest': {

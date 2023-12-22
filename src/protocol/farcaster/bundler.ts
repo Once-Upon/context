@@ -25,28 +25,22 @@ export const detect = (transaction: Transaction): boolean => {
     return false;
   }
 
-  try {
-    const decoded: ReturnType<
-      typeof decodeTransactionInput<typeof FarcasterContracts.Bundler.abi>
-    > = decodeTransactionInput(
-      transaction.input as Hex,
-      FarcasterContracts.Bundler.abi,
-    );
+  const decoded = decodeTransactionInput(
+    transaction.input as Hex,
+    FarcasterContracts.Bundler.abi,
+  );
+  if (!decoded) return false;
 
-    return ['register'].includes(decoded.functionName);
-  } catch (_) {
-    return false;
-  }
+  return ['register'].includes(decoded.functionName);
 };
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const decoded: ReturnType<
-    typeof decodeTransactionInput<typeof FarcasterContracts.Bundler.abi>
-  > = decodeTransactionInput(
+  const decoded = decodeTransactionInput(
     transaction.input as Hex,
     FarcasterContracts.Bundler.abi,
   );
+  if (!decoded) return transaction;
 
   const caller = transaction.from;
 
