@@ -1,6 +1,7 @@
 import { Transaction } from '../../types';
 import { contextSummary } from '../../helpers/utils';
-import { detect, generate } from './friendTech';
+import { generate } from './friendTech';
+import { detect } from './detect';
 import friendTech0xde5ce243 from '../../test/transactions/friendTech-0xde5ce243.json';
 import friendTech0xe65b4bd6 from '../../test/transactions/friendTech-0xe65b4bd6.json';
 import friendTech0xed2dd79e from '../../test/transactions/friendTech-0xed2dd79e.json';
