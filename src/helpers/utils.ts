@@ -131,7 +131,7 @@ export const makeContextualize = (
   };
 };
 
-export function containsBigInt(obj): boolean {
+export function containsBigInt(obj) {
   // Check if the current value is a BigInt
   if (typeof obj === 'bigint') {
     return true;
@@ -139,10 +139,12 @@ export function containsBigInt(obj): boolean {
 
   // If the value is an object or array, recurse into it
   if (obj !== null && typeof obj === 'object') {
-    if (obj.hasOwnProperty('value')) {
-      const value = obj['value'];
-      if (containsBigInt(value)) {
-        return true;
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const value = obj[key];
+        if (containsBigInt(value)) {
+          return true;
+        }
       }
     }
   }
