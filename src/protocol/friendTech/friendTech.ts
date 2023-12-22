@@ -146,7 +146,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Friendtech',
+            title: 'friend.tech',
             default:
               '[[buyer]] [[boughtKeys]] [[numOfKeys]] of [[subject]] for [[price]]',
           },
