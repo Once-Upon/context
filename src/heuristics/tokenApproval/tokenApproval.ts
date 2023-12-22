@@ -47,33 +47,99 @@ function generate(transaction: Transaction): Transaction {
   const token = transaction.to;
   const operator = args[0];
 
-  transaction.context = {
-    variables: {
-      approver: {
-        type: 'address',
-        value: approver,
-      },
-      operator: {
-        type: 'address',
-        value: operator,
-      },
-      token: {
-        type: 'address',
-        value: token,
-      },
-      gaveAccessTo: {
-        type: 'contextAction',
-        value: 'GAVE_ACCESS_TO',
-      },
-    },
-    summaries: {
-      category: 'FUNGIBLE_TOKEN',
-      en: {
-        title: 'Token Approval',
-        default: '[[approver]] [[gaveAccessTo]] [[operator]] for [[token]]',
-      },
-    },
-  };
-
-  return transaction;
+  switch (transaction.decode?.fragment.name) {
+    case 'approve':
+      transaction.context = {
+        variables: {
+          approver: {
+            type: 'address',
+            value: approver,
+          },
+          operator: {
+            type: 'address',
+            value: operator,
+          },
+          token: {
+            type: 'address',
+            value: token,
+          },
+          gaveAccessTo: {
+            type: 'contextAction',
+            value: 'GAVE_ACCESS_TO',
+          },
+        },
+        summaries: {
+          category: 'FUNGIBLE_TOKEN',
+          en: {
+            title: 'Token Approval',
+            default: '[[approver]] [[gaveAccessTo]] [[operator]] for [[token]]',
+          },
+        },
+      };
+      return transaction;
+    case 'setApprovalForAll':
+      const approved = args[1];
+      if (approved === 'true') {
+        transaction.context = {
+          variables: {
+            approver: {
+              type: 'address',
+              value: approver,
+            },
+            operator: {
+              type: 'address',
+              value: operator,
+            },
+            token: {
+              type: 'address',
+              value: token,
+            },
+            gaveAccessTo: {
+              type: 'contextAction',
+              value: 'GAVE_ACCESS_TO',
+            },
+          },
+          summaries: {
+            category: 'FUNGIBLE_TOKEN',
+            en: {
+              title: 'Token Approval',
+              default:
+                '[[approver]] [[gaveAccessTo]] [[operator]] for [[token]]',
+            },
+          },
+        };
+      } else {
+        transaction.context = {
+          variables: {
+            approver: {
+              type: 'address',
+              value: approver,
+            },
+            operator: {
+              type: 'address',
+              value: operator,
+            },
+            token: {
+              type: 'address',
+              value: token,
+            },
+            revokedAccessFrom: {
+              type: 'contextAction',
+              value: 'REVOKED_ACCESS_FROM',
+            },
+          },
+          summaries: {
+            category: 'FUNGIBLE_TOKEN',
+            en: {
+              title: 'Token Approval',
+              default:
+                '[[approver]] [[revokedAccessFrom]] [[operator]] for [[token]]',
+            },
+          },
+        };
+      }
+      return transaction;
+    default:
+      return transaction;
+  }
 }

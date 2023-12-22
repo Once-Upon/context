@@ -9,6 +9,7 @@ export type HeuristicContextAction =
   | 'COMMITTED_TO'
   | 'RECEIVED_AIRDROP'
   | 'GAVE_ACCESS_TO'
+  | 'REVOKED_ACCESS_FROM'
   | 'INTERACTED_WITH'
   | 'SENT_MESSAGE'
   | 'CANCELED_A_PENDING_TRANSACTION';
