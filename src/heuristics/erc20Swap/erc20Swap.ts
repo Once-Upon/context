@@ -71,7 +71,7 @@ export function detect(transaction: Transaction): boolean {
   return true;
 }
 
-function generate(transaction: Transaction): Transaction {
+export function generate(transaction: Transaction): Transaction {
   const swapper: ContextHexType = {
     type: 'address',
     value: transaction.from,
