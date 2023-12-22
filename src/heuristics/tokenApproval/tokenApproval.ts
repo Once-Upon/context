@@ -41,7 +41,7 @@ export function detect(transaction: Transaction): boolean {
   return false;
 }
 
-function generate(transaction: Transaction): Transaction {
+export function generate(transaction: Transaction): Transaction {
   const { args } = transaction.decode;
   const approver = transaction.from;
   const token = transaction.to;
