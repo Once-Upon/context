@@ -1,0 +1,1646 @@
+{
+  "hash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+  "chainId": 1,
+  "accessList": [],
+  "assetTransfers": [
+    {
+      "asset": "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+      "from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+      "to": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "value": "6000000000000000000000000",
+      "type": "erc20"
+    },
+    {
+      "asset": "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0x672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+      "value": "6000000000000000000000000",
+      "type": "erc20"
+    },
+    {
+      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "from": "0x672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+      "to": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "value": "6435491025624832882",
+      "type": "erc20"
+    },
+    {
+      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0x0000000000000000000000000000000000000000",
+      "value": "6435491025624832882",
+      "type": "erc20"
+    },
+    {
+      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "from": "0x0000000000000000000000000000000000000000",
+      "to": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "value": "6435491025624832882",
+      "type": "erc20"
+    },
+    {
+      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+      "value": "6435491025624832882",
+      "type": "erc20"
+    },
+    {
+      "from": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "to": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "type": "eth",
+      "value": "6435491025624832882"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "type": "eth",
+      "value": "6435491025624832882"
+    },
+    {
+      "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "from": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+      "to": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "value": "14437397836",
+      "type": "erc20"
+    },
+    {
+      "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+      "value": "14437397836",
+      "type": "erc20"
+    }
+  ],
+  "baseFeePerGas": 86699905743,
+  "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+  "blockNumber": 18827909,
+  "burntFees": "28184665458651669",
+  "decode": {
+    "fragment": {
+      "type": "function",
+      "inputs": [
+        {
+          "name": "",
+          "type": "tuple(address,uint256,uint256,uint256,address,(address,uint256,(address,uint256,uint256,(uint256,address,uint256,bytes,uint256)[])[])[],address,uint256,bytes,uint256,bytes16)",
+          "baseType": "tuple",
+          "indexed": null,
+          "components": [
+            {
+              "name": "",
+              "type": "address",
+              "baseType": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "",
+              "type": "address",
+              "baseType": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "",
+              "type": "tuple(address,uint256,(address,uint256,uint256,(uint256,address,uint256,bytes,uint256)[])[])[]",
+              "baseType": "array",
+              "indexed": null,
+              "components": null,
+              "arrayLength": -1,
+              "arrayChildren": {
+                "name": "",
+                "type": "tuple(address,uint256,(address,uint256,uint256,(uint256,address,uint256,bytes,uint256)[])[])",
+                "baseType": "tuple",
+                "indexed": null,
+                "components": [
+                  {
+                    "name": "",
+                    "type": "address",
+                    "baseType": "address",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": null,
+                    "arrayChildren": null
+                  },
+                  {
+                    "name": "",
+                    "type": "uint256",
+                    "baseType": "uint256",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": null,
+                    "arrayChildren": null
+                  },
+                  {
+                    "name": "",
+                    "type": "tuple(address,uint256,uint256,(uint256,address,uint256,bytes,uint256)[])[]",
+                    "baseType": "array",
+                    "indexed": null,
+                    "components": null,
+                    "arrayLength": -1,
+                    "arrayChildren": {
+                      "name": "",
+                      "type": "tuple(address,uint256,uint256,(uint256,address,uint256,bytes,uint256)[])",
+                      "baseType": "tuple",
+                      "indexed": null,
+                      "components": [
+                        {
+                          "name": "",
+                          "type": "address",
+                          "baseType": "address",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        },
+                        {
+                          "name": "",
+                          "type": "uint256",
+                          "baseType": "uint256",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        },
+                        {
+                          "name": "",
+                          "type": "uint256",
+                          "baseType": "uint256",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": null,
+                          "arrayChildren": null
+                        },
+                        {
+                          "name": "",
+                          "type": "tuple(uint256,address,uint256,bytes,uint256)[]",
+                          "baseType": "array",
+                          "indexed": null,
+                          "components": null,
+                          "arrayLength": -1,
+                          "arrayChildren": {
+                            "name": "",
+                            "type": "tuple(uint256,address,uint256,bytes,uint256)",
+                            "baseType": "tuple",
+                            "indexed": null,
+                            "components": [
+                              {
+                                "name": "",
+                                "type": "uint256",
+                                "baseType": "uint256",
+                                "indexed": null,
+                                "components": null,
+                                "arrayLength": null,
+                                "arrayChildren": null
+                              },
+                              {
+                                "name": "",
+                                "type": "address",
+                                "baseType": "address",
+                                "indexed": null,
+                                "components": null,
+                                "arrayLength": null,
+                                "arrayChildren": null
+                              },
+                              {
+                                "name": "",
+                                "type": "uint256",
+                                "baseType": "uint256",
+                                "indexed": null,
+                                "components": null,
+                                "arrayLength": null,
+                                "arrayChildren": null
+                              },
+                              {
+                                "name": "",
+                                "type": "bytes",
+                                "baseType": "bytes",
+                                "indexed": null,
+                                "components": null,
+                                "arrayLength": null,
+                                "arrayChildren": null
+                              },
+                              {
+                                "name": "",
+                                "type": "uint256",
+                                "baseType": "uint256",
+                                "indexed": null,
+                                "components": null,
+                                "arrayLength": null,
+                                "arrayChildren": null
+                              }
+                            ],
+                            "arrayLength": null,
+                            "arrayChildren": null
+                          }
+                        }
+                      ],
+                      "arrayLength": null,
+                      "arrayChildren": null
+                    }
+                  }
+                ],
+                "arrayLength": null,
+                "arrayChildren": null
+              }
+            },
+            {
+              "name": "",
+              "type": "address",
+              "baseType": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "",
+              "type": "bytes",
+              "baseType": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "",
+              "type": "bytes16",
+              "baseType": "bytes16",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "arrayLength": null,
+          "arrayChildren": null
+        }
+      ],
+      "name": "multiSwap",
+      "constant": false,
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "payable": false,
+      "gas": null
+    },
+    "name": "multiSwap",
+    "args": [
+      "0xeAA63125dd63f10874F99CdBbb18410e7Fc79dD3,6000000000000000000000000,14437395290,14509945016,0x0000000000000000000000000000000000000000,0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE,0,0x9bE264469eF954c139Da4A45Cf76CbCC5e3A6A73,10000,0,4,0xF9234CB08edb93c0d4a4d4c70cC3FfD070e78e07,10000,0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000001000000000000000000004de5672fefac7f6e3017d9a2f1c14fe048191a24ce14,0,0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,0,0x9bE264469eF954c139Da4A45Cf76CbCC5e3A6A73,10000,0,6,0xE592427A0AEce92De3Edee1F18E0157C05861564,10000,0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000658c3d89000000000000000000000000000000000000000000000000000000000000002bc02aaa39b223fe8d0a0e5c4f27ead9083c756cc20001f4a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000,0,0x0000000000000000000000000000000000000000,452312848583266388373324160190187140051835877600158453279131187530910679040,0x,1703106409,0x12ca7d93202940eaaa506ce4dbd04186"
+    ],
+    "signature": "multiSwap((address,uint256,uint256,uint256,address,(address,uint256,(address,uint256,uint256,(uint256,address,uint256,bytes,uint256)[])[])[],address,uint256,bytes,uint256,bytes16))",
+    "selector": "0xa94e78ef",
+    "value": "0"
+  },
+  "delegateCalls": [
+    {
+      "action": {
+        "callType": "delegatecall",
+        "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+        "gas": "0x9128e",
+        "input": "0xa94e78ef0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000eaa63125dd63f10874f99cdbbb18410e7fc79dd300000000000000000000000000000000000000000004f68ca6d8cd91c6000000000000000000000000000000000000000000000000000000000000035c892b5a0000000000000000000000000000000000000000000000000000000360dc30b800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000160000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000760000000000000000000000000000000000000000000000000000000006583576912ca7d93202940eaaa506ce4dbd0418600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000300000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000009be264469ef954c139da4a45cf76cbcc5e3a6a73000000000000000000000000000000000000000000000000000000000000271000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000004000000000000000000000000f9234cb08edb93c0d4a4d4c70cc3ffd070e78e07000000000000000000000000000000000000000000000000000000000000271000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000001000000000000000000004de5672fefac7f6e3017d9a2f1c14fe048191a24ce14000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb4800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000009be264469ef954c139da4a45cf76cbcc5e3a6a73000000000000000000000000000000000000000000000000000000000000271000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000006000000000000000000000000e592427a0aece92de3edee1f18e0157c05861564000000000000000000000000000000000000000000000000000000000000271000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000658c3d89000000000000000000000000000000000000000000000000000000000000002bc02aaa39b223fe8d0a0e5c4f27ead9083c756cc20001f4a0b86991c6218b36c1d19d4a2e9eb0ce3606eb480000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "to": "0xbd7b550d2e7571383d84acf597a00d341e5c406e",
+        "value": "0x0"
+      },
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "result": {
+        "gasUsed": "0x59da1",
+        "output": "0x000000000000000000000000000000000000000000000000000000035c89354c"
+      },
+      "subtraces": 7,
+      "traceAddress": [
+        0
+      ],
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "transactionPosition": 1,
+      "type": "call"
+    },
+    {
+      "action": {
+        "callType": "delegatecall",
+        "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+        "gas": "0x75c88",
+        "input": "0xe76b146c000000000000000000000000eaa63125dd63f10874f99cdbbb18410e7fc79dd3000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee00000000000000000000000000000000000000000004f68ca6d8cd91c6000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000004000000000000000000000000f9234cb08edb93c0d4a4d4c70cc3ffd070e78e07000000000000000000000000000000000000000000000000000000000000271000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000001000000000000000000004de5672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+        "to": "0x9be264469ef954c139da4a45cf76cbcc5e3a6a73",
+        "value": "0x0"
+      },
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "result": {
+        "gasUsed": "0x17fdc",
+        "output": "0x"
+      },
+      "subtraces": 4,
+      "traceAddress": [
+        0,
+        2
+      ],
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "transactionPosition": 1,
+      "type": "call"
+    },
+    {
+      "action": {
+        "callType": "delegatecall",
+        "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+        "gas": "0x5cc45",
+        "input": "0xe76b146c000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000000000594f74fdb9951b72000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000006000000000000000000000000e592427a0aece92de3edee1f18e0157c05861564000000000000000000000000000000000000000000000000000000000000271000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000658c3d89000000000000000000000000000000000000000000000000000000000000002bc02aaa39b223fe8d0a0e5c4f27ead9083c756cc20001f4a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000",
+        "to": "0x9be264469ef954c139da4a45cf76cbcc5e3a6a73",
+        "value": "0x0"
+      },
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "result": {
+        "gasUsed": "0x2224f",
+        "output": "0x"
+      },
+      "subtraces": 3,
+      "traceAddress": [
+        0,
+        4
+      ],
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "transactionPosition": 1,
+      "type": "call"
+    },
+    {
+      "action": {
+        "callType": "delegatecall",
+        "from": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "gas": "0x43ca6",
+        "input": "0xa9059cbb000000000000000000000000def171fe48cf0115b1d80b88dc8eab59176fee57000000000000000000000000000000000000000000000000000000035c89354c",
+        "to": "0xa2327a938febf5fec13bacfb16ae10ecbc4cbdcf",
+        "value": "0x0"
+      },
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "result": {
+        "gasUsed": "0x8f78",
+        "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+      },
+      "subtraces": 0,
+      "traceAddress": [
+        0,
+        4,
+        2,
+        0,
+        0,
+        0
+      ],
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "transactionPosition": 1,
+      "type": "call"
+    },
+    {
+      "action": {
+        "callType": "delegatecall",
+        "from": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "gas": "0x39e4a",
+        "input": "0x70a08231000000000000000000000000def171fe48cf0115b1d80b88dc8eab59176fee57",
+        "to": "0xa2327a938febf5fec13bacfb16ae10ecbc4cbdcf",
+        "value": "0x0"
+      },
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "result": {
+        "gasUsed": "0x211",
+        "output": "0x000000000000000000000000000000000000000000000000000000035c89354c"
+      },
+      "subtraces": 0,
+      "traceAddress": [
+        0,
+        5,
+        0
+      ],
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "transactionPosition": 1,
+      "type": "call"
+    },
+    {
+      "action": {
+        "callType": "delegatecall",
+        "from": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "gas": "0x3938e",
+        "input": "0xa9059cbb000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045000000000000000000000000000000000000000000000000000000035c89354c",
+        "to": "0xa2327a938febf5fec13bacfb16ae10ecbc4cbdcf",
+        "value": "0x0"
+      },
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "result": {
+        "gasUsed": "0x2a4c",
+        "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+      },
+      "subtraces": 0,
+      "traceAddress": [
+        0,
+        6,
+        0
+      ],
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "transactionPosition": 1,
+      "type": "call"
+    }
+  ],
+  "fork": "shanghai",
+  "from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+  "gas": 642155,
+  "gasPrice": "86799905743",
+  "input": "0xa94e78ef0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000eaa63125dd63f10874f99cdbbb18410e7fc79dd300000000000000000000000000000000000000000004f68ca6d8cd91c6000000000000000000000000000000000000000000000000000000000000035c892b5a0000000000000000000000000000000000000000000000000000000360dc30b800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000160000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000760000000000000000000000000000000000000000000000000000000006583576912ca7d93202940eaaa506ce4dbd0418600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000300000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000009be264469ef954c139da4a45cf76cbcc5e3a6a73000000000000000000000000000000000000000000000000000000000000271000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000004000000000000000000000000f9234cb08edb93c0d4a4d4c70cc3ffd070e78e07000000000000000000000000000000000000000000000000000000000000271000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000001000000000000000000004de5672fefac7f6e3017d9a2f1c14fe048191a24ce14000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb4800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000009be264469ef954c139da4a45cf76cbcc5e3a6a73000000000000000000000000000000000000000000000000000000000000271000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000006000000000000000000000000e592427a0aece92de3edee1f18e0157c05861564000000000000000000000000000000000000000000000000000000000000271000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000658c3d89000000000000000000000000000000000000000000000000000000000000002bc02aaa39b223fe8d0a0e5c4f27ead9083c756cc20001f4a0b86991c6218b36c1d19d4a2e9eb0ce3606eb480000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "internalSigHashes": [
+    {
+      "from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+      "to": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "sigHash": "0xa94e78ef"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0xbd7b550d2e7571383d84acf597a00d341e5c406e",
+      "sigHash": "0xa94e78ef"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0x216b4b4ba9f3e719726886d34a177484278bfcae",
+      "sigHash": "0x15dacbea"
+    },
+    {
+      "from": "0x216b4b4ba9f3e719726886d34a177484278bfcae",
+      "to": "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+      "sigHash": "0x23b872dd"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "sigHash": "0x91d14854"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0x9be264469ef954c139da4a45cf76cbcc5e3a6a73",
+      "sigHash": "0xe76b146c"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+      "sigHash": "0xa9059cbb"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0x672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+      "sigHash": "0x0902f1ac"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0x672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+      "sigHash": "0x022c0d9f"
+    },
+    {
+      "from": "0x672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "sigHash": "0xa9059cbb"
+    },
+    {
+      "from": "0x672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "sigHash": "0x70a08231"
+    },
+    {
+      "from": "0x672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+      "to": "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+      "sigHash": "0x70a08231"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "sigHash": "0x2e1a7d4d"
+    },
+    {
+      "from": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "to": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "sigHash": "0x"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "sigHash": "0x91d14854"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0x9be264469ef954c139da4a45cf76cbcc5e3a6a73",
+      "sigHash": "0xe76b146c"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "sigHash": "0xd0e30db0"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "sigHash": "0xdd62ed3e"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0xe592427a0aece92de3edee1f18e0157c05861564",
+      "sigHash": "0xc04b8d59"
+    },
+    {
+      "from": "0xe592427a0aece92de3edee1f18e0157c05861564",
+      "to": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+      "sigHash": "0x128acb08"
+    },
+    {
+      "from": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+      "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "sigHash": "0xa9059cbb"
+    },
+    {
+      "from": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "to": "0xa2327a938febf5fec13bacfb16ae10ecbc4cbdcf",
+      "sigHash": "0xa9059cbb"
+    },
+    {
+      "from": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "sigHash": "0x70a08231"
+    },
+    {
+      "from": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+      "to": "0xe592427a0aece92de3edee1f18e0157c05861564",
+      "sigHash": "0xfa461e33"
+    },
+    {
+      "from": "0xe592427a0aece92de3edee1f18e0157c05861564",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "sigHash": "0x23b872dd"
+    },
+    {
+      "from": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+      "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "sigHash": "0x70a08231"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "sigHash": "0x70a08231"
+    },
+    {
+      "from": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "to": "0xa2327a938febf5fec13bacfb16ae10ecbc4cbdcf",
+      "sigHash": "0x70a08231"
+    },
+    {
+      "from": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "sigHash": "0xa9059cbb"
+    },
+    {
+      "from": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "to": "0xa2327a938febf5fec13bacfb16ae10ecbc4cbdcf",
+      "sigHash": "0xa9059cbb"
+    }
+  ],
+  "isoTimestamp": "2023-12-20T15:07:11.000Z",
+  "maxFeePerGas": "102000000000",
+  "maxPriorityFeePerGas": "100000000",
+  "minerFees": "32508300000000",
+  "netAssetTransfers": {
+    "0xd8da6bf26964af9d7eed9e03e53415d37aa96045": {
+      "received": [
+        {
+          "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "id": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "type": "erc20",
+          "value": "14437397836"
+        }
+      ],
+      "sent": [
+        {
+          "asset": "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+          "id": "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+          "type": "erc20",
+          "value": "6000000000000000000000000"
+        }
+      ]
+    },
+    "0x672fefac7f6e3017d9a2f1c14fe048191a24ce14": {
+      "received": [
+        {
+          "asset": "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+          "id": "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+          "type": "erc20",
+          "value": "6000000000000000000000000"
+        }
+      ],
+      "sent": [
+        {
+          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "type": "erc20",
+          "value": "6435491025624832882"
+        }
+      ]
+    },
+    "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640": {
+      "received": [
+        {
+          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "type": "erc20",
+          "value": "6435491025624832882"
+        }
+      ],
+      "sent": [
+        {
+          "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "id": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "type": "erc20",
+          "value": "14437397836"
+        }
+      ]
+    }
+  },
+  "nonce": 1177,
+  "parties": [
+    "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+    "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+    "0xbd7b550d2e7571383d84acf597a00d341e5c406e",
+    "0x216b4b4ba9f3e719726886d34a177484278bfcae",
+    "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+    "0x9be264469ef954c139da4a45cf76cbcc5e3a6a73",
+    "0x672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "0xe592427a0aece92de3edee1f18e0157c05861564",
+    "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+    "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "0xa2327a938febf5fec13bacfb16ae10ecbc4cbdcf",
+    "0x0000000000000000000000000000000000000000",
+    "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3-6000000000000000000000000",
+    "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3-115792089237316195423570985008687907853269984665640544039457584007913129639935",
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2-6435491025624832882",
+    "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48-14437397836"
+  ],
+  "r": "0x9725bb2da4fc632b83cc167dc027a39d9f6927b4a8e9931472493eb9dfa62f6",
+  "receipt": {
+    "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+    "blockNumber": 18827909,
+    "contractAddress": null,
+    "cumulativeGasUsed": 444267,
+    "effectiveGasPrice": 86799905743,
+    "from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+    "gasUsed": 325083,
+    "logsBloom": "0x002010020100000200000000a000000000000000000000000400000004000000000000000000000800000a000000000002000000080020000000000000200000000000000000000808208008000000200000008400400000004000008000000000000000000000000004100000000000000000000000040000020010000800000010004080001000000000000000002280000001010000080000004000000001024000000000200000000000800000000000000000000000002000000008040000000002000004000000880000000000000000000000001000000002000000000010200000800000000010000000000004080000000000400000100000000000",
+    "status": true,
+    "to": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+    "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+    "transactionIndex": 1,
+    "type": "0x2"
+  },
+  "s": "0x3c36ec59030279e1369bd27ead6265c2bf4b3ebac56c52b39db6755e053ddd09",
+  "sigHash": "0xa94e78ef",
+  "timestamp": 1703084831,
+  "to": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+  "transactionFee": "28217173758651669",
+  "transactionIndex": 1,
+  "type": 2,
+  "v": "0x1",
+  "value": "0",
+  "logs": [
+    {
+      "logIndex": 4,
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "chainId": 1,
+      "address": "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "data": "0x00000000000000000000000000000000000000000004f68ca6d8cd91c6000000",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "from",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "to",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "value",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Transfer",
+          "anonymous": false
+        },
+        "name": "Transfer",
+        "signature": "Transfer(address,address,uint256)",
+        "topic": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "args": [
+          "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+          "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+          "6000000000000000000000000"
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045",
+        "0x000000000000000000000000def171fe48cf0115b1d80b88dc8eab59176fee57"
+      ],
+      "transactionIndex": 1
+    },
+    {
+      "logIndex": 5,
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "chainId": 1,
+      "address": "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "data": "0xffffffffffffffffffffffffffffffffffffffffffef74d5d3d7fd6f6bffffff",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "owner",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "spender",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "value",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Approval",
+          "anonymous": false
+        },
+        "name": "Approval",
+        "signature": "Approval(address,address,uint256)",
+        "topic": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925",
+        "args": [
+          "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+          "0x216b4b4ba9f3e719726886d34a177484278bfcae",
+          "115792089237316195423570985008687907853269984665640544039457584007913129639935"
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925",
+        "0x000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045",
+        "0x000000000000000000000000216b4b4ba9f3e719726886d34a177484278bfcae"
+      ],
+      "transactionIndex": 1
+    },
+    {
+      "logIndex": 6,
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "chainId": 1,
+      "address": "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "data": "0x00000000000000000000000000000000000000000004f68ca6d8cd91c6000000",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "from",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "to",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "value",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Transfer",
+          "anonymous": false
+        },
+        "name": "Transfer",
+        "signature": "Transfer(address,address,uint256)",
+        "topic": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "args": [
+          "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+          "0x672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+          "6000000000000000000000000"
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x000000000000000000000000def171fe48cf0115b1d80b88dc8eab59176fee57",
+        "0x000000000000000000000000672fefac7f6e3017d9a2f1c14fe048191a24ce14"
+      ],
+      "transactionIndex": 1
+    },
+    {
+      "logIndex": 7,
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "chainId": 1,
+      "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "data": "0x000000000000000000000000000000000000000000000000594f74fdb9951b72",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "src",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "dst",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "wad",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Transfer",
+          "anonymous": false
+        },
+        "name": "Transfer",
+        "signature": "Transfer(address,address,uint256)",
+        "topic": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "args": [
+          "0x672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+          "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+          "6435491025624832882"
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x000000000000000000000000672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+        "0x000000000000000000000000def171fe48cf0115b1d80b88dc8eab59176fee57"
+      ],
+      "transactionIndex": 1
+    },
+    {
+      "logIndex": 8,
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "chainId": 1,
+      "address": "0x672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "data": "0x0000000000000000000000000000000000000000000000033d1a0e9f91b5f74f00000000000000000000000000000000000000000032e626e01bc0ab38ff2d48",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "reserve0",
+              "type": "uint112",
+              "baseType": "uint112",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "reserve1",
+              "type": "uint112",
+              "baseType": "uint112",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Sync",
+          "anonymous": false
+        },
+        "name": "Sync",
+        "signature": "Sync(uint112,uint112)",
+        "topic": "0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1",
+        "args": [
+          "59743079885343946575",
+          "61533152396779008592653640"
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1"
+      ],
+      "transactionIndex": 1
+    },
+    {
+      "logIndex": 9,
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "chainId": 1,
+      "address": "0x672fefac7f6e3017d9a2f1c14fe048191a24ce14",
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "data": "0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004f68ca6d8cd91c6000000000000000000000000000000000000000000000000000000594f74fdb9951b720000000000000000000000000000000000000000000000000000000000000000",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "sender",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "amount0In",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "amount1In",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "amount0Out",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "amount1Out",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "to",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Swap",
+          "anonymous": false
+        },
+        "name": "Swap",
+        "signature": "Swap(address,uint256,uint256,uint256,uint256,address)",
+        "topic": "0xd78ad95fa46c994b6551d0da85fc275fe613ce37657fb8d5e3d130840159d822",
+        "args": [
+          "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+          "0",
+          "6000000000000000000000000",
+          "6435491025624832882",
+          "0",
+          "0xdef171fe48cf0115b1d80b88dc8eab59176fee57"
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0xd78ad95fa46c994b6551d0da85fc275fe613ce37657fb8d5e3d130840159d822",
+        "0x000000000000000000000000def171fe48cf0115b1d80b88dc8eab59176fee57",
+        "0x000000000000000000000000def171fe48cf0115b1d80b88dc8eab59176fee57"
+      ],
+      "transactionIndex": 1
+    },
+    {
+      "logIndex": 10,
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "chainId": 1,
+      "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "data": "0x000000000000000000000000000000000000000000000000594f74fdb9951b72",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "src",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "wad",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Withdrawal",
+          "anonymous": false
+        },
+        "name": "Withdrawal",
+        "signature": "Withdrawal(address,uint256)",
+        "topic": "0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65",
+        "args": [
+          "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+          "6435491025624832882"
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65",
+        "0x000000000000000000000000def171fe48cf0115b1d80b88dc8eab59176fee57"
+      ],
+      "transactionIndex": 1
+    },
+    {
+      "logIndex": 11,
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "chainId": 1,
+      "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "data": "0x000000000000000000000000000000000000000000000000594f74fdb9951b72",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "dst",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "wad",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Deposit",
+          "anonymous": false
+        },
+        "name": "Deposit",
+        "signature": "Deposit(address,uint256)",
+        "topic": "0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c",
+        "args": [
+          "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+          "6435491025624832882"
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c",
+        "0x000000000000000000000000def171fe48cf0115b1d80b88dc8eab59176fee57"
+      ],
+      "transactionIndex": 1
+    },
+    {
+      "logIndex": 12,
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "chainId": 1,
+      "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "data": "0x000000000000000000000000000000000000000000000000000000035c89354c",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "from",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "to",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "value",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Transfer",
+          "anonymous": false
+        },
+        "name": "Transfer",
+        "signature": "Transfer(address,address,uint256)",
+        "topic": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "args": [
+          "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+          "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+          "14437397836"
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x00000000000000000000000088e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+        "0x000000000000000000000000def171fe48cf0115b1d80b88dc8eab59176fee57"
+      ],
+      "transactionIndex": 1
+    },
+    {
+      "logIndex": 13,
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "chainId": 1,
+      "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "data": "0x000000000000000000000000000000000000000000000000594f74fdb9951b72",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "src",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "dst",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "wad",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Transfer",
+          "anonymous": false
+        },
+        "name": "Transfer",
+        "signature": "Transfer(address,address,uint256)",
+        "topic": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "args": [
+          "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+          "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+          "6435491025624832882"
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x000000000000000000000000def171fe48cf0115b1d80b88dc8eab59176fee57",
+        "0x00000000000000000000000088e6a0c2ddd26feeb64f039a2c41296fcb3f5640"
+      ],
+      "transactionIndex": 1
+    },
+    {
+      "logIndex": 14,
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "chainId": 1,
+      "address": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "data": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffca376cab4000000000000000000000000000000000000000000000000594f74fdb9951b720000000000000000000000000000000000005273c805cbb7b750a08c8072cdb0000000000000000000000000000000000000000000000000bf2092c2b179189c00000000000000000000000000000000000000000000000000000000000309f5",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "sender",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "recipient",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "amount0",
+              "type": "int256",
+              "baseType": "int256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "amount1",
+              "type": "int256",
+              "baseType": "int256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "sqrtPriceX96",
+              "type": "uint160",
+              "baseType": "uint160",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "liquidity",
+              "type": "uint128",
+              "baseType": "uint128",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "tick",
+              "type": "int24",
+              "baseType": "int24",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Swap",
+          "anonymous": false
+        },
+        "name": "Swap",
+        "signature": "Swap(address,address,int256,int256,uint160,uint128,int24)",
+        "topic": "0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67",
+        "args": [
+          "0xe592427a0aece92de3edee1f18e0157c05861564",
+          "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+          "-14437397836",
+          "6435491025624832882",
+          "1672330730197200100096082204347824",
+          "13772169025397790876",
+          "199157"
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67",
+        "0x000000000000000000000000e592427a0aece92de3edee1f18e0157c05861564",
+        "0x000000000000000000000000def171fe48cf0115b1d80b88dc8eab59176fee57"
+      ],
+      "transactionIndex": 1
+    },
+    {
+      "logIndex": 15,
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "chainId": 1,
+      "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "data": "0x000000000000000000000000000000000000000000000000000000035c89354c",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "from",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "to",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "value",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Transfer",
+          "anonymous": false
+        },
+        "name": "Transfer",
+        "signature": "Transfer(address,address,uint256)",
+        "topic": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "args": [
+          "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+          "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+          "14437397836"
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x000000000000000000000000def171fe48cf0115b1d80b88dc8eab59176fee57",
+        "0x000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"
+      ],
+      "transactionIndex": 1
+    },
+    {
+      "logIndex": 16,
+      "transactionHash": "0xfdad33b9f4e9ad49ac32c4054f14e57438b60b5a563f682a7857b2bbfdf98f4c",
+      "chainId": 1,
+      "address": "0xdef171fe48cf0115b1d80b88dc8eab59176fee57",
+      "blockHash": "0x8df0727c10fca21b09cfa53836dc33c4df1abf03963018354428dccb252fda2e",
+      "blockNumber": 18827909,
+      "data": "0x12ca7d93202940eaaa506ce4dbd041860000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000004000000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa9604500000000000000000000000000000000000000000004f68ca6d8cd91c6000000000000000000000000000000000000000000000000000000000000035c89354c0000000000000000000000000000000000000000000000000000000360dc30b8",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "uuid",
+              "type": "bytes16",
+              "baseType": "bytes16",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "partner",
+              "type": "address",
+              "baseType": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "feePercent",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "initiator",
+              "type": "address",
+              "baseType": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "beneficiary",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "srcToken",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "destToken",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "srcAmount",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "receivedAmount",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "expectedAmount",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "SwappedV3",
+          "anonymous": false
+        },
+        "name": "SwappedV3",
+        "signature": "SwappedV3(bytes16,address,uint256,address,address,address,address,uint256,uint256,uint256)",
+        "topic": "0xe00361d207b252a464323eb23d45d42583e391f2031acdd2e9fa36efddd43cb0",
+        "args": [
+          "0x12ca7d93202940eaaa506ce4dbd04186",
+          "0x0000000000000000000000000000000000000000",
+          "452312848583266388373324160190187140051835877600158453279131187530910679040",
+          "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+          "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+          "0xeaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+          "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "6000000000000000000000000",
+          "14437397836",
+          "14509945016"
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0xe00361d207b252a464323eb23d45d42583e391f2031acdd2e9fa36efddd43cb0",
+        "0x000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045",
+        "0x000000000000000000000000eaa63125dd63f10874f99cdbbb18410e7fc79dd3",
+        "0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+      ],
+      "transactionIndex": 1
+    }
+  ],
+  "contractsCreated": []
+}
