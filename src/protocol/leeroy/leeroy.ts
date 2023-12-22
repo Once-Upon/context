@@ -50,6 +50,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // post(string)
       const functionSig = `function post(string)`;
       const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
+      if (!decoded) return transaction;
+
       let post = { text: '' };
       try {
         post = JSON.parse(decoded[0]);
@@ -99,6 +101,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // follow(bytes32)
       const functionSig = `function follow(bytes32)`;
       const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
+      if (!decoded) return transaction;
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -150,6 +154,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // unfollow(bytes32)
       const functionSig = `function unfollow(bytes32)`;
       const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
+      if (!decoded) return transaction;
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -201,6 +207,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // tip(bytes32,bytes32) NOTE -
       const functionSig = `function tip(bytes32,bytes32)`;
       const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
+      if (!decoded) return transaction;
+
       const tipper: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -267,6 +275,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // updateUserDetails(string)
       const functionSig = `function updateUserDetails(string)`;
       const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
+      if (!decoded) return transaction;
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -320,6 +330,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // reply(string,bytes32)
       const functionSig = `function reply(string,bytes32)`;
       const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
+      if (!decoded) return transaction;
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -375,6 +387,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // repost(bytes32)
       const functionSig = `function repost(bytes32)`;
       const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
+      if (!decoded) return transaction;
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
@@ -426,6 +440,8 @@ export const generate = (transaction: Transaction): Transaction => {
       // registerUsername(bytes32)
       const functionSig = `function registerUsername(bytes32)`;
       const decoded = decodeFunction(transaction.input as Hex, [functionSig]);
+      if (!decoded) return transaction;
+
       const user: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,

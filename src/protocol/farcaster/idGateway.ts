@@ -42,16 +42,14 @@ export const generate = (transaction: Transaction): Transaction => {
       return log.address === FarcasterContracts.IdRegistry.address;
     });
     if (registerLog) {
-      try {
-        const decoded = decodeLog(
-          FarcasterContracts.IdRegistry.abi,
-          registerLog.data as Hex,
-          registerLog.topics as EventLogTopics,
-        );
-        fid = BigInt(decoded.args['id']).toString();
-      } catch (e) {
-        console.error(e);
-      }
+      const decoded = decodeLog(
+        FarcasterContracts.IdRegistry.abi,
+        registerLog.data as Hex,
+        registerLog.topics as EventLogTopics,
+      );
+      if (!decoded) return transaction;
+
+      fid = BigInt(decoded.args['id']).toString();
     }
   }
 
