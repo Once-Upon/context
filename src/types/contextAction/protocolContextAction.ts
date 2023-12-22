@@ -58,6 +58,8 @@ export type FriendTechContextAction =
   | 'SOLD_KEYS'
   | 'SIGNED_UP';
 
+export type NounsAuctionHouseAction = 'BID' | 'SETTLED';
+
 export type ProtocolContextAction =
   | WETHContextAction
   | ENSContextAction
@@ -66,4 +68,5 @@ export type ProtocolContextAction =
   | FrenpetContextAction
   | FarcasterContextAction
   | EASContextAction
-  | FriendTechContextAction;
+  | FriendTechContextAction
+  | NounsAuctionHouseAction;
