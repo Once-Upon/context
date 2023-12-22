@@ -81,7 +81,7 @@ export function generate(transaction: Transaction): Transaction {
     | ETHAsset
   )[];
   const assetReceived = transaction.netAssetTransfers[transaction.from]
-    .sent as (ERC20Asset | ETHAsset)[];
+    .received as (ERC20Asset | ETHAsset)[];
   const swapFrom =
     assetSent[0].type === AssetType.ERC20
       ? ({
