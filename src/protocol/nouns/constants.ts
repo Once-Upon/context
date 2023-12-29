@@ -1,5 +1,6 @@
 import NounsAuctionHouse from './abis/NounsAuctionHouse';
 import IAuction from './abis/IAuction';
+import IGovernor from './abis/IGovernor';
 
 export const NounsContracts = {
   AuctionHouse: '0x830bd73e4184cef73443c15111a1df14e495c706',
@@ -19,4 +20,5 @@ export const NounsBuilderDAOMappings = {
 export const ABIs = {
   NounsAuctionHouse,
   IAuction,
+  IGovernor,
 };
