@@ -48,7 +48,7 @@ describe('Token Approval', () => {
     expect(tokenApproval4.context?.summaries?.en.title).toBe('Token Approval');
     const desc4 = contextSummary(tokenApproval4.context);
     expect(desc4).toBe(
-      '0x2294ae26bedf6960bfe3e668fa97a14ed756affc REVOKED_ACCESS_FROM 0x13d8faf4a690f5ae52e2d2c52938d1167057b9af for 0x80336ad7a747236ef41f47ed2c7641828a480baa',
+      '0x2294ae26bedf6960bfe3e668fa97a14ed756affc REVOKED_ACCESS from 0x13d8faf4a690f5ae52e2d2c52938d1167057b9af for 0x80336ad7a747236ef41f47ed2c7641828a480baa',
     );
   });
 

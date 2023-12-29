@@ -123,9 +123,9 @@ export function generate(transaction: Transaction): Transaction {
               type: 'address',
               value: token,
             },
-            revokedAccessFrom: {
+            revokedAccess: {
               type: 'contextAction',
-              value: 'REVOKED_ACCESS_FROM',
+              value: 'REVOKED_ACCESS',
             },
           },
           summaries: {
@@ -133,7 +133,7 @@ export function generate(transaction: Transaction): Transaction {
             en: {
               title: 'Token Approval',
               default:
-                '[[approver]] [[revokedAccessFrom]] [[operator]] for [[token]]',
+                '[[approver]] [[revokedAccess]] from [[operator]] for [[token]]',
             },
           },
         };
