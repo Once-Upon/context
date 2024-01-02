@@ -1,6 +1,6 @@
 import { Transaction } from '../../types';
 import { contextSummary } from '../../helpers/utils';
-import { detect, generate } from './nounsBuilderAuction';
+import { detect, generate } from './auction';
 
 import easAttest0xfed2349f from '../../test/transactions/eas-attest-mainnet-0xfed2349f.json';
 import nounsAuctionHouseBid0x4efdef57 from '../../test/transactions/nouns-auction-house-bid-0x4efdef57.json';
