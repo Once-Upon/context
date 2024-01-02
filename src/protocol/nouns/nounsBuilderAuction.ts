@@ -1,7 +1,11 @@
 import { Hex } from 'viem';
 import { AssetType, EventLogTopics, Transaction } from '../../types';
-import { NounsContracts, ABIs, NounsBuilderDAOMappings } from './constants';
+import { NounsContracts, ABIs, NOUNS_BUILDER_INSTANCES } from './constants';
 import { decodeLog, decodeTransactionInput } from '../../helpers/utils';
+
+const daoByAuctionAuctionHouseContract = (address: string) => {
+  return NOUNS_BUILDER_INSTANCES.find((v) => v.auctionHouse === address);
+};
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isNouns = detect(transaction);
@@ -69,11 +73,12 @@ export const generate = (transaction: Transaction): Transaction => {
         },
       };
 
-      if (NounsBuilderDAOMappings[transaction.to]) {
+      const dao = daoByAuctionAuctionHouseContract(transaction.to);
+      if (dao) {
         // If we have a mapping beteen nounsdao -> erc721, use that to show token
         transaction.context.variables.token = {
           type: AssetType.ERC721,
-          token: NounsBuilderDAOMappings[transaction.to],
+          token: dao.nft,
           tokenId: decoded.args[0].toString(),
         };
         transaction.context.summaries = {
@@ -152,11 +157,12 @@ export const generate = (transaction: Transaction): Transaction => {
         },
       };
 
-      if (NounsBuilderDAOMappings[transaction.to]) {
+      const dao = daoByAuctionAuctionHouseContract(transaction.to);
+      if (dao) {
         // If we have a mapping beteen nounsdao -> erc721, use that to show token
         transaction.context.variables.token = {
           type: AssetType.ERC721,
-          token: NounsBuilderDAOMappings[transaction.to],
+          token: dao.nft,
           tokenId: tokenId,
         };
 
