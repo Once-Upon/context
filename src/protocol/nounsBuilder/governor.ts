@@ -1,6 +1,7 @@
 import { Hex } from 'viem';
 import { EventLogTopics, Transaction } from '../../types';
-import { NounsContracts, ABIs, NOUNS_BUILDER_INSTANCES } from './constants';
+import { ABIs, NOUNS_BUILDER_INSTANCES } from './constants';
+import { NounsContracts } from '../nouns/constants';
 import { decodeLog, decodeTransactionInput } from '../../helpers/utils';
 
 const supportIntToString = (support: bigint) => {
@@ -32,9 +33,10 @@ export const detect = (transaction: Transaction): boolean => {
     return false;
   }
 
-  if (transaction.to === NounsContracts.AuctionHouse) {
+  if (transaction.to === NounsContracts.Governor) {
     return false;
   }
+
   try {
     const decoded = decodeTransactionInput(
       transaction.input as Hex,

@@ -1,6 +1,6 @@
 import { Transaction } from '../../types';
 import { contextSummary } from '../../helpers/utils';
-import { detect, generate } from './nounsBuilderGovernor';
+import { detect, generate } from './governor';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 
 import nounsBuilderGovernorUnknownPropose0x9cd7254f from '../../test/transactions/nouns-builder-governor-unknown-propose-0x9cd7254f.json';

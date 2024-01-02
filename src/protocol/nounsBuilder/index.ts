@@ -1,7 +1,8 @@
-import { contextualize as nounsAuctionHouse } from './nounsAuctionHouse';
+import { contextualize as auction } from './auction';
+import { contextualize as governor } from './governor';
 import { makeContextualize } from '../../helpers/utils';
 
-const children = { nounsAuctionHouse };
+const children = { auction, governor };
 
 const contextualize = makeContextualize(children);
 
