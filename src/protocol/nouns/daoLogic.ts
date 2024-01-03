@@ -1,21 +1,17 @@
 import { Hex } from 'viem';
 import { EventLogTopics, Transaction } from '../../types';
-import { ABIs, NOUNS_BUILDER_INSTANCES } from './constants';
-import { NounsContracts } from '../nouns/constants';
+import { NounsContracts, ABIs } from './constants';
 import { decodeLog, decodeTransactionInput } from '../../helpers/utils';
 
-const supportIntToString = (support: bigint) => {
-  if (support === 0n) return 'against';
-  if (support === 1n) return 'in favor of';
+const supportIntToString = (support: number) => {
+  if (support === 0) return 'against';
+  if (support === 1) return 'in favor of';
 
   return 'from voting on';
 };
 
-const daoByAuctionGovernorContract = (address: string) => {
-  return NOUNS_BUILDER_INSTANCES.find((v) => v.governor === address);
-};
-
 const FUNCTION_CONTEXT_ACTION_MAPPING = {
+  execute: 'EXECUTED',
   queue: 'QUEUED',
   cancel: 'CANCELED',
   veto: 'VETOED',
@@ -33,14 +29,14 @@ export const detect = (transaction: Transaction): boolean => {
     return false;
   }
 
-  if (transaction.to === NounsContracts.DAOLogic) {
+  if (transaction.to !== NounsContracts.DAOLogic) {
     return false;
   }
 
   try {
     const decoded = decodeTransactionInput(
       transaction.input as Hex,
-      ABIs.IGovernor,
+      ABIs.NounsDAOLogicV3,
     );
 
     if (
@@ -48,6 +44,8 @@ export const detect = (transaction: Transaction): boolean => {
       decoded.functionName !== 'castVote' &&
       decoded.functionName !== 'castVoteWithReason' &&
       decoded.functionName !== 'castVoteBySig' &&
+      decoded.functionName !== 'castRefundableVote' &&
+      decoded.functionName !== 'castRefundableVoteWithReason' &&
       decoded.functionName !== 'queue' &&
       decoded.functionName !== 'execute' &&
       decoded.functionName !== 'cancel' &&
@@ -66,19 +64,17 @@ export const detect = (transaction: Transaction): boolean => {
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInput(
     transaction.input as Hex,
-    ABIs.IGovernor,
+    ABIs.NounsDAOLogicV3,
   );
-
-  const daoName = daoByAuctionGovernorContract(transaction.to)?.name;
 
   switch (decoded.functionName) {
     case 'propose': {
-      let proposalId = '';
+      let proposalId: bigint;
 
       const registerLog = transaction.logs?.find((log) => {
         try {
           const decoded = decodeLog(
-            ABIs.IGovernor,
+            ABIs.NounsDAOLogicV3,
             log.data as Hex,
             log.topics as EventLogTopics,
           );
@@ -91,12 +87,12 @@ export const generate = (transaction: Transaction): Transaction => {
       if (registerLog) {
         try {
           const decoded = decodeLog(
-            ABIs.IGovernor,
+            ABIs.NounsDAOLogicV3,
             registerLog.data as Hex,
             registerLog.topics as EventLogTopics,
           );
 
-          proposalId = decoded.args['proposalId'];
+          proposalId = decoded.args['id'];
         } catch (err) {
           console.error(err);
         }
@@ -112,22 +108,16 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: transaction.from,
           },
-          dao: {
-            type: 'string',
-            value: daoName,
-          },
           proposalId: {
-            type: 'string',
-            value: proposalId,
+            type: 'number',
+            value: Number(proposalId),
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'DAO',
-            default: `[[subject]] [[contextAction]] [[proposalId]]${
-              daoName ? ' in [[dao]] DAO' : ''
-            }`,
+            title: 'NOUNS',
+            default: `[[subject]] [[contextAction]] [[proposalId]]`,
           },
         },
       };
@@ -135,12 +125,14 @@ export const generate = (transaction: Transaction): Transaction => {
       return transaction;
     }
 
+    case 'castRefundableVote':
+    case 'castRefundableVoteWithReason':
     case 'castVote':
     case 'castVoteWithReason': {
       const proposalId = decoded.args[0];
       const support = decoded.args[1];
       const vote = supportIntToString(support);
-      const action = support > 1n ? 'ABSTAINED' : 'VOTED';
+      const action = support > 1 ? 'ABSTAINED' : 'VOTED';
 
       transaction.context = {
         variables: {
@@ -153,25 +145,19 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           proposalId: {
-            type: 'string',
-            value: proposalId,
+            type: 'number',
+            value: Number(proposalId),
           },
           vote: {
             type: 'string',
             value: vote,
           },
-          dao: {
-            type: 'string',
-            value: daoName,
-          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'DAO',
-            default: `[[subject]] [[contextAction]] [[vote]] ${
-              daoName ? '[[dao]] DAO ' : ''
-            }proposal [[proposalId]]`,
+            title: 'NOUNS',
+            default: `[[subject]] [[contextAction]] [[vote]] proposal [[proposalId]]`,
           },
         },
       };
@@ -180,11 +166,39 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'castVoteBySig': {
-      const voter = decoded.args[0];
-      const proposalId = decoded.args[1];
-      const support = decoded.args[2];
+      const proposalId = decoded.args[0];
+      const support = decoded.args[1];
       const vote = supportIntToString(support);
-      const action = support > 1n ? 'ABSTAINED' : 'VOTED';
+      const action = support > 1 ? 'ABSTAINED' : 'VOTED';
+
+      let voter: string;
+
+      const registerLog = transaction.logs?.find((log) => {
+        try {
+          const decoded = decodeLog(
+            ABIs.NounsDAOLogicV3,
+            log.data as Hex,
+            log.topics as EventLogTopics,
+          );
+          return decoded.eventName === 'VoteCast';
+        } catch (_) {
+          return false;
+        }
+      });
+
+      if (registerLog) {
+        try {
+          const decoded = decodeLog(
+            ABIs.NounsDAOLogicV3,
+            registerLog.data as Hex,
+            registerLog.topics as EventLogTopics,
+          );
+
+          voter = decoded.args['voter'];
+        } catch (err) {
+          console.error(err);
+        }
+      }
 
       transaction.context = {
         variables: {
@@ -197,25 +211,19 @@ export const generate = (transaction: Transaction): Transaction => {
             value: voter,
           },
           proposalId: {
-            type: 'string',
-            value: proposalId,
+            type: 'number',
+            value: Number(proposalId),
           },
           vote: {
             type: 'string',
             value: vote,
           },
-          dao: {
-            type: 'string',
-            value: daoName,
-          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'DAO',
-            default: `[[subject]] [[contextAction]] [[vote]] ${
-              daoName ? '[[dao]] DAO ' : ''
-            }proposal [[proposalId]]`,
+            default: `[[voter]] [[contextAction]] [[vote]] proposal [[proposalId]]`,
           },
         },
       };
@@ -223,68 +231,7 @@ export const generate = (transaction: Transaction): Transaction => {
       return transaction;
     }
 
-    case 'execute': {
-      let proposalId = '';
-
-      const registerLog = transaction.logs?.find((log) => {
-        try {
-          const decoded = decodeLog(
-            ABIs.IGovernor,
-            log.data as Hex,
-            log.topics as EventLogTopics,
-          );
-          return decoded.eventName === 'ProposalExecuted';
-        } catch (_) {
-          return false;
-        }
-      });
-
-      if (registerLog) {
-        try {
-          const decoded = decodeLog(
-            ABIs.IGovernor,
-            registerLog.data as Hex,
-            registerLog.topics as EventLogTopics,
-          );
-
-          proposalId = decoded.args['proposalId'];
-        } catch (err) {
-          console.error(err);
-        }
-      }
-      transaction.context = {
-        variables: {
-          contextAction: {
-            type: 'contextAction',
-            value: 'EXECUTED',
-          },
-          subject: {
-            type: 'address',
-            value: transaction.from,
-          },
-          proposalId: {
-            type: 'string',
-            value: proposalId,
-          },
-          dao: {
-            type: 'string',
-            value: daoName,
-          },
-        },
-        summaries: {
-          category: 'PROTOCOL_1',
-          en: {
-            title: 'DAO',
-            default: `[[subject]] [[contextAction]] ${
-              daoName ? '[[dao]] DAO ' : ''
-            }proposal [[proposalId]]`,
-          },
-        },
-      };
-
-      return transaction;
-    }
-
+    case 'execute':
     case 'queue':
     case 'cancel':
     case 'veto': {
@@ -304,21 +251,15 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           proposalId: {
-            type: 'string',
-            value: proposalId,
-          },
-          dao: {
-            type: 'string',
-            value: daoName,
+            type: 'number',
+            value: Number(proposalId),
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'DAO',
-            default: `[[subject]] [[contextAction]] ${
-              daoName ? '[[dao]] DAO ' : ''
-            }proposal [[proposalId]]`,
+            title: 'NOUNS',
+            default: `[[subject]] [[contextAction]] proposal [[proposalId]]`,
           },
         },
       };

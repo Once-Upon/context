@@ -1,0 +1,243 @@
+{
+  "chainId": 1,
+  "hash": "0xeaf1804628a4d5b69c5601ea0f53a1a9e72c119354c73436f82aafafe5610956",
+  "accessList": [],
+  "baseFeePerGas": 16187113380,
+  "blockHash": "0xbeee14c7698aaf7f500c258f25b73ce43b87ea364e6ee5a18a299359012028cb",
+  "blockNumber": 18862374,
+  "burntFees": "1318958372429160",
+  "decode": {
+    "fragment": {
+      "type": "function",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "baseType": "uint256",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        },
+        {
+          "name": "",
+          "type": "uint8",
+          "baseType": "uint8",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        }
+      ],
+      "name": "castVote",
+      "constant": false,
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "payable": false,
+      "gas": null
+    },
+    "name": "castVote",
+    "args": [
+      "472",
+      "1"
+    ],
+    "signature": "castVote(uint256,uint8)",
+    "selector": "0x56781388",
+    "value": "0"
+  },
+  "delegateCalls": [
+    {
+      "action": {
+        "callType": "delegatecall",
+        "from": "0x6f3e6272a167e8accb32072d08e0957f9c79223d",
+        "gas": "0xd9ed",
+        "input": "0x5678138800000000000000000000000000000000000000000000000000000000000001d80000000000000000000000000000000000000000000000000000000000000001",
+        "to": "0xe3caa436461dba00cfbe1749148c9fa7fa1f5344",
+        "value": "0x0"
+      },
+      "blockHash": "0xbeee14c7698aaf7f500c258f25b73ce43b87ea364e6ee5a18a299359012028cb",
+      "blockNumber": 18862374,
+      "result": {
+        "gasUsed": "0xd6e5",
+        "output": "0x"
+      },
+      "subtraces": 1,
+      "traceAddress": [
+        0
+      ],
+      "transactionHash": "0xeaf1804628a4d5b69c5601ea0f53a1a9e72c119354c73436f82aafafe5610956",
+      "transactionPosition": 133,
+      "type": "call"
+    },
+    {
+      "action": {
+        "callType": "delegatecall",
+        "from": "0x6f3e6272a167e8accb32072d08e0957f9c79223d",
+        "gas": "0xc9f2",
+        "input": "0x46742c7e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001d80000000000000000000000000000000000000000000000000000000000000001",
+        "to": "0xef902b590aef42587ddfec38c45549db6c0144ca",
+        "value": "0x0"
+      },
+      "blockHash": "0xbeee14c7698aaf7f500c258f25b73ce43b87ea364e6ee5a18a299359012028cb",
+      "blockNumber": 18862374,
+      "result": {
+        "gasUsed": "0xc9f2",
+        "output": "0x"
+      },
+      "subtraces": 1,
+      "traceAddress": [
+        0,
+        0
+      ],
+      "transactionHash": "0xeaf1804628a4d5b69c5601ea0f53a1a9e72c119354c73436f82aafafe5610956",
+      "transactionPosition": 133,
+      "type": "call"
+    }
+  ],
+  "fork": "shanghai",
+  "from": "0xa5d7e4c18d223d1f142297d17e36d74ce7793a54",
+  "gas": 83046,
+  "gasPrice": "16227113380",
+  "input": "0x5678138800000000000000000000000000000000000000000000000000000000000001d80000000000000000000000000000000000000000000000000000000000000001",
+  "internalSigHashes": [
+    {
+      "from": "0xa5d7e4c18d223d1f142297d17e36d74ce7793a54",
+      "to": "0x6f3e6272a167e8accb32072d08e0957f9c79223d",
+      "sigHash": "0x56781388"
+    },
+    {
+      "from": "0x6f3e6272a167e8accb32072d08e0957f9c79223d",
+      "to": "0xe3caa436461dba00cfbe1749148c9fa7fa1f5344",
+      "sigHash": "0x56781388"
+    },
+    {
+      "from": "0x6f3e6272a167e8accb32072d08e0957f9c79223d",
+      "to": "0xef902b590aef42587ddfec38c45549db6c0144ca",
+      "sigHash": "0x46742c7e"
+    },
+    {
+      "from": "0x6f3e6272a167e8accb32072d08e0957f9c79223d",
+      "to": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
+      "sigHash": "0x782d6fe1"
+    }
+  ],
+  "isoTimestamp": "2023-12-25T11:12:35.000Z",
+  "maxFeePerGas": "21053156000",
+  "maxPriorityFeePerGas": "40000000",
+  "minerFees": "3259280000000",
+  "nonce": 42,
+  "parties": [
+    "0xa5d7e4c18d223d1f142297d17e36d74ce7793a54",
+    "0x6f3e6272a167e8accb32072d08e0957f9c79223d",
+    "0xe3caa436461dba00cfbe1749148c9fa7fa1f5344",
+    "0xef902b590aef42587ddfec38c45549db6c0144ca",
+    "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03"
+  ],
+  "r": "0x9d081421faa23c81ddd22138df484360d1a5565ad273691e10368353e756f162",
+  "receipt": {
+    "blockHash": "0xbeee14c7698aaf7f500c258f25b73ce43b87ea364e6ee5a18a299359012028cb",
+    "blockNumber": 18862374,
+    "contractAddress": null,
+    "cumulativeGasUsed": 9912270,
+    "effectiveGasPrice": 16227113380,
+    "from": "0xa5d7e4c18d223d1f142297d17e36d74ce7793a54",
+    "gasUsed": 81482,
+    "logsBloom": "0x00008000000000000000000000000000000000000000000000000000000000000000000001002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000080000000200000000000000000000000004000000000000000000000040000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0x6f3e6272a167e8accb32072d08e0957f9c79223d",
+    "transactionHash": "0xeaf1804628a4d5b69c5601ea0f53a1a9e72c119354c73436f82aafafe5610956",
+    "transactionIndex": 133,
+    "type": "0x2"
+  },
+  "s": "0x432a1b4bb3686089953e52a0c41a9747b8de0f69541e566364f43c053ea4f4ff",
+  "sigHash": "0x56781388",
+  "timestamp": 1703502755,
+  "to": "0x6f3e6272a167e8accb32072d08e0957f9c79223d",
+  "transactionFee": "1322217652429160",
+  "transactionIndex": 133,
+  "type": 2,
+  "v": "0x0",
+  "value": "0",
+  "logs": [
+    {
+      "logIndex": 216,
+      "transactionHash": "0xeaf1804628a4d5b69c5601ea0f53a1a9e72c119354c73436f82aafafe5610956",
+      "chainId": 1,
+      "address": "0x6f3e6272a167e8accb32072d08e0957f9c79223d",
+      "blockHash": "0xbeee14c7698aaf7f500c258f25b73ce43b87ea364e6ee5a18a299359012028cb",
+      "blockNumber": 18862374,
+      "data": "0x00000000000000000000000000000000000000000000000000000000000001d80000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "voter",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "proposalId",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "support",
+              "type": "uint8",
+              "baseType": "uint8",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "votes",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "reason",
+              "type": "string",
+              "baseType": "string",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "VoteCast",
+          "anonymous": false
+        },
+        "name": "VoteCast",
+        "signature": "VoteCast(address,uint256,uint8,uint256,string)",
+        "topic": "0xb8e138887d0aa13bab447e82de9d5c1777041ecd21ca36ba824ff1e6c07ddda4",
+        "args": [
+          "0xa5d7e4c18d223d1f142297d17e36d74ce7793a54",
+          "472",
+          "1",
+          "0",
+          ""
+        ]
+      },
+      "removed": false,
+      "topics": [
+        "0xb8e138887d0aa13bab447e82de9d5c1777041ecd21ca36ba824ff1e6c07ddda4",
+        "0x000000000000000000000000a5d7e4c18d223d1f142297d17e36d74ce7793a54"
+      ],
+      "transactionIndex": 133
+    }
+  ],
+  "contractsCreated": []
+}

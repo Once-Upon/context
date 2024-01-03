@@ -1,7 +1,8 @@
-import { contextualize as nounsAuctionHouse } from './nounsAuctionHouse';
+import { contextualize as auctionHouse } from './nounsAuctionHouse';
+import { contextualize as daoLogic } from './daoLogic';
 import { makeContextualize } from '../../helpers/utils';
 
-const children = { nounsAuctionHouse };
+const children = { auctionHouse, daoLogic };
 
 const contextualize = makeContextualize(children);
 
