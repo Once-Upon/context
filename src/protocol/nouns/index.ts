@@ -1,4 +1,4 @@
-import { contextualize as auctionHouse } from './nounsAuctionHouse';
+import { contextualize as auctionHouse } from './auctionHouse';
 import { contextualize as daoLogic } from './daoLogic';
 import { makeContextualize } from '../../helpers/utils';
 

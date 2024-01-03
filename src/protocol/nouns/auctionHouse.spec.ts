@@ -1,6 +1,6 @@
 import { Transaction } from '../../types';
 import { contextSummary } from '../../helpers/utils';
-import { detect, generate } from './nounsAuctionHouse';
+import { detect, generate } from './auctionHouse';
 import nounsAuctionHouseBid0x4efdef57 from '../../test/transactions/nouns-auction-house-bid-0x4efdef57.json';
 import nounsAuctionHouseSettleAndCreate0x354aea2d from '../../test/transactions/nouns-auction-house-settle-and-create-0x354aea2d.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
