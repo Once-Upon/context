@@ -118,7 +118,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'NOUNS',
+            title: 'Nouns',
             default: `[[subject]] [[contextAction]] [[proposalId]]`,
           },
         },
@@ -153,7 +153,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'NOUNS',
+            title: 'Nouns',
             default: `[[subject]] [[contextAction]] ${description} proposal [[proposalId]]`,
           },
         },
@@ -214,7 +214,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'DAO',
+            title: 'Nouns',
             default: `[[voter]] [[contextAction]] ${description} proposal [[proposalId]]`,
           },
         },
@@ -250,7 +250,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'NOUNS',
+            title: 'Nouns',
             default: `[[subject]] [[contextAction]] proposal [[proposalId]]`,
           },
         },

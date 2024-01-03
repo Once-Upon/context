@@ -86,7 +86,7 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context.summaries = {
           category: 'PROTOCOL_1',
           en: {
-            title: 'NounsBuilder DAO',
+            title: 'DAO',
             default: '[[subject]] [[contextAction]] [[amount]] on [[token]]',
           },
         };
@@ -99,7 +99,7 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context.summaries = {
           category: 'PROTOCOL_1',
           en: {
-            title: 'NounsBuilder DAO',
+            title: 'DAO',
             default:
               '[[subject]] [[contextAction]] [[amount]] on token #[[tokenId]]',
           },
@@ -171,7 +171,7 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context.summaries = {
           category: 'PROTOCOL_1',
           en: {
-            title: 'NounsBuilderDAO',
+            title: 'DAO',
             default:
               '[[subject]] [[contextAction]] auction for [[token]] won by [[winner]]',
           },
@@ -185,7 +185,7 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.context.summaries = {
           category: 'PROTOCOL_1',
           en: {
-            title: 'NounsBuilder DAO',
+            title: 'DAO',
             default:
               '[[subject]] [[contextAction]] auction for token #[[tokenId]] won by [[winner]]',
           },
