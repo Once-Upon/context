@@ -63,16 +63,16 @@ export function generate(transaction: Transaction): Transaction {
             type: 'address',
             value: token,
           },
-          gaveAccessTo: {
+          gaveAccess: {
             type: 'contextAction',
-            value: 'GAVE_ACCESS_TO',
+            value: 'GAVE_ACCESS',
           },
         },
         summaries: {
           category: 'FUNGIBLE_TOKEN',
           en: {
             title: 'Token Approval',
-            default: '[[approver]] [[gaveAccessTo]] [[operator]] for [[token]]',
+            default: '[[approver]] [[gaveAccess]] [[operator]] for [[token]]',
           },
         },
       };
@@ -94,17 +94,16 @@ export function generate(transaction: Transaction): Transaction {
               type: 'address',
               value: token,
             },
-            gaveAccessTo: {
+            gaveAccess: {
               type: 'contextAction',
-              value: 'GAVE_ACCESS_TO',
+              value: 'GAVE_ACCESS',
             },
           },
           summaries: {
             category: 'FUNGIBLE_TOKEN',
             en: {
               title: 'Token Approval',
-              default:
-                '[[approver]] [[gaveAccessTo]] [[operator]] for [[token]]',
+              default: '[[approver]] [[gaveAccess]] [[operator]] for [[token]]',
             },
           },
         };
