@@ -41,12 +41,17 @@ function generate(transaction: Transaction): Transaction {
         type: 'contextAction',
         value: 'SENT_MESSAGE',
       },
+      receiver: {
+        type: 'address',
+        value: transaction.to,
+      },
     },
     summaries: {
       category: 'OTHER',
       en: {
         title: 'Input Data Message',
-        default: '[[messageSender]] [[sentMessage]][[br]][[message]]',
+        default:
+          '[[messageSender]] [[sentMessage]] [[message]] to [[receiver]]',
       },
     },
   };
