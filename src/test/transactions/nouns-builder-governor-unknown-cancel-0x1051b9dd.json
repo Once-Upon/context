@@ -1,0 +1,193 @@
+{
+  "blockHash": "0xd9b0dd814a7c9af77bc602365e961a8ea907e3abc74b9d2ec2df696dc9a12ea2",
+  "blockNumber": 17417636,
+  "from": "0xfca577e20be5a193e7a6dc5e33d54229cfd1d1db",
+  "gas": 49452,
+  "gasPrice": "20092959014",
+  "maxPriorityFeePerGas": "100000000",
+  "maxFeePerGas": "26010932894",
+  "hash": "0x10517c6abefbae563016e0701ccb07ff65566694c1ea79f5d463565528dfb9dd",
+  "input": "0xc4d252f5052cb9138ef978e33703293824c85f6a57c000ce5c9fd9da76e3e6ac9d9279e0",
+  "nonce": 334,
+  "to": "0xcd50ca9f9d15607bf86aa9c4df845a23a6045a90",
+  "transactionIndex": 166,
+  "value": "0",
+  "type": 2,
+  "accessList": [],
+  "chainId": 1,
+  "v": "0x0",
+  "r": "0x369cad20c9e378c129375561e104c2e301274b029435e1fa6b2e789b5f65fac5",
+  "s": "0x3350f1826443bfd97a795ccbca329917a6a91b4c1e29d95d60630f870d8378eb",
+  "timestamp": 1686008603,
+  "isoTimestamp": "2023-06-05T23:43:23.000Z",
+  "fork": "shanghai",
+  "baseFeePerGas": 19992959014,
+  "burntFees": "982254076357820",
+  "minerFees": "4913000000000",
+  "transactionFee": "987167076357820",
+  "delegateCalls": [
+    {
+      "action": {
+        "from": "0xcd50ca9f9d15607bf86aa9c4df845a23a6045a90",
+        "callType": "delegatecall",
+        "gas": "0x589b",
+        "input": "0xc4d252f5052cb9138ef978e33703293824c85f6a57c000ce5c9fd9da76e3e6ac9d9279e0",
+        "to": "0x9eefef0891b1895af967fe48c5d7d96e984b96a3",
+        "value": "0x0"
+      },
+      "blockHash": "0xd9b0dd814a7c9af77bc602365e961a8ea907e3abc74b9d2ec2df696dc9a12ea2",
+      "blockNumber": 17417636,
+      "result": {
+        "gasUsed": "0x589b",
+        "output": "0x"
+      },
+      "subtraces": 1,
+      "traceAddress": [
+        0
+      ],
+      "transactionHash": "0x10517c6abefbae563016e0701ccb07ff65566694c1ea79f5d463565528dfb9dd",
+      "transactionPosition": 166,
+      "type": "call"
+    },
+    {
+      "action": {
+        "from": "0xc812a86ad5822dc6773457748bcaccd076984b63",
+        "callType": "delegatecall",
+        "gas": "0xe1c",
+        "input": "0x0dc051f8052cb9138ef978e33703293824c85f6a57c000ce5c9fd9da76e3e6ac9d9279e0",
+        "to": "0x0b6d2473f54de3f1d80b27c92b22d13050da289a",
+        "value": "0x0"
+      },
+      "blockHash": "0xd9b0dd814a7c9af77bc602365e961a8ea907e3abc74b9d2ec2df696dc9a12ea2",
+      "blockNumber": 17417636,
+      "result": {
+        "gasUsed": "0x9b6",
+        "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "subtraces": 0,
+      "traceAddress": [
+        0,
+        0,
+        0
+      ],
+      "transactionHash": "0x10517c6abefbae563016e0701ccb07ff65566694c1ea79f5d463565528dfb9dd",
+      "transactionPosition": 166,
+      "type": "call"
+    }
+  ],
+  "sigHash": "0xc4d252f5",
+  "internalSigHashes": [
+    {
+      "from": "0xfca577e20be5a193e7a6dc5e33d54229cfd1d1db",
+      "to": "0xcd50ca9f9d15607bf86aa9c4df845a23a6045a90",
+      "sigHash": "0xc4d252f5"
+    },
+    {
+      "from": "0xcd50ca9f9d15607bf86aa9c4df845a23a6045a90",
+      "to": "0x9eefef0891b1895af967fe48c5d7d96e984b96a3",
+      "sigHash": "0xc4d252f5"
+    },
+    {
+      "from": "0xcd50ca9f9d15607bf86aa9c4df845a23a6045a90",
+      "to": "0xc812a86ad5822dc6773457748bcaccd076984b63",
+      "sigHash": "0x0dc051f8"
+    },
+    {
+      "from": "0xc812a86ad5822dc6773457748bcaccd076984b63",
+      "to": "0x0b6d2473f54de3f1d80b27c92b22d13050da289a",
+      "sigHash": "0x0dc051f8"
+    }
+  ],
+  "parties": [
+    "0xfca577e20be5a193e7a6dc5e33d54229cfd1d1db",
+    "0xcd50ca9f9d15607bf86aa9c4df845a23a6045a90",
+    "0x9eefef0891b1895af967fe48c5d7d96e984b96a3",
+    "0xc812a86ad5822dc6773457748bcaccd076984b63",
+    "0x0b6d2473f54de3f1d80b27c92b22d13050da289a"
+  ],
+  "decode": {
+    "fragment": {
+      "type": "function",
+      "inputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "baseType": "bytes32",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        }
+      ],
+      "name": "cancel",
+      "constant": false,
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "payable": false,
+      "gas": null
+    },
+    "name": "cancel",
+    "args": [
+      "0x052cb9138ef978e33703293824c85f6a57c000ce5c9fd9da76e3e6ac9d9279e0"
+    ],
+    "signature": "cancel(bytes32)",
+    "selector": "0xc4d252f5",
+    "value": "0"
+  },
+  "receipt": {
+    "blockHash": "0xd9b0dd814a7c9af77bc602365e961a8ea907e3abc74b9d2ec2df696dc9a12ea2",
+    "blockNumber": 17417636,
+    "contractAddress": null,
+    "cumulativeGasUsed": 14572812,
+    "effectiveGasPrice": 20092959014,
+    "from": "0xfca577e20be5a193e7a6dc5e33d54229cfd1d1db",
+    "gasUsed": 49130,
+    "logsBloom": "0x00000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000400000000000000000000000000000000000000000000000000000000000000000000000000000000000004010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0xcd50ca9f9d15607bf86aa9c4df845a23a6045a90",
+    "transactionHash": "0x10517c6abefbae563016e0701ccb07ff65566694c1ea79f5d463565528dfb9dd",
+    "transactionIndex": 166,
+    "type": "0x2"
+  },
+  "logs": [
+    {
+      "address": "0xcd50ca9f9d15607bf86aa9c4df845a23a6045a90",
+      "topics": [
+        "0x88ae8321c96cee88d802409f3677f889d8a6743c4631b069fe600a3a9b07e020"
+      ],
+      "data": "0x052cb9138ef978e33703293824c85f6a57c000ce5c9fd9da76e3e6ac9d9279e0",
+      "blockNumber": 17417636,
+      "transactionHash": "0x10517c6abefbae563016e0701ccb07ff65566694c1ea79f5d463565528dfb9dd",
+      "transactionIndex": 166,
+      "blockHash": "0xd9b0dd814a7c9af77bc602365e961a8ea907e3abc74b9d2ec2df696dc9a12ea2",
+      "logIndex": 328,
+      "removed": false,
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "",
+              "type": "bytes32",
+              "baseType": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "ProposalCanceled",
+          "anonymous": false
+        },
+        "name": "ProposalCanceled",
+        "signature": "ProposalCanceled(bytes32)",
+        "topic": "0x88ae8321c96cee88d802409f3677f889d8a6743c4631b069fe600a3a9b07e020",
+        "args": [
+          "0x052cb9138ef978e33703293824c85f6a57c000ce5c9fd9da76e3e6ac9d9279e0"
+        ]
+      },
+      "chainId": 1
+    }
+  ],
+  "contractsCreated": []
+}
