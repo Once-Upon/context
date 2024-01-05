@@ -26,6 +26,7 @@ export const detect = (transaction: Transaction): boolean => {
       transaction.input as Hex,
       FarcasterContracts.IdRegistry.abi,
     );
+    if (!decoded) return false;
 
     return ['changeRecoveryAddressFor', 'transfer'].includes(
       decoded.functionName,
@@ -41,6 +42,7 @@ export const generate = (transaction: Transaction): Transaction => {
     transaction.input as Hex,
     FarcasterContracts.IdRegistry.abi,
   );
+  if (!decoded) return transaction;
 
   switch (decoded.functionName) {
     case 'changeRecoveryAddressFor': {

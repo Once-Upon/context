@@ -17,6 +17,9 @@ export const detect = (transaction: Transaction): boolean => {
 
   const abi = ENS_CONTRACTS.reverse[transaction.to].abi;
   const decode = decodeTransactionInput(transaction.input as Hex, abi);
+  if (!decode) {
+    return false;
+  }
 
   if (decode.functionName === 'setName') {
     return true;

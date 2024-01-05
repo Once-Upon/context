@@ -45,6 +45,9 @@ export const generate = (transaction: Transaction): Transaction => {
     transaction.input as Hex,
     ABIs.SchemaRegistry,
   );
+  if (!decoded) {
+    return transaction;
+  }
 
   switch (decoded.functionName) {
     case 'register': {
