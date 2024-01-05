@@ -2,6 +2,7 @@ import { Hex } from 'viem';
 import {
   AssetType,
   ContextSummaryVariableType,
+  ETHAssetTransfer,
   Transaction,
 } from '../../types';
 import { CryptopunksContracts, CRYPTOPUNK_ABIS } from './constants';
@@ -183,9 +184,11 @@ export const generate = (transaction: Transaction): Transaction => {
         token: CryptopunksContracts.New,
         tokenId: decoded.args[0].toString(),
       };
+      const ethAssetTransfer = transaction
+        .assetTransfers?.[0] as ETHAssetTransfer;
       const price: ContextSummaryVariableType = {
         type: AssetType.ETH,
-        value: transaction.assetTransfers?.[0].value,
+        value: ethAssetTransfer.value,
         unit: 'wei',
       };
       if (transaction.receipt?.status) {
@@ -292,9 +295,11 @@ export const generate = (transaction: Transaction): Transaction => {
         type: 'address',
         value: transaction.from,
       };
+      const ethAssetTransfer = transaction
+        .assetTransfers?.[0] as ETHAssetTransfer;
       const amount: ContextSummaryVariableType = {
         type: AssetType.ETH,
-        value: transaction.assetTransfers?.[0].value,
+        value: ethAssetTransfer.value,
         unit: 'wei',
       };
       if (transaction.receipt?.status) {
@@ -352,11 +357,13 @@ export const generate = (transaction: Transaction): Transaction => {
         unit: 'wei',
       };
       if (transaction.receipt?.status) {
-        const transferTopic = transaction.logs.filter(
+        const transferTopic = transaction.logs?.filter(
           (log) =>
             log.topics[0] ===
             '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
         )[0];
+        if (!transferTopic || !transferTopic.decode) return transaction;
+
         const seller: ContextSummaryVariableType = {
           type: 'address',
           value: transferTopic.decode.args[0],

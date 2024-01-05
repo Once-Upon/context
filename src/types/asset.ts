@@ -42,11 +42,40 @@ export interface NetAssetTransfers {
   };
 }
 
-export interface AssetTransfer {
-  asset?: string;
+export type ETHAssetTransfer = {
+  type: AssetType.ETH;
+  value: string;
   from: string;
   to: string;
-  type: AssetType;
-  value?: string;
-  tokenId?: string;
+};
+
+export interface ERC20AssetTransfer {
+  asset: string;
+  type: AssetType.ERC20;
+  value: string;
+  from: string;
+  to: string;
 }
+
+export interface ERC721AssetTransfer {
+  asset: string;
+  type: AssetType.ERC721;
+  tokenId: string;
+  from: string;
+  to: string;
+}
+
+export interface ERC1155AssetTransfer {
+  asset: string;
+  type: AssetType.ERC1155;
+  value: string;
+  tokenId: string;
+  from: string;
+  to: string;
+}
+
+export type AssetTransfer =
+  | ETHAssetTransfer
+  | ERC20AssetTransfer
+  | ERC721AssetTransfer
+  | ERC1155AssetTransfer;

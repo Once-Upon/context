@@ -38,6 +38,7 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
+  if (!transaction.to) return transaction;
   // decode input
   const decode = decodeTransactionInput(transaction.input as Hex, WETH_ABI);
   if (!decode) return transaction;
@@ -79,7 +80,7 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       const withdrawalAmount: ContextSummaryVariableType = {
         type: AssetType.ETH,
-        value: decode.args[0].toString(),
+        value: decode.args ? decode.args[0].toString() : '0',
         unit: 'wei',
       };
       transaction.context = {

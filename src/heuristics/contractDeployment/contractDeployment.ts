@@ -16,6 +16,10 @@ export function detect(transaction: Transaction): boolean {
 }
 
 function generate(transaction: Transaction): Transaction {
+  if (!transaction.receipt?.contractAddress) {
+    return transaction;
+  }
+
   transaction.context = {
     variables: {
       deployerAddress: {

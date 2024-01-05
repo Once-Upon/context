@@ -32,6 +32,7 @@ export const generate = (transaction: Transaction): Transaction => {
     transaction.input as Hex,
     FarcasterContracts.KeyGateway.abi,
   );
+  if (!decoded) return transaction;
 
   switch (decoded.functionName) {
     case 'add': {
