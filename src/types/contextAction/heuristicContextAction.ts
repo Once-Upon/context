@@ -8,7 +8,7 @@ export type HeuristicContextAction =
   | 'RECEIVED'
   | 'COMMITTED_TO'
   | 'RECEIVED_AIRDROP'
-  | 'GAVE_ACCESS_TO'
+  | 'GAVE_ACCESS'
   | 'REVOKED_ACCESS'
   | 'INTERACTED_WITH'
   | 'SENT_MESSAGE'
