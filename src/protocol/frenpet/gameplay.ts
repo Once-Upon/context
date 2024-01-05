@@ -39,13 +39,13 @@ export const generate = (transaction: Transaction): Transaction => {
       // second argument is the accessoryId
       const abi = [abiMapping.buyAccessoryFunction];
       const parsed = decodeFunction(transaction.input as Hex, abi);
-      if (!parsed) return transaction;
+      if (!parsed || !parsed.args) return transaction;
 
       const buyer: ContextSummaryVariableType = {
         type: 'address',
         value: transaction.from,
       };
-      const petId = parsed.args[0].toString();
+      const petId = (parsed.args[0] as bigint).toString();
       const pet: ContextSummaryVariableType = {
         type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
@@ -108,17 +108,17 @@ export const generate = (transaction: Transaction): Transaction => {
       // second argument is the defender petId
       const abi = [abiMapping.attackFunction, abiMapping.attackEvent];
       const parsed = decodeFunction(transaction.input as Hex, abi);
-      if (!parsed) return transaction;
+      if (!parsed || !parsed.args) return transaction;
 
       const attacker: ContextSummaryVariableType = {
         type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
-        tokenId: parsed.args[0].toString(),
+        tokenId: (parsed.args[0] as bigint).toString(),
       };
       const attacked: ContextSummaryVariableType = {
         type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
-        tokenId: parsed.args[1].toString(),
+        tokenId: (parsed.args[1] as bigint).toString(),
       };
       if (transaction.receipt?.status) {
         if (!transaction.logs || transaction.logs?.length) {
@@ -239,7 +239,7 @@ export const generate = (transaction: Transaction): Transaction => {
       // setPetName(uint256,string)
       const abi = [abiMapping.setPetNameFunction];
       const parsed = decodeFunction(transaction.input as Hex, abi);
-      if (!parsed) return transaction;
+      if (!parsed || !parsed.args) return transaction;
 
       const user: ContextSummaryVariableType = {
         type: 'address',
@@ -248,7 +248,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const pet: ContextSummaryVariableType = {
         type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
-        tokenId: parsed.args[0].toString(),
+        tokenId: (parsed.args[0] as bigint).toString(),
       };
       const name = parsed.args[1];
       transaction.context = {
@@ -319,9 +319,9 @@ export const generate = (transaction: Transaction): Transaction => {
       // first argument is the petId
       const abi = [abiMapping.redeemFunction, abiMapping.redeemRewardsEvent];
       const parsed = decodeFunction(transaction.input as Hex, abi);
-      if (!parsed) return transaction;
+      if (!parsed || !parsed.args) return transaction;
 
-      const petId = parsed.args[0].toString();
+      const petId = (parsed.args[0] as bigint).toString();
       const pet: ContextSummaryVariableType = {
         type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
@@ -394,7 +394,7 @@ export const generate = (transaction: Transaction): Transaction => {
       // second argument is the targetId
       const abi = [abiMapping.bonkCommitFunction];
       const parsed = decodeFunction(transaction.input as Hex, abi);
-      if (!parsed) return transaction;
+      if (!parsed || !parsed.args) return transaction;
 
       const user: ContextSummaryVariableType = {
         type: 'address',
@@ -403,12 +403,12 @@ export const generate = (transaction: Transaction): Transaction => {
       const attacker: ContextSummaryVariableType = {
         type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
-        tokenId: parsed.args[0].toString(),
+        tokenId: (parsed.args[0] as bigint).toString(),
       };
       const target: ContextSummaryVariableType = {
         type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
-        tokenId: parsed.args[1].toString(),
+        tokenId: (parsed.args[1] as bigint).toString(),
       };
 
       transaction.context = {
@@ -441,7 +441,7 @@ export const generate = (transaction: Transaction): Transaction => {
         abiMapping.bonkTooSlowEvent,
       ];
       const parsed = decodeFunction(transaction.input as Hex, abi);
-      if (!parsed) return transaction;
+      if (!parsed || !parsed.args) return transaction;
 
       const user: ContextSummaryVariableType = {
         type: 'address',
@@ -450,7 +450,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const attacker: ContextSummaryVariableType = {
         type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
-        tokenId: parsed.args[0].toString(),
+        tokenId: (parsed.args[0] as bigint).toString(),
       };
       if (transaction.receipt?.status) {
         if (
@@ -562,7 +562,7 @@ export const generate = (transaction: Transaction): Transaction => {
       // second argument is the killer id
       const abi = [abiMapping.killFunction];
       const parsed = decodeFunction(transaction.input as Hex, abi);
-      if (!parsed) return transaction;
+      if (!parsed || !parsed.args) return transaction;
 
       const user: ContextSummaryVariableType = {
         type: 'address',
@@ -571,12 +571,12 @@ export const generate = (transaction: Transaction): Transaction => {
       const dead: ContextSummaryVariableType = {
         type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
-        tokenId: parsed.args[0].toString(),
+        tokenId: (parsed.args[0] as bigint).toString(),
       };
       const killer: ContextSummaryVariableType = {
         type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
-        tokenId: parsed.args[1].toString(),
+        tokenId: (parsed.args[1] as bigint).toString(),
       };
       transaction.context = {
         variables: {
@@ -604,7 +604,7 @@ export const generate = (transaction: Transaction): Transaction => {
       // second argument is gameId
       const abi = [abiMapping.wheelCommitFunction];
       const parsed = decodeFunction(transaction.input as Hex, abi);
-      if (!parsed) return transaction;
+      if (!parsed || !parsed.args) return transaction;
 
       const user: ContextSummaryVariableType = {
         type: 'address',
@@ -613,7 +613,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const pet: ContextSummaryVariableType = {
         type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
-        tokenId: parsed.args[0].toString(),
+        tokenId: (parsed.args[0] as bigint).toString(),
       };
       transaction.context = {
         variables: {
@@ -640,7 +640,7 @@ export const generate = (transaction: Transaction): Transaction => {
       // first argument is the petId
       const abi = [abiMapping.wheelRevealFunction];
       const parsed = decodeFunction(transaction.input as Hex, abi);
-      if (!parsed) return transaction;
+      if (!parsed || !parsed.args) return transaction;
 
       const user: ContextSummaryVariableType = {
         type: 'address',
@@ -649,7 +649,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const pet: ContextSummaryVariableType = {
         type: AssetType.ERC721,
         token: contracts.frenPetNFTTokenContract,
-        tokenId: parsed.args[0].toString(),
+        tokenId: (parsed.args[0] as bigint).toString(),
       };
       transaction.context = {
         variables: {
