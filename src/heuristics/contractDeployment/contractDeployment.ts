@@ -9,7 +9,7 @@ export function contextualize(transaction: Transaction): Transaction {
 }
 
 export function detect(transaction: Transaction): boolean {
-  if (transaction.to === null && !transaction.receipt?.contractAddress) {
+  if (transaction.to === null && transaction.receipt?.contractAddress) {
     return true;
   }
   return false;
