@@ -57,6 +57,7 @@ export function decodeTransactionInput<TAbi extends Abi>(
 export function decodeFunction(input: Hex, functionSig: string[]) {
   try {
     const abi = parseAbi(functionSig);
+    console.log('parseAbi', functionSig, abi);
     const result = decodeFunctionData({
       abi,
       data: input,
