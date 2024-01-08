@@ -1,4 +1,8 @@
+import { Hex } from 'viem';
 import { Transaction } from '../../types';
+import approveAbi from './abis/Approve';
+import setApproveAllAbi from './abis/SetApproveAll';
+import { decodeTransactionInput } from '../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isTokenApproval = detect(transaction);
@@ -8,30 +12,36 @@ export function contextualize(transaction: Transaction): Transaction {
 }
 
 export function detect(transaction: Transaction): boolean {
-  if (!transaction.decode) {
+  // decode transaction
+  let decoded;
+  decoded = decodeTransactionInput(transaction.input as Hex, approveAbi);
+  if (!decoded) {
+    decoded = decodeTransactionInput(
+      transaction.input as Hex,
+      setApproveAllAbi,
+    );
+  }
+
+  if (!decoded) {
     return false;
   }
 
-  const { args } = transaction.decode;
+  const { args } = decoded;
   if (!args) {
     return false;
   }
 
   // Token approve
   if (
-    transaction.decode?.fragment.name === 'approve' &&
-    transaction.decode.fragment.inputs.length === 2 &&
-    transaction.decode.fragment.inputs[0].type === 'address' &&
-    transaction.decode.fragment.inputs[1].type === 'uint256' &&
+    decoded.functionName === 'approve' &&
+    decoded.args.length === 2 &&
     !transaction.assetTransfers?.length &&
     transaction.value === '0'
   ) {
     return true;
   } else if (
-    transaction.decode?.fragment.name === 'setApprovalForAll' &&
-    transaction.decode.fragment.inputs.length === 2 &&
-    transaction.decode.fragment.inputs[0].type === 'address' &&
-    transaction.decode.fragment.inputs[1].type === 'bool' &&
+    decoded.functionName === 'setApprovalForAll' &&
+    decoded.args.length === 2 &&
     !transaction.assetTransfers?.length &&
     transaction.value === '0'
   ) {
@@ -42,12 +52,25 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
-  const { args } = transaction.decode;
+  // decode transaction
+  let decoded;
+  decoded = decodeTransactionInput(transaction.input as Hex, approveAbi);
+  if (!decoded) {
+    decoded = decodeTransactionInput(
+      transaction.input as Hex,
+      setApproveAllAbi,
+    );
+  }
+  if (!decoded) {
+    return transaction;
+  }
+
+  const { args } = decoded;
   const approver = transaction.from;
   const token = transaction.to;
-  const operator = args[0];
+  const operator = args[0].toLowerCase();
 
-  switch (transaction.decode?.fragment.name) {
+  switch (decoded.functionName) {
     case 'approve':
       transaction.context = {
         variables: {
@@ -80,7 +103,7 @@ export function generate(transaction: Transaction): Transaction {
       return transaction;
     case 'setApprovalForAll':
       const approved = args[1];
-      if (approved === 'true') {
+      if (approved === true) {
         transaction.context = {
           variables: {
             approver: {
