@@ -49,7 +49,6 @@ export function decodeTransactionInput<TAbi extends Abi>(
 
     return result;
   } catch (err) {
-    console.error(err);
     return null;
   }
 }
@@ -64,7 +63,6 @@ export function decodeFunction(input: Hex, functionSig: string[]) {
 
     return result;
   } catch (err) {
-    console.error(err);
     return null;
   }
 }
@@ -82,7 +80,6 @@ export function decodeLog<TAbi extends Abi>(
     });
     return result;
   } catch (err) {
-    console.error(err);
     return null;
   }
 }
