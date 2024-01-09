@@ -58,7 +58,7 @@ const pluralize = (word: string, n: number): string => {
 };
 
 const getAttestationID = (transaction: Transaction): string => {
-  // Note: The Revoked event has the uid for the attestiaion in the same place as the Attested event
+  // Note: The Revoked event has the uid for the attestation in the same place as the Attested event
   // so it can be used for both
   // Capture attestation ID
   let attestationID: string = '';
@@ -283,7 +283,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const arg = decoded.args[0];
       const schema = arg.schema;
 
-      // Note: The Revoked event has the uid for the attestiaion in the same place as the Attested event
+      // Note: The Revoked event has the uid for the attestation in the same place as the Attested event
       // so it can be used for both
       const attestationID = getAttestationID(transaction);
 
@@ -331,7 +331,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'revokeByDelegation': {
       const arg = decoded.args[0];
       const { schema, revoker } = arg;
-      // Note: The Revoked event has the uid for the attestiaion in the same place as the Attested event
+      // Note: The Revoked event has the uid for the attestation in the same place as the Attested event
       // so it can be used for both
       const attestationID = getAttestationID(transaction);
 
