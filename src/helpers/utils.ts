@@ -67,6 +67,7 @@ export function decodeFunction(input: Hex, functionSig: string[]) {
   }
 }
 
+// We should get better type info from this helper
 export function decodeLog<TAbi extends Abi>(
   abi: TAbi,
   data: Hex,
