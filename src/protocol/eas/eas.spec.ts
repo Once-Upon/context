@@ -29,7 +29,7 @@ describe('EAS', () => {
 
       expect(transaction.context.summaries.en.title).toBe('EAS');
       expect(contextSummary(transaction.context)).toBe(
-        '0x3b60e31cfc48a9074cd5bebb26c9eaa77650a43f ATTESTED to 0x9934465Ee73BeAF148b1b3Ff232C8cD86c4c2c63 with id 0x7e71782deee64039cd32d83577c9b5c0d06eeb08e685c85084b3b4d502a76adf',
+        '0x3b60e31cfc48a9074cd5bebb26c9eaa77650a43f ATTESTED to 0x9934465Ee73BeAF148b1b3Ff232C8cD86c4c2c63 with schema 0xc59265615401143689cbfe73046a922c975c99d97e4c248070435b1104b2dea7 🔗 link',
       );
     });
   });
@@ -47,7 +47,7 @@ describe('EAS', () => {
 
       expect(transaction.context.summaries.en.title).toBe('EAS');
       expect(contextSummary(transaction.context)).toBe(
-        '0xc13D679471FEa46193891343EEAF761bFc52808E ATTESTED to 0x917DE4FEc44841312F632D2A020867Fe0c6AeA43 with id 0x21f8c05e0c24f386bdd1d9bb1904532b660b7efec8d381934df716b262f132a1 by delegation via 0x917de4fec44841312f632d2a020867fe0c6aea43',
+        '0xc13D679471FEa46193891343EEAF761bFc52808E ATTESTED to 0x917DE4FEc44841312F632D2A020867Fe0c6AeA43 with schema 0xeb2a4b4be5355128b420a8045a47750aab8ba427014401387a564bbed987d16c by delegation via 0x917de4fec44841312f632d2a020867fe0c6aea43 🔗 link',
       );
     });
   });
@@ -77,7 +77,7 @@ describe('EAS', () => {
       const transaction = generate(easRevoke0x4ec6335e as Transaction);
       expect(transaction.context.summaries.en.title).toBe('EAS');
       expect(contextSummary(transaction.context)).toBe(
-        '0x6e91973dee716ed6859e7bb689c9bd2955bdb96e REVOKED an attestation with id 0x9d659ddf710fd56b622802111461f2cbf44d1f9372f109ae3321a9e8ac442972',
+        '0x6e91973dee716ed6859e7bb689c9bd2955bdb96e REVOKED an attestation with schema 0xd3f24e873e8df2d9bb9af6f08ea1ddf61f65754d023f3ea761081e3e6a226a80 🔗 link',
       );
     });
   });

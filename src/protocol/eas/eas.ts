@@ -72,8 +72,6 @@ const getAttestationID = (transaction: Transaction): string => {
     );
     if (!decoded) return null;
 
-    console.log({ decoded });
-
     attestationID = decoded.args['uid'];
     return attestationID;
   }
@@ -185,8 +183,8 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default: recipient
-              ? '[[attester]] [[attested]] to [[recipient]] with schema [[schema]] 🔗 [[attestation]] by delegation via [[from]]'
-              : '[[attester]] [[attested]] with schema [[schema]] 🔗 [[attestation]] by delegation via [[from]]',
+              ? '[[attester]] [[attested]] to [[recipient]] with schema [[schema]] by delegation via [[from]] 🔗 [[attestation]]'
+              : '[[attester]] [[attested]] with schema [[schema]] by delegation via [[from]] 🔗 [[attestation]]',
           },
         },
       };
@@ -372,7 +370,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default:
-              '[[revoker]] [[revoked]] an attestation with schema [[schema]] 🔗 [[attestation]] by delegation via [[from]]',
+              '[[revoker]] [[revoked]] an attestation with schema [[schema]] by delegation via [[from]] 🔗 [[attestation]]',
           },
         },
       };
