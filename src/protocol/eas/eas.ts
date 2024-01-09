@@ -1,7 +1,7 @@
 import { Hex } from 'viem';
 import { ExtractAbiFunctionNames } from 'abitype';
-import { Transaction } from '../../types';
-import { decodeTransactionInput } from '../../helpers/utils';
+import { Transaction, EventLogTopics } from '../../types';
+import { decodeTransactionInput, decodeLog } from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -57,6 +57,28 @@ const pluralize = (word: string, n: number): string => {
   return `${word}${n !== 1 ? 's' : ''}`;
 };
 
+const getAttestationID = (transaction: Transaction): string => {
+  // Note: The Revoked event has the uid for the attestiaion in the same place as the Attested event
+  // so it can be used for both
+  // Capture attestation ID
+  let attestationID: string = '';
+  if (transaction.receipt?.status) {
+    // TODO: Confirm that the event matches the expected name
+    const transactionLog = transaction?.logs?.[0];
+    const decoded = decodeLog(
+      ABIs.EAS,
+      transactionLog?.data as Hex,
+      transactionLog?.topics as EventLogTopics,
+    );
+    if (!decoded) return null;
+
+    console.log({ decoded });
+
+    attestationID = decoded.args['uid'];
+    return attestationID;
+  }
+};
+
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInput(transaction.input as Hex, ABIs.EAS);
@@ -67,6 +89,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const arg = decoded.args[0];
       const schema = arg.schema;
       const recipient = arg.data.recipient;
+      const attestationID = getAttestationID(transaction);
 
       transaction.context = {
         variables: {
@@ -75,10 +98,21 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           schema: {
-            type: 'schemaID',
+            type: 'link',
             value: schema,
+            truncate: true,
             link: EAS_LINKS[transaction.chainId]
-              ? `${EAS_LINKS[transaction.chainId]}/${schema}`
+              ? `${EAS_LINKS[transaction.chainId]}/schema/view/0x${schema}`
+              : '',
+          },
+          attestation: {
+            type: 'link',
+            value: attestationID,
+            truncate: true,
+            link: EAS_LINKS[transaction.chainId]
+              ? `${
+                  EAS_LINKS[transaction.chainId]
+                }/attestation/view/${attestationID}`
               : '',
           },
           recipient: {
@@ -95,8 +129,8 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default: recipient
-              ? '[[from]] [[attested]] to [[recipient]] with schema [[schema]]'
-              : '[[from]] [[attested]] with schema [[schema]]',
+              ? '[[from]] [[attested]] to [[recipient]] with id [[attestation]]'
+              : '[[from]] [[attested]] with id [[attestation]]',
           },
         },
       };
@@ -108,6 +142,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const schema = arg.schema;
       const attester = arg.attester;
       const recipient = arg.data.recipient;
+      const attestationID = getAttestationID(transaction);
 
       transaction.context = {
         variables: {
@@ -120,10 +155,21 @@ export const generate = (transaction: Transaction): Transaction => {
             value: attester,
           },
           schema: {
-            type: 'schemaID',
+            type: 'link',
             value: schema,
+            truncate: true,
             link: EAS_LINKS[transaction.chainId]
-              ? `${EAS_LINKS[transaction.chainId]}/${schema}`
+              ? `${EAS_LINKS[transaction.chainId]}/schema/view/${schema}`
+              : '',
+          },
+          attestation: {
+            type: 'link',
+            value: attestationID,
+            truncate: true,
+            link: EAS_LINKS[transaction.chainId]
+              ? `${
+                  EAS_LINKS[transaction.chainId]
+                }/attestation/view/${attestationID}`
               : '',
           },
           recipient: {
@@ -140,8 +186,8 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default: recipient
-              ? '[[attester]] [[attested]] to [[recipient]] with schema [[schema]] by delegation via [[from]]'
-              : '[[attester]] [[attested]] with schema [[schema]] by delegation via [[from]]',
+              ? '[[attester]] [[attested]] to [[recipient]] with id [[attestation]] by delegation via [[from]]'
+              : '[[attester]] [[attested]] with id [[attestation]] by delegation via [[from]]',
           },
         },
       };
@@ -237,6 +283,10 @@ export const generate = (transaction: Transaction): Transaction => {
       const arg = decoded.args[0];
       const schema = arg.schema;
 
+      // Note: The Revoked event has the uid for the attestiaion in the same place as the Attested event
+      // so it can be used for both
+      const attestationID = getAttestationID(transaction);
+
       transaction.context = {
         variables: {
           from: {
@@ -244,10 +294,21 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           schema: {
-            type: 'schemaID',
+            type: 'link',
             value: schema,
+            truncate: true,
             link: EAS_LINKS[transaction.chainId]
-              ? `${EAS_LINKS[transaction.chainId]}/${schema}`
+              ? `${EAS_LINKS[transaction.chainId]}/schema/view/${schema}`
+              : '',
+          },
+          attestation: {
+            type: 'link',
+            value: attestationID,
+            truncate: true,
+            link: EAS_LINKS[transaction.chainId]
+              ? `${
+                  EAS_LINKS[transaction.chainId]
+                }/attestation/view/${attestationID}`
               : '',
           },
           revoked: {
@@ -260,7 +321,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default:
-              '[[from]] [[revoked]] an attestation with schema [[schema]]',
+              '[[from]] [[revoked]] an attestation with id [[attestation]]',
           },
         },
       };
@@ -270,6 +331,9 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'revokeByDelegation': {
       const arg = decoded.args[0];
       const { schema, revoker } = arg;
+      // Note: The Revoked event has the uid for the attestiaion in the same place as the Attested event
+      // so it can be used for both
+      const attestationID = getAttestationID(transaction);
 
       transaction.context = {
         variables: {
@@ -278,10 +342,21 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           schema: {
-            type: 'schemaID',
+            type: 'link',
             value: schema,
+            truncate: true,
             link: EAS_LINKS[transaction.chainId]
-              ? `${EAS_LINKS[transaction.chainId]}/${schema}`
+              ? `${EAS_LINKS[transaction.chainId]}/schema/view/${schema}`
+              : '',
+          },
+          attestation: {
+            type: 'link',
+            value: attestationID,
+            truncate: true,
+            link: EAS_LINKS[transaction.chainId]
+              ? `${
+                  EAS_LINKS[transaction.chainId]
+                }/attestation/view/${attestationID}`
               : '',
           },
           revoker: {
@@ -298,7 +373,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default:
-              '[[revoker]] [[revoked]] an attestation with schema [[schema]] by delegation via [[from]]',
+              '[[revoker]] [[revoked]] an attestation with id [[attestation]] by delegation via [[from]]',
           },
         },
       };
@@ -316,12 +391,11 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: transaction.from,
           },
-          schema: {
-            type: 'schemaID',
-            value: schemas.toString(),
-            link: EAS_LINKS[transaction.chainId]
-              ? `${EAS_LINKS[transaction.chainId]}/${schemas.toString()}`
-              : '',
+          schemas: {
+            type: 'number',
+            emphasis: true,
+            value: schemas,
+            unit: pluralize('schema', schemas),
           },
           count: {
             type: 'number',
@@ -338,7 +412,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default: `[[from]] [[revoked]] [[count]] with [[schema]]`,
+            default: `[[from]] [[revoked]] [[count]] with [[schemas]]`,
           },
         },
       };

@@ -81,8 +81,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           id: {
-            type: 'schemaID',
+            type: 'link',
             value: id,
+            truncate: true,
             link: EAS_LINKS[transaction.chainId]
               ? `${EAS_LINKS[transaction.chainId]}/${id}`
               : '',
