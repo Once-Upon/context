@@ -100,7 +100,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: schema,
             truncate: true,
             link: EAS_LINKS[transaction.chainId]
-              ? `${EAS_LINKS[transaction.chainId]}/schema/view/0x${schema}`
+              ? `${EAS_LINKS[transaction.chainId]}/schema/view/${schema}`
               : '',
           },
           attestation: {
