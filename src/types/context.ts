@@ -84,8 +84,9 @@ export type ContextNumberType = {
 };
 
 export type ContextLinkType = {
-  type: 'link' | 'schemaID';
+  type: 'link';
   value: string;
+  truncate?: boolean;
   link: string;
 };
 
