@@ -107,8 +107,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           attestation: {
             type: 'link',
-            value: attestationID,
-            truncate: true,
+            value: 'link',
             link: EAS_LINKS[transaction.chainId]
               ? `${
                   EAS_LINKS[transaction.chainId]
@@ -129,8 +128,8 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default: recipient
-              ? '[[from]] [[attested]] to [[recipient]] with id [[attestation]]'
-              : '[[from]] [[attested]] with id [[attestation]]',
+              ? '[[from]] [[attested]] to [[recipient]] with schema [[schema]] 🔗 [[attestation]]'
+              : '[[from]] [[attested]] with schema [[schema]] 🔗 [[attestation]]',
           },
         },
       };
@@ -164,7 +163,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           attestation: {
             type: 'link',
-            value: attestationID,
+            value: 'link',
             truncate: true,
             link: EAS_LINKS[transaction.chainId]
               ? `${
@@ -186,8 +185,8 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default: recipient
-              ? '[[attester]] [[attested]] to [[recipient]] with id [[attestation]] by delegation via [[from]]'
-              : '[[attester]] [[attested]] with id [[attestation]] by delegation via [[from]]',
+              ? '[[attester]] [[attested]] to [[recipient]] with schema [[schema]] 🔗 [[attestation]] by delegation via [[from]]'
+              : '[[attester]] [[attested]] with schema [[schema]] 🔗 [[attestation]] by delegation via [[from]]',
           },
         },
       };
@@ -303,7 +302,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           attestation: {
             type: 'link',
-            value: attestationID,
+            value: 'link',
             truncate: true,
             link: EAS_LINKS[transaction.chainId]
               ? `${
@@ -321,7 +320,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default:
-              '[[from]] [[revoked]] an attestation with id [[attestation]]',
+              '[[from]] [[revoked]] an attestation with schema [[schema]] 🔗 [[attestation]]',
           },
         },
       };
@@ -351,7 +350,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           attestation: {
             type: 'link',
-            value: attestationID,
+            value: 'link',
             truncate: true,
             link: EAS_LINKS[transaction.chainId]
               ? `${
@@ -373,7 +372,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default:
-              '[[revoker]] [[revoked]] an attestation with id [[attestation]] by delegation via [[from]]',
+              '[[revoker]] [[revoked]] an attestation with schema [[schema]] 🔗 [[attestation]] by delegation via [[from]]',
           },
         },
       };
