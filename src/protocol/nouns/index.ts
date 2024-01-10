@@ -6,7 +6,7 @@ const children = { auctionHouse, daoLogic };
 
 const contextualize = makeContextualize(children);
 
-export const ensContextualizer = {
+export const nounsContextualizer = {
   contextualize,
   children,
 };
