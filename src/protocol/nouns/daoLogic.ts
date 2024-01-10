@@ -40,6 +40,7 @@ export const detect = (transaction: Transaction): boolean => {
       transaction.input as Hex,
       ABIs.NounsDAOLogicV3,
     );
+    if (!decoded) return false;
 
     if (
       decoded.functionName !== 'propose' &&
@@ -68,10 +69,11 @@ export const generate = (transaction: Transaction): Transaction => {
     transaction.input as Hex,
     ABIs.NounsDAOLogicV3,
   );
+  if (!decoded) return transaction;
 
   switch (decoded.functionName) {
     case 'propose': {
-      let proposalId: bigint;
+      let proposalId: bigint = BigInt(0);
 
       const registerLog = transaction.logs?.find((log) => {
         try {
@@ -80,6 +82,7 @@ export const generate = (transaction: Transaction): Transaction => {
             log.data as Hex,
             log.topics as EventLogTopics,
           );
+          if (!decoded) return false;
           return decoded.eventName === 'ProposalCreated';
         } catch (_) {
           return false;
@@ -93,6 +96,7 @@ export const generate = (transaction: Transaction): Transaction => {
             registerLog.data as Hex,
             registerLog.topics as EventLogTopics,
           );
+          if (!decoded) return transaction;
 
           proposalId = decoded.args['id'];
         } catch (err) {
@@ -167,7 +171,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const support = decoded.args[1];
       const { action, description } = translateSupport(support);
 
-      let voter: string;
+      let voter: string = '';
 
       const registerLog = transaction.logs?.find((log) => {
         try {
@@ -176,6 +180,7 @@ export const generate = (transaction: Transaction): Transaction => {
             log.data as Hex,
             log.topics as EventLogTopics,
           );
+          if (!decoded) return false;
           return decoded.eventName === 'VoteCast';
         } catch (_) {
           return false;
@@ -189,6 +194,8 @@ export const generate = (transaction: Transaction): Transaction => {
             registerLog.data as Hex,
             registerLog.topics as EventLogTopics,
           );
+
+          if (!decoded) return transaction;
 
           voter = decoded.args['voter'];
         } catch (err) {

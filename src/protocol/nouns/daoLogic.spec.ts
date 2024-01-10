@@ -20,7 +20,7 @@ describe('Nouns Governor', () => {
 
     it('Should generate context', () => {
       const transaction = generate(nounsPropose0x43866eb1 as Transaction);
-      expect(transaction.context.summaries.en.title).toBe('Nouns');
+      expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0xa86882277e69fbf0a51805cdc8b0a3a113079e63 CREATED_PROPOSAL 463',
       );
@@ -35,7 +35,7 @@ describe('Nouns Governor', () => {
 
     it('Should generate context', () => {
       const transaction = generate(nounsCastVote0xeaf10956 as Transaction);
-      expect(transaction.context.summaries.en.title).toBe('Nouns');
+      expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0xa5d7e4c18d223d1f142297d17e36d74ce7793a54 VOTED in favor of proposal 472',
       );
@@ -52,7 +52,7 @@ describe('Nouns Governor', () => {
       const transaction = generate(
         nounsCastRefundableVote0x989966a2 as Transaction,
       );
-      expect(transaction.context.summaries.en.title).toBe('Nouns');
+      expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0xb0dd496ffffa300df1eff42702066aca81834404 ABSTAINED from voting on proposal 473',
       );
@@ -69,7 +69,7 @@ describe('Nouns Governor', () => {
       const transaction = generate(
         nounsCastRefundableVwr0x4577a55a as Transaction,
       );
-      expect(transaction.context.summaries.en.title).toBe('Nouns');
+      expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0xceed9585854f12f81a0103861b83b995a64ad915 VOTED against proposal 471',
       );
@@ -84,7 +84,7 @@ describe('Nouns Governor', () => {
 
     it('Should generate context', () => {
       const transaction = generate(nounsQueue0x5949facf as Transaction);
-      expect(transaction.context.summaries.en.title).toBe('Nouns');
+      expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0x10dec36b4ac9d3b60490dfe2799881287d4a74cc QUEUED proposal 474',
       );
@@ -99,7 +99,7 @@ describe('Nouns Governor', () => {
 
     it('Should generate context', () => {
       const transaction = generate(nounsExecute0x540c83cb as Transaction);
-      expect(transaction.context.summaries.en.title).toBe('Nouns');
+      expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0x32d1a53f6709a03f4b6cf4cb0501204ba188d4f5 EXECUTED proposal 473',
       );
@@ -114,7 +114,7 @@ describe('Nouns Governor', () => {
 
     it('Should generate context', () => {
       const transaction = generate(nounsCancel0xaae56ed7 as Transaction);
-      expect(transaction.context.summaries.en.title).toBe('Nouns');
+      expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0xf2b7bfcdd6b596767e346269a8675472b45d098f CANCELED proposal 472',
       );
