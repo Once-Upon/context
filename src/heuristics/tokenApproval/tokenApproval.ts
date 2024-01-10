@@ -1,7 +1,7 @@
 import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import approveAbi from './abis/Approve';
-import setApproveAllAbi from './abis/SetApproveAll';
+import setApprovalForAllAbi from './abis/SetApprovalForAll';
 import { decodeTransactionInput } from '../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -18,7 +18,7 @@ export function detect(transaction: Transaction): boolean {
   if (!decoded) {
     decoded = decodeTransactionInput(
       transaction.input as Hex,
-      setApproveAllAbi,
+      setApprovalForAllAbi,
     );
   }
 
@@ -58,7 +58,7 @@ export function generate(transaction: Transaction): Transaction {
   if (!decoded) {
     decoded = decodeTransactionInput(
       transaction.input as Hex,
-      setApproveAllAbi,
+      setApprovalForAllAbi,
     );
   }
   if (!decoded) {
