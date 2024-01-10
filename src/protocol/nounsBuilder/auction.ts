@@ -1,5 +1,10 @@
 import { Hex } from 'viem';
-import { AssetType, EventLogTopics, Transaction } from '../../types';
+import {
+  AssetType,
+  ContextVariable,
+  EventLogTopics,
+  Transaction,
+} from '../../types';
 import { ABIs, NOUNS_BUILDER_INSTANCES } from './constants';
 import { NounsContracts } from '../nouns/constants';
 import { decodeLog, decodeTransactionInput } from '../../helpers/utils';
@@ -57,59 +62,62 @@ export const generate = (transaction: Transaction): Transaction => {
 
   switch (decoded.functionName) {
     case 'createBid': {
-      transaction.context = {
-        variables: {
-          contextAction: {
-            type: 'contextAction',
-            value: 'BID',
-          },
-          subject: {
-            type: 'address',
-            value: transaction.from,
-          },
-          nounId: {
-            type: 'string',
-            value: decoded.args[0].toString(),
-          },
-          amount: {
-            type: AssetType.ETH,
-            value: transaction.value,
-            unit: 'wei',
-          },
+      let variables: ContextVariable = {
+        contextAction: {
+          type: 'contextAction',
+          value: 'BID',
+        },
+        subject: {
+          type: 'address',
+          value: transaction.from,
+        },
+        nounId: {
+          type: 'string',
+          value: decoded.args[0].toString(),
+        },
+        amount: {
+          type: AssetType.ETH,
+          value: transaction.value,
+          unit: 'wei',
         },
       };
 
       if (!transaction.to) return transaction;
 
-      transaction.context.variables = {};
-
       const dao = daoByAuctionAuctionHouseContract(transaction.to);
       if (dao) {
         // If we have a mapping beteen nounsdao -> erc721, use that to show token
-        transaction.context.variables.token = {
+        variables.token = {
           type: AssetType.ERC721,
           token: dao.nft,
           tokenId: decoded.args[0].toString(),
         };
-        transaction.context.summaries = {
-          category: 'PROTOCOL_1',
-          en: {
-            title: 'DAO',
-            default: '[[subject]] [[contextAction]] [[amount]] on [[token]]',
+
+        transaction.context = {
+          variables,
+          summaries: {
+            category: 'PROTOCOL_1',
+            en: {
+              title: 'DAO',
+              default: '[[subject]] [[contextAction]] [[amount]] on [[token]]',
+            },
           },
         };
       } else {
         // If not, use a generic tokenId
-        transaction.context.variables.tokenId = {
+        variables.tokenId = {
           type: 'string',
           value: decoded.args[0].toString(),
         };
-        transaction.context.summaries = {
-          category: 'PROTOCOL_1',
-          en: {
-            title: 'DAO',
-            default:
-              '[[subject]] [[contextAction]] [[amount]] on token #[[tokenId]]',
+        transaction.context = {
+          variables,
+          summaries: {
+            category: 'PROTOCOL_1',
+            en: {
+              title: 'DAO',
+              default:
+                '[[subject]] [[contextAction]] [[amount]] on token #[[tokenId]]',
+            },
           },
         };
       }
@@ -153,53 +161,55 @@ export const generate = (transaction: Transaction): Transaction => {
         }
       }
 
-      transaction.context = {
-        variables: {
-          contextAction: {
-            type: 'contextAction',
-            value: 'SETTLED',
-          },
-          subject: {
-            type: 'address',
-            value: transaction.from,
-          },
-          winner: {
-            type: 'address',
-            value: winner,
-          },
+      let variables: ContextVariable = {
+        contextAction: {
+          type: 'contextAction',
+          value: 'SETTLED',
+        },
+        subject: {
+          type: 'address',
+          value: transaction.from,
+        },
+        winner: {
+          type: 'address',
+          value: winner,
         },
       };
       if (!transaction.to) return transaction;
       const dao = daoByAuctionAuctionHouseContract(transaction.to);
-      transaction.context.variables = {};
       if (dao) {
         // If we have a mapping beteen nounsdao -> erc721, use that to show token
-        transaction.context.variables.token = {
+        variables.token = {
           type: AssetType.ERC721,
           token: dao.nft,
           tokenId: tokenId,
         };
 
-        transaction.context.summaries = {
-          category: 'PROTOCOL_1',
-          en: {
-            title: 'DAO',
-            default:
-              '[[subject]] [[contextAction]] auction for [[token]] won by [[winner]]',
+        transaction.context = {
+          variables,
+          summaries: {
+            category: 'PROTOCOL_1',
+            en: {
+              title: 'DAO',
+              default:
+                '[[subject]] [[contextAction]] auction for [[token]] won by [[winner]]',
+            },
           },
         };
       } else {
-        // If not, use a generic tokenId
-        transaction.context.variables.tokenId = {
+        variables.tokenId = {
           type: 'string',
           value: tokenId,
         };
-        transaction.context.summaries = {
-          category: 'PROTOCOL_1',
-          en: {
-            title: 'DAO',
-            default:
-              '[[subject]] [[contextAction]] auction for token #[[tokenId]] won by [[winner]]',
+        transaction.context = {
+          variables,
+          summaries: {
+            category: 'PROTOCOL_1',
+            en: {
+              title: 'DAO',
+              default:
+                '[[subject]] [[contextAction]] auction for token #[[tokenId]] won by [[winner]]',
+            },
           },
         };
       }
