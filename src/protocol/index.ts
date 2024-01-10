@@ -8,6 +8,8 @@ import { leeroyContextualizer } from './leeroy';
 import { frenPetContextualizer } from './frenpet';
 import { cryptopunksContextualizer } from './cryptopunks';
 import { friendTechContextualizer } from './friendTech';
+import { nounsContextualizer } from './nouns';
+import { nounsBuilderContextualizer } from './nounsBuilder';
 
 const children = {
   wethContextualizer,
@@ -19,6 +21,8 @@ const children = {
   frenPetContextualizer,
   cryptopunksContextualizer,
   friendTechContextualizer,
+  nounsContextualizer,
+  nounsBuilderContextualizer,
 };
 
 const protocolContextualizers = Object.fromEntries(

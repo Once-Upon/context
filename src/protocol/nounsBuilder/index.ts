@@ -6,7 +6,7 @@ const children = { auction, governor };
 
 const contextualize = makeContextualize(children);
 
-export const ensContextualizer = {
+export const nounsBuilderContextualizer = {
   contextualize,
   children,
 };
