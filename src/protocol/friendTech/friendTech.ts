@@ -21,7 +21,7 @@ export const generate = (transaction: Transaction): Transaction => {
         transaction.input as Hex,
         ABIs.FriendTech,
       );
-      if (!parsedTx) return transaction;
+      if (!parsedTx || !parsedTx.args) return transaction;
 
       const subject = parsedTx.args[0].toString();
       const shareAmount = Number(parsedTx.args[1]);
@@ -66,6 +66,8 @@ export const generate = (transaction: Transaction): Transaction => {
   // buyShares(address sharesSubject, uint256 amount)
   if (transaction.sigHash === '0x6945b123') {
     try {
+      if (!transaction.logs) return transaction;
+
       const log = transaction.logs[0];
       const parsedLog = decodeLog(
         ABIs.FriendTech,
@@ -142,13 +144,15 @@ export const generate = (transaction: Transaction): Transaction => {
       return transaction;
     } catch (e) {
       console.log(e);
-      return null;
+      return transaction;
     }
   }
 
   // sellShares(address sharesSubject, uint256 amount)
   if (transaction.sigHash === '0xb51d0534') {
     try {
+      if (!transaction.logs) return transaction;
+
       const log = transaction.logs[0];
       const parsedLog = decodeLog(
         ABIs.FriendTech,

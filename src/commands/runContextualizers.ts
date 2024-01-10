@@ -11,7 +11,7 @@ export function registerRunContextualizersCommand() {
     .option('-l, --limit <limit>', 'number of transactions')
     .action(async (options) => {
       const limit = options?.limit ? parseInt(options?.limit) : 25;
-      let transactions: Transaction[];
+      let transactions: Transaction[] = [];
       try {
         console.log(`Fetching transactions`);
         transactions = await fetchTransactions(limit);

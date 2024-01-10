@@ -1,10 +1,12 @@
 import {
   Transaction,
-  ContextSummaryVariableType,
   AssetType,
   ERC20Asset,
   ERC1155Asset,
   ERC721Asset,
+  ERC1155AssetTransfer,
+  ERC20AssetTransfer,
+  ERC721AssetTransfer,
 } from '../../types';
 import { KNOWN_ADDRESSES } from '../../helpers/constants';
 
@@ -37,9 +39,9 @@ export function detect(transaction: Transaction): boolean {
 
   // check if only 1 address is sending
   const sendAddresses = Object.keys(transaction.netAssetTransfers).filter(
-    (address) => transaction.netAssetTransfers[address]?.sent.length > 0,
+    (address) => transaction.netAssetTransfers![address]?.sent.length > 0,
   );
-  if (sendAddresses.length > 1) {
+  if (sendAddresses.length !== 1) {
     return false;
   }
   // check if all other addresses are receiving
@@ -77,10 +79,16 @@ export function detect(transaction: Transaction): boolean {
 }
 
 function generate(transaction: Transaction): Transaction {
+  if (!transaction.assetTransfers) {
+    return transaction;
+  }
   // Summary context
   const tokenTransfers = transaction.assetTransfers.filter(
-    (x) => x.type === 'erc721' || x.type === 'erc1155' || x.type === 'erc20',
-  );
+    (x) =>
+      x.type === AssetType.ERC721 ||
+      x.type === AssetType.ERC1155 ||
+      x.type === AssetType.ERC20,
+  ) as (ERC1155AssetTransfer | ERC20AssetTransfer | ERC721AssetTransfer)[];
   const assets = Array.from(new Set(tokenTransfers.map((x) => x.asset)));
   const senders = Array.from(new Set(tokenTransfers.map((x) => x.from)));
   const recipients = Array.from(new Set(tokenTransfers.map((x) => x.to)));
@@ -92,12 +100,25 @@ function generate(transaction: Transaction): Transaction {
     return transaction;
   }
 
-  const firstToken = {
-    type: firstAssetTransfer.type,
-    token: firstAssetTransfer.asset,
-    tokenId: firstAssetTransfer.tokenId,
-    value: firstAssetTransfer.value,
-  } as ContextSummaryVariableType;
+  const firstToken =
+    firstAssetTransfer.type === AssetType.ERC20
+      ? {
+          type: firstAssetTransfer.type,
+          token: firstAssetTransfer.asset,
+          value: firstAssetTransfer.value,
+        }
+      : firstAssetTransfer.type === AssetType.ERC721
+        ? {
+            type: firstAssetTransfer.type,
+            token: firstAssetTransfer.asset,
+            tokenId: firstAssetTransfer.tokenId,
+          }
+        : {
+            type: firstAssetTransfer.type,
+            token: firstAssetTransfer.asset,
+            tokenId: firstAssetTransfer.tokenId,
+            value: firstAssetTransfer.value,
+          };
 
   const category =
     firstAssetTransfer.type === 'erc721' ? 'NFT' : 'FUNGIBLE_TOKEN';

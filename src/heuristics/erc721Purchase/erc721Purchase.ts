@@ -46,6 +46,10 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
+  if (!transaction.netAssetTransfers) {
+    return transaction;
+  }
+
   const receivingAddresses: string[] = [];
   let receivedNfts: ERC721Asset[] = [];
   let erc20Payments: ERC20Asset[] = [];

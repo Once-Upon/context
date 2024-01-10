@@ -1,4 +1,9 @@
-import { AssetType, ETHAsset, Transaction } from '../../types';
+import {
+  AssetType,
+  ETHAsset,
+  Transaction,
+  ERC20AssetTransfer,
+} from '../../types';
 import { KNOWN_ADDRESSES, WETH_ADDRESSES } from '../../helpers/constants';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -29,8 +34,9 @@ export function detect(transaction: Transaction): boolean {
     (transfer) =>
       transfer.from === KNOWN_ADDRESSES.NULL &&
       transfer.type === AssetType.ERC20 &&
+      transfer.asset &&
       !WETH_ADDRESSES.includes(transfer.asset),
-  );
+  ) as ERC20AssetTransfer[];
 
   if (mints.length == 0) {
     return false;
@@ -54,7 +60,7 @@ export function detect(transaction: Transaction): boolean {
     .reduce((parties, address) => {
       parties = [...new Set([...parties, address])];
       return parties;
-    }, [])
+    }, [] as string[])
     .filter(
       (address) =>
         address !== KNOWN_ADDRESSES.NULL && address !== transaction.from,
@@ -71,18 +77,21 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
+  if (!transaction.assetTransfers || !transaction.netAssetTransfers) {
+    return transaction;
+  }
   // Get all the mints where from account == to account for the mint transfer
-  const mints = transaction.assetTransfers.filter((transfer) => {
-    return transfer.from === KNOWN_ADDRESSES.NULL;
-  });
+  const mints = transaction.assetTransfers.filter(
+    (transfer) =>
+      transfer.from === KNOWN_ADDRESSES.NULL &&
+      transfer.type === AssetType.ERC20 &&
+      transfer.asset &&
+      !WETH_ADDRESSES.includes(transfer.asset),
+  ) as ERC20AssetTransfer[];
 
   // We do this so we can use the assetTransfer var directly in the outcomes for contextualizations
   // The contextualizations expect a property "token", not "asset"
-  const assetTransfer = {
-    ...mints[0],
-    token: mints[0].asset,
-  };
-  delete assetTransfer.asset;
+  const assetTransfer: ERC20AssetTransfer = mints[0];
   const recipient = assetTransfer.to;
 
   const assetSent = transaction.netAssetTransfers[transaction.from]
@@ -93,7 +102,7 @@ export function generate(transaction: Transaction): Transaction {
     variables: {
       token: {
         type: AssetType.ERC20,
-        token: assetTransfer.token,
+        token: assetTransfer.asset,
         value: assetTransfer.value,
       },
       recipient: {

@@ -52,6 +52,8 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
+  if (!transaction.to) return transaction;
+
   // decode transaction
   let decoded;
   decoded = decodeTransactionInput(transaction.input as Hex, approveAbi);

@@ -85,9 +85,11 @@ export function decodeLog<TAbi extends Abi>(
   }
 }
 
-export function contextSummary(context: TransactionContextType): string {
+export function contextSummary(
+  context: TransactionContextType | undefined,
+): string {
+  if (!context || !context.summaries) return '';
   const summaryTemplate = context.summaries.en.default;
-  if (!summaryTemplate) return null;
 
   const regex = /(\[\[.*?\]\])/;
   const parts = summaryTemplate.split(regex).filter((x) => x);
@@ -97,8 +99,11 @@ export function contextSummary(context: TransactionContextType): string {
       const variableName = part.slice(2, -2);
 
       const varContext =
-        context.variables[variableName] ||
-        context.summaries.en.variables[variableName];
+        context.variables?.[variableName] ||
+        context.summaries?.en.variables?.[variableName];
+
+      if (!varContext) return part;
+
       return formatSection(varContext);
     } else {
       return part;

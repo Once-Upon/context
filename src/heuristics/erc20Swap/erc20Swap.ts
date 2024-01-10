@@ -72,6 +72,10 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
+  if (!transaction.netAssetTransfers) {
+    return transaction;
+  }
+
   const swapper: ContextHexType = {
     type: 'address',
     value: transaction.from,

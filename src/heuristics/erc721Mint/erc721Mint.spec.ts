@@ -29,14 +29,14 @@ describe('ERC721 Mint', () => {
 
   it('Should generate a context for token mint', () => {
     const erc721Mint1 = generate(erc721Mint0x02e0551e as Transaction);
-    expect(erc721Mint1.context.summaries.category).toBe('NFT');
+    expect(erc721Mint1.context?.summaries?.category).toBe('NFT');
     const desc1 = contextSummary(erc721Mint1.context);
     expect(desc1).toBe(
       '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 MINTED 10 x 0x251c3246642dbcc5473ae8700a14a11522a4302c for 0.1 ETH',
     );
 
     const erc721Mint2 = generate(erc721Mint0x35f54999 as Transaction);
-    expect(erc721Mint2.context.summaries.category).toBe('NFT');
+    expect(erc721Mint2.context?.summaries?.category).toBe('NFT');
     const desc2 = contextSummary(erc721Mint2.context);
     expect(desc2).toBe(
       '0xb8edb17cd08dd854dee002f898b4f7cb3763ce75 MINTED 0x13303b4ee819fac204be5ef77523cfcd558c082f #4070 for 0 ETH',

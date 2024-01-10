@@ -31,6 +31,7 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
+  if (!transaction.assetTransfers) return transaction;
   // We do this so we can use the assetTransfer var directly in the outcomes for contextualizations
   // The contextualizations expect a property "token", not "asset"
   const assetTransfer = {

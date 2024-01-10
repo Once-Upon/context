@@ -57,24 +57,25 @@ const pluralize = (word: string, n: number): string => {
   return `${word}${n !== 1 ? 's' : ''}`;
 };
 
-const getAttestationID = (transaction: Transaction): string => {
+const getAttestationID = (transaction: Transaction): string | null => {
   // Note: The Revoked event has the uid for the attestation in the same place as the Attested event
   // so it can be used for both
   // Capture attestation ID
   let attestationID: string = '';
-  if (transaction.receipt?.status) {
-    // TODO: Confirm that the event matches the expected name
-    const transactionLog = transaction?.logs?.[0];
-    const decoded = decodeLog(
-      ABIs.EAS,
-      transactionLog?.data as Hex,
-      transactionLog?.topics as EventLogTopics,
-    );
-    if (!decoded) return null;
-
-    attestationID = decoded.args['uid'];
-    return attestationID;
+  if (!transaction.receipt?.status) {
+    return null;
   }
+  // TODO: Confirm that the event matches the expected name
+  const transactionLog = transaction?.logs?.[0];
+  const decoded = decodeLog(
+    ABIs.EAS,
+    transactionLog?.data as Hex,
+    transactionLog?.topics as EventLogTopics,
+  );
+  if (!decoded) return null;
+
+  attestationID = decoded.args['uid'];
+  return attestationID;
 };
 
 // Contextualize for mined txs
