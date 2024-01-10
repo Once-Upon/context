@@ -45,6 +45,8 @@ export const detect = (transaction: Transaction): boolean => {
       ABIs.IGovernor,
     );
 
+    if (!decoded) return false;
+
     if (
       decoded.functionName !== 'propose' &&
       decoded.functionName !== 'castVote' &&
@@ -71,8 +73,11 @@ export const generate = (transaction: Transaction): Transaction => {
     ABIs.IGovernor,
   );
 
-  const daoName = daoByAuctionGovernorContract(transaction.to)?.name;
+  if (!decoded) return transaction;
 
+  if (!transaction.to) return transaction;
+  const daoName: string =
+    daoByAuctionGovernorContract(transaction.to)?.name ?? '';
   switch (decoded.functionName) {
     case 'propose': {
       let proposalId = '';
@@ -84,6 +89,7 @@ export const generate = (transaction: Transaction): Transaction => {
             log.data as Hex,
             log.topics as EventLogTopics,
           );
+          if (!decoded) return false;
           return decoded.eventName === 'ProposalCreated';
         } catch (_) {
           return false;
@@ -97,6 +103,8 @@ export const generate = (transaction: Transaction): Transaction => {
             registerLog.data as Hex,
             registerLog.topics as EventLogTopics,
           );
+
+          if (!decoded) return transaction;
 
           proposalId = decoded.args['proposalId'];
         } catch (err) {
@@ -225,6 +233,7 @@ export const generate = (transaction: Transaction): Transaction => {
             log.data as Hex,
             log.topics as EventLogTopics,
           );
+          if (!decoded) return false;
           return decoded.eventName === 'ProposalExecuted';
         } catch (_) {
           return false;
@@ -238,6 +247,7 @@ export const generate = (transaction: Transaction): Transaction => {
             registerLog.data as Hex,
             registerLog.topics as EventLogTopics,
           );
+          if (!decoded) return transaction;
 
           proposalId = decoded.args['proposalId'];
         } catch (err) {

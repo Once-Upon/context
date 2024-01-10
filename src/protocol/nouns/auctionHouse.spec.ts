@@ -16,7 +16,7 @@ describe('Nouns Auction House', () => {
       const transaction = generate(
         nounsAuctionHouseBid0x4efdef57 as Transaction,
       );
-      expect(transaction.context.summaries.en.title).toBe('Nouns');
+      expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0xa86882277e69fbf0a51805cdc8b0a3a113079e63 BID 12 ETH on 0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03 #938',
       );
@@ -35,7 +35,7 @@ describe('Nouns Auction House', () => {
       const transaction = generate(
         nounsAuctionHouseSettleAndCreate0x354aea2d as Transaction,
       );
-      expect(transaction.context.summaries.en.title).toBe('Nouns');
+      expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0xca89e2472fe57bdc74f2361ceea5962fb205119c SETTLED auction for 0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03 #938 won by 0xA86882277E69FbF0a51805cdc8b0a3a113079E63',
       );

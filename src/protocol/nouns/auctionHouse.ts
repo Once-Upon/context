@@ -24,6 +24,7 @@ export const detect = (transaction: Transaction): boolean => {
       transaction.input as Hex,
       ABIs.NounsAuctionHouse,
     );
+    if (!decoded) return false;
 
     if (
       decoded.functionName !== 'createBid' &&
@@ -49,6 +50,8 @@ export const generate = (transaction: Transaction): Transaction => {
     transaction.input as Hex,
     ABIs.NounsAuctionHouse,
   );
+
+  if (!decoded) return transaction;
 
   switch (decoded.functionName) {
     case 'createBid': {
@@ -96,6 +99,7 @@ export const generate = (transaction: Transaction): Transaction => {
             log.data as Hex,
             log.topics as EventLogTopics,
           );
+          if (!decoded) return false;
           return decoded.eventName === 'AuctionSettled';
         } catch (_) {
           return false;
@@ -109,6 +113,7 @@ export const generate = (transaction: Transaction): Transaction => {
             registerLog.data as Hex,
             registerLog.topics as EventLogTopics,
           );
+          if (!decoded) return transaction;
 
           nounId = decoded.args['nounId'];
           winner = decoded.args['winner'];

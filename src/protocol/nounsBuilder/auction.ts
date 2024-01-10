@@ -30,6 +30,8 @@ export const detect = (transaction: Transaction): boolean => {
       ABIs.IAuction,
     );
 
+    if (!decoded) return false;
+
     if (
       decoded.functionName !== 'createBid' &&
       decoded.functionName !== 'settleCurrentAndCreateNewAuction' &&
@@ -50,6 +52,8 @@ export const generate = (transaction: Transaction): Transaction => {
     transaction.input as Hex,
     ABIs.IAuction,
   );
+
+  if (!decoded) return transaction;
 
   switch (decoded.functionName) {
     case 'createBid': {
@@ -74,6 +78,10 @@ export const generate = (transaction: Transaction): Transaction => {
           },
         },
       };
+
+      if (!transaction.to) return transaction;
+
+      transaction.context.variables = {};
 
       const dao = daoByAuctionAuctionHouseContract(transaction.to);
       if (dao) {
@@ -121,6 +129,7 @@ export const generate = (transaction: Transaction): Transaction => {
             log.data as Hex,
             log.topics as EventLogTopics,
           );
+          if (!decoded) return false;
           return decoded.eventName === 'AuctionSettled';
         } catch (_) {
           return false;
@@ -134,6 +143,8 @@ export const generate = (transaction: Transaction): Transaction => {
             registerLog.data as Hex,
             registerLog.topics as EventLogTopics,
           );
+
+          if (!decoded) return transaction;
 
           tokenId = decoded.args['tokenId'];
           winner = decoded.args['winner'];
@@ -158,8 +169,9 @@ export const generate = (transaction: Transaction): Transaction => {
           },
         },
       };
-
+      if (!transaction.to) return transaction;
       const dao = daoByAuctionAuctionHouseContract(transaction.to);
+      transaction.context.variables = {};
       if (dao) {
         // If we have a mapping beteen nounsdao -> erc721, use that to show token
         transaction.context.variables.token = {
