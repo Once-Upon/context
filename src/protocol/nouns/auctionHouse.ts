@@ -135,7 +135,7 @@ export const generate = (transaction: Transaction): Transaction => {
           noun: {
             type: AssetType.ERC721,
             token: NounsContracts.NFT,
-            tokenId: nounId,
+            tokenId: nounId.toString(),
           },
           winner: {
             type: 'address',
