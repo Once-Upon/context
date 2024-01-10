@@ -1,0 +1,253 @@
+{
+  "accessList": [],
+  "blockHash": "0x8726b77c1709255f9ed2cfed1fdf5964ec1534d9867d4a9acc9558849f8acb41",
+  "blockNumber": 18646818,
+  "chainId": 1,
+  "from": "0xceed9585854f12f81a0103861b83b995a64ad915",
+  "gas": 124725,
+  "gasPrice": "21180952118",
+  "hash": "0x71079ef34da4cd077ffb4ebc3c26b30ab3fe2659b446eca43f8e7ba65725ece4",
+  "input": "0x41f9b62c47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000d449276d20666169726c79206e657720746f20507572706c6520736f204920646f6e27742077616e7420746f206a756d7020696e206d69642070726f636573732e20492072657669657765642074686520766f746520726561736f6e7320616e6420756e6465727374616e6420736f6d6520617267756d656e747320666f72206f74686572207479706573206f6620656e7469746965732062757420616c736f20736565207468652076616c7565206f6620746869732074797065206f66206c696768742077656967687420777261707065722e20000000000000000000000000",
+  "maxFeePerGas": "27334431596",
+  "maxPriorityFeePerGas": "100000000",
+  "nonce": 2251,
+  "r": "0x137705dd84a1a0ecb73ae586682c0e31a415bee3e2ab3dc1f47140418af972cf",
+  "s": "0x36a3341d212976fc8653ff05d18ce8a1e5531b5d96ab02c2e2f80c1fa25fa93b",
+  "to": "0xfb4a96541e1c70fc85ee512420eb0b05c542df57",
+  "transactionIndex": 79,
+  "type": 2,
+  "v": "0x0",
+  "value": "0",
+  "delegateCalls": [
+    {
+      "action": {
+        "callType": "delegatecall",
+        "from": "0xfb4a96541e1c70fc85ee512420eb0b05c542df57",
+        "gas": "0x16af1",
+        "input": "0x41f9b62c47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000d449276d20666169726c79206e657720746f20507572706c6520736f204920646f6e27742077616e7420746f206a756d7020696e206d69642070726f636573732e20492072657669657765642074686520766f746520726561736f6e7320616e6420756e6465727374616e6420736f6d6520617267756d656e747320666f72206f74686572207479706573206f6620656e7469746965732062757420616c736f20736565207468652076616c7565206f6620746869732074797065206f66206c696768742077656967687420777261707065722e20000000000000000000000000",
+        "to": "0x46ea3fd17deb7b291aea60e67e5cb3a104fea11d",
+        "value": "0x0"
+      },
+      "blockHash": "0x8726b77c1709255f9ed2cfed1fdf5964ec1534d9867d4a9acc9558849f8acb41",
+      "blockNumber": 18646818,
+      "result": {
+        "gasUsed": "0xcb13",
+        "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+      },
+      "subtraces": 1,
+      "traceAddress": [
+        0
+      ],
+      "transactionHash": "0x71079ef34da4cd077ffb4ebc3c26b30ab3fe2659b446eca43f8e7ba65725ece4",
+      "transactionPosition": 79,
+      "type": "call"
+    },
+    {
+      "action": {
+        "callType": "delegatecall",
+        "from": "0xa45662638e9f3bbb7a6fecb4b17853b7ba0f3a60",
+        "gas": "0xce64",
+        "input": "0x3a46b1a8000000000000000000000000ceed9585854f12f81a0103861b83b995a64ad91500000000000000000000000000000000000000000000000000000000655b9ca7",
+        "to": "0xaed75d1e5c1821e2ec29d5d24b794b13c34c5d63",
+        "value": "0x0"
+      },
+      "blockHash": "0x8726b77c1709255f9ed2cfed1fdf5964ec1534d9867d4a9acc9558849f8acb41",
+      "blockNumber": 18646818,
+      "result": {
+        "gasUsed": "0x145e",
+        "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+      },
+      "subtraces": 0,
+      "traceAddress": [
+        0,
+        0,
+        0
+      ],
+      "transactionHash": "0x71079ef34da4cd077ffb4ebc3c26b30ab3fe2659b446eca43f8e7ba65725ece4",
+      "transactionPosition": 79,
+      "type": "call"
+    }
+  ],
+  "baseFeePerGas": 21080952118,
+  "burntFees": "1736353702151188",
+  "minerFees": "8236600000000",
+  "transactionFee": "1744590302151188",
+  "fork": "shanghai",
+  "sigHash": "0x41f9b62c",
+  "internalSigHashes": [
+    {
+      "from": "0xceed9585854f12f81a0103861b83b995a64ad915",
+      "to": "0xfb4a96541e1c70fc85ee512420eb0b05c542df57",
+      "sigHash": "0x41f9b62c"
+    },
+    {
+      "from": "0xfb4a96541e1c70fc85ee512420eb0b05c542df57",
+      "to": "0x46ea3fd17deb7b291aea60e67e5cb3a104fea11d",
+      "sigHash": "0x41f9b62c"
+    },
+    {
+      "from": "0xfb4a96541e1c70fc85ee512420eb0b05c542df57",
+      "to": "0xa45662638e9f3bbb7a6fecb4b17853b7ba0f3a60",
+      "sigHash": "0x3a46b1a8"
+    },
+    {
+      "from": "0xa45662638e9f3bbb7a6fecb4b17853b7ba0f3a60",
+      "to": "0xaed75d1e5c1821e2ec29d5d24b794b13c34c5d63",
+      "sigHash": "0x3a46b1a8"
+    }
+  ],
+  "timestamp": 1700892407,
+  "isoTimestamp": "2023-11-25T06:06:47.000Z",
+  "decode": {
+    "fragment": {
+      "type": "function",
+      "inputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "baseType": "bytes32",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "baseType": "uint256",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        },
+        {
+          "name": "",
+          "type": "string",
+          "baseType": "string",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null
+        }
+      ],
+      "name": "castVoteWithReason",
+      "constant": false,
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "payable": false,
+      "gas": null
+    },
+    "name": "castVoteWithReason",
+    "args": [
+      "0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b",
+      "2",
+      "I'm fairly new to Purple so I don't want to jump in mid process. I reviewed the vote reasons and understand some arguments for other types of entities but also see the value of this type of light weight wrapper. "
+    ],
+    "signature": "castVoteWithReason(bytes32,uint256,string)",
+    "selector": "0x41f9b62c",
+    "value": "0"
+  },
+  "parties": [
+    "0xceed9585854f12f81a0103861b83b995a64ad915",
+    "0xfb4a96541e1c70fc85ee512420eb0b05c542df57",
+    "0x46ea3fd17deb7b291aea60e67e5cb3a104fea11d",
+    "0xa45662638e9f3bbb7a6fecb4b17853b7ba0f3a60",
+    "0xaed75d1e5c1821e2ec29d5d24b794b13c34c5d63"
+  ],
+  "receipt": {
+    "blockHash": "0x8726b77c1709255f9ed2cfed1fdf5964ec1534d9867d4a9acc9558849f8acb41",
+    "blockNumber": 18646818,
+    "contractAddress": null,
+    "cumulativeGasUsed": 6599622,
+    "effectiveGasPrice": 21180952118,
+    "from": "0xceed9585854f12f81a0103861b83b995a64ad915",
+    "gasUsed": 82366,
+    "logsBloom": "0x00000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000004",
+    "status": true,
+    "to": "0xfb4a96541e1c70fc85ee512420eb0b05c542df57",
+    "transactionHash": "0x71079ef34da4cd077ffb4ebc3c26b30ab3fe2659b446eca43f8e7ba65725ece4",
+    "transactionIndex": 79,
+    "type": "0x2"
+  },
+  "logs": [
+    {
+      "address": "0xfb4a96541e1c70fc85ee512420eb0b05c542df57",
+      "blockHash": "0x8726b77c1709255f9ed2cfed1fdf5964ec1534d9867d4a9acc9558849f8acb41",
+      "blockNumber": 18646818,
+      "data": "0x000000000000000000000000ceed9585854f12f81a0103861b83b995a64ad91547d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000d449276d20666169726c79206e657720746f20507572706c6520736f204920646f6e27742077616e7420746f206a756d7020696e206d69642070726f636573732e20492072657669657765642074686520766f746520726561736f6e7320616e6420756e6465727374616e6420736f6d6520617267756d656e747320666f72206f74686572207479706573206f6620656e7469746965732062757420616c736f20736565207468652076616c7565206f6620746869732074797065206f66206c696768742077656967687420777261707065722e20000000000000000000000000",
+      "logIndex": 167,
+      "removed": false,
+      "topics": [
+        "0x0c165c85edbf8f9b99d51793c9429beb9dc2b608a7f81e64623052f829657af3"
+      ],
+      "transactionHash": "0x71079ef34da4cd077ffb4ebc3c26b30ab3fe2659b446eca43f8e7ba65725ece4",
+      "transactionIndex": 79,
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "voter",
+              "type": "address",
+              "baseType": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "proposalId",
+              "type": "bytes32",
+              "baseType": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "support",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "weight",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "reason",
+              "type": "string",
+              "baseType": "string",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "VoteCast",
+          "anonymous": false
+        },
+        "name": "VoteCast",
+        "signature": "VoteCast(address,bytes32,uint256,uint256,string)",
+        "topic": "0x0c165c85edbf8f9b99d51793c9429beb9dc2b608a7f81e64623052f829657af3",
+        "args": [
+          "0xceed9585854f12f81a0103861b83b995a64ad915",
+          "0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b",
+          "2",
+          "1",
+          "I'm fairly new to Purple so I don't want to jump in mid process. I reviewed the vote reasons and understand some arguments for other types of entities but also see the value of this type of light weight wrapper. "
+        ]
+      },
+      "chainId": 1
+    }
+  ],
+  "contractsCreated": []
+}
