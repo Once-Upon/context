@@ -27,21 +27,21 @@ describe('Token Approval', () => {
     expect(tokenApproval1.context?.summaries?.en.title).toBe('Token Approval');
     const desc1 = contextSummary(tokenApproval1.context);
     expect(desc1).toBe(
-      '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 GAVE_ACCESS_TO 0x1e0049783f008a0085193e00003d00cd54003c71 for 0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85',
+      '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 GAVE_ACCESS to 0x1e0049783f008a0085193e00003d00cd54003c71 for 0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85',
     );
 
     const tokenApproval2 = generate(tokenApproval0x06f15d49 as Transaction);
     expect(tokenApproval2.context?.summaries?.en.title).toBe('Token Approval');
     const desc2 = contextSummary(tokenApproval2.context);
     expect(desc2).toBe(
-      '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 GAVE_ACCESS_TO 0x1e0049783f008a0085193e00003d00cd54003c71 for 0xd3605059c3ce9facf625fa72d727508b7b7f280f',
+      '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 GAVE_ACCESS to 0x1e0049783f008a0085193e00003d00cd54003c71 for 0xd3605059c3ce9facf625fa72d727508b7b7f280f',
     );
 
     const tokenApproval3 = generate(tokenApproval0xa0c2a425 as Transaction);
     expect(tokenApproval3.context?.summaries?.en.title).toBe('Token Approval');
     const desc3 = contextSummary(tokenApproval3.context);
     expect(desc3).toBe(
-      '0xb8edb17cd08dd854dee002f898b4f7cb3763ce75 GAVE_ACCESS_TO 0xdef1c0ded9bec7f1a1670819833240f027b25eff for 0x5283d291dbcf85356a21ba090e6db59121208b44',
+      '0xb8edb17cd08dd854dee002f898b4f7cb3763ce75 GAVE_ACCESS to 0xdef1c0ded9bec7f1a1670819833240f027b25eff for 0x5283d291dbcf85356a21ba090e6db59121208b44',
     );
 
     const tokenApproval4 = generate(tokenApproval0x5336e8d2 as Transaction);
