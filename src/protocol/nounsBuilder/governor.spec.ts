@@ -50,6 +50,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(purpleDesc).toBe(
         '0xd6507fc98605eab8775f851c25a5e09dc12ab7a7 CREATED_PROPOSAL 0xafc452f09668a1f527aa6c3516fae0df9dc692b61fcbdf2af2c37ab631d03dc6 in Purple DAO',
       );
+      expect(purple.context?.variables?.description).toBeDefined();
       expect(containsBigInt(purple.context)).toBe(false);
     });
   });

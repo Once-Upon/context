@@ -72,6 +72,8 @@ export const generate = (transaction: Transaction): Transaction => {
 
   switch (decoded.functionName) {
     case 'propose': {
+      const description = decoded.args[4];
+
       let proposalId: bigint = BigInt(0);
 
       const registerLog = transaction.logs?.find((log) => {
@@ -116,6 +118,10 @@ export const generate = (transaction: Transaction): Transaction => {
           proposalId: {
             type: 'number',
             value: Number(proposalId),
+          },
+          description: {
+            type: 'string',
+            value: description,
           },
         },
         summaries: {
@@ -131,6 +137,8 @@ export const generate = (transaction: Transaction): Transaction => {
     }
 
     case 'proposeBySigs': {
+      const description = decoded.args[5];
+
       let proposalId: bigint = BigInt(0);
 
       const registerLog = transaction.logs?.find((log) => {
@@ -175,6 +183,10 @@ export const generate = (transaction: Transaction): Transaction => {
           proposalId: {
             type: 'number',
             value: Number(proposalId),
+          },
+          description: {
+            type: 'string',
+            value: description,
           },
         },
         summaries: {

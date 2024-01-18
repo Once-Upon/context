@@ -78,6 +78,7 @@ export const generate = (transaction: Transaction): Transaction => {
     daoByAuctionGovernorContract(transaction.to)?.name ?? '';
   switch (decoded.functionName) {
     case 'propose': {
+      const description = decoded.args[3];
       let proposalId = '';
 
       const registerLog = transaction.logs?.find((log) => {
@@ -127,6 +128,10 @@ export const generate = (transaction: Transaction): Transaction => {
           proposalId: {
             type: 'string',
             value: proposalId,
+          },
+          description: {
+            type: 'string',
+            value: description,
           },
         },
         summaries: {

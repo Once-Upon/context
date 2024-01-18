@@ -26,6 +26,8 @@ describe('Nouns Governor', () => {
         '0xa86882277e69fbf0a51805cdc8b0a3a113079e63 CREATED_PROPOSAL 463',
       );
       expect(containsBigInt(transaction.context)).toBe(false);
+
+      expect(transaction?.context?.variables?.description).toBeDefined();
     });
   });
 
@@ -42,6 +44,8 @@ describe('Nouns Governor', () => {
         '0x7916dba3a610b020d77c0ccfd4bd717ee400a5f2 CREATED_PROPOSAL 481',
       );
       expect(containsBigInt(transaction.context)).toBe(false);
+
+      expect(transaction?.context?.variables?.description).toBeDefined();
     });
   });
 
