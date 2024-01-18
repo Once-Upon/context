@@ -42,6 +42,7 @@ export const detect = (transaction: Transaction): boolean => {
 
     if (
       decoded.functionName !== 'propose' &&
+      decoded.functionName !== 'proposeBySigs' &&
       decoded.functionName !== 'castVote' &&
       decoded.functionName !== 'castVoteWithReason' &&
       decoded.functionName !== 'castVoteBySig' &&
@@ -71,6 +72,65 @@ export const generate = (transaction: Transaction): Transaction => {
 
   switch (decoded.functionName) {
     case 'propose': {
+      let proposalId: bigint = BigInt(0);
+
+      const registerLog = transaction.logs?.find((log) => {
+        try {
+          const decoded = decodeLog(
+            ABIs.NounsDAOLogicV3,
+            log.data as Hex,
+            log.topics as EventLogTopics,
+          );
+          if (!decoded) return false;
+          return decoded.eventName === 'ProposalCreated';
+        } catch (_) {
+          return false;
+        }
+      });
+
+      if (registerLog) {
+        try {
+          const decoded = decodeLog(
+            ABIs.NounsDAOLogicV3,
+            registerLog.data as Hex,
+            registerLog.topics as EventLogTopics,
+          );
+          if (!decoded) return transaction;
+
+          proposalId = decoded.args['id'];
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      transaction.context = {
+        variables: {
+          contextAction: {
+            type: 'contextAction',
+            value: 'CREATED_PROPOSAL',
+          },
+          subject: {
+            type: 'address',
+            value: transaction.from,
+          },
+          proposalId: {
+            type: 'number',
+            value: Number(proposalId),
+          },
+        },
+        summaries: {
+          category: 'PROTOCOL_1',
+          en: {
+            title: 'Nouns',
+            default: `[[subject]] [[contextAction]] [[proposalId]]`,
+          },
+        },
+      };
+
+      return transaction;
+    }
+
+    case 'proposeBySigs': {
       let proposalId: bigint = BigInt(0);
 
       const registerLog = transaction.logs?.find((log) => {
