@@ -62,7 +62,8 @@ export type NounsAuctionHouseAction = 'BID' | 'SETTLED';
 
 export type NounsGovernorAction =
   | 'CREATED_PROPOSAL'
-  | 'VOTED'
+  | 'VOTED_FOR'
+  | 'VOTED_AGAINST'
   | 'ABSTAINED'
   | 'QUEUED'
   | 'EXECUTED'

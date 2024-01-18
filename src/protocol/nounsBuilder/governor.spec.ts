@@ -73,7 +73,7 @@ describe('NounsBuilderDAO Governor', () => {
       );
       const unknownDesc = contextSummary(unknown.context);
       expect(unknownDesc).toBe(
-        '0xc61288821b4722ce29249f0ba03b633f0be46a5a VOTED in favor of proposal 0xf7d1482b17b76b192d04ef63832a78111f83974881190d18f642dca93d30c7d2',
+        '0xc61288821b4722ce29249f0ba03b633f0be46a5a VOTED_FOR proposal 0xf7d1482b17b76b192d04ef63832a78111f83974881190d18f642dca93d30c7d2',
       );
       expect(containsBigInt(unknown.context)).toBe(false);
 
@@ -82,7 +82,7 @@ describe('NounsBuilderDAO Governor', () => {
       );
       const purpleDesc = contextSummary(purple.context);
       expect(purpleDesc).toBe(
-        '0x14b85b1c40056312fde55e1fa1827a92f12b966a VOTED against Purple DAO proposal 0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b',
+        '0x14b85b1c40056312fde55e1fa1827a92f12b966a VOTED_AGAINST Purple DAO proposal 0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b',
       );
       expect(containsBigInt(purple.context)).toBe(false);
 

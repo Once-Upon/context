@@ -38,7 +38,7 @@ describe('Nouns Governor', () => {
       const transaction = generate(nounsCastVote0xeaf10956 as Transaction);
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
-        '0xa5d7e4c18d223d1f142297d17e36d74ce7793a54 VOTED in favor of proposal 472',
+        '0xa5d7e4c18d223d1f142297d17e36d74ce7793a54 VOTED_FOR proposal 472',
       );
       expect(containsBigInt(transaction.context)).toBe(false);
     });
@@ -74,7 +74,7 @@ describe('Nouns Governor', () => {
       );
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
-        '0xceed9585854f12f81a0103861b83b995a64ad915 VOTED against proposal 471',
+        '0xceed9585854f12f81a0103861b83b995a64ad915 VOTED_AGAINST proposal 471',
       );
       expect(containsBigInt(transaction.context)).toBe(false);
     });

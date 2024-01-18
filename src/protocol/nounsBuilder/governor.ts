@@ -5,12 +5,10 @@ import { NounsContracts } from '../nouns/constants';
 import { decodeLog, decodeTransactionInput } from '../../helpers/utils';
 
 const translateSupport = (support: bigint) => {
-  if (support === 0n)
-    return { action: 'VOTED', description: 'against' } as const;
-  if (support === 1n)
-    return { action: 'VOTED', description: 'in favor of' } as const;
+  if (support === 0n) return 'VOTED_AGAINST';
+  if (support === 1n) return 'VOTED_FOR';
 
-  return { action: 'ABSTAINED', description: 'from voting on' } as const;
+  return 'ABSTAINED';
 };
 
 const daoByAuctionGovernorContract = (address: string) => {
@@ -149,7 +147,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'castVoteWithReason': {
       const proposalId = decoded.args[0];
       const support = decoded.args[1];
-      const { action, description } = translateSupport(support);
+      const action = translateSupport(support);
 
       transaction.context = {
         variables: {
@@ -174,7 +172,9 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'DAO',
-            default: `[[subject]] [[contextAction]] ${description} ${
+            default: `[[subject]] [[contextAction]] ${
+              action === 'ABSTAINED' ? 'from voting on ' : ''
+            }${
               daoName ? '[[dao]] DAO ' : ''
             }proposal [[proposalId]]`,
           },
@@ -188,7 +188,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const voter = decoded.args[0];
       const proposalId = decoded.args[1];
       const support = decoded.args[2];
-      const { action, description } = translateSupport(support);
+      const action = translateSupport(support);
 
       transaction.context = {
         variables: {
@@ -213,7 +213,9 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'DAO',
-            default: `[[subject]] [[contextAction]] ${description} ${
+            default: `[[subject]] [[contextAction]] ${
+              action === 'ABSTAINED' ? 'from voting on ' : ''
+            }${
               daoName ? '[[dao]] DAO ' : ''
             }proposal [[proposalId]]`,
           },

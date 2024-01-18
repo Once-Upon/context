@@ -4,12 +4,10 @@ import { NounsContracts, ABIs } from './constants';
 import { decodeLog, decodeTransactionInput } from '../../helpers/utils';
 
 const translateSupport = (support: number) => {
-  if (support === 0)
-    return { action: 'VOTED', description: 'against' } as const;
-  if (support === 1)
-    return { action: 'VOTED', description: 'in favor of' } as const;
+  if (support === 0) return 'VOTED_AGAINST';
+  if (support === 1) return 'VOTED_FOR';
 
-  return { action: 'ABSTAINED', description: 'from voting on' } as const;
+  return 'ABSTAINED';
 };
 
 const FUNCTION_CONTEXT_ACTION_MAPPING = {
@@ -137,7 +135,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'castVoteWithReason': {
       const proposalId = decoded.args[0];
       const support = decoded.args[1];
-      const { action, description } = translateSupport(support);
+      const action = translateSupport(support);
 
       transaction.context = {
         variables: {
@@ -158,7 +156,9 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Nouns',
-            default: `[[subject]] [[contextAction]] ${description} proposal [[proposalId]]`,
+            default: `[[subject]] [[contextAction]] ${
+              action === 'ABSTAINED' ? 'from voting on ' : ''
+            }proposal [[proposalId]]`,
           },
         },
       };
@@ -169,7 +169,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'castVoteBySig': {
       const proposalId = decoded.args[0];
       const support = decoded.args[1];
-      const { action, description } = translateSupport(support);
+      const action = translateSupport(support);
 
       let voter: string = '';
 
@@ -222,7 +222,9 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Nouns',
-            default: `[[voter]] [[contextAction]] ${description} proposal [[proposalId]]`,
+            default: `[[voter]] [[contextAction]] ${
+              action === 'ABSTAINED' ? 'from voting on ' : ''
+            }proposal [[proposalId]]`,
           },
         },
       };
