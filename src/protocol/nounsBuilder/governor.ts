@@ -128,6 +128,7 @@ export const generate = (transaction: Transaction): Transaction => {
           proposalId: {
             type: 'string',
             value: proposalId,
+            truncate: true,
           },
           description: {
             type: 'string',
@@ -173,6 +174,7 @@ export const generate = (transaction: Transaction): Transaction => {
           proposalId: {
             type: 'string',
             value: proposalId,
+            truncate: true,
           },
           dao: {
             type: 'string',
@@ -213,6 +215,7 @@ export const generate = (transaction: Transaction): Transaction => {
           proposalId: {
             type: 'string',
             value: proposalId,
+            truncate: true,
           },
           dao: {
             type: 'string',
@@ -277,6 +280,7 @@ export const generate = (transaction: Transaction): Transaction => {
           proposalId: {
             type: 'string',
             value: proposalId,
+            truncate: true,
           },
           dao: {
             type: 'string',
@@ -318,6 +322,7 @@ export const generate = (transaction: Transaction): Transaction => {
           proposalId: {
             type: 'string',
             value: proposalId,
+            truncate: true,
           },
           dao: {
             type: 'string',
