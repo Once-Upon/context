@@ -10,6 +10,10 @@ const translateSupport = (support: number) => {
   return 'ABSTAINED';
 };
 
+const proposalUrl = (proposalId: bigint | number) => {
+  return `https://nouns.wtf/vote/${proposalId}`;
+};
+
 const FUNCTION_CONTEXT_ACTION_MAPPING = {
   execute: 'EXECUTED',
   queue: 'QUEUED',
@@ -116,8 +120,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           proposalId: {
-            type: 'number',
-            value: Number(proposalId),
+            type: 'link',
+            value: proposalId.toString(),
+            link: proposalUrl(proposalId),
           },
           description: {
             type: 'string',
@@ -181,8 +186,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           proposalId: {
-            type: 'number',
-            value: Number(proposalId),
+            type: 'link',
+            value: proposalId.toString(),
+            link: proposalUrl(proposalId),
           },
           description: {
             type: 'string',
@@ -220,8 +226,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           proposalId: {
-            type: 'number',
-            value: Number(proposalId),
+            type: 'link',
+            value: proposalId.toString(),
+            link: proposalUrl(proposalId),
           },
         },
         summaries: {
@@ -286,8 +293,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: voter,
           },
           proposalId: {
-            type: 'number',
-            value: Number(proposalId),
+            type: 'link',
+            value: proposalId.toString(),
+            link: proposalUrl(proposalId),
           },
         },
         summaries: {
@@ -324,8 +332,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           proposalId: {
-            type: 'number',
-            value: Number(proposalId),
+            type: 'link',
+            value: proposalId.toString(),
+            link: proposalUrl(proposalId),
           },
         },
         summaries: {
