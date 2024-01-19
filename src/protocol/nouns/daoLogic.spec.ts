@@ -98,6 +98,8 @@ describe('Nouns Governor', () => {
         '0xceed9585854f12f81a0103861b83b995a64ad915 VOTED_AGAINST proposal 471',
       );
       expect(containsBigInt(transaction.context)).toBe(false);
+
+      expect(transaction?.context?.variables?.reason).toBeDefined();
     });
   });
 

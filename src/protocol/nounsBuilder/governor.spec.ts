@@ -76,6 +76,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(unknownDesc).toBe(
         '0xc61288821b4722ce29249f0ba03b633f0be46a5a VOTED_FOR proposal 0xf7d1482b17b76b192d04ef63832a78111f83974881190d18f642dca93d30c7d2',
       );
+      expect(unknown.context?.variables?.reason).toBeDefined();
       expect(containsBigInt(unknown.context)).toBe(false);
 
       const purple = generate(
@@ -85,6 +86,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(purpleDesc).toBe(
         '0x14b85b1c40056312fde55e1fa1827a92f12b966a VOTED_AGAINST Purple DAO proposal 0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b',
       );
+      expect(purple.context?.variables?.reason).toBeDefined();
       expect(containsBigInt(purple.context)).toBe(false);
 
       const purple2 = generate(
@@ -94,6 +96,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(purpleDesc2).toBe(
         '0xceed9585854f12f81a0103861b83b995a64ad915 ABSTAINED from voting on Purple DAO proposal 0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b',
       );
+      expect(purple2.context?.variables?.reason).toBeDefined();
       expect(containsBigInt(purple2.context)).toBe(false);
     });
   });

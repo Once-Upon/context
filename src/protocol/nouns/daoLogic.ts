@@ -215,6 +215,14 @@ export const generate = (transaction: Transaction): Transaction => {
       const support = decoded.args[1];
       const action = translateSupport(support);
 
+      let reason: string | undefined;
+      if (
+        decoded.functionName === 'castVoteWithReason' ||
+        decoded.functionName === 'castRefundableVoteWithReason'
+      ) {
+        reason = decoded.args[2];
+      }
+
       transaction.context = {
         variables: {
           contextAction: {
@@ -230,6 +238,14 @@ export const generate = (transaction: Transaction): Transaction => {
             value: proposalId.toString(),
             link: proposalUrl(proposalId),
           },
+          ...(reason
+            ? {
+                reason: {
+                  type: 'string',
+                  value: reason,
+                },
+              }
+            : {}),
         },
         summaries: {
           category: 'PROTOCOL_1',

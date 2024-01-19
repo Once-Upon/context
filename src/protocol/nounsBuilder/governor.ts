@@ -154,6 +154,12 @@ export const generate = (transaction: Transaction): Transaction => {
       const support = decoded.args[1];
       const action = translateSupport(support);
 
+      let reason: string | undefined;
+
+      if (decoded.functionName === 'castVoteWithReason') {
+        reason = decoded.args[2];
+      }
+
       transaction.context = {
         variables: {
           contextAction: {
@@ -172,6 +178,7 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'string',
             value: daoName,
           },
+          ...(reason ? { reason: { type: 'string', value: reason } } : {}),
         },
         summaries: {
           category: 'PROTOCOL_1',
@@ -179,9 +186,7 @@ export const generate = (transaction: Transaction): Transaction => {
             title: 'DAO',
             default: `[[subject]] [[contextAction]] ${
               action === 'ABSTAINED' ? 'from voting on ' : ''
-            }${
-              daoName ? '[[dao]] DAO ' : ''
-            }proposal [[proposalId]]`,
+            }${daoName ? '[[dao]] DAO ' : ''}proposal [[proposalId]]`,
           },
         },
       };
@@ -220,9 +225,7 @@ export const generate = (transaction: Transaction): Transaction => {
             title: 'DAO',
             default: `[[subject]] [[contextAction]] ${
               action === 'ABSTAINED' ? 'from voting on ' : ''
-            }${
-              daoName ? '[[dao]] DAO ' : ''
-            }proposal [[proposalId]]`,
+            }${daoName ? '[[dao]] DAO ' : ''}proposal [[proposalId]]`,
           },
         },
       };
