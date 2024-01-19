@@ -62,7 +62,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
   switch (decoded.functionName) {
     case 'createBid': {
-      let variables: ContextVariable = {
+      const variables: ContextVariable = {
         contextAction: {
           type: 'contextAction',
           value: 'BID',
@@ -154,14 +154,14 @@ export const generate = (transaction: Transaction): Transaction => {
 
           if (!decoded) return transaction;
 
-          tokenId = decoded.args['tokenId'];
+          tokenId = decoded.args['tokenId'].toString();
           winner = decoded.args['winner'];
         } catch (err) {
           console.error(err);
         }
       }
 
-      let variables: ContextVariable = {
+      const variables: ContextVariable = {
         contextAction: {
           type: 'contextAction',
           value: 'SETTLED',
