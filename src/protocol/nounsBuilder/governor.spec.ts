@@ -1,5 +1,5 @@
 import { Transaction } from '../../types';
-import { contextSummary } from '../../helpers/utils';
+import { containsBigInt, contextSummary } from '../../helpers/utils';
 import { detect, generate } from './governor';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 
@@ -41,6 +41,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(unknownDesc).toBe(
         '0x42da267398801b1b96948f106d117d87b6e74c34 CREATED_PROPOSAL 0x6f2f1ddcb342f7f3661e4aaec9fcb25fd32eb9a780f6f7e301986ac776ff57cc',
       );
+      expect(containsBigInt(unknown.context)).toBe(false);
 
       const purple = generate(
         nounsBuilderGovernorPurplePropose0xba1da3ed as Transaction,
@@ -49,6 +50,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(purpleDesc).toBe(
         '0xd6507fc98605eab8775f851c25a5e09dc12ab7a7 CREATED_PROPOSAL 0xafc452f09668a1f527aa6c3516fae0df9dc692b61fcbdf2af2c37ab631d03dc6 in Purple DAO',
       );
+      expect(containsBigInt(purple.context)).toBe(false);
     });
   });
 
@@ -73,6 +75,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(unknownDesc).toBe(
         '0xc61288821b4722ce29249f0ba03b633f0be46a5a VOTED in favor of proposal 0xf7d1482b17b76b192d04ef63832a78111f83974881190d18f642dca93d30c7d2',
       );
+      expect(containsBigInt(unknown.context)).toBe(false);
 
       const purple = generate(
         nounsBuilderGovernorPurpleCastVwr0xe7d4d391 as Transaction,
@@ -81,6 +84,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(purpleDesc).toBe(
         '0x14b85b1c40056312fde55e1fa1827a92f12b966a VOTED against Purple DAO proposal 0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b',
       );
+      expect(containsBigInt(purple.context)).toBe(false);
 
       const purple2 = generate(
         nounsBuilderGovernorPurpleCastVwrAbstain0x7107ece4 as Transaction,
@@ -89,6 +93,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(purpleDesc2).toBe(
         '0xceed9585854f12f81a0103861b83b995a64ad915 ABSTAINED from voting on Purple DAO proposal 0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b',
       );
+      expect(containsBigInt(purple2.context)).toBe(false);
     });
   });
 
@@ -113,6 +118,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(unknownDesc).toBe(
         '0xc61288821b4722ce29249f0ba03b633f0be46a5a QUEUED proposal 0xf7d1482b17b76b192d04ef63832a78111f83974881190d18f642dca93d30c7d2',
       );
+      expect(containsBigInt(unknown.context)).toBe(false);
 
       const blvkhvnd = generate(
         nounsBuilderGovernorBlvkhvndQueue0x1f6ac5ad as Transaction,
@@ -121,6 +127,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(blvkhvndDesc).toBe(
         '0xeb95ff72eab9e8d8fdb545fe15587accf410b42e QUEUED BLVKHVND DAO proposal 0x2c5b887afa8a76292dadfb4c0dde0305e7c972581815dda8a4a0cd2e8caa6723',
       );
+      expect(containsBigInt(blvkhvnd.context)).toBe(false);
     });
   });
 
@@ -145,6 +152,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(unknownDesc).toBe(
         '0xc61288821b4722ce29249f0ba03b633f0be46a5a EXECUTED proposal 0xf7d1482b17b76b192d04ef63832a78111f83974881190d18f642dca93d30c7d2',
       );
+      expect(containsBigInt(unknown.context)).toBe(false);
 
       const builder = generate(
         nounsBuilderGovernorBuilderExecute0x3affa949 as Transaction,
@@ -153,6 +161,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(builderDesc).toBe(
         '0xdcf37d8aa17142f053aaa7dc56025ab00d897a19 EXECUTED Builder DAO proposal 0xd20f651d0355d2fe636cbf0b29ca6bdc32ad49439f43ff782ca3e27249b90538',
       );
+      expect(containsBigInt(builder.context)).toBe(false);
     });
   });
 
@@ -177,6 +186,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(unknownDesc).toBe(
         '0xfca577e20be5a193e7a6dc5e33d54229cfd1d1db CANCELED proposal 0x052cb9138ef978e33703293824c85f6a57c000ce5c9fd9da76e3e6ac9d9279e0',
       );
+      expect(containsBigInt(unknown.context)).toBe(false);
 
       const blvkhvnd = generate(
         nounsBuilderGovernorBlvkhvndCancel0x524b1e31 as Transaction,
@@ -185,6 +195,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(blvkhvndDesc).toBe(
         '0xeb95ff72eab9e8d8fdb545fe15587accf410b42e CANCELED BLVKHVND DAO proposal 0x8df02eb8fe96392f3b8e666bc22211297aea89be2e5cddfabb7e54a0b29cc7b0',
       );
+      expect(containsBigInt(blvkhvnd.context)).toBe(false);
     });
   });
 

@@ -1,5 +1,5 @@
 import { Transaction } from '../../types';
-import { contextSummary } from '../../helpers/utils';
+import { containsBigInt, contextSummary } from '../../helpers/utils';
 import { detect, generate } from './auction';
 
 import easAttest0xfed2349f from '../../test/transactions/eas-attest-mainnet-0xfed2349f.json';
@@ -44,6 +44,7 @@ describe('NounsBuilderDAO Auction', () => {
       expect(unknownDesc).toBe(
         '0xad8717e33c719a9b407ad6b40d0be237845c2fbf BID 0.0001 ETH on token #5',
       );
+      expect(containsBigInt(unknown.context)).toBe(false);
 
       const purple = generate(
         nounsBuilderAuctionPurpleCreateBid0x638faccc as Transaction,
@@ -52,6 +53,7 @@ describe('NounsBuilderDAO Auction', () => {
       expect(purpleDesc).toBe(
         '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 BID 0.099 ETH on 0xa45662638e9f3bbb7a6fecb4b17853b7ba0f3a60 #242',
       );
+      expect(containsBigInt(purple.context)).toBe(false);
     });
   });
 
@@ -88,6 +90,7 @@ describe('NounsBuilderDAO Auction', () => {
       expect(unknownDesc).toBe(
         '0xad8717e33c719a9b407ad6b40d0be237845c2fbf SETTLED auction for token #4 won by 0x2767500a75D90D711b2Ac27b3a032a0dAa40e4B2',
       );
+      expect(containsBigInt(unknown.context)).toBe(false);
 
       const purple = generate(
         nounsBuilderAuctionPurpleSettleAndCreate0xc35c01ac as Transaction,
@@ -96,6 +99,7 @@ describe('NounsBuilderDAO Auction', () => {
       expect(purpleDesc).toBe(
         '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 SETTLED auction for 0xa45662638e9f3bbb7a6fecb4b17853b7ba0f3a60 #242 won by 0x74B78e98093F5B522A7eBDAc3B994641cA7c2b20',
       );
+      expect(containsBigInt(purple.context)).toBe(false);
     });
   });
 });
