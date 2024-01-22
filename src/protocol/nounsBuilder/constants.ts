@@ -1,6 +1,6 @@
 import IAuction from './abis/IAuction';
 import IGovernor from './abis/IGovernor';
-import { mainnet } from 'viem/chains';
+import { mainnet, zora as _zora, base as _base } from 'viem/chains';
 import { Chain } from 'viem';
 
 export interface NounsBuilderInstance {
@@ -11,7 +11,9 @@ export interface NounsBuilderInstance {
   chain: Chain & { networkName: string };
 }
 
-const ethereum = { ...mainnet, networkName: "ethereum" };
+const ethereum = { ...mainnet, networkName: 'ethereum' };
+const zora = { ..._zora, networkName: 'zora' };
+const base = { ..._base, networkName: 'base' };
 
 export const NOUNS_BUILDER_INSTANCES: NounsBuilderInstance[] = [
   {
@@ -34,6 +36,20 @@ export const NOUNS_BUILDER_INSTANCES: NounsBuilderInstance[] = [
     nft: '0x351ea1a718521f22718ae14f7d380ae345fad043',
     governor: '0xa54ce3c884c68c01596853b25a3208acefda540e',
     chain: ethereum,
+  },
+  {
+    name: 'ENERGY',
+    auctionHouse: '0x94eed78a8e3e862d195cdde333a2201f6517ad97',
+    nft: '0x32297b7416294b1acf404b6148a3c58107ba8afd',
+    governor: '0xdcd8ad7f4904d4ed9c1f1e38e18ab9646b897121',
+    chain: zora,
+  },
+  {
+    name: 'Collective Nouns',
+    auctionHouse: '0x0aa23a7e112889c965010558803813710becf263',
+    nft: '0x220e41499cf4d93a3629a5509410cbf9e6e0b109',
+    governor: '0x1297ffd714acb55af447c6b7641b3cf01930d605',
+    chain: base,
   },
 ];
 
