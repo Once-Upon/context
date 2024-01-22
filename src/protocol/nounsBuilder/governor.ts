@@ -217,6 +217,14 @@ export const generate = (transaction: Transaction): Transaction => {
         },
       };
 
+      if (reason) {
+        transaction.context!.summaries!.en.long = `[[subject]] [[contextAction]] ${
+          action === 'ABSTAINED' ? 'from voting on ' : ''
+        }${
+          dao?.name ? '[[dao]] DAO ' : ''
+        }proposal [[proposalId]]. Reason: [[reason]]`;
+      }
+
       return transaction;
     }
 
