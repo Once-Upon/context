@@ -87,9 +87,13 @@ export function decodeLog<TAbi extends Abi>(
 
 export function contextSummary(
   context: TransactionContextType | undefined,
+  version: 'default' | 'long' = 'default',
 ): string {
   if (!context || !context.summaries) return '';
-  const summaryTemplate = context.summaries.en.default;
+  const summaryTemplate =
+    version === 'default'
+      ? context.summaries.en.default
+      : context.summaries.en.long!;
 
   const regex = /(\[\[.*?\]\])/;
   const parts = summaryTemplate.split(regex).filter((x) => x);
