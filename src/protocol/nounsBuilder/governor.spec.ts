@@ -77,6 +77,12 @@ describe('NounsBuilderDAO Governor', () => {
         '0xc61288821b4722ce29249f0ba03b633f0be46a5a VOTED_FOR proposal 0xf7d1482b17b76b192d04ef63832a78111f83974881190d18f642dca93d30c7d2',
       );
       expect(unknown.context?.variables?.reason).toBeDefined();
+      expect(unknown.context?.variables?.proposalId).toMatchObject({
+        type: 'string',
+        value:
+          '0xf7d1482b17b76b192d04ef63832a78111f83974881190d18f642dca93d30c7d2',
+        truncate: true,
+      });
       expect(containsBigInt(unknown.context)).toBe(false);
 
       const purple = generate(
@@ -87,6 +93,13 @@ describe('NounsBuilderDAO Governor', () => {
         '0x14b85b1c40056312fde55e1fa1827a92f12b966a VOTED_AGAINST Purple DAO proposal 0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b',
       );
       expect(purple.context?.variables?.reason).toBeDefined();
+      expect(purple.context?.variables?.proposalId).toMatchObject({
+        type: 'link',
+        value:
+          '0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b',
+        truncate: true,
+        link: expect.stringMatching('https://nouns.build/dao/ethereum'),
+      });
       expect(containsBigInt(purple.context)).toBe(false);
 
       const purple2 = generate(
