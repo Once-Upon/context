@@ -11,7 +11,7 @@ const translateSupport = (support: number) => {
 };
 
 const proposalUrl = (proposalId: bigint | number) => {
-  return `https://nouns.wtf/vote/${proposalId}`;
+  return `https://nouns.camp/proposals/${proposalId}`;
 };
 
 const FUNCTION_CONTEXT_ACTION_MAPPING = {
