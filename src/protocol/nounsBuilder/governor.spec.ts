@@ -50,6 +50,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(purpleDesc).toBe(
         '0xd6507fc98605eab8775f851c25a5e09dc12ab7a7 CREATED_PROPOSAL 0xafc452f09668a1f527aa6c3516fae0df9dc692b61fcbdf2af2c37ab631d03dc6 in Purple DAO',
       );
+      expect(purple.context?.variables?.description).toBeDefined();
       expect(containsBigInt(purple.context)).toBe(false);
     });
   });
@@ -73,8 +74,15 @@ describe('NounsBuilderDAO Governor', () => {
       );
       const unknownDesc = contextSummary(unknown.context);
       expect(unknownDesc).toBe(
-        '0xc61288821b4722ce29249f0ba03b633f0be46a5a VOTED in favor of proposal 0xf7d1482b17b76b192d04ef63832a78111f83974881190d18f642dca93d30c7d2',
+        '0xc61288821b4722ce29249f0ba03b633f0be46a5a VOTED_FOR proposal 0xf7d1482b17b76b192d04ef63832a78111f83974881190d18f642dca93d30c7d2',
       );
+      expect(unknown.context?.variables?.reason).toBeDefined();
+      expect(unknown.context?.variables?.proposalId).toMatchObject({
+        type: 'string',
+        value:
+          '0xf7d1482b17b76b192d04ef63832a78111f83974881190d18f642dca93d30c7d2',
+        truncate: true,
+      });
       expect(containsBigInt(unknown.context)).toBe(false);
 
       const purple = generate(
@@ -82,7 +90,19 @@ describe('NounsBuilderDAO Governor', () => {
       );
       const purpleDesc = contextSummary(purple.context);
       expect(purpleDesc).toBe(
-        '0x14b85b1c40056312fde55e1fa1827a92f12b966a VOTED against Purple DAO proposal 0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b',
+        '0x14b85b1c40056312fde55e1fa1827a92f12b966a VOTED_AGAINST Purple DAO proposal 0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b',
+      );
+      expect(purple.context?.variables?.reason).toBeDefined();
+      expect(purple.context?.variables?.proposalId).toMatchObject({
+        type: 'link',
+        value:
+          '0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b',
+        truncate: true,
+        link: expect.stringMatching('https://nouns.build/dao/ethereum'),
+      });
+
+      expect(contextSummary(purple.context, 'long')).toBe(
+        "0x14b85b1c40056312fde55e1fa1827a92f12b966a VOTED_AGAINST Purple DAO proposal 0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b. Reason: I'm not totally against it. I'm just against it for now. I think it's too early and the prop is not well written. There were too many follow up questions and things that were not really clear.",
       );
       expect(containsBigInt(purple.context)).toBe(false);
 
@@ -93,6 +113,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(purpleDesc2).toBe(
         '0xceed9585854f12f81a0103861b83b995a64ad915 ABSTAINED from voting on Purple DAO proposal 0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b',
       );
+      expect(purple2.context?.variables?.reason).toBeDefined();
       expect(containsBigInt(purple2.context)).toBe(false);
     });
   });

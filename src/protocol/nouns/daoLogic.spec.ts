@@ -4,6 +4,7 @@ import { detect, generate } from './daoLogic';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 
 import nounsPropose0x43866eb1 from '../../test/transactions/nouns-propose-0x43866eb1.json';
+import nounsProposeBySigs0xbc09b566 from '../../test/transactions/nouns-propose-by-sigs-0xbc09b566.json';
 import nounsCastVote0xeaf10956 from '../../test/transactions/nouns-cast-vote-0xeaf10956.json';
 import nounsCastRefundableVote0x989966a2 from '../../test/transactions/nouns-cast-refundable-vote-0x989966a2.json';
 import nounsCastRefundableVwr0x4577a55a from '../../test/transactions/nouns-cast-refundable-vwr-0x4577a55a.json';
@@ -25,6 +26,26 @@ describe('Nouns Governor', () => {
         '0xa86882277e69fbf0a51805cdc8b0a3a113079e63 CREATED_PROPOSAL 463',
       );
       expect(containsBigInt(transaction.context)).toBe(false);
+
+      expect(transaction?.context?.variables?.description).toBeDefined();
+    });
+  });
+
+  describe('proposeBySigs', () => {
+    it('Should detect transaction', () => {
+      const match = detect(nounsProposeBySigs0xbc09b566 as Transaction);
+      expect(match).toBe(true);
+    });
+
+    it('Should generate context', () => {
+      const transaction = generate(nounsProposeBySigs0xbc09b566 as Transaction);
+      expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
+      expect(contextSummary(transaction.context)).toBe(
+        '0x7916dba3a610b020d77c0ccfd4bd717ee400a5f2 CREATED_PROPOSAL 481',
+      );
+      expect(containsBigInt(transaction.context)).toBe(false);
+
+      expect(transaction?.context?.variables?.description).toBeDefined();
     });
   });
 
@@ -38,7 +59,7 @@ describe('Nouns Governor', () => {
       const transaction = generate(nounsCastVote0xeaf10956 as Transaction);
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
-        '0xa5d7e4c18d223d1f142297d17e36d74ce7793a54 VOTED in favor of proposal 472',
+        '0xa5d7e4c18d223d1f142297d17e36d74ce7793a54 VOTED_FOR proposal 472',
       );
       expect(containsBigInt(transaction.context)).toBe(false);
     });
@@ -74,9 +95,12 @@ describe('Nouns Governor', () => {
       );
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
-        '0xceed9585854f12f81a0103861b83b995a64ad915 VOTED against proposal 471',
+        '0xceed9585854f12f81a0103861b83b995a64ad915 VOTED_AGAINST proposal 471',
       );
       expect(containsBigInt(transaction.context)).toBe(false);
+
+      expect(transaction?.context?.variables?.reason).toBeDefined();
+      expect(contextSummary(transaction.context, "long")).toBe('0xceed9585854f12f81a0103861b83b995a64ad915 VOTED_AGAINST proposal 471. Reason: I have concerns around creating this long of a stream and would rather see more specific focus for the use of funds. (eg directed to a pool of web3 related charitable efforts for example.) \n\nThis will likely pass but if it doesn’t I would vote for a 1 year stream with focused distribution. ');
     });
   });
 

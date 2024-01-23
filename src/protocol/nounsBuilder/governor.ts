@@ -1,20 +1,31 @@
 import { Hex } from 'viem';
-import { EventLogTopics, Transaction } from '../../types';
-import { ABIs, NOUNS_BUILDER_INSTANCES } from './constants';
+import {
+  ContextLinkType,
+  ContextStringType,
+  EventLogTopics,
+  Transaction,
+} from '../../types';
+import {
+  ABIs,
+  NOUNS_BUILDER_INSTANCES,
+  NounsBuilderInstance,
+} from './constants';
 import { NounsContracts } from '../nouns/constants';
 import { decodeLog, decodeTransactionInput } from '../../helpers/utils';
 
 const translateSupport = (support: bigint) => {
-  if (support === 0n)
-    return { action: 'VOTED', description: 'against' } as const;
-  if (support === 1n)
-    return { action: 'VOTED', description: 'in favor of' } as const;
+  if (support === 0n) return 'VOTED_AGAINST';
+  if (support === 1n) return 'VOTED_FOR';
 
-  return { action: 'ABSTAINED', description: 'from voting on' } as const;
+  return 'ABSTAINED';
 };
 
 const daoByAuctionGovernorContract = (address: string) => {
   return NOUNS_BUILDER_INSTANCES.find((v) => v.governor === address);
+};
+
+const proposalUrl = (proposalId: string, dao: NounsBuilderInstance) => {
+  return `https://nouns.build/dao/${dao.chain.networkName}/${dao.nft}/vote/${proposalId}`;
 };
 
 const FUNCTION_CONTEXT_ACTION_MAPPING = {
@@ -76,10 +87,38 @@ export const generate = (transaction: Transaction): Transaction => {
   if (!decoded) return transaction;
 
   if (!transaction.to) return transaction;
-  const daoName: string =
-    daoByAuctionGovernorContract(transaction.to)?.name ?? '';
+  const dao = daoByAuctionGovernorContract(transaction.to);
+
+  const getDynamicVariables = (
+    proposalId: string,
+  ):
+    | { dao: ContextStringType; proposalId: ContextLinkType }
+    | { proposalId: ContextStringType } => {
+    return dao
+      ? {
+          dao: {
+            type: 'string',
+            value: dao.name,
+          },
+          proposalId: {
+            type: 'link',
+            value: proposalId,
+            truncate: true,
+            link: proposalUrl(proposalId, dao),
+          },
+        }
+      : {
+          proposalId: {
+            type: 'string',
+            value: proposalId,
+            truncate: true,
+          },
+        };
+  };
+
   switch (decoded.functionName) {
     case 'propose': {
+      const description = decoded.args[3];
       let proposalId = '';
 
       const registerLog = transaction.logs?.find((log) => {
@@ -114,6 +153,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
       transaction.context = {
         variables: {
+          ...getDynamicVariables(proposalId),
           contextAction: {
             type: 'contextAction',
             value: 'CREATED_PROPOSAL',
@@ -122,13 +162,9 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: transaction.from,
           },
-          dao: {
+          description: {
             type: 'string',
-            value: daoName,
-          },
-          proposalId: {
-            type: 'string',
-            value: proposalId,
+            value: description,
           },
         },
         summaries: {
@@ -136,7 +172,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'DAO',
             default: `[[subject]] [[contextAction]] [[proposalId]]${
-              daoName ? ' in [[dao]] DAO' : ''
+              dao?.name ? ' in [[dao]] DAO' : ''
             }`,
           },
         },
@@ -149,10 +185,17 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'castVoteWithReason': {
       const proposalId = decoded.args[0];
       const support = decoded.args[1];
-      const { action, description } = translateSupport(support);
+      const action = translateSupport(support);
+
+      let reason: string | undefined;
+
+      if (decoded.functionName === 'castVoteWithReason') {
+        reason = decoded.args[2];
+      }
 
       transaction.context = {
         variables: {
+          ...getDynamicVariables(proposalId),
           contextAction: {
             type: 'contextAction',
             value: action,
@@ -161,25 +204,26 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: transaction.from,
           },
-          proposalId: {
-            type: 'string',
-            value: proposalId,
-          },
-          dao: {
-            type: 'string',
-            value: daoName,
-          },
+          ...(reason ? { reason: { type: 'string', value: reason } } : {}),
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'DAO',
-            default: `[[subject]] [[contextAction]] ${description} ${
-              daoName ? '[[dao]] DAO ' : ''
-            }proposal [[proposalId]]`,
+            default: `[[subject]] [[contextAction]] ${
+              action === 'ABSTAINED' ? 'from voting on ' : ''
+            }${dao?.name ? '[[dao]] DAO ' : ''}proposal [[proposalId]]`,
           },
         },
       };
+
+      if (reason) {
+        transaction.context!.summaries!.en.long = `[[subject]] [[contextAction]] ${
+          action === 'ABSTAINED' ? 'from voting on ' : ''
+        }${
+          dao?.name ? '[[dao]] DAO ' : ''
+        }proposal [[proposalId]]. Reason: [[reason]]`;
+      }
 
       return transaction;
     }
@@ -188,10 +232,11 @@ export const generate = (transaction: Transaction): Transaction => {
       const voter = decoded.args[0];
       const proposalId = decoded.args[1];
       const support = decoded.args[2];
-      const { action, description } = translateSupport(support);
+      const action = translateSupport(support);
 
       transaction.context = {
         variables: {
+          ...getDynamicVariables(proposalId),
           contextAction: {
             type: 'contextAction',
             value: action,
@@ -200,22 +245,14 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: voter,
           },
-          proposalId: {
-            type: 'string',
-            value: proposalId,
-          },
-          dao: {
-            type: 'string',
-            value: daoName,
-          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'DAO',
-            default: `[[subject]] [[contextAction]] ${description} ${
-              daoName ? '[[dao]] DAO ' : ''
-            }proposal [[proposalId]]`,
+            default: `[[subject]] [[contextAction]] ${
+              action === 'ABSTAINED' ? 'from voting on ' : ''
+            }${dao?.name ? '[[dao]] DAO ' : ''}proposal [[proposalId]]`,
           },
         },
       };
@@ -256,6 +293,7 @@ export const generate = (transaction: Transaction): Transaction => {
       }
       transaction.context = {
         variables: {
+          ...getDynamicVariables(proposalId),
           contextAction: {
             type: 'contextAction',
             value: 'EXECUTED',
@@ -264,21 +302,13 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: transaction.from,
           },
-          proposalId: {
-            type: 'string',
-            value: proposalId,
-          },
-          dao: {
-            type: 'string',
-            value: daoName,
-          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'DAO',
             default: `[[subject]] [[contextAction]] ${
-              daoName ? '[[dao]] DAO ' : ''
+              dao?.name ? '[[dao]] DAO ' : ''
             }proposal [[proposalId]]`,
           },
         },
@@ -297,6 +327,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
       transaction.context = {
         variables: {
+          ...getDynamicVariables(proposalId),
           contextAction: {
             type: 'contextAction',
             value: contextAction,
@@ -305,21 +336,13 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: transaction.from,
           },
-          proposalId: {
-            type: 'string',
-            value: proposalId,
-          },
-          dao: {
-            type: 'string',
-            value: daoName,
-          },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'DAO',
             default: `[[subject]] [[contextAction]] ${
-              daoName ? '[[dao]] DAO ' : ''
+              dao?.name ? '[[dao]] DAO ' : ''
             }proposal [[proposalId]]`,
           },
         },

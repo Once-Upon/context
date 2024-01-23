@@ -6,6 +6,7 @@ export type ContextStringType = {
   value: string;
   indexed?: boolean;
   emphasis?: boolean;
+  truncate?: boolean;
   unit?: string;
 };
 

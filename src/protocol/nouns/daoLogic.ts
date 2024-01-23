@@ -4,12 +4,14 @@ import { NounsContracts, ABIs } from './constants';
 import { decodeLog, decodeTransactionInput } from '../../helpers/utils';
 
 const translateSupport = (support: number) => {
-  if (support === 0)
-    return { action: 'VOTED', description: 'against' } as const;
-  if (support === 1)
-    return { action: 'VOTED', description: 'in favor of' } as const;
+  if (support === 0) return 'VOTED_AGAINST';
+  if (support === 1) return 'VOTED_FOR';
 
-  return { action: 'ABSTAINED', description: 'from voting on' } as const;
+  return 'ABSTAINED';
+};
+
+const proposalUrl = (proposalId: bigint | number) => {
+  return `https://nouns.camp/proposals/${proposalId}`;
 };
 
 const FUNCTION_CONTEXT_ACTION_MAPPING = {
@@ -44,6 +46,7 @@ export const detect = (transaction: Transaction): boolean => {
 
     if (
       decoded.functionName !== 'propose' &&
+      decoded.functionName !== 'proposeBySigs' &&
       decoded.functionName !== 'castVote' &&
       decoded.functionName !== 'castVoteWithReason' &&
       decoded.functionName !== 'castVoteBySig' &&
@@ -73,6 +76,8 @@ export const generate = (transaction: Transaction): Transaction => {
 
   switch (decoded.functionName) {
     case 'propose': {
+      const description = decoded.args[4];
+
       let proposalId: bigint = BigInt(0);
 
       const registerLog = transaction.logs?.find((log) => {
@@ -115,8 +120,79 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           proposalId: {
-            type: 'number',
-            value: Number(proposalId),
+            type: 'link',
+            value: proposalId.toString(),
+            link: proposalUrl(proposalId),
+          },
+          description: {
+            type: 'string',
+            value: description,
+          },
+        },
+        summaries: {
+          category: 'PROTOCOL_1',
+          en: {
+            title: 'Nouns',
+            default: `[[subject]] [[contextAction]] [[proposalId]]`,
+          },
+        },
+      };
+
+      return transaction;
+    }
+
+    case 'proposeBySigs': {
+      const description = decoded.args[5];
+
+      let proposalId: bigint = BigInt(0);
+
+      const registerLog = transaction.logs?.find((log) => {
+        try {
+          const decoded = decodeLog(
+            ABIs.NounsDAOLogicV3,
+            log.data as Hex,
+            log.topics as EventLogTopics,
+          );
+          if (!decoded) return false;
+          return decoded.eventName === 'ProposalCreated';
+        } catch (_) {
+          return false;
+        }
+      });
+
+      if (registerLog) {
+        try {
+          const decoded = decodeLog(
+            ABIs.NounsDAOLogicV3,
+            registerLog.data as Hex,
+            registerLog.topics as EventLogTopics,
+          );
+          if (!decoded) return transaction;
+
+          proposalId = decoded.args['id'];
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      transaction.context = {
+        variables: {
+          contextAction: {
+            type: 'contextAction',
+            value: 'CREATED_PROPOSAL',
+          },
+          subject: {
+            type: 'address',
+            value: transaction.from,
+          },
+          proposalId: {
+            type: 'link',
+            value: proposalId.toString(),
+            link: proposalUrl(proposalId),
+          },
+          description: {
+            type: 'string',
+            value: description,
           },
         },
         summaries: {
@@ -137,7 +213,15 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'castVoteWithReason': {
       const proposalId = decoded.args[0];
       const support = decoded.args[1];
-      const { action, description } = translateSupport(support);
+      const action = translateSupport(support);
+
+      let reason: string | undefined;
+      if (
+        decoded.functionName === 'castVoteWithReason' ||
+        decoded.functionName === 'castRefundableVoteWithReason'
+      ) {
+        reason = decoded.args[2];
+      }
 
       transaction.context = {
         variables: {
@@ -150,18 +234,35 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           proposalId: {
-            type: 'number',
-            value: Number(proposalId),
+            type: 'link',
+            value: proposalId.toString(),
+            link: proposalUrl(proposalId),
           },
+          ...(reason
+            ? {
+                reason: {
+                  type: 'string',
+                  value: reason,
+                },
+              }
+            : {}),
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Nouns',
-            default: `[[subject]] [[contextAction]] ${description} proposal [[proposalId]]`,
+            default: `[[subject]] [[contextAction]] ${
+              action === 'ABSTAINED' ? 'from voting on ' : ''
+            }proposal [[proposalId]]`,
           },
         },
       };
+
+      if (reason) {
+        transaction.context!.summaries!.en.long = `[[subject]] [[contextAction]] ${
+          action === 'ABSTAINED' ? 'from voting on ' : ''
+        }proposal [[proposalId]]. Reason: [[reason]]`;
+      }
 
       return transaction;
     }
@@ -169,7 +270,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'castVoteBySig': {
       const proposalId = decoded.args[0];
       const support = decoded.args[1];
-      const { action, description } = translateSupport(support);
+      const action = translateSupport(support);
 
       let voter: string = '';
 
@@ -214,15 +315,18 @@ export const generate = (transaction: Transaction): Transaction => {
             value: voter,
           },
           proposalId: {
-            type: 'number',
-            value: Number(proposalId),
+            type: 'link',
+            value: proposalId.toString(),
+            link: proposalUrl(proposalId),
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Nouns',
-            default: `[[voter]] [[contextAction]] ${description} proposal [[proposalId]]`,
+            default: `[[voter]] [[contextAction]] ${
+              action === 'ABSTAINED' ? 'from voting on ' : ''
+            }proposal [[proposalId]]`,
           },
         },
       };
@@ -250,8 +354,9 @@ export const generate = (transaction: Transaction): Transaction => {
             value: transaction.from,
           },
           proposalId: {
-            type: 'number',
-            value: Number(proposalId),
+            type: 'link',
+            value: proposalId.toString(),
+            link: proposalUrl(proposalId),
           },
         },
         summaries: {
