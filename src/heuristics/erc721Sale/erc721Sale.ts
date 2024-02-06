@@ -45,7 +45,7 @@ export function detect(transaction: Transaction): boolean {
   return false;
 }
 
-function generate(transaction: Transaction): Transaction {
+export function generate(transaction: Transaction): Transaction {
   if (!transaction.netAssetTransfers) return transaction;
 
   const receivingAddresses: string[] = [];
@@ -129,6 +129,17 @@ function generate(transaction: Transaction): Transaction {
               type: 'address',
               value: receivingAddresses[0],
             },
+      numOfToken:
+        receivedNfts.length === 1
+          ? {
+              type: 'string',
+              value: '',
+            }
+          : {
+              type: 'number',
+              value: receivedNfts.length,
+              emphasis: true,
+            },
       tokenOrTokens:
         receivedNfts.length === 1
           ? {
@@ -136,16 +147,18 @@ function generate(transaction: Transaction): Transaction {
               token: receivedNfts[0].asset,
               tokenId: receivedNfts[0].tokenId,
             }
-          : receivedNftContracts.length === 1
+          : receivedNftContracts.length === 1 ||
+              receivedNftContracts.every(
+                (contract) => contract === receivedNfts[0].asset,
+              )
             ? {
                 type: 'address',
-                value: receivedNftContracts[0],
+                value: receivedNfts[0].asset,
               }
             : {
-                type: 'number',
-                value: receivedNfts.length,
+                type: 'string',
+                value: 'NFTs',
                 emphasis: true,
-                unit: 'NFTs',
               },
       price:
         totalAssets > 1
@@ -175,7 +188,8 @@ function generate(transaction: Transaction): Transaction {
       category: 'NFT',
       en: {
         title: 'NFT Purchase',
-        default: '[[userOrUsers]] [[bought]] [[tokenOrTokens]] for [[price]]',
+        default:
+          '[[userOrUsers]] [[bought]] [[numOfToken]] [[tokenOrTokens]] for [[price]]',
       },
     },
   };
