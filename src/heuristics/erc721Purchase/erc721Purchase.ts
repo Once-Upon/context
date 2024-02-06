@@ -92,7 +92,9 @@ export function generate(transaction: Transaction): Transaction {
       ];
     }
   });
-
+  const receivedNftContracts = Array.from(
+    new Set(receivedNfts.map((x) => x.asset)),
+  );
   const totalERC20Payment: Record<string, ERC20Asset> = erc20Payments.reduce(
     (acc, next) => {
       acc[next.asset] = {
@@ -135,17 +137,30 @@ export function generate(transaction: Transaction): Transaction {
               token: receivedNfts[0].asset,
               tokenId: receivedNfts[0].tokenId,
             }
-          : receivedNfts.length === 1
+          : receivedNftContracts.length === 1 ||
+              receivedNftContracts.every(
+                (contract) => contract === receivedNfts[0].asset,
+              )
             ? {
                 type: 'address',
                 value: receivedNfts[0].asset,
               }
             : {
-                type: 'number',
-                value: receivedNfts.length,
+                type: 'string',
+                value: 'NFTs',
                 emphasis: true,
-                unit: 'NFTs',
               },
+      numOfToken:
+        receivedNfts.length === 1
+          ? {
+              type: 'string',
+              value: '',
+            }
+          : {
+              type: 'number',
+              value: receivedNfts.length,
+              emphasis: true,
+            },
       price:
         totalAssets > 1
           ? {
@@ -174,7 +189,8 @@ export function generate(transaction: Transaction): Transaction {
       category: 'NFT',
       en: {
         title: 'NFT Purchase',
-        default: '[[userOrUsers]] [[bought]] [[tokenOrTokens]] for [[price]]',
+        default:
+          '[[userOrUsers]] [[bought]] [[numOfToken]] [[tokenOrTokens]] for [[price]]',
       },
     },
   };
