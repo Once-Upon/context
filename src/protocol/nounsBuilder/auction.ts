@@ -206,7 +206,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'DAO',
+              title: 'Nouns Builder',
               default:
                 '[[subject]][[contextAction]]auction for token #[[tokenId]]won by[[winner]]',
             },
