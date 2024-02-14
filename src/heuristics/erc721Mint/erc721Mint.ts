@@ -40,6 +40,8 @@ export function detect(transaction: Transaction): boolean {
     return false;
   }
 
+  const receivers = mints.map((ele) => ele.to);
+
   // check if all minted assets are from the same contract
   const isSameContract = mints.every((ele) => ele.asset === mints[0].asset);
   if (!isSameContract) {
@@ -51,7 +53,8 @@ export function detect(transaction: Transaction): boolean {
   if (assetSent.length > 0 && assetSent[0].type !== AssetType.ETH) {
     return false;
   }
-  // check if other transaction parties received ether
+
+  // check if one of other transaction parties received ether
   const transactionParties: string[] = Object.keys(
     transaction.netAssetTransfers,
   )
@@ -61,14 +64,21 @@ export function detect(transaction: Transaction): boolean {
     }, [] as string[])
     .filter(
       (address) =>
-        address !== KNOWN_ADDRESSES.NULL && address !== transaction.from,
+        address !== KNOWN_ADDRESSES.NULL && !receivers.includes(address),
     );
 
-  for (const address of transactionParties) {
-    const assetReceived = transaction.netAssetTransfers[address]?.received;
-    if (assetReceived.length === 0 || assetReceived[0].type !== AssetType.ETH) {
-      return false;
-    }
+  if (
+    transactionParties.length > 0 &&
+    transactionParties.every((address) => {
+      const assetReceived = transaction.netAssetTransfers
+        ? transaction.netAssetTransfers[address]?.received
+        : [];
+      return (
+        assetReceived.length === 0 || assetReceived[0].type !== AssetType.ETH
+      );
+    })
+  ) {
+    return false;
   }
 
   return true;
