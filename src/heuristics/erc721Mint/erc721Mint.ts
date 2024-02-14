@@ -16,9 +16,10 @@ export function contextualize(transaction: Transaction): Transaction {
 /**
  * Detection criteria
  *
- * 1 address receives NFTs, all must be from the same contract. All nfts are minted (meaning they're sent from null address in netAssetTransfers).
+ * 1 address receives NFTs, all must be from the same contract.
+ * All nfts are minted (meaning they're sent from null address in netAssetTransfers).
  * The from address can send ETH
- * The only other parties in netAssetTransfers are receiving ETH
+ * Only 1 address should receive nfts
  */
 export function detect(transaction: Transaction): boolean {
   if (
@@ -40,6 +41,11 @@ export function detect(transaction: Transaction): boolean {
     return false;
   }
 
+  // only 1 address should receive the minted NFTs
+  if (new Set(mints.map((ele) => ele.to)).size !== 1) {
+    return false;
+  }
+
   // check if all minted assets are from the same contract
   const isSameContract = mints.every((ele) => ele.asset === mints[0].asset);
   if (!isSameContract) {
@@ -50,25 +56,6 @@ export function detect(transaction: Transaction): boolean {
   const assetSent = assetTransfer?.sent ?? [];
   if (assetSent.length > 0 && assetSent[0].type !== AssetType.ETH) {
     return false;
-  }
-  // check if other transaction parties received ether
-  const transactionParties: string[] = Object.keys(
-    transaction.netAssetTransfers,
-  )
-    .reduce((parties, address) => {
-      parties = [...new Set([...parties, address])];
-      return parties;
-    }, [] as string[])
-    .filter(
-      (address) =>
-        address !== KNOWN_ADDRESSES.NULL && address !== transaction.from,
-    );
-
-  for (const address of transactionParties) {
-    const assetReceived = transaction.netAssetTransfers[address]?.received;
-    if (assetReceived.length === 0 || assetReceived[0].type !== AssetType.ETH) {
-      return false;
-    }
   }
 
   return true;
@@ -93,7 +80,7 @@ export function generate(transaction: Transaction): Transaction {
 
   const assetSent = transaction.netAssetTransfers[transaction.from]
     ?.sent as ETHAsset[];
-  const price = assetSent[0]?.value ?? '0';
+  const price = assetSent && assetSent.length ? assetSent[0].value : '0';
 
   transaction.context = {
     variables: {
