@@ -82,11 +82,17 @@ export function generate(transaction: Transaction): Transaction {
     ?.sent as ETHAsset[];
   const price = assetSent && assetSent.length ? assetSent[0].value : '0';
 
+  const sender = transaction.from;
+
   transaction.context = {
     variables: {
       recipient: {
         type: 'address',
         value: recipient,
+      },
+      sender: {
+        type: 'address',
+        value: sender,
       },
       price: {
         type: AssetType.ETH,
@@ -99,7 +105,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'NFT',
       en: {
         title: 'NFT Mint',
-        default: '[[recipient]] [[minted]] [[token]] for [[price]]',
+        default: '', // filled in below
       },
     },
   };
@@ -122,7 +128,9 @@ export function generate(transaction: Transaction): Transaction {
       en: {
         title: 'NFT Mint',
         default:
-          '[[recipient]] [[minted]] [[amount]] [[multipleERC721s]] for [[price]]',
+          sender === recipient
+            ? '[[recipient]] [[minted]] [[amount]] [[multipleERC721s]] for [[price]]'
+            : '[[sender]] [[minted]] [[amount]] [[multipleERC721s]] to [[recipient]] for [[price]]',
       },
     };
   } else {
@@ -138,7 +146,10 @@ export function generate(transaction: Transaction): Transaction {
       ...transaction.context.summaries,
       en: {
         title: 'NFT Mint',
-        default: '[[recipient]] [[minted]] [[token]] for [[price]]',
+        default:
+          sender === recipient
+            ? '[[recipient]] [[minted]] [[token]] for [[price]]'
+            : '[[sender]] [[minted]] [[token]] to [[recipient]] for [[price]]',
       },
     };
   }
