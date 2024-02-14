@@ -19,6 +19,7 @@ export function contextualize(transaction: Transaction): Transaction {
  * 1 address receives NFTs, all must be from the same contract.
  * All nfts are minted (meaning they're sent from null address in netAssetTransfers).
  * The from address can send ETH
+ * Only 1 address should receive nfts
  */
 export function detect(transaction: Transaction): boolean {
   if (
@@ -37,6 +38,11 @@ export function detect(transaction: Transaction): boolean {
   ) as ERC1155AssetTransfer[];
 
   if (mints.length == 0) {
+    return false;
+  }
+
+  // only 1 address should receive the minted NFTs
+  if (new Set(mints.map((ele) => ele.to)).size !== 1) {
     return false;
   }
 

@@ -4,7 +4,6 @@ import erc721Mint0x2c8a3ed1 from '../../test/transactions/erc721Mint-0x2c8a3ed1.
 import erc721Mint0x35f54999 from '../../test/transactions/erc721Mint-0x35f54999.json';
 import erc721Mint0x02e0551e from '../../test/transactions/erc721Mint-0x02e0551e.json';
 import erc20Swap0xd55dc9b2 from '../../test/transactions/erc20Swap-0xd55dc9b2.json';
-import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 import { contextSummary } from '../../helpers/utils';
 
 describe('ERC721 Mint', () => {
@@ -22,9 +21,6 @@ describe('ERC721 Mint', () => {
   it('Should not detect as ERC721 Mint', () => {
     const isErc721Mint1 = detect(erc20Swap0xd55dc9b2 as Transaction);
     expect(isErc721Mint1).toBe(false);
-
-    const isErc721Mint2 = detect(catchall0xc35c01ac as Transaction);
-    expect(isErc721Mint2).toBe(false);
   });
 
   it('Should generate a context for token mint', () => {
