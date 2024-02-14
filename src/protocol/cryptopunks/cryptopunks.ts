@@ -186,6 +186,8 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       const ethAssetTransfer = transaction
         .assetTransfers?.[0] as ETHAssetTransfer;
+      if (!ethAssetTransfer) return transaction;
+
       const price: ContextSummaryVariableType = {
         type: AssetType.ETH,
         value: ethAssetTransfer.value,

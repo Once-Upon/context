@@ -187,6 +187,9 @@ export const generate = (transaction: Transaction): Transaction => {
           .received[0] as ERC721Asset;
         const assetSent = transaction.netAssetTransfers[transaction.from]
           .sent[0] as ERC20Asset;
+
+        if (!assetReceived || !assetSent) return transaction;
+
         const pet: ContextERC721Type = {
           type: AssetType.ERC721,
           token: contracts.frenPetNFTTokenContract,
