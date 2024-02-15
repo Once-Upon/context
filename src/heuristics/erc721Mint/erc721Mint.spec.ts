@@ -35,7 +35,7 @@ describe('ERC721 Mint', () => {
     expect(erc721Mint2.context?.summaries?.category).toBe('NFT');
     const desc2 = contextSummary(erc721Mint2.context);
     expect(desc2).toBe(
-      '0xb8edb17cd08dd854dee002f898b4f7cb3763ce75 MINTED 0x13303b4ee819fac204be5ef77523cfcd558c082f #4070 for 0 ETH',
+      '0xb8edb17cd08dd854dee002f898b4f7cb3763ce75 MINTED 0x13303b4ee819fac204be5ef77523cfcd558c082f #4070',
     );
   });
 });
