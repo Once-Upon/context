@@ -4,12 +4,20 @@ import erc1155Mint0x45d1ed7b from '../../test/transactions/erc1155Mint-0x45d1ed7
 import erc20Swap0xd55dc9b2 from '../../test/transactions/erc20Swap-0xd55dc9b2.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 import erc1155MintBySomeoneElse from '../../test/transactions/erc1155MintBySomeoneElse-0xa9ddcb75.json';
+import erc1155Mint0xdb571cc5 from '../../test/transactions/erc1155Mint-0xdb571cc5.json';
+import erc1155Mint0x65bfc065 from '../../test/transactions/erc1155Mint-0x65bfc065.json';
 import { contextSummary } from '../../helpers/utils';
 
 describe('ERC1155 Mint', () => {
   it('Should detect ERC1155 Mint transaction', () => {
     const erc1155Mint1 = detect(erc1155Mint0x45d1ed7b as Transaction);
     expect(erc1155Mint1).toBe(true);
+
+    const erc1155Mint2 = detect(erc1155Mint0xdb571cc5 as Transaction);
+    expect(erc1155Mint2).toBe(true);
+
+    const erc1155Mint3 = detect(erc1155Mint0x65bfc065 as Transaction);
+    expect(erc1155Mint3).toBe(true);
   });
 
   it('Should detect ERC1155 Mint transaction when by someone else', () => {
