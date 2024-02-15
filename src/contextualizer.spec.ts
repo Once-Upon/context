@@ -30,6 +30,7 @@ import tokenApproval0xa0c2a425 from './test/transactions/tokenApproval-0xa0c2a42
 import erc721MintMint0x2c8a3ed1 from './test/transactions/erc721Mint-0x2c8a3ed1.json';
 import erc1155Mint0x45d1ed7b from './test/transactions/erc1155Mint-0x45d1ed7b.json';
 import erc721Mint0x35f54999 from './test/transactions/erc721Mint-0x35f54999.json';
+import erc1155Mint0xdb571cc5 from './test/transactions/erc1155Mint-0xdb571cc5.json';
 // token transfer
 import tokenTransfer0xcfba5dee from './test/transactions/tokenTransfer-0xcfba5dee.json';
 // FriendTech
@@ -146,6 +147,9 @@ describe('ContextualizerService', () => {
     it('Should detect ERC1155 Mint', async () => {
       const erc1155Mint1 = contextualize(erc1155Mint0x45d1ed7b as Transaction);
       expect(erc1155Mint1.context?.summaries?.en.title).toBe('NFT Mint');
+
+      const erc1155Mint2 = contextualize(erc1155Mint0xdb571cc5 as Transaction);
+      expect(erc1155Mint2.context?.summaries?.en.title).toBe('NFT Mint');
     });
 
     it('Should detect Token Transfer', async () => {
