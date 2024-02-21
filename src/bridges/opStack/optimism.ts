@@ -12,36 +12,27 @@ import {
   ContextERC1155Type,
   EventLogTopics,
 } from '../../types';
-import { DatabaseService } from '../../../database/database.service';
 import {
   OPTIMISM_BRIDGE_PROXY,
-  TRANSACTION_DEPOSITED_EVENT_SIG,
+  TRANSACTION_DEPOSITED_EVENT_ABI,
   TRANSACTION_DEPOSITED_EVENT_HASH,
   OPTIMISM_ETHEREUM_GATEWAY,
 } from './constants';
 import { CHAINS } from '../constants';
 import { decodeLog } from '../../helpers/utils';
 
-export async function OpStackContextualizer(
+export function contextualize(
   transaction: Transaction,
-  databaseService: DatabaseService,
-  contextualize: (transaction: Transaction) => Promise<Transaction>,
-): Promise<Transaction> {
-  const isOpStack = await detectOpStack(transaction, databaseService);
+  // contextualize: (transaction: Transaction) => Promise<Transaction>,
+): Transaction {
+  const isOpStack = detect(transaction);
   if (!isOpStack) return transaction;
 
-  const result = await generateOpStackContext(
-    transaction,
-    databaseService,
-    contextualize,
-  );
+  const result = generate(transaction /*, contextualize*/);
   return result;
 }
 
-export async function detectOpStack(
-  transaction: Transaction,
-  databaseService: DatabaseService,
-): Promise<boolean> {
+export function detect(transaction: Transaction): boolean {
   /**
    * There is a degree of overlap between the 'detect' and 'generateContext' functions,
    *  and while this might seem redundant, maintaining the 'detect' function aligns with
@@ -69,11 +60,10 @@ export async function detectOpStack(
   return false;
 }
 
-export async function generateOpStackContext(
+export function generate(
   transaction: Transaction,
-  databaseService: DatabaseService,
-  contextualize: (transaction: Transaction) => Promise<Transaction>,
-): Promise<Transaction> {
+  // contextualize: (transaction: Transaction) => Promise<Transaction>,
+): Transaction {
   const assetSent = transaction.netAssetTransfers
     ? transaction.netAssetTransfers[transaction.from]?.sent
     : [];
@@ -155,7 +145,7 @@ export async function generateOpStackContext(
   if (transactionDepositedLog) {
     // Now parse the data to pull out the nonce for this message
     const transactionDepositedEvent = decodeLog(
-      TRANSACTION_DEPOSITED_EVENT_SIG,
+      TRANSACTION_DEPOSITED_EVENT_ABI,
       transactionDepositedLog.data as Hex,
       transactionDepositedLog.topics as EventLogTopics,
     );
@@ -187,13 +177,13 @@ export async function generateOpStackContext(
       };
     }
 
-    const optimismTx = await databaseService.transactionCollection.findOne({
-      hash: optimismTxHash,
-    });
-    if (optimismTx) {
-      const crossChainTx = await contextualize(optimismTx);
-      transaction.context.crossChainTx = [crossChainTx];
-    }
+    // const optimismTx = await databaseService.transactionCollection.findOne({
+    //   hash: optimismTxHash,
+    // });
+    // if (optimismTx) {
+    //   const crossChainTx = await contextualize(optimismTx);
+    //   transaction.context.crossChainTx = [crossChainTx];
+    // }
   }
 
   return transaction;
