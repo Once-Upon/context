@@ -13,10 +13,8 @@ import {
   EventLogTopics,
 } from '../../types';
 import {
-  OPTIMISM_BRIDGE_PROXY,
   TRANSACTION_DEPOSITED_EVENT_ABI,
   TRANSACTION_DEPOSITED_EVENT_HASH,
-  OPTIMISM_ETHEREUM_GATEWAY,
 } from './constants';
 import { decodeLog } from '../../helpers/utils';
 
@@ -35,14 +33,10 @@ export function detect(transaction: Transaction): boolean {
    * established patterns in our other modules. This consistency is beneficial,
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
-  if (
-    transaction.chainId === 1 &&
-    transaction.to === OPTIMISM_ETHEREUM_GATEWAY
-  ) {
+  if (transaction.chainId === 1) {
     const logs = transaction.logs ?? [];
     const transactionDepositedLog = logs.find((log: any) => {
       return (
-        log.address === OPTIMISM_BRIDGE_PROXY &&
         log.topics?.length > 0 &&
         log.topics[0] === TRANSACTION_DEPOSITED_EVENT_HASH
       );
@@ -128,7 +122,6 @@ export function generate(transaction: Transaction): Transaction {
   const logs = transaction.logs ?? [];
   const transactionDepositedLog = logs.find((log: any) => {
     return (
-      log.address === OPTIMISM_BRIDGE_PROXY &&
       log.topics?.length > 0 &&
       log.topics[0] === TRANSACTION_DEPOSITED_EVENT_HASH
     );
@@ -146,10 +139,10 @@ export function generate(transaction: Transaction): Transaction {
     const event: TransactionDepositedEvent = {
       eventName: 'TransactionDeposited',
       args: {
-        from: transactionDepositedEvent.args[0] as Hex,
-        to: transactionDepositedEvent.args[1] as Hex,
-        version: transactionDepositedEvent.args[2] as bigint,
-        opaqueData: transactionDepositedEvent.args[3] as Hex,
+        from: transactionDepositedEvent.args['from'] as Hex,
+        to: transactionDepositedEvent.args['to'] as Hex,
+        version: transactionDepositedEvent.args['version'] as bigint,
+        opaqueData: transactionDepositedEvent.args['opaqueData'] as Hex,
       },
     };
     const optimismTxHash = getL2HashFromL1DepositInfo({
