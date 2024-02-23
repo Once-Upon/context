@@ -18,7 +18,6 @@ import {
   TRANSACTION_DEPOSITED_EVENT_HASH,
   OPTIMISM_ETHEREUM_GATEWAY,
 } from './constants';
-import { CHAINS } from '../constants';
 import { decodeLog } from '../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
