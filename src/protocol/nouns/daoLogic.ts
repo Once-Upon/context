@@ -251,7 +251,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Nouns',
-            default: `[[subject]][[contextAction]] ${
+            default: `[[subject]][[contextAction]]${
               action === 'ABSTAINED' ? 'from voting on ' : ''
             }proposal[[proposalId]]`,
           },
@@ -259,7 +259,7 @@ export const generate = (transaction: Transaction): Transaction => {
       };
 
       if (reason) {
-        transaction.context!.summaries!.en.long = `[[subject]][[contextAction]] ${
+        transaction.context!.summaries!.en.long = `[[subject]][[contextAction]]${
           action === 'ABSTAINED' ? 'from voting on ' : ''
         }proposal[[proposalId]]. Reason:[[reason]]`;
       }

@@ -42,7 +42,7 @@ describe('NounsBuilderDAO Auction', () => {
       );
       const unknownDesc = contextSummary(unknown.context);
       expect(unknownDesc).toBe(
-        '0xad8717e33c719a9b407ad6b40d0be237845c2fbf BID 0.0001 ETH on token #5',
+        '0xad8717e33c719a9b407ad6b40d0be237845c2fbf BID 0.0001 ETH on token # 5',
       );
       expect(containsBigInt(unknown.context)).toBe(false);
 
@@ -88,7 +88,7 @@ describe('NounsBuilderDAO Auction', () => {
       );
       const unknownDesc = contextSummary(unknown.context);
       expect(unknownDesc).toBe(
-        '0xad8717e33c719a9b407ad6b40d0be237845c2fbf SETTLED auction for token #4 won by 0x2767500a75D90D711b2Ac27b3a032a0dAa40e4B2',
+        '0xad8717e33c719a9b407ad6b40d0be237845c2fbf SETTLED auction for token # 4 won by 0x2767500a75D90D711b2Ac27b3a032a0dAa40e4B2',
       );
       expect(containsBigInt(unknown.context)).toBe(false);
 

@@ -89,7 +89,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'friend.tech',
-              default: '[[subject]] [[signedUp]]',
+              default: '[[subject]][[signedUp]]',
             },
           },
           variables: {

@@ -211,15 +211,15 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'DAO',
             default: `[[subject]][[contextAction]]${
-              action === 'ABSTAINED' ? 'from voting on ' : ''
-            }${dao?.name ? '[[dao]]DAO' : ''}proposal[[proposalId]]`,
+              action === 'ABSTAINED' ? 'from voting on' : ''
+            }${dao?.name ? '[[dao]]DAO ' : ''}proposal[[proposalId]]`,
           },
         },
       };
 
       if (reason) {
         transaction.context!.summaries!.en.long = `[[subject]][[contextAction]]${
-          action === 'ABSTAINED' ? 'from voting on ' : ''
+          action === 'ABSTAINED' ? 'from voting on' : ''
         }${
           dao?.name ? '[[dao]]DAO ' : ''
         }proposal[[proposalId]]. Reason:[[reason]]`;
