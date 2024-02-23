@@ -48,7 +48,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'CORE',
       en: {
         title: 'Faucet Deposit',
-        default: '[[depositee]] [[received]] [[amount]] from [[depositer]]',
+        default: '[[depositee]][[received]][[amount]]from[[depositer]]',
       },
     },
   };

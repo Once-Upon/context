@@ -65,8 +65,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
-            default:
-              '[[owner]] [[changedRecoveryAddress]] to [[recoveryAddress]]',
+            default: '[[owner]][[changedRecoveryAddress]]to[[recoveryAddress]]',
           },
         },
       };
@@ -93,7 +92,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
-            default: '[[owner]] [[transferredId]] to [[to]]',
+            default: '[[owner]][[transferredId]]to[[to]]',
           },
         },
       };

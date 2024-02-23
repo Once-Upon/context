@@ -99,7 +99,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'DAO',
-              default: '[[subject]] [[contextAction]] [[amount]] on [[token]]',
+              default: '[[subject]][[contextAction]][[amount]]on[[token]]',
             },
           },
         };
@@ -116,7 +116,7 @@ export const generate = (transaction: Transaction): Transaction => {
             en: {
               title: 'DAO',
               default:
-                '[[subject]] [[contextAction]] [[amount]] on token #[[tokenId]]',
+                '[[subject]][[contextAction]][[amount]]on token #[[tokenId]]',
             },
           },
         };
@@ -192,7 +192,7 @@ export const generate = (transaction: Transaction): Transaction => {
             en: {
               title: 'DAO',
               default:
-                '[[subject]] [[contextAction]] auction for [[token]] won by [[winner]]',
+                '[[subject]][[contextAction]]auction for[[token]]won by[[winner]]',
             },
           },
         };
@@ -208,7 +208,7 @@ export const generate = (transaction: Transaction): Transaction => {
             en: {
               title: 'DAO',
               default:
-                '[[subject]] [[contextAction]] auction for token #[[tokenId]] won by [[winner]]',
+                '[[subject]][[contextAction]]auction for token #[[tokenId]]won by[[winner]]',
             },
           },
         };

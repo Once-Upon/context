@@ -92,7 +92,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default: '[[minter]] [[contextAction]] [[punk]]',
+              default: '[[minter]][[contextAction]][[punk]]',
             },
           },
         };
@@ -110,7 +110,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default: 'Failed: [[minter]] [[contextAction]] [[punk]]',
+              default: 'Failed:[[minter]][[contextAction]][[punk]]',
             },
           },
         };
@@ -147,7 +147,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default: '[[seller]] [[contextAction]] [[punk]] for [[price]]',
+              default: '[[seller]][[contextAction]][[punk]]for[[price]]',
             },
           },
         };
@@ -166,8 +166,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default:
-                'Failed: [[seller]] [[contextAction]] [[punk]] for [[price]]',
+              default: 'Failed:[[seller]][[contextAction]][[punk]]for[[price]]',
             },
           },
         };
@@ -208,7 +207,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default: '[[bidder]] [[contextAction]] [[punk]] for [[price]]',
+              default: '[[bidder]][[contextAction]][[punk]]for[[price]]',
             },
           },
         };
@@ -227,8 +226,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default:
-                'Failed: [[bidder]] [[contextAction]] [[punk]] for [[price]]',
+              default: 'Failed:[[bidder]][[contextAction]][[punk]]for[[price]]',
             },
           },
         };
@@ -265,7 +263,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default: '[[buyer]] [[contextAction]] [[punk]] for [[price]]',
+              default: '[[buyer]][[contextAction]][[punk]]for[[price]]',
             },
           },
         };
@@ -284,8 +282,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default:
-                'Failed: [[buyer]] [[contextAction]] [[punk]] for [[price]]',
+              default: 'Failed:[[buyer]][[contextAction]][[punk]]for[[price]]',
             },
           },
         };
@@ -318,7 +315,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default: '[[withdrawer]] [[contextAction]] [[amount]]',
+              default: '[[withdrawer]][[contextAction]][[amount]]',
             },
           },
         };
@@ -336,7 +333,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default: 'Failed: [[withdrawer]] [[contextAction]] [[amount]]',
+              default: 'Failed:[[withdrawer]][[contextAction]][[amount]]',
             },
           },
         };
@@ -386,7 +383,7 @@ export const generate = (transaction: Transaction): Transaction => {
             en: {
               title: 'CryptoPunks',
               default:
-                '[[buyer]] [[contextAction]] [[punk]] from [[seller]] for [[price]]',
+                '[[buyer]][[contextAction]][[punk]]from[[seller]]for[[price]]',
             },
           },
         };
@@ -405,8 +402,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default:
-                'Failed: [[buyer]] [[contextAction]] [[punk]] for [[price]]',
+              default: 'Failed:[[buyer]][[contextAction]][[punk]]for[[price]]',
             },
           },
         };
@@ -442,7 +438,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default: '[[sender]] [[contextAction]] [[punk]] to [[receiver]]',
+              default: '[[sender]][[contextAction]][[punk]]to[[receiver]]',
             },
           },
         };
@@ -462,7 +458,7 @@ export const generate = (transaction: Transaction): Transaction => {
             en: {
               title: 'CryptoPunks',
               default:
-                'Failed: [[sender]] [[contextAction]] [[punk]] to [[receiver]]',
+                'Failed:[[sender]][[contextAction]][[punk]]to[[receiver]]',
             },
           },
         };
@@ -493,7 +489,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default: '[[seller]] [[contextAction]] [[punk]]',
+              default: '[[seller]][[contextAction]][[punk]]',
             },
           },
         };
@@ -511,7 +507,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'CryptoPunks',
-              default: 'Failed: [[seller]] [[contextAction]] [[punk]]',
+              default: 'Failed:[[seller]][[contextAction]][[punk]]',
             },
           },
         };
@@ -555,7 +551,7 @@ export const generate = (transaction: Transaction): Transaction => {
             en: {
               title: 'CryptoPunks',
               default:
-                '[[seller]] [[contextAction]] [[punk]] to [[buyer]] for [[price]]',
+                '[[seller]][[contextAction]][[punk]]to[[buyer]]for[[price]]',
             },
           },
         };
@@ -576,7 +572,7 @@ export const generate = (transaction: Transaction): Transaction => {
             en: {
               title: 'CryptoPunks',
               default:
-                'Failed: [[seller]] [[contextAction]] [[punk]] to [[buyer]] for [[price]]',
+                'Failed:[[seller]][[contextAction]][[punk]]to[[buyer]]for[[price]]',
             },
           },
         };

@@ -190,7 +190,7 @@ export function generate(transaction: Transaction): Transaction {
       en: {
         title: 'NFT Purchase',
         default:
-          '[[userOrUsers]] [[bought]] [[numOfToken]] [[tokenOrTokens]] for [[price]]',
+          '[[userOrUsers]][[bought]][[numOfToken]][[tokenOrTokens]]for[[price]]',
       },
     },
   };

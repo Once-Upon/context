@@ -127,8 +127,8 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default: recipient
-              ? '[[from]] [[attested]] to [[recipient]] with schema [[schema]] 🔗 [[attestation]]'
-              : '[[from]] [[attested]] with schema [[schema]] 🔗 [[attestation]]',
+              ? '[[from]][[attested]]to[[recipient]]with schema[[schema]]🔗[[attestation]]'
+              : '[[from]][[attested]]with schema[[schema]]🔗[[attestation]]',
           },
         },
       };
@@ -184,8 +184,8 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default: recipient
-              ? '[[attester]] [[attested]] to [[recipient]] with schema [[schema]] by delegation via [[from]] 🔗 [[attestation]]'
-              : '[[attester]] [[attested]] with schema [[schema]] by delegation via [[from]] 🔗 [[attestation]]',
+              ? '[[attester]][[attested]]to[[recipient]]with schema[[schema]]by delegation via[[from]]🔗[[attestation]]'
+              : '[[attester]][[attested]]with schema[[schema]]by delegation via[[from]]🔗[[attestation]]',
           },
         },
       };
@@ -224,7 +224,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default: `[[from]] [[attested]] [[count]] with [[schemas]]`,
+            default: `[[from]][[attested]][[count]]with[[schemas]]`,
           },
         },
       };
@@ -270,7 +270,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default: `[[attesters]] [[attested]] [[count]] with [[schemas]] by delegation via [[from]]`,
+            default: `[[attesters]][[attested]][[count]]with[[schemas]]by delegation via[[from]]`,
           },
         },
       };
@@ -319,7 +319,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default:
-              '[[from]] [[revoked]] an attestation with schema [[schema]] 🔗 [[attestation]]',
+              '[[from]][[revoked]]an attestation with schema[[schema]]🔗[[attestation]]',
           },
         },
       };
@@ -371,7 +371,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'EAS',
             default:
-              '[[revoker]] [[revoked]] an attestation with schema [[schema]] by delegation via [[from]] 🔗 [[attestation]]',
+              '[[revoker]][[revoked]]an attestation with schema[[schema]]by delegation via[[from]]🔗[[attestation]]',
           },
         },
       };
@@ -410,7 +410,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default: `[[from]] [[revoked]] [[count]] with [[schemas]]`,
+            default: `[[from]][[revoked]][[count]]with[[schemas]]`,
           },
         },
       };
@@ -454,10 +454,10 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default: `[[revokers]] [[revoked]] ${pluralize(
+            default: `[[revokers]][[revoked]]${pluralize(
               'account',
               revokers,
-            )} [[count]] with [[schemas]] by delegation via [[from]]`,
+            )}[[count]]with[[schemas]]by delegation via[[from]]`,
           },
         },
       };
@@ -480,7 +480,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default: '[[from]] [[timestamped]] data',
+            default: '[[from]][[timestamped]]data',
           },
         },
       };
@@ -509,7 +509,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default: '[[from]] [[timestamped]] [[count]] data',
+            default: '[[from]][[timestamped]][[count]]data',
           },
         },
       };
@@ -532,7 +532,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default: '[[from]] [[revoked]] offchain data',
+            default: '[[from]][[revoked]]offchain data',
           },
         },
       };
@@ -561,7 +561,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default: '[[from]] [[revoked]] [[count]] offchain data',
+            default: '[[from]][[revoked]][[count]]offchain data',
           },
         },
       };

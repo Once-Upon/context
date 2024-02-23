@@ -51,7 +51,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'CORE',
       en: {
         title: 'ETH Transfer',
-        default: '[[sender]] [[sent]] [[amount]] to [[to]]',
+        default: '[[sender]][[sent]][[amount]]to[[to]]',
       },
     },
   };

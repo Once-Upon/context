@@ -104,8 +104,8 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'EAS',
-            default: '[[from]] [[registered]] new schema with id [[id]]',
-            long: '[[from]] [[registered]] new schema with id [[id]] and schema [[schema]]',
+            default: '[[from]][[registered]]new schema with id[[id]]',
+            long: '[[from]][[registered]]new schema with id[[id]]and schema[[schema]]',
           },
         },
       };

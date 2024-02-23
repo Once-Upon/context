@@ -74,7 +74,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
-              default: `[[buyer]] [[contextAction]] ${accessory} for [[pet]] for [[purchasePrice]]`,
+              default: `[[buyer]][[contextAction]]${accessory} for[[pet]]for[[purchasePrice]]`,
             },
           },
         };
@@ -92,7 +92,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
-              default: `Failed: [[buyer]] [[contextAction]] ${accessory} for [[pet]]`,
+              default: `Failed:[[buyer]][[contextAction]]${accessory} for[[pet]]`,
             },
           },
         };
@@ -150,7 +150,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
-              default: `[[attacker]] [[contextAction]] [[attacked]] and ${winOrLose} ${scoresWon} points`,
+              default: `[[attacker]][[contextAction]][[attacked]]and ${winOrLose} ${scoresWon} points`,
             },
           },
         };
@@ -168,7 +168,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
-              default: `Failed: [[attacker]] [[contextAction]] [[attacked]]`,
+              default: `Failed:[[attacker]][[contextAction]][[attacked]]`,
             },
           },
         };
@@ -214,7 +214,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
-              default: `[[minter]] [[contextAction]] [[pet]] for [[cost]]`,
+              default: `[[minter]][[contextAction]][[pet]]for[[cost]]`,
             },
           },
         };
@@ -231,7 +231,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
-              default: `Failed: [[minter]] [[contextAction]] a Fren Pet`,
+              default: `Failed:[[minter]][[contextAction]]a Fren Pet`,
             },
           },
         };
@@ -267,7 +267,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Fren Pet',
-            default: `[[user]] [[contextAction]] for [[pet]] to ${name}`,
+            default: `[[user]][[contextAction]]for[[pet]]to ${name}`,
           },
         },
       };
@@ -292,7 +292,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
-              default: `[[user]] [[contextAction]]`,
+              default: `[[user]][[contextAction]]`,
             },
           },
         };
@@ -309,7 +309,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
-              default: `[[user]] [[contextAction]]`,
+              default: `[[user]][[contextAction]]`,
             },
           },
         };
@@ -348,7 +348,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
-              default: `[[user]] [[contextAction]] for [[pet]]`,
+              default: `[[user]][[contextAction]]for[[pet]]`,
             },
           },
         };
@@ -383,7 +383,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
-              default: `[[user]] [[contextAction]] [[redeemedAmount]] for [[pet]]`,
+              default: `[[user]][[contextAction]][[redeemedAmount]]for[[pet]]`,
             },
           },
         };
@@ -428,7 +428,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Fren Pet',
-            default: `[[user]] [[contextAction]] with [[attacker]] attacking [[target]]`,
+            default: `[[user]][[contextAction]]with[[attacker]]attacking[[target]]`,
           },
         },
       };
@@ -478,7 +478,7 @@ export const generate = (transaction: Transaction): Transaction => {
               category: 'PROTOCOL_1',
               en: {
                 title: 'Fren Pet',
-                default: `[[user]] [[contextAction]] with [[attacker]]`,
+                default: `[[user]][[contextAction]]with[[attacker]]`,
               },
             },
           };
@@ -533,7 +533,7 @@ export const generate = (transaction: Transaction): Transaction => {
               category: 'PROTOCOL_1',
               en: {
                 title: 'Fren Pet',
-                default: `[[user]] [[contextAction]] with [[attacker]] attacking [[loser]] and ${winOrLose} ${scoresWonFormatted} points`,
+                default: `[[user]][[contextAction]]with[[attacker]]attacking[[loser]]and ${winOrLose} ${scoresWonFormatted} points`,
               },
             },
           };
@@ -552,7 +552,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Fren Pet',
-              default: `[[user]] [[contextAction]] with [[attacker]]`,
+              default: `[[user]][[contextAction]]with[[attacker]]`,
             },
           },
         };
@@ -595,7 +595,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Fren Pet',
-            default: `[[user]] [[contextAction]] [[dead]] with [[killer]]`,
+            default: `[[user]][[contextAction]][[dead]]with[[killer]]`,
           },
         },
       };
@@ -631,7 +631,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Fren Pet',
-            default: `[[user]] [[contextAction]] with [[pet]]`,
+            default: `[[user]][[contextAction]]with[[pet]]`,
           },
         },
       };
@@ -667,7 +667,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Fren Pet',
-            default: `[[user]] [[contextAction]] with [[pet]]`,
+            default: `[[user]][[contextAction]]with[[pet]]`,
           },
         },
       };

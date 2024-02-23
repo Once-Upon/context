@@ -100,7 +100,9 @@ describe('Nouns Governor', () => {
       expect(containsBigInt(transaction.context)).toBe(false);
 
       expect(transaction?.context?.variables?.reason).toBeDefined();
-      expect(contextSummary(transaction.context, "long")).toBe('0xceed9585854f12f81a0103861b83b995a64ad915 VOTED_AGAINST proposal 471. Reason: I have concerns around creating this long of a stream and would rather see more specific focus for the use of funds. (eg directed to a pool of web3 related charitable efforts for example.) \n\nThis will likely pass but if it doesn’t I would vote for a 1 year stream with focused distribution. ');
+      expect(contextSummary(transaction.context, 'long')).toBe(
+        '0xceed9585854f12f81a0103861b83b995a64ad915 VOTED_AGAINST proposal 471 I have concerns around creating this long of a stream and would rather see more specific focus for the use of funds. (eg directed to a pool of web3 related charitable efforts for example.) \n\nThis will likely pass but if it doesn’t I would vote for a 1 year stream with focused distribution. ',
+      );
     });
   });
 

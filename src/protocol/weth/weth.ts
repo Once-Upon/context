@@ -50,7 +50,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'FUNGIBLE_TOKEN',
           en: {
             title: 'WETH',
-            default: `[[from]] [[wrapped]] [[value]]`,
+            default: `[[from]][[wrapped]][[value]]`,
           },
         },
         variables: {
@@ -88,7 +88,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'FUNGIBLE_TOKEN',
           en: {
             title: 'WETH',
-            default: `[[withdrawer]] [[unwrapped]] [[withdrawalAmount]]`,
+            default: `[[withdrawer]][[unwrapped]][[withdrawalAmount]]`,
           },
         },
         variables: {

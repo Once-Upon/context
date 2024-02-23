@@ -82,7 +82,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'FUNGIBLE_TOKEN',
       en: {
         title: 'Token Transfer',
-        default: '[[sender]] [[sent]] [[token]] to [[recipient]]',
+        default: '[[sender]][[sent]][[token]]to[[recipient]]',
       },
     },
   };

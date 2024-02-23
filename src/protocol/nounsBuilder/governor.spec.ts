@@ -102,7 +102,7 @@ describe('NounsBuilderDAO Governor', () => {
       });
 
       expect(contextSummary(purple.context, 'long')).toBe(
-        "0x14b85b1c40056312fde55e1fa1827a92f12b966a VOTED_AGAINST Purple DAO proposal 0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b. Reason: I'm not totally against it. I'm just against it for now. I think it's too early and the prop is not well written. There were too many follow up questions and things that were not really clear.",
+        "0x14b85b1c40056312fde55e1fa1827a92f12b966a VOTED_AGAINST Purple DAO proposal 0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b I'm not totally against it. I'm just against it for now. I think it's too early and the prop is not well written. There were too many follow up questions and things that were not really clear.",
       );
       expect(containsBigInt(purple.context)).toBe(false);
 

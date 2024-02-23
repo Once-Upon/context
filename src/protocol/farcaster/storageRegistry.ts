@@ -64,7 +64,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
-            default: `[[caller]] [[rented]] [[units]] for Farcaster ID [[fid]]`,
+            default: `[[caller]][[rented]][[units]]for Farcaster ID[[fid]]`,
           },
         },
       };
@@ -103,7 +103,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Farcaster',
-            default: `[[caller]] [[rented]] [[units]] for [[fids]]`,
+            default: `[[caller]][[rented]][[units]]for[[fids]]`,
           },
         },
       };

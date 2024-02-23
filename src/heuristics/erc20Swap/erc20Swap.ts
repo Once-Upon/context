@@ -123,7 +123,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'FUNGIBLE_TOKEN',
       en: {
         title: 'ERC20 Swap',
-        default: '[[swapper]] [[swapped]] [[swapFrom]] for [[swapTo]]',
+        default: '[[swapper]][[swapped]][[swapFrom]]for[[swapTo]]',
       },
     },
   };
