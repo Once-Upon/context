@@ -81,7 +81,7 @@ function generate(transaction: Transaction): Transaction {
       (t) => t.type === AssetType.ERC1155,
     ) as ERC1155Asset[];
     const nftsSent = data.sent.filter(
-      (t) => t.type === AssetType.ERC721,
+      (t) => t.type === AssetType.ERC1155,
     ) as ERC1155Asset[];
     const erc20PaymentTransfers = data.sent.filter(
       (t) => t.type === AssetType.ERC20,
