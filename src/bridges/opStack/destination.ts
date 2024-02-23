@@ -1,0 +1,104 @@
+import {
+  Transaction,
+  Asset,
+  AssetType,
+  ContextSummaryVariableType,
+  ContextETHType,
+  ContextERC20Type,
+  ContextERC721Type,
+  ContextERC1155Type,
+} from '../../types';
+import { CHAINS } from '../constants';
+
+export function contextualize(transaction: Transaction): Transaction {
+  const isOpStack = detect(transaction);
+  if (!isOpStack) return transaction;
+
+  const result = generate(transaction);
+  return result;
+}
+
+export function detect(transaction: Transaction): boolean {
+  if (
+    transaction.maxFeePerGas === '0x0' &&
+    transaction.input === '0x01' &&
+    transaction.from === transaction.to
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+export function generate(transaction: Transaction): Transaction {
+  const assetSent = transaction.netAssetTransfers
+    ? transaction.netAssetTransfers[transaction.from]?.sent
+    : [];
+  if (!assetSent?.length) {
+    return transaction;
+  }
+  const assetTransfer: Asset = assetSent[0];
+  // Note: Other contextualizers fetch this id dynamically
+  const destinationChainId = 10;
+
+  let asset: ContextSummaryVariableType;
+  switch (assetTransfer.type) {
+    case AssetType.ETH:
+      asset = {
+        type: AssetType.ETH,
+        value: assetTransfer.value,
+        unit: 'wei',
+      } as ContextETHType;
+      break;
+    case AssetType.ERC20:
+      asset = {
+        type: AssetType.ERC20,
+        token: assetTransfer.asset,
+        value: assetTransfer.value,
+      } as ContextERC20Type;
+      break;
+    case AssetType.ERC721:
+      asset = {
+        type: AssetType.ERC721,
+        token: assetTransfer.asset,
+        tokenId: assetTransfer.tokenId,
+      } as ContextERC721Type;
+      break;
+    case AssetType.ERC1155:
+      asset = {
+        type: AssetType.ERC1155,
+        token: assetTransfer.asset,
+        tokenId: assetTransfer.tokenId,
+        value: assetTransfer.value,
+      } as ContextERC1155Type;
+      break;
+  }
+
+  // TODO; not sure why we didn't set context here for optimism
+  transaction.context = {
+    summaries: {
+      category: 'MULTICHAIN',
+      en: {
+        title: `Send to ${CHAINS[destinationChainId]?.name}`,
+        default: '[[sender]] [[bridged]] [[asset]] to [[chainID]]',
+      },
+    },
+    variables: {
+      sender: {
+        type: 'address',
+        value: transaction.from,
+      },
+      chainID: {
+        type: 'chainID',
+        value: destinationChainId,
+      },
+      bridged: {
+        type: 'contextAction',
+        value: 'BRIDGED',
+      },
+      asset,
+    },
+  };
+
+  return transaction;
+}

@@ -1,7 +1,7 @@
 import { makeContextualize } from '../../helpers/utils';
-import { contextualize as optimism } from './optimism';
+import { contextualize as source } from './source';
 
-const children = { optimism };
+const children = { source };
 
 const contextualize = makeContextualize(children);
 

@@ -21,14 +21,11 @@ import {
 import { CHAINS } from '../constants';
 import { decodeLog } from '../../helpers/utils';
 
-export function contextualize(
-  transaction: Transaction,
-  // contextualize: (transaction: Transaction) => Promise<Transaction>,
-): Transaction {
+export function contextualize(transaction: Transaction): Transaction {
   const isOpStack = detect(transaction);
   if (!isOpStack) return transaction;
 
-  const result = generate(transaction /*, contextualize*/);
+  const result = generate(transaction);
   return result;
 }
 
@@ -60,10 +57,7 @@ export function detect(transaction: Transaction): boolean {
   return false;
 }
 
-export function generate(
-  transaction: Transaction,
-  // contextualize: (transaction: Transaction) => Promise<Transaction>,
-): Transaction {
+export function generate(transaction: Transaction): Transaction {
   const assetSent = transaction.netAssetTransfers
     ? transaction.netAssetTransfers[transaction.from]?.sent
     : [];
@@ -176,14 +170,6 @@ export function generate(
         value: optimismTxHash,
       };
     }
-
-    // const optimismTx = await databaseService.transactionCollection.findOne({
-    //   hash: optimismTxHash,
-    // });
-    // if (optimismTx) {
-    //   const crossChainTx = await contextualize(optimismTx);
-    //   transaction.context.crossChainTx = [crossChainTx];
-    // }
   }
 
   return transaction;
