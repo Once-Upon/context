@@ -1,6 +1,7 @@
 import { makeContextualize } from './helpers/utils';
 import { protocolContextualizer } from './protocol';
 import { heuristicContextualizer } from './heuristics';
+import { bridgeContextualizer } from './bridges';
 import { Transaction } from './types';
 
 // contract deployed
@@ -42,6 +43,7 @@ import friendTech0x703647d1 from './test/transactions/friendTech-0x703647d1.json
 const contextualize = makeContextualize({
   protocolContextualizer: protocolContextualizer.contextualize,
   heuristicContextualizer: heuristicContextualizer.contextualize,
+  bridgeContextualizer: bridgeContextualizer.contextualize,
 });
 
 describe('ContextualizerService', () => {
