@@ -80,7 +80,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Nouns',
-            default: '[[subject]] [[contextAction]] [[amount]] on [[noun]]',
+            default: '[[subject]][[contextAction]][[amount]]on[[noun]]',
           },
         },
       };
@@ -147,7 +147,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'Nouns',
             default:
-              '[[subject]] [[contextAction]] auction for [[noun]] won by [[winner]]',
+              '[[subject]][[contextAction]]auction for[[noun]]won by[[winner]]',
           },
         },
       };

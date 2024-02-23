@@ -171,8 +171,8 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'DAO',
-            default: `[[subject]] [[contextAction]] [[proposalId]]${
-              dao?.name ? ' in [[dao]] DAO' : ''
+            default: `[[subject]][[contextAction]][[proposalId]]${
+              dao?.name ? 'in[[dao]]DAO' : ''
             }`,
           },
         },
@@ -210,19 +210,19 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'DAO',
-            default: `[[subject]] [[contextAction]] ${
+            default: `[[subject]][[contextAction]]${
               action === 'ABSTAINED' ? 'from voting on ' : ''
-            }${dao?.name ? '[[dao]] DAO ' : ''}proposal [[proposalId]]`,
+            }${dao?.name ? '[[dao]]DAO' : ''}proposal[[proposalId]]`,
           },
         },
       };
 
       if (reason) {
-        transaction.context!.summaries!.en.long = `[[subject]] [[contextAction]] ${
+        transaction.context!.summaries!.en.long = `[[subject]][[contextAction]]${
           action === 'ABSTAINED' ? 'from voting on ' : ''
         }${
-          dao?.name ? '[[dao]] DAO ' : ''
-        }proposal [[proposalId]]. Reason: [[reason]]`;
+          dao?.name ? '[[dao]]DAO ' : ''
+        }proposal[[proposalId]]. Reason:[[reason]]`;
       }
 
       return transaction;
@@ -250,9 +250,9 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'DAO',
-            default: `[[subject]] [[contextAction]] ${
-              action === 'ABSTAINED' ? 'from voting on ' : ''
-            }${dao?.name ? '[[dao]] DAO ' : ''}proposal [[proposalId]]`,
+            default: `[[subject]][[contextAction]]${
+              action === 'ABSTAINED' ? 'from voting on' : ''
+            }${dao?.name ? '[[dao]]DAO ' : ''}proposal[[proposalId]]`,
           },
         },
       };
@@ -307,9 +307,9 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'DAO',
-            default: `[[subject]] [[contextAction]] ${
-              dao?.name ? '[[dao]] DAO ' : ''
-            }proposal [[proposalId]]`,
+            default: `[[subject]][[contextAction]]${
+              dao?.name ? '[[dao]]DAO ' : ''
+            }proposal[[proposalId]]`,
           },
         },
       };
@@ -341,9 +341,9 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'DAO',
-            default: `[[subject]] [[contextAction]] ${
-              dao?.name ? '[[dao]] DAO ' : ''
-            }proposal [[proposalId]]`,
+            default: `[[subject]][[contextAction]]${
+              dao?.name ? '[[dao]]DAO ' : ''
+            }proposal[[proposalId]]`,
           },
         },
       };

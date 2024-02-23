@@ -45,7 +45,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'IDENTITY',
           en: {
             title: 'ENS',
-            default: `[[setter]] [[reversed]] [[name]]`,
+            default: `[[setter]][[reversed]][[name]]`,
           },
         },
         variables: {

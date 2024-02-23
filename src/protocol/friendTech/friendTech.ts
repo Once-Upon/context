@@ -55,7 +55,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'friend.tech',
             default:
-              '[[buyer]] [[failedToBuyKeys]] [[numOfKeys]] of [[subject]] for [[price]]',
+              '[[buyer]][[failedToBuyKeys]][[numOfKeys]]of[[subject]]for[[price]]',
           },
         },
       };
@@ -136,7 +136,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'friend.tech',
             default:
-              '[[buyer]] [[boughtKeys]] [[numOfKeys]] of [[subject]] for [[price]]',
+              '[[buyer]][[boughtKeys]][[numOfKeys]]of[[subject]]for[[price]]',
           },
         },
       };
@@ -196,7 +196,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'friend.tech',
             default:
-              '[[trader]] [[soldKeys]] [[numOfKeys]] of [[subject]] for [[price]]',
+              '[[trader]][[soldKeys]][[numOfKeys]]of[[subject]]for[[price]]',
           },
         },
       };

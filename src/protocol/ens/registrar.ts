@@ -59,7 +59,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'IDENTITY',
           en: {
             title: 'ENS',
-            default: `[[registerer]] [[registered]] [[name]] for [[duration]]`,
+            default: `[[registerer]][[registered]][[name]]for[[duration]]`,
           },
         },
         variables: {
@@ -94,7 +94,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'IDENTITY',
           en: {
             title: 'ENS',
-            default: `[[committer]] [[committedTo]] registering an ENS name`,
+            default: `[[committer]][[committedTo]]registering an ENS name`,
           },
         },
         variables: {
@@ -122,7 +122,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'IDENTITY',
           en: {
             title: 'ENS',
-            default: `[[renewer]] [[renewed]] [[name]] for [[duration]]`,
+            default: `[[renewer]][[renewed]][[name]]for[[duration]]`,
           },
         },
         variables: {

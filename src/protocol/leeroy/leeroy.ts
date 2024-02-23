@@ -73,7 +73,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `[[poster]] [[contextAction]] ${post.text}`,
+              default: `[[poster]][[contextAction]]${post.text}`,
             },
           },
         };
@@ -90,7 +90,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `Failed: [[poster]] [[contextAction]] ${post.text}`,
+              default: `Failed:[[poster]][[contextAction]]${post.text}`,
             },
           },
         };
@@ -126,7 +126,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `[[user]] [[contextAction]] ${username}`,
+              default: `[[user]][[contextAction]]${username}`,
             },
           },
         };
@@ -143,7 +143,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `Failed: [[user]] [[contextAction]] ${username}`,
+              default: `Failed:[[user]][[contextAction]]${username}`,
             },
           },
         };
@@ -179,7 +179,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `[[user]] [[contextAction]] ${username}`,
+              default: `[[user]][[contextAction]]${username}`,
             },
           },
         };
@@ -196,7 +196,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `Failed: [[user]] [[contextAction]] ${username}`,
+              default: `Failed:[[user]][[contextAction]]${username}`,
             },
           },
         };
@@ -250,7 +250,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `[[tipper]] [[contextAction]] ${username} [[tipAmount]] (Leeroy fee: [[leeroyTake]])`,
+              default: `[[tipper]][[contextAction]]${username}[[tipAmount]](Leeroy fee:[[leeroyTake]])`,
             },
           },
         };
@@ -268,7 +268,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `Failed: [[tipper]] [[contextAction]] ${username} [[tipAmount]]`,
+              default: `Failed:[[tipper]][[contextAction]]${username}[[tipAmount]]`,
             },
           },
         };
@@ -302,7 +302,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `[[user]] [[contextAction]] ${JSON.stringify(
+              default: `[[user]][[contextAction]]${JSON.stringify(
                 userDetails,
               )}`,
             },
@@ -321,7 +321,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `Failed: [[user]] [[contextAction]] ${JSON.stringify(
+              default: `Failed:[[user]][[contextAction]]${JSON.stringify(
                 userDetails,
               )}`,
             },
@@ -362,7 +362,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `[[user]] [[contextAction]] [[transactionHash]] ${post.text}`,
+              default: `[[user]][[contextAction]][[transactionHash]]${post.text}`,
             },
           },
         };
@@ -380,7 +380,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `Failed: [[user]] [[contextAction]] [[transactionHash]] ${post.text}`,
+              default: `Failed:[[user]][[contextAction]][[transactionHash]]${post.text}`,
             },
           },
         };
@@ -415,7 +415,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `[[user]] [[contextAction]] [[transactionHash]]`,
+              default: `[[user]][[contextAction]][[transactionHash]]`,
             },
           },
         };
@@ -433,7 +433,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `Failed: [[user]] [[contextAction]] [[transactionHash]]`,
+              default: `Failed:[[user]][[contextAction]][[transactionHash]]`,
             },
           },
         };
@@ -469,7 +469,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `[[user]] [[contextAction]] ${username}`,
+              default: `[[user]][[contextAction]]${username}`,
             },
           },
         };
@@ -486,7 +486,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'PROTOCOL_1',
             en: {
               title: 'Leeroy',
-              default: `Failed: [[user]] [[contextAction]] ${username}`,
+              default: `Failed:[[user]][[contextAction]]${username}`,
             },
           },
         };

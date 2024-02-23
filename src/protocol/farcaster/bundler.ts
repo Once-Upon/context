@@ -98,8 +98,8 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'Farcaster',
             default: callerIsOwner
-              ? '[[caller]] [[registered]] [[fid]] for [[cost]]'
-              : '[[caller]] [[registered]] [[fid]] for [[owner]] for [[cost]]',
+              ? '[[caller]][[registered]][[fid]]for[[cost]]'
+              : '[[caller]][[registered]][[fid]]for[[owner]]for[[cost]]',
           },
         },
       };

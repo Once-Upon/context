@@ -133,7 +133,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Nouns',
-            default: `[[subject]] [[contextAction]] [[proposalId]]`,
+            default: `[[subject]][[contextAction]][[proposalId]]`,
           },
         },
       };
@@ -199,7 +199,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Nouns',
-            default: `[[subject]] [[contextAction]] [[proposalId]]`,
+            default: `[[subject]][[contextAction]][[proposalId]]`,
           },
         },
       };
@@ -251,17 +251,17 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Nouns',
-            default: `[[subject]] [[contextAction]] ${
+            default: `[[subject]][[contextAction]] ${
               action === 'ABSTAINED' ? 'from voting on ' : ''
-            }proposal [[proposalId]]`,
+            }proposal[[proposalId]]`,
           },
         },
       };
 
       if (reason) {
-        transaction.context!.summaries!.en.long = `[[subject]] [[contextAction]] ${
+        transaction.context!.summaries!.en.long = `[[subject]][[contextAction]] ${
           action === 'ABSTAINED' ? 'from voting on ' : ''
-        }proposal [[proposalId]]. Reason: [[reason]]`;
+        }proposal[[proposalId]]. Reason:[[reason]]`;
       }
 
       return transaction;
@@ -324,9 +324,9 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Nouns',
-            default: `[[voter]] [[contextAction]] ${
+            default: `[[voter]][[contextAction]]${
               action === 'ABSTAINED' ? 'from voting on ' : ''
-            }proposal [[proposalId]]`,
+            }proposal[[proposalId]]`,
           },
         },
       };
@@ -363,7 +363,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Nouns',
-            default: `[[subject]] [[contextAction]] proposal [[proposalId]]`,
+            default: `[[subject]][[contextAction]]proposal[[proposalId]]`,
           },
         },
       };
