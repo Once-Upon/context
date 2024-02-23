@@ -1,12 +1,12 @@
 import {
   Transaction,
-  Asset,
   AssetType,
   ContextSummaryVariableType,
   ContextETHType,
   ContextERC20Type,
   ContextERC721Type,
   ContextERC1155Type,
+  AssetTransfer,
 } from '../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -31,13 +31,11 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
-  const assetSent = transaction.netAssetTransfers
-    ? transaction.netAssetTransfers[transaction.from]?.sent
-    : [];
+  const assetSent = transaction.assetTransfers ?? [];
   if (!assetSent?.length) {
     return transaction;
   }
-  const assetTransfer: Asset = assetSent[0];
+  const assetTransfer: AssetTransfer = assetSent[0];
 
   let asset: ContextSummaryVariableType;
   switch (assetTransfer.type) {
@@ -84,7 +82,7 @@ export function generate(transaction: Transaction): Transaction {
     variables: {
       sender: {
         type: 'address',
-        value: transaction.from,
+        value: assetTransfer.from,
       },
       chainID: {
         type: 'chainID',
