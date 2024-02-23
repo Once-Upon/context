@@ -54,7 +54,7 @@ export function generate(transaction: Transaction): Transaction {
   let ethPayments: ETHAsset[] = [];
 
   for (const [address, data] of Object.entries(transaction.netAssetTransfers)) {
-    const nftTransfers = data.received.filter(
+    const nftsReceived = data.received.filter(
       (t) => t.type === AssetType.ERC721,
     ) as ERC721Asset[];
     const erc20PaymentTransfers = data.sent.filter(
@@ -64,9 +64,9 @@ export function generate(transaction: Transaction): Transaction {
       (t) => t.type === AssetType.ETH,
     ) as ETHAsset[];
 
-    if (nftTransfers.length > 0) {
+    if (nftsReceived.length > 0) {
       receivingAddresses.push(address);
-      nftTransfers.forEach((nft) => receivedNfts.push(nft));
+      nftsReceived.forEach((nft) => receivedNfts.push(nft));
     }
     if (erc20PaymentTransfers.length > 0) {
       erc20Payments = [
