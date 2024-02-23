@@ -20,7 +20,7 @@ export function contextualize(transaction: Transaction): Transaction {
 // Always chain id 1
 export function detect(transaction: Transaction): boolean {
   if (
-    transaction.maxFeePerGas === '0x0' &&
+    Number(transaction.gasPrice) === 0 &&
     transaction.input === '0x01' &&
     transaction.from === transaction.to
   ) {

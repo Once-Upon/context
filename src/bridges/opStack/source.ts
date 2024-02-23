@@ -100,7 +100,6 @@ export function generate(transaction: Transaction): Transaction {
       break;
   }
 
-  // TODO; not sure why we didn't set context here for optimism
   transaction.context = {
     summaries: {
       category: 'MULTICHAIN',
