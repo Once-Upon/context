@@ -114,7 +114,7 @@ export function contextSummary(
     }
   });
 
-  return formattedParts.join('');
+  return formattedParts.join(' ');
 }
 
 function isVariable(str: string) {
