@@ -222,7 +222,7 @@ export const generate = (transaction: Transaction): Transaction => {
           action === 'ABSTAINED' ? 'from voting on' : ''
         }${
           dao?.name ? '[[dao]]DAO ' : ''
-        }proposal[[proposalId]]. Reason:[[reason]]`;
+        }proposal[[proposalId]][[reason]]`;
       }
 
       return transaction;

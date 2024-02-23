@@ -261,7 +261,7 @@ export const generate = (transaction: Transaction): Transaction => {
       if (reason) {
         transaction.context!.summaries!.en.long = `[[subject]][[contextAction]]${
           action === 'ABSTAINED' ? 'from voting on ' : ''
-        }proposal[[proposalId]]. Reason:[[reason]]`;
+        }proposal[[proposalId]][[reason]]`;
       }
 
       return transaction;
