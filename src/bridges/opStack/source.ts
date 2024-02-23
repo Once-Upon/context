@@ -106,7 +106,7 @@ export function generate(transaction: Transaction): Transaction {
     summaries: {
       category: 'MULTICHAIN',
       en: {
-        title: `Bridge to ${CHAINS[destinationChainId]?.name}`,
+        title: `Bridge`,
         default: '[[sender]] [[bridged]] [[asset]] to [[chainID]]',
       },
     },

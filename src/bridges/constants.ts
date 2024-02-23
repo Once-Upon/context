@@ -1,5 +1,3 @@
-// TODO: Should DRY this up with
-// https://github.com/Once-Upon/transformations/blob/main/transformers/helpers/constants.ts#L5
 export const CHAINS = {
   1: { id: 'ETHEREUM', name: 'Ethereum' },
   5: { id: 'ETHEREUM-GOERLI', name: 'Ethereum Goerli' },

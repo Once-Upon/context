@@ -8,7 +8,6 @@ import {
   ContextERC721Type,
   ContextERC1155Type,
 } from '../../types';
-import { CHAINS } from '../constants';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isOpStack = detect(transaction);
@@ -38,8 +37,6 @@ export function generate(transaction: Transaction): Transaction {
     return transaction;
   }
   const assetTransfer: Asset = assetSent[0];
-  // Note: Other contextualizers fetch this id dynamically
-  const destinationChainId = 10;
 
   let asset: ContextSummaryVariableType;
   switch (assetTransfer.type) {
@@ -79,8 +76,8 @@ export function generate(transaction: Transaction): Transaction {
     summaries: {
       category: 'MULTICHAIN',
       en: {
-        title: `Send to ${CHAINS[destinationChainId]?.name}`,
-        default: '[[sender]] [[bridged]] [[asset]] to [[chainID]]',
+        title: `Bridge`,
+        default: '[[sender]] [[bridged]] [[asset]] from [[chainID]]',
       },
     },
     variables: {
@@ -90,7 +87,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       chainID: {
         type: 'chainID',
-        value: destinationChainId,
+        value: 1,
       },
       bridged: {
         type: 'contextAction',
