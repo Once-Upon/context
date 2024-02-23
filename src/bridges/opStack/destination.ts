@@ -76,7 +76,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'MULTICHAIN',
       en: {
         title: `Bridge`,
-        default: '[[sender]] [[bridged]] [[asset]] from [[chainID]]',
+        default: '[[sender]][[bridged]][[asset]]from[[chainID]]',
       },
     },
     variables: {

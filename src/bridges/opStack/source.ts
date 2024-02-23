@@ -99,7 +99,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'MULTICHAIN',
       en: {
         title: `Bridge`,
-        default: '[[sender]] [[bridged]] [[asset]] to [[chainID]]',
+        default: '[[sender]][[bridged]][[asset]]to[[chainID]]',
       },
     },
     variables: {
@@ -153,8 +153,7 @@ export function generate(transaction: Transaction): Transaction {
 
     if (transaction.context.summaries && transaction.context.variables) {
       // add resulting in
-      transaction.context.summaries.en.default +=
-        ' resulting in [[transaction]]';
+      transaction.context.summaries.en.default += 'resulting in[[transaction]]';
       // add transaction in variables
       transaction.context.variables['transaction'] = {
         type: 'transaction',
