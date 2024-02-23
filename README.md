@@ -1,6 +1,6 @@
 # EVM Context
 
-![Screenshot 2023-12-01 at 1 26 47 PM](https://github.com/waterfall-mkt/curta-write-ups/assets/26611339/d8e17298-c339-43f8-a0e8-52e91caaa5e8)
+<img width="960" alt="Screenshot 2024-02-23 at 4 39 50 PM" src="https://github.com/Once-Upon/context/assets/2731712/c2ac3b95-6be8-4d57-b200-0692311015d3">
 
 ## Context for Ethereum L1 and L2 transactions
 
