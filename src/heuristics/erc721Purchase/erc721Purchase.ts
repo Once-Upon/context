@@ -51,12 +51,16 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   const receivingAddresses: string[] = [];
+  const sendingAddresses: string[] = [];
   let receivedNfts: ERC721Asset[] = [];
   let erc20Payments: ERC20Asset[] = [];
   let ethPayments: ETHAsset[] = [];
 
   Object.entries(transaction.netAssetTransfers).forEach(([address, data]) => {
     const nftTransfers = data.received.filter(
+      (t) => t.type === AssetType.ERC721,
+    ) as ERC721Asset[];
+    const nftsSent = data.sent.filter(
       (t) => t.type === AssetType.ERC721,
     ) as ERC721Asset[];
     const erc20PaymentTransfers = data.sent.filter(
@@ -69,6 +73,9 @@ export function generate(transaction: Transaction): Transaction {
     if (nftTransfers.length > 0) {
       receivingAddresses.push(address);
       receivedNfts = [...receivedNfts, ...nftTransfers];
+    }
+    if (nftsSent.length > 0 && !sendingAddresses.includes(address)) {
+      sendingAddresses.push(address);
     }
     if (erc20PaymentTransfers.length > 0) {
       erc20Payments = [
@@ -180,6 +187,18 @@ export function generate(transaction: Transaction): Transaction {
                 token: Object.values(totalERC20Payment)[0].asset,
                 value: Object.values(totalERC20Payment)[0].value,
               },
+      sellerOrSellers:
+        sendingAddresses.length > 1
+          ? {
+              type: 'number',
+              value: sendingAddresses.length,
+              emphasis: true,
+              unit: 'users',
+            }
+          : {
+              type: 'address',
+              value: sendingAddresses[0],
+            },
       bought: {
         type: 'contextAction',
         value: 'BOUGHT',
@@ -190,7 +209,7 @@ export function generate(transaction: Transaction): Transaction {
       en: {
         title: 'NFT Purchase',
         default:
-          '[[userOrUsers]][[bought]][[numOfToken]][[tokenOrTokens]]for[[price]]',
+          '[[userOrUsers]][[bought]][[numOfToken]][[tokenOrTokens]]for[[price]]from[[sellerOrSellers]]',
       },
     },
   };

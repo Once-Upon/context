@@ -71,6 +71,7 @@ function generate(transaction: Transaction): Transaction {
   }
 
   const receivingAddresses: string[] = [];
+  const sendingAddresses: string[] = [];
   let receivedNfts: ERC1155Asset[] = [];
   let erc20Payments: ERC20Asset[] = [];
   let ethPayments: ETHAsset[] = [];
@@ -78,6 +79,9 @@ function generate(transaction: Transaction): Transaction {
   Object.entries(transaction.netAssetTransfers).forEach(([address, data]) => {
     const nftTransfers = data.received.filter(
       (t) => t.type === AssetType.ERC1155,
+    ) as ERC1155Asset[];
+    const nftsSent = data.sent.filter(
+      (t) => t.type === AssetType.ERC721,
     ) as ERC1155Asset[];
     const erc20PaymentTransfers = data.sent.filter(
       (t) => t.type === AssetType.ERC20,
@@ -89,6 +93,9 @@ function generate(transaction: Transaction): Transaction {
     if (nftTransfers.length > 0) {
       receivingAddresses.push(address);
       receivedNfts = [...receivedNfts, ...nftTransfers];
+    }
+    if (nftsSent.length > 0 && !sendingAddresses.includes(address)) {
+      sendingAddresses.push(address);
     }
     if (erc20PaymentTransfers.length > 0) {
       erc20Payments = [
@@ -189,6 +196,18 @@ function generate(transaction: Transaction): Transaction {
                 token: Object.values(totalERC20Payment)[0].asset,
                 value: Object.values(totalERC20Payment)[0].value.toString(),
               },
+      sellerOrSellers:
+        sendingAddresses.length > 1
+          ? {
+              type: 'number',
+              value: sendingAddresses.length,
+              emphasis: true,
+              unit: 'users',
+            }
+          : {
+              type: 'address',
+              value: sendingAddresses[0],
+            },
       bought: {
         type: 'contextAction',
         value: 'BOUGHT',
@@ -198,7 +217,8 @@ function generate(transaction: Transaction): Transaction {
       category: 'NFT',
       en: {
         title: 'NFT Purchase',
-        default: '[[userOrUsers]][[bought]][[tokenOrTokens]]for[[price]]',
+        default:
+          '[[userOrUsers]][[bought]][[tokenOrTokens]]for[[price]]from[[sellerOrSellers]]',
       },
     },
   };

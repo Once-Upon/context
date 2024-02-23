@@ -23,7 +23,7 @@ describe('ERC721 Purchase', () => {
     expect(erc721Purchase1.context?.variables?.numOfToken['value']).toBe(2);
     const desc1 = contextSummary(erc721Purchase1.context);
     expect(desc1).toBe(
-      '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 BOUGHT 2 0x82f5ef9ddc3d231962ba57a9c2ebb307dc8d26c2 for 0.05 ETH',
+      '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 BOUGHT 2 0x82f5ef9ddc3d231962ba57a9c2ebb307dc8d26c2 for 0.05 ETH from 2 users',
     );
 
     const erc721Purchase2 = generate(erc721Purchase0x97a38a23 as Transaction);
@@ -34,7 +34,7 @@ describe('ERC721 Purchase', () => {
     expect(erc721Purchase2.context?.variables?.numOfToken['value']).toBe(5);
     const desc2 = contextSummary(erc721Purchase2.context);
     expect(desc2).toBe(
-      '0xa3eac0016f6581ac34768c0d4b99ddcd88071c3c BOUGHT 5 0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270 for 4.73 ETH',
+      '0xa3eac0016f6581ac34768c0d4b99ddcd88071c3c BOUGHT 5 0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270 for 4.73 ETH from 4 users',
     );
   });
 
