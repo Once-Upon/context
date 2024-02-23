@@ -97,8 +97,7 @@ export function generate(transaction: Transaction): Transaction {
           category: 'FUNGIBLE_TOKEN',
           en: {
             title: 'Token Approval',
-            default:
-              '[[approver]] [[gaveAccess]] to [[operator]] for [[token]]',
+            default: '[[approver]][[gaveAccess]]to[[operator]]for[[token]]',
           },
         },
       };
@@ -129,8 +128,7 @@ export function generate(transaction: Transaction): Transaction {
             category: 'FUNGIBLE_TOKEN',
             en: {
               title: 'Token Approval',
-              default:
-                '[[approver]] [[gaveAccess]] to [[operator]] for [[token]]',
+              default: '[[approver]][[gaveAccess]]to[[operator]]for[[token]]',
             },
           },
         };
@@ -159,7 +157,7 @@ export function generate(transaction: Transaction): Transaction {
             en: {
               title: 'Token Approval',
               default:
-                '[[approver]] [[revokedAccess]] from [[operator]] for [[token]]',
+                '[[approver]][[revokedAccess]]from[[operator]]for[[token]]',
             },
           },
         };

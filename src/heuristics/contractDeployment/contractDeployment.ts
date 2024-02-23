@@ -39,7 +39,7 @@ function generate(transaction: Transaction): Transaction {
       category: 'DEV',
       en: {
         title: 'Contract Deployed',
-        default: '[[deployerAddress]] [[deployed]] [[contractAddress]]',
+        default: '[[deployerAddress]][[deployed]][[contractAddress]]',
       },
     },
   };

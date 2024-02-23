@@ -172,9 +172,9 @@ function generate(transaction: Transaction): Transaction {
       category,
       en: {
         title: 'Token Airdrop',
-        default: `[[recipient]] [[receivedAirdrop]] [[token]]${
+        default: `[[recipient]][[receivedAirdrop]][[token]]${
           senders.some((x) => x !== KNOWN_ADDRESSES.NULL)
-            ? ' from [[sender]]'
+            ? 'from[[sender]]'
             : ''
         }`,
       },

@@ -41,7 +41,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'DEV',
       en: {
         title: 'Cancellation',
-        default: '[[subject]] [[canceled]] with nonce [[nonce]]',
+        default: '[[subject]][[canceled]]with nonce[[nonce]]',
       },
     },
   };

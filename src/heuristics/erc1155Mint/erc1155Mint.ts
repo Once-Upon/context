@@ -118,12 +118,12 @@ export function generate(transaction: Transaction): Transaction {
       title: 'NFT Mint',
       default:
         sender === recipient
-          ? '[[recipient]] [[minted]] [[token]]'
-          : '[[sender]] [[minted]] [[token]] to [[recipient]]',
+          ? '[[recipient]][[minted]][[token]]'
+          : '[[sender]][[minted]][[token]]to[[recipient]]',
     },
   };
   if (BigInt(price) > BigInt(0)) {
-    transaction.context.summaries['en'].default += ' for [[price]]';
+    transaction.context.summaries['en'].default += 'for[[price]]';
   }
 
   if (amount > 1) {
@@ -141,12 +141,12 @@ export function generate(transaction: Transaction): Transaction {
         title: 'NFT Mint',
         default:
           sender === recipient
-            ? '[[recipient]] [[minted]] [[amount]] [[token]]'
-            : '[[sender]] [[minted]] [[amount]] [[token]] to [[recipient]]',
+            ? '[[recipient]][[minted]][[amount]][[token]]'
+            : '[[sender]][[minted]][[amount]][[token]]to[[recipient]]',
       },
     };
     if (BigInt(price) > BigInt(0)) {
-      transaction.context.summaries['en'].default += ' for [[price]]';
+      transaction.context.summaries['en'].default += 'for[[price]]';
     }
   }
 

@@ -198,7 +198,7 @@ function generate(transaction: Transaction): Transaction {
       category: 'NFT',
       en: {
         title: 'NFT Purchase',
-        default: '[[userOrUsers]] [[bought]] [[tokenOrTokens]] for [[price]]',
+        default: '[[userOrUsers]][[bought]][[tokenOrTokens]]for[[price]]',
       },
     },
   };
