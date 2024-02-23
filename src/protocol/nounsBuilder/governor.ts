@@ -170,7 +170,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'DAO',
+            title: 'Nouns Builder',
             default: `[[subject]][[contextAction]][[proposalId]]${
               dao?.name ? 'in[[dao]]DAO' : ''
             }`,
@@ -209,7 +209,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'DAO',
+            title: 'Nouns Builder',
             default: `[[subject]][[contextAction]]${
               action === 'ABSTAINED' ? 'from voting on' : ''
             }${dao?.name ? '[[dao]]DAO ' : ''}proposal[[proposalId]]`,
@@ -220,9 +220,7 @@ export const generate = (transaction: Transaction): Transaction => {
       if (reason) {
         transaction.context!.summaries!.en.long = `[[subject]][[contextAction]]${
           action === 'ABSTAINED' ? 'from voting on' : ''
-        }${
-          dao?.name ? '[[dao]]DAO ' : ''
-        }proposal[[proposalId]][[reason]]`;
+        }${dao?.name ? '[[dao]]DAO ' : ''}proposal[[proposalId]][[reason]]`;
       }
 
       return transaction;
@@ -249,7 +247,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'DAO',
+            title: 'Nouns Builder',
             default: `[[subject]][[contextAction]]${
               action === 'ABSTAINED' ? 'from voting on' : ''
             }${dao?.name ? '[[dao]]DAO ' : ''}proposal[[proposalId]]`,
@@ -306,7 +304,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'DAO',
+            title: 'Nouns Builder',
             default: `[[subject]][[contextAction]]${
               dao?.name ? '[[dao]]DAO ' : ''
             }proposal[[proposalId]]`,
@@ -340,7 +338,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'DAO',
+            title: 'Nouns Builder',
             default: `[[subject]][[contextAction]]${
               dao?.name ? '[[dao]]DAO ' : ''
             }proposal[[proposalId]]`,
