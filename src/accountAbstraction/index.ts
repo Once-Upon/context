@@ -2,8 +2,15 @@ import { Hex } from 'viem';
 import { Transaction } from '../types';
 import { ENTRY_POINT, ABIs } from './constants';
 import { decodeTransactionInput } from '../helpers/utils';
+import { decode as simpleAccountDecode } from './accounts/simpleAccount';
+import { decode as unknownDecode } from './accounts/unknown';
+import { decode as okxDecode } from './accounts/okx';
 
-const accountExecutionDecoders = [];
+const accountExecutionDecoders = [
+  simpleAccountDecode,
+  unknownDecode,
+  okxDecode,
+];
 
 export const unpackERC4337Transactions = (
   transaction: Transaction,
