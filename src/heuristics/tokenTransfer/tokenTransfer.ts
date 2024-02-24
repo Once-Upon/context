@@ -1,8 +1,11 @@
+import { Hex } from 'viem';
 import {
   AssetType,
   ContextSummaryVariableType,
   Transaction,
 } from '../../types';
+import ERC20ERC721transferABI from './abis/combined';
+import { decodeTransactionInput } from '../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isTokenTransfer = detect(transaction);
@@ -17,14 +20,12 @@ export function detect(transaction: Transaction): boolean {
   }
 
   // ERC721 transferFrom && safeTransferFrom
-  if (
-    transaction.decode?.fragment.name === 'transfer' ||
-    transaction.decode?.fragment.name === 'transferFrom' ||
-    transaction.decode?.fragment.name === 'safeTransferFrom'
-  ) {
-    if (transaction.assetTransfers?.length === 1) {
-      return true;
-    }
+  const decoded = decodeTransactionInput(transaction.input as Hex, ERC20ERC721transferABI);
+
+  if (!decoded) return false;
+
+  if (transaction.assetTransfers?.length === 1) {
+    return true;
   }
 
   return false;
