@@ -22,21 +22,21 @@
       "value": "1200000000000003"
     },
     {
-      "asset": "0x4200000000000000000000000000000000000006",
+      "contract": "0x4200000000000000000000000000000000000006",
       "from": "0x10541b07d8ad2647dc6cd67abd4c03575dade261",
       "to": "0x0ce6c85cf43553de10fc56ceca0aef6ff0dd444d",
       "value": "1200000000000003",
       "type": "erc20"
     },
     {
-      "asset": "0xc1985d7a3429cdc85e59e2e4fcc805b857e6ee2e",
+      "contract": "0xc1985d7a3429cdc85e59e2e4fcc805b857e6ee2e",
       "from": "0x0ce6c85cf43553de10fc56ceca0aef6ff0dd444d",
       "to": "0x10541b07d8ad2647dc6cd67abd4c03575dade261",
       "value": "1198563436516336",
       "type": "erc20"
     },
     {
-      "asset": "0xc1985d7a3429cdc85e59e2e4fcc805b857e6ee2e",
+      "contract": "0xc1985d7a3429cdc85e59e2e4fcc805b857e6ee2e",
       "from": "0x10541b07d8ad2647dc6cd67abd4c03575dade261",
       "to": "0x0000000000000000000000000000000000000000",
       "value": "1198563436516336",
@@ -114,21 +114,15 @@
     },
     {
       "key": "eth",
-      "value": [
-        0.001200000000000003
-      ]
+      "value": [0.001200000000000003]
     },
     {
       "key": "0x4200000000000000000000000000000000000006",
-      "value": [
-        0.001200000000000003
-      ]
+      "value": [0.001200000000000003]
     },
     {
       "key": "0xc1985d7a3429cdc85e59e2e4fcc805b857e6ee2e",
-      "value": [
-        0.001198563436516336
-      ]
+      "value": [0.001198563436516336]
     }
   ],
   "baseFeePerGas": 313,
@@ -152,9 +146,7 @@
         "output": "0x0"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x0902de68b14383594b0545ffd29a0c2781eb60b202b4f90892b8139278deccb6",
       "transactionPosition": 2,
       "type": "call"
@@ -175,12 +167,7 @@
         "output": "0x000000000000000000000000000000000000000000000000000442164bdfd3f0"
       },
       "subtraces": 16,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0
-      ],
+      "traceAddress": [0, 0, 2, 0],
       "transactionHash": "0x0902de68b14383594b0545ffd29a0c2781eb60b202b4f90892b8139278deccb6",
       "transactionPosition": 2,
       "type": "call"
@@ -201,13 +188,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0,
-        4
-      ],
+      "traceAddress": [0, 0, 2, 0, 4],
       "transactionHash": "0x0902de68b14383594b0545ffd29a0c2781eb60b202b4f90892b8139278deccb6",
       "transactionPosition": 2,
       "type": "call"
@@ -228,13 +209,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0,
-        5
-      ],
+      "traceAddress": [0, 0, 2, 0, 5],
       "transactionHash": "0x0902de68b14383594b0545ffd29a0c2781eb60b202b4f90892b8139278deccb6",
       "transactionPosition": 2,
       "type": "call"
@@ -255,13 +230,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0,
-        6
-      ],
+      "traceAddress": [0, 0, 2, 0, 6],
       "transactionHash": "0x0902de68b14383594b0545ffd29a0c2781eb60b202b4f90892b8139278deccb6",
       "transactionPosition": 2,
       "type": "call"
@@ -282,13 +251,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0,
-        7
-      ],
+      "traceAddress": [0, 0, 2, 0, 7],
       "transactionHash": "0x0902de68b14383594b0545ffd29a0c2781eb60b202b4f90892b8139278deccb6",
       "transactionPosition": 2,
       "type": "call"
@@ -309,13 +272,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0,
-        8
-      ],
+      "traceAddress": [0, 0, 2, 0, 8],
       "transactionHash": "0x0902de68b14383594b0545ffd29a0c2781eb60b202b4f90892b8139278deccb6",
       "transactionPosition": 2,
       "type": "call"
@@ -336,13 +293,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0,
-        9
-      ],
+      "traceAddress": [0, 0, 2, 0, 9],
       "transactionHash": "0x0902de68b14383594b0545ffd29a0c2781eb60b202b4f90892b8139278deccb6",
       "transactionPosition": 2,
       "type": "call"
@@ -363,13 +314,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0,
-        10
-      ],
+      "traceAddress": [0, 0, 2, 0, 10],
       "transactionHash": "0x0902de68b14383594b0545ffd29a0c2781eb60b202b4f90892b8139278deccb6",
       "transactionPosition": 2,
       "type": "call"
@@ -390,13 +335,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0,
-        11
-      ],
+      "traceAddress": [0, 0, 2, 0, 11],
       "transactionHash": "0x0902de68b14383594b0545ffd29a0c2781eb60b202b4f90892b8139278deccb6",
       "transactionPosition": 2,
       "type": "call"
@@ -417,13 +356,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0,
-        12
-      ],
+      "traceAddress": [0, 0, 2, 0, 12],
       "transactionHash": "0x0902de68b14383594b0545ffd29a0c2781eb60b202b4f90892b8139278deccb6",
       "transactionPosition": 2,
       "type": "call"
@@ -444,13 +377,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0,
-        13
-      ],
+      "traceAddress": [0, 0, 2, 0, 13],
       "transactionHash": "0x0902de68b14383594b0545ffd29a0c2781eb60b202b4f90892b8139278deccb6",
       "transactionPosition": 2,
       "type": "call"
@@ -471,13 +398,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0,
-        14
-      ],
+      "traceAddress": [0, 0, 2, 0, 14],
       "transactionHash": "0x0902de68b14383594b0545ffd29a0c2781eb60b202b4f90892b8139278deccb6",
       "transactionPosition": 2,
       "type": "call"
@@ -621,7 +542,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "1200000000000003"
@@ -632,7 +553,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "0x4200000000000000000000000000000000000006",
+          "contract": "0x4200000000000000000000000000000000000006",
           "id": "0x4200000000000000000000000000000000000006",
           "type": "erc20",
           "value": "1200000000000003"
@@ -642,7 +563,7 @@
     "0x4200000000000000000000000000000000000006": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "1200000000000003"
@@ -653,7 +574,7 @@
     "0x0ce6c85cf43553de10fc56ceca0aef6ff0dd444d": {
       "received": [
         {
-          "asset": "0x4200000000000000000000000000000000000006",
+          "contract": "0x4200000000000000000000000000000000000006",
           "id": "0x4200000000000000000000000000000000000006",
           "type": "erc20",
           "value": "1200000000000003"
@@ -661,7 +582,7 @@
       ],
       "sent": [
         {
-          "asset": "0xc1985d7a3429cdc85e59e2e4fcc805b857e6ee2e",
+          "contract": "0xc1985d7a3429cdc85e59e2e4fcc805b857e6ee2e",
           "id": "0xc1985d7a3429cdc85e59e2e4fcc805b857e6ee2e",
           "type": "erc20",
           "value": "1198563436516336"
@@ -671,7 +592,7 @@
     "0x0000000000000000000000000000000000000000": {
       "received": [
         {
-          "asset": "0xc1985d7a3429cdc85e59e2e4fcc805b857e6ee2e",
+          "contract": "0xc1985d7a3429cdc85e59e2e4fcc805b857e6ee2e",
           "id": "0xc1985d7a3429cdc85e59e2e4fcc805b857e6ee2e",
           "type": "erc20",
           "value": "1198563436516336"

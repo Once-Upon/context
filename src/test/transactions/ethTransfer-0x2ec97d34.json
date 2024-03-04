@@ -46,7 +46,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "201045246070404736"
@@ -56,7 +56,7 @@
     "0x7ed1e469fcb3ee19c0366d829e291451be638e59": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "201045246070404736"
