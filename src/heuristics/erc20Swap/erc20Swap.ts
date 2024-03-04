@@ -63,7 +63,7 @@ export function detect(transaction: Transaction): boolean {
   // Swapper did not send and receive the same type of asset
   if (
     swapperSent.type === swapperReceived.type &&
-    swapperSent.asset === swapperReceived.asset
+    swapperSent.contract === swapperReceived.contract
   ) {
     return false;
   }
@@ -90,7 +90,7 @@ export function generate(transaction: Transaction): Transaction {
     assetSent[0].type === AssetType.ERC20
       ? ({
           ...assetSent[0],
-          token: assetSent[0]?.asset,
+          token: assetSent[0]?.contract,
         } as ContextERC20Type)
       : ({
           ...assetSent[0],
@@ -101,7 +101,7 @@ export function generate(transaction: Transaction): Transaction {
     assetReceived[0].type === AssetType.ERC20
       ? ({
           ...assetReceived[0],
-          token: assetReceived[0]?.asset,
+          token: assetReceived[0]?.contract,
         } as ContextERC20Type)
       : ({
           ...assetReceived[0],
