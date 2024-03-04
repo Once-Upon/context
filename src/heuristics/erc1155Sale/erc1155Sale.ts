@@ -75,9 +75,8 @@ function generate(transaction: Transaction): Transaction {
       erc20Payments = [
         ...erc20Payments,
         ...erc20PaymentTransfers.map((payment) => ({
-          id: payment.id,
           type: payment.type,
-          asset: payment.asset,
+          contract: payment.contract,
           value: payment.value,
         })),
       ];
@@ -86,7 +85,6 @@ function generate(transaction: Transaction): Transaction {
       ethPayments = [
         ...ethPayments,
         ...ethPaymentTransfers.map((payment) => ({
-          id: payment.id,
           type: payment.type,
           value: payment.value,
         })),
@@ -95,16 +93,16 @@ function generate(transaction: Transaction): Transaction {
   }
 
   const receivedNftContracts = Array.from(
-    new Set(receivedNfts.map((x) => x.asset)),
+    new Set(receivedNfts.map((x) => x.contract)),
   );
   const totalERC20Payment: Record<string, ERC20Asset> = erc20Payments.reduce(
     (acc, next) => {
-      acc[next.asset] = {
-        id: next.asset,
+      acc[next.contract] = {
+        id: next.contract,
         type: next.type,
-        asset: next.asset,
+        contract: next.contract,
         value: (
-          BigInt(acc[next.asset]?.value || '0') + BigInt(next.value)
+          BigInt(acc[next.contract]?.value || '0') + BigInt(next.value)
         ).toString(),
       };
       return acc;
@@ -136,7 +134,7 @@ function generate(transaction: Transaction): Transaction {
         receivedNfts.length === 1
           ? {
               type: AssetType.ERC1155,
-              token: receivedNfts[0].asset,
+              token: receivedNfts[0].contract,
               tokenId: receivedNfts[0].tokenId,
               value: receivedNfts[0].value,
             }
@@ -167,7 +165,7 @@ function generate(transaction: Transaction): Transaction {
               }
             : {
                 type: AssetType.ERC20,
-                token: Object.values(totalERC20Payment)[0].asset,
+                token: Object.values(totalERC20Payment)[0].contract,
                 value: Object.values(totalERC20Payment)[0].value,
               },
       bought: {
