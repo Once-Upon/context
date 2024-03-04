@@ -117,7 +117,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "3332492275758976"
@@ -127,7 +127,7 @@
     "0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "3332492275758976"
@@ -283,11 +283,7 @@
         "name": "Rent",
         "signature": "Rent(address,uint256,uint256)",
         "topic": "0xaabd75b90fb7114eb9587a54f00ce5ebe8cb4a70627f3a6c26e506ffd771fe2f",
-        "args": [
-          "0x00000000fc25870c6ed6b6c7e41fb078b7656f69",
-          "196541",
-          "1"
-        ]
+        "args": ["0x00000000fc25870c6ed6b6c7e41fb078b7656f69", "196541", "1"]
       },
       "chainId": 10
     },

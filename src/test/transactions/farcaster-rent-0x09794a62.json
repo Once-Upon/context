@@ -45,7 +45,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "3332492275758976"
@@ -55,7 +55,7 @@
     "0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "3332492275758976"
@@ -95,10 +95,7 @@
       "gas": null
     },
     "name": "rent",
-    "args": [
-      "196573",
-      "1"
-    ],
+    "args": ["196573", "1"],
     "signature": "rent(uint256,uint256)",
     "selector": "0x783a112b",
     "value": "0"
@@ -184,11 +181,7 @@
         "name": "Rent",
         "signature": "Rent(address,uint256,uint256)",
         "topic": "0xaabd75b90fb7114eb9587a54f00ce5ebe8cb4a70627f3a6c26e506ffd771fe2f",
-        "args": [
-          "0x3a4afca659f54922a0d7a7b0bebabf641dec66bb",
-          "196573",
-          "1"
-        ]
+        "args": ["0x3a4afca659f54922a0d7a7b0bebabf641dec66bb", "196573", "1"]
       },
       "chainId": 10
     }

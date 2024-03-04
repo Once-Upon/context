@@ -39,28 +39,28 @@
       "value": "265516465497077765"
     },
     {
-      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
       "from": "0x0000000000000000000000000000000000000000",
       "to": "0xef1c6e67703c7bd7107eed8303fbe6ec2554bf6b",
       "value": "265516465497077765",
       "type": "erc20"
     },
     {
-      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
       "from": "0xef1c6e67703c7bd7107eed8303fbe6ec2554bf6b",
       "to": "0xef1c6e67703c7bd7107eed8303fbe6ec2554bf6b",
       "value": "265516465497077765",
       "type": "erc20"
     },
     {
-      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
       "from": "0xef1c6e67703c7bd7107eed8303fbe6ec2554bf6b",
       "to": "0xac4b3dacb91461209ae9d41ec517c2b9cb1b7daf",
       "value": "265516465497077765",
       "type": "erc20"
     },
     {
-      "asset": "0x4d224452801aced8b2f0aebe155379bb5d594381",
+      "contract": "0x4d224452801aced8b2f0aebe155379bb5d594381",
       "from": "0xac4b3dacb91461209ae9d41ec517c2b9cb1b7daf",
       "to": "0x15cce5a86dbec5bca10267f93043b3fe8c8e53bf",
       "value": "116282641519835232562",
@@ -181,7 +181,7 @@
     "0x15cce5a86dbec5bca10267f93043b3fe8c8e53bf": {
       "received": [
         {
-          "asset": "0x4d224452801aced8b2f0aebe155379bb5d594381",
+          "contract": "0x4d224452801aced8b2f0aebe155379bb5d594381",
           "id": "0x4d224452801aced8b2f0aebe155379bb5d594381",
           "type": "erc20",
           "value": "116282641519835232562"
@@ -189,7 +189,7 @@
       ],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "265516465497077765"
@@ -199,7 +199,7 @@
     "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "265516465497077765"
@@ -211,7 +211,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "type": "erc20",
           "value": "265516465497077765"
@@ -221,7 +221,7 @@
     "0xac4b3dacb91461209ae9d41ec517c2b9cb1b7daf": {
       "received": [
         {
-          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "type": "erc20",
           "value": "265516465497077765"
@@ -229,7 +229,7 @@
       ],
       "sent": [
         {
-          "asset": "0x4d224452801aced8b2f0aebe155379bb5d594381",
+          "contract": "0x4d224452801aced8b2f0aebe155379bb5d594381",
           "id": "0x4d224452801aced8b2f0aebe155379bb5d594381",
           "type": "erc20",
           "value": "116282641519835232562"

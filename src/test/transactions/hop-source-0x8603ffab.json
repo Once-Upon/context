@@ -64,11 +64,7 @@
     },
     {
       "key": "eth",
-      "value": [
-        1.10753092962457,
-        1.1014232718025816,
-        0.006107657821988306
-      ]
+      "value": [1.10753092962457, 1.1014232718025816, 0.006107657821988306]
     }
   ],
   "baseFeePerGas": 28269322515,
@@ -161,7 +157,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "1107530929624569911"
@@ -171,7 +167,7 @@
     "0x72fe2fadf74b96d310c3e3123f167f9fef58556b": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "1101423271802581605"
@@ -182,7 +178,7 @@
     "0x710bda329b2a6224e4b44833de30f38e7f81d564": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "6107657821988306"

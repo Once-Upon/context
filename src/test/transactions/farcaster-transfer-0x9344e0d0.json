@@ -20,7 +20,7 @@
   "value": "0",
   "assetTransfers": [
     {
-      "asset": "0x00000000fc6c5f01fc30151999387bb99a9f489b",
+      "contract": "0x00000000fc6c5f01fc30151999387bb99a9f489b",
       "from": "0x3111bb74979c77969282660d299fff3edfd363e3",
       "to": "0xbc04652b7657e9a7c2778f04b425683955de88c1",
       "tokenId": "192141",
@@ -51,7 +51,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "0x00000000fc6c5f01fc30151999387bb99a9f489b",
+          "contract": "0x00000000fc6c5f01fc30151999387bb99a9f489b",
           "id": "0x00000000fc6c5f01fc30151999387bb99a9f489b-192141",
           "tokenId": "192141",
           "type": "erc721",
@@ -62,7 +62,7 @@
     "0xbc04652b7657e9a7c2778f04b425683955de88c1": {
       "received": [
         {
-          "asset": "0x00000000fc6c5f01fc30151999387bb99a9f489b",
+          "contract": "0x00000000fc6c5f01fc30151999387bb99a9f489b",
           "id": "0x00000000fc6c5f01fc30151999387bb99a9f489b-192141",
           "tokenId": "192141",
           "type": "erc721",

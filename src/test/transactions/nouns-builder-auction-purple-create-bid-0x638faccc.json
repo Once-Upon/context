@@ -42,9 +42,7 @@
         "output": "0x"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x638f216624c549b5fa3a0cb312d77e1655c67471a01d457d82999f821ad9accc",
       "transactionPosition": 38,
       "type": "call"
@@ -110,9 +108,7 @@
       "gas": null
     },
     "name": "createBid",
-    "args": [
-      "242"
-    ],
+    "args": ["242"],
     "signature": "createBid(uint256)",
     "selector": "0x659dd2b4",
     "value": "0"
@@ -122,7 +118,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "99000000000000000"
@@ -132,7 +128,7 @@
     "0x43790fe6bd46b210eb27f01306c1d3546aeb8c1b": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "9000000000000000"
@@ -143,7 +139,7 @@
     "0x925afeb19355e289ed1346ede709633ca8788b25": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "90000000000000000"

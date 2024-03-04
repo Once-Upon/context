@@ -42,9 +42,7 @@
         "output": "0x"
       },
       "subtraces": 3,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x4446df8d50ffb02bd1068407a8d970d9bd60daa1cb24a97c6914147a664fc0b0",
       "transactionPosition": 147,
       "type": "call"
@@ -65,11 +63,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        0
-      ],
+      "traceAddress": [0, 0, 0],
       "transactionHash": "0x4446df8d50ffb02bd1068407a8d970d9bd60daa1cb24a97c6914147a664fc0b0",
       "transactionPosition": 147,
       "type": "call"
@@ -90,11 +84,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        1,
-        0
-      ],
+      "traceAddress": [0, 1, 0],
       "transactionHash": "0x4446df8d50ffb02bd1068407a8d970d9bd60daa1cb24a97c6914147a664fc0b0",
       "transactionPosition": 147,
       "type": "call"
@@ -115,11 +105,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000005"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0,
-        2,
-        0
-      ],
+      "traceAddress": [0, 2, 0],
       "transactionHash": "0x4446df8d50ffb02bd1068407a8d970d9bd60daa1cb24a97c6914147a664fc0b0",
       "transactionPosition": 147,
       "type": "call"
@@ -140,13 +126,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        2,
-        0,
-        0,
-        0
-      ],
+      "traceAddress": [0, 2, 0, 0, 0],
       "transactionHash": "0x4446df8d50ffb02bd1068407a8d970d9bd60daa1cb24a97c6914147a664fc0b0",
       "transactionPosition": 147,
       "type": "call"
@@ -160,14 +140,14 @@
       "value": "1000000000000000"
     },
     {
-      "asset": "0x68238723991cecff33cf9115e69bd700b63bd764",
+      "contract": "0x68238723991cecff33cf9115e69bd700b63bd764",
       "from": "0xab615a3f81b4f48f01b7c3c8a867153009764b68",
       "to": "0x2767500a75d90d711b2ac27b3a032a0daa40e4b2",
       "tokenId": "4",
       "type": "erc721"
     },
     {
-      "asset": "0x68238723991cecff33cf9115e69bd700b63bd764",
+      "contract": "0x68238723991cecff33cf9115e69bd700b63bd764",
       "from": "0x0000000000000000000000000000000000000000",
       "to": "0xab615a3f81b4f48f01b7c3c8a867153009764b68",
       "tokenId": "5",
@@ -263,7 +243,7 @@
     "0xab615a3f81b4f48f01b7c3c8a867153009764b68": {
       "received": [
         {
-          "asset": "0x68238723991cecff33cf9115e69bd700b63bd764",
+          "contract": "0x68238723991cecff33cf9115e69bd700b63bd764",
           "id": "0x68238723991cecff33cf9115e69bd700b63bd764-5",
           "tokenId": "5",
           "type": "erc721",
@@ -272,13 +252,13 @@
       ],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "1000000000000000"
         },
         {
-          "asset": "0x68238723991cecff33cf9115e69bd700b63bd764",
+          "contract": "0x68238723991cecff33cf9115e69bd700b63bd764",
           "id": "0x68238723991cecff33cf9115e69bd700b63bd764-4",
           "tokenId": "4",
           "type": "erc721",
@@ -289,7 +269,7 @@
     "0xdc13ea23c8a4a0714d2ee49f0b0708db8d2d43c9": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "1000000000000000"
@@ -300,7 +280,7 @@
     "0x2767500a75d90d711b2ac27b3a032a0daa40e4b2": {
       "received": [
         {
-          "asset": "0x68238723991cecff33cf9115e69bd700b63bd764",
+          "contract": "0x68238723991cecff33cf9115e69bd700b63bd764",
           "id": "0x68238723991cecff33cf9115e69bd700b63bd764-4",
           "tokenId": "4",
           "type": "erc721",
@@ -313,7 +293,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "0x68238723991cecff33cf9115e69bd700b63bd764",
+          "contract": "0x68238723991cecff33cf9115e69bd700b63bd764",
           "id": "0x68238723991cecff33cf9115e69bd700b63bd764-5",
           "tokenId": "5",
           "type": "erc721",
@@ -451,11 +431,7 @@
         "name": "DelegateVotesChanged",
         "signature": "DelegateVotesChanged(address,uint256,uint256)",
         "topic": "0xdec2bacdd2f05b59de34da9b523dff8be42e5e38e818c82fdb0bae774387a724",
-        "args": [
-          "0xab615a3f81b4f48f01b7c3c8a867153009764b68",
-          "1",
-          "0"
-        ]
+        "args": ["0xab615a3f81b4f48f01b7c3c8a867153009764b68", "1", "0"]
       }
     },
     {
@@ -510,11 +486,7 @@
         "name": "DelegateVotesChanged",
         "signature": "DelegateVotesChanged(address,uint256,uint256)",
         "topic": "0xdec2bacdd2f05b59de34da9b523dff8be42e5e38e818c82fdb0bae774387a724",
-        "args": [
-          "0x2767500a75d90d711b2ac27b3a032a0daa40e4b2",
-          "0",
-          "1"
-        ]
+        "args": ["0x2767500a75d90d711b2ac27b3a032a0daa40e4b2", "0", "1"]
       }
     },
     {
@@ -688,11 +660,7 @@
         "name": "DelegateVotesChanged",
         "signature": "DelegateVotesChanged(address,uint256,uint256)",
         "topic": "0xdec2bacdd2f05b59de34da9b523dff8be42e5e38e818c82fdb0bae774387a724",
-        "args": [
-          "0xab615a3f81b4f48f01b7c3c8a867153009764b68",
-          "0",
-          "1"
-        ]
+        "args": ["0xab615a3f81b4f48f01b7c3c8a867153009764b68", "0", "1"]
       }
     },
     {
@@ -745,11 +713,7 @@
         "name": "AuctionCreated",
         "signature": "AuctionCreated(uint256,uint256,uint256)",
         "topic": "0xd6eddd1118d71820909c1197aa966dbc15ed6f508554252169cc3d5ccac756ca",
-        "args": [
-          "5",
-          "1667859911",
-          "1667946311"
-        ]
+        "args": ["5", "1667859911", "1667946311"]
       },
       "chainId": 1
     }
