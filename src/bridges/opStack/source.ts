@@ -82,21 +82,21 @@ export function generate(transaction: Transaction): Transaction {
     case AssetType.ERC20:
       asset = {
         type: AssetType.ERC20,
-        token: assetTransfer.asset,
+        token: assetTransfer.contract,
         value: assetTransfer.value,
       } as ContextERC20Type;
       break;
     case AssetType.ERC721:
       asset = {
         type: AssetType.ERC721,
-        token: assetTransfer.asset,
+        token: assetTransfer.contract,
         tokenId: assetTransfer.tokenId,
       } as ContextERC721Type;
       break;
     case AssetType.ERC1155:
       asset = {
         type: AssetType.ERC1155,
-        token: assetTransfer.asset,
+        token: assetTransfer.contract,
         tokenId: assetTransfer.tokenId,
         value: assetTransfer.value,
       } as ContextERC1155Type;

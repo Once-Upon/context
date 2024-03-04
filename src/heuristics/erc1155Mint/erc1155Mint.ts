@@ -47,7 +47,9 @@ export function detect(transaction: Transaction): boolean {
   }
 
   // check if all minted assets are from the same contract
-  const isSameContract = mints.every((ele) => ele.asset === mints[0].asset);
+  const isSameContract = mints.every(
+    (ele) => ele.contract === mints[0].contract,
+  );
   if (!isSameContract) {
     return false;
   }
@@ -96,7 +98,7 @@ export function generate(transaction: Transaction): Transaction {
     variables: {
       token: {
         type: AssetType.ERC1155,
-        token: assetTransfer.asset,
+        token: assetTransfer.contract,
         tokenId: assetTransfer.tokenId,
         value: assetTransfer.value,
       },

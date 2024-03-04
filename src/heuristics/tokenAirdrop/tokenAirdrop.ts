@@ -64,7 +64,7 @@ export function detect(transaction: Transaction): boolean {
     | ERC1155Asset
     | ERC721Asset
   )[];
-  if (!assetsSent.every((ele) => ele.asset === assetsSent[0].asset)) {
+  if (!assetsSent.every((ele) => ele.contract === assetsSent[0].contract)) {
     return false;
   }
   // check if there are more than AIRDROP_THRESHOLD number of receivers
@@ -89,7 +89,7 @@ function generate(transaction: Transaction): Transaction {
       x.type === AssetType.ERC1155 ||
       x.type === AssetType.ERC20,
   ) as (ERC1155AssetTransfer | ERC20AssetTransfer | ERC721AssetTransfer)[];
-  const assets = Array.from(new Set(tokenTransfers.map((x) => x.asset)));
+  const assets = Array.from(new Set(tokenTransfers.map((x) => x.contract)));
   const senders = Array.from(new Set(tokenTransfers.map((x) => x.from)));
   const recipients = Array.from(new Set(tokenTransfers.map((x) => x.to)));
 
@@ -104,18 +104,18 @@ function generate(transaction: Transaction): Transaction {
     firstAssetTransfer.type === AssetType.ERC20
       ? {
           type: firstAssetTransfer.type,
-          token: firstAssetTransfer.asset,
+          token: firstAssetTransfer.contract,
           value: firstAssetTransfer.value,
         }
       : firstAssetTransfer.type === AssetType.ERC721
         ? {
             type: firstAssetTransfer.type,
-            token: firstAssetTransfer.asset,
+            token: firstAssetTransfer.contract,
             tokenId: firstAssetTransfer.tokenId,
           }
         : {
             type: firstAssetTransfer.type,
-            token: firstAssetTransfer.asset,
+            token: firstAssetTransfer.contract,
             tokenId: firstAssetTransfer.tokenId,
             value: firstAssetTransfer.value,
           };
@@ -143,7 +143,7 @@ function generate(transaction: Transaction): Transaction {
           : assets.length === 1
             ? {
                 type: 'address',
-                value: firstAssetTransfer.asset,
+                value: firstAssetTransfer.contract,
               }
             : {
                 type: 'number',
