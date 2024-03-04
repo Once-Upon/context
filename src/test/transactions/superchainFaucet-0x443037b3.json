@@ -58,9 +58,7 @@
         "output": "0x0"
       },
       "subtraces": 2,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x44307131739ea4aa69803461c1944bc20fd59bcd510eaf16fad2b534f6f837b3",
       "transactionPosition": 1,
       "type": "call"
@@ -107,7 +105,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "50000000000000000"
@@ -117,7 +115,7 @@
     "0x6e07bbf7fba8e43988aec5f2df6c40d1afb4400e": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "50000000000000000"

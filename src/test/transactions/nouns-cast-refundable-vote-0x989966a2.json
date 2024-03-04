@@ -45,10 +45,7 @@
       "gas": null
     },
     "name": "castRefundableVote",
-    "args": [
-      "473",
-      "2"
-    ],
+    "args": ["473", "2"],
     "signature": "castRefundableVote(uint256,uint8)",
     "selector": "0x44fac8f6",
     "value": "0"
@@ -70,9 +67,7 @@
         "output": "0x"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x9899ec423cd1bca04689bdc13cc1197086f38ab06d1beda3f84d5125505666a2",
       "transactionPosition": 47,
       "type": "call"
@@ -93,10 +88,7 @@
         "output": "0x"
       },
       "subtraces": 2,
-      "traceAddress": [
-        0,
-        0
-      ],
+      "traceAddress": [0, 0],
       "transactionHash": "0x9899ec423cd1bca04689bdc13cc1197086f38ab06d1beda3f84d5125505666a2",
       "transactionPosition": 47,
       "type": "call"
@@ -143,7 +135,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "2455507696162227"
@@ -153,7 +145,7 @@
     "0xb0dd496ffffa300df1eff42702066aca81834404": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "2455507696162227"

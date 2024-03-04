@@ -46,7 +46,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "60000000000000000000"
@@ -56,7 +56,7 @@
     "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "60000000000000000000"
@@ -86,9 +86,7 @@
       "gas": null
     },
     "name": "enterBidForPunk",
-    "args": [
-      "5621"
-    ],
+    "args": ["5621"],
     "signature": "enterBidForPunk(uint256)",
     "selector": "0x091dbfd2",
     "value": "0"
