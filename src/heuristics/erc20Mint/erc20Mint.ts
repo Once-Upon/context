@@ -34,8 +34,8 @@ export function detect(transaction: Transaction): boolean {
     (transfer) =>
       transfer.from === KNOWN_ADDRESSES.NULL &&
       transfer.type === AssetType.ERC20 &&
-      transfer.asset &&
-      !WETH_ADDRESSES.includes(transfer.asset),
+      transfer.contract &&
+      !WETH_ADDRESSES.includes(transfer.contract),
   ) as ERC20AssetTransfer[];
 
   if (mints.length == 0) {
@@ -43,7 +43,9 @@ export function detect(transaction: Transaction): boolean {
   }
 
   // check if all minted assets are from the same contract
-  const isSameContract = mints.every((ele) => ele.asset === mints[0].asset);
+  const isSameContract = mints.every(
+    (ele) => ele.contract === mints[0].contract,
+  );
   if (!isSameContract) {
     return false;
   }
@@ -85,8 +87,8 @@ export function generate(transaction: Transaction): Transaction {
     (transfer) =>
       transfer.from === KNOWN_ADDRESSES.NULL &&
       transfer.type === AssetType.ERC20 &&
-      transfer.asset &&
-      !WETH_ADDRESSES.includes(transfer.asset),
+      transfer.contract &&
+      !WETH_ADDRESSES.includes(transfer.contract),
   ) as ERC20AssetTransfer[];
 
   // We do this so we can use the assetTransfer var directly in the outcomes for contextualizations
@@ -102,7 +104,7 @@ export function generate(transaction: Transaction): Transaction {
     variables: {
       token: {
         type: AssetType.ERC20,
-        token: assetTransfer.asset,
+        token: assetTransfer.contract,
         value: assetTransfer.value,
       },
       recipient: {
