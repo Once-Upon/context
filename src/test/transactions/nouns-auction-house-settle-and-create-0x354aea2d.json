@@ -20,21 +20,21 @@
   "value": "0",
   "assetTransfers": [
     {
-      "asset": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
+      "contract": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
       "from": "0x830bd73e4184cef73443c15111a1df14e495c706",
       "to": "0xa86882277e69fbf0a51805cdc8b0a3a113079e63",
       "tokenId": "938",
       "type": "erc721"
     },
     {
-      "asset": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
+      "contract": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
       "from": "0x0000000000000000000000000000000000000000",
       "to": "0xb1a32fc9f9d8b2cf86c068cae13108809547ef71",
       "tokenId": "939",
       "type": "erc721"
     },
     {
-      "asset": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
+      "contract": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
       "from": "0xb1a32fc9f9d8b2cf86c068cae13108809547ef71",
       "to": "0x830bd73e4184cef73443c15111a1df14e495c706",
       "tokenId": "939",
@@ -64,9 +64,7 @@
         "output": "0x"
       },
       "subtraces": 3,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x354a91fa5ebc9dc887c8ced50068d58be107b4e8a15c40ddab74885e8ba5ea2d",
       "transactionPosition": 128,
       "type": "call"
@@ -87,11 +85,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        1,
-        0
-      ],
+      "traceAddress": [0, 1, 0],
       "transactionHash": "0x354a91fa5ebc9dc887c8ced50068d58be107b4e8a15c40ddab74885e8ba5ea2d",
       "transactionPosition": 128,
       "type": "call"
@@ -196,7 +190,7 @@
     "0x830bd73e4184cef73443c15111a1df14e495c706": {
       "received": [
         {
-          "asset": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
+          "contract": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
           "id": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03-939",
           "tokenId": "939",
           "type": "erc721",
@@ -205,14 +199,14 @@
       ],
       "sent": [
         {
-          "asset": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
+          "contract": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
           "id": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03-938",
           "tokenId": "938",
           "type": "erc721",
           "value": "1"
         },
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "12000000000000000000"
@@ -222,7 +216,7 @@
     "0xa86882277e69fbf0a51805cdc8b0a3a113079e63": {
       "received": [
         {
-          "asset": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
+          "contract": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
           "id": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03-938",
           "tokenId": "938",
           "type": "erc721",
@@ -235,7 +229,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
+          "contract": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03",
           "id": "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03-939",
           "tokenId": "939",
           "type": "erc721",
@@ -246,7 +240,7 @@
     "0xb1a32fc9f9d8b2cf86c068cae13108809547ef71": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "12000000000000000000"
@@ -354,11 +348,7 @@
         "name": "DelegateVotesChanged",
         "signature": "DelegateVotesChanged(address,uint256,uint256)",
         "topic": "0xdec2bacdd2f05b59de34da9b523dff8be42e5e38e818c82fdb0bae774387a724",
-        "args": [
-          "0x830bd73e4184cef73443c15111a1df14e495c706",
-          "1",
-          "0"
-        ]
+        "args": ["0x830bd73e4184cef73443c15111a1df14e495c706", "1", "0"]
       },
       "chainId": 1
     },
@@ -413,11 +403,7 @@
         "name": "DelegateVotesChanged",
         "signature": "DelegateVotesChanged(address,uint256,uint256)",
         "topic": "0xdec2bacdd2f05b59de34da9b523dff8be42e5e38e818c82fdb0bae774387a724",
-        "args": [
-          "0xa86882277e69fbf0a51805cdc8b0a3a113079e63",
-          "2",
-          "3"
-        ]
+        "args": ["0xa86882277e69fbf0a51805cdc8b0a3a113079e63", "2", "3"]
       },
       "chainId": 1
     },
@@ -653,11 +639,7 @@
         "name": "DelegateVotesChanged",
         "signature": "DelegateVotesChanged(address,uint256,uint256)",
         "topic": "0xdec2bacdd2f05b59de34da9b523dff8be42e5e38e818c82fdb0bae774387a724",
-        "args": [
-          "0x830bd73e4184cef73443c15111a1df14e495c706",
-          "0",
-          "1"
-        ]
+        "args": ["0x830bd73e4184cef73443c15111a1df14e495c706", "0", "1"]
       },
       "chainId": 1
     },
@@ -866,10 +848,7 @@
         "name": "NounCreated",
         "signature": "NounCreated(uint256,(uint48,uint48,uint48,uint48,uint48))",
         "topic": "0x1106ee9d020bfbb5ee34cf5535a5fbf024a011bd130078088cbf124ab3092478",
-        "args": [
-          "939",
-          "1,25,23,73,10"
-        ]
+        "args": ["939", "1,25,23,73,10"]
       },
       "chainId": 1
     },
@@ -924,11 +903,7 @@
         "name": "AuctionCreated",
         "signature": "AuctionCreated(uint256,uint256,uint256)",
         "topic": "0xd6eddd1118d71820909c1197aa966dbc15ed6f508554252169cc3d5ccac756ca",
-        "args": [
-          "939",
-          "1702068791",
-          "1702155191"
-        ]
+        "args": ["939", "1702068791", "1702155191"]
       },
       "chainId": 1
     }

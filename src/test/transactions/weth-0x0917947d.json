@@ -20,7 +20,7 @@
   "value": "0",
   "assetTransfers": [
     {
-      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
       "from": "0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c",
       "to": "0x0000000000000000000000000000000000000000",
       "value": "50000000000000000",
@@ -57,7 +57,7 @@
     "0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "50000000000000000"
@@ -65,7 +65,7 @@
       ],
       "sent": [
         {
-          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "type": "erc20",
           "value": "50000000000000000"
@@ -75,7 +75,7 @@
     "0x0000000000000000000000000000000000000000": {
       "received": [
         {
-          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "type": "erc20",
           "value": "50000000000000000"
@@ -87,7 +87,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "50000000000000000"
@@ -116,9 +116,7 @@
       "gas": null
     },
     "name": "withdraw",
-    "args": [
-      "50000000000000000"
-    ],
+    "args": ["50000000000000000"],
     "signature": "withdraw(uint256)",
     "selector": "0x2e1a7d4d",
     "value": "0"

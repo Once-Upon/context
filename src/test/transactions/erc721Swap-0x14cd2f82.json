@@ -69,7 +69,7 @@
       "value": "100000000000000"
     },
     {
-      "asset": "0xea2a41c02fa86a4901826615f9796e603c6a4491",
+      "contract": "0xea2a41c02fa86a4901826615f9796e603c6a4491",
       "from": "0xf4da97cbe88f89a2c94855a2ce08f84d72a7e1b4",
       "to": "0xad84aee821200148762b59c6b1db55ae64f15e0d",
       "tokenId": "2841402",
@@ -383,7 +383,7 @@
     "0xad84aee821200148762b59c6b1db55ae64f15e0d": {
       "received": [
         {
-          "asset": "0xea2a41c02fa86a4901826615f9796e603c6a4491",
+          "contract": "0xea2a41c02fa86a4901826615f9796e603c6a4491",
           "id": "0xea2a41c02fa86a4901826615f9796e603c6a4491-2841402",
           "tokenId": "2841402",
           "type": "erc721",
@@ -392,7 +392,7 @@
       ],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "100000000000000"
@@ -402,7 +402,7 @@
     "0xf4da97cbe88f89a2c94855a2ce08f84d72a7e1b4": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "100000000000000"
@@ -410,7 +410,7 @@
       ],
       "sent": [
         {
-          "asset": "0xea2a41c02fa86a4901826615f9796e603c6a4491",
+          "contract": "0xea2a41c02fa86a4901826615f9796e603c6a4491",
           "id": "0xea2a41c02fa86a4901826615f9796e603c6a4491-2841402",
           "tokenId": "2841402",
           "type": "erc721",
