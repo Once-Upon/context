@@ -98,7 +98,10 @@ export function generate(transaction: Transaction): Transaction {
 
   const assetSent = transaction.netAssetTransfers[transaction.from]
     ?.sent as ETHAsset[];
-  const price = assetSent[0]?.value ?? '0';
+  const price =
+    assetSent && assetSent?.length > 0 && assetSent[0]?.value
+      ? assetSent[0]?.value
+      : '0';
 
   transaction.context = {
     variables: {
