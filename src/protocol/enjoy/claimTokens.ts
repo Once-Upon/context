@@ -60,12 +60,7 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'contextAction',
             value: 'CLAIMED',
           },
-          numETH: {
-            type: AssetType.ETH,
-            value: transaction.value,
-            unit: 'wei',
-          },
-          numENJOY: {
+          numTokens: {
             type: AssetType.ERC20,
             value: decoded.args[2].toString(),
             token: ENJOY_CONTRACT_ADDRESS,
@@ -75,8 +70,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Claim',
-            default:
-              '[[receiver]][[contextAction]][[numTokens]][[tokenAddress]]',
+            default: '[[receiver]][[contextAction]][[numTokens]]',
           },
         },
       };

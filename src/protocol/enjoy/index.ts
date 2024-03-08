@@ -1,7 +1,8 @@
-import { contextualize as enjoy } from './addLiquidity';
+import { contextualize as addLiquidity } from './addLiquidity';
+import { contextualize as claimTokens } from './claimTokens';
 import { makeContextualize } from '../../helpers/utils';
 
-const children = { enjoy };
+const children = { addLiquidity, claimTokens };
 
 const contextualize = makeContextualize(children);
 
