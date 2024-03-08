@@ -11,6 +11,7 @@ import { friendTechContextualizer } from './friendTech';
 import { nounsContextualizer } from './nouns';
 import { nounsBuilderContextualizer } from './nounsBuilder';
 import { uniswapV2Contextualizer } from './uniswapV2';
+import { claimCampaignsContextualizer } from './claimCampaigns';
 
 const children = {
   wethContextualizer,
@@ -25,6 +26,7 @@ const children = {
   nounsContextualizer,
   nounsBuilderContextualizer,
   uniswapV2Contextualizer,
+  claimCampaignsContextualizer,
 };
 
 const protocolContextualizers = Object.fromEntries(

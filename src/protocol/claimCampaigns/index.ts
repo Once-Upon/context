@@ -5,7 +5,7 @@ const children = { claimTokens };
 
 const contextualize = makeContextualize(children);
 
-export const uniswapV2Contextualizer = {
+export const claimCampaignsContextualizer = {
   contextualize,
   children,
 };
