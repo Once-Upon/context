@@ -10,6 +10,7 @@ import { cryptopunksContextualizer } from './cryptopunks';
 import { friendTechContextualizer } from './friendTech';
 import { nounsContextualizer } from './nouns';
 import { nounsBuilderContextualizer } from './nounsBuilder';
+import { uniswapV2Contextualizer } from './uniswapV2';
 
 const children = {
   wethContextualizer,
@@ -23,6 +24,7 @@ const children = {
   friendTechContextualizer,
   nounsContextualizer,
   nounsBuilderContextualizer,
+  uniswapV2Contextualizer,
 };
 
 const protocolContextualizers = Object.fromEntries(
