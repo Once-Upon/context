@@ -5,7 +5,7 @@ import {
   CLAIM_CAMPAIGNS_ABI,
   ENJOY_CONTRACT_ADDRESS,
   ENJOY_CLAIM_CAMPAIGN_ID,
-} from './constants';
+} from '../claimCampaigns/constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {

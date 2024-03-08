@@ -1,7 +1,8 @@
 import { Hex } from 'viem';
 import { AssetType, Transaction } from '../../types';
 import { UNISWAP_V2_ROUTERS } from '../../helpers/constants';
-import { UNISWAP_V2_ROUTER_ABI, ENJOY_CONTRACT_ADDRESS } from './constants';
+import { ENJOY_CONTRACT_ADDRESS } from '../uniswapV2/constants';
+import { UNISWAP_V2_ROUTER_ABI } from '../uniswapV2/constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -10,6 +11,9 @@ export const contextualize = (transaction: Transaction): Transaction => {
 
   return generate(transaction);
 };
+
+// Note: To start, this isn't a general UniswapV2 protocol contextualizer
+// because it's only passing detect on the Enjoy contract on Zora
 
 export const detect = (transaction: Transaction): boolean => {
   if (transaction.to !== UNISWAP_V2_ROUTERS[transaction.chainId]) {
@@ -71,7 +75,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Uniswap',
-            default: '[[lp]][[contextAction]]with[[numETH]]ETH and[[numENJOY]]',
+            default: '[[lp]][[contextAction]]with[[numETH]]and[[numENJOY]]',
           },
         },
       };
