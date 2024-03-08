@@ -1,5 +1,5 @@
 import { Transaction } from '../../types';
-import { detect, generate } from './enjoy';
+import { detect, generate } from './addLiquidity';
 import enjoyAddLiquidity0x5005b386 from '../../test/transactions/enjoyAddLiquidity-0x5005b386.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 import { contextSummary } from '../../helpers/utils';

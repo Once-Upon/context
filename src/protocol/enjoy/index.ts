@@ -1,4 +1,4 @@
-import { contextualize as enjoy } from './enjoy';
+import { contextualize as enjoy } from './addLiquidity';
 import { makeContextualize } from '../../helpers/utils';
 
 const children = { enjoy };
