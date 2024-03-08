@@ -70,6 +70,8 @@ export type NounsGovernorAction =
   | 'CANCELED'
   | 'VETOED';
 
+export type UniswapV2RouterAction = 'ADDED_LIQUIDITY';
+
 export type ProtocolContextAction =
   | WETHContextAction
   | ENSContextAction
@@ -80,4 +82,5 @@ export type ProtocolContextAction =
   | EASContextAction
   | FriendTechContextAction
   | NounsAuctionHouseAction
-  | NounsGovernorAction;
+  | NounsGovernorAction
+  | UniswapV2RouterAction;

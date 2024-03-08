@@ -1,5 +1,5 @@
-### Cryptopunks contracts
+### Enjoy contract
 
-| Contract    | Address                                                                                                            | Chain ID |
-| ----------- | ------------------------------------------------------------------------------------------------------------------ | -------- |
-| Cryptopunks | [0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb](https://www.onceupon.gg/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb:1) | 1        |
+| Contract | Address                                                                                                                  | Chain ID |
+| -------- | ------------------------------------------------------------------------------------------------------------------------ | -------- |
+| Enjoy    | [0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39](https://www.onceupon.gg/0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39:7777777) | 7777777  |
