@@ -13,3 +13,7 @@ export const KNOWN_ADDRESSES = {
 export const UNISWAP_V2_ROUTERS = {
   7777777: '0xa00f34a632630efd15223b1968358ba4845beec7',
 };
+
+export const CLAIM_CAMPAIGNS = {
+  7777777: '0xbc452fdc8f851d7c5b72e1fe74dfb63bb793d511',
+};

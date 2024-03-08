@@ -4,15 +4,14 @@ import enjoyAddLiquidity0x5005b386 from '../../test/transactions/enjoyAddLiquidi
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 import { contextSummary } from '../../helpers/utils';
 
-describe('Enjoy', () => {
-  it('Should detect enjoy', () => {
+describe('Uniswap', () => {
+  it('Should detect enjoy addLiquidityETH', () => {
     const enjoy1 = detect(enjoyAddLiquidity0x5005b386 as Transaction);
     expect(enjoy1).toBe(true);
   });
 
-  it('Should generate context for enjoy add liquidity', () => {
+  it('Should generate context for enjoy addLiquidityETH', () => {
     const enjoy1 = generate(enjoyAddLiquidity0x5005b386 as Transaction);
-
     expect(enjoy1.context?.summaries?.category).toBe('PROTOCOL_1');
     expect(enjoy1.context?.summaries?.en.title).toBe('Uniswap');
     const desc1 = contextSummary(enjoy1.context);
@@ -21,7 +20,7 @@ describe('Enjoy', () => {
     );
   });
 
-  it('Should not detect as enjoy', () => {
+  it('Should not detect as UniswapV2 with Enjoy token', () => {
     const enjoy1 = detect(catchall0xc35c01ac as Transaction);
     expect(enjoy1).toBe(false);
   });

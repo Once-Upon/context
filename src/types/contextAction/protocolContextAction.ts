@@ -72,6 +72,8 @@ export type NounsGovernorAction =
 
 export type UniswapV2RouterAction = 'ADDED_LIQUIDITY';
 
+export type ClaimCampaignsAction = 'CLAIMED';
+
 export type ProtocolContextAction =
   | WETHContextAction
   | ENSContextAction
@@ -83,4 +85,5 @@ export type ProtocolContextAction =
   | FriendTechContextAction
   | NounsAuctionHouseAction
   | NounsGovernorAction
-  | UniswapV2RouterAction;
+  | UniswapV2RouterAction
+  | ClaimCampaignsAction;
