@@ -12,12 +12,12 @@ describe('Enjoy', () => {
 
   it('Should generate context for enjoy add liquidity', () => {
     const enjoy1 = generate(enjoyAddLiquidity0x5005b386 as Transaction);
-    console.log('enjoy1', enjoy1.context);
+
     expect(enjoy1.context?.summaries?.category).toBe('PROTOCOL_1');
     expect(enjoy1.context?.summaries?.en.title).toBe('Uniswap');
     const desc1 = contextSummary(enjoy1.context);
     expect(desc1).toBe(
-      '0x6b3210caa59c0367edc0b0e60636db02a623ce58 ADDED_LIQUIDITY with 0.022175029426293734 ETH ETH and 1862664875000000000000000 0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39',
+      '0x6b3210caa59c0367edc0b0e60636db02a623ce58 ADDED_LIQUIDITY with 0.022175029426293734 ETH and 1862664875000000000000000 0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39',
     );
   });
 

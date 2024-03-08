@@ -75,7 +75,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Uniswap',
-            default: '[[lp]][[contextAction]]with[[numETH]]ETH and[[numENJOY]]',
+            default: '[[lp]][[contextAction]]with[[numETH]]and[[numENJOY]]',
           },
         },
       };
