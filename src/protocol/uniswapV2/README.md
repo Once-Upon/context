@@ -1,4 +1,6 @@
-### Enjoy contract
+### Uniswap V2 contract
+
+Note: For a quick proof of concept, we're only using this contextualizer for the Enjoy contract to start.
 
 | Contract | Address                                                                                                                  | Chain ID |
 | -------- | ------------------------------------------------------------------------------------------------------------------------ | -------- |
