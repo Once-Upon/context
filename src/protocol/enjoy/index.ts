@@ -1,11 +1,11 @@
-import { contextualize as cryptopunks } from './enjoy';
+import { contextualize as enjoy } from './enjoy';
 import { makeContextualize } from '../../helpers/utils';
 
-const children = { cryptopunks };
+const children = { enjoy };
 
 const contextualize = makeContextualize(children);
 
-export const cryptopunksContextualizer = {
+export const enjoyContextualizer = {
   contextualize,
   children,
 };
