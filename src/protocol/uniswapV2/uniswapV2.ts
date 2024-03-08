@@ -13,7 +13,7 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 // Note: To start, this isn't a general UniswapV2 protocol contextualizer
-// becaues it's only passing detect on the Enjoy contract on Zora
+// because it's only passing detect on the Enjoy contract on Zora
 
 export const detect = (transaction: Transaction): boolean => {
   if (transaction.to !== UNISWAP_V2_ROUTERS[transaction.chainId]) {
