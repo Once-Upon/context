@@ -105,6 +105,10 @@ transaction.context = {
   },
 ```
 
+## Usage with an RPC endpoint directly
+
+This library is meant to be usable with any RPC endpoint. It depends on some upstream convenience keys/values added to transaction objects - `assetTransfers` and `netAssetTransfers`. To obtain those along with the raw data from an RPC endpoint, you can run the [usability](https://github.com/Once-Upon/usability) library upstream of this library in your codebase.
+
 ## License
 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
