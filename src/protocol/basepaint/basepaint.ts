@@ -124,6 +124,7 @@ export const generate = (transaction: Transaction): Transaction => {
         },
         days: {
           type: 'number',
+          emphasis: true,
           value: days.length,
         },
       };
