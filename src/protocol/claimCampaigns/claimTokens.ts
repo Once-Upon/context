@@ -1,10 +1,10 @@
 import { Hex } from 'viem';
 import { AssetType, Transaction } from '../../types';
-import { CLAIM_CAMPAIGNS } from '../../helpers/constants';
 import {
   CLAIM_CAMPAIGNS_ABI,
   ENJOY_CONTRACT_ADDRESS,
   ENJOY_CLAIM_CAMPAIGN_ID,
+  CLAIM_CAMPAIGNS,
 } from '../claimCampaigns/constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
