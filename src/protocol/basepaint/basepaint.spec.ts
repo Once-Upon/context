@@ -18,7 +18,7 @@ describe('basepaint', () => {
       const transaction = generate(basepaintPaint0x95ad4c45 as Transaction);
       expect(transaction.context?.summaries?.en.title).toBe('Basepaint');
       expect(contextSummary(transaction.context)).toBe(
-        '0x1fbc7667cbc465d1bcde45505c74f500255d68ca PAINTED 200 pixels using 0xd68fe5b53e7e1abeb5a4d0a6660667791f39263a #2239 to day 215',
+        '0x1fbc7667cbc465d1bcde45505c74f500255d68ca PAINTED 200 pixels to day 215 using 0xd68fe5b53e7e1abeb5a4d0a6660667791f39263a #2239',
       );
     });
   });

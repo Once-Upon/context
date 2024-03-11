@@ -89,7 +89,7 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'Basepaint',
             default:
-              '[[subject]][[contextAction]][[pixels]]pixels using[[brush]]to day[[day]]',
+              '[[subject]][[contextAction]][[pixels]]pixels to day[[day]]using[[brush]]',
           },
         },
       };
