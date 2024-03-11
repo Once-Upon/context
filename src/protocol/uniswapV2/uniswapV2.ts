@@ -1,7 +1,9 @@
 import { Hex } from 'viem';
 import { AssetType, Transaction } from '../../types';
-import { UNISWAP_V2_ROUTERS } from '../../helpers/constants';
-import { ENJOY_CONTRACT_ADDRESS } from '../uniswapV2/constants';
+import {
+  ENJOY_CONTRACT_ADDRESS,
+  UNISWAP_V2_ROUTERS,
+} from '../uniswapV2/constants';
 import { UNISWAP_V2_ROUTER_ABI } from '../uniswapV2/constants';
 import { decodeTransactionInput } from '../../helpers/utils';
 
