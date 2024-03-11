@@ -74,6 +74,8 @@ export type UniswapV2RouterAction = 'ADDED_LIQUIDITY';
 
 export type ClaimCampaignsAction = 'CLAIMED';
 
+export type BasepaintAction = 'PAINTED' | 'WITHDREW_REWARDS';
+
 export type ProtocolContextAction =
   | WETHContextAction
   | ENSContextAction
@@ -86,4 +88,5 @@ export type ProtocolContextAction =
   | NounsAuctionHouseAction
   | NounsGovernorAction
   | UniswapV2RouterAction
-  | ClaimCampaignsAction;
+  | ClaimCampaignsAction
+  | BasepaintAction;
