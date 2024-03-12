@@ -13,6 +13,7 @@ import { nounsBuilderContextualizer } from './nounsBuilder';
 import { uniswapV2Contextualizer } from './uniswapV2';
 import { claimCampaignsContextualizer } from './claimCampaigns';
 import { basepaintContextualizer } from './basepaint';
+import { disperseContextualizer } from './disperse';
 
 const children = {
   wethContextualizer,
@@ -29,6 +30,7 @@ const children = {
   uniswapV2Contextualizer,
   claimCampaignsContextualizer,
   basepaintContextualizer,
+  disperseContextualizer,
 };
 
 const protocolContextualizers = Object.fromEntries(

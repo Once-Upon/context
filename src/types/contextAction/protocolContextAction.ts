@@ -76,6 +76,8 @@ export type ClaimCampaignsAction = 'CLAIMED';
 
 export type BasepaintAction = 'PAINTED' | 'WITHDREW_REWARDS';
 
+export type DisperseAction = 'TIPPED';
+
 export type ProtocolContextAction =
   | WETHContextAction
   | ENSContextAction
@@ -89,4 +91,5 @@ export type ProtocolContextAction =
   | NounsGovernorAction
   | UniswapV2RouterAction
   | ClaimCampaignsAction
-  | BasepaintAction;
+  | BasepaintAction
+  | DisperseAction;
