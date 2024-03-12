@@ -1,27 +1,27 @@
 import { Transaction } from '../../types';
 import { detect, generate } from './disperse';
-import enjoyClaimTokens0x266b5c9d from '../../test/transactions/enjoyClaimTokens-0x266b5c9d.json';
+import disperse0x6fcb3def from '../../test/transactions/disperse-0x6fcb3def.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 import { contextSummary } from '../../helpers/utils';
 
-describe('Enjoy claimTokens', () => {
-  it('Should detect enjoy claimTokens', () => {
-    const enjoy1 = detect(enjoyClaimTokens0x266b5c9d as Transaction);
-    expect(enjoy1).toBe(true);
+describe('Disperse', () => {
+  it('Should detect disperse transaction', () => {
+    const disperse1 = detect(disperse0x6fcb3def as Transaction);
+    expect(disperse1).toBe(true);
   });
 
-  it('Should generate context for enjoy claimTokens', () => {
-    const enjoy1 = generate(enjoyClaimTokens0x266b5c9d as Transaction);
-    expect(enjoy1.context?.summaries?.category).toBe('PROTOCOL_1');
-    expect(enjoy1.context?.summaries?.en.title).toBe('Claim');
-    const desc1 = contextSummary(enjoy1.context);
+  it('Should generate context for disperseEth transaction', () => {
+    const disperse1 = generate(disperse0x6fcb3def as Transaction);
+    expect(disperse1.context?.summaries?.category).toBe('PROTOCOL_1');
+    expect(disperse1.context?.summaries?.en.title).toBe('Disperse');
+    const desc1 = contextSummary(disperse1.context);
     expect(desc1).toBe(
-      '0x7f23f1c4be15fa3adabc821de9ef70efa5503f24 CLAIMED 1872025000000000000000000 0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39',
+      '0x0de290f9717764641b9694c246338a477cff9543 TIPPED 0x3e6c23cdaa52b1b6621dbb30c367d16ace21f760 0.0009 ETH',
     );
   });
 
   it('Should not detect as enjoy', () => {
-    const enjoy1 = detect(catchall0xc35c01ac as Transaction);
-    expect(enjoy1).toBe(false);
+    const disperse1 = detect(catchall0xc35c01ac as Transaction);
+    expect(disperse1).toBe(false);
   });
 });

@@ -34,7 +34,9 @@ export const detect = (transaction: Transaction): boolean => {
   const assetTransfers = transaction.assetTransfers;
   if (!assetTransfers) return false;
   const tipFeeTransfer = assetTransfers.find(
-    (transfer) => transfer.to === TIP_FEE_RECEIVER,
+    (transfer) =>
+      transfer.to === TIP_FEE_RECEIVER &&
+      transfer.to !== DISPERSE_CONTRACTS[transaction.chainId],
   );
   if (!tipFeeTransfer) {
     return false;
@@ -60,7 +62,9 @@ export const generate = (transaction: Transaction): Transaction => {
       const assetTransfers = transaction.assetTransfers;
       if (!assetTransfers) return transaction;
       const tipTransfer = assetTransfers.find(
-        (transfer) => transfer.to !== TIP_FEE_RECEIVER,
+        (transfer) =>
+          transfer.to !== TIP_FEE_RECEIVER &&
+          transfer.to !== DISPERSE_CONTRACTS[transaction.chainId],
       ) as ETHAssetTransfer;
       if (!tipTransfer) return transaction;
 
@@ -87,7 +91,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Claim',
+            title: 'Disperse',
             default: '[[subject]][[contextAction]][[receiver]][[numOfEth]]',
           },
         },

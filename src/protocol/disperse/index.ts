@@ -1,11 +1,11 @@
-import { contextualize as claimTokens } from '../claimCampaigns/claimTokens';
+import { contextualize as disperse } from './disperse';
 import { makeContextualize } from '../../helpers/utils';
 
-const children = { claimTokens };
+const children = { disperse };
 
 const contextualize = makeContextualize(children);
 
-export const claimCampaignsContextualizer = {
+export const disperseContextualizer = {
   contextualize,
   children,
 };
