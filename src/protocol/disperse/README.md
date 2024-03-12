@@ -1,6 +1,5 @@
-### Claim Campaigns contract
+### Disperse contract
 
-Note: For a quick proof of concept, we're only using this contextualizer for the Disperse contract to start.
 
 | Contract | Address                                                                                                               | Chain ID |
 | -------- | --------------------------------------------------------------------------------------------------------------------- | -------- |
