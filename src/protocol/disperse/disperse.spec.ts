@@ -20,7 +20,7 @@ describe('Disperse', () => {
     );
   });
 
-  it('Should not detect as enjoy', () => {
+  it('Should not detect as disperseEth', () => {
     const disperse1 = detect(catchall0xc35c01ac as Transaction);
     expect(disperse1).toBe(false);
   });
