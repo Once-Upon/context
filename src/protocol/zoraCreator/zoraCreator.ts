@@ -23,7 +23,6 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
-
   const decoded = decodeTransactionInput(
     transaction.input as Hex,
     ZORA_CREATOR_ABI,
@@ -75,7 +74,12 @@ export const generate = (transaction: Transaction): Transaction => {
         rewardsDepositLog.data as Hex,
         rewardsDepositLog.topics as EventLogTopics,
       );
-      if (!decodedLog) return transaction;
+      if (
+        !decodedLog ||
+        !decodedLog.args['mintReferralReward'] ||
+        !decodedLog.args['mintReferral']
+      )
+        return transaction;
       // Get all the mints where from account == to account for the mint transfer
       const mints = transaction.assetTransfers.filter(
         (transfer) =>
@@ -111,7 +115,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           numOfEth: {
             type: AssetType.ETH,
-            value: decodedLog.args['mintReferralReward'],
+            value: decodedLog.args['mintReferralReward'].toString(),
             unit: 'wei',
           },
           mintReferral: {

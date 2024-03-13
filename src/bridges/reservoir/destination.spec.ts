@@ -1,6 +1,6 @@
 import { Transaction } from '../../types';
 import { detect, generate } from './destination';
-import { contextSummary } from '../../helpers/utils';
+import { containsBigInt, contextSummary } from '../../helpers/utils';
 import bridgeZoraEnergyDestination0x7e7843df from '../../test/transactions/bridgeZoraEnergyDestination-0x7e7843df.json';
 import hopDestination0x0902ccb6 from '../../test/transactions/hop-destination-0x0902ccb6.json';
 
@@ -25,5 +25,6 @@ describe('Bridge Zora Energy Destination', () => {
     expect(contextSummary(transaction.context)).toBe(
       '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 BRIDGED 0.02 ETH from 1',
     );
+    expect(containsBigInt(transaction.context)).toBe(false);
   });
 });
