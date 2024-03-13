@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import { AssetType, EventLogTopics, Transaction } from '../../types';
+import { AssetType, Transaction } from '../../types';
 import { ABIs } from './constants';
 import { decodeTransactionInput, decodeLog } from '../../helpers/utils';
 import { detect } from './detect';
@@ -72,7 +72,10 @@ export const generate = (transaction: Transaction): Transaction => {
       const parsedLog = decodeLog(
         ABIs.FriendTech,
         log.data as Hex,
-        log.topics as EventLogTopics,
+        log.topic0,
+        log.topic1,
+        log.topic2,
+        log.topic3,
       );
       if (!parsedLog) return transaction;
 
@@ -157,7 +160,10 @@ export const generate = (transaction: Transaction): Transaction => {
       const parsedLog = decodeLog(
         ABIs.FriendTech,
         log.data as Hex,
-        log.topics as EventLogTopics,
+        log.topic0,
+        log.topic1,
+        log.topic2,
+        log.topic3,
       );
       if (!parsedLog) return transaction;
 

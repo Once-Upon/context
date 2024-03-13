@@ -2,7 +2,6 @@ import { Hex } from 'viem';
 import {
   AssetType,
   ContextSummaryVariableType,
-  EventLogTopics,
   Transaction,
 } from '../../types';
 import { FarcasterContracts } from './constants';
@@ -65,7 +64,10 @@ export const generate = (transaction: Transaction): Transaction => {
           const decoded = decodeLog(
             FarcasterContracts.IdRegistry.abi,
             registerLog.data as Hex,
-            registerLog.topics as EventLogTopics,
+            registerLog.topic0,
+            registerLog.topic1,
+            registerLog.topic2,
+            registerLog.topic3,
           );
           if (!decoded) return transaction;
 

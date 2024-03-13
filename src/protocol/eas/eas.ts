@@ -1,6 +1,6 @@
 import { Hex } from 'viem';
 import { ExtractAbiFunctionNames } from 'abitype';
-import { Transaction, EventLogTopics } from '../../types';
+import { Transaction } from '../../types';
 import { decodeTransactionInput, decodeLog } from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
@@ -70,7 +70,10 @@ const getAttestationID = (transaction: Transaction): string | null => {
   const decoded = decodeLog(
     ABIs.EAS,
     transactionLog?.data as Hex,
-    transactionLog?.topics as EventLogTopics,
+    transactionLog?.topic0,
+    transactionLog?.topic1,
+    transactionLog?.topic2,
+    transactionLog?.topic3,
   );
   if (!decoded) return null;
 

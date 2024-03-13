@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import { EventLogTopics, Transaction } from '../../types';
+import { Transaction } from '../../types';
 import { NounsContracts, ABIs } from './constants';
 import { decodeLog, decodeTransactionInput } from '../../helpers/utils';
 
@@ -85,7 +85,10 @@ export const generate = (transaction: Transaction): Transaction => {
           const decoded = decodeLog(
             ABIs.NounsDAOLogicV3,
             log.data as Hex,
-            log.topics as EventLogTopics,
+            log.topic0,
+            log.topic1,
+            log.topic2,
+            log.topic3,
           );
           if (!decoded) return false;
           return decoded.eventName === 'ProposalCreated';
@@ -99,7 +102,10 @@ export const generate = (transaction: Transaction): Transaction => {
           const decoded = decodeLog(
             ABIs.NounsDAOLogicV3,
             registerLog.data as Hex,
-            registerLog.topics as EventLogTopics,
+            registerLog.topic0,
+            registerLog.topic1,
+            registerLog.topic2,
+            registerLog.topic3,
           );
           if (!decoded) return transaction;
 
@@ -151,7 +157,10 @@ export const generate = (transaction: Transaction): Transaction => {
           const decoded = decodeLog(
             ABIs.NounsDAOLogicV3,
             log.data as Hex,
-            log.topics as EventLogTopics,
+            log.topic0,
+            log.topic1,
+            log.topic2,
+            log.topic3,
           );
           if (!decoded) return false;
           return decoded.eventName === 'ProposalCreated';
@@ -165,7 +174,10 @@ export const generate = (transaction: Transaction): Transaction => {
           const decoded = decodeLog(
             ABIs.NounsDAOLogicV3,
             registerLog.data as Hex,
-            registerLog.topics as EventLogTopics,
+            registerLog.topic0,
+            registerLog.topic1,
+            registerLog.topic2,
+            registerLog.topic3,
           );
           if (!decoded) return transaction;
 
@@ -279,7 +291,10 @@ export const generate = (transaction: Transaction): Transaction => {
           const decoded = decodeLog(
             ABIs.NounsDAOLogicV3,
             log.data as Hex,
-            log.topics as EventLogTopics,
+            log.topic0,
+            log.topic1,
+            log.topic2,
+            log.topic3,
           );
           if (!decoded) return false;
           return decoded.eventName === 'VoteCast';
@@ -293,7 +308,10 @@ export const generate = (transaction: Transaction): Transaction => {
           const decoded = decodeLog(
             ABIs.NounsDAOLogicV3,
             registerLog.data as Hex,
-            registerLog.topics as EventLogTopics,
+            registerLog.topic0,
+            registerLog.topic1,
+            registerLog.topic2,
+            registerLog.topic3,
           );
 
           if (!decoded) return transaction;

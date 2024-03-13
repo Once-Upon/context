@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import { EventLogTopics, Transaction } from '../../types';
+import { Transaction } from '../../types';
 import { decodeTransactionInput, decodeLog } from '../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
@@ -57,7 +57,10 @@ export const generate = (transaction: Transaction): Transaction => {
           const decoded = decodeLog(
             ABIs.SchemaRegistry,
             log.data as Hex,
-            log.topics as EventLogTopics,
+            log.topic0,
+            log.topic1,
+            log.topic2,
+            log.topic3,
           );
           if (!decoded) return false;
 
@@ -68,7 +71,10 @@ export const generate = (transaction: Transaction): Transaction => {
           const decoded = decodeLog(
             ABIs.SchemaRegistry,
             registerLog.data as Hex,
-            registerLog.topics as EventLogTopics,
+            registerLog.topic0,
+            registerLog.topic1,
+            registerLog.topic2,
+            registerLog.topic3,
           );
           if (!decoded) return transaction;
 
