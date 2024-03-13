@@ -13,14 +13,14 @@ describe('Zora Creator', () => {
   it('Should generate context for mintWithRewards transaction', () => {
     const zoraCreator1 = generate(mintWithRewards0x6ccb3140 as Transaction);
     expect(zoraCreator1.context?.summaries?.category).toBe('PROTOCOL_1');
-    expect(zoraCreator1.context?.summaries?.en.title).toBe('Disperse');
+    expect(zoraCreator1.context?.summaries?.en.title).toBe('ZoraCreator');
     const desc1 = contextSummary(zoraCreator1.context);
     expect(desc1).toBe(
-      '0x0de290f9717764641b9694c246338a477cff9543 TIPPED 0x3e6c23cdaa52b1b6621dbb30c367d16ace21f760 0.0009 ETH',
+      '0x6bd6d5f98c5ad557eed0df2fd73b9666188cac96 MINTED 1 0xf41a3e3033d4e878943194b729aec993a4ea2045 #26 for 0.000777 ETH with 0.000111 ETH in rewards for 0xEcfc2ee50409E459c554a2b0376F882Ce916D853',
     );
   });
 
-  it('Should not detect as disperseEth', () => {
+  it('Should not detect as zora creator', () => {
     const zoraCreator1 = detect(catchall0xc35c01ac as Transaction);
     expect(zoraCreator1).toBe(false);
   });

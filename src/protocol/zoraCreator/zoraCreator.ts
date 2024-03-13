@@ -1,7 +1,7 @@
 import { Hex } from 'viem';
 import {
   AssetType,
-  ERC721AssetTransfer,
+  ERC1155AssetTransfer,
   ETHAsset,
   EventLogTopics,
   Transaction,
@@ -13,9 +13,8 @@ import {
   PROTOCOL_REWARDS_CONTRACT,
   REWARDS_DEPOSIT_TOPIC,
 } from './constants';
-import { decodeTransactionInput } from '../../helpers/utils';
-import { decodeLog } from '../../helpers/utils';
-import { KNOWN_ADDRESSES } from 'src/helpers/constants';
+import { decodeTransactionInput, decodeLog } from '../../helpers/utils';
+import { KNOWN_ADDRESSES } from '../../helpers/constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isEnjoy = detect(transaction);
@@ -85,8 +84,9 @@ export const generate = (transaction: Transaction): Transaction => {
       const mints = transaction.assetTransfers.filter(
         (transfer) =>
           transfer.from === KNOWN_ADDRESSES.NULL &&
-          transfer.type === AssetType.ERC721,
-      ) as ERC721AssetTransfer[];
+          transfer.type === AssetType.ERC1155,
+      ) as ERC1155AssetTransfer[];
+
       const assetTransfer = mints[0];
       const assetSent = transaction.netAssetTransfers[transaction.from]
         ?.sent as ETHAsset[];
@@ -103,9 +103,10 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           contextAction: { type: 'contextAction', value: 'MINTED' },
           token: {
-            type: AssetType.ERC721,
+            type: AssetType.ERC1155,
             token: assetTransfer.asset,
             tokenId: assetTransfer.tokenId,
+            value: assetTransfer.value,
           },
           price: {
             type: AssetType.ETH,
@@ -125,7 +126,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Disperse',
+            title: 'ZoraCreator',
             default:
               '[[recipient]][[contextAction]][[token]]for[[price]]with[[numOfEth]]in rewards for[[mintReferral]]',
           },
