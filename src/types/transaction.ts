@@ -17,22 +17,18 @@ export type ParamType = {
   arrayChildren: ParamType | null;
 };
 
-export type TransactionDescription = {
-  fragment: {
-    name: string;
-    type: string;
-    inputs: ParamType[];
-    outputs: ParamType[];
-    constant: boolean;
-    stateMutability: 'payable' | 'nonpayable' | 'view' | 'pure';
-    payable: boolean;
-    gas: null | string;
-  };
+export type TransactionMethodArgument = {
   name: string;
-  args: string[];
+  type: string;
+  internalType: string;
+  decoded: string;
+};
+
+export type TransactionDescription = {
+  name: string;
   signature: string;
-  selector: string;
-  value: string;
+  signature_with_arg_names: string;
+  decoded: TransactionMethodArgument[];
 };
 
 export type Trace = {
@@ -111,7 +107,7 @@ export interface Transaction {
   sigHash: string;
   internalSigHashes: SigHash[];
   parties: string[];
-  decode?: TransactionDescription;
+  decoded?: TransactionDescription;
   netAssetTransfers?: NetAssetTransfers;
   receipt?: Receipt;
   context?: TransactionContextType;
