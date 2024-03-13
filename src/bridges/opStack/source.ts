@@ -134,7 +134,7 @@ export function generate(transaction: Transaction): Transaction {
       transactionDepositedLog.topic0,
       transactionDepositedLog.topic1,
       transactionDepositedLog.topic2,
-      transactionDepositedLog.topic3
+      transactionDepositedLog.topic3,
     );
     if (!transactionDepositedEvent) return transaction;
 

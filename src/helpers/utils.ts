@@ -77,14 +77,15 @@ export function decodeLog<TAbi extends Abi>(
   topic3?: EventLogTopic,
 ) {
   try {
-    const topics = topic0 ? [topic0, topic1, topic2, topic3].filter(x => x) : [];
+    const topics = topic0
+      ? [topic0, topic1, topic2, topic3].filter((x) => x)
+      : [];
     const result = decodeEventLog({
       abi,
       data,
-      topics: topics as [] | [
-        signature: `0x${string}`,
-        ...args: `0x${string}`[],
-      ],
+      topics: topics as
+        | []
+        | [signature: `0x${string}`, ...args: `0x${string}`[]],
     });
     return result;
   } catch (err) {
