@@ -9,7 +9,7 @@ export function contextualize(transaction: Transaction): Transaction {
   return result;
 }
 
-// Always chain id 1
+// Always chain id 1 through the Zora bridge UI
 export function detect(transaction: Transaction): boolean {
   if (transaction.from !== BRIDGE_ZORA_ENERGY || !transaction.to) {
     return false;
