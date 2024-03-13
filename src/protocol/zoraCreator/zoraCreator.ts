@@ -1,11 +1,21 @@
 import { Hex } from 'viem';
-import { AssetType, ETHAssetTransfer, Transaction } from '../../types';
+import {
+  AssetType,
+  ERC721AssetTransfer,
+  ETHAsset,
+  EventLogTopics,
+  Transaction,
+} from '../../types';
 import {
   ZORA_CREATOR_ABI,
+  PROTOCOL_REWARDS_ABI,
   ZORA_CREATOR_CONTRACTS,
   PROTOCOL_REWARDS_CONTRACT,
+  REWARDS_DEPOSIT_TOPIC,
 } from './constants';
 import { decodeTransactionInput } from '../../helpers/utils';
+import { decodeLog } from '../../helpers/utils';
+import { KNOWN_ADDRESSES } from 'src/helpers/constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isEnjoy = detect(transaction);
@@ -30,23 +40,26 @@ export const detect = (transaction: Transaction): boolean => {
   if (decoded.functionName !== 'mintWithRewards') {
     return false;
   }
-  // check if eth is paid to protocol rewards contract
-  const assetTransfers = transaction.assetTransfers;
-  if (!assetTransfers) return false;
-  const rewardsTransfer = assetTransfers.find(
-    (transfer) =>
-      transfer.to === PROTOCOL_REWARDS_CONTRACT &&
-      transfer.type === AssetType.ETH,
+
+  // check if there is 'RewardsDeposit' log emitted
+  const logs =
+    transaction.logs && transaction.logs.length > 0 ? transaction.logs : [];
+  const rewardsDepositLog = logs.find(
+    (log) =>
+      log.topics[0] === REWARDS_DEPOSIT_TOPIC &&
+      log.address === PROTOCOL_REWARDS_CONTRACT,
   );
-  if (!rewardsTransfer) {
-    return false;
-  }
+  if (!rewardsDepositLog) return false;
 
   return true;
 };
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
+  if (!transaction.assetTransfers || !transaction.netAssetTransfers) {
+    return transaction;
+  }
+
   const decoded = decodeTransactionInput(
     transaction.input as Hex,
     ZORA_CREATOR_ABI,
@@ -55,40 +68,66 @@ export const generate = (transaction: Transaction): Transaction => {
 
   switch (decoded.functionName) {
     case 'mintWithRewards': {
-      const assetTransfers = transaction.assetTransfers;
-      if (!assetTransfers) return transaction;
-      const tipTransfer = assetTransfers.find(
+      // decode RewardsDeposit log
+      const logs =
+        transaction.logs && transaction.logs.length > 0 ? transaction.logs : [];
+      const rewardsDepositLog = logs.find(
+        (log) => log.topics[0] === REWARDS_DEPOSIT_TOPIC,
+      );
+      if (!rewardsDepositLog) return transaction;
+      const decodedLog = decodeLog(
+        PROTOCOL_REWARDS_ABI,
+        rewardsDepositLog.data as Hex,
+        rewardsDepositLog.topics as EventLogTopics,
+      );
+      if (!decodedLog) return transaction;
+      // Get all the mints where from account == to account for the mint transfer
+      const mints = transaction.assetTransfers.filter(
         (transfer) =>
-          transfer.to === PROTOCOL_REWARDS_CONTRACT &&
-          transfer.type === AssetType.ETH,
-      ) as ETHAssetTransfer;
-      if (!tipTransfer) return transaction;
+          transfer.from === KNOWN_ADDRESSES.NULL &&
+          transfer.type === AssetType.ERC721,
+      ) as ERC721AssetTransfer[];
+      const assetTransfer = mints[0];
+      const assetSent = transaction.netAssetTransfers[transaction.from]
+        ?.sent as ETHAsset[];
+      const price =
+        assetSent && assetSent.length > 0 && assetSent[0]?.value
+          ? assetSent[0].value
+          : '0';
 
       transaction.context = {
         variables: {
-          subject: {
+          recipient: {
             type: 'address',
             value: transaction.from,
           },
-          contextAction: {
-            type: 'contextAction',
-            value: 'TIPPED',
+          contextAction: { type: 'contextAction', value: 'MINTED' },
+          token: {
+            type: AssetType.ERC721,
+            token: assetTransfer.asset,
+            tokenId: assetTransfer.tokenId,
           },
-          receiver: {
-            type: 'address',
-            value: tipTransfer.to,
+          price: {
+            type: AssetType.ETH,
+            value: price,
+            unit: 'wei',
           },
           numOfEth: {
             type: AssetType.ETH,
-            value: tipTransfer.value,
+            value: decodedLog.args['mintReferralReward'],
             unit: 'wei',
+          },
+          mintReferral: {
+            type: 'address',
+            value: decodedLog.args['mintReferral'],
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Disperse',
-            default: '[[subject]][[contextAction]][[receiver]][[numOfEth]]',
+            default:
+              '[[recipient]][[contextAction]][[token]]for[[price]]with[[numOfEth]]in rewards for[[mintReferral]]',
           },
         },
       };

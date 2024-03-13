@@ -5,7 +5,7 @@ const children = { disperse };
 
 const contextualize = makeContextualize(children);
 
-export const disperseContextualizer = {
+export const zoraCreatorContextualizer = {
   contextualize,
   children,
 };
