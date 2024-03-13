@@ -27,6 +27,6 @@ export type LogArgument = {
   indexed: boolean;
   name: string;
   type: string;
-  internalType: string;
+  internalType?: string;
   decoded: string;
 };

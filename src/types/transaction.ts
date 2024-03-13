@@ -20,7 +20,7 @@ export type ParamType = {
 export type TransactionMethodArgument = {
   name: string;
   type: string;
-  internalType: string;
+  internalType?: string;
   decoded: string;
 };
 
