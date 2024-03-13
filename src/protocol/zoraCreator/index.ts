@@ -1,7 +1,7 @@
-import { contextualize as disperse } from './zoraCreator';
+import { contextualize as zora } from './zoraCreator';
 import { makeContextualize } from '../../helpers/utils';
 
-const children = { disperse };
+const children = { zora };
 
 const contextualize = makeContextualize(children);
 
