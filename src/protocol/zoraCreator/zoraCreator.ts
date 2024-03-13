@@ -24,9 +24,6 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
-  if (transaction.to !== ZORA_CREATOR_CONTRACTS[transaction.chainId]) {
-    return false;
-  }
 
   const decoded = decodeTransactionInput(
     transaction.input as Hex,
