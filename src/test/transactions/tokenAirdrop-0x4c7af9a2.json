@@ -4102,11 +4102,7 @@
         "output": "0x"
       },
       "subtraces": 501,
-      "traceAddress": [
-        0,
-        0,
-        0
-      ],
+      "traceAddress": [0, 0, 0],
       "transactionHash": "0x4c7a664791b6e4878092a94ce4e88869c29002e00b3c29307cf49c22efc8f9a2",
       "transactionPosition": 108,
       "type": "call"

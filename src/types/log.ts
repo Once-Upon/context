@@ -1,5 +1,3 @@
-import { ParamType } from './transaction';
-
 export interface Log {
   address: string;
   data: string;
@@ -10,11 +8,13 @@ export interface Log {
   logIndex: number;
   removed: boolean;
   decoded?: LogDescription | null;
-  topic0?: string;
-  topic1?: string;
-  topic2?: string;
-  topic3?: string;
+  topic0?: EventLogTopic;
+  topic1?: EventLogTopic;
+  topic2?: EventLogTopic;
+  topic3?: EventLogTopic;
 }
+
+export type EventLogTopic = `0x${string}`;
 
 export type LogDescription = {
   name: string;

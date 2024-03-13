@@ -8,16 +8,20 @@ export function registerUpdateTestTransactionsCommand() {
     .command('update-test-transactions')
     .description('Grab a transaction from API')
     .action(async (options) => {
-      const testDataDir = path.join(__dirname, '..', '..', 'src', 'test', 'transactions');
+      const testDataDir = path.join(
+        __dirname,
+        '..',
+        '..',
+        'src',
+        'test',
+        'transactions',
+      );
       const testFiles = await fs.readdir(testDataDir);
 
       for (const testFile of testFiles) {
-        const txFilePath = path.join(
-          testDataDir,
-          testFile,
-        );
+        const txFilePath = path.join(testDataDir, testFile);
 
-        const fileString = await fs.readFile(txFilePath, "utf-8");
+        const fileString = await fs.readFile(txFilePath, 'utf-8');
         const fileObject = JSON.parse(fileString);
 
         const hash = fileObject.hash;

@@ -10,7 +10,6 @@ import {
   ContextERC20Type,
   ContextERC721Type,
   ContextERC1155Type,
-  EventLogTopics,
 } from '../../types';
 import {
   TRANSACTION_DEPOSITED_EVENT_ABI,
@@ -132,7 +131,10 @@ export function generate(transaction: Transaction): Transaction {
     const transactionDepositedEvent = decodeLog(
       TRANSACTION_DEPOSITED_EVENT_ABI,
       transactionDepositedLog.data as Hex,
-      transactionDepositedLog.topics as EventLogTopics,
+      transactionDepositedLog.topic0,
+      transactionDepositedLog.topic1,
+      transactionDepositedLog.topic2,
+      transactionDepositedLog.topic3
     );
     if (!transactionDepositedEvent) return transaction;
 

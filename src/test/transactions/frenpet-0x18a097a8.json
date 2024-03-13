@@ -75,9 +75,7 @@
         "output": "0x0"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x18a04658b7bf2697bf7ab670a2410e35e87997eacbf97998d4a2a7f7318a97a8",
       "transactionPosition": 3,
       "type": "call"

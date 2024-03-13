@@ -64,9 +64,7 @@
         "output": "0x"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0xaae5d9c577e6f03f3349003cc9b0f3748aa2921a3b27e33e9264be8429e46ed7",
       "transactionPosition": 101,
       "type": "call"
@@ -87,10 +85,7 @@
         "output": "0x"
       },
       "subtraces": 11,
-      "traceAddress": [
-        0,
-        0
-      ],
+      "traceAddress": [0, 0],
       "transactionHash": "0xaae5d9c577e6f03f3349003cc9b0f3748aa2921a3b27e33e9264be8429e46ed7",
       "transactionPosition": 101,
       "type": "call"
@@ -111,12 +106,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        1,
-        0
-      ],
+      "traceAddress": [0, 0, 1, 0],
       "transactionHash": "0xaae5d9c577e6f03f3349003cc9b0f3748aa2921a3b27e33e9264be8429e46ed7",
       "transactionPosition": 101,
       "type": "call"
@@ -137,12 +127,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0
-      ],
+      "traceAddress": [0, 0, 2, 0],
       "transactionHash": "0xaae5d9c577e6f03f3349003cc9b0f3748aa2921a3b27e33e9264be8429e46ed7",
       "transactionPosition": 101,
       "type": "call"
@@ -163,12 +148,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        3,
-        0
-      ],
+      "traceAddress": [0, 0, 3, 0],
       "transactionHash": "0xaae5d9c577e6f03f3349003cc9b0f3748aa2921a3b27e33e9264be8429e46ed7",
       "transactionPosition": 101,
       "type": "call"
@@ -189,12 +169,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        4,
-        0
-      ],
+      "traceAddress": [0, 0, 4, 0],
       "transactionHash": "0xaae5d9c577e6f03f3349003cc9b0f3748aa2921a3b27e33e9264be8429e46ed7",
       "transactionPosition": 101,
       "type": "call"
@@ -215,12 +190,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        5,
-        0
-      ],
+      "traceAddress": [0, 0, 5, 0],
       "transactionHash": "0xaae5d9c577e6f03f3349003cc9b0f3748aa2921a3b27e33e9264be8429e46ed7",
       "transactionPosition": 101,
       "type": "call"
@@ -241,12 +211,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        6,
-        0
-      ],
+      "traceAddress": [0, 0, 6, 0],
       "transactionHash": "0xaae5d9c577e6f03f3349003cc9b0f3748aa2921a3b27e33e9264be8429e46ed7",
       "transactionPosition": 101,
       "type": "call"
@@ -267,12 +232,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        7,
-        0
-      ],
+      "traceAddress": [0, 0, 7, 0],
       "transactionHash": "0xaae5d9c577e6f03f3349003cc9b0f3748aa2921a3b27e33e9264be8429e46ed7",
       "transactionPosition": 101,
       "type": "call"
@@ -293,12 +253,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        8,
-        0
-      ],
+      "traceAddress": [0, 0, 8, 0],
       "transactionHash": "0xaae5d9c577e6f03f3349003cc9b0f3748aa2921a3b27e33e9264be8429e46ed7",
       "transactionPosition": 101,
       "type": "call"
@@ -319,12 +274,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        9,
-        0
-      ],
+      "traceAddress": [0, 0, 9, 0],
       "transactionHash": "0xaae5d9c577e6f03f3349003cc9b0f3748aa2921a3b27e33e9264be8429e46ed7",
       "transactionPosition": 101,
       "type": "call"
@@ -345,12 +295,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        10,
-        0
-      ],
+      "traceAddress": [0, 0, 10, 0],
       "transactionHash": "0xaae5d9c577e6f03f3349003cc9b0f3748aa2921a3b27e33e9264be8429e46ed7",
       "transactionPosition": 101,
       "type": "call"

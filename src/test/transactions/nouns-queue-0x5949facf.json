@@ -64,9 +64,7 @@
         "output": "0x"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x59496c7d83d3a8144f3988daf70c221b4a76bc860dbf6c76583b93bbef52facf",
       "transactionPosition": 307,
       "type": "call"
@@ -87,10 +85,7 @@
         "output": "0x"
       },
       "subtraces": 3,
-      "traceAddress": [
-        0,
-        0
-      ],
+      "traceAddress": [0, 0],
       "transactionHash": "0x59496c7d83d3a8144f3988daf70c221b4a76bc860dbf6c76583b93bbef52facf",
       "transactionPosition": 307,
       "type": "call"
@@ -111,12 +106,7 @@
         "output": "0x000000000000000000000000000000000000000000000000000000000002a300"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        0,
-        0
-      ],
+      "traceAddress": [0, 0, 0, 0],
       "transactionHash": "0x59496c7d83d3a8144f3988daf70c221b4a76bc860dbf6c76583b93bbef52facf",
       "transactionPosition": 307,
       "type": "call"
@@ -137,12 +127,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        1,
-        0
-      ],
+      "traceAddress": [0, 0, 1, 0],
       "transactionHash": "0x59496c7d83d3a8144f3988daf70c221b4a76bc860dbf6c76583b93bbef52facf",
       "transactionPosition": 307,
       "type": "call"
@@ -163,12 +148,7 @@
         "output": "0xa4c8dd97eaa1d946d237bb6f2a4b4f890f8fd9df7b71127808546adc71b31e2a"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0
-      ],
+      "traceAddress": [0, 0, 2, 0],
       "transactionHash": "0x59496c7d83d3a8144f3988daf70c221b4a76bc860dbf6c76583b93bbef52facf",
       "transactionPosition": 307,
       "type": "call"

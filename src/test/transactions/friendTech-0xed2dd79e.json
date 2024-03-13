@@ -59,9 +59,7 @@
     ]
   },
   "delegateCalls": [],
-  "errors": [
-    "execution reverted"
-  ],
+  "errors": ["execution reverted"],
   "parties": [
     "0x61a562de165e078ac4e06150c7c025d1e81f8fa0",
     "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",

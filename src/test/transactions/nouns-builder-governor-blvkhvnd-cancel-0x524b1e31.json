@@ -64,9 +64,7 @@
         "output": "0x"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x524b6e9e5eabb7e7d0876ee8eded4400d6687e602d90456434ca47f2d72f1e31",
       "transactionPosition": 89,
       "type": "call"
@@ -87,11 +85,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        0
-      ],
+      "traceAddress": [0, 0, 0],
       "transactionHash": "0x524b6e9e5eabb7e7d0876ee8eded4400d6687e602d90456434ca47f2d72f1e31",
       "transactionPosition": 89,
       "type": "call"

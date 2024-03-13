@@ -33,9 +33,7 @@
   "chainId": 1,
   "delegateCalls": [],
   "errors": [],
-  "parties": [
-    "0x174443351e21d47ed9ab51517a301107d92ede64"
-  ],
+  "parties": ["0x174443351e21d47ed9ab51517a301107d92ede64"],
   "sigHash": "0x60606040",
   "internalSigHashes": [
     {

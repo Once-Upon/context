@@ -48,9 +48,7 @@
     "neighbor": "0x661ea32f349f857075cae289e7f6222c2ad083b9"
   },
   "errors": [],
-  "parties": [
-    "0x661ea32f349f857075cae289e7f6222c2ad083b9"
-  ],
+  "parties": ["0x661ea32f349f857075cae289e7f6222c2ad083b9"],
   "sigHash": "0x01",
   "internalSigHashes": [
     {

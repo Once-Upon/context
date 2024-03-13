@@ -40,9 +40,7 @@
   },
   "delegateCalls": [],
   "errors": [],
-  "parties": [
-    "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52"
-  ],
+  "parties": ["0xc0899a4f231f69a8c97011820cd8ebd2e3611d52"],
   "sigHash": "0x",
   "internalSigHashes": [
     {
