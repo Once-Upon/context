@@ -6,6 +6,6 @@ const children = { source, destination };
 
 const contextualize = makeContextualize(children);
 
-export const zoraContextualizer = {
+export const reservoirContextualizer = {
   contextualize,
 };
