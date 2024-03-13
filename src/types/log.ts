@@ -2,7 +2,6 @@ import { ParamType } from './transaction';
 
 export interface Log {
   address: string;
-  topics: string[];
   data: string;
   blockNumber: number;
   transactionHash: string;
@@ -10,24 +9,24 @@ export interface Log {
   blockHash: string;
   logIndex: number;
   removed: boolean;
-  chainId: number;
-  decode?: LogDescription;
+  decoded?: LogDescription;
+  topic0?: string;
+  topic1?: string;
+  topic2?: string;
+  topic3?: string;
 }
 
 export type LogDescription = {
-  fragment: {
-    name: string;
-    type: string;
-    inputs: ReadonlyArray<ParamType>;
-    anonymous: boolean;
-  };
   name: string;
   signature: string;
-  args: string[];
-  topic: string;
+  signature_with_arg_names: string;
+  decoded: LogArgument[];
 };
 
-export type EventLogTopics = [
-  signature: `0x${string}`,
-  ...args: `0x${string}`[],
-];
+export type LogArgument = {
+  indexed: boolean;
+  name: string;
+  type: string;
+  internalType: string;
+  decoded: string;
+};

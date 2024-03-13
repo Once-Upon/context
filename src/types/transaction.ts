@@ -101,7 +101,6 @@ export interface Transaction {
   r: string;
   s: string;
   timestamp: number;
-  isoTimestamp: string;
   delegateCalls?: Trace[];
   assetTransfers?: AssetTransfer[];
   sigHash: string;
