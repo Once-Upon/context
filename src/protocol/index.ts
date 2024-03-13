@@ -14,6 +14,7 @@ import { uniswapV2Contextualizer } from './uniswapV2';
 import { claimCampaignsContextualizer } from './claimCampaigns';
 import { basepaintContextualizer } from './basepaint';
 import { disperseContextualizer } from './disperse';
+import { zoraCreatorContextualizer } from './zoraCreator';
 
 const children = {
   wethContextualizer,
@@ -31,6 +32,7 @@ const children = {
   claimCampaignsContextualizer,
   basepaintContextualizer,
   disperseContextualizer,
+  zoraCreatorContextualizer,
 };
 
 const protocolContextualizers = Object.fromEntries(
