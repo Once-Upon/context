@@ -2,7 +2,7 @@ import { Transaction } from '../../types';
 import { detect, generate } from './claimTokens';
 import enjoyClaimTokens0x266b5c9d from '../../test/transactions/enjoyClaimTokens-0x266b5c9d.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
-import { contextSummary } from '../../helpers/utils';
+import { containsBigInt, contextSummary } from '../../helpers/utils';
 
 describe('Enjoy claimTokens', () => {
   it('Should detect enjoy claimTokens', () => {
@@ -18,6 +18,7 @@ describe('Enjoy claimTokens', () => {
     expect(desc1).toBe(
       '0x7f23f1c4be15fa3adabc821de9ef70efa5503f24 CLAIMED 1872025000000000000000000 0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39',
     );
+    expect(containsBigInt(enjoy1.context)).toBe(false);
   });
 
   it('Should not detect as enjoy', () => {
