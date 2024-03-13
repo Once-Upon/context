@@ -25,6 +25,8 @@ export const grabTx = async (txHash: string, prefix: string) => {
   // write to file if not a 404
   if (transaction.hash) {
     fs.writeFileSync(txFilePath, JSON.stringify(transaction, null, 2));
+  } else {
+    console.warn(`404 fetching transaction: ${txHash}`);
   }
 };
 
