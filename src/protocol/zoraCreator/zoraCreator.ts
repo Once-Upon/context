@@ -122,7 +122,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'ZoraCreator',
+            title: 'Zora',
             default:
               '[[recipient]][[contextAction]][[token]]for[[price]]with[[numOfEth]]in rewards for[[mintReferral]]',
           },
