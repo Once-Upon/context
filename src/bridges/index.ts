@@ -1,8 +1,10 @@
 import { makeContextualize } from '../helpers/utils';
 import { optimismContextualizer } from './opStack';
+import { zoraContextualizer } from './zora';
 
 const children = {
   optimismContextualizer,
+  zoraContextualizer,
 };
 
 const bridgeContextualizers = Object.fromEntries(
