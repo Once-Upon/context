@@ -9,7 +9,7 @@ export interface Log {
   blockHash: string;
   logIndex: number;
   removed: boolean;
-  decoded?: LogDescription;
+  decoded?: LogDescription | null;
   topic0?: string;
   topic1?: string;
   topic2?: string;

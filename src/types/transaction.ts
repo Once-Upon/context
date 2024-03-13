@@ -106,7 +106,7 @@ export interface Transaction {
   sigHash: string;
   internalSigHashes: SigHash[];
   parties: string[];
-  decoded?: TransactionDescription;
+  decoded?: TransactionDescription | null;
   netAssetTransfers?: NetAssetTransfers;
   receipt?: Receipt;
   context?: TransactionContextType;
