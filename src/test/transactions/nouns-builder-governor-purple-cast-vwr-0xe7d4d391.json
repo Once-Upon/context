@@ -1,4 +1,5 @@
 {
+  "_id": "65ec1681d569c64fda41f01c",
   "accessList": [],
   "blockHash": "0xbb2ab94887194d9a27b120c85fa001b1dd82cd8f3d164a75ca6233bf1a9f81df",
   "blockNumber": 18647735,
@@ -18,6 +19,46 @@
   "type": 2,
   "v": "0x0",
   "value": "0",
+  "receipt": {
+    "blockHash": "0xbb2ab94887194d9a27b120c85fa001b1dd82cd8f3d164a75ca6233bf1a9f81df",
+    "blockNumber": 18647735,
+    "contractAddress": null,
+    "cumulativeGasUsed": 7042346,
+    "effectiveGasPrice": 22357505519,
+    "from": "0x14b85b1c40056312fde55e1fa1827a92f12b966a",
+    "gasUsed": 81617,
+    "logsBloom": "0x00000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000004",
+    "status": true,
+    "to": "0xfb4a96541e1c70fc85ee512420eb0b05c542df57",
+    "transactionHash": "0xe7d4b7de58af3dd483ac59580fab2e74a58b82a192e5b921af6507701e2cd391",
+    "transactionIndex": 92,
+    "type": "0x2"
+  },
+  "decoded": {
+    "signature": "castVoteWithReason(bytes32,uint256,string)",
+    "signature_with_arg_names": "castVoteWithReason(bytes32 arg1,uint256 arg2,string arg3)",
+    "name": "castVoteWithReason",
+    "decoded": [
+      {
+        "internalType": "bytes32",
+        "name": "arg1",
+        "type": "bytes32",
+        "decoded": "0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b"
+      },
+      {
+        "internalType": "uint256",
+        "name": "arg2",
+        "type": "uint256",
+        "decoded": "0"
+      },
+      {
+        "internalType": "string",
+        "name": "arg3",
+        "type": "string",
+        "decoded": "I'm not totally against it. I'm just against it for now. I think it's too early and the prop is not well written. There were too many follow up questions and things that were not really clear."
+      }
+    ]
+  },
   "delegateCalls": [
     {
       "action": {
@@ -68,11 +109,14 @@
       "type": "call"
     }
   ],
-  "baseFeePerGas": 22257505519,
-  "burntFees": "1816590827944223",
-  "minerFees": "8161700000000",
-  "transactionFee": "1824752527944223",
-  "fork": "shanghai",
+  "errors": [],
+  "parties": [
+    "0x14b85b1c40056312fde55e1fa1827a92f12b966a",
+    "0xfb4a96541e1c70fc85ee512420eb0b05c542df57",
+    "0x46ea3fd17deb7b291aea60e67e5cb3a104fea11d",
+    "0xa45662638e9f3bbb7a6fecb4b17853b7ba0f3a60",
+    "0xaed75d1e5c1821e2ec29d5d24b794b13c34c5d63"
+  ],
   "sigHash": "0x41f9b62c",
   "internalSigHashes": [
     {
@@ -97,157 +141,186 @@
     }
   ],
   "timestamp": 1700903507,
-  "isoTimestamp": "2023-11-25T09:11:47.000Z",
-  "decode": {
-    "fragment": {
-      "type": "function",
-      "inputs": [
-        {
-          "name": "",
-          "type": "bytes32",
-          "baseType": "bytes32",
-          "indexed": null,
-          "components": null,
-          "arrayLength": null,
-          "arrayChildren": null
-        },
-        {
-          "name": "",
-          "type": "uint256",
-          "baseType": "uint256",
-          "indexed": null,
-          "components": null,
-          "arrayLength": null,
-          "arrayChildren": null
-        },
-        {
-          "name": "",
-          "type": "string",
-          "baseType": "string",
-          "indexed": null,
-          "components": null,
-          "arrayLength": null,
-          "arrayChildren": null
-        }
-      ],
-      "name": "castVoteWithReason",
-      "constant": false,
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "payable": false,
-      "gas": null
-    },
-    "name": "castVoteWithReason",
-    "args": [
-      "0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b",
-      "0",
-      "I'm not totally against it. I'm just against it for now. I think it's too early and the prop is not well written. There were too many follow up questions and things that were not really clear."
-    ],
-    "signature": "castVoteWithReason(bytes32,uint256,string)",
-    "selector": "0x41f9b62c",
-    "value": "0"
-  },
-  "parties": [
-    "0x14b85b1c40056312fde55e1fa1827a92f12b966a",
-    "0xfb4a96541e1c70fc85ee512420eb0b05c542df57",
-    "0x46ea3fd17deb7b291aea60e67e5cb3a104fea11d",
-    "0xa45662638e9f3bbb7a6fecb4b17853b7ba0f3a60",
-    "0xaed75d1e5c1821e2ec29d5d24b794b13c34c5d63"
-  ],
-  "receipt": {
-    "blockHash": "0xbb2ab94887194d9a27b120c85fa001b1dd82cd8f3d164a75ca6233bf1a9f81df",
-    "blockNumber": 18647735,
-    "contractAddress": null,
-    "cumulativeGasUsed": 7042346,
-    "effectiveGasPrice": 22357505519,
-    "from": "0x14b85b1c40056312fde55e1fa1827a92f12b966a",
-    "gasUsed": 81617,
-    "logsBloom": "0x00000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000004",
-    "status": true,
-    "to": "0xfb4a96541e1c70fc85ee512420eb0b05c542df57",
-    "transactionHash": "0xe7d4b7de58af3dd483ac59580fab2e74a58b82a192e5b921af6507701e2cd391",
-    "transactionIndex": 92,
-    "type": "0x2"
-  },
+  "baseFeePerGas": 22257505519,
+  "transactionFee": "1824752527944223",
   "logs": [
     {
+      "_id": "65ec1681d569c64fda41edca",
       "address": "0xfb4a96541e1c70fc85ee512420eb0b05c542df57",
       "blockHash": "0xbb2ab94887194d9a27b120c85fa001b1dd82cd8f3d164a75ca6233bf1a9f81df",
       "blockNumber": 18647735,
       "data": "0x00000000000000000000000014b85b1c40056312fde55e1fa1827a92f12b966a47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000c049276d206e6f7420746f74616c6c7920616761696e73742069742e2049276d206a75737420616761696e737420697420666f72206e6f772e2049207468696e6b206974277320746f6f206561726c7920616e64207468652070726f70206973206e6f742077656c6c207772697474656e2e205468657265207765726520746f6f206d616e7920666f6c6c6f77207570207175657374696f6e7320616e64207468696e677320746861742077657265206e6f74207265616c6c7920636c6561722e",
       "logIndex": 181,
       "removed": false,
-      "topics": [
-        "0x0c165c85edbf8f9b99d51793c9429beb9dc2b608a7f81e64623052f829657af3"
-      ],
       "transactionHash": "0xe7d4b7de58af3dd483ac59580fab2e74a58b82a192e5b921af6507701e2cd391",
       "transactionIndex": 92,
-      "decode": {
-        "fragment": {
-          "type": "event",
-          "inputs": [
-            {
-              "name": "voter",
-              "type": "address",
-              "baseType": "address",
-              "indexed": null,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "proposalId",
-              "type": "bytes32",
-              "baseType": "bytes32",
-              "indexed": null,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "support",
-              "type": "uint256",
-              "baseType": "uint256",
-              "indexed": null,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "weight",
-              "type": "uint256",
-              "baseType": "uint256",
-              "indexed": null,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "reason",
-              "type": "string",
-              "baseType": "string",
-              "indexed": null,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            }
-          ],
-          "name": "VoteCast",
-          "anonymous": false
-        },
-        "name": "VoteCast",
+      "decoded": {
         "signature": "VoteCast(address,bytes32,uint256,uint256,string)",
-        "topic": "0x0c165c85edbf8f9b99d51793c9429beb9dc2b608a7f81e64623052f829657af3",
-        "args": [
-          "0x14b85b1c40056312fde55e1fa1827a92f12b966a",
-          "0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b",
-          "0",
-          "1",
-          "I'm not totally against it. I'm just against it for now. I think it's too early and the prop is not well written. There were too many follow up questions and things that were not really clear."
+        "signature_with_arg_names": "VoteCast(address voter,bytes32 proposalId,uint256 support,uint256 weight,string reason)",
+        "name": "VoteCast",
+        "decoded": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "voter",
+            "type": "address",
+            "decoded": "0x14b85b1c40056312fde55e1fa1827a92f12b966a"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "proposalId",
+            "type": "bytes32",
+            "decoded": "0x47d24160ba593a4bba7f61453a52edf874c4eb47ab46026d038cb8bb4569f40b"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "support",
+            "type": "uint256",
+            "decoded": "0"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "weight",
+            "type": "uint256",
+            "decoded": "1"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "reason",
+            "type": "string",
+            "decoded": "I'm not totally against it. I'm just against it for now. I think it's too early and the prop is not well written. There were too many follow up questions and things that were not really clear."
+          }
         ]
       },
-      "chainId": 1
+      "topic0": "0x0c165c85edbf8f9b99d51793c9429beb9dc2b608a7f81e64623052f829657af3"
     }
   ],
-  "contractsCreated": []
+  "netAssetTransfers": {},
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x14b85b1c40056312fde55e1fa1827a92f12b966a": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0xfb4a96541e1c70fc85ee512420eb0b05c542df57": [
+      {
+        "chainId": 1,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x46ea3fd17deb7b291aea60e67e5cb3a104fea11d": [
+      {
+        "chainId": 1,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0xa45662638e9f3bbb7a6fecb4b17853b7ba0f3a60": [
+      {
+        "chainId": 1,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0xaed75d1e5c1821e2ec29d5d24b794b13c34c5d63": [
+      {
+        "chainId": 1,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 5,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ]
+  },
+  "assetsEnriched": {}
 }

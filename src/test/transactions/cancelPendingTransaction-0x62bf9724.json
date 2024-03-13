@@ -1,4 +1,5 @@
 {
+  "_id": "65ec781770a709017dea8678",
   "accessList": [],
   "blockHash": "0xe0b110909c80527bf7a1d909e9e28aa870e3503f5bcfa1753256ae771e2dbdd5",
   "blockNumber": 7861363,
@@ -18,23 +19,6 @@
   "type": 2,
   "v": "0x0",
   "value": "0",
-  "baseFeePerGas": 51,
-  "burntFees": "0",
-  "minerFees": "19758963000",
-  "transactionFee": "19758963000",
-  "sigHash": "0x",
-  "internalSigHashes": [
-    {
-      "from": "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52",
-      "to": "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52",
-      "sigHash": "0x"
-    }
-  ],
-  "timestamp": 1702512073,
-  "isoTimestamp": "2023-12-14T00:01:13.000Z",
-  "parties": [
-    "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52"
-  ],
   "receipt": {
     "blockHash": "0xe0b110909c80527bf7a1d909e9e28aa870e3503f5bcfa1753256ae771e2dbdd5",
     "blockNumber": 7861363,
@@ -54,6 +38,42 @@
     "transactionIndex": 5,
     "type": "0x2"
   },
+  "delegateCalls": [],
+  "errors": [],
+  "parties": [
+    "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52"
+  ],
+  "sigHash": "0x",
+  "internalSigHashes": [
+    {
+      "from": "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52",
+      "to": "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52",
+      "sigHash": "0x"
+    }
+  ],
+  "timestamp": 1702512073,
+  "baseFeePerGas": 51,
+  "transactionFee": "73278540868594750000019758963000",
   "logs": [],
-  "contractsCreated": []
+  "netAssetTransfers": {},
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0xc0899a4f231f69a8c97011820cd8ebd2e3611d52": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
 }

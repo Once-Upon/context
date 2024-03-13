@@ -2,6 +2,7 @@ import { Command } from 'commander';
 import { registerCreateContextualizerCommand } from './createContextualizer';
 import { registerGrabTransactionCommand } from './grabTransaction';
 import { registerRunContextualizersCommand } from './runContextualizers';
+import { registerUpdateTestTransactionsCommand } from './updateTestTransactions';
 
 export const program = new Command();
 
@@ -13,5 +14,6 @@ program
 registerCreateContextualizerCommand();
 registerGrabTransactionCommand();
 registerRunContextualizersCommand();
+registerUpdateTestTransactionsCommand();
 
 program.parse(process.argv);

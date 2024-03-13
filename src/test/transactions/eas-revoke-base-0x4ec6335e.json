@@ -1,4 +1,5 @@
 {
+  "_id": "65ec762561bf001388a095c4",
   "accessList": [],
   "blockHash": "0x72957e06d143cacc1191024fa8e0dc40dbf436a9c2cd9808d2e7e10cbbf6a80f",
   "blockNumber": 7327052,
@@ -19,6 +20,26 @@
   "v": "0x1",
   "value": "0",
   "yParity": "0x1",
+  "receipt": {
+    "blockHash": "0x72957e06d143cacc1191024fa8e0dc40dbf436a9c2cd9808d2e7e10cbbf6a80f",
+    "blockNumber": 7327052,
+    "contractAddress": null,
+    "cumulativeGasUsed": 1101653,
+    "effectiveGasPrice": 634,
+    "from": "0x6e91973dee716ed6859e7bb689c9bd2955bdb96e",
+    "gasUsed": 78654,
+    "l1Fee": "0x583df666e597",
+    "l1FeeScalar": "0.684",
+    "l1GasPrice": "0xb439a43b2",
+    "l1GasUsed": "0xb74",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000800000000000000000000000000000000000000000000008000004000000000000000010020000000000040000000800000000000000002000000000000000000200000080000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000020000000000800000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0x4200000000000000000000000000000000000021",
+    "transactionHash": "0x4ec6cc6cd149131d202e1f5c15f0eadb3cb673f8aa811ccf5a9200b55ff4335e",
+    "transactionIndex": 10,
+    "type": "0x2"
+  },
+  "decoded": null,
   "delegateCalls": [
     {
       "action": {
@@ -69,10 +90,15 @@
       "type": "call"
     }
   ],
-  "baseFeePerGas": 56,
-  "burntFees": "0",
-  "minerFees": "49866636",
-  "transactionFee": "49866636",
+  "errors": [],
+  "parties": [
+    "0x6e91973dee716ed6859e7bb689c9bd2955bdb96e",
+    "0x4200000000000000000000000000000000000021",
+    "0xbeb5fc579115071764c7423a4f12edde41f106ed",
+    "0x4200000000000000000000000000000000000020",
+    "0x75505a97bd334e7bd3c476893285569c4136fa0f",
+    "0x0000000000000000000000000000000000000000"
+  ],
   "sigHash": "0x46926267",
   "internalSigHashes": [
     {
@@ -97,174 +123,270 @@
     }
   ],
   "timestamp": 1701443451,
-  "isoTimestamp": "2023-12-01T15:10:51.000Z",
-  "decode": {
-    "fragment": {
-      "type": "function",
-      "inputs": [
-        {
-          "name": "",
-          "type": "tuple(bytes32,(bytes32,uint256))",
-          "baseType": "tuple",
-          "indexed": null,
-          "components": [
-            {
-              "name": "",
-              "type": "bytes32",
-              "baseType": "bytes32",
-              "indexed": null,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "",
-              "type": "tuple(bytes32,uint256)",
-              "baseType": "tuple",
-              "indexed": null,
-              "components": [
-                {
-                  "name": "",
-                  "type": "bytes32",
-                  "baseType": "bytes32",
-                  "indexed": null,
-                  "components": null,
-                  "arrayLength": null,
-                  "arrayChildren": null
-                },
-                {
-                  "name": "",
-                  "type": "uint256",
-                  "baseType": "uint256",
-                  "indexed": null,
-                  "components": null,
-                  "arrayLength": null,
-                  "arrayChildren": null
-                }
-              ],
-              "arrayLength": null,
-              "arrayChildren": null
-            }
-          ],
-          "arrayLength": null,
-          "arrayChildren": null
-        }
-      ],
-      "name": "revoke",
-      "constant": false,
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "payable": false,
-      "gas": null
-    },
-    "name": "revoke",
-    "args": [
-      "0xd3f24e873e8df2d9bb9af6f08ea1ddf61f65754d023f3ea761081e3e6a226a80,0x9d659ddf710fd56b622802111461f2cbf44d1f9372f109ae3321a9e8ac442972,0"
-    ],
-    "signature": "revoke((bytes32,(bytes32,uint256)))",
-    "selector": "0x46926267",
-    "value": "0"
-  },
-  "parties": [
-    "0x6e91973dee716ed6859e7bb689c9bd2955bdb96e",
-    "0x4200000000000000000000000000000000000021",
-    "0xbeb5fc579115071764c7423a4f12edde41f106ed",
-    "0x4200000000000000000000000000000000000020",
-    "0x75505a97bd334e7bd3c476893285569c4136fa0f",
-    "0x0000000000000000000000000000000000000000"
-  ],
-  "receipt": {
-    "blockHash": "0x72957e06d143cacc1191024fa8e0dc40dbf436a9c2cd9808d2e7e10cbbf6a80f",
-    "blockNumber": 7327052,
-    "contractAddress": null,
-    "cumulativeGasUsed": 1101653,
-    "effectiveGasPrice": 634,
-    "from": "0x6e91973dee716ed6859e7bb689c9bd2955bdb96e",
-    "gasUsed": 78654,
-    "l1Fee": "0x583df666e597",
-    "l1FeeScalar": "0.684",
-    "l1GasPrice": "0xb439a43b2",
-    "l1GasUsed": "0xb74",
-    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000800000000000000000000000000000000000000000000008000004000000000000000010020000000000040000000800000000000000002000000000000000000200000080000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000020000000000800000000000000000000000000000000000000000000000000000000",
-    "status": true,
-    "to": "0x4200000000000000000000000000000000000021",
-    "transactionHash": "0x4ec6cc6cd149131d202e1f5c15f0eadb3cb673f8aa811ccf5a9200b55ff4335e",
-    "transactionIndex": 10,
-    "type": "0x2"
-  },
+  "baseFeePerGas": 56,
+  "transactionFee": "97023150187927780000000049866636",
   "logs": [
     {
+      "_id": "65ec762561bf001388a095ac",
       "address": "0x4200000000000000000000000000000000000021",
       "blockHash": "0x72957e06d143cacc1191024fa8e0dc40dbf436a9c2cd9808d2e7e10cbbf6a80f",
       "blockNumber": 7327052,
       "data": "0x9d659ddf710fd56b622802111461f2cbf44d1f9372f109ae3321a9e8ac442972",
       "logIndex": 16,
       "removed": false,
-      "topics": [
-        "0xf930a6e2523c9cc298691873087a740550b8fc85a0680830414c148ed927f615",
-        "0x0000000000000000000000000000000000000000000000000000000000000000",
-        "0x0000000000000000000000006e91973dee716ed6859e7bb689c9bd2955bdb96e",
-        "0xd3f24e873e8df2d9bb9af6f08ea1ddf61f65754d023f3ea761081e3e6a226a80"
-      ],
       "transactionHash": "0x4ec6cc6cd149131d202e1f5c15f0eadb3cb673f8aa811ccf5a9200b55ff4335e",
       "transactionIndex": 10,
       "id": "log_415db381",
-      "decode": {
-        "fragment": {
-          "type": "event",
-          "inputs": [
-            {
-              "name": "recipient",
-              "type": "address",
-              "baseType": "address",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "attester",
-              "type": "address",
-              "baseType": "address",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "uuid",
-              "type": "bytes32",
-              "baseType": "bytes32",
-              "indexed": null,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "schema",
-              "type": "bytes32",
-              "baseType": "bytes32",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            }
-          ],
-          "name": "Revoked",
-          "anonymous": false
-        },
-        "name": "Revoked",
+      "decoded": {
         "signature": "Revoked(address,address,bytes32,bytes32)",
-        "topic": "0xf930a6e2523c9cc298691873087a740550b8fc85a0680830414c148ed927f615",
-        "args": [
-          "0x0000000000000000000000000000000000000000",
-          "0x6e91973dee716ed6859e7bb689c9bd2955bdb96e",
-          "0x9d659ddf710fd56b622802111461f2cbf44d1f9372f109ae3321a9e8ac442972",
-          "0xd3f24e873e8df2d9bb9af6f08ea1ddf61f65754d023f3ea761081e3e6a226a80"
+        "signature_with_arg_names": "Revoked(address indexed recipient,address indexed attester,bytes32 uid,bytes32 indexed schema)",
+        "name": "Revoked",
+        "decoded": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address",
+            "decoded": "0x0000000000000000000000000000000000000000"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "attester",
+            "type": "address",
+            "decoded": "0x6e91973dee716ed6859e7bb689c9bd2955bdb96e"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "uid",
+            "type": "bytes32",
+            "decoded": "0x9d659ddf710fd56b622802111461f2cbf44d1f9372f109ae3321a9e8ac442972"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "schema",
+            "type": "bytes32",
+            "decoded": "0xd3f24e873e8df2d9bb9af6f08ea1ddf61f65754d023f3ea761081e3e6a226a80"
+          }
         ]
       },
-      "chainId": 8453
+      "topic0": "0xf930a6e2523c9cc298691873087a740550b8fc85a0680830414c148ed927f615",
+      "topic1": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "topic2": "0x0000000000000000000000006e91973dee716ed6859e7bb689c9bd2955bdb96e",
+      "topic3": "0xd3f24e873e8df2d9bb9af6f08ea1ddf61f65754d023f3ea761081e3e6a226a80"
     }
   ],
-  "contractsCreated": []
+  "netAssetTransfers": {},
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x6e91973dee716ed6859e7bb689c9bd2955bdb96e": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x4200000000000000000000000000000000000021": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0xbeb5fc579115071764c7423a4f12edde41f106ed": [
+      {
+        "chainId": 1,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 8453,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x4200000000000000000000000000000000000020": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x75505a97bd334e7bd3c476893285569c4136fa0f": [
+      {
+        "chainId": 1,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 8453,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x0000000000000000000000000000000000000000": [
+      {
+        "chainId": 5,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 8453,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 11155111,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 10,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ]
+  },
+  "assetsEnriched": {}
 }

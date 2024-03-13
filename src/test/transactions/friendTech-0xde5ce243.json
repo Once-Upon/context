@@ -1,4 +1,5 @@
 {
+  "_id": "65ec78594a2ba081d52f0c4b",
   "accessList": [],
   "blockHash": "0xb8a6002703f2dfd47aaf7833662c154cdeaf7b3dfe2f2c50e2d3109ebd30e5b7",
   "blockNumber": 7929536,
@@ -19,6 +20,44 @@
   "v": "0x1",
   "value": "4400000000000000",
   "yParity": "0x1",
+  "receipt": {
+    "blockHash": "0xb8a6002703f2dfd47aaf7833662c154cdeaf7b3dfe2f2c50e2d3109ebd30e5b7",
+    "blockNumber": 7929536,
+    "contractAddress": null,
+    "cumulativeGasUsed": 138855,
+    "effectiveGasPrice": 100000050,
+    "from": "0x306dd2b26f1383c62925f58151263d9e5656e86e",
+    "gasUsed": 91942,
+    "l1Fee": "0x554626b7a7de",
+    "l1FeeScalar": "0.684",
+    "l1GasPrice": "0xbed31d77d",
+    "l1GasUsed": "0xa74",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000002400000000000000000000010000000000000000000000000000000000000000000000000000008000000004000000000000000001000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000040000000000000000000000000000000000080000000000000000000000000000004000000010000000000000040000000000000000000000000000000000000800000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
+    "transactionHash": "0xde5c794ee9777bd3fe6a10afc8ab7fa538c4b290f9eb9a354181b648ef62e243",
+    "transactionIndex": 1,
+    "type": "0x2"
+  },
+  "decoded": {
+    "signature": "buyShares(address,uint256)",
+    "signature_with_arg_names": "buyShares(address sharesSubject,uint256 amount)",
+    "name": "buyShares",
+    "decoded": [
+      {
+        "internalType": "address",
+        "name": "sharesSubject",
+        "type": "address",
+        "decoded": "0xd6820270e904a5e4527d765aff9534f07e55d2bd"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256",
+        "decoded": "1"
+      }
+    ]
+  },
   "assetTransfers": [
     {
       "from": "0x306dd2b26f1383c62925f58151263d9e5656e86e",
@@ -56,16 +95,23 @@
         "output": "0x0"
       },
       "subtraces": 0,
-      "traceAddress": [0, 0],
+      "traceAddress": [
+        0,
+        0
+      ],
       "transactionHash": "0xde5c794ee9777bd3fe6a10afc8ab7fa538c4b290f9eb9a354181b648ef62e243",
       "transactionPosition": 1,
       "type": "call"
     }
   ],
-  "baseFeePerGas": 50,
-  "burntFees": "0",
-  "minerFees": "9194204597100",
-  "transactionFee": "9194204597100",
+  "errors": [],
+  "parties": [
+    "0x306dd2b26f1383c62925f58151263d9e5656e86e",
+    "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
+    "0x831be9e08185eba7d88aab1efc059336babef430",
+    "0xfb1bffc9d739b8d520daf37df666da4c687191ea",
+    "0xd6820270e904a5e4527d765aff9534f07e55d2bd"
+  ],
   "sigHash": "0x6945b123",
   "internalSigHashes": [
     {
@@ -90,26 +136,136 @@
     }
   ],
   "timestamp": 1702648419,
-  "isoTimestamp": "2023-12-15T13:53:39.000Z",
+  "baseFeePerGas": 50,
+  "transactionFee": "93759785641950780009194204597100",
+  "logs": [
+    {
+      "_id": "65ec78594a2ba081d52f0c24",
+      "address": "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
+      "blockHash": "0xb8a6002703f2dfd47aaf7833662c154cdeaf7b3dfe2f2c50e2d3109ebd30e5b7",
+      "blockNumber": 7929536,
+      "data": "0x000000000000000000000000306dd2b26f1383c62925f58151263d9e5656e86e000000000000000000000000d6820270e904a5e4527d765aff9534f07e55d2bd00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000e35fa931a00000000000000000000000000000000000000000000000000000000b5e620f480000000000000000000000000000000000000000000000000000000b5e620f480000000000000000000000000000000000000000000000000000000000000000009",
+      "logIndex": 0,
+      "removed": false,
+      "transactionHash": "0xde5c794ee9777bd3fe6a10afc8ab7fa538c4b290f9eb9a354181b648ef62e243",
+      "transactionIndex": 1,
+      "id": "log_fdc23ac5",
+      "decoded": {
+        "signature": "Trade(address,address,bool,uint256,uint256,uint256,uint256,uint256)",
+        "signature_with_arg_names": "Trade(address trader,address subject,bool isBuy,uint256 shareAmount,uint256 ethAmount,uint256 protocolEthAmount,uint256 subjectEthAmount,uint256 supply)",
+        "name": "Trade",
+        "decoded": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "trader",
+            "type": "address",
+            "decoded": "0x306dd2b26f1383c62925f58151263d9e5656e86e"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "subject",
+            "type": "address",
+            "decoded": "0xd6820270e904a5e4527d765aff9534f07e55d2bd"
+          },
+          {
+            "indexed": false,
+            "internalType": "bool",
+            "name": "isBuy",
+            "type": "bool",
+            "decoded": true
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "shareAmount",
+            "type": "uint256",
+            "decoded": "1"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "ethAmount",
+            "type": "uint256",
+            "decoded": "4000000000000000"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "protocolEthAmount",
+            "type": "uint256",
+            "decoded": "200000000000000"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "subjectEthAmount",
+            "type": "uint256",
+            "decoded": "200000000000000"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "supply",
+            "type": "uint256",
+            "decoded": "9"
+          }
+        ]
+      },
+      "topic0": "0x2c76e7a47fd53e2854856ac3f0a5f3ee40d15cfaa82266357ea9779c486ab9c3"
+    },
+    {
+      "_id": "65ec78594a2ba081d52f0c25",
+      "address": "0x831be9e08185eba7d88aab1efc059336babef430",
+      "blockHash": "0xb8a6002703f2dfd47aaf7833662c154cdeaf7b3dfe2f2c50e2d3109ebd30e5b7",
+      "blockNumber": 7929536,
+      "data": "0x0000000000000000000000000000000000000000000000000000b5e620f48000",
+      "logIndex": 1,
+      "removed": false,
+      "transactionHash": "0xde5c794ee9777bd3fe6a10afc8ab7fa538c4b290f9eb9a354181b648ef62e243",
+      "transactionIndex": 1,
+      "id": "log_1c66b1e7",
+      "decoded": {
+        "signature": "SafeReceived(address,uint256)",
+        "signature_with_arg_names": "SafeReceived(address indexed sender,uint256 value)",
+        "name": "SafeReceived",
+        "decoded": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "sender",
+            "type": "address",
+            "decoded": "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256",
+            "decoded": "200000000000000"
+          }
+        ]
+      },
+      "topic0": "0x3d0ce9bfc3ed7d6862dbb28b2dea94561fe714a1b4d019aa8af39730d1ad7c3d",
+      "topic1": "0x000000000000000000000000cf205808ed36593aa40a44f10c7f7c2f67d4a4d4"
+    }
+  ],
   "netAssetTransfers": {
     "0x306dd2b26f1383c62925f58151263d9e5656e86e": {
       "received": [],
       "sent": [
         {
-          "contract": "eth",
-          "id": "eth",
           "type": "eth",
-          "value": "4400000000000000"
+          "value": "200000000000000"
         }
       ]
     },
     "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4": {
       "received": [
         {
-          "contract": "eth",
-          "id": "eth",
           "type": "eth",
-          "value": "4000000000000000"
+          "value": "200000000000000"
         }
       ],
       "sent": []
@@ -117,8 +273,6 @@
     "0x831be9e08185eba7d88aab1efc059336babef430": {
       "received": [
         {
-          "contract": "eth",
-          "id": "eth",
           "type": "eth",
           "value": "200000000000000"
         }
@@ -128,8 +282,6 @@
     "0xd6820270e904a5e4527d765aff9534f07e55d2bd": {
       "received": [
         {
-          "contract": "eth",
-          "id": "eth",
           "type": "eth",
           "value": "200000000000000"
         }
@@ -137,134 +289,312 @@
       "sent": []
     }
   },
-  "decode": {
-    "fragment": {
-      "type": "function",
-      "inputs": [
-        {
-          "name": "",
-          "type": "address",
-          "baseType": "address",
-          "indexed": null,
-          "components": null,
-          "arrayLength": null,
-          "arrayChildren": null
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x306dd2b26f1383c62925f58151263d9e5656e86e": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
         },
-        {
-          "name": "",
-          "type": "uint256",
-          "baseType": "uint256",
-          "indexed": null,
-          "components": null,
-          "arrayLength": null,
-          "arrayChildren": null
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
         }
-      ],
-      "name": "buyShares",
-      "constant": false,
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "payable": false,
-      "gas": null
-    },
-    "name": "buyShares",
-    "args": ["0xd6820270e904a5e4527d765aff9534f07e55d2bd", "1"],
-    "signature": "buyShares(address,uint256)",
-    "selector": "0x6945b123",
-    "value": "0"
-  },
-  "parties": [
-    "0x306dd2b26f1383c62925f58151263d9e5656e86e",
-    "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
-    "0x831be9e08185eba7d88aab1efc059336babef430",
-    "0xfb1bffc9d739b8d520daf37df666da4c687191ea",
-    "0xd6820270e904a5e4527d765aff9534f07e55d2bd"
-  ],
-  "receipt": {
-    "blockHash": "0xb8a6002703f2dfd47aaf7833662c154cdeaf7b3dfe2f2c50e2d3109ebd30e5b7",
-    "blockNumber": 7929536,
-    "contractAddress": null,
-    "cumulativeGasUsed": 138855,
-    "effectiveGasPrice": 100000050,
-    "from": "0x306dd2b26f1383c62925f58151263d9e5656e86e",
-    "gasUsed": 91942,
-    "l1Fee": "0x554626b7a7de",
-    "l1FeeScalar": "0.684",
-    "l1GasPrice": "0xbed31d77d",
-    "l1GasUsed": "0xa74",
-    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000002400000000000000000000010000000000000000000000000000000000000000000000000000008000000004000000000000000001000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000040000000000000000000000000000000000080000000000000000000000000000004000000010000000000000040000000000000000000000000000000000000800000000000000000000000000000000000000000",
-    "status": true,
-    "to": "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
-    "transactionHash": "0xde5c794ee9777bd3fe6a10afc8ab7fa538c4b290f9eb9a354181b648ef62e243",
-    "transactionIndex": 1,
-    "type": "0x2"
-  },
-  "logs": [
-    {
-      "address": "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
-      "blockHash": "0xb8a6002703f2dfd47aaf7833662c154cdeaf7b3dfe2f2c50e2d3109ebd30e5b7",
-      "blockNumber": 7929536,
-      "data": "0x000000000000000000000000306dd2b26f1383c62925f58151263d9e5656e86e000000000000000000000000d6820270e904a5e4527d765aff9534f07e55d2bd00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000e35fa931a00000000000000000000000000000000000000000000000000000000b5e620f480000000000000000000000000000000000000000000000000000000b5e620f480000000000000000000000000000000000000000000000000000000000000000009",
-      "logIndex": 0,
-      "removed": false,
-      "topics": [
-        "0x2c76e7a47fd53e2854856ac3f0a5f3ee40d15cfaa82266357ea9779c486ab9c3"
-      ],
-      "transactionHash": "0xde5c794ee9777bd3fe6a10afc8ab7fa538c4b290f9eb9a354181b648ef62e243",
-      "transactionIndex": 1,
-      "id": "log_fdc23ac5",
-      "chainId": 8453
-    },
-    {
-      "address": "0x831be9e08185eba7d88aab1efc059336babef430",
-      "blockHash": "0xb8a6002703f2dfd47aaf7833662c154cdeaf7b3dfe2f2c50e2d3109ebd30e5b7",
-      "blockNumber": 7929536,
-      "data": "0x0000000000000000000000000000000000000000000000000000b5e620f48000",
-      "logIndex": 1,
-      "removed": false,
-      "topics": [
-        "0x3d0ce9bfc3ed7d6862dbb28b2dea94561fe714a1b4d019aa8af39730d1ad7c3d",
-        "0x000000000000000000000000cf205808ed36593aa40a44f10c7f7c2f67d4a4d4"
-      ],
-      "transactionHash": "0xde5c794ee9777bd3fe6a10afc8ab7fa538c4b290f9eb9a354181b648ef62e243",
-      "transactionIndex": 1,
-      "id": "log_1c66b1e7",
-      "decode": {
-        "fragment": {
-          "type": "event",
-          "inputs": [
-            {
-              "name": "sender",
-              "type": "address",
-              "baseType": "address",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "value",
-              "type": "uint256",
-              "baseType": "uint256",
-              "indexed": null,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            }
-          ],
-          "name": "SafeReceived",
-          "anonymous": false
+      }
+    ],
+    "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4": [
+      {
+        "chainId": 8453,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
         },
-        "name": "SafeReceived",
-        "signature": "SafeReceived(address,uint256)",
-        "topic": "0x3d0ce9bfc3ed7d6862dbb28b2dea94561fe714a1b4d019aa8af39730d1ad7c3d",
-        "args": [
-          "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
-          "200000000000000"
-        ]
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x831be9e08185eba7d88aab1efc059336babef430": [
+      {
+        "chainId": 8453,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0xfb1bffc9d739b8d520daf37df666da4c687191ea": [
+      {
+        "chainId": 8453,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
       },
-      "chainId": 8453
-    }
-  ],
-  "contractsCreated": []
+      {
+        "chainId": 1,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 84531,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 84532,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 5,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 11155111,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 59144,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 919,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 420,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 11155420,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 7777777,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 999999999,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0xd6820270e904a5e4527d765aff9534f07e55d2bd": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
 }

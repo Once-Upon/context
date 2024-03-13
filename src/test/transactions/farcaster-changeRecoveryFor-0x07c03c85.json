@@ -1,4 +1,5 @@
 {
+  "_id": "65edf9193d77faa7c693a926",
   "accessList": [],
   "blockHash": "0xb4fd1c5fecc2d4036ec180228d605310d7a481bd64a26562a8b6061dbb1a272c",
   "blockNumber": 112929611,
@@ -18,31 +19,6 @@
   "type": 2,
   "v": "0x1",
   "value": "0",
-  "baseFeePerGas": 8147413,
-  "burntFees": "507942316072",
-  "minerFees": "183915236408",
-  "transactionFee": "691857552480",
-  "sigHash": "0x9cbef8dc",
-  "internalSigHashes": [
-    {
-      "from": "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
-      "to": "0x00000000fc6c5f01fc30151999387bb99a9f489b",
-      "sigHash": "0x9cbef8dc"
-    },
-    {
-      "from": "0x00000000fc6c5f01fc30151999387bb99a9f489b",
-      "to": "0x0000000000000000000000000000000000000001",
-      "sigHash": "0xb40687fd"
-    }
-  ],
-  "timestamp": 1701457999,
-  "isoTimestamp": "2023-12-01T19:13:19.000Z",
-  "parties": [
-    "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
-    "0x00000000fc6c5f01fc30151999387bb99a9f489b",
-    "0x0000000000000000000000000000000000000001",
-    "0x6ba0cadf5d997c6b3ee62bbe55594456b4e80039"
-  ],
   "receipt": {
     "blockHash": "0xb4fd1c5fecc2d4036ec180228d605310d7a481bd64a26562a8b6061dbb1a272c",
     "blockNumber": 112929611,
@@ -62,58 +38,104 @@
     "transactionIndex": 3,
     "type": "0x2"
   },
+  "decoded": null,
+  "delegateCalls": [],
+  "errors": [],
+  "parties": [
+    "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
+    "0x00000000fc6c5f01fc30151999387bb99a9f489b",
+    "0x0000000000000000000000000000000000000001"
+  ],
+  "sigHash": "0x9cbef8dc",
+  "internalSigHashes": [
+    {
+      "from": "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
+      "to": "0x00000000fc6c5f01fc30151999387bb99a9f489b",
+      "sigHash": "0x9cbef8dc"
+    },
+    {
+      "from": "0x00000000fc6c5f01fc30151999387bb99a9f489b",
+      "to": "0x0000000000000000000000000000000000000001",
+      "sigHash": "0xb40687fd"
+    }
+  ],
+  "timestamp": 1701457999,
+  "baseFeePerGas": 8147413,
+  "transactionFee": "157840686179010160000691857552480",
   "logs": [
     {
+      "_id": "65edf9193d77faa7c693a91b",
       "address": "0x00000000fc6c5f01fc30151999387bb99a9f489b",
       "blockHash": "0xb4fd1c5fecc2d4036ec180228d605310d7a481bd64a26562a8b6061dbb1a272c",
       "blockNumber": 112929611,
       "data": "0x",
       "logIndex": 139,
       "removed": false,
-      "topics": [
-        "0x8e700b803af43e14651431cd73c9fe7d11b131ad797576a70b893ce5766f65c3",
-        "0x0000000000000000000000000000000000000000000000000000000000002982",
-        "0x0000000000000000000000006ba0cadf5d997c6b3ee62bbe55594456b4e80039"
-      ],
       "transactionHash": "0x07c0929a7ef5d03d1a65ae6c64f536c7c0251d101bb7ffcebe5a37773f8b3c85",
       "transactionIndex": 3,
       "id": "log_ecb86896",
-      "decode": {
-        "fragment": {
-          "type": "event",
-          "inputs": [
-            {
-              "name": "id",
-              "type": "uint256",
-              "baseType": "uint256",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "recovery",
-              "type": "address",
-              "baseType": "address",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            }
-          ],
-          "name": "ChangeRecoveryAddress",
-          "anonymous": false
-        },
-        "name": "ChangeRecoveryAddress",
-        "signature": "ChangeRecoveryAddress(uint256,address)",
-        "topic": "0x8e700b803af43e14651431cd73c9fe7d11b131ad797576a70b893ce5766f65c3",
-        "args": [
-          "10626",
-          "0x6ba0cadf5d997c6b3ee62bbe55594456b4e80039"
-        ]
-      },
-      "chainId": 10
+      "decoded": null,
+      "topic0": "0x8e700b803af43e14651431cd73c9fe7d11b131ad797576a70b893ce5766f65c3",
+      "topic1": "0x0000000000000000000000000000000000000000000000000000000000002982",
+      "topic2": "0x0000000000000000000000006ba0cadf5d997c6b3ee62bbe55594456b4e80039"
     }
   ],
-  "contractsCreated": []
+  "netAssetTransfers": {},
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x00000000fc6c5f01fc30151999387bb99a9f489b": [
+      {
+        "chainId": 10,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x0000000000000000000000000000000000000001": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
 }

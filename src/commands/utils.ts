@@ -22,8 +22,10 @@ export const grabTx = async (txHash: string, prefix: string) => {
     `${API_URL}/v1/transactions/${txHash}?withContext=false`,
   ).then((res) => res.json());
 
-  // write to file
-  fs.writeFileSync(txFilePath, JSON.stringify(transaction, null, 2));
+  // write to file if not a 404
+  if (transaction.hash) {
+    fs.writeFileSync(txFilePath, JSON.stringify(transaction, null, 2));
+  }
 };
 
 export const fetchTransactions = async (
