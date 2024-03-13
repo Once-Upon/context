@@ -103,7 +103,7 @@ export const generate = (transaction: Transaction): Transaction => {
       },
       mintReferral: {
         type: 'address',
-        value: decodedLog.args['mintReferral'],
+        value: decodedLog.args['mintReferral'].toLowerCase(),
       },
     },
     summaries: {
