@@ -31,14 +31,33 @@ export function detect(transaction: Transaction): boolean {
    */
   if (!transaction.netAssetTransfers) return false;
 
+  // check if nft receiver sent some eth or erc20
   const transfers = transaction.netAssetTransfers[transaction.from];
-  const nftsReceived = transfers?.received.filter((t) => t.type === 'erc721');
-  const tokenSent = transfers?.sent.filter(
-    (t) => t.type === 'eth' || t.type === 'erc20',
+  const nftsReceived = transfers?.received.filter(
+    (t) => t.type === AssetType.ERC721,
   );
+  const tokenSent = transfers?.sent.filter(
+    (t) => t.type === AssetType.ETH || t.type === AssetType.ERC20,
+  );
+  if (
+    nftsReceived &&
+    nftsReceived.length > 0 &&
+    tokenSent &&
+    tokenSent.length > 0
+  ) {
+    return true;
+  }
 
-  if (!nftsReceived || !tokenSent) return false;
-  if (nftsReceived.length > 0 && tokenSent.length > 0) {
+  const nftsSent = transfers?.sent.filter((t) => t.type === AssetType.ERC721);
+  const tokenReceived = transfers?.received.filter(
+    (t) => t.type === AssetType.ETH || t.type === AssetType.ERC20,
+  );
+  if (
+    nftsSent &&
+    nftsSent.length > 0 &&
+    tokenReceived &&
+    tokenReceived.length > 0
+  ) {
     return true;
   }
 

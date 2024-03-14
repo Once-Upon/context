@@ -74,7 +74,7 @@ describe('ContextualizerService', () => {
 
     it('Should detect ERC721 Sale', async () => {
       const erc721Sale1 = contextualize(erc721Sale0x05b8cee6 as Transaction);
-      expect(erc721Sale1.context?.summaries?.en.title).toBe('NFT Purchase'); // TODO; This should be NFT Sale, update with new version
+      expect(erc721Sale1.context?.summaries?.en.title).toBe('NFT Purchase');
     });
 
     it('Should detect ERC1155 Purchase', async () => {
