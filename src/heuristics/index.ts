@@ -12,7 +12,6 @@ import { erc20MintContextualizer } from './erc20Mint';
 import { erc721MintContextualizer } from './erc721Mint';
 import { erc1155MintContextualizer } from './erc1155Mint';
 import { tokenTransferContextualizer } from './tokenTransfer';
-import { erc1155SaleContextualizer } from './erc1155Sale';
 
 const children = {
   cancelPendingTransactionContextualizer,
@@ -28,7 +27,6 @@ const children = {
   tokenAirdropContextualizer,
   tokenApprovalContextualizer,
   tokenTransferContextualizer,
-  erc1155SaleContextualizer,
 };
 
 const contextualize = makeContextualize(children);
