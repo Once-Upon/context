@@ -4,7 +4,7 @@ import { contextSummary } from '../../helpers/utils';
 import erc721Purchase0x2558f104 from '../../test/transactions/erc721Purchase-0x2558f104.json';
 import erc721Purchase0x97a38a23 from '../../test/transactions/erc721Purchase-0x97a38a23.json';
 import erc721Sale0x05b8cee6 from '../../test/transactions/erc721Sale-0x05b8cee6.json';
-import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
+import catchall0x80c1b6eb from '../../test/transactions/catchall-0x80c1b6eb.json';
 
 describe('ERC721 Purchase', () => {
   it('Should detect ERC721 Purchase transaction', () => {
@@ -54,7 +54,7 @@ describe('ERC721 Purchase', () => {
   });
 
   it('Should not detect ERC721 Purchase transaction', () => {
-    const isERC721Purchase1 = detect(catchall0xc35c01ac as Transaction);
+    const isERC721Purchase1 = detect(catchall0x80c1b6eb as Transaction);
     expect(isERC721Purchase1).toBe(false);
   });
 });
