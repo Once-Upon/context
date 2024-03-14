@@ -3,4 +3,4 @@
 
 | Contract | Address                                                                                                               | Chain ID |
 | -------- | --------------------------------------------------------------------------------------------------------------------- | -------- |
-| Zora | [0x0a00984e7d5df669fa5ea4ff17ab8c1cf76be3ae](https://www.onceupon.gg/0x0a00984e7d5df669fa5ea4ff17ab8c1cf76be3ae:0) | Multiple     |
+| Zora | [0x7777777f279eba3d3ad8f4e708545291a6fdba8b](https://www.onceupon.gg/0x7777777f279eba3d3ad8f4e708545291a6fdba8b:0) | Multiple     |
