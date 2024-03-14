@@ -1,75 +1,25 @@
 {
-  "hash": "0xed2d18166c6065fb2d28db26eca4d3546f96f3f59f246269afbbcb6b6f40d79e",
-  "chainId": 8453,
+  "_id": "65ec791e8750bcbab2fee088",
   "accessList": [],
-  "baseFeePerGas": 51,
   "blockHash": "0x23decd31d558ef096c89ceee49767f8296bc59f96187ef7c2be1de9418ece600",
   "blockNumber": 8187405,
-  "burntFees": "0",
-  "decode": {
-    "fragment": {
-      "type": "function",
-      "inputs": [
-        {
-          "name": "",
-          "type": "address",
-          "baseType": "address",
-          "indexed": null,
-          "components": null,
-          "arrayLength": null,
-          "arrayChildren": null
-        },
-        {
-          "name": "",
-          "type": "uint256",
-          "baseType": "uint256",
-          "indexed": null,
-          "components": null,
-          "arrayLength": null,
-          "arrayChildren": null
-        }
-      ],
-      "name": "buyShares",
-      "constant": false,
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "payable": false,
-      "gas": null
-    },
-    "name": "buyShares",
-    "args": [
-      "0x72de51dd1954a0ef37143a9892b230fd4f59a4b6",
-      "1"
-    ],
-    "signature": "buyShares(address,uint256)",
-    "selector": "0x6945b123",
-    "value": "0"
-  },
-  "errors": [
-    "execution reverted"
-  ],
+  "chainId": 8453,
   "from": "0x61a562de165e078ac4e06150c7c025d1e81f8fa0",
   "gas": 320000,
   "gasPrice": "1500000051",
+  "hash": "0xed2d18166c6065fb2d28db26eca4d3546f96f3f59f246269afbbcb6b6f40d79e",
   "input": "0x6945b12300000000000000000000000072de51dd1954a0ef37143a9892b230fd4f59a4b60000000000000000000000000000000000000000000000000000000000000001",
-  "internalSigHashes": [
-    {
-      "from": "0x61a562de165e078ac4e06150c7c025d1e81f8fa0",
-      "to": "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
-      "sigHash": "0x6945b123"
-    }
-  ],
-  "isoTimestamp": "2023-12-21T13:09:17.000Z",
   "maxFeePerGas": "1500000102",
   "maxPriorityFeePerGas": "1500000000",
-  "minerFees": "52012501768425",
   "nonce": 5415,
-  "parties": [
-    "0x61a562de165e078ac4e06150c7c025d1e81f8fa0",
-    "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
-    "0x72de51dd1954a0ef37143a9892b230fd4f59a4b6"
-  ],
   "r": "0xc38357c17b29737e5f29462ab55aab471bc8f449592139d984b2e76d3b002547",
+  "s": "0x1ec32bfef1ba4f31d9bb5de85e6e6b780857b2033f1823ba5bff1ce84b6e5836",
+  "to": "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
+  "transactionIndex": 1,
+  "type": 2,
+  "v": "0x0",
+  "value": "68750000000000",
+  "yParity": "0x0",
   "receipt": {
     "blockHash": "0x23decd31d558ef096c89ceee49767f8296bc59f96187ef7c2be1de9418ece600",
     "blockNumber": 8187405,
@@ -89,16 +39,100 @@
     "transactionIndex": 1,
     "type": "0x2"
   },
-  "s": "0x1ec32bfef1ba4f31d9bb5de85e6e6b780857b2033f1823ba5bff1ce84b6e5836",
+  "decoded": {
+    "signature": "buyShares(address,uint256)",
+    "signature_with_arg_names": "buyShares(address sharesSubject,uint256 amount)",
+    "name": "buyShares",
+    "decoded": [
+      {
+        "internalType": "address",
+        "name": "sharesSubject",
+        "type": "address",
+        "decoded": "0x72de51dd1954a0ef37143a9892b230fd4f59a4b6"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256",
+        "decoded": "1"
+      }
+    ]
+  },
+  "delegateCalls": [],
+  "errors": ["execution reverted"],
+  "parties": [
+    "0x61a562de165e078ac4e06150c7c025d1e81f8fa0",
+    "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
+    "0x72de51dd1954a0ef37143a9892b230fd4f59a4b6"
+  ],
   "sigHash": "0x6945b123",
+  "internalSigHashes": [
+    {
+      "from": "0x61a562de165e078ac4e06150c7c025d1e81f8fa0",
+      "to": "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
+      "sigHash": "0x6945b123"
+    }
+  ],
   "timestamp": 1703164157,
-  "to": "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
-  "transactionFee": "52012501768425",
-  "transactionIndex": 1,
-  "type": 2,
-  "v": "0x0",
-  "value": "68750000000000",
-  "yParity": "0x0",
+  "baseFeePerGas": 51,
+  "transactionFee": "81438805278242500052012501768425",
   "logs": [],
-  "contractsCreated": []
+  "netAssetTransfers": {},
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x61a562de165e078ac4e06150c7c025d1e81f8fa0": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4": [
+      {
+        "chainId": 8453,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x72de51dd1954a0ef37143a9892b230fd4f59a4b6": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
 }

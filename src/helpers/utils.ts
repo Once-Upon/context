@@ -10,8 +10,8 @@ import {
   TransactionContextType,
   Transaction,
   ContextSummaryVariableType,
-  EventLogTopics,
   AssetType,
+  EventLogTopic,
 } from '../types';
 
 const VALID_CHARS =
@@ -71,13 +71,21 @@ export function decodeFunction(input: Hex, functionSig: string[]) {
 export function decodeLog<TAbi extends Abi>(
   abi: TAbi,
   data: Hex,
-  topics: EventLogTopics,
+  topic0?: EventLogTopic,
+  topic1?: EventLogTopic,
+  topic2?: EventLogTopic,
+  topic3?: EventLogTopic,
 ) {
   try {
+    const topics = topic0
+      ? [topic0, topic1, topic2, topic3].filter((x) => x)
+      : [];
     const result = decodeEventLog({
       abi,
       data,
-      topics,
+      topics: topics as
+        | []
+        | [signature: `0x${string}`, ...args: `0x${string}`[]],
     });
     return result;
   } catch (err) {

@@ -1,4 +1,5 @@
 {
+  "_id": "65eca5dbe97f68459e69b94a",
   "accessList": [],
   "blockHash": "0x2584fdef9b066d9f0c5414fd880a40c5e617076e443400fe8dfead819b69c107",
   "blockNumber": 375728,
@@ -18,150 +19,6 @@
   "type": 2,
   "v": "0x1",
   "value": "0",
-  "baseFeePerGas": 7,
-  "burntFees": "0",
-  "minerFees": "500255436982563",
-  "transactionFee": "500255436982563",
-  "sigHash": "0x44adc90e",
-  "internalSigHashes": [
-    {
-      "from": "0x0fb166cddf1387c5b63ffa25721299fd7b068f3f",
-      "to": "0xaef4103a04090071165f78d45d83a0c0782c2b2a",
-      "sigHash": "0x44adc90e"
-    },
-    {
-      "from": "0xaef4103a04090071165f78d45d83a0c0782c2b2a",
-      "to": "0x55d26f9ae0203ef95494ae4c170ed35f4cf77797",
-      "sigHash": "0xa2ea7c6e"
-    }
-  ],
-  "timestamp": 1694187789,
-  "isoTimestamp": "2023-09-08T15:43:09.000Z",
-  "decode": {
-    "fragment": {
-      "type": "function",
-      "inputs": [
-        {
-          "name": "",
-          "type": "tuple(bytes32,(address,uint64,bool,bytes32,bytes,uint256)[])[]",
-          "baseType": "array",
-          "indexed": null,
-          "components": null,
-          "arrayLength": -1,
-          "arrayChildren": {
-            "name": "",
-            "type": "tuple(bytes32,(address,uint64,bool,bytes32,bytes,uint256)[])",
-            "baseType": "tuple",
-            "indexed": null,
-            "components": [
-              {
-                "name": "",
-                "type": "bytes32",
-                "baseType": "bytes32",
-                "indexed": null,
-                "components": null,
-                "arrayLength": null,
-                "arrayChildren": null
-              },
-              {
-                "name": "",
-                "type": "tuple(address,uint64,bool,bytes32,bytes,uint256)[]",
-                "baseType": "array",
-                "indexed": null,
-                "components": null,
-                "arrayLength": -1,
-                "arrayChildren": {
-                  "name": "",
-                  "type": "tuple(address,uint64,bool,bytes32,bytes,uint256)",
-                  "baseType": "tuple",
-                  "indexed": null,
-                  "components": [
-                    {
-                      "name": "",
-                      "type": "address",
-                      "baseType": "address",
-                      "indexed": null,
-                      "components": null,
-                      "arrayLength": null,
-                      "arrayChildren": null
-                    },
-                    {
-                      "name": "",
-                      "type": "uint64",
-                      "baseType": "uint64",
-                      "indexed": null,
-                      "components": null,
-                      "arrayLength": null,
-                      "arrayChildren": null
-                    },
-                    {
-                      "name": "",
-                      "type": "bool",
-                      "baseType": "bool",
-                      "indexed": null,
-                      "components": null,
-                      "arrayLength": null,
-                      "arrayChildren": null
-                    },
-                    {
-                      "name": "",
-                      "type": "bytes32",
-                      "baseType": "bytes32",
-                      "indexed": null,
-                      "components": null,
-                      "arrayLength": null,
-                      "arrayChildren": null
-                    },
-                    {
-                      "name": "",
-                      "type": "bytes",
-                      "baseType": "bytes",
-                      "indexed": null,
-                      "components": null,
-                      "arrayLength": null,
-                      "arrayChildren": null
-                    },
-                    {
-                      "name": "",
-                      "type": "uint256",
-                      "baseType": "uint256",
-                      "indexed": null,
-                      "components": null,
-                      "arrayLength": null,
-                      "arrayChildren": null
-                    }
-                  ],
-                  "arrayLength": null,
-                  "arrayChildren": null
-                }
-              }
-            ],
-            "arrayLength": null,
-            "arrayChildren": null
-          }
-        }
-      ],
-      "name": "multiAttest",
-      "constant": false,
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "payable": false,
-      "gas": null
-    },
-    "name": "multiAttest",
-    "args": [
-      "0x33e9094830a5cba5554d1954310e4fbed2ef5f859ec1404619adea4207f391fd,0x0fb166cDdF1387C5b63fFa25721299fD7b068f3f,0,true,0x0000000000000000000000000000000000000000000000000000000000000000,0x0000000000000000000000000000000000000000000000000000000000000001,0,0x3e95B8E249c4536FE1db2E4ce5476010767C0A05,0,true,0x0000000000000000000000000000000000000000000000000000000000000000,0x0000000000000000000000000000000000000000000000000000000000000001,0"
-    ],
-    "signature": "multiAttest((bytes32,(address,uint64,bool,bytes32,bytes,uint256)[])[])",
-    "selector": "0x44adc90e",
-    "value": "0"
-  },
-  "parties": [
-    "0x0fb166cddf1387c5b63ffa25721299fd7b068f3f",
-    "0xaef4103a04090071165f78d45d83a0c0782c2b2a",
-    "0x55d26f9ae0203ef95494ae4c170ed35f4cf77797",
-    "0x3e95b8e249c4536fe1db2e4ce5476010767c0a05"
-  ],
   "receipt": {
     "blockHash": "0x2584fdef9b066d9f0c5414fd880a40c5e617076e443400fe8dfead819b69c107",
     "blockNumber": 375728,
@@ -177,151 +34,269 @@
     "transactionIndex": 13,
     "type": "0x2"
   },
+  "decoded": null,
+  "delegateCalls": [],
+  "errors": [],
+  "parties": [
+    "0x0fb166cddf1387c5b63ffa25721299fd7b068f3f",
+    "0xaef4103a04090071165f78d45d83a0c0782c2b2a",
+    "0x55d26f9ae0203ef95494ae4c170ed35f4cf77797",
+    "0x3e95b8e249c4536fe1db2e4ce5476010767c0a05"
+  ],
+  "sigHash": "0x44adc90e",
+  "internalSigHashes": [
+    {
+      "from": "0x0fb166cddf1387c5b63ffa25721299fd7b068f3f",
+      "to": "0xaef4103a04090071165f78d45d83a0c0782c2b2a",
+      "sigHash": "0x44adc90e"
+    },
+    {
+      "from": "0xaef4103a04090071165f78d45d83a0c0782c2b2a",
+      "to": "0x55d26f9ae0203ef95494ae4c170ed35f4cf77797",
+      "sigHash": "0xa2ea7c6e"
+    }
+  ],
+  "timestamp": 1694187789,
+  "baseFeePerGas": 7,
+  "transactionFee": "500255436982563",
   "logs": [
     {
+      "_id": "65eca5dbe97f68459e69b912",
       "address": "0xaef4103a04090071165f78d45d83a0c0782c2b2a",
       "blockHash": "0x2584fdef9b066d9f0c5414fd880a40c5e617076e443400fe8dfead819b69c107",
       "blockNumber": 375728,
       "data": "0xad35c149ae4ce00753d74fb59fbdd0e11354ef032244ec4176cdb85aa01ca19d",
       "logIndex": 61,
       "removed": false,
-      "topics": [
-        "0x8bf46bf4cfd674fa735a3d63ec1c9ad4153f033c290341f3a588b75685141b35",
-        "0x0000000000000000000000000fb166cddf1387c5b63ffa25721299fd7b068f3f",
-        "0x0000000000000000000000000fb166cddf1387c5b63ffa25721299fd7b068f3f",
-        "0x33e9094830a5cba5554d1954310e4fbed2ef5f859ec1404619adea4207f391fd"
-      ],
       "transactionHash": "0x9bab199ab686c8efc5d93e73c7759dff733797f4060516eb6817dff6d8532b2e",
       "transactionIndex": 13,
       "id": "log_5278cfb2",
-      "decode": {
-        "fragment": {
-          "type": "event",
-          "inputs": [
-            {
-              "name": "recipient",
-              "type": "address",
-              "baseType": "address",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "attester",
-              "type": "address",
-              "baseType": "address",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "uuid",
-              "type": "bytes32",
-              "baseType": "bytes32",
-              "indexed": null,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "schema",
-              "type": "bytes32",
-              "baseType": "bytes32",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            }
-          ],
-          "name": "Attested",
-          "anonymous": false
-        },
-        "name": "Attested",
+      "decoded": {
         "signature": "Attested(address,address,bytes32,bytes32)",
-        "topic": "0x8bf46bf4cfd674fa735a3d63ec1c9ad4153f033c290341f3a588b75685141b35",
-        "args": [
-          "0x0fb166cddf1387c5b63ffa25721299fd7b068f3f",
-          "0x0fb166cddf1387c5b63ffa25721299fd7b068f3f",
-          "0xad35c149ae4ce00753d74fb59fbdd0e11354ef032244ec4176cdb85aa01ca19d",
-          "0x33e9094830a5cba5554d1954310e4fbed2ef5f859ec1404619adea4207f391fd"
+        "signature_with_arg_names": "Attested(address indexed recipient,address indexed attester,bytes32 uid,bytes32 indexed schema)",
+        "name": "Attested",
+        "decoded": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address",
+            "decoded": "0x0fb166cddf1387c5b63ffa25721299fd7b068f3f"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "attester",
+            "type": "address",
+            "decoded": "0x0fb166cddf1387c5b63ffa25721299fd7b068f3f"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "uid",
+            "type": "bytes32",
+            "decoded": "0xad35c149ae4ce00753d74fb59fbdd0e11354ef032244ec4176cdb85aa01ca19d"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "schema",
+            "type": "bytes32",
+            "decoded": "0x33e9094830a5cba5554d1954310e4fbed2ef5f859ec1404619adea4207f391fd"
+          }
         ]
       },
-      "chainId": 59144
+      "topic0": "0x8bf46bf4cfd674fa735a3d63ec1c9ad4153f033c290341f3a588b75685141b35",
+      "topic1": "0x0000000000000000000000000fb166cddf1387c5b63ffa25721299fd7b068f3f",
+      "topic2": "0x0000000000000000000000000fb166cddf1387c5b63ffa25721299fd7b068f3f",
+      "topic3": "0x33e9094830a5cba5554d1954310e4fbed2ef5f859ec1404619adea4207f391fd"
     },
     {
+      "_id": "65eca5dbe97f68459e69b913",
       "address": "0xaef4103a04090071165f78d45d83a0c0782c2b2a",
       "blockHash": "0x2584fdef9b066d9f0c5414fd880a40c5e617076e443400fe8dfead819b69c107",
       "blockNumber": 375728,
       "data": "0x53ccbf282878051f8ed6374b914ead61cfbf94681c230d25ce55a7abb95b63b7",
       "logIndex": 62,
       "removed": false,
-      "topics": [
-        "0x8bf46bf4cfd674fa735a3d63ec1c9ad4153f033c290341f3a588b75685141b35",
-        "0x0000000000000000000000003e95b8e249c4536fe1db2e4ce5476010767c0a05",
-        "0x0000000000000000000000000fb166cddf1387c5b63ffa25721299fd7b068f3f",
-        "0x33e9094830a5cba5554d1954310e4fbed2ef5f859ec1404619adea4207f391fd"
-      ],
       "transactionHash": "0x9bab199ab686c8efc5d93e73c7759dff733797f4060516eb6817dff6d8532b2e",
       "transactionIndex": 13,
       "id": "log_24df4aaa",
-      "decode": {
-        "fragment": {
-          "type": "event",
-          "inputs": [
-            {
-              "name": "recipient",
-              "type": "address",
-              "baseType": "address",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "attester",
-              "type": "address",
-              "baseType": "address",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "uuid",
-              "type": "bytes32",
-              "baseType": "bytes32",
-              "indexed": null,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "schema",
-              "type": "bytes32",
-              "baseType": "bytes32",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            }
-          ],
-          "name": "Attested",
-          "anonymous": false
-        },
-        "name": "Attested",
+      "decoded": {
         "signature": "Attested(address,address,bytes32,bytes32)",
-        "topic": "0x8bf46bf4cfd674fa735a3d63ec1c9ad4153f033c290341f3a588b75685141b35",
-        "args": [
-          "0x3e95b8e249c4536fe1db2e4ce5476010767c0a05",
-          "0x0fb166cddf1387c5b63ffa25721299fd7b068f3f",
-          "0x53ccbf282878051f8ed6374b914ead61cfbf94681c230d25ce55a7abb95b63b7",
-          "0x33e9094830a5cba5554d1954310e4fbed2ef5f859ec1404619adea4207f391fd"
+        "signature_with_arg_names": "Attested(address indexed recipient,address indexed attester,bytes32 uid,bytes32 indexed schema)",
+        "name": "Attested",
+        "decoded": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address",
+            "decoded": "0x3e95b8e249c4536fe1db2e4ce5476010767c0a05"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "attester",
+            "type": "address",
+            "decoded": "0x0fb166cddf1387c5b63ffa25721299fd7b068f3f"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "uid",
+            "type": "bytes32",
+            "decoded": "0x53ccbf282878051f8ed6374b914ead61cfbf94681c230d25ce55a7abb95b63b7"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "schema",
+            "type": "bytes32",
+            "decoded": "0x33e9094830a5cba5554d1954310e4fbed2ef5f859ec1404619adea4207f391fd"
+          }
         ]
       },
-      "chainId": 59144
+      "topic0": "0x8bf46bf4cfd674fa735a3d63ec1c9ad4153f033c290341f3a588b75685141b35",
+      "topic1": "0x0000000000000000000000003e95b8e249c4536fe1db2e4ce5476010767c0a05",
+      "topic2": "0x0000000000000000000000000fb166cddf1387c5b63ffa25721299fd7b068f3f",
+      "topic3": "0x33e9094830a5cba5554d1954310e4fbed2ef5f859ec1404619adea4207f391fd"
     }
   ],
-  "contractsCreated": []
+  "netAssetTransfers": {},
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x0fb166cddf1387c5b63ffa25721299fd7b068f3f": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0xaef4103a04090071165f78d45d83a0c0782c2b2a": [
+      {
+        "chainId": 59144,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 11155111,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x55d26f9ae0203ef95494ae4c170ed35f4cf77797": [
+      {
+        "chainId": 59144,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 11155111,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 10,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x3e95b8e249c4536fe1db2e4ce5476010767c0a05": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
 }

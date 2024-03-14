@@ -16,7 +16,7 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
-  if (transaction.decode === null) {
+  if (transaction.decoded === null) {
     return false;
   }
 
@@ -358,16 +358,16 @@ export const generate = (transaction: Transaction): Transaction => {
       if (transaction.receipt?.status) {
         const transferTopic = transaction.logs?.filter(
           (log) =>
-            log.topics &&
-            log.topics.length > 0 &&
-            log.topics[0] ===
+            log.topic0 &&
+            log.topic0 ===
               '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
         )[0];
-        if (!transferTopic || !transferTopic.decode) return transaction;
+        if (!transferTopic || !transferTopic.decoded) return transaction;
 
         const seller: ContextSummaryVariableType = {
           type: 'address',
-          value: transferTopic.decode.args[0],
+          // We put a decoded arg in your decoded args, so you can decode while you decode
+          value: transferTopic.decoded.decoded[0].decoded,
         };
         transaction.context = {
           variables: {

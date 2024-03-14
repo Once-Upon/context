@@ -1,4 +1,5 @@
 {
+  "_id": "65eba2e48ac30f48e9c4f381",
   "blockHash": "0x3d8c96b6caf88d320061bac23de0900bbef7d0e2fd2a6e49b4e7215b92057421",
   "blockNumber": 15784597,
   "from": "0x74b78e98093f5b522a7ebdac3b994641ca7c2b20",
@@ -18,63 +19,6 @@
   "v": "0x0",
   "r": "0x9bf6afd61459efd619f9f9b79482ffd1627decc8651c6203f43872a20510ba89",
   "s": "0x1aea79fc1f8e6b7f415a37cff6f1280bf8296254917b53e39e1a8099c6f472f0",
-  "timestamp": 1666212047,
-  "isoTimestamp": "2022-10-19T20:40:47.000Z",
-  "fork": "paris",
-  "baseFeePerGas": 33117845382,
-  "burntFees": "1526136550893324",
-  "minerFees": "69123000000000",
-  "transactionFee": "1595259550893324",
-  "sigHash": "0xa22cb465",
-  "internalSigHashes": [
-    {
-      "from": "0x74b78e98093f5b522a7ebdac3b994641ca7c2b20",
-      "to": "0xd3605059c3ce9facf625fa72d727508b7b7f280f",
-      "sigHash": "0xa22cb465"
-    }
-  ],
-  "parties": [
-    "0x74b78e98093f5b522a7ebdac3b994641ca7c2b20",
-    "0xd3605059c3ce9facf625fa72d727508b7b7f280f",
-    "0x1e0049783f008a0085193e00003d00cd54003c71"
-  ],
-  "decode": {
-    "fragment": {
-      "type": "function",
-      "inputs": [
-        {
-          "name": "operator",
-          "type": "address",
-          "baseType": "address",
-          "components": null,
-          "arrayLength": null,
-          "arrayChildren": null
-        },
-        {
-          "name": "approved",
-          "type": "bool",
-          "baseType": "bool",
-          "components": null,
-          "arrayLength": null,
-          "arrayChildren": null
-        }
-      ],
-      "name": "setApprovalForAll",
-      "constant": false,
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "payable": false,
-      "gas": null
-    },
-    "name": "setApprovalForAll",
-    "args": [
-      "0x1e0049783f008a0085193e00003d00cd54003c71",
-      "true"
-    ],
-    "signature": "setApprovalForAll(address,bool)",
-    "selector": "0xa22cb465",
-    "value": "0"
-  },
   "receipt": {
     "blockHash": "0x3d8c96b6caf88d320061bac23de0900bbef7d0e2fd2a6e49b4e7215b92057421",
     "blockNumber": 15784597,
@@ -90,7 +34,338 @@
     "transactionIndex": 132,
     "type": "0x2"
   },
-  "context": {
-    "type": "TokenApprove"
-  }
+  "decoded": {
+    "signature": "setApprovalForAll(address,bool)",
+    "signature_with_arg_names": "setApprovalForAll(address operator,bool approved)",
+    "name": "setApprovalForAll",
+    "decoded": [
+      {
+        "internalType": "address",
+        "name": "operator",
+        "type": "address",
+        "decoded": "0x1e0049783f008a0085193e00003d00cd54003c71"
+      },
+      {
+        "internalType": "bool",
+        "name": "approved",
+        "type": "bool",
+        "decoded": true
+      }
+    ]
+  },
+  "delegateCalls": [],
+  "errors": [],
+  "parties": [
+    "0x74b78e98093f5b522a7ebdac3b994641ca7c2b20",
+    "0xd3605059c3ce9facf625fa72d727508b7b7f280f",
+    "0x1e0049783f008a0085193e00003d00cd54003c71"
+  ],
+  "sigHash": "0xa22cb465",
+  "internalSigHashes": [
+    {
+      "from": "0x74b78e98093f5b522a7ebdac3b994641ca7c2b20",
+      "to": "0xd3605059c3ce9facf625fa72d727508b7b7f280f",
+      "sigHash": "0xa22cb465"
+    }
+  ],
+  "timestamp": 1666212047,
+  "baseFeePerGas": 33117845382,
+  "transactionFee": "1595259550893324",
+  "logs": [
+    {
+      "_id": "65eba2e48ac30f48e9c4f07f",
+      "address": "0xd3605059c3ce9facf625fa72d727508b7b7f280f",
+      "data": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "blockNumber": 15784597,
+      "transactionHash": "0x06f14c6fd5a8a5dd5afa6b9705acd6dc1f341f8f9267b562012828bbc1f95d49",
+      "transactionIndex": 132,
+      "blockHash": "0x3d8c96b6caf88d320061bac23de0900bbef7d0e2fd2a6e49b4e7215b92057421",
+      "logIndex": 307,
+      "removed": false,
+      "decoded": {
+        "signature": "ApprovalForAll(address,address,bool)",
+        "signature_with_arg_names": "ApprovalForAll(address indexed owner,address indexed operator,bool approved)",
+        "name": "ApprovalForAll",
+        "decoded": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "owner",
+            "type": "address",
+            "decoded": "0x74b78e98093f5b522a7ebdac3b994641ca7c2b20"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "operator",
+            "type": "address",
+            "decoded": "0x1e0049783f008a0085193e00003d00cd54003c71"
+          },
+          {
+            "indexed": false,
+            "internalType": "bool",
+            "name": "approved",
+            "type": "bool",
+            "decoded": true
+          }
+        ]
+      },
+      "topic0": "0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31",
+      "topic1": "0x00000000000000000000000074b78e98093f5b522a7ebdac3b994641ca7c2b20",
+      "topic2": "0x0000000000000000000000001e0049783f008a0085193e00003d00cd54003c71"
+    }
+  ],
+  "netAssetTransfers": {},
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x74b78e98093f5b522a7ebdac3b994641ca7c2b20": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0xd3605059c3ce9facf625fa72d727508b7b7f280f": [
+      {
+        "chainId": 1,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x1e0049783f008a0085193e00003d00cd54003c71": [
+      {
+        "chainId": 1,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 8453,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 84531,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 84532,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 5,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 11155111,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 420,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 11155420,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 7777777,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 999,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 999999999,
+        "label": {},
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ]
+  },
+  "assetsEnriched": {}
 }

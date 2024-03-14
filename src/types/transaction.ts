@@ -20,7 +20,7 @@ export type ParamType = {
 export type TransactionMethodArgument = {
   name: string;
   type: string;
-  internalType: string;
+  internalType?: string;
   decoded: string;
 };
 
@@ -101,13 +101,12 @@ export interface Transaction {
   r: string;
   s: string;
   timestamp: number;
-  isoTimestamp: string;
   delegateCalls?: Trace[];
   assetTransfers?: AssetTransfer[];
   sigHash: string;
   internalSigHashes: SigHash[];
   parties: string[];
-  decoded?: TransactionDescription;
+  decoded?: TransactionDescription | null;
   netAssetTransfers?: NetAssetTransfers;
   receipt?: Receipt;
   context?: TransactionContextType;

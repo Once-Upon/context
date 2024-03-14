@@ -1,5 +1,5 @@
 {
-  "_id": "65677a54623aa46498017cdc",
+  "_id": "65ec75e5fc91436565ba469e",
   "blockHash": "0x3cc01d7936a155fe432967dd24623f05dfd7e94420c7c532e7e5b772d84b679c",
   "blockNumber": 7245486,
   "from": "0x661ea32f349f857075cae289e7f6222c2ad083b9",
@@ -17,36 +17,6 @@
   "type": 126,
   "v": "0x0",
   "value": "100000000000000000",
-  "assetTransfers": [
-    {
-      "from": "0x661ea32f349f857075cae289e7f6222c2ad083b9",
-      "to": "0x661ea32f349f857075cae289e7f6222c2ad083b9",
-      "type": "eth",
-      "value": "100000000000000000"
-    }
-  ],
-  "chainId": 8453,
-  "baseFeePerGas": 51,
-  "burntFees": "0",
-  "minerFees": "0",
-  "transactionFee": "0",
-  "sigHash": "0x01",
-  "internalSigHashes": [
-    {
-      "from": "0x661ea32f349f857075cae289e7f6222c2ad083b9",
-      "to": "0x661ea32f349f857075cae289e7f6222c2ad083b9",
-      "sigHash": "0x01"
-    }
-  ],
-  "timestamp": 1701280319,
-  "isoTimestamp": "2023-11-29T17:51:59.000Z",
-  "neighbor": {
-    "address": "0x661ea32f349f857075cae289e7f6222c2ad083b9",
-    "neighbor": "0x661ea32f349f857075cae289e7f6222c2ad083b9"
-  },
-  "parties": [
-    "0x661ea32f349f857075cae289e7f6222c2ad083b9"
-  ],
   "receipt": {
     "blockHash": "0x3cc01d7936a155fe432967dd24623f05dfd7e94420c7c532e7e5b772d84b679c",
     "blockNumber": 7245486,
@@ -63,58 +33,50 @@
     "transactionIndex": 2,
     "type": "0x7e"
   },
-  "attributes": [
+  "chainId": 8453,
+  "assetTransfers": [
     {
-      "key": "blockNumber",
-      "value": 7245486
-    },
-    {
-      "key": "chainId",
-      "value": 8453
-    },
-    {
-      "key": "from",
-      "value": "0x661ea32f349f857075cae289e7f6222c2ad083b9"
-    },
-    {
-      "key": "parties",
-      "value": [
-        "0x661ea32f349f857075cae289e7f6222c2ad083b9"
-      ]
-    },
-    {
-      "key": "sigHash",
-      "value": "0x01"
-    },
-    {
-      "key": "timestamp",
-      "value": 1701280319
-    },
-    {
-      "key": "to",
-      "value": "0x661ea32f349f857075cae289e7f6222c2ad083b9"
-    },
-    {
-      "key": "value",
-      "value": 0.1
+      "from": "0x661ea32f349f857075cae289e7f6222c2ad083b9",
+      "to": "0x661ea32f349f857075cae289e7f6222c2ad083b9",
+      "type": "eth",
+      "value": "100000000000000000"
     }
   ],
+  "delegateCalls": [],
+  "neighbor": {
+    "address": "0x661ea32f349f857075cae289e7f6222c2ad083b9",
+    "neighbor": "0x661ea32f349f857075cae289e7f6222c2ad083b9"
+  },
+  "errors": [],
+  "parties": ["0x661ea32f349f857075cae289e7f6222c2ad083b9"],
+  "sigHash": "0x01",
+  "internalSigHashes": [
+    {
+      "from": "0x661ea32f349f857075cae289e7f6222c2ad083b9",
+      "to": "0x661ea32f349f857075cae289e7f6222c2ad083b9",
+      "sigHash": "0x01"
+    }
+  ],
+  "timestamp": 1701280319,
+  "baseFeePerGas": 51,
+  "transactionFee": "0",
   "logs": [],
+  "netAssetTransfers": {},
   "contractsCreated": [],
   "enrichedParties": {
     "0x661ea32f349f857075cae289e7f6222c2ad083b9": [
       {
         "chainId": 1,
         "isContract": false,
-        "ens": "kimjames.eth",
+        "ens": null,
         "ensNew": {
-          "handle": "kimjames.eth",
-          "avatar": "https://assets.airstack.xyz/image/nft/nNBFvZ6wvuIHqDzTFi5pM/pM0Q1IAUgJRNTJrw7f4s1+aZKNouUo4Yi/0qS/y06AQiqTxuv3x9ib4k5SbpHWxfIBI1hSz4+seseSK3HuVTsBMVPaDmnCaSKXk0mAAPTBgTBmFuPPRqhPkQ7Ohs1IDiyhoRY8qqMaD8SgzdetEhM=/medium.svg"
+          "handle": null,
+          "avatar": null
         },
         "farcaster": {
-          "handle": "jameskim",
-          "avatar": "https://i.imgur.com/0lxUPrF.png",
-          "fid": 1043
+          "handle": null,
+          "avatar": null,
+          "fid": null
         }
       }
     ]

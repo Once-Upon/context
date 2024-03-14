@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import { EventLogTopics, Transaction } from '../../types';
+import { Transaction } from '../../types';
 import { FarcasterContracts } from './constants';
 import { decodeLog, decodeTransactionInput } from '../../helpers/utils';
 
@@ -45,7 +45,10 @@ export const generate = (transaction: Transaction): Transaction => {
       const decoded = decodeLog(
         FarcasterContracts.IdRegistry.abi,
         registerLog.data as Hex,
-        registerLog.topics as EventLogTopics,
+        registerLog.topic0,
+        registerLog.topic1,
+        registerLog.topic2,
+        registerLog.topic3,
       );
       if (!decoded) return transaction;
 
