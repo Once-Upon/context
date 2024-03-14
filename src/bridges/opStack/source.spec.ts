@@ -2,6 +2,7 @@ import { Transaction } from '../../types';
 import { detect, generate } from './source';
 import { contextSummary } from '../../helpers/utils';
 import optimismSource0x8a83b7b4 from '../../test/transactions/optimism-source-0x8a83b7b4.json';
+import baseBridge0xce910123 from '../../test/transactions/baseBridge-0xce910123.json';
 import hopSource0x8603ffab from '../../test/transactions/hop-source-0x8603ffab.json';
 
 describe('Optimism Source', () => {
@@ -11,6 +12,9 @@ describe('Optimism Source', () => {
 
     const isOptimismSource2 = detect(hopSource0x8603ffab as Transaction);
     expect(isOptimismSource2).toBe(false);
+
+    const isOptimismSource3 = detect(baseBridge0xce910123 as Transaction);
+    expect(isOptimismSource3).toBe(false);
   });
 
   it('Should generate context', () => {
