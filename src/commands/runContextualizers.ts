@@ -3,6 +3,7 @@ import { fetchTransactions } from './utils';
 import { Transaction } from '../types';
 import { protocolContextualizer } from '../protocol';
 import { heuristicContextualizer } from '../heuristics';
+import { unpackERC4337Transactions } from '../accountAbstraction';
 
 export function registerRunContextualizersCommand() {
   program
@@ -19,6 +20,7 @@ export function registerRunContextualizersCommand() {
         console.error(`failed to fetch transactions: `, err);
       }
 
+      transactions = transactions.flatMap(unpackERC4337Transactions);
       try {
         console.log(`Running contextualizers`);
         transactions.forEach((transaction) => {

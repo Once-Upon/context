@@ -116,4 +116,6 @@ export interface Transaction {
   receipt?: Receipt;
   context?: TransactionContextType;
   logs?: Log[];
+  isERC4337Transaction?: boolean;
+  ERC4337Info?: { bundler: string; entryPoint: string; }
 }
