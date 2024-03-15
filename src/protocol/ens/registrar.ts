@@ -13,7 +13,9 @@ export const contextualize = (transaction: Transaction): Transaction => {
 export const detect = (transaction: Transaction): boolean => {
   if (
     transaction.to !== ENS_ADDRESSES.registrarV2 &&
-    transaction.to !== ENS_ADDRESSES.registrarV3
+    transaction.to !== ENS_ADDRESSES.registrarV3 &&
+    transaction.to !== ENS_ADDRESSES.bulkRegister &&
+    transaction.to !== ENS_ADDRESSES.ethBulkRegistrar
   ) {
     return false;
   }

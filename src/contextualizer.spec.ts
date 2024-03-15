@@ -39,6 +39,12 @@ import friendTech0xde5ce243 from './test/transactions/friendTech-0xde5ce243.json
 import friendTech0xe65b4bd6 from './test/transactions/friendTech-0xe65b4bd6.json';
 import friendTech0xed2dd79e from './test/transactions/friendTech-0xed2dd79e.json';
 import friendTech0x703647d1 from './test/transactions/friendTech-0x703647d1.json';
+// ENS
+import ens0xdb203e93 from './test/transactions/ens-0xdb203e93.json';
+import ens0xea1b4ab6 from './test/transactions/ens-0xea1b4ab6.json';
+import ensRegistrar0xb14b4771 from './test/transactions/ensRegistrar-0xb14b4771.json';
+import ensRegistrar0xb4e84831 from './test/transactions/ensRegistrar-0xb4e84831.json';
+import ensRegistrarCommit0x2adbae73 from './test/transactions/ensRegistrarCommit-0x2adbae73.json';
 
 const contextualize = makeContextualize({
   protocolContextualizer: protocolContextualizer.contextualize,
@@ -175,6 +181,23 @@ describe('ContextualizerService', () => {
 
       const friendTech4 = contextualize(friendTech0x703647d1 as Transaction);
       expect(friendTech4.context?.summaries?.en.title).toBe('friend.tech');
+    });
+
+    it('Should detect ENS transaction', () => {
+      const ens1 = contextualize(ens0xdb203e93 as Transaction);
+      expect(ens1.context?.summaries?.en.title).toBe('ENS');
+
+      const ens2 = contextualize(ens0xea1b4ab6 as Transaction);
+      expect(ens2.context?.summaries?.en.title).toBe('ENS');
+
+      const ens3 = contextualize(ensRegistrar0xb14b4771 as Transaction);
+      expect(ens3.context?.summaries?.en.title).toBe('ENS');
+
+      const ens4 = contextualize(ensRegistrar0xb4e84831 as Transaction);
+      expect(ens4.context?.summaries?.en.title).toBe('ENS');
+
+      const ens5 = contextualize(ensRegistrarCommit0x2adbae73 as Transaction);
+      expect(ens5.context?.summaries?.en.title).toBe('ENS');
     });
   });
 });
