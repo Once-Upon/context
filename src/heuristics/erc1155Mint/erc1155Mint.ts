@@ -37,7 +37,7 @@ export function detect(transaction: Transaction): boolean {
       transfer.type === AssetType.ERC1155,
   ) as ERC1155AssetTransfer[];
 
-  if (mints.length == 0) {
+  if (mints.length === 0) {
     return false;
   }
 
@@ -72,6 +72,10 @@ export function generate(transaction: Transaction): Transaction {
       transfer.from === KNOWN_ADDRESSES.NULL &&
       transfer.type === AssetType.ERC1155,
   ) as ERC1155AssetTransfer[];
+
+  if (mints.length === 0) {
+    return transaction;
+  }
 
   // We do this so we can use the assetTransfer var directly in the outcomes for contextualizations
   // The contextualizations expect a property "token", not "asset"
