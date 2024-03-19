@@ -109,6 +109,7 @@ export interface Transaction {
   decoded?: TransactionDescription | null;
   netAssetTransfers?: NetAssetTransfers;
   receipt?: Receipt;
+  canCopy?: boolean;
   context?: TransactionContextType;
   logs?: Log[];
 }
