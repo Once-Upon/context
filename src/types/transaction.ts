@@ -114,6 +114,7 @@ export interface Transaction {
   decode?: TransactionDescription;
   netAssetTransfers?: NetAssetTransfers;
   receipt?: Receipt;
+  canCopy?: boolean;
   context?: TransactionContextType;
   logs?: Log[];
 }
