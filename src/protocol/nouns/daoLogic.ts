@@ -33,10 +33,6 @@ export const detect = (transaction: Transaction): boolean => {
     return false;
   }
 
-  if (transaction.to !== NounsContracts.DAOLogic) {
-    return false;
-  }
-
   try {
     const decoded = decodeTransactionInput(
       transaction.input as Hex,
