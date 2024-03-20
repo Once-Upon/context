@@ -7,6 +7,8 @@ import ens0xea1b4ab6 from '../../test/transactions/ens-0xea1b4ab6.json';
 import ensRegistrarCommit0x2adbae73 from '../../test/transactions/ensRegistrarCommit-0x2adbae73.json';
 import ensBulkRenew0x25add712 from '../../test/transactions/ensBulkRenew-0x25add712.json';
 import registrarWithConfig0x5d31a49e from '../../test/transactions/registrarWithConfig-0x5d31a49e.json';
+import ensRegistrar0xb14b4771 from '../../test/transactions/ensRegistrar-0xb14b4771.json';
+import ensRegistrar0xb4e84831 from '../../test/transactions/ensRegistrar-0xb4e84831.json';
 
 describe('ENS Registrar', () => {
   it('Should detect ens registrar', () => {
@@ -26,6 +28,12 @@ describe('ENS Registrar', () => {
       registrarWithConfig0x5d31a49e as Transaction,
     );
     expect(registrarWithConfig).toBe(true);
+
+    const ensRegistrar3 = detect(ensRegistrar0xb14b4771 as Transaction);
+    expect(ensRegistrar3).toBe(true);
+
+    const ensRegistrar4 = detect(ensRegistrar0xb4e84831 as Transaction);
+    expect(ensRegistrar4).toBe(true);
   });
 
   it('Should generate ens context', () => {

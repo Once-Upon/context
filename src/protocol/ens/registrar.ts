@@ -1,7 +1,7 @@
 import { Hex } from 'viem';
 import { Transaction } from '../../types';
 import { ENS_CONTRACTS, ENS_ADDRESSES } from './constants';
-import { decodeTransactionInput } from '../../helpers/utils';
+import { decodeLog, decodeTransactionInput } from '../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isENS = detect(transaction);
@@ -11,31 +11,29 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
-  if (
-    transaction.to !== ENS_ADDRESSES.registrarV2 &&
-    transaction.to !== ENS_ADDRESSES.registrarV3 &&
-    transaction.to !== ENS_ADDRESSES.bulkRegister &&
-    transaction.to !== ENS_ADDRESSES.ethBulkRegistrar &&
-    transaction.to !== ENS_ADDRESSES.registrar &&
-    transaction.to !== ENS_ADDRESSES.registrar1
-  ) {
+  // detect logs
+  if (transaction.logs) {
     return false;
   }
 
-  const abi = ENS_CONTRACTS.registrar[transaction.to].abi;
-  const decode = decodeTransactionInput(transaction.input as Hex, abi);
-  if (!decode) return false;
+  for (const log of transaction.logs) {
+    if (
+      transaction.to !== ENS_ADDRESSES.registrarV2 &&
+      transaction.to !== ENS_ADDRESSES.registrarV3
+    ) {
+      continue;
+    }
 
-  if (
-    decode.functionName === 'registerWithConfig' ||
-    decode.functionName === 'register' ||
-    decode.functionName === 'commit' ||
-    decode.functionName === 'renew' ||
-    decode.functionName === 'bulkRegister' ||
-    decode.functionName === 'bulkCommit' ||
-    decode.functionName === 'bulkRenew'
-  ) {
-    return true;
+    const abi = ENS_CONTRACTS.registrar[transaction.to].abi;
+    const decodedLog = decodeLog(abi, log.data, log.topics);
+    if (!decodedLog) continue;
+
+    if (
+      decodedLog.eventName === 'NameRegistered' ||
+      decodedLog.eventName === 'NameRenewed'
+    ) {
+      return true;
+    }
   }
 
   return false;
