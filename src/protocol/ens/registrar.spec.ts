@@ -66,6 +66,15 @@ describe('ENS Registrar', () => {
       '0xed53c087b05d1360e78f8a3e4dc59f8d342296f9 REGISTERED sunnysd.eth expires on 03/20/2026',
     );
     expect(containsBigInt(registrarWithConfig.context)).toBe(false);
+
+    // registrar
+    const registrar1 = generate(ensRegistrar0xb14b4771 as Transaction);
+    expect(registrar1.context?.summaries?.en.title).toBe('ENS');
+    const desc4 = contextSummary(registrar1.context);
+    expect(desc4).toBe(
+      '0x53c40473dcdfd927c4201ccfe24e314a7d7c3584 REGISTERED lyricist.eth expires on 03/14/2025',
+    );
+    expect(containsBigInt(registrar1.context)).toBe(false);
   });
 
   it('Should not detect as ens registrar', () => {

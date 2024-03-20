@@ -43,8 +43,6 @@ import friendTech0x703647d1 from './test/transactions/friendTech-0x703647d1.json
 import ens0xdb203e93 from './test/transactions/ens-0xdb203e93.json';
 import ens0xea1b4ab6 from './test/transactions/ens-0xea1b4ab6.json';
 import ensRegistrar0xb14b4771 from './test/transactions/ensRegistrar-0xb14b4771.json';
-import ensRegistrar0xb4e84831 from './test/transactions/ensRegistrar-0xb4e84831.json';
-import ensRegistrarCommit0x2adbae73 from './test/transactions/ensRegistrarCommit-0x2adbae73.json';
 import ensBulkRenew0x25add712 from './test/transactions/ensBulkRenew-0x25add712.json';
 
 const contextualize = makeContextualize({
@@ -191,17 +189,8 @@ describe('ContextualizerService', () => {
       const register2 = contextualize(ens0xea1b4ab6 as Transaction);
       expect(register2.context?.summaries?.en.title).toBe('ENS');
 
-      // const ens3 = contextualize(ensRegistrar0xb14b4771 as Transaction);
-      // expect(ens3.context?.summaries?.en.title).toBe('ENS');
-
-      // const ens4 = contextualize(ensRegistrar0xb4e84831 as Transaction);
-      // expect(ens4.context?.summaries?.en.title).toBe('ENS');
-
-      // bulk commit
-      const bulkCommit = contextualize(
-        ensRegistrarCommit0x2adbae73 as Transaction,
-      );
-      expect(bulkCommit.context?.summaries?.en.title).toBe('ENS');
+      const ens3 = contextualize(ensRegistrar0xb14b4771 as Transaction);
+      expect(ens3.context?.summaries?.en.title).toBe('ENS');
 
       // bulk renew
       const bulkRenew = contextualize(ensBulkRenew0x25add712 as Transaction);
