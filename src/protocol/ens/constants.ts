@@ -7,6 +7,8 @@ import ReverseAbi from './abis/Reverse';
 export const ENS_ADDRESSES = {
   registrarV2: '0x283af0b28c62c092c9727f1ee09c02ca627eb7f5',
   registrarV3: '0x253553366da8546fc250f225fe3d25d0c782303b',
+  registrar: '0x00000000008794027c69c26d2a048dbec09de67c',
+  registrar1: '0x328ebc7bb2ca4bf4216863042a960e3c64ed4c10',
   ethBulkRegistrar: '0x705bfbcfccde554e11df213bf6d463ea00dd57cc',
   bulkRegister: '0x1bfda2767beef9ef16ae31c67133a9510e34b90a',
   reverse: '0x084b1c3c81545d370f3634392de611caabff8148',
@@ -30,6 +32,14 @@ export const ENS_CONTRACTS = {
     [ENS_ADDRESSES.bulkRegister]: {
       id: 'BulkRegister',
       abi: BulkRegisterAbi,
+    },
+    [ENS_ADDRESSES.registrar]: {
+      id: 'Registrar',
+      abi: RegistrarV3Abi,
+    },
+    [ENS_ADDRESSES.registrar1]: {
+      id: 'Registrar1',
+      abi: RegistrarV3Abi,
     },
   },
   reverse: {
