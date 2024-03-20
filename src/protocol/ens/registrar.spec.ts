@@ -33,7 +33,7 @@ describe('ENS Registrar', () => {
     expect(ensRegistrar1.context?.summaries?.en.title).toBe('ENS');
     const desc1 = contextSummary(ensRegistrar1.context);
     expect(desc1).toBe(
-      '0xfa929fc3e365050e539360fb4d4bf971dcf28eda REGISTERED payblock.eth expires on 12/05/2024',
+      '0xfa929fc3e365050e539360fb4d4bf971dcf28eda REGISTERED payblock.eth expires on 12/06/2024',
     );
     expect(containsBigInt(ensRegistrar1.context)).toBe(false);
 
@@ -52,7 +52,7 @@ describe('ENS Registrar', () => {
     expect(bulkRenew.context?.summaries?.en.title).toBe('ENS');
     const desc2 = contextSummary(bulkRenew.context);
     expect(desc2).toBe(
-      '0x3785f0272f5e19dd2c27977ec2d91195bb2af801 RENEWED ntidi.eth expires on 06/06/2026',
+      '0x3785f0272f5e19dd2c27977ec2d91195bb2af801 RENEWED ntidi.eth expires on 06/07/2026',
     );
     expect(containsBigInt(bulkRenew.context)).toBe(false);
 
@@ -72,7 +72,7 @@ describe('ENS Registrar', () => {
     expect(registrar1.context?.summaries?.en.title).toBe('ENS');
     const desc4 = contextSummary(registrar1.context);
     expect(desc4).toBe(
-      '0x53c40473dcdfd927c4201ccfe24e314a7d7c3584 REGISTERED lyricist.eth expires on 03/14/2025',
+      '0x53c40473dcdfd927c4201ccfe24e314a7d7c3584 REGISTERED lyricist.eth expires on 03/15/2025',
     );
     expect(containsBigInt(registrar1.context)).toBe(false);
   });

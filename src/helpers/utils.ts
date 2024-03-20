@@ -185,9 +185,9 @@ export const convertDate = (epochTime: number): string => {
   const date = new Date(epochTime * 1000);
 
   // Extract the month, day, and year
-  const month = ('0' + (date.getMonth() + 1)).slice(-2); // Months are 0-based in JavaScript, add 1
-  const day = ('0' + date.getDate()).slice(-2);
-  const year = date.getFullYear();
+  const month = ('0' + (date.getUTCMonth() + 1)).slice(-2); // Months are 0-based in JavaScript, add 1
+  const day = ('0' + date.getUTCDate()).slice(-2);
+  const year = date.getUTCFullYear();
 
   const dateString = `${month}/${day}/${year}`;
 
