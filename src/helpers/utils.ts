@@ -179,3 +179,17 @@ export function containsBigInt(obj) {
   // Return false if no BigInt found
   return false;
 }
+
+export const convertDate = (epochTime: number): string => {
+  // Convert epoch time to milliseconds by multiplying by 1000 (JavaScript uses milliseconds)
+  const date = new Date(epochTime * 1000);
+
+  // Extract the month, day, and year
+  const month = ('0' + (date.getMonth() + 1)).slice(-2); // Months are 0-based in JavaScript, add 1
+  const day = ('0' + date.getDate()).slice(-2);
+  const year = date.getFullYear();
+
+  const dateString = `${month}/${day}/${year}`;
+
+  return dateString;
+};
