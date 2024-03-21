@@ -42,9 +42,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000064c6e5c3"
       },
       "subtraces": 2,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0xb38516e52353daf6f30293636060148915fb0591cdfcb2158a4d1912c2642ad9",
       "transactionPosition": 87,
       "type": "call"
@@ -65,11 +63,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        0
-      ],
+      "traceAddress": [0, 0, 0],
       "transactionHash": "0xb38516e52353daf6f30293636060148915fb0591cdfcb2158a4d1912c2642ad9",
       "transactionPosition": 87,
       "type": "call"
@@ -90,11 +84,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000064c6e5c3"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        1,
-        0
-      ],
+      "traceAddress": [0, 1, 0],
       "transactionHash": "0xb38516e52353daf6f30293636060148915fb0591cdfcb2158a4d1912c2642ad9",
       "transactionPosition": 87,
       "type": "call"
@@ -187,9 +177,7 @@
   "logs": [
     {
       "address": "0x3bdc8d32934b4736598c4206d0a56911bf833e8c",
-      "topics": [
-        "0x7902f8969f6429dd0244329d34db6ea75cec3a150e8ddbb8945511e2f2c639ea"
-      ],
+      "topic0": "0x7902f8969f6429dd0244329d34db6ea75cec3a150e8ddbb8945511e2f2c639ea",
       "data": "0x2c5b887afa8a76292dadfb4c0dde0305e7c972581815dda8a4a0cd2e8caa67230000000000000000000000000000000000000000000000000000000064c6e5c3",
       "blockNumber": 17794562,
       "transactionHash": "0xb38516e52353daf6f30293636060148915fb0591cdfcb2158a4d1912c2642ad9",
@@ -236,9 +224,7 @@
     },
     {
       "address": "0xa54ce3c884c68c01596853b25a3208acefda540e",
-      "topics": [
-        "0x65431b33ae1566469324739cd3024c5e8d7422fa2c54e71fda14b92fd5e8f1ea"
-      ],
+      "topic0": "0x65431b33ae1566469324739cd3024c5e8d7422fa2c54e71fda14b92fd5e8f1ea",
       "data": "0x2c5b887afa8a76292dadfb4c0dde0305e7c972581815dda8a4a0cd2e8caa67230000000000000000000000000000000000000000000000000000000064c6e5c3",
       "blockNumber": 17794562,
       "transactionHash": "0xb38516e52353daf6f30293636060148915fb0591cdfcb2158a4d1912c2642ad9",

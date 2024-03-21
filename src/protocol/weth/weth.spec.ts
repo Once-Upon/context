@@ -14,7 +14,7 @@ describe('Weth', () => {
     const weth2 = detect(weth0x0917947d as Transaction);
     expect(weth2).toBe(true);
 
-    const weth3 = detect(weth0x57ebdd96 as Transaction);
+    const weth3 = detect(weth0x57ebdd96 as unknown as Transaction);
     expect(weth3).toBe(true);
   });
 
@@ -40,7 +40,7 @@ describe('Weth', () => {
       '0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c UNWRAPPED 0.05 ETH',
     );
 
-    const weth3 = generate(weth0x57ebdd96 as Transaction);
+    const weth3 = generate(weth0x57ebdd96 as unknown as Transaction);
     expect(weth3.context?.summaries?.en.title).toBe('WETH');
     expect(weth3.context?.variables?.unwrapped).toBeDefined();
     expect(weth3.context?.variables?.unwrapped.type).toBe('contextAction');

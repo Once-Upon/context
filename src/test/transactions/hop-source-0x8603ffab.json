@@ -263,10 +263,8 @@
         ]
       },
       "removed": false,
-      "topics": [
-        "0x0c3d250c7831051e78aa6a56679e590374c7c424415ffe4aa474491def2fe705",
-        "0x5989d54aac2a8e25faf2144620a3a54ffa8e5a197b46d2933e5981733896ee48"
-      ],
+      "topic0": "0x0c3d250c7831051e78aa6a56679e590374c7c424415ffe4aa474491def2fe705",
+      "topic1": "0x5989d54aac2a8e25faf2144620a3a54ffa8e5a197b46d2933e5981733896ee48",
       "transactionIndex": 132
     }
   ],

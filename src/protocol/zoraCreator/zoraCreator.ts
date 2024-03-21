@@ -28,7 +28,7 @@ export const detect = (transaction: Transaction): boolean => {
     transaction.logs && transaction.logs.length > 0 ? transaction.logs : [];
   const rewardsDepositLog = logs.find(
     (log) =>
-      log.topics[0] === REWARDS_DEPOSIT_TOPIC &&
+      log.topic0 === REWARDS_DEPOSIT_TOPIC &&
       log.address === PROTOCOL_REWARDS_CONTRACT,
   );
   if (!rewardsDepositLog) return false;
@@ -45,13 +45,18 @@ export const generate = (transaction: Transaction): Transaction => {
   const logs =
     transaction.logs && transaction.logs.length > 0 ? transaction.logs : [];
   const rewardsDepositLog = logs.find(
-    (log) => log.topics[0] === REWARDS_DEPOSIT_TOPIC,
+    (log) => log.topic0 === REWARDS_DEPOSIT_TOPIC,
   );
   if (!rewardsDepositLog) return transaction;
   const decodedLog = decodeLog(
     PROTOCOL_REWARDS_ABI,
     rewardsDepositLog.data as Hex,
-    rewardsDepositLog.topics as EventLogTopics,
+    [
+      rewardsDepositLog.topic0,
+      rewardsDepositLog.topic1,
+      rewardsDepositLog.topic2,
+      rewardsDepositLog.topic3,
+    ] as EventLogTopics,
   );
   if (
     !decodedLog ||

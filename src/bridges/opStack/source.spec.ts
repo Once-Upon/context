@@ -9,7 +9,9 @@ describe('Optimism Source', () => {
     const isOptimismSource1 = detect(optimismSource0x8a83b7b4 as Transaction);
     expect(isOptimismSource1).toBe(true);
 
-    const isOptimismSource2 = detect(hopSource0x8603ffab as Transaction);
+    const isOptimismSource2 = detect(
+      hopSource0x8603ffab as unknown as Transaction,
+    );
     expect(isOptimismSource2).toBe(false);
   });
 

@@ -72,7 +72,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const parsedLog = decodeLog(
         ABIs.FriendTech,
         log.data as Hex,
-        log.topics as EventLogTopics,
+        [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
       );
       if (!parsedLog) return transaction;
 
@@ -157,7 +157,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const parsedLog = decodeLog(
         ABIs.FriendTech,
         log.data as Hex,
-        log.topics as EventLogTopics,
+        [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
       );
       if (!parsedLog) return transaction;
 

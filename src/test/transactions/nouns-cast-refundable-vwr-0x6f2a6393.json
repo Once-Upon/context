@@ -274,10 +274,8 @@
         ]
       },
       "removed": false,
-      "topics": [
-        "0xb8e138887d0aa13bab447e82de9d5c1777041ecd21ca36ba824ff1e6c07ddda4",
-        "0x0000000000000000000000002666f0c8fb58d182f2dd79475dca4a07b3724607"
-      ],
+      "topic0": "0xb8e138887d0aa13bab447e82de9d5c1777041ecd21ca36ba824ff1e6c07ddda4",
+      "topic1": "0x0000000000000000000000002666f0c8fb58d182f2dd79475dca4a07b3724607",
       "transactionIndex": 92
     },
     {
@@ -333,10 +331,8 @@
         ]
       },
       "removed": false,
-      "topics": [
-        "0xfabef36fd46c4c3a6ad676521be5367a4dfdbf3faa68d8e826003b1752d68f4f",
-        "0x0000000000000000000000002666f0c8fb58d182f2dd79475dca4a07b3724607"
-      ],
+      "topic0": "0xfabef36fd46c4c3a6ad676521be5367a4dfdbf3faa68d8e826003b1752d68f4f",
+      "topic1": "0x0000000000000000000000002666f0c8fb58d182f2dd79475dca4a07b3724607",
       "transactionIndex": 92
     }
   ],

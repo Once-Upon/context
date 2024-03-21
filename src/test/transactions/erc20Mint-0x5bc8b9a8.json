@@ -486,11 +486,9 @@
       },
       "id": "log_1fb2f24a",
       "removed": false,
-      "topics": [
-        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
-        "0x0000000000000000000000000000000000000000000000000000000000000000",
-        "0x00000000000000000000000072b000b693ea3c16650fe8a2eae15402aaf76e57"
-      ],
+      "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+      "topic1": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "topic2": "0x00000000000000000000000072b000b693ea3c16650fe8a2eae15402aaf76e57",
       "transactionIndex": 2
     },
     {
@@ -537,10 +535,8 @@
       },
       "id": "log_a5a187bf",
       "removed": false,
-      "topics": [
-        "0x30385c845b448a36257a6a1716e6ad2e1bc2cbe333cde1e69fe849ad6511adfe",
-        "0x00000000000000000000000072b000b693ea3c16650fe8a2eae15402aaf76e57"
-      ],
+      "topic0": "0x30385c845b448a36257a6a1716e6ad2e1bc2cbe333cde1e69fe849ad6511adfe",
+      "topic1": "0x00000000000000000000000072b000b693ea3c16650fe8a2eae15402aaf76e57",
       "transactionIndex": 2
     },
     {
@@ -597,10 +593,8 @@
       },
       "id": "log_9dc4e495",
       "removed": false,
-      "topics": [
-        "0x82e416ba72d10e709b5de7ac16f5f49ff1d94f22d55bf582d353d3c313a1e8dd",
-        "0x00000000000000000000000072b000b693ea3c16650fe8a2eae15402aaf76e57"
-      ],
+      "topic0": "0x82e416ba72d10e709b5de7ac16f5f49ff1d94f22d55bf582d353d3c313a1e8dd",
+      "topic1": "0x00000000000000000000000072b000b693ea3c16650fe8a2eae15402aaf76e57",
       "transactionIndex": 2
     }
   ],

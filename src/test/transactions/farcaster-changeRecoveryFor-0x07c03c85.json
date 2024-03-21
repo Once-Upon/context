@@ -70,11 +70,9 @@
       "data": "0x",
       "logIndex": 139,
       "removed": false,
-      "topics": [
-        "0x8e700b803af43e14651431cd73c9fe7d11b131ad797576a70b893ce5766f65c3",
-        "0x0000000000000000000000000000000000000000000000000000000000002982",
-        "0x0000000000000000000000006ba0cadf5d997c6b3ee62bbe55594456b4e80039"
-      ],
+      "topic0": "0x8e700b803af43e14651431cd73c9fe7d11b131ad797576a70b893ce5766f65c3",
+      "topic1": "0x0000000000000000000000000000000000000000000000000000000000002982",
+      "topic2": "0x0000000000000000000000006ba0cadf5d997c6b3ee62bbe55594456b4e80039",
       "transactionHash": "0x07c0929a7ef5d03d1a65ae6c64f536c7c0251d101bb7ffcebe5a37773f8b3c85",
       "transactionIndex": 3,
       "id": "log_ecb86896",
@@ -107,10 +105,7 @@
         "name": "ChangeRecoveryAddress",
         "signature": "ChangeRecoveryAddress(uint256,address)",
         "topic": "0x8e700b803af43e14651431cd73c9fe7d11b131ad797576a70b893ce5766f65c3",
-        "args": [
-          "10626",
-          "0x6ba0cadf5d997c6b3ee62bbe55594456b4e80039"
-        ]
+        "args": ["10626", "0x6ba0cadf5d997c6b3ee62bbe55594456b4e80039"]
       },
       "chainId": 10
     }

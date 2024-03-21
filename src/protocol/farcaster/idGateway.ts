@@ -45,7 +45,12 @@ export const generate = (transaction: Transaction): Transaction => {
       const decoded = decodeLog(
         FarcasterContracts.IdRegistry.abi,
         registerLog.data as Hex,
-        registerLog.topics as EventLogTopics,
+        [
+          registerLog.topic0,
+          registerLog.topic1,
+          registerLog.topic2,
+          registerLog.topic3,
+        ] as EventLogTopics,
       );
       if (!decoded) return transaction;
 
