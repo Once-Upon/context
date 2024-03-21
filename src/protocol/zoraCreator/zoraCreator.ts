@@ -67,6 +67,13 @@ export const generate = (transaction: Transaction): Transaction => {
         transfer.type === AssetType.ERC721),
   ) as (ERC1155AssetTransfer | ERC721AssetTransfer)[];
 
+  if (
+    transaction.hash ===
+    '0x6ccb91df096cdeedd6865a5a90f3c285c5b885ce76872e9a327d6c41ae6d3140'
+  ) {
+    console.log('mints', mints);
+  }
+
   const assetTransfer = mints[0];
   const recipient = assetTransfer.to;
   const amount = mints.filter((ele) => ele.type === assetTransfer.type).length;
@@ -121,7 +128,7 @@ export const generate = (transaction: Transaction): Transaction => {
         ...transaction.context.variables,
         token: {
           type: AssetType.ERC1155,
-          token: assetTransfer.asset,
+          token: assetTransfer.contract,
           value: assetTransfer.value,
           tokenId: assetTransfer.tokenId,
         },
@@ -132,7 +139,7 @@ export const generate = (transaction: Transaction): Transaction => {
         ...transaction.context.variables,
         token: {
           type: AssetType.ERC721,
-          token: assetTransfer.asset,
+          token: assetTransfer.contract,
           tokenId: assetTransfer.tokenId,
         },
       };
