@@ -10,7 +10,7 @@ describe('ENS Registrar', () => {
     const ensRegistrar1 = detect(ens0xdb203e93 as Transaction);
     expect(ensRegistrar1).toBe(true);
 
-    const ensRegistrar2 = detect(ens0xea1b4ab6 as Transaction);
+    const ensRegistrar2 = detect(ens0xea1b4ab6 as unknown as Transaction);
     expect(ensRegistrar2).toBe(true);
   });
 
@@ -22,7 +22,7 @@ describe('ENS Registrar', () => {
       '0xfa929fc3e365050e539360fb4d4bf971dcf28eda REGISTERED payblock.eth for 365 days',
     );
 
-    const ensRegistrar2 = generate(ens0xea1b4ab6 as Transaction);
+    const ensRegistrar2 = generate(ens0xea1b4ab6 as unknown as Transaction);
     expect(ensRegistrar2.context?.summaries?.en.title).toBe('ENS');
     const desc2 = contextSummary(ensRegistrar2.context);
     expect(desc2).toBe(

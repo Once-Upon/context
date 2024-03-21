@@ -12,7 +12,7 @@ describe('Bridge Zora Energy Source', () => {
     expect(isBridgeZoraEnergySource1).toBe(true);
 
     const isBridgeZoraEnergySource2 = detect(
-      hopSource0x8603ffab as Transaction,
+      hopSource0x8603ffab as unknown as Transaction,
     );
     expect(isBridgeZoraEnergySource2).toBe(false);
   });

@@ -14,7 +14,7 @@ describe('ERC721 Mint', () => {
     const erc721Mint2 = detect(erc721Mint0x35f54999 as Transaction);
     expect(erc721Mint2).toBe(true);
 
-    const erc721Mint3 = detect(erc721Mint0x02e0551e as Transaction);
+    const erc721Mint3 = detect(erc721Mint0x02e0551e as unknown as Transaction);
     expect(erc721Mint3).toBe(true);
   });
 
@@ -24,7 +24,9 @@ describe('ERC721 Mint', () => {
   });
 
   it('Should generate a context for token mint', () => {
-    const erc721Mint1 = generate(erc721Mint0x02e0551e as Transaction);
+    const erc721Mint1 = generate(
+      erc721Mint0x02e0551e as unknown as Transaction,
+    );
     expect(erc721Mint1.context?.summaries?.category).toBe('NFT');
     const desc1 = contextSummary(erc721Mint1.context);
     expect(desc1).toBe(

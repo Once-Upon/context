@@ -16,12 +16,12 @@ describe('NounsBuilderDAO Auction', () => {
   describe('createBid', () => {
     it('Should detect transaction', () => {
       const unknown = detect(
-        nounsBuilderAuctionUnknownCreateBid0x401da075 as Transaction,
+        nounsBuilderAuctionUnknownCreateBid0x401da075 as unknown as Transaction,
       );
       expect(unknown).toBe(true);
 
       const purple = detect(
-        nounsBuilderAuctionPurpleCreateBid0x638faccc as Transaction,
+        nounsBuilderAuctionPurpleCreateBid0x638faccc as unknown as Transaction,
       );
       expect(purple).toBe(true);
     });
@@ -29,7 +29,9 @@ describe('NounsBuilderDAO Auction', () => {
     it('Should not detect', () => {
       // NOTE: the catchall we normally use is a settleCurrentAndCreateNewAuction
       // call for PurpleDAO
-      const nouns1 = detect(nounsAuctionHouseBid0x4efdef57 as Transaction);
+      const nouns1 = detect(
+        nounsAuctionHouseBid0x4efdef57 as unknown as Transaction,
+      );
       expect(nouns1).toBe(false);
 
       const other = detect(easAttest0xfed2349f as Transaction);
@@ -38,7 +40,7 @@ describe('NounsBuilderDAO Auction', () => {
 
     it('Should generate context', () => {
       const unknown = generate(
-        nounsBuilderAuctionUnknownCreateBid0x401da075 as Transaction,
+        nounsBuilderAuctionUnknownCreateBid0x401da075 as unknown as Transaction,
       );
       const unknownDesc = contextSummary(unknown.context);
       expect(unknownDesc).toBe(
@@ -47,7 +49,7 @@ describe('NounsBuilderDAO Auction', () => {
       expect(containsBigInt(unknown.context)).toBe(false);
 
       const purple = generate(
-        nounsBuilderAuctionPurpleCreateBid0x638faccc as Transaction,
+        nounsBuilderAuctionPurpleCreateBid0x638faccc as unknown as Transaction,
       );
       const purpleDesc = contextSummary(purple.context);
       expect(purpleDesc).toBe(
@@ -60,12 +62,12 @@ describe('NounsBuilderDAO Auction', () => {
   describe('settleCurrentAndCreateNewAuction', () => {
     it('Should detect transaction', () => {
       const unknown = detect(
-        nounsBuilderAuctionUnknownSettleAndCreate0x4446c0b0 as Transaction,
+        nounsBuilderAuctionUnknownSettleAndCreate0x4446c0b0 as unknown as Transaction,
       );
       expect(unknown).toBe(true);
 
       const purple = detect(
-        nounsBuilderAuctionPurpleSettleAndCreate0xc35c01ac as Transaction,
+        nounsBuilderAuctionPurpleSettleAndCreate0xc35c01ac as unknown as Transaction,
       );
       expect(purple).toBe(true);
     });
@@ -74,7 +76,7 @@ describe('NounsBuilderDAO Auction', () => {
       // NOTE: the catchall we normally use is a settleCurrentAndCreateNewAuction
       // call for PurpleDAO
       const nouns1 = detect(
-        nounsAuctionHouseSettleAndCreate0x354aea2d as Transaction,
+        nounsAuctionHouseSettleAndCreate0x354aea2d as unknown as Transaction,
       );
       expect(nouns1).toBe(false);
 
@@ -84,7 +86,7 @@ describe('NounsBuilderDAO Auction', () => {
 
     it('Should generate context', () => {
       const unknown = generate(
-        nounsBuilderAuctionUnknownSettleAndCreate0x4446c0b0 as Transaction,
+        nounsBuilderAuctionUnknownSettleAndCreate0x4446c0b0 as unknown as Transaction,
       );
       const unknownDesc = contextSummary(unknown.context);
       expect(unknownDesc).toBe(
@@ -93,7 +95,7 @@ describe('NounsBuilderDAO Auction', () => {
       expect(containsBigInt(unknown.context)).toBe(false);
 
       const purple = generate(
-        nounsBuilderAuctionPurpleSettleAndCreate0xc35c01ac as Transaction,
+        nounsBuilderAuctionPurpleSettleAndCreate0xc35c01ac as unknown as Transaction,
       );
       const purpleDesc = contextSummary(purple.context);
       expect(purpleDesc).toBe(

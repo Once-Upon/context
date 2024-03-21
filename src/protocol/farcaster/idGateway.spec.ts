@@ -7,12 +7,16 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 describe('IdGateway', () => {
   describe('register', () => {
     it('Should detect transaction', () => {
-      const match = detect(farcasterRegister0x6b0f32e0 as Transaction);
+      const match = detect(
+        farcasterRegister0x6b0f32e0 as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(farcasterRegister0x6b0f32e0 as Transaction);
+      const transaction = generate(
+        farcasterRegister0x6b0f32e0 as unknown as Transaction,
+      );
       expect(transaction.context?.variables?.registered?.type).toBe(
         'contextAction',
       );

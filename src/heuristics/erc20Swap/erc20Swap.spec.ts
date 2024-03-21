@@ -9,7 +9,7 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 
 describe('ERC20 Swap', () => {
   it('Should detect ERC20 Swap transaction', () => {
-    const isERC20Swap = detect(erc20Swap0x8cb66698 as Transaction);
+    const isERC20Swap = detect(erc20Swap0x8cb66698 as unknown as Transaction);
     expect(isERC20Swap).toBe(true);
 
     const isERC20Swap1 = detect(erc20Swap0xd55dc9b2 as Transaction);
@@ -20,7 +20,7 @@ describe('ERC20 Swap', () => {
   });
 
   it('Should generate context', () => {
-    const generated = generate(erc20Swap0x8cb66698 as Transaction);
+    const generated = generate(erc20Swap0x8cb66698 as unknown as Transaction);
     const desc = contextSummary(generated.context);
     expect(desc).toBe(
       '0x6ead9b2a898bdee578dcbb931ec0c796b146604f SWAPPED 0.3 ETH for 93231394532841 0x6a36481af18289f80af4a1b21e4f6d323fabc712',

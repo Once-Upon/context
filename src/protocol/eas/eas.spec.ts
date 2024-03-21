@@ -82,12 +82,14 @@ describe('EAS', () => {
 
   describe('timestamp', () => {
     it('Should detect transaction', () => {
-      const match = detect(easTimestamp0x892d0c6e as Transaction);
+      const match = detect(easTimestamp0x892d0c6e as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(easTimestamp0x892d0c6e as Transaction);
+      const transaction = generate(
+        easTimestamp0x892d0c6e as unknown as Transaction,
+      );
       expect(transaction.context?.summaries?.en.title).toBe('EAS');
       expect(contextSummary(transaction.context)).toBe(
         '0x79ffc4cf151373226dcc59c9582395214a364358 TIMESTAMPED data',
