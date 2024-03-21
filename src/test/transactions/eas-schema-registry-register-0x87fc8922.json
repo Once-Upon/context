@@ -110,10 +110,8 @@
       "data": "0x0000000000000000000000004fa65b8e4d2018dff11c7aaf460548e413b844b1",
       "logIndex": 293,
       "removed": false,
-      "topics": [
-        "0x7d917fcbc9a29a9705ff9936ffa599500e4fd902e4486bae317414fe967b307c",
-        "0x5dcd6fd9212455e1d21d9236e0dfbdc8b35d37343a083d8f8d3c317352880ab5"
-      ],
+      "topic0": "0x7d917fcbc9a29a9705ff9936ffa599500e4fd902e4486bae317414fe967b307c",
+      "topic1": "0x5dcd6fd9212455e1d21d9236e0dfbdc8b35d37343a083d8f8d3c317352880ab5",
       "transactionHash": "0x87fc1e7d13b8d8949521b06598c5e4012aff45cd34b92077b413cfa758338922",
       "transactionIndex": 127,
       "decode": {

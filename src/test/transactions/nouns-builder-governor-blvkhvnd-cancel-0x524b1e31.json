@@ -42,9 +42,7 @@
         "output": "0x"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x524b6e9e5eabb7e7d0876ee8eded4400d6687e602d90456434ca47f2d72f1e31",
       "transactionPosition": 89,
       "type": "call"
@@ -65,11 +63,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        0
-      ],
+      "traceAddress": [0, 0, 0],
       "transactionHash": "0x524b6e9e5eabb7e7d0876ee8eded4400d6687e602d90456434ca47f2d72f1e31",
       "transactionPosition": 89,
       "type": "call"
@@ -152,9 +146,7 @@
   "logs": [
     {
       "address": "0xa54ce3c884c68c01596853b25a3208acefda540e",
-      "topics": [
-        "0x88ae8321c96cee88d802409f3677f889d8a6743c4631b069fe600a3a9b07e020"
-      ],
+      "topic0": "0x88ae8321c96cee88d802409f3677f889d8a6743c4631b069fe600a3a9b07e020",
       "data": "0x8df02eb8fe96392f3b8e666bc22211297aea89be2e5cddfabb7e54a0b29cc7b0",
       "blockNumber": 17930223,
       "transactionHash": "0x524b6e9e5eabb7e7d0876ee8eded4400d6687e602d90456434ca47f2d72f1e31",
