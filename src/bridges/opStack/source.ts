@@ -36,10 +36,7 @@ export function detect(transaction: Transaction): boolean {
   if (transaction.chainId === 1) {
     const logs = transaction.logs ?? [];
     const transactionDepositedLog = logs.find((log: any) => {
-      return (
-        log.topics?.length > 0 &&
-        log.topics[0] === TRANSACTION_DEPOSITED_EVENT_HASH
-      );
+      return log.topic0 === TRANSACTION_DEPOSITED_EVENT_HASH;
     });
 
     if (transactionDepositedLog) {
@@ -121,10 +118,7 @@ export function generate(transaction: Transaction): Transaction {
 
   const logs = transaction.logs ?? [];
   const transactionDepositedLog = logs.find((log: any) => {
-    return (
-      log.topics?.length > 0 &&
-      log.topics[0] === TRANSACTION_DEPOSITED_EVENT_HASH
-    );
+    return log.topic0 === TRANSACTION_DEPOSITED_EVENT_HASH;
   });
 
   if (transactionDepositedLog) {
@@ -132,7 +126,12 @@ export function generate(transaction: Transaction): Transaction {
     const transactionDepositedEvent = decodeLog(
       TRANSACTION_DEPOSITED_EVENT_ABI,
       transactionDepositedLog.data as Hex,
-      transactionDepositedLog.topics as EventLogTopics,
+      [
+        transactionDepositedLog.topic0,
+        transactionDepositedLog.topic1,
+        transactionDepositedLog.topic2,
+        transactionDepositedLog.topic3,
+      ] as EventLogTopics,
     );
     if (!transactionDepositedEvent) return transaction;
 
