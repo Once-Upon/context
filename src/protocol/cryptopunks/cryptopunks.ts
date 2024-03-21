@@ -16,7 +16,7 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
-  if (transaction.decode === null) {
+  if (transaction.decoded === null) {
     return false;
   }
 
