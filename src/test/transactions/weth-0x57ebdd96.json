@@ -20,7 +20,7 @@
   "value": "0",
   "assetTransfers": [
     {
-      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
       "from": "0x50509d22b1bd2f10de15515140e80a7e48f74b44",
       "to": "0x0000000000000000000000000000000000000000",
       "value": "410310627977564850",
@@ -57,7 +57,7 @@
     "0x50509d22b1bd2f10de15515140e80a7e48f74b44": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "410310627977564850"
@@ -65,7 +65,7 @@
       ],
       "sent": [
         {
-          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "type": "erc20",
           "value": "410310627977564850"
@@ -75,7 +75,7 @@
     "0x0000000000000000000000000000000000000000": {
       "received": [
         {
-          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "type": "erc20",
           "value": "410310627977564850"
@@ -87,7 +87,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "410310627977564850"
@@ -116,9 +116,7 @@
       "gas": null
     },
     "name": "withdraw",
-    "args": [
-      "410310627977564850"
-    ],
+    "args": ["410310627977564850"],
     "signature": "withdraw(uint256)",
     "selector": "0x2e1a7d4d",
     "value": "0"
@@ -150,10 +148,8 @@
       "data": "0x00000000000000000000000000000000000000000000000005b1b7579c2b92b2",
       "logIndex": 200,
       "removed": false,
-      "topics": [
-        "0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65",
-        "0x00000000000000000000000050509d22b1bd2f10de15515140e80a7e48f74b44"
-      ],
+      "topic0": "0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65",
+      "topic1": "0x00000000000000000000000050509d22b1bd2f10de15515140e80a7e48f74b44",
       "transactionHash": "0x57eb604d15dadcc4d5e1c0678077c90c59691cce3615e1c393a9daa2c69add96",
       "transactionIndex": 122,
       "decode": {

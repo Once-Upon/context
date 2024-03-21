@@ -7,13 +7,15 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 describe('IdRegistry', () => {
   describe('changeRecoveryAddressFor', () => {
     it('Should detect transaction', () => {
-      const match = detect(farcasterChangeRecoveryFor0x07c03c85 as Transaction);
+      const match = detect(
+        farcasterChangeRecoveryFor0x07c03c85 as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
       const transaction = generate(
-        farcasterChangeRecoveryFor0x07c03c85 as Transaction,
+        farcasterChangeRecoveryFor0x07c03c85 as unknown as Transaction,
       );
       expect(transaction.context?.variables?.changedRecoveryAddress?.type).toBe(
         'contextAction',

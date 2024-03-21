@@ -18,7 +18,9 @@ describe('Token Approval', () => {
     const tokenApproval3 = detect(tokenApproval0xa0c2a425 as Transaction);
     expect(tokenApproval3).toBe(true);
 
-    const tokenApproval4 = detect(tokenApproval0x5336e8d2 as Transaction);
+    const tokenApproval4 = detect(
+      tokenApproval0x5336e8d2 as unknown as Transaction,
+    );
     expect(tokenApproval4).toBe(true);
   });
 
@@ -44,7 +46,9 @@ describe('Token Approval', () => {
       '0xb8edb17cd08dd854dee002f898b4f7cb3763ce75 GAVE_ACCESS to 0xdef1c0ded9bec7f1a1670819833240f027b25eff for 0x5283d291dbcf85356a21ba090e6db59121208b44',
     );
 
-    const tokenApproval4 = generate(tokenApproval0x5336e8d2 as Transaction);
+    const tokenApproval4 = generate(
+      tokenApproval0x5336e8d2 as unknown as Transaction,
+    );
     expect(tokenApproval4.context?.summaries?.en.title).toBe('Token Approval');
     const desc4 = contextSummary(tokenApproval4.context);
     expect(desc4).toBe(

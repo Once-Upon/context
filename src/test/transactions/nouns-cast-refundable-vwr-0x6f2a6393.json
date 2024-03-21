@@ -80,9 +80,7 @@
         "output": "0x"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x6f2a3950bfe0607416399b1d14d3983f791716d6651d65aa121f340b07796393",
       "transactionPosition": 92,
       "type": "call"
@@ -103,10 +101,7 @@
         "output": "0x"
       },
       "subtraces": 2,
-      "traceAddress": [
-        0,
-        0
-      ],
+      "traceAddress": [0, 0],
       "transactionHash": "0x6f2a3950bfe0607416399b1d14d3983f791716d6651d65aa121f340b07796393",
       "transactionPosition": 92,
       "type": "call"
@@ -153,7 +148,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "5164644559551890"
@@ -163,7 +158,7 @@
     "0x2666f0c8fb58d182f2dd79475dca4a07b3724607": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "5164644559551890"
@@ -279,10 +274,8 @@
         ]
       },
       "removed": false,
-      "topics": [
-        "0xb8e138887d0aa13bab447e82de9d5c1777041ecd21ca36ba824ff1e6c07ddda4",
-        "0x0000000000000000000000002666f0c8fb58d182f2dd79475dca4a07b3724607"
-      ],
+      "topic0": "0xb8e138887d0aa13bab447e82de9d5c1777041ecd21ca36ba824ff1e6c07ddda4",
+      "topic1": "0x0000000000000000000000002666f0c8fb58d182f2dd79475dca4a07b3724607",
       "transactionIndex": 92
     },
     {
@@ -338,10 +331,8 @@
         ]
       },
       "removed": false,
-      "topics": [
-        "0xfabef36fd46c4c3a6ad676521be5367a4dfdbf3faa68d8e826003b1752d68f4f",
-        "0x0000000000000000000000002666f0c8fb58d182f2dd79475dca4a07b3724607"
-      ],
+      "topic0": "0xfabef36fd46c4c3a6ad676521be5367a4dfdbf3faa68d8e826003b1752d68f4f",
+      "topic1": "0x0000000000000000000000002666f0c8fb58d182f2dd79475dca4a07b3724607",
       "transactionIndex": 92
     }
   ],

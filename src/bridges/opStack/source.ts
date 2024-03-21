@@ -36,10 +36,7 @@ export function detect(transaction: Transaction): boolean {
   if (transaction.chainId === 1) {
     const logs = transaction.logs ?? [];
     const transactionDepositedLog = logs.find((log: any) => {
-      return (
-        log.topics?.length > 0 &&
-        log.topics[0] === TRANSACTION_DEPOSITED_EVENT_HASH
-      );
+      return log.topic0 === TRANSACTION_DEPOSITED_EVENT_HASH;
     });
 
     if (transactionDepositedLog) {
@@ -73,21 +70,21 @@ export function generate(transaction: Transaction): Transaction {
     case AssetType.ERC20:
       asset = {
         type: AssetType.ERC20,
-        token: assetTransfer.asset,
+        token: assetTransfer.contract,
         value: assetTransfer.value,
       } as ContextERC20Type;
       break;
     case AssetType.ERC721:
       asset = {
         type: AssetType.ERC721,
-        token: assetTransfer.asset,
+        token: assetTransfer.contract,
         tokenId: assetTransfer.tokenId,
       } as ContextERC721Type;
       break;
     case AssetType.ERC1155:
       asset = {
         type: AssetType.ERC1155,
-        token: assetTransfer.asset,
+        token: assetTransfer.contract,
         tokenId: assetTransfer.tokenId,
         value: assetTransfer.value,
       } as ContextERC1155Type;
@@ -121,10 +118,7 @@ export function generate(transaction: Transaction): Transaction {
 
   const logs = transaction.logs ?? [];
   const transactionDepositedLog = logs.find((log: any) => {
-    return (
-      log.topics?.length > 0 &&
-      log.topics[0] === TRANSACTION_DEPOSITED_EVENT_HASH
-    );
+    return log.topic0 === TRANSACTION_DEPOSITED_EVENT_HASH;
   });
 
   if (transactionDepositedLog) {
@@ -132,7 +126,12 @@ export function generate(transaction: Transaction): Transaction {
     const transactionDepositedEvent = decodeLog(
       TRANSACTION_DEPOSITED_EVENT_ABI,
       transactionDepositedLog.data as Hex,
-      transactionDepositedLog.topics as EventLogTopics,
+      [
+        transactionDepositedLog.topic0,
+        transactionDepositedLog.topic1,
+        transactionDepositedLog.topic2,
+        transactionDepositedLog.topic3,
+      ] as EventLogTopics,
     );
     if (!transactionDepositedEvent) return transaction;
 

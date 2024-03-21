@@ -27,7 +27,7 @@
   "transactionFee": "6616037850693642",
   "assetTransfers": [
     {
-      "asset": "0x13303b4ee819fac204be5ef77523cfcd558c082f",
+      "contract": "0x13303b4ee819fac204be5ef77523cfcd558c082f",
       "from": "0x0000000000000000000000000000000000000000",
       "to": "0xb8edb17cd08dd854dee002f898b4f7cb3763ce75",
       "tokenId": "4070",
@@ -71,7 +71,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "0x13303b4ee819fac204be5ef77523cfcd558c082f",
+          "contract": "0x13303b4ee819fac204be5ef77523cfcd558c082f",
           "id": "0x13303b4ee819fac204be5ef77523cfcd558c082f-4070",
           "tokenId": "4070",
           "type": "erc721",
@@ -82,7 +82,7 @@
     "0xb8edb17cd08dd854dee002f898b4f7cb3763ce75": {
       "received": [
         {
-          "asset": "0x13303b4ee819fac204be5ef77523cfcd558c082f",
+          "contract": "0x13303b4ee819fac204be5ef77523cfcd558c082f",
           "id": "0x13303b4ee819fac204be5ef77523cfcd558c082f-4070",
           "tokenId": "4070",
           "type": "erc721",

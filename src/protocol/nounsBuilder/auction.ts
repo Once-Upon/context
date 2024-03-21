@@ -135,7 +135,7 @@ export const generate = (transaction: Transaction): Transaction => {
           const decoded = decodeLog(
             ABIs.IAuction,
             log.data as Hex,
-            log.topics as EventLogTopics,
+            [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
           );
           if (!decoded) return false;
           return decoded.eventName === 'AuctionSettled';
@@ -149,7 +149,12 @@ export const generate = (transaction: Transaction): Transaction => {
           const decoded = decodeLog(
             ABIs.IAuction,
             registerLog.data as Hex,
-            registerLog.topics as EventLogTopics,
+            [
+              registerLog.topic0,
+              registerLog.topic1,
+              registerLog.topic2,
+              registerLog.topic3,
+            ] as EventLogTopics,
           );
 
           if (!decoded) return transaction;

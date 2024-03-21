@@ -58,7 +58,9 @@ describe('ContextualizerService', () => {
     });
 
     it('Should detect ERC20 Swap', async () => {
-      const erc20Swap1 = contextualize(erc20Swap0x8cb66698 as Transaction);
+      const erc20Swap1 = contextualize(
+        erc20Swap0x8cb66698 as unknown as Transaction,
+      );
       expect(erc20Swap1.context?.summaries?.en.title).toBe('ERC20 Swap');
 
       const erc20Swap2 = contextualize(erc20Swap0xd55dc9b2 as Transaction);
@@ -67,7 +69,7 @@ describe('ContextualizerService', () => {
 
     it('Should detect ERC721 Purchase', async () => {
       const erc721Purchase1 = contextualize(
-        erc721Purchase0x2558f104 as Transaction,
+        erc721Purchase0x2558f104 as unknown as Transaction,
       );
       expect(erc721Purchase1.context?.summaries?.en.title).toBe('NFT Purchase');
     });
@@ -164,16 +166,22 @@ describe('ContextualizerService', () => {
     });
 
     it('Should detect FriendTech transaction', () => {
-      const friendTech1 = contextualize(friendTech0xde5ce243 as Transaction);
+      const friendTech1 = contextualize(
+        friendTech0xde5ce243 as unknown as Transaction,
+      );
       expect(friendTech1.context?.summaries?.en.title).toBe('friend.tech');
 
-      const friendTech2 = contextualize(friendTech0xe65b4bd6 as Transaction);
+      const friendTech2 = contextualize(
+        friendTech0xe65b4bd6 as unknown as Transaction,
+      );
       expect(friendTech2.context?.summaries?.en.title).toBe('friend.tech');
 
       const friendTech3 = contextualize(friendTech0xed2dd79e as Transaction);
       expect(friendTech3.context?.summaries?.en.title).toBe('friend.tech');
 
-      const friendTech4 = contextualize(friendTech0x703647d1 as Transaction);
+      const friendTech4 = contextualize(
+        friendTech0x703647d1 as unknown as Transaction,
+      );
       expect(friendTech4.context?.summaries?.en.title).toBe('friend.tech');
     });
   });

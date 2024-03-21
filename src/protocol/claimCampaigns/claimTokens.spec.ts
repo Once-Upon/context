@@ -6,12 +6,14 @@ import { containsBigInt, contextSummary } from '../../helpers/utils';
 
 describe('Enjoy claimTokens', () => {
   it('Should detect enjoy claimTokens', () => {
-    const enjoy1 = detect(enjoyClaimTokens0x266b5c9d as Transaction);
+    const enjoy1 = detect(enjoyClaimTokens0x266b5c9d as unknown as Transaction);
     expect(enjoy1).toBe(true);
   });
 
   it('Should generate context for enjoy claimTokens', () => {
-    const enjoy1 = generate(enjoyClaimTokens0x266b5c9d as Transaction);
+    const enjoy1 = generate(
+      enjoyClaimTokens0x266b5c9d as unknown as Transaction,
+    );
     expect(enjoy1.context?.summaries?.category).toBe('PROTOCOL_1');
     expect(enjoy1.context?.summaries?.en.title).toBe('Claim');
     const desc1 = contextSummary(enjoy1.context);

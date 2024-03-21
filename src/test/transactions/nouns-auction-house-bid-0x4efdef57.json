@@ -49,9 +49,7 @@
         "output": "0x"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x4efd69515e0b860232af8b6c8ac33bbbf917a91e519db5132351b09eb3ffef57",
       "transactionPosition": 111,
       "type": "call"
@@ -87,7 +85,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "12000000000000000000"
@@ -97,7 +95,7 @@
     "0x830bd73e4184cef73443c15111a1df14e495c706": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "1900000000000000000"
@@ -108,7 +106,7 @@
     "0x00d7052b5bf8fa4204333ffe194b8a70c7d8fb0a": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "10100000000000000000"
@@ -139,9 +137,7 @@
       "gas": null
     },
     "name": "createBid",
-    "args": [
-      "938"
-    ],
+    "args": ["938"],
     "signature": "createBid(uint256)",
     "selector": "0x659dd2b4",
     "value": "0"
@@ -175,10 +171,8 @@
       "data": "0x000000000000000000000000a86882277e69fbf0a51805cdc8b0a3a113079e63000000000000000000000000000000000000000000000000a688906bd8b000000000000000000000000000000000000000000000000000000000000000000000",
       "logIndex": 129,
       "removed": false,
-      "topics": [
-        "0x1159164c56f277e6fc99c11731bd380e0347deb969b75523398734c252706ea3",
-        "0x00000000000000000000000000000000000000000000000000000000000003aa"
-      ],
+      "topic0": "0x1159164c56f277e6fc99c11731bd380e0347deb969b75523398734c252706ea3",
+      "topic1": "0x00000000000000000000000000000000000000000000000000000000000003aa",
       "transactionHash": "0x4efd69515e0b860232af8b6c8ac33bbbf917a91e519db5132351b09eb3ffef57",
       "transactionIndex": 111,
       "decode": {

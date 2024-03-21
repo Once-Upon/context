@@ -37,10 +37,7 @@
       "gas": null
     },
     "name": "buyShares",
-    "args": [
-      "0x72de51dd1954a0ef37143a9892b230fd4f59a4b6",
-      "1"
-    ],
+    "args": ["0x72de51dd1954a0ef37143a9892b230fd4f59a4b6", "1"],
     "signature": "buyShares(address,uint256)",
     "selector": "0x6945b123",
     "value": "0"
@@ -62,10 +59,7 @@
         "output": "0x0"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0
-      ],
+      "traceAddress": [0, 0],
       "transactionHash": "0x70366c5a7dd57a433498731252488551ec3e9fb3b9af13e6cbb2910fea3947d1",
       "transactionPosition": 7,
       "type": "call"
@@ -149,9 +143,7 @@
       "data": "0x00000000000000000000000072de51dd1954a0ef37143a9892b230fd4f59a4b600000000000000000000000072de51dd1954a0ef37143a9892b230fd4f59a4b6000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
       "id": "log_a84294d9",
       "removed": false,
-      "topics": [
-        "0x2c76e7a47fd53e2854856ac3f0a5f3ee40d15cfaa82266357ea9779c486ab9c3"
-      ],
+      "topic0": "0x2c76e7a47fd53e2854856ac3f0a5f3ee40d15cfaa82266357ea9779c486ab9c3",
       "transactionIndex": 7
     },
     {
@@ -191,17 +183,12 @@
         "name": "SafeReceived",
         "signature": "SafeReceived(address,uint256)",
         "topic": "0x3d0ce9bfc3ed7d6862dbb28b2dea94561fe714a1b4d019aa8af39730d1ad7c3d",
-        "args": [
-          "0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
-          "0"
-        ]
+        "args": ["0xcf205808ed36593aa40a44f10c7f7c2f67d4a4d4", "0"]
       },
       "id": "log_db3b0ff9",
       "removed": false,
-      "topics": [
-        "0x3d0ce9bfc3ed7d6862dbb28b2dea94561fe714a1b4d019aa8af39730d1ad7c3d",
-        "0x000000000000000000000000cf205808ed36593aa40a44f10c7f7c2f67d4a4d4"
-      ],
+      "topic0": "0x3d0ce9bfc3ed7d6862dbb28b2dea94561fe714a1b4d019aa8af39730d1ad7c3d",
+      "topic1": "0x000000000000000000000000cf205808ed36593aa40a44f10c7f7c2f67d4a4d4",
       "transactionIndex": 7
     }
   ],

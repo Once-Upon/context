@@ -6,12 +6,16 @@ import { contextSummary } from '../../helpers/utils';
 
 describe('Cryptopunks', () => {
   it('Should detect cryptopunks', () => {
-    const cryptopunks1 = detect(cryptopunks0x3f68294b as Transaction);
+    const cryptopunks1 = detect(
+      cryptopunks0x3f68294b as unknown as Transaction,
+    );
     expect(cryptopunks1).toBe(true);
   });
 
   it('Should generate context for cryptopunks', () => {
-    const cryptopunks1 = generate(cryptopunks0x3f68294b as Transaction);
+    const cryptopunks1 = generate(
+      cryptopunks0x3f68294b as unknown as Transaction,
+    );
     expect(cryptopunks1.context?.summaries?.category).toBe('PROTOCOL_1');
     expect(cryptopunks1.context?.summaries?.en.title).toBe('CryptoPunks');
     const desc1 = contextSummary(cryptopunks1.context);

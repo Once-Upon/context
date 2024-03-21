@@ -7,13 +7,15 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 describe('SchemaRegistry', () => {
   describe('register', () => {
     it('Should detect transaction', () => {
-      const match = detect(schemaRegistryRegister0x87fc8922 as Transaction);
+      const match = detect(
+        schemaRegistryRegister0x87fc8922 as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
       const transaction = generate(
-        schemaRegistryRegister0x87fc8922 as Transaction,
+        schemaRegistryRegister0x87fc8922 as unknown as Transaction,
       );
       expect(transaction.context?.summaries?.en.title).toBe('EAS');
 

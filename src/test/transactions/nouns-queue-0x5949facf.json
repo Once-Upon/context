@@ -28,9 +28,7 @@
       "gas": null
     },
     "name": "queue",
-    "args": [
-      "474"
-    ],
+    "args": ["474"],
     "signature": "queue(uint256)",
     "selector": "0xddf0b009",
     "value": "0"
@@ -52,9 +50,7 @@
         "output": "0x"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x59496c7d83d3a8144f3988daf70c221b4a76bc860dbf6c76583b93bbef52facf",
       "transactionPosition": 307,
       "type": "call"
@@ -75,10 +71,7 @@
         "output": "0x"
       },
       "subtraces": 3,
-      "traceAddress": [
-        0,
-        0
-      ],
+      "traceAddress": [0, 0],
       "transactionHash": "0x59496c7d83d3a8144f3988daf70c221b4a76bc860dbf6c76583b93bbef52facf",
       "transactionPosition": 307,
       "type": "call"
@@ -99,12 +92,7 @@
         "output": "0x000000000000000000000000000000000000000000000000000000000002a300"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        0,
-        0
-      ],
+      "traceAddress": [0, 0, 0, 0],
       "transactionHash": "0x59496c7d83d3a8144f3988daf70c221b4a76bc860dbf6c76583b93bbef52facf",
       "transactionPosition": 307,
       "type": "call"
@@ -125,12 +113,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        1,
-        0
-      ],
+      "traceAddress": [0, 0, 1, 0],
       "transactionHash": "0x59496c7d83d3a8144f3988daf70c221b4a76bc860dbf6c76583b93bbef52facf",
       "transactionPosition": 307,
       "type": "call"
@@ -151,12 +134,7 @@
         "output": "0xa4c8dd97eaa1d946d237bb6f2a4b4f890f8fd9df7b71127808546adc71b31e2a"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0
-      ],
+      "traceAddress": [0, 0, 2, 0],
       "transactionHash": "0x59496c7d83d3a8144f3988daf70c221b4a76bc860dbf6c76583b93bbef52facf",
       "transactionPosition": 307,
       "type": "call"
@@ -337,11 +315,9 @@
         ]
       },
       "removed": false,
-      "topics": [
-        "0x76e2796dc3a81d57b0e8504b647febcbeeb5f4af818e164f11eef8131a6a763f",
-        "0xa4c8dd97eaa1d946d237bb6f2a4b4f890f8fd9df7b71127808546adc71b31e2a",
-        "0x000000000000000000000000f790a5f59678dd733fb3de93493a91f472ca1365"
-      ],
+      "topic0": "0x76e2796dc3a81d57b0e8504b647febcbeeb5f4af818e164f11eef8131a6a763f",
+      "topic1": "0xa4c8dd97eaa1d946d237bb6f2a4b4f890f8fd9df7b71127808546adc71b31e2a",
+      "topic2": "0x000000000000000000000000f790a5f59678dd733fb3de93493a91f472ca1365",
       "transactionIndex": 307
     },
     {
@@ -381,15 +357,10 @@
         "name": "ProposalQueued",
         "signature": "ProposalQueued(uint256,uint256)",
         "topic": "0x9a2e42fd6722813d69113e7d0079d3d940171428df7373df9c7f7617cfda2892",
-        "args": [
-          "474",
-          "1704208955"
-        ]
+        "args": ["474", "1704208955"]
       },
       "removed": false,
-      "topics": [
-        "0x9a2e42fd6722813d69113e7d0079d3d940171428df7373df9c7f7617cfda2892"
-      ],
+      "topic0": "0x9a2e42fd6722813d69113e7d0079d3d940171428df7373df9c7f7617cfda2892",
       "transactionIndex": 307
     }
   ],

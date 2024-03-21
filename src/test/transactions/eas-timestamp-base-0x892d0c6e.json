@@ -35,9 +35,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000065710141"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x892deadfbab71adc3347400fcfef8202cd48e52a5f8f408f8a7e825e90610c6e",
       "transactionPosition": 2,
       "type": "call"
@@ -123,11 +121,9 @@
       "data": "0x",
       "logIndex": 1,
       "removed": false,
-      "topics": [
-        "0x5aafceeb1c7ad58e4a84898bdee37c02c0fc46e7d24e6b60e8209449f183459f",
-        "0x94ed5e3cddbfb812cc7c31583af4b568e9f1f0e49ea09917226d9cca31bf5b6a",
-        "0x0000000000000000000000000000000000000000000000000000000065710141"
-      ],
+      "topic0": "0x5aafceeb1c7ad58e4a84898bdee37c02c0fc46e7d24e6b60e8209449f183459f",
+      "topic1": "0x94ed5e3cddbfb812cc7c31583af4b568e9f1f0e49ea09917226d9cca31bf5b6a",
+      "topic2": "0x0000000000000000000000000000000000000000000000000000000065710141",
       "transactionHash": "0x892deadfbab71adc3347400fcfef8202cd48e52a5f8f408f8a7e825e90610c6e",
       "transactionIndex": 2,
       "id": "log_00e9bdbd",

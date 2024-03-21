@@ -6,12 +6,16 @@ import { containsBigInt, contextSummary } from '../../helpers/utils';
 
 describe('Uniswap', () => {
   it('Should detect enjoy addLiquidityETH', () => {
-    const enjoy1 = detect(enjoyAddLiquidity0x5005b386 as Transaction);
+    const enjoy1 = detect(
+      enjoyAddLiquidity0x5005b386 as unknown as Transaction,
+    );
     expect(enjoy1).toBe(true);
   });
 
   it('Should generate context for enjoy addLiquidityETH', () => {
-    const enjoy1 = generate(enjoyAddLiquidity0x5005b386 as Transaction);
+    const enjoy1 = generate(
+      enjoyAddLiquidity0x5005b386 as unknown as Transaction,
+    );
     expect(enjoy1.context?.summaries?.category).toBe('PROTOCOL_1');
     expect(enjoy1.context?.summaries?.en.title).toBe('Uniswap');
     const desc1 = contextSummary(enjoy1.context);

@@ -15,12 +15,14 @@ import nounsCancel0xaae56ed7 from '../../test/transactions/nouns-cancel-0xaae56e
 describe('Nouns Governor', () => {
   describe('propose', () => {
     it('Should detect transaction', () => {
-      const match = detect(nounsPropose0x43866eb1 as Transaction);
+      const match = detect(nounsPropose0x43866eb1 as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(nounsPropose0x43866eb1 as Transaction);
+      const transaction = generate(
+        nounsPropose0x43866eb1 as unknown as Transaction,
+      );
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0xa86882277e69fbf0a51805cdc8b0a3a113079e63 CREATED_PROPOSAL 463',
@@ -33,12 +35,16 @@ describe('Nouns Governor', () => {
 
   describe('proposeBySigs', () => {
     it('Should detect transaction', () => {
-      const match = detect(nounsProposeBySigs0xbc09b566 as Transaction);
+      const match = detect(
+        nounsProposeBySigs0xbc09b566 as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(nounsProposeBySigs0xbc09b566 as Transaction);
+      const transaction = generate(
+        nounsProposeBySigs0xbc09b566 as unknown as Transaction,
+      );
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0x7916dba3a610b020d77c0ccfd4bd717ee400a5f2 CREATED_PROPOSAL 481',
@@ -51,12 +57,14 @@ describe('Nouns Governor', () => {
 
   describe('castVote', () => {
     it('Should detect transaction', () => {
-      const match = detect(nounsCastVote0xeaf10956 as Transaction);
+      const match = detect(nounsCastVote0xeaf10956 as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(nounsCastVote0xeaf10956 as Transaction);
+      const transaction = generate(
+        nounsCastVote0xeaf10956 as unknown as Transaction,
+      );
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0xa5d7e4c18d223d1f142297d17e36d74ce7793a54 VOTED_FOR proposal 472',
@@ -67,13 +75,15 @@ describe('Nouns Governor', () => {
 
   describe('castRefundableVote', () => {
     it('Should detect transaction', () => {
-      const match = detect(nounsCastRefundableVote0x989966a2 as Transaction);
+      const match = detect(
+        nounsCastRefundableVote0x989966a2 as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
       const transaction = generate(
-        nounsCastRefundableVote0x989966a2 as Transaction,
+        nounsCastRefundableVote0x989966a2 as unknown as Transaction,
       );
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
@@ -85,13 +95,15 @@ describe('Nouns Governor', () => {
 
   describe('castRefundableVoteWithReason', () => {
     it('Should detect transaction', () => {
-      const match = detect(nounsCastRefundableVwr0x4577a55a as Transaction);
+      const match = detect(
+        nounsCastRefundableVwr0x4577a55a as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
       const transaction = generate(
-        nounsCastRefundableVwr0x4577a55a as Transaction,
+        nounsCastRefundableVwr0x4577a55a as unknown as Transaction,
       );
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
@@ -108,12 +120,14 @@ describe('Nouns Governor', () => {
 
   describe('queue', () => {
     it('Should detect transaction', () => {
-      const match = detect(nounsQueue0x5949facf as Transaction);
+      const match = detect(nounsQueue0x5949facf as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(nounsQueue0x5949facf as Transaction);
+      const transaction = generate(
+        nounsQueue0x5949facf as unknown as Transaction,
+      );
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0x10dec36b4ac9d3b60490dfe2799881287d4a74cc QUEUED proposal 474',
@@ -124,12 +138,14 @@ describe('Nouns Governor', () => {
 
   describe('execute', () => {
     it('Should detect transaction', () => {
-      const match = detect(nounsExecute0x540c83cb as Transaction);
+      const match = detect(nounsExecute0x540c83cb as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(nounsExecute0x540c83cb as Transaction);
+      const transaction = generate(
+        nounsExecute0x540c83cb as unknown as Transaction,
+      );
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0x32d1a53f6709a03f4b6cf4cb0501204ba188d4f5 EXECUTED proposal 473',
@@ -140,12 +156,14 @@ describe('Nouns Governor', () => {
 
   describe('cancel', () => {
     it('Should detect transaction', () => {
-      const match = detect(nounsCancel0xaae56ed7 as Transaction);
+      const match = detect(nounsCancel0xaae56ed7 as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(nounsCancel0xaae56ed7 as Transaction);
+      const transaction = generate(
+        nounsCancel0xaae56ed7 as unknown as Transaction,
+      );
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0xf2b7bfcdd6b596767e346269a8675472b45d098f CANCELED proposal 472',

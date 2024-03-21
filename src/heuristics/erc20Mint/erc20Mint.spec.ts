@@ -7,7 +7,7 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 
 describe('ERC20 Mint', () => {
   it('Should detect ERC20 Mint transaction', () => {
-    const isTokenMint1 = detect(erc20Mint0x5bc8b9a8 as Transaction);
+    const isTokenMint1 = detect(erc20Mint0x5bc8b9a8 as unknown as Transaction);
     expect(isTokenMint1).toBe(true);
   });
 
@@ -20,7 +20,7 @@ describe('ERC20 Mint', () => {
   });
 
   it('Should generate a context for ERC20 Mint', () => {
-    const tokenMint1 = generate(erc20Mint0x5bc8b9a8 as Transaction);
+    const tokenMint1 = generate(erc20Mint0x5bc8b9a8 as unknown as Transaction);
     expect(tokenMint1.context?.summaries?.en.title).toBe('ERC20 Mint');
     const desc1 = contextSummary(tokenMint1.context);
     expect(desc1).toBe(

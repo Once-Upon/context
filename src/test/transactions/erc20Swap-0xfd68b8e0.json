@@ -27,21 +27,21 @@
   "transactionFee": "6898268210871948",
   "assetTransfers": [
     {
-      "asset": "0x4d17d32c84d42010b742fd2bf4805ecd48d107c9",
+      "contract": "0x4d17d32c84d42010b742fd2bf4805ecd48d107c9",
       "from": "0x665f12a6fbbfa0b50a61c03dfd423a3b45d0d2e7",
       "to": "0xe066fa3192e282bf95333a4dde2e0b687f424722",
       "value": "49563664652000000000000000000",
       "type": "erc20"
     },
     {
-      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
       "from": "0xe066fa3192e282bf95333a4dde2e0b687f424722",
       "to": "0x7a250d5630b4cf539739df2c5dacb4c659f2488d",
       "value": "80714122307213510",
       "type": "erc20"
     },
     {
-      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
       "from": "0x7a250d5630b4cf539739df2c5dacb4c659f2488d",
       "to": "0x0000000000000000000000000000000000000000",
       "value": "80714122307213510",
@@ -205,7 +205,7 @@
     "0x665f12a6fbbfa0b50a61c03dfd423a3b45d0d2e7": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "80714122307213510"
@@ -213,7 +213,7 @@
       ],
       "sent": [
         {
-          "asset": "0x4d17d32c84d42010b742fd2bf4805ecd48d107c9",
+          "contract": "0x4d17d32c84d42010b742fd2bf4805ecd48d107c9",
           "id": "0x4d17d32c84d42010b742fd2bf4805ecd48d107c9",
           "type": "erc20",
           "value": "49563664652000000000000000000"
@@ -223,7 +223,7 @@
     "0xe066fa3192e282bf95333a4dde2e0b687f424722": {
       "received": [
         {
-          "asset": "0x4d17d32c84d42010b742fd2bf4805ecd48d107c9",
+          "contract": "0x4d17d32c84d42010b742fd2bf4805ecd48d107c9",
           "id": "0x4d17d32c84d42010b742fd2bf4805ecd48d107c9",
           "type": "erc20",
           "value": "49563664652000000000000000000"
@@ -231,7 +231,7 @@
       ],
       "sent": [
         {
-          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "type": "erc20",
           "value": "80714122307213510"
@@ -241,7 +241,7 @@
     "0x0000000000000000000000000000000000000000": {
       "received": [
         {
-          "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "contract": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "type": "erc20",
           "value": "80714122307213510"
@@ -253,7 +253,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "80714122307213510"

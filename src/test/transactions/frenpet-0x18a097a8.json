@@ -36,9 +36,7 @@
         "output": "0x0"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x18a04658b7bf2697bf7ab670a2410e35e87997eacbf97998d4a2a7f7318a97a8",
       "transactionPosition": 3,
       "type": "call"
@@ -101,9 +99,7 @@
       "data": "0x00000000000000000000000000000000000000000000000000000000000035bf00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000014466f6c646564205370616365204e465420233330000000000000000000000000",
       "logIndex": 19,
       "removed": false,
-      "topics": [
-        "0x7e632a301794d8d4a81ea7e20f37d1947158d36e66403af04ba85dd194b66f1b"
-      ],
+      "topic0": "0x7e632a301794d8d4a81ea7e20f37d1947158d36e66403af04ba85dd194b66f1b",
       "transactionHash": "0x18a04658b7bf2697bf7ab670a2410e35e87997eacbf97998d4a2a7f7318a97a8",
       "transactionIndex": 3,
       "id": "log_08efc831",
@@ -136,10 +132,7 @@
         "name": "NameChange",
         "signature": "NameChange(uint256,string)",
         "topic": "0x7e632a301794d8d4a81ea7e20f37d1947158d36e66403af04ba85dd194b66f1b",
-        "args": [
-          "13759",
-          "Folded Space NFT #30"
-        ]
+        "args": ["13759", "Folded Space NFT #30"]
       },
       "chainId": 8453
     }

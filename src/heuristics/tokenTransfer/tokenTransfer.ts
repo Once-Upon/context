@@ -46,20 +46,20 @@ export function generate(transaction: Transaction): Transaction {
     tokenDetails = {
       type: AssetType.ERC721,
       tokenId: assetTransfer.tokenId,
-      token: assetTransfer.asset,
+      token: assetTransfer.contract,
     };
   } else if (assetTransfer.type === AssetType.ERC20) {
     tokenDetails = {
       type: AssetType.ERC20,
       value: assetTransfer.value,
-      token: assetTransfer.asset,
+      token: assetTransfer.contract,
     };
   } else if (assetTransfer.type === AssetType.ERC1155) {
     tokenDetails = {
       value: AssetType.ERC1155,
       tokenId: assetTransfer.tokenId,
       type: assetTransfer.type,
-      token: assetTransfer.asset,
+      token: assetTransfer.contract,
     };
   }
 

@@ -45,7 +45,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "6708158984485627"
@@ -55,7 +55,7 @@
     "0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "6708158984485627"
@@ -95,10 +95,7 @@
       "gas": null
     },
     "name": "rent",
-    "args": [
-      "12350",
-      "2"
-    ],
+    "args": ["12350", "2"],
     "signature": "rent(uint256,uint256)",
     "selector": "0x783a112b",
     "value": "0"
@@ -138,11 +135,9 @@
       "data": "0x0000000000000000000000000000000000000000000000000000000000000002",
       "logIndex": 31,
       "removed": false,
-      "topics": [
-        "0xaabd75b90fb7114eb9587a54f00ce5ebe8cb4a70627f3a6c26e506ffd771fe2f",
-        "0x0000000000000000000000002d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
-        "0x000000000000000000000000000000000000000000000000000000000000303e"
-      ],
+      "topic0": "0xaabd75b90fb7114eb9587a54f00ce5ebe8cb4a70627f3a6c26e506ffd771fe2f",
+      "topic1": "0x0000000000000000000000002d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
+      "topic2": "0x000000000000000000000000000000000000000000000000000000000000303e",
       "transactionHash": "0x4a23ce4359682b74ef91a172c3233902225521d48f570c97cb8afa921213db3d",
       "transactionIndex": 9,
       "id": "log_f89dfd82",
@@ -184,11 +179,7 @@
         "name": "Rent",
         "signature": "Rent(address,uint256,uint256)",
         "topic": "0xaabd75b90fb7114eb9587a54f00ce5ebe8cb4a70627f3a6c26e506ffd771fe2f",
-        "args": [
-          "0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2",
-          "12350",
-          "2"
-        ]
+        "args": ["0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2", "12350", "2"]
       },
       "chainId": 10
     }

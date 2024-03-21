@@ -71,11 +71,7 @@
     },
     {
       "key": "eth",
-      "value": [
-        0.001,
-        0.0009,
-        0.0001
-      ]
+      "value": [0.001, 0.0009, 0.0001]
     }
   ],
   "baseFeePerGas": 299,
@@ -167,8 +163,6 @@
       "received": [],
       "sent": [
         {
-          "asset": "eth",
-          "id": "eth",
           "type": "eth",
           "value": "1000000000000000"
         }
@@ -177,8 +171,6 @@
     "0x3e6c23cdaa52b1b6621dbb30c367d16ace21f760": {
       "received": [
         {
-          "asset": "eth",
-          "id": "eth",
           "type": "eth",
           "value": "900000000000000"
         }
@@ -188,8 +180,6 @@
     "0xe657a66b0e155975ecceb5c95f0b20a4ff5f5671": {
       "received": [
         {
-          "asset": "eth",
-          "id": "eth",
           "type": "eth",
           "value": "100000000000000"
         }
