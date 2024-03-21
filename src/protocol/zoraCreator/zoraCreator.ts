@@ -121,7 +121,7 @@ export const generate = (transaction: Transaction): Transaction => {
         ...transaction.context.variables,
         token: {
           type: AssetType.ERC1155,
-          token: assetTransfer.asset,
+          token: assetTransfer.contract,
           value: assetTransfer.value,
           tokenId: assetTransfer.tokenId,
         },
@@ -132,7 +132,7 @@ export const generate = (transaction: Transaction): Transaction => {
         ...transaction.context.variables,
         token: {
           type: AssetType.ERC721,
-          token: assetTransfer.asset,
+          token: assetTransfer.contract,
           tokenId: assetTransfer.tokenId,
         },
       };

@@ -5,7 +5,7 @@
   "accessList": [],
   "assetTransfers": [
     {
-      "asset": "0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39",
+      "contract": "0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39",
       "from": "0xbc452fdc8f851d7c5b72e1fe74dfb63bb793d511",
       "to": "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24",
       "value": "1872025000000000000000000",
@@ -59,9 +59,7 @@
     },
     {
       "key": "0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39",
-      "value": [
-        1872025
-      ]
+      "value": [1872025]
     }
   ],
   "baseFeePerGas": 252,
@@ -160,7 +158,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39",
+          "contract": "0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39",
           "id": "0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39",
           "type": "erc20",
           "value": "1872025000000000000000000"
@@ -170,7 +168,7 @@
     "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24": {
       "received": [
         {
-          "asset": "0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39",
+          "contract": "0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39",
           "id": "0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39",
           "type": "erc20",
           "value": "1872025000000000000000000"

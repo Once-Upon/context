@@ -11,7 +11,7 @@
       "value": "777000000000000"
     },
     {
-      "asset": "0xf41a3e3033d4e878943194b729aec993a4ea2045",
+      "contract": "0xf41a3e3033d4e878943194b729aec993a4ea2045",
       "from": "0x0000000000000000000000000000000000000000",
       "to": "0x6bd6d5f98c5ad557eed0df2fd73b9666188cac96",
       "tokenId": "26",
@@ -83,15 +83,11 @@
     },
     {
       "key": "eth",
-      "value": [
-        0.000777
-      ]
+      "value": [0.000777]
     },
     {
       "key": "0xf41a3e3033d4e878943194b729aec993a4ea2045",
-      "value": [
-        1e-18
-      ]
+      "value": [1e-18]
     }
   ],
   "baseFeePerGas": 252,
@@ -184,9 +180,7 @@
         "output": "0x0"
       },
       "subtraces": 3,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x6ccb91df096cdeedd6865a5a90f3c285c5b885ce76872e9a327d6c41ae6d3140",
       "transactionPosition": 1,
       "type": "call"
@@ -231,7 +225,7 @@
     "0x6bd6d5f98c5ad557eed0df2fd73b9666188cac96": {
       "received": [
         {
-          "asset": "0xf41a3e3033d4e878943194b729aec993a4ea2045",
+          "contract": "0xf41a3e3033d4e878943194b729aec993a4ea2045",
           "id": "0xf41a3e3033d4e878943194b729aec993a4ea2045-26",
           "tokenId": "26",
           "type": "erc1155",
@@ -240,7 +234,7 @@
       ],
       "sent": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "777000000000000"
@@ -251,7 +245,7 @@
       "received": [],
       "sent": [
         {
-          "asset": "0xf41a3e3033d4e878943194b729aec993a4ea2045",
+          "contract": "0xf41a3e3033d4e878943194b729aec993a4ea2045",
           "id": "0xf41a3e3033d4e878943194b729aec993a4ea2045-26",
           "tokenId": "26",
           "type": "erc1155",
@@ -263,7 +257,7 @@
     "0x7777777f279eba3d3ad8f4e708545291a6fdba8b": {
       "received": [
         {
-          "asset": "eth",
+          "contract": "eth",
           "id": "eth",
           "type": "eth",
           "value": "777000000000000"
@@ -1261,7 +1255,7 @@
   },
   "assetsEnriched": {
     "0xf41a3e3033d4e878943194b729aec993a4ea2045-26": {
-      "asset": "0xf41a3e3033d4e878943194b729aec993a4ea2045",
+      "contract": "0xf41a3e3033d4e878943194b729aec993a4ea2045",
       "id": "0xf41a3e3033d4e878943194b729aec993a4ea2045-26",
       "tokenId": "26",
       "type": "erc1155",
