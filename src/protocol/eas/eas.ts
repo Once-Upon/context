@@ -70,7 +70,12 @@ const getAttestationID = (transaction: Transaction): string | null => {
   const decoded = decodeLog(
     ABIs.EAS,
     transactionLog?.data as Hex,
-    transactionLog?.topics as EventLogTopics,
+    [
+      transactionLog?.topic0,
+      transactionLog?.topic1,
+      transactionLog?.topic2,
+      transactionLog?.topic3,
+    ] as EventLogTopics,
   );
   if (!decoded) return null;
 

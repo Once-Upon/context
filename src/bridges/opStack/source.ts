@@ -37,10 +37,7 @@ export function detect(transaction: Transaction): boolean {
   if (transaction.chainId === 1) {
     const logs = transaction.logs ?? [];
     const transactionDepositedLog = logs.find((log: any) => {
-      return (
-        log.topics?.length > 0 &&
-        log.topics[0] === TRANSACTION_DEPOSITED_EVENT_HASH
-      );
+      return log.topic0 === TRANSACTION_DEPOSITED_EVENT_HASH;
     });
 
     if (transactionDepositedLog) {
@@ -124,10 +121,47 @@ export function generate(transaction: Transaction): Transaction {
     },
   };
 
+<<<<<<< HEAD
   // Note: Other contextualizers fetch this id dynamically
   const destinationChainId =
     GATEWAY_CHAIN_ID_MAPPING[transactionDepositedLog.address];
   if (destinationChainId) {
+=======
+  const logs = transaction.logs ?? [];
+  const transactionDepositedLog = logs.find((log: any) => {
+    return log.topic0 === TRANSACTION_DEPOSITED_EVENT_HASH;
+  });
+
+  if (transactionDepositedLog) {
+    // Now parse the data to pull out the nonce for this message
+    const transactionDepositedEvent = decodeLog(
+      TRANSACTION_DEPOSITED_EVENT_ABI,
+      transactionDepositedLog.data as Hex,
+      [
+        transactionDepositedLog.topic0,
+        transactionDepositedLog.topic1,
+        transactionDepositedLog.topic2,
+        transactionDepositedLog.topic3,
+      ] as EventLogTopics,
+    );
+    if (!transactionDepositedEvent) return transaction;
+
+    const event: TransactionDepositedEvent = {
+      eventName: 'TransactionDeposited',
+      args: {
+        from: transactionDepositedEvent.args['from'] as Hex,
+        to: transactionDepositedEvent.args['to'] as Hex,
+        version: transactionDepositedEvent.args['version'] as bigint,
+        opaqueData: transactionDepositedEvent.args['opaqueData'] as Hex,
+      },
+    };
+    const optimismTxHash = getL2HashFromL1DepositInfo({
+      event,
+      logIndex: transactionDepositedLog.logIndex,
+      blockHash: transaction.blockHash as `0x${string}`,
+    });
+
+>>>>>>> 6063771 (feat: update topics to topic0)
     if (transaction.context.summaries && transaction.context.variables) {
       transaction.context.summaries.en.default += 'to[[chainID]]';
       transaction.context.variables['chainID'] = {
