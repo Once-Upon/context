@@ -78,6 +78,17 @@ export type BasepaintAction = 'PAINTED' | 'WITHDREW_REWARDS';
 
 export type DisperseAction = 'TIPPED';
 
+export type BNSContextAction = 
+  | 'REGISTERED'            
+  | 'RENEWED'               
+  | 'SET_REVERSE_BNS_TO'    
+  | 'UPDATED_TEXT'          
+  | 'UPDATED_ADDRESS'       
+  | 'UPDATED_CONTENTHASH'   
+  | 'UPDATED_RECORDS'       
+  | 'TRANSFERED_NAME'       
+  | 'TRANSFERED_NAMES';
+
 export type ProtocolContextAction =
   | WETHContextAction
   | ENSContextAction
@@ -92,4 +103,5 @@ export type ProtocolContextAction =
   | UniswapV2RouterAction
   | ClaimCampaignsAction
   | BasepaintAction
-  | DisperseAction;
+  | DisperseAction
+  | BNSContextAction;
