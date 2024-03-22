@@ -15,6 +15,7 @@ import { claimCampaignsContextualizer } from './claimCampaigns';
 import { basepaintContextualizer } from './basepaint';
 import { disperseContextualizer } from './disperse';
 import { zoraCreatorContextualizer } from './zoraCreator';
+import { bnsContextualizer } from './bns';
 
 const children = {
   wethContextualizer,
@@ -33,6 +34,7 @@ const children = {
   basepaintContextualizer,
   disperseContextualizer,
   zoraCreatorContextualizer,
+  bnsContextualizer,
 };
 
 const protocolContextualizers = Object.fromEntries(
