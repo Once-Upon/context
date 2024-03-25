@@ -1,8 +1,8 @@
 import { program } from './main';
 import { fetchTransactions } from './utils';
 import { Transaction } from '../types';
-import { protocolContextualizer } from '../protocol';
-import { heuristicContextualizer } from '../heuristics';
+import { protocolContextualizer } from '../contextualizers/protocol';
+import { heuristicContextualizer } from '../contextualizers/heuristics';
 
 export function registerRunContextualizersCommand() {
   program

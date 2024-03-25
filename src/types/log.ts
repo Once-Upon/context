@@ -1,3 +1,5 @@
+import { StdObj } from './shared';
+
 export interface Log {
   address: string;
   data: string;
@@ -33,3 +35,20 @@ export type EventLogTopics = [
   signature: `0x${string}`,
   ...args: `0x${string}`[],
 ];
+
+export type RawLog = StdObj & {
+  address: string;
+  data: string;
+  logIndex: number;
+  topics: string[];
+  decoded?: LogDescription;
+};
+
+export type RawReceipt = StdObj & {
+  logs: RawLog[];
+  gasUsed: number | string;
+  effectiveGasPrice: number | string;
+  l1GasPrice?: string;
+  l1GasUsed?: string;
+  l1FeeScalar?: string;
+};
