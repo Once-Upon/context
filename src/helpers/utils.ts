@@ -333,7 +333,14 @@ export function loadBlockFixture(
   // first load the raw data and parse it as a RawBlock
   const raw = fs
     .readFileSync(
-      path.join(__dirname, '..', 'blocks', chain, `${blockNumber}.json`),
+      path.join(
+        __dirname,
+        '..',
+        'test',
+        'blocks',
+        chain,
+        `${blockNumber}.json`,
+      ),
     )
     .toString();
   const rawBlock = JSON.parse(raw) as RawBlock;
