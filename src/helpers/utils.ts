@@ -189,7 +189,7 @@ export const convertDate = (epochTime: number): string => {
   const day = ('0' + date.getUTCDate()).slice(-2);
   const year = date.getUTCFullYear();
 
-  const dateString = `${month}/${day}/${year}`;
+  const dateString = `${year}-${month}-${day}`;
 
   return dateString;
 };

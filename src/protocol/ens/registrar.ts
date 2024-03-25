@@ -74,7 +74,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'IDENTITY',
             en: {
               title: 'ENS',
-              default: `[[registerer]][[registered]][[name]]expires on[[expireDate]]`,
+              default: `[[registerer]][[registered]][[name]]with an expiration of[[expireDate]]`,
             },
           },
           variables: {
@@ -112,7 +112,7 @@ export const generate = (transaction: Transaction): Transaction => {
             category: 'IDENTITY',
             en: {
               title: 'ENS',
-              default: `[[renewer]][[renewed]][[name]]expires on[[expireDate]]`,
+              default: `[[renewer]][[renewed]][[name]]with an expiration of[[expireDate]]`,
             },
           },
           variables: {
