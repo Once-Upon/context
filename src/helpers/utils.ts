@@ -322,6 +322,7 @@ export function loadBlockFixture(
       path.join(
         __dirname,
         '..',
+        'transformers',
         'test',
         'blocks',
         chain,
