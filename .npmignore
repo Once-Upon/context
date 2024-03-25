@@ -1,2 +1,4 @@
 src/commands/
 dist/commands/
+dist/contextualizers/test/
+dist/transformers/test/
