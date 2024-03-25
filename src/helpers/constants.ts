@@ -1,5 +1,4 @@
 import 'dotenv/config';
-import { keccak256 } from 'web3-utils';
 import { AbiItem } from '../types';
 
 export const WETH_ADDRESSES = [
@@ -10,6 +9,10 @@ export const WETH_ADDRESSES = [
 ];
 
 export const KNOWN_ADDRESSES = {
+  CryptoKitties: '0x06012c8cf97bead5deae237070f9587f8e7a266d', // Meow
+  CryptoPunksNew: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb',
+  CryptoPunksOld: '0x6ba6f2207e343923ba692e5cae646fb0f566db8d',
+  CryptoStrikers: '0xdcaad9fd9a74144d226dbf94ce6162ca9f09ed7e',
   NULL: '0x0000000000000000000000000000000000000000',
   WETH: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
 };
@@ -53,15 +56,6 @@ export const FORKS = {
   shanghai: 17034870, // April 12, 2023: https://ethereum.org/en/history/#shanghai
 };
 
-// Helper method for building dictionary of method signatures => method hashes
-const createSignatureMapping = (signatures: string[]) => {
-  const mapping: Record<string, string> = {};
-  for (const signature of signatures) {
-    mapping[signature] = keccak256(signature).slice(2, 10);
-  }
-  return mapping;
-};
-
 // https://eips.ethereum.org/EIPS/eip-20
 export const ERC20_METHOD_SIGNATURES = [
   'totalSupply()',
@@ -71,8 +65,6 @@ export const ERC20_METHOD_SIGNATURES = [
   'approve(address,uint256)',
   'allowance(address,address)',
 ];
-
-export const ERC20_METHODS = createSignatureMapping(ERC20_METHOD_SIGNATURES);
 
 // https://eips.ethereum.org/EIPS/eip-777
 export const ERC777_METHOD_SIGNATURES = [
@@ -89,8 +81,6 @@ export const ERC777_METHOD_SIGNATURES = [
   'operatorBurn(address,uint256,bytes,bytes)',
 ];
 
-export const ERC777_METHODS = createSignatureMapping(ERC777_METHOD_SIGNATURES);
-
 // TODO - ERC721_OLD_METHOD_SIGNATURES (e.g. CryptoKitties, CryptoStrikers, CryptoArte, etc.)
 
 // https://ethereum.org/en/developers/docs/standards/tokens/erc-721/#methods
@@ -106,8 +96,6 @@ export const ERC721_METHOD_SIGNATURES = [
   'isApprovedForAll(address,address)',
 ];
 
-export const ERC721_METHODS = createSignatureMapping(ERC721_METHOD_SIGNATURES);
-
 // NOTE - ERC721a implements ERC721, so we don't need to include ERC721a methods here https://www.azuki.com/erc721a
 
 // https://eips.ethereum.org/EIPS/eip-1155
@@ -121,20 +109,12 @@ export const ERC1155_METHOD_SIGNATURES = [
   'safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)',
 ];
 
-export const ERC1155_METHODS = createSignatureMapping(
-  ERC1155_METHOD_SIGNATURES,
-);
-
 //https://eips.ethereum.org/EIPS/eip-165
 export const ERC165_METHOD_SIGNATURES = ['supportsInterface(bytes4)'];
 
-export const ERC165_METHODS = createSignatureMapping(ERC165_METHOD_SIGNATURES);
-
 // Contract Addresses
 export const OPENSEA_REGISTRY_SIGNATURES = ['registerProxy()'];
-export const OPENSEA_REGISTRY_METHODS = createSignatureMapping(
-  OPENSEA_REGISTRY_SIGNATURES,
-);
+
 export const OPENSEA_REGISTRY_ADDRESS =
   '0xa5409ec958c83c3f309868babaca7c86dcb077c1';
 
@@ -144,10 +124,6 @@ export const GNOSIS_SAFE_FACTORY_METHOD_SIGNATURES = [
   'createProxyWithNonce(address,bytes,uint256)',
   'createProxyWithCallback(address,bytes,uint256,address)',
 ];
-
-export const GNOSIS_SAFE_FACTORY_METHODS = createSignatureMapping(
-  GNOSIS_SAFE_FACTORY_METHOD_SIGNATURES,
-);
 
 export const GNOSIS_SAFE_FACTORY_0_1_0_ADDRESS =
   '0x88cd603a5dc47857d02865bbc7941b588c533263'; // Not used often
@@ -160,32 +136,10 @@ export const GNOSIS_SAFE_FACTORY_1_1_1_ADDRESS =
 export const GNOSIS_SAFE_FACTORY_1_3_0_ADDRESS =
   '0xa6b71e26c5e0845f74c812102ca7114b6a896ab2';
 
-export const KNOWN_ADDRESSES = {
-  CryptoKitties: '0x06012c8cf97bead5deae237070f9587f8e7a266d', // Meow
-  CryptoPunksNew: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb',
-  CryptoPunksOld: '0x6ba6f2207e343923ba692e5cae646fb0f566db8d',
-  CryptoStrikers: '0xdcaad9fd9a74144d226dbf94ce6162ca9f09ed7e',
-  NULL: '0x0000000000000000000000000000000000000000',
-  WETH: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
-};
-
-// Helper method for building dictionary of event signatures => event hashes
-const createEventSignatureMapping = (signatures: string[]) => {
-  const mapping: Record<string, string> = {};
-  for (const signature of signatures) {
-    mapping[signature] = keccak256(signature);
-  }
-  return mapping;
-};
-
 // https://eips.ethereum.org/EIPS/eip-1967
 export const TRANSPARENT_UPGRADEABLE_PROXY_EVENT_SIGNATURES = [
   'Upgraded(address)',
 ];
-
-export const TRANSPARENT_UPGRADEABLE_PROXY_EVENTS = createEventSignatureMapping(
-  TRANSPARENT_UPGRADEABLE_PROXY_EVENT_SIGNATURES,
-);
 
 export const ERC20ABI: AbiItem[] = [
   {
@@ -330,9 +284,6 @@ export const GOVERNOR_METHOD_SIGNATURES = [
   'castVoteWithReason(uint256,uint8,string)',
   'castVoteBySig(uint256,uint8,uint8,bytes32,bytes32)',
 ];
-export const GOVERNOR_METHODS = createSignatureMapping(
-  GOVERNOR_METHOD_SIGNATURES,
-);
 
 export const TOKEN_SWAP_CONTRACTS = [
   '0xe592427a0aece92de3edee1f18e0157c05861564', // Uniswap V3 Router
@@ -410,7 +361,6 @@ export const SAFE_METHOD_SIGNATURES = [
   // FallbackManager
   // 'setFallbackHandler(address)',
 ];
-export const SAFE_METHODS = createSignatureMapping(SAFE_METHOD_SIGNATURES);
 export const EXECUTE_TRANSACTION_SIGNATURE =
   'execTransaction(address,uint256,bytes,uint8,uint256,uint256,uint256,address,address,bytes)';
 
@@ -683,7 +633,3 @@ export const PROXY_IMPLEMENTATION_METHOD_SIGNATURES = [
   'implementation()',
   'IMPL()',
 ];
-
-export const PROXY_IMPLEMENTATION_METHODS = createSignatureMapping(
-  PROXY_IMPLEMENTATION_METHOD_SIGNATURES,
-);

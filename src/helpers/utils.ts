@@ -17,15 +17,6 @@ import {
 } from '../types';
 import fs from 'fs';
 import path from 'path';
-import {
-  ERC20_METHODS,
-  ERC777_METHODS,
-  ERC721_METHODS,
-  ERC1155_METHODS,
-  ERC165_METHODS,
-  GOVERNOR_METHODS,
-  SAFE_METHODS,
-} from './constants';
 
 const VALID_CHARS =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.? ';
@@ -233,21 +224,6 @@ export const bytecodeIsERC = (
   );
   return ercMethodsDetected.length == Object.keys(standard).length;
 };
-
-export const bytecodeIsERC20 = (bytecode: string): boolean =>
-  bytecodeIsERC(ERC20_METHODS, bytecode);
-export const bytecodeIsERC777 = (bytecode: string): boolean =>
-  bytecodeIsERC(ERC777_METHODS, bytecode);
-export const bytecodeIsERC721 = (bytecode: string): boolean =>
-  bytecodeIsERC(ERC721_METHODS, bytecode);
-export const bytecodeIsERC1155 = (bytecode: string): boolean =>
-  bytecodeIsERC(ERC1155_METHODS, bytecode);
-export const bytecodeIsERC165 = (bytecode: string): boolean =>
-  bytecodeIsERC(ERC165_METHODS, bytecode);
-export const bytecodeIsIGovernor = (bytecode: string): boolean =>
-  bytecodeIsERC(GOVERNOR_METHODS, bytecode);
-export const bytecodeIsGnosisSafe = (bytecode: string): boolean =>
-  bytecodeIsERC(SAFE_METHODS, bytecode);
 
 export const normalizeBlock = (block: StdObj): RawBlock => {
   // console.log('block', block);
