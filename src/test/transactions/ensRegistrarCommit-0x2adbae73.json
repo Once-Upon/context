@@ -1,0 +1,246 @@
+{
+  "_id": "65f47b2e78ab9467295f9f18",
+  "chainId": 1,
+  "hash": "0x2adb9136471e4bf6d1a4c4cc0fa2397f1c6bc5945b9b4b6ad34881ab319eae73",
+  "accessList": [],
+  "attributes": [
+    {
+      "key": "blockNumber",
+      "value": 19441619
+    },
+    {
+      "key": "chainId",
+      "value": 1
+    },
+    {
+      "key": "from",
+      "value": "0x7f9fe1b6e8e462640e78e2b82c792dfbf9175cc9"
+    },
+    {
+      "key": "parties",
+      "value": [
+        "0x7f9fe1b6e8e462640e78e2b82c792dfbf9175cc9",
+        "0x705bfbcfccde554e11df213bf6d463ea00dd57cc",
+        "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5"
+      ]
+    },
+    {
+      "key": "sigHash",
+      "value": "0xceae4ad9"
+    },
+    {
+      "key": "timestamp",
+      "value": 1710521099
+    },
+    {
+      "key": "to",
+      "value": "0x705bfbcfccde554e11df213bf6d463ea00dd57cc"
+    },
+    {
+      "key": "value",
+      "value": 0
+    }
+  ],
+  "baseFeePerGas": 39269701943,
+  "blockHash": "0x03de73cacd8cbf8535411637768a25969d6f15056ddfc86e77f671be3cce9e0b",
+  "blockNumber": 19441619,
+  "burntFees": "1966980100622927",
+  "decode": {
+    "fragment": {
+      "type": "function",
+      "inputs": [
+        {
+          "name": "",
+          "type": "bytes32[]",
+          "baseType": "array",
+          "indexed": null,
+          "components": null,
+          "arrayLength": -1,
+          "arrayChildren": {
+            "name": "",
+            "type": "bytes32",
+            "baseType": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null
+          }
+        }
+      ],
+      "name": "bulkCommit",
+      "constant": false,
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "payable": false,
+      "gas": null
+    },
+    "name": "bulkCommit",
+    "args": [
+      "0xdeee67cb8f69369abbd9437659f9d644227980bf867a5cb2d55633395113c25d"
+    ],
+    "signature": "bulkCommit(bytes32[])",
+    "selector": "0xceae4ad9",
+    "value": "0"
+  },
+  "fork": "shanghai",
+  "from": "0x7f9fe1b6e8e462640e78e2b82c792dfbf9175cc9",
+  "gas": 75718,
+  "gasPrice": "39316746943",
+  "input": "0xceae4ad900000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000001deee67cb8f69369abbd9437659f9d644227980bf867a5cb2d55633395113c25d",
+  "internalSigHashes": [
+    {
+      "from": "0x7f9fe1b6e8e462640e78e2b82c792dfbf9175cc9",
+      "to": "0x705bfbcfccde554e11df213bf6d463ea00dd57cc",
+      "sigHash": "0xceae4ad9"
+    },
+    {
+      "from": "0x705bfbcfccde554e11df213bf6d463ea00dd57cc",
+      "to": "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5",
+      "sigHash": "0xf14fcbc8"
+    }
+  ],
+  "isoTimestamp": "2024-03-15T16:44:59.000Z",
+  "maxFeePerGas": "49161784820",
+  "maxPriorityFeePerGas": "47045000",
+  "minerFees": "2356437005000",
+  "nonce": 39,
+  "parties": [
+    "0x7f9fe1b6e8e462640e78e2b82c792dfbf9175cc9",
+    "0x705bfbcfccde554e11df213bf6d463ea00dd57cc",
+    "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5"
+  ],
+  "r": "0x12a2b8b4193f4c0619f805b57f497487f02cfff0ea7469cfee6baca431506f25",
+  "receipt": {
+    "blockHash": "0x03de73cacd8cbf8535411637768a25969d6f15056ddfc86e77f671be3cce9e0b",
+    "blockNumber": 19441619,
+    "contractAddress": null,
+    "cumulativeGasUsed": 13607927,
+    "effectiveGasPrice": 39316746943,
+    "from": "0x7f9fe1b6e8e462640e78e2b82c792dfbf9175cc9",
+    "gasUsed": 50089,
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0x705bfbcfccde554e11df213bf6d463ea00dd57cc",
+    "transactionHash": "0x2adb9136471e4bf6d1a4c4cc0fa2397f1c6bc5945b9b4b6ad34881ab319eae73",
+    "transactionIndex": 178,
+    "type": "0x2"
+  },
+  "s": "0x7afd79635905020b01237426fea1d2456d7be23ac84e5ba0136bfa71b4da71fb",
+  "sigHash": "0xceae4ad9",
+  "timestamp": 1710521099,
+  "to": "0x705bfbcfccde554e11df213bf6d463ea00dd57cc",
+  "transactionFee": "1969336537627927",
+  "transactionIndex": 178,
+  "type": 2,
+  "v": "0x0",
+  "value": "0",
+  "logs": [],
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x7f9fe1b6e8e462640e78e2b82c792dfbf9175cc9": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x705bfbcfccde554e11df213bf6d463ea00dd57cc": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": null
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 11155111,
+        "label": {
+          "public": null
+        },
+        "isContract": true,
+        "tokenStandard": "erc721",
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": "ENS: ETH Registrar Controller"
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 5,
+        "label": {
+          "public": "ENS: ETH Registrar Controller"
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ]
+  },
+  "assetsEnriched": {}
+}
