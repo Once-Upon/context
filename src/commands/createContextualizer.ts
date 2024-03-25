@@ -12,7 +12,7 @@ export function registerCreateContextualizerCommand() {
     .argument('<name>', 'name of contextualizer')
     .option('-h, --hash <hash>', 'transaction hash')
     .action(async (name, options) => {
-      const srcDir = path.join(__dirname, '..', '..', 'src');
+      const srcDir = path.join(__dirname, '..', '..', 'src', 'contextualizers');
       const templateDir = path.join(srcDir, 'template');
       const protocolDir = path.join(srcDir, 'protocol', name);
 
