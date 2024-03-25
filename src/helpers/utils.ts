@@ -17,15 +17,6 @@ import {
 } from '../types';
 import fs from 'fs';
 import path from 'path';
-import {
-  ERC20_METHODS,
-  ERC777_METHODS,
-  ERC721_METHODS,
-  ERC1155_METHODS,
-  ERC165_METHODS,
-  GOVERNOR_METHODS,
-  SAFE_METHODS,
-} from './constants';
 
 const VALID_CHARS =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.? ';
@@ -220,21 +211,6 @@ export const bytecodeIsERC = (
   return ercMethodsDetected.length == Object.keys(standard).length;
 };
 
-export const bytecodeIsERC20 = (bytecode: string): boolean =>
-  bytecodeIsERC(ERC20_METHODS, bytecode);
-export const bytecodeIsERC777 = (bytecode: string): boolean =>
-  bytecodeIsERC(ERC777_METHODS, bytecode);
-export const bytecodeIsERC721 = (bytecode: string): boolean =>
-  bytecodeIsERC(ERC721_METHODS, bytecode);
-export const bytecodeIsERC1155 = (bytecode: string): boolean =>
-  bytecodeIsERC(ERC1155_METHODS, bytecode);
-export const bytecodeIsERC165 = (bytecode: string): boolean =>
-  bytecodeIsERC(ERC165_METHODS, bytecode);
-export const bytecodeIsIGovernor = (bytecode: string): boolean =>
-  bytecodeIsERC(GOVERNOR_METHODS, bytecode);
-export const bytecodeIsGnosisSafe = (bytecode: string): boolean =>
-  bytecodeIsERC(SAFE_METHODS, bytecode);
-
 export const normalizeBlock = (block: StdObj): RawBlock => {
   // console.log('block', block);
 
@@ -244,19 +220,6 @@ export const normalizeBlock = (block: StdObj): RawBlock => {
   str = str.replace(/("0x[A-z0-9]{40}")/g, (v) => v.toLowerCase());
 
   return JSON.parse(str) as RawBlock;
-};
-
-const VALID_CHARS =
-  'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.? ';
-
-export const countValidChars = (stringToCount: string) => {
-  let count = 0;
-  for (let i = 0; i < stringToCount.length; i++) {
-    if (VALID_CHARS.indexOf(stringToCount[i]) >= 0) {
-      count++;
-    }
-  }
-  return count;
 };
 
 export const convertToString = (value: any): string => {
@@ -362,21 +325,4 @@ export function loadBlockFixture(
   const rawBlock = JSON.parse(raw) as RawBlock;
   const block = normalizeBlock(rawBlock);
   return block;
-}
-
-export function decodeLog<TAbi extends Abi>(
-  abi: TAbi,
-  data: Hex,
-  topics: EventLogTopics,
-) {
-  try {
-    const result = decodeEventLog({
-      abi,
-      data,
-      topics,
-    });
-    return result;
-  } catch (err) {
-    return null;
-  }
 }
