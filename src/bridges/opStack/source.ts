@@ -13,6 +13,7 @@ import {
   EventLogTopics,
 } from '../../types';
 import {
+  GATEWAY_CHAIN_ID_MAPPING,
   TRANSACTION_DEPOSITED_EVENT_ABI,
   TRANSACTION_DEPOSITED_EVENT_HASH,
 } from './constants';
@@ -58,8 +59,16 @@ export function generate(transaction: Transaction): Transaction {
     return transaction;
   }
   const assetTransfer: Asset = assetSent[0];
-  // Note: Other contextualizers fetch this id dynamically
-  const destinationChainId = 10;
+
+  const logs = transaction.logs ?? [];
+  const transactionDepositedLog = logs.find((log: any) => {
+    return (
+      log.topics?.length > 0 &&
+      log.topics[0] === TRANSACTION_DEPOSITED_EVENT_HASH
+    );
+  });
+
+  if (!transactionDepositedLog) return transaction;
 
   let asset: ContextSummaryVariableType;
   switch (assetTransfer.type) {
@@ -99,17 +108,13 @@ export function generate(transaction: Transaction): Transaction {
       category: 'MULTICHAIN',
       en: {
         title: `Bridge`,
-        default: '[[sender]][[bridged]][[asset]]to[[chainID]]',
+        default: '[[sender]][[bridged]][[asset]]',
       },
     },
     variables: {
       sender: {
         type: 'address',
         value: transaction.from,
-      },
-      chainID: {
-        type: 'chainID',
-        value: destinationChainId,
       },
       bridged: {
         type: 'contextAction',
@@ -119,47 +124,50 @@ export function generate(transaction: Transaction): Transaction {
     },
   };
 
-  const logs = transaction.logs ?? [];
-  const transactionDepositedLog = logs.find((log: any) => {
-    return (
-      log.topics?.length > 0 &&
-      log.topics[0] === TRANSACTION_DEPOSITED_EVENT_HASH
-    );
-  });
-
-  if (transactionDepositedLog) {
-    // Now parse the data to pull out the nonce for this message
-    const transactionDepositedEvent = decodeLog(
-      TRANSACTION_DEPOSITED_EVENT_ABI,
-      transactionDepositedLog.data as Hex,
-      transactionDepositedLog.topics as EventLogTopics,
-    );
-    if (!transactionDepositedEvent) return transaction;
-
-    const event: TransactionDepositedEvent = {
-      eventName: 'TransactionDeposited',
-      args: {
-        from: transactionDepositedEvent.args['from'] as Hex,
-        to: transactionDepositedEvent.args['to'] as Hex,
-        version: transactionDepositedEvent.args['version'] as bigint,
-        opaqueData: transactionDepositedEvent.args['opaqueData'] as Hex,
-      },
-    };
-    const optimismTxHash = getL2HashFromL1DepositInfo({
-      event,
-      logIndex: transactionDepositedLog.logIndex,
-      blockHash: transaction.blockHash as `0x${string}`,
-    });
-
+  // Note: Other contextualizers fetch this id dynamically
+  const destinationChainId =
+    GATEWAY_CHAIN_ID_MAPPING[transactionDepositedLog.address];
+  if (destinationChainId) {
     if (transaction.context.summaries && transaction.context.variables) {
-      // add resulting in
-      transaction.context.summaries.en.default += 'resulting in[[transaction]]';
-      // add transaction in variables
-      transaction.context.variables['transaction'] = {
-        type: 'transaction',
-        value: optimismTxHash,
+      transaction.context.summaries.en.default += 'to[[chainID]]';
+      transaction.context.variables['chainID'] = {
+        type: 'chainID',
+        value: destinationChainId,
       };
     }
+  }
+
+  // Now parse the data to pull out the nonce for this message
+  const transactionDepositedEvent = decodeLog(
+    TRANSACTION_DEPOSITED_EVENT_ABI,
+    transactionDepositedLog.data as Hex,
+    transactionDepositedLog.topics as EventLogTopics,
+  );
+  if (!transactionDepositedEvent) return transaction;
+
+  const event: TransactionDepositedEvent = {
+    eventName: 'TransactionDeposited',
+    args: {
+      from: transactionDepositedEvent.args['from'] as Hex,
+      to: transactionDepositedEvent.args['to'] as Hex,
+      version: transactionDepositedEvent.args['version'] as bigint,
+      opaqueData: transactionDepositedEvent.args['opaqueData'] as Hex,
+    },
+  };
+  const optimismTxHash = getL2HashFromL1DepositInfo({
+    event,
+    logIndex: transactionDepositedLog.logIndex,
+    blockHash: transaction.blockHash as `0x${string}`,
+  });
+
+  if (transaction.context.summaries && transaction.context.variables) {
+    // add resulting in
+    transaction.context.summaries.en.default += 'resulting in[[transaction]]';
+    // add transaction in variables
+    transaction.context.variables['transaction'] = {
+      type: 'transaction',
+      value: optimismTxHash,
+    };
   }
 
   return transaction;

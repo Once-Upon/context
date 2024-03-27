@@ -36,3 +36,8 @@ export const TRANSACTION_DEPOSITED_EVENT_ABI: Abi = [
     type: 'event',
   },
 ];
+
+export const GATEWAY_CHAIN_ID_MAPPING = {
+  '0x49048044d57e1c92a77f79988d21fa8faf74e97e': 8453,
+  '0xbeb5fc579115071764c7423a4f12edde41f106ed': 10,
+};
