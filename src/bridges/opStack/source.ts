@@ -70,13 +70,6 @@ export function generate(transaction: Transaction): Transaction {
 
   if (!transactionDepositedLog) return transaction;
 
-  // Note: Other contextualizers fetch this id dynamically
-  const destinationChainId =
-    GATEWAY_CHAIN_ID_MAPPING[transactionDepositedLog.address];
-  if (!destinationChainId) {
-    return transaction;
-  }
-
   let asset: ContextSummaryVariableType;
   switch (assetTransfer.type) {
     case AssetType.ETH:
@@ -115,17 +108,13 @@ export function generate(transaction: Transaction): Transaction {
       category: 'MULTICHAIN',
       en: {
         title: `Bridge`,
-        default: '[[sender]][[bridged]][[asset]]to[[chainID]]',
+        default: '[[sender]][[bridged]][[asset]]',
       },
     },
     variables: {
       sender: {
         type: 'address',
         value: transaction.from,
-      },
-      chainID: {
-        type: 'chainID',
-        value: destinationChainId,
       },
       bridged: {
         type: 'contextAction',
@@ -134,6 +123,19 @@ export function generate(transaction: Transaction): Transaction {
       asset,
     },
   };
+
+  // Note: Other contextualizers fetch this id dynamically
+  const destinationChainId =
+    GATEWAY_CHAIN_ID_MAPPING[transactionDepositedLog.address];
+  if (destinationChainId) {
+    if (transaction.context.summaries && transaction.context.variables) {
+      transaction.context.summaries.en.default += 'to[[chainID]]';
+      transaction.context.variables['chainID'] = {
+        type: 'chainID',
+        value: destinationChainId,
+      };
+    }
+  }
 
   // Now parse the data to pull out the nonce for this message
   const transactionDepositedEvent = decodeLog(
