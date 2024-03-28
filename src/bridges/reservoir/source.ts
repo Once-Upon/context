@@ -42,7 +42,7 @@ export function generate(transaction: Transaction): Transaction {
     return transaction;
   }
 
-  const destinationChainId = 7777777;
+  const destinationChainId = transaction.chainId === 7777777 ? 1 : 7777777;
 
   transaction.context = {
     summaries: {
