@@ -5,12 +5,12 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 
 describe('Input Data Message', () => {
   it('Should detect idm transaction', () => {
-    const idm1 = detect(idm0xf07ff1ad as Transaction);
+    const idm1 = detect(idm0xf07ff1ad as unknown as Transaction);
     expect(idm1).toBe(true);
   });
 
   it('Should not detect idm transaction', () => {
-    const idm1 = detect(catchall0xc35c01ac as Transaction);
+    const idm1 = detect(catchall0xc35c01ac as unknown as Transaction);
     expect(idm1).toBe(false);
   });
 });

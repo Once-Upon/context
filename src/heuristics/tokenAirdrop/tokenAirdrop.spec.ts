@@ -7,18 +7,24 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 
 describe('Token Airdrop', () => {
   it('Should detect token airdrop transaction', () => {
-    const tokenAirdrop1 = detect(tokenAirdrop0x9559fbd9 as Transaction);
+    const tokenAirdrop1 = detect(
+      tokenAirdrop0x9559fbd9 as unknown as Transaction,
+    );
     expect(tokenAirdrop1).toBe(true);
 
-    const tokenAirdrop2 = detect(tokenAirdrop0xe2a9a20b as Transaction);
+    const tokenAirdrop2 = detect(
+      tokenAirdrop0xe2a9a20b as unknown as Transaction,
+    );
     expect(tokenAirdrop2).toBe(true);
 
-    const tokenAirdrop3 = detect(tokenAirdrop0xb312ecc2 as Transaction);
+    const tokenAirdrop3 = detect(
+      tokenAirdrop0xb312ecc2 as unknown as Transaction,
+    );
     expect(tokenAirdrop3).toBe(true);
   });
 
   it('Should not detect token airdrop transaction', () => {
-    const tokenAirdrop1 = detect(catchall0xc35c01ac as Transaction);
+    const tokenAirdrop1 = detect(catchall0xc35c01ac as unknown as Transaction);
     expect(tokenAirdrop1).toBe(false);
   });
 });

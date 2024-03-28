@@ -55,7 +55,7 @@ describe('ContextualizerService', () => {
   describe('Detect transactions correctly', () => {
     it('Should detect Contract Deployment', async () => {
       const contractDeployed1 = contextualize(
-        contractDeployed0x88e7d866 as Transaction,
+        contractDeployed0x88e7d866 as unknown as Transaction,
       );
       expect(contractDeployed1.context?.summaries?.en.title).toBe(
         'Contract Deployed',
@@ -63,28 +63,34 @@ describe('ContextualizerService', () => {
     });
 
     it('Should detect ERC20 Swap', async () => {
-      const erc20Swap1 = contextualize(erc20Swap0x8cb66698 as Transaction);
+      const erc20Swap1 = contextualize(
+        erc20Swap0x8cb66698 as unknown as Transaction,
+      );
       expect(erc20Swap1.context?.summaries?.en.title).toBe('ERC20 Swap');
 
-      const erc20Swap2 = contextualize(erc20Swap0xd55dc9b2 as Transaction);
+      const erc20Swap2 = contextualize(
+        erc20Swap0xd55dc9b2 as unknown as Transaction,
+      );
       expect(erc20Swap2.context?.summaries?.en.title).toBe('ERC20 Swap');
     });
 
     it('Should detect ERC721 Purchase', async () => {
       const erc721Purchase1 = contextualize(
-        erc721Purchase0x2558f104 as Transaction,
+        erc721Purchase0x2558f104 as unknown as Transaction,
       );
       expect(erc721Purchase1.context?.summaries?.en.title).toBe('NFT Purchase');
     });
 
     it('Should detect ERC721 Sale', async () => {
-      const erc721Sale1 = contextualize(erc721Sale0x05b8cee6 as Transaction);
+      const erc721Sale1 = contextualize(
+        erc721Sale0x05b8cee6 as unknown as Transaction,
+      );
       expect(erc721Sale1.context?.summaries?.en.title).toBe('NFT Purchase'); // TODO; This should be NFT Sale, update with new version
     });
 
     it('Should detect ERC1155 Purchase', async () => {
       const erc1155Purchase1 = contextualize(
-        erc1155Purchase0x156df9f7 as Transaction,
+        erc1155Purchase0x156df9f7 as unknown as Transaction,
       );
       expect(erc1155Purchase1.context?.summaries?.en.title).toBe(
         'NFT Purchase',
@@ -92,49 +98,51 @@ describe('ContextualizerService', () => {
     });
 
     it('Should detect ERC1155 Sale', async () => {
-      const erc1155Sale1 = contextualize(erc1155Sale0x16b2334d as Transaction);
+      const erc1155Sale1 = contextualize(
+        erc1155Sale0x16b2334d as unknown as Transaction,
+      );
       expect(erc1155Sale1.context?.summaries?.en.title).toBe('NFT Purchase'); // TODO; This should be NFT Sale, update with new version
     });
 
     it('Should detect IDM', async () => {
-      const idm1 = contextualize(idm0xf07ff1ad as Transaction);
+      const idm1 = contextualize(idm0xf07ff1ad as unknown as Transaction);
       expect(idm1.context?.summaries?.en.title).toBe('Input Data Message');
     });
 
     it('Should detect Token Airdrop', async () => {
       const tokenAirdrop1 = contextualize(
-        tokenAirdrop0x9559fbd9 as Transaction,
+        tokenAirdrop0x9559fbd9 as unknown as Transaction,
       );
       expect(tokenAirdrop1.context?.summaries?.en.title).toBe('Token Airdrop');
 
       const tokenAirdrop2 = contextualize(
-        tokenAirdrop0xe2a9a20b as Transaction,
+        tokenAirdrop0xe2a9a20b as unknown as Transaction,
       );
       expect(tokenAirdrop2.context?.summaries?.en.title).toBe('Token Airdrop');
 
       const tokenAirdrop3 = contextualize(
-        tokenAirdrop0xb312ecc2 as Transaction,
+        tokenAirdrop0xb312ecc2 as unknown as Transaction,
       );
       expect(tokenAirdrop3.context?.summaries?.en.title).toBe('Token Airdrop');
     });
 
     it('Should detect Token Approval', async () => {
       const tokenApproval1 = contextualize(
-        tokenApproval0x567130ba as Transaction,
+        tokenApproval0x567130ba as unknown as Transaction,
       );
       expect(tokenApproval1.context?.summaries?.en.title).toBe(
         'Token Approval',
       );
 
       const tokenApproval2 = contextualize(
-        tokenApproval0x06f15d49 as Transaction,
+        tokenApproval0x06f15d49 as unknown as Transaction,
       );
       expect(tokenApproval2.context?.summaries?.en.title).toBe(
         'Token Approval',
       );
 
       const tokenApproval3 = contextualize(
-        tokenApproval0xa0c2a425 as Transaction,
+        tokenApproval0xa0c2a425 as unknown as Transaction,
       );
       expect(tokenApproval3.context?.summaries?.en.title).toBe(
         'Token Approval',
@@ -143,25 +151,31 @@ describe('ContextualizerService', () => {
 
     it('Should detect ERC721 Mint', async () => {
       const erc721Mint1 = contextualize(
-        erc721MintMint0x2c8a3ed1 as Transaction,
+        erc721MintMint0x2c8a3ed1 as unknown as Transaction,
       );
       expect(erc721Mint1.context?.summaries?.en.title).toBe('NFT Mint');
 
-      const erc721Mint2 = contextualize(erc721Mint0x35f54999 as Transaction);
+      const erc721Mint2 = contextualize(
+        erc721Mint0x35f54999 as unknown as Transaction,
+      );
       expect(erc721Mint2.context?.summaries?.en.title).toBe('NFT Mint');
     });
 
     it('Should detect ERC1155 Mint', async () => {
-      const erc1155Mint1 = contextualize(erc1155Mint0x45d1ed7b as Transaction);
+      const erc1155Mint1 = contextualize(
+        erc1155Mint0x45d1ed7b as unknown as Transaction,
+      );
       expect(erc1155Mint1.context?.summaries?.en.title).toBe('NFT Mint');
 
-      const erc1155Mint2 = contextualize(erc1155Mint0xdb571cc5 as Transaction);
+      const erc1155Mint2 = contextualize(
+        erc1155Mint0xdb571cc5 as unknown as Transaction,
+      );
       expect(erc1155Mint2.context?.summaries?.en.title).toBe('NFT Mint');
     });
 
     it('Should detect Token Transfer', async () => {
       const tokenTransfer1 = contextualize(
-        tokenTransfer0xcfba5dee as Transaction,
+        tokenTransfer0xcfba5dee as unknown as Transaction,
       );
       expect(tokenTransfer1.context?.summaries?.en.title).toBe(
         'Token Transfer',
@@ -169,31 +183,43 @@ describe('ContextualizerService', () => {
     });
 
     it('Should detect FriendTech transaction', () => {
-      const friendTech1 = contextualize(friendTech0xde5ce243 as Transaction);
+      const friendTech1 = contextualize(
+        friendTech0xde5ce243 as unknown as Transaction,
+      );
       expect(friendTech1.context?.summaries?.en.title).toBe('friend.tech');
 
-      const friendTech2 = contextualize(friendTech0xe65b4bd6 as Transaction);
+      const friendTech2 = contextualize(
+        friendTech0xe65b4bd6 as unknown as Transaction,
+      );
       expect(friendTech2.context?.summaries?.en.title).toBe('friend.tech');
 
-      const friendTech3 = contextualize(friendTech0xed2dd79e as Transaction);
+      const friendTech3 = contextualize(
+        friendTech0xed2dd79e as unknown as Transaction,
+      );
       expect(friendTech3.context?.summaries?.en.title).toBe('friend.tech');
 
-      const friendTech4 = contextualize(friendTech0x703647d1 as Transaction);
+      const friendTech4 = contextualize(
+        friendTech0x703647d1 as unknown as Transaction,
+      );
       expect(friendTech4.context?.summaries?.en.title).toBe('friend.tech');
     });
 
     it('Should detect ENS transaction', () => {
-      const register1 = contextualize(ens0xdb203e93 as Transaction);
+      const register1 = contextualize(ens0xdb203e93 as unknown as Transaction);
       expect(register1.context?.summaries?.en.title).toBe('ENS');
 
-      const register2 = contextualize(ens0xea1b4ab6 as Transaction);
+      const register2 = contextualize(ens0xea1b4ab6 as unknown as Transaction);
       expect(register2.context?.summaries?.en.title).toBe('ENS');
 
-      const ens3 = contextualize(ensRegistrar0xb14b4771 as Transaction);
+      const ens3 = contextualize(
+        ensRegistrar0xb14b4771 as unknown as Transaction,
+      );
       expect(ens3.context?.summaries?.en.title).toBe('ENS');
 
       // bulk renew
-      const bulkRenew = contextualize(ensBulkRenew0x25add712 as Transaction);
+      const bulkRenew = contextualize(
+        ensBulkRenew0x25add712 as unknown as Transaction,
+      );
       expect(bulkRenew.context?.summaries?.en.title).toBe('ENS');
     });
   });

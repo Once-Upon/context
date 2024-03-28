@@ -7,12 +7,14 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 describe('KeyRegistry', () => {
   describe('remove', () => {
     it('Should detect transaction', () => {
-      const match = detect(farcasterRemove0x742d8d1a as Transaction);
+      const match = detect(farcasterRemove0x742d8d1a as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(farcasterRemove0x742d8d1a as Transaction);
+      const transaction = generate(
+        farcasterRemove0x742d8d1a as unknown as Transaction,
+      );
       expect(transaction.context?.variables?.removedKey?.type).toBe(
         'contextAction',
       );
@@ -24,12 +26,16 @@ describe('KeyRegistry', () => {
 
   describe('removeFor', () => {
     it('Should detect transaction', () => {
-      const match = detect(farcasterRemoveFor0xc199aa16 as Transaction);
+      const match = detect(
+        farcasterRemoveFor0xc199aa16 as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(farcasterRemoveFor0xc199aa16 as Transaction);
+      const transaction = generate(
+        farcasterRemoveFor0xc199aa16 as unknown as Transaction,
+      );
       expect(transaction.context?.variables?.removedKey?.type).toBe(
         'contextAction',
       );
@@ -44,7 +50,7 @@ describe('KeyRegistry', () => {
 
   describe('Other transactions', () => {
     it('Should not detect transaction', () => {
-      const match = detect(catchall0xc35c01ac as Transaction);
+      const match = detect(catchall0xc35c01ac as unknown as Transaction);
       expect(match).toBe(false);
     });
 
@@ -54,7 +60,7 @@ describe('KeyRegistry', () => {
         to: farcasterRemove0x742d8d1a.to,
       };
 
-      expect(() => detect(mockTxn as Transaction)).not.toThrow();
+      expect(() => detect(mockTxn as unknown as Transaction)).not.toThrow();
     });
   });
 });

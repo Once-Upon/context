@@ -7,18 +7,20 @@ import hopDestination0x0902ccb6 from '../../test/transactions/hop-destination-0x
 describe('Optimism Destination', () => {
   it('Should detect transaction', () => {
     const isOptimismDestination1 = detect(
-      optimismDestination0x2563476c as Transaction,
+      optimismDestination0x2563476c as unknown as Transaction,
     );
     expect(isOptimismDestination1).toBe(true);
 
     const isOptimismDestination2 = detect(
-      hopDestination0x0902ccb6 as Transaction,
+      hopDestination0x0902ccb6 as unknown as Transaction,
     );
     expect(isOptimismDestination2).toBe(false);
   });
 
   it('Should generate context', () => {
-    const transaction = generate(optimismDestination0x2563476c as Transaction);
+    const transaction = generate(
+      optimismDestination0x2563476c as unknown as Transaction,
+    );
     expect(transaction.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(transaction.context)).toBe(
       '0x661ea32f349f857075cae289e7f6222c2ad083b9 BRIDGED 0.1 ETH from 1',

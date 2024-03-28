@@ -82,6 +82,7 @@ const getAttestationID = (transaction: Transaction): string | null => {
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInput(transaction.input as Hex, ABIs.EAS);
   if (!decoded) return transaction;
+  if (!transaction.chainId) return transaction;
 
   switch (decoded.functionName) {
     case 'attest': {

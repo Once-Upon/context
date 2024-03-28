@@ -36,14 +36,14 @@ export function detect(transaction: Transaction): boolean {
     decoded.functionName === 'approve' &&
     decoded.args.length === 2 &&
     !transaction.assetTransfers?.length &&
-    transaction.value === '0'
+    transaction.value === BigInt(0)
   ) {
     return true;
   } else if (
     decoded.functionName === 'setApprovalForAll' &&
     decoded.args.length === 2 &&
     !transaction.assetTransfers?.length &&
-    transaction.value === '0'
+    transaction.value === BigInt(0)
   ) {
     return true;
   }

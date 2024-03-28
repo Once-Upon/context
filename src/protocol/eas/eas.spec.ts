@@ -20,12 +20,14 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 describe('EAS', () => {
   describe('attest', () => {
     it('Should detect transaction', () => {
-      const match = detect(easAttest0xfed2349f as Transaction);
+      const match = detect(easAttest0xfed2349f as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(easAttest0xfed2349f as Transaction);
+      const transaction = generate(
+        easAttest0xfed2349f as unknown as Transaction,
+      );
       expect(transaction.context?.summaries?.en.title).toBe('EAS');
       expect(contextSummary(transaction.context)).toBe(
         '0x3b60e31cfc48a9074cd5bebb26c9eaa77650a43f ATTESTED to 0x9934465Ee73BeAF148b1b3Ff232C8cD86c4c2c63 with schema 0xc59265615401143689cbfe73046a922c975c99d97e4c248070435b1104b2dea7 🔗 link',
@@ -35,13 +37,15 @@ describe('EAS', () => {
 
   describe('attestByDelegation', () => {
     it('Should detect transaction', () => {
-      const match = detect(easAttestByDelegation0xb58d6544 as Transaction);
+      const match = detect(
+        easAttestByDelegation0xb58d6544 as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
       const transaction = generate(
-        easAttestByDelegation0xb58d6544 as Transaction,
+        easAttestByDelegation0xb58d6544 as unknown as Transaction,
       );
       expect(transaction.context?.summaries?.en.title).toBe('EAS');
       expect(contextSummary(transaction.context)).toBe(
@@ -52,12 +56,14 @@ describe('EAS', () => {
 
   describe('multiAttest', () => {
     it('Should detect transaction', () => {
-      const match = detect(easMultiAttest0x9bab2b2e as Transaction);
+      const match = detect(easMultiAttest0x9bab2b2e as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(easMultiAttest0x9bab2b2e as Transaction);
+      const transaction = generate(
+        easMultiAttest0x9bab2b2e as unknown as Transaction,
+      );
       expect(transaction.context?.summaries?.en.title).toBe('EAS');
       expect(contextSummary(transaction.context)).toBe(
         '0x0fb166cddf1387c5b63ffa25721299fd7b068f3f ATTESTED 2 times with 1 schema',
@@ -67,12 +73,14 @@ describe('EAS', () => {
 
   describe('revoke', () => {
     it('Should detect transaction', () => {
-      const match = detect(easRevoke0x4ec6335e as Transaction);
+      const match = detect(easRevoke0x4ec6335e as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(easRevoke0x4ec6335e as Transaction);
+      const transaction = generate(
+        easRevoke0x4ec6335e as unknown as Transaction,
+      );
       expect(transaction.context?.summaries?.en.title).toBe('EAS');
       expect(contextSummary(transaction.context)).toBe(
         '0x6e91973dee716ed6859e7bb689c9bd2955bdb96e REVOKED an attestation with schema 0xd3f24e873e8df2d9bb9af6f08ea1ddf61f65754d023f3ea761081e3e6a226a80 🔗 link',
@@ -82,12 +90,14 @@ describe('EAS', () => {
 
   describe('timestamp', () => {
     it('Should detect transaction', () => {
-      const match = detect(easTimestamp0x892d0c6e as Transaction);
+      const match = detect(easTimestamp0x892d0c6e as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(easTimestamp0x892d0c6e as Transaction);
+      const transaction = generate(
+        easTimestamp0x892d0c6e as unknown as Transaction,
+      );
       expect(transaction.context?.summaries?.en.title).toBe('EAS');
       expect(contextSummary(transaction.context)).toBe(
         '0x79ffc4cf151373226dcc59c9582395214a364358 TIMESTAMPED data',
@@ -97,12 +107,16 @@ describe('EAS', () => {
 
   describe('revokeOffchain', () => {
     it('Should detect transaction', () => {
-      const match = detect(easRevokeOffchain0xf38b96d0 as Transaction);
+      const match = detect(
+        easRevokeOffchain0xf38b96d0 as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(easRevokeOffchain0xf38b96d0 as Transaction);
+      const transaction = generate(
+        easRevokeOffchain0xf38b96d0 as unknown as Transaction,
+      );
       expect(transaction.context?.summaries?.en.title).toBe('EAS');
       expect(contextSummary(transaction.context)).toBe(
         '0xb2370e24dabd855bfcf87087740ca6bdb77ebd50 REVOKED offchain data',
@@ -112,7 +126,7 @@ describe('EAS', () => {
 
   describe('Other transactions', () => {
     it('Should not detect transaction', () => {
-      const match = detect(catchall0xc35c01ac as Transaction);
+      const match = detect(catchall0xc35c01ac as unknown as Transaction);
       expect(match).toBe(false);
     });
   });

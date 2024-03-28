@@ -6,12 +6,12 @@ import { containsBigInt, contextSummary } from '../../helpers/utils';
 
 describe('Disperse', () => {
   it('Should detect disperse transaction', () => {
-    const disperse1 = detect(disperse0x6fcb3def as Transaction);
+    const disperse1 = detect(disperse0x6fcb3def as unknown as Transaction);
     expect(disperse1).toBe(true);
   });
 
   it('Should generate context for disperseEth transaction', () => {
-    const disperse1 = generate(disperse0x6fcb3def as Transaction);
+    const disperse1 = generate(disperse0x6fcb3def as unknown as Transaction);
     expect(disperse1.context?.summaries?.category).toBe('PROTOCOL_1');
     expect(disperse1.context?.summaries?.en.title).toBe('Disperse');
     const desc1 = contextSummary(disperse1.context);
@@ -22,7 +22,7 @@ describe('Disperse', () => {
   });
 
   it('Should not detect as disperseEth', () => {
-    const disperse1 = detect(catchall0xc35c01ac as Transaction);
+    const disperse1 = detect(catchall0xc35c01ac as unknown as Transaction);
     expect(disperse1).toBe(false);
   });
 });
