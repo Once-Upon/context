@@ -41,7 +41,7 @@ export function generate(transaction: Transaction): Transaction {
     return transaction;
   }
 
-  const sourceChainId = 1;
+  const sourceChainId = transaction.chainId === 7777777 ? 1 : 7777777;
   transaction.context = {
     summaries: {
       category: 'MULTICHAIN',
