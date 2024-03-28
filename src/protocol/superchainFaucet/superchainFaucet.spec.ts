@@ -6,15 +6,21 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 
 describe('Superchain Faucet', () => {
   it('Should detect superchain faucet transaction', () => {
-    const superchainFaucet1 = detect(superchainFaucet0xd9dedf29 as Transaction);
+    const superchainFaucet1 = detect(
+      superchainFaucet0xd9dedf29 as unknown as Transaction,
+    );
     expect(superchainFaucet1).toBe(true);
 
-    const superchainFaucet2 = detect(superchainFaucet0x443037b3 as Transaction);
+    const superchainFaucet2 = detect(
+      superchainFaucet0x443037b3 as unknown as Transaction,
+    );
     expect(superchainFaucet2).toBe(true);
   });
 
   it('Should not detect as superchain faucet', () => {
-    const superchainFaucet1 = detect(catchall0xc35c01ac as Transaction);
+    const superchainFaucet1 = detect(
+      catchall0xc35c01ac as unknown as Transaction,
+    );
     expect(superchainFaucet1).toBe(false);
   });
 });

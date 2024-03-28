@@ -18,7 +18,8 @@ export const contextualize = (transaction: Transaction): Transaction => {
 // because it's only passing detect on the Enjoy contract on Zora
 
 export const detect = (transaction: Transaction): boolean => {
-  if (transaction.to !== UNISWAP_V2_ROUTERS[transaction.chainId]) {
+  const chainID = transaction.chainId ? transaction.chainId.toString() : '';
+  if (transaction.to !== UNISWAP_V2_ROUTERS[chainID]) {
     return false;
   }
 
@@ -64,7 +65,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           numETH: {
             type: AssetType.ETH,
-            value: transaction.value,
+            value: transaction.value.toString(),
             unit: 'wei',
           },
           numENJOY: {

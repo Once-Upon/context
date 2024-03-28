@@ -8,24 +8,24 @@ import hopSource0x8603ffab from '../../test/transactions/hop-source-0x8603ffab.j
 describe('Bridge Zora Energy Source', () => {
   it('Should detect transaction', () => {
     const isBridgeZoraEnergySource1 = detect(
-      bridgeZoraEnergySource0x72084c64 as Transaction,
+      bridgeZoraEnergySource0x72084c64 as unknown as Transaction,
     );
     expect(isBridgeZoraEnergySource1).toBe(true);
 
     const isBridgeZoraEnergySource2 = detect(
-      hopSource0x8603ffab as Transaction,
+      hopSource0x8603ffab as unknown as Transaction,
     );
     expect(isBridgeZoraEnergySource2).toBe(false);
 
     const isBridgeZoraEnergySource3 = detect(
-      zoraSource0xf2e656b3 as Transaction,
+      zoraSource0xf2e656b3 as unknown as Transaction,
     );
     expect(isBridgeZoraEnergySource3).toBe(true);
   });
 
   it('Should generate context', () => {
     const transaction1 = generate(
-      bridgeZoraEnergySource0x72084c64 as Transaction,
+      bridgeZoraEnergySource0x72084c64 as unknown as Transaction,
     );
     expect(transaction1.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(transaction1.context)).toBe(
@@ -33,7 +33,9 @@ describe('Bridge Zora Energy Source', () => {
     );
     expect(containsBigInt(transaction1.context)).toBe(false);
 
-    const transaction2 = generate(zoraSource0xf2e656b3 as Transaction);
+    const transaction2 = generate(
+      zoraSource0xf2e656b3 as unknown as Transaction,
+    );
     expect(transaction2.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(transaction2.context)).toBe(
       '0x17cd072cbd45031efc21da538c783e0ed3b25dcc BRIDGED 3.829842894866116 ETH to 1',

@@ -23,19 +23,19 @@ describe('NounsBuilderDAO Governor', () => {
   describe('propose', () => {
     it('Should detect transaction', () => {
       const unknown = detect(
-        nounsBuilderGovernorUnknownPropose0x9cd7254f as Transaction,
+        nounsBuilderGovernorUnknownPropose0x9cd7254f as unknown as Transaction,
       );
       expect(unknown).toBe(true);
 
       const purple = detect(
-        nounsBuilderGovernorPurplePropose0xba1da3ed as Transaction,
+        nounsBuilderGovernorPurplePropose0xba1da3ed as unknown as Transaction,
       );
       expect(purple).toBe(true);
     });
 
     it('Should generate context', () => {
       const unknown = generate(
-        nounsBuilderGovernorUnknownPropose0x9cd7254f as Transaction,
+        nounsBuilderGovernorUnknownPropose0x9cd7254f as unknown as Transaction,
       );
       const unknownDesc = contextSummary(unknown.context);
       expect(unknownDesc).toBe(
@@ -44,7 +44,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(containsBigInt(unknown.context)).toBe(false);
 
       const purple = generate(
-        nounsBuilderGovernorPurplePropose0xba1da3ed as Transaction,
+        nounsBuilderGovernorPurplePropose0xba1da3ed as unknown as Transaction,
       );
       const purpleDesc = contextSummary(purple.context);
       expect(purpleDesc).toBe(
@@ -58,19 +58,19 @@ describe('NounsBuilderDAO Governor', () => {
   describe('castVote', () => {
     it('Should detect transaction', () => {
       const unknown = detect(
-        nounsBuilderGovernorUnknownCastVwr0x2d5ce9c2 as Transaction,
+        nounsBuilderGovernorUnknownCastVwr0x2d5ce9c2 as unknown as Transaction,
       );
       expect(unknown).toBe(true);
 
       const purple = detect(
-        nounsBuilderGovernorPurpleCastVwr0xe7d4d391 as Transaction,
+        nounsBuilderGovernorPurpleCastVwr0xe7d4d391 as unknown as Transaction,
       );
       expect(purple).toBe(true);
     });
 
     it('Should generate context', () => {
       const unknown = generate(
-        nounsBuilderGovernorUnknownCastVwr0x2d5ce9c2 as Transaction,
+        nounsBuilderGovernorUnknownCastVwr0x2d5ce9c2 as unknown as Transaction,
       );
       const unknownDesc = contextSummary(unknown.context);
       expect(unknownDesc).toBe(
@@ -86,7 +86,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(containsBigInt(unknown.context)).toBe(false);
 
       const purple = generate(
-        nounsBuilderGovernorPurpleCastVwr0xe7d4d391 as Transaction,
+        nounsBuilderGovernorPurpleCastVwr0xe7d4d391 as unknown as Transaction,
       );
       const purpleDesc = contextSummary(purple.context);
       expect(purpleDesc).toBe(
@@ -107,7 +107,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(containsBigInt(purple.context)).toBe(false);
 
       const purple2 = generate(
-        nounsBuilderGovernorPurpleCastVwrAbstain0x7107ece4 as Transaction,
+        nounsBuilderGovernorPurpleCastVwrAbstain0x7107ece4 as unknown as Transaction,
       );
       const purpleDesc2 = contextSummary(purple2.context);
       expect(purpleDesc2).toBe(
@@ -121,19 +121,19 @@ describe('NounsBuilderDAO Governor', () => {
   describe('queue', () => {
     it('Should detect transaction', () => {
       const unknown = detect(
-        nounsBuilderGovernorUnknownQueue0x1f6ac5ad as Transaction,
+        nounsBuilderGovernorUnknownQueue0x1f6ac5ad as unknown as Transaction,
       );
       expect(unknown).toBe(true);
 
       const blvkhvnd = detect(
-        nounsBuilderGovernorBlvkhvndQueue0x1f6ac5ad as Transaction,
+        nounsBuilderGovernorBlvkhvndQueue0x1f6ac5ad as unknown as Transaction,
       );
       expect(blvkhvnd).toBe(true);
     });
 
     it('Should generate context', () => {
       const unknown = generate(
-        nounsBuilderGovernorUnknownQueue0x1f6ac5ad as Transaction,
+        nounsBuilderGovernorUnknownQueue0x1f6ac5ad as unknown as Transaction,
       );
       const unknownDesc = contextSummary(unknown.context);
       expect(unknownDesc).toBe(
@@ -142,7 +142,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(containsBigInt(unknown.context)).toBe(false);
 
       const blvkhvnd = generate(
-        nounsBuilderGovernorBlvkhvndQueue0x1f6ac5ad as Transaction,
+        nounsBuilderGovernorBlvkhvndQueue0x1f6ac5ad as unknown as Transaction,
       );
       const blvkhvndDesc = contextSummary(blvkhvnd.context);
       expect(blvkhvndDesc).toBe(
@@ -155,19 +155,19 @@ describe('NounsBuilderDAO Governor', () => {
   describe('execute', () => {
     it('Should detect transaction', () => {
       const unknown = detect(
-        nounsBuilderGovernorUnknownExecute0x2d865904 as Transaction,
+        nounsBuilderGovernorUnknownExecute0x2d865904 as unknown as Transaction,
       );
       expect(unknown).toBe(true);
 
       const builder = detect(
-        nounsBuilderGovernorBuilderExecute0x3affa949 as Transaction,
+        nounsBuilderGovernorBuilderExecute0x3affa949 as unknown as Transaction,
       );
       expect(builder).toBe(true);
     });
 
     it('Should generate context', () => {
       const unknown = generate(
-        nounsBuilderGovernorUnknownExecute0x2d865904 as Transaction,
+        nounsBuilderGovernorUnknownExecute0x2d865904 as unknown as Transaction,
       );
       const unknownDesc = contextSummary(unknown.context);
       expect(unknownDesc).toBe(
@@ -176,7 +176,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(containsBigInt(unknown.context)).toBe(false);
 
       const builder = generate(
-        nounsBuilderGovernorBuilderExecute0x3affa949 as Transaction,
+        nounsBuilderGovernorBuilderExecute0x3affa949 as unknown as Transaction,
       );
       const builderDesc = contextSummary(builder.context);
       expect(builderDesc).toBe(
@@ -189,19 +189,19 @@ describe('NounsBuilderDAO Governor', () => {
   describe('cancel', () => {
     it('Should detect transaction', () => {
       const unknown = detect(
-        nounsBuilderGovernorUnknownCancel0x1051b9dd as Transaction,
+        nounsBuilderGovernorUnknownCancel0x1051b9dd as unknown as Transaction,
       );
       expect(unknown).toBe(true);
 
       const blvkhvnd = detect(
-        nounsBuilderGovernorBlvkhvndCancel0x524b1e31 as Transaction,
+        nounsBuilderGovernorBlvkhvndCancel0x524b1e31 as unknown as Transaction,
       );
       expect(blvkhvnd).toBe(true);
     });
 
     it('Should generate context', () => {
       const unknown = generate(
-        nounsBuilderGovernorUnknownCancel0x1051b9dd as Transaction,
+        nounsBuilderGovernorUnknownCancel0x1051b9dd as unknown as Transaction,
       );
       const unknownDesc = contextSummary(unknown.context);
       expect(unknownDesc).toBe(
@@ -210,7 +210,7 @@ describe('NounsBuilderDAO Governor', () => {
       expect(containsBigInt(unknown.context)).toBe(false);
 
       const blvkhvnd = generate(
-        nounsBuilderGovernorBlvkhvndCancel0x524b1e31 as Transaction,
+        nounsBuilderGovernorBlvkhvndCancel0x524b1e31 as unknown as Transaction,
       );
       const blvkhvndDesc = contextSummary(blvkhvnd.context);
       expect(blvkhvndDesc).toBe(
@@ -222,7 +222,7 @@ describe('NounsBuilderDAO Governor', () => {
 
   describe('Other transactions', () => {
     it('Should not detect', () => {
-      const other = detect(catchall0xc35c01ac as Transaction);
+      const other = detect(catchall0xc35c01ac as unknown as Transaction);
       expect(other).toBe(false);
     });
   });
