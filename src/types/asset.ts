@@ -1,5 +1,6 @@
 export enum AssetType {
   ETH = 'eth',
+  DEGEN = 'degen',
   ERC20 = 'erc20',
   ERC721 = 'erc721',
   ERC1155 = 'erc1155',
@@ -8,6 +9,13 @@ export enum AssetType {
 export type ETHAsset = {
   id: string;
   type: AssetType.ETH;
+  value: string;
+};
+
+// Other native currencies
+export type DEGENAsset = {
+  id: string;
+  type: AssetType.DEGEN;
   value: string;
 };
 
