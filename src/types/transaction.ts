@@ -1,3 +1,4 @@
+import { Transaction as BaseTransaction } from 'viem';
 import { Log } from './log';
 import { ContextVariable, ContextSummaryType } from './context';
 import { NetAssetTransfers, AssetTransfer } from './asset';
@@ -84,29 +85,7 @@ export type TransactionContextType = {
 };
 
 // MongoDB document
-export interface Transaction {
-  blockHash: string;
-  blockNumber: number;
-  from: string;
-  gas: number;
-  gasPrice: string;
-  maxFeePerGas?: string;
-  maxPriorityFeePerGas?: string;
-  hash: string;
-  input: string;
-  nonce: number;
-  to: string | null;
-  transactionIndex: number;
-  value: string;
-  type: number;
-  accessList?: any[];
-  chainId: number;
-  v: string;
-  r: string;
-  s: string;
-  timestamp: number;
-  isoTimestamp: string;
-  delegateCalls?: Trace[];
+export type Transaction = BaseTransaction & {
   assetTransfers?: AssetTransfer[];
   sigHash: string;
   internalSigHashes: SigHash[];
@@ -117,4 +96,4 @@ export interface Transaction {
   canCopy?: boolean;
   context?: TransactionContextType;
   logs?: Log[];
-}
+};
