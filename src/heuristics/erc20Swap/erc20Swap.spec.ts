@@ -19,7 +19,7 @@ describe('ERC20 Swap', () => {
     const isERC20Swap2 = detect(erc20Swap0x6ef80cce as unknown as Transaction);
     expect(isERC20Swap2).toBe(true);
 
-    const isERC20Swap3 = detect(erc20swap0x2c631258 as Transaction);
+    const isERC20Swap3 = detect(erc20swap0x2c631258 as unknown as Transaction);
     expect(isERC20Swap3).toBe(true);
   });
 
@@ -42,7 +42,7 @@ describe('ERC20 Swap', () => {
       '0x7b407335822f198511825ab166bd24ea705adca3 SWAPPED 4.3 ETH for 8975585548 0xdac17f958d2ee523a2206206994597c13d831ec7',
     );
 
-    const generated3 = generate(erc20swap0x2c631258 as Transaction);
+    const generated3 = generate(erc20swap0x2c631258 as unknown as Transaction);
     const desc3 = contextSummary(generated3.context);
     expect(desc3).toBe(
       '0x6e947ba373a53bd41139d68e8dfb4fb0472767b6 SWAPPED 300000000000000000 0x4200000000000000000000000000000000000006 for 79907887473934231137403 0x4ed4e862860bed51a9570b96d89af5e1b0efefed',
