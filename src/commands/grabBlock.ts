@@ -11,16 +11,19 @@ export function registerGrabBlockCommand() {
     .argument('<blockNumber>', 'block number')
     .argument('<network>', 'network name')
     .action(async (blockNumber, network, options) => {
-      const srcDir = path.join(__dirname, '..', '..', 'src', 'transformers');
-      const txFilePath = path.join(
-        srcDir,
+      const dirPath = path.join(
+        __dirname,
+        '..',
+        '..',
+        'src',
+        'transformers',
         'test',
         'blocks',
         network,
-        `${blockNumber}.json`,
       );
-      const gzFilePath = `${txFilePath}.gz`;
-      const decodedFilePath = `${txFilePath}_decoded.json`;
+      const txFilePath = path.join(dirPath, `${blockNumber}.json`);
+      const gzFilePath = path.join(dirPath, `${blockNumber}.json.gz`);
+      const decodedFilePath = path.join(dirPath, `${blockNumber}_decoded.json`);
 
       const storageUrl = `https://storage.googleapis.com/indexingco_heartbeats/${network}/${blockNumber}.json.gz`;
       const decodeUrl = `https://decode.onceupon.xyz`;
@@ -53,6 +56,11 @@ export function registerGrabBlockCommand() {
 
         fs.writeFileSync(decodedFilePath, JSON.stringify(decodedData.data));
         console.log(`Decoded transaction saved to ${decodedFilePath}`);
+
+        // Remove the gz file and the original json file after saving the decoded data
+        fs.unlinkSync(gzFilePath);
+        fs.unlinkSync(txFilePath);
+
         process.exit(0); // Successful exit
       } catch (error) {
         console.error('Failed to grab and decode the transaction:', error);

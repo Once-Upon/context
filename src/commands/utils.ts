@@ -58,10 +58,3 @@ export const fetchTransactions = async (
 
   return transactions;
 };
-
-export const grabBlock = async (blockNumber: string, network: string) => {
-  const googleStorageURL = `https://storage.googleapis.com/indexingco_heartbeats/${network}/${blockNumber}.json.gz`;
-  const block = await fetch(googleStorageURL).then((res) => res.json());
-
-  return block;
-};
