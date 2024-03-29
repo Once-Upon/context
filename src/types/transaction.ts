@@ -1,4 +1,4 @@
-import { Transaction as BaseTransaction } from 'viem';
+import { Transaction as BaseTransaction, TransactionReceipt } from 'viem';
 import { Log } from './log';
 import { ContextVariable, ContextSummaryType } from './context';
 import { NetAssetTransfers, AssetTransfer } from './asset';
@@ -58,24 +58,11 @@ export type Trace = {
   type: string;
 };
 
-export type Receipt = {
-  blockHash: string;
-  blockNumber: number;
-  contractAddress: string | null;
-  cumulativeGasUsed: number | string;
-  effectiveGasPrice: number | string;
-  from: string;
-  gasUsed: number | string;
+export type Receipt = TransactionReceipt & {
   l1Fee?: string;
   l1FeeScalar?: string;
   l1GasPrice?: string;
   l1GasUsed?: string;
-  logsBloom: string;
-  status: boolean;
-  to: string | null;
-  transactionHash: string;
-  transactionIndex: number;
-  type: string;
 };
 
 export type TransactionContextType = {
@@ -96,4 +83,6 @@ export type Transaction = BaseTransaction & {
   canCopy?: boolean;
   context?: TransactionContextType;
   logs?: Log[];
+  timestamp: number;
+  isoTimestamp: string;
 };
