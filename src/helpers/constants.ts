@@ -38,6 +38,11 @@ export const CHAIN_IDS = {
   degen: 666666666,
 };
 
+export const NATIVE_TOKENS = {
+  666666666: 'degen',
+  1: 'eth',
+};
+
 export const FORKS = {
   frontier: 0, // July 30, 2015: https://ethereum.org/en/history/#frontier
   frontier_thawing: 200000, // September 7, 2015: https://ethereum.org/en/history/#frontier-thawing

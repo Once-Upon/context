@@ -14,7 +14,9 @@ import {
   AssetType,
   RawBlock,
   StdObj,
+  NativeTokenType,
 } from '../types';
+import { NATIVE_TOKENS } from './constants';
 
 const VALID_CHARS =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.? ';
@@ -127,23 +129,20 @@ function formatSection(section: ContextSummaryVariableType) {
   const varContext = section;
   const unit = varContext['unit'];
 
-  if (varContext?.type === AssetType.ETH)
-    return `${formatEther(BigInt(varContext?.value))}${unit ? ` ETH` : ''}`;
-
-  if (varContext?.type === AssetType.ERC721) {
-    return `${varContext.token}${
-      varContext['tokenId'] ? ` #${varContext['tokenId']}` : ''
-    }`;
+  switch (varContext?.type) {
+    case AssetType.ETH:
+      return `${formatEther(BigInt(varContext?.value))}${unit ? ` ETH` : ''}`;
+    case AssetType.ERC721:
+      return `${varContext.token}${
+        varContext['tokenId'] ? ` #${varContext['tokenId']}` : ''
+      }`;
+    case AssetType.ERC1155:
+      return `${varContext.value} ${varContext.token} #${varContext.tokenId}`;
+    case AssetType.ERC20:
+      return `${varContext.value} ${varContext.token}`;
+    default:
+      return `${varContext.value}${unit ? ` ${unit}` : ''}`;
   }
-
-  if (varContext?.type === 'erc1155') {
-    return `${varContext.value} ${varContext.token} #${varContext.tokenId}`;
-  }
-
-  if (varContext?.type === 'erc20')
-    return `${varContext.value} ${varContext.token}`;
-
-  return `${varContext.value}${unit ? ` ${unit}` : ''}`;
 }
 
 export const makeContextualize = (
@@ -322,3 +321,8 @@ export function decodeEVMAddress(addressString: string): string {
   const address = '0x' + buf.toString('hex', 12, 32); // grab the last 20 bytes
   return address.toLocaleLowerCase();
 }
+
+export const formatNativeToken = (chainId: number): NativeTokenType => {
+  const nativeToken = NATIVE_TOKENS[chainId] ?? 'eth';
+  return nativeToken;
+};

@@ -1,5 +1,5 @@
 import { ContextAction } from './contextAction';
-import { AssetType } from './asset';
+import { AssetType, NativeTokenType } from './asset';
 
 export type ContextStringType = {
   type: 'string';
@@ -62,7 +62,7 @@ export type ContextERC1155Type = {
 };
 
 export type ContextETHType = {
-  type: AssetType.ETH;
+  type: NativeTokenType;
   value: string;
   indexed?: boolean;
   emphasis?: boolean;
