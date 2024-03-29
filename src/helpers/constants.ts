@@ -35,6 +35,7 @@ export const CHAIN_IDS = {
   zora: 7777777,
   zora_goerli: 999,
   zora_sepolia: 999999999,
+  degen: 666666666,
 };
 
 export const FORKS = {
