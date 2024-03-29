@@ -5,7 +5,7 @@ import { shortenTxHash } from '../helpers/utils';
 import { Transaction } from '../types';
 
 export const grabTx = async (txHash: string, prefix: string) => {
-  const srcDir = path.join(__dirname, '..', '..', 'src');
+  const srcDir = path.join(__dirname, '..', '..', 'src', 'contextualizers');
 
   const txHashShorten = shortenTxHash(txHash);
   const fileName = prefix + '-' + txHashShorten;
@@ -57,4 +57,11 @@ export const fetchTransactions = async (
   }).then((res) => res.json());
 
   return transactions;
+};
+
+export const grabBlock = async (blockNumber: string, network: string) => {
+  const googleStorageURL = `https://storage.googleapis.com/indexingco_heartbeats/${network}/${blockNumber}.json.gz`;
+  const block = await fetch(googleStorageURL).then((res) => res.json());
+
+  return block;
 };
