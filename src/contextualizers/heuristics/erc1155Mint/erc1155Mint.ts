@@ -5,6 +5,7 @@ import {
   ERC1155AssetTransfer,
 } from '../../../types';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
+import { formatNativeToken } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isTokenMint = detect(transaction);
@@ -112,7 +113,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       minted: { type: 'contextAction', value: 'MINTED' },
       price: {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId),
         value: price,
         unit: 'wei',
       },

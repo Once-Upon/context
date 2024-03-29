@@ -1,7 +1,11 @@
 import { Hex } from 'viem';
-import { AssetType, EventLogTopics, Transaction } from '../../../types';
+import { EventLogTopics, Transaction } from '../../../types';
 import { ABIs } from './constants';
-import { decodeTransactionInput, decodeLog } from '../../../helpers/utils';
+import {
+  decodeTransactionInput,
+  decodeLog,
+  formatNativeToken,
+} from '../../../helpers/utils';
 import { detect } from './detect';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -13,6 +17,7 @@ export const contextualize = (transaction: Transaction): Transaction => {
 
 // Contextualize for txs
 export const generate = (transaction: Transaction): Transaction => {
+  const chainId = transaction.chainId ?? 1;
   // Failed transaction
   if (!transaction.receipt?.status) {
     // buyShares(address sharesSubject, uint256 amount)
@@ -28,7 +33,7 @@ export const generate = (transaction: Transaction): Transaction => {
       transaction.context = {
         variables: {
           price: {
-            type: AssetType.ETH,
+            type: formatNativeToken(chainId),
             value: transaction.value.toString(),
             unit: 'wei',
           },
@@ -109,7 +114,7 @@ export const generate = (transaction: Transaction): Transaction => {
       transaction.context = {
         variables: {
           price: {
-            type: AssetType.ETH,
+            type: formatNativeToken(chainId),
             value: ethAmount,
             unit: 'wei',
           },
@@ -169,7 +174,7 @@ export const generate = (transaction: Transaction): Transaction => {
       transaction.context = {
         variables: {
           price: {
-            type: AssetType.ETH,
+            type: formatNativeToken(chainId),
             value: ethAmount,
             unit: 'wei',
           },

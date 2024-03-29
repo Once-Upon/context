@@ -17,7 +17,7 @@ import {
   TRANSACTION_DEPOSITED_EVENT_ABI,
   TRANSACTION_DEPOSITED_EVENT_HASH,
 } from './constants';
-import { decodeLog } from '../../../helpers/utils';
+import { decodeLog, formatNativeToken } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isOpStack = detect(transaction);
@@ -69,7 +69,7 @@ export function generate(transaction: Transaction): Transaction {
   switch (assetTransfer.type) {
     case AssetType.ETH:
       asset = {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId),
         value: assetTransfer.value,
         unit: 'wei',
       } as ContextETHType;

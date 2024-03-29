@@ -1,3 +1,4 @@
+import { formatNativeToken } from '../../../helpers/utils';
 import {
   Transaction,
   AssetType,
@@ -41,7 +42,7 @@ export function generate(transaction: Transaction): Transaction {
   switch (assetTransfer.type) {
     case AssetType.ETH:
       asset = {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId),
         value: assetTransfer.value,
         unit: 'wei',
       } as ContextETHType;

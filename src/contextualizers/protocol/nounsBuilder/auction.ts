@@ -7,7 +7,11 @@ import {
 } from '../../../types';
 import { ABIs, NOUNS_BUILDER_INSTANCES } from './constants';
 import { NounsContracts } from '../nouns/constants';
-import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeLog,
+  decodeTransactionInput,
+  formatNativeToken,
+} from '../../../helpers/utils';
 
 const daoByAuctionAuctionHouseContract = (address: string) => {
   return NOUNS_BUILDER_INSTANCES.find((v) => v.auctionHouse === address);
@@ -57,8 +61,9 @@ export const generate = (transaction: Transaction): Transaction => {
     transaction.input as Hex,
     ABIs.IAuction,
   );
-
   if (!decoded) return transaction;
+
+  const chainId = transaction.chainId ?? 1;
 
   switch (decoded.functionName) {
     case 'createBid': {
@@ -76,7 +81,7 @@ export const generate = (transaction: Transaction): Transaction => {
           value: decoded.args[0].toString(),
         },
         amount: {
-          type: AssetType.ETH,
+          type: formatNativeToken(chainId),
           value: transaction.value.toString(),
           unit: 'wei',
         },

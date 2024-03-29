@@ -1,4 +1,5 @@
-import { AssetType, ETHAssetTransfer, Transaction } from '../../../types';
+import { formatNativeToken } from '../../../helpers/utils';
+import { ETHAssetTransfer, Transaction } from '../../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isSuperchainFaucetTransaction = detect(transaction);
@@ -35,7 +36,7 @@ export function generate(transaction: Transaction): Transaction {
         value: ethTransfer.to,
       },
       amount: {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId),
         value: ethTransfer.value,
         unit: 'wei',
       },

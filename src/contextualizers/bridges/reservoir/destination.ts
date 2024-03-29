@@ -1,3 +1,4 @@
+import { formatNativeToken } from '../../../helpers/utils';
 import { Transaction, AssetType, ETHAsset } from '../../../types';
 import { BRIDGE_ZORA_ENERGY } from './constants';
 
@@ -70,7 +71,7 @@ export function generate(transaction: Transaction): Transaction {
         value: 'BRIDGED',
       },
       asset: {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId),
         value: assetTransfer.value,
         unit: 'wei',
       },

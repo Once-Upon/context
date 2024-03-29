@@ -1,12 +1,11 @@
 import { Hex, toBytes } from 'viem';
 import {
-  AssetType,
   ContextSummaryVariableType,
   ETHAsset,
   Transaction,
 } from '../../../types';
 import { LeeroyContracts } from './constants';
-import { decodeFunction } from '../../../helpers/utils';
+import { decodeFunction, formatNativeToken } from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isLeeroy = detect(transaction);
@@ -45,6 +44,7 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
+  const chainId = transaction.chainId ?? 1;
   switch (transaction.sigHash) {
     case '0x8ee93cf3': {
       // post(string)
@@ -214,7 +214,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const tipAmount: ContextSummaryVariableType = {
-        type: AssetType.ETH,
+        type: formatNativeToken(chainId),
         value: transaction.value.toString(),
         unit: 'wei',
       };
@@ -232,7 +232,7 @@ export const generate = (transaction: Transaction): Transaction => {
         const asset = transaction.netAssetTransfers[transaction.to]
           .received[0] as ETHAsset;
         const leeroyTake: ContextSummaryVariableType = {
-          type: AssetType.ETH,
+          type: formatNativeToken(chainId),
           value: asset.value,
           unit: 'wei',
         };

@@ -1,4 +1,5 @@
-import { AssetType, Transaction } from '../../../types';
+import { formatNativeToken } from '../../../helpers/utils';
+import { Transaction } from '../../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isEthTransfer = detect(transaction);
@@ -26,6 +27,8 @@ export function generate(transaction: Transaction): Transaction {
     return transaction;
   }
 
+  const chainId = transaction.chainId ?? 1;
+
   transaction.context = {
     variables: {
       sender: {
@@ -34,7 +37,7 @@ export function generate(transaction: Transaction): Transaction {
       },
 
       amount: {
-        type: AssetType.ETH,
+        type: formatNativeToken(chainId),
         value: transaction.value.toString(),
         unit: 'wei',
       },

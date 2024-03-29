@@ -5,7 +5,10 @@ import {
   DISPERSE_CONTRACTS,
   TIP_FEE_RECEIVER,
 } from './constants';
-import { decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeTransactionInput,
+  formatNativeToken,
+} from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isEnjoy = detect(transaction);
@@ -86,7 +89,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: tipTransfer.to,
           },
           numOfEth: {
-            type: AssetType.ETH,
+            type: formatNativeToken(transaction.chainId),
             value: tipTransfer.value,
             unit: 'wei',
           },

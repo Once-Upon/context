@@ -2,7 +2,10 @@ import { Hex } from 'viem';
 import { AssetType, Transaction } from '../../../types';
 import { ENJOY_CONTRACT_ADDRESS, UNISWAP_V2_ROUTERS } from './constants';
 import { UNISWAP_V2_ROUTER_ABI } from './constants';
-import { decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeTransactionInput,
+  formatNativeToken,
+} from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isEnjoy = detect(transaction);
@@ -48,6 +51,8 @@ export const generate = (transaction: Transaction): Transaction => {
   );
   if (!decoded) return transaction;
 
+  const chainId = transaction.chainId ?? 1;
+
   switch (decoded.functionName) {
     case 'addLiquidityETH': {
       transaction.context = {
@@ -61,7 +66,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: 'ADDED_LIQUIDITY',
           },
           numETH: {
-            type: AssetType.ETH,
+            type: formatNativeToken(chainId),
             value: transaction.value.toString(),
             unit: 'wei',
           },

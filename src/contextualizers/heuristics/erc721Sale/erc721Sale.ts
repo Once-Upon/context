@@ -1,3 +1,4 @@
+import { formatNativeToken } from '../../../helpers/utils';
 import {
   AssetType,
   ERC20Asset,
@@ -168,7 +169,7 @@ export function generate(transaction: Transaction): Transaction {
             }
           : ethPayments.length > 0
             ? {
-                type: AssetType.ETH,
+                type: formatNativeToken(transaction.chainId),
                 value: totalETHPayment.toString(),
                 unit: 'wei',
               }
