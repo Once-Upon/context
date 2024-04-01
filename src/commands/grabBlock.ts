@@ -55,7 +55,7 @@ export function registerGrabBlockCommand() {
         });
 
         fs.writeFileSync(decodedFilePath, JSON.stringify(decodedData.data));
-        console.log(`Decoded transaction saved to ${decodedFilePath}`);
+        console.log(`Decoded block saved to ${decodedFilePath}`);
 
         // Remove the gz file and the original json file after saving the decoded data
         fs.unlinkSync(gzFilePath);
@@ -63,7 +63,7 @@ export function registerGrabBlockCommand() {
 
         process.exit(0); // Successful exit
       } catch (error) {
-        console.error('Failed to grab and decode the transaction:', error);
+        console.error('Failed to grab and decode the block:', error);
         process.exit(1); // Exit with error
       }
     });
