@@ -208,10 +208,14 @@ describe('ContextualizerService', () => {
     });
 
     it('should detect cryptopunks', () => {
-      const cryptopunks1 = contextualize(cryptopunks0x3f68294b as Transaction);
+      const cryptopunks1 = contextualize(
+        cryptopunks0x3f68294b as unknown as Transaction,
+      );
       expect(cryptopunks1.context?.summaries?.en.title).toBe('CryptoPunks');
 
-      const cryptopunks2 = contextualize(cryptopunks0xd0d8cbaa as Transaction);
+      const cryptopunks2 = contextualize(
+        cryptopunks0xd0d8cbaa as unknown as Transaction,
+      );
       expect(cryptopunks2.context?.summaries?.en.title).toBe('CryptoPunks');
     });
 

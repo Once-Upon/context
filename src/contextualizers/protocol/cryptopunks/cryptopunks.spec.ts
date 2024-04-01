@@ -12,7 +12,9 @@ describe('Cryptopunks', () => {
     );
     expect(cryptopunks1).toBe(true);
 
-    const cryptopunks2 = detect(cryptopunks0xd0d8cbaa as Transaction);
+    const cryptopunks2 = detect(
+      cryptopunks0xd0d8cbaa as unknown as Transaction,
+    );
     expect(cryptopunks2).toBe(true);
   });
 
@@ -27,7 +29,9 @@ describe('Cryptopunks', () => {
       '0x1919db36ca2fa2e15f9000fd9cdc2edcf863e685 BID_ON_PUNK 0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb #5621 for 60 ETH',
     );
 
-    const cryptopunks2 = generate(cryptopunks0xd0d8cbaa as Transaction);
+    const cryptopunks2 = generate(
+      cryptopunks0xd0d8cbaa as unknown as Transaction,
+    );
     expect(cryptopunks2.context?.summaries?.category).toBe('PROTOCOL_1');
     expect(cryptopunks2.context?.summaries?.en.title).toBe('CryptoPunks');
     const desc2 = contextSummary(cryptopunks2.context);
