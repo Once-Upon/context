@@ -29,7 +29,7 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           price: {
             type: AssetType.ETH,
-            value: transaction.value,
+            value: transaction.value.toString(),
             unit: 'wei',
           },
           numOfKeys: {

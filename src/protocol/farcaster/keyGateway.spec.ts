@@ -7,12 +7,14 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 describe('KeyGateway', () => {
   describe('add', () => {
     it('Should detect transaction', () => {
-      const match = detect(farcasterAdd0x9e5f9b45 as Transaction);
+      const match = detect(farcasterAdd0x9e5f9b45 as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(farcasterAdd0x9e5f9b45 as Transaction);
+      const transaction = generate(
+        farcasterAdd0x9e5f9b45 as unknown as Transaction,
+      );
       expect(transaction.context?.variables?.addedKey?.type).toBe(
         'contextAction',
       );
@@ -24,12 +26,14 @@ describe('KeyGateway', () => {
 
   describe('addFor', () => {
     it('Should detect transaction', () => {
-      const match = detect(farcasterAddFor0x3152d411 as Transaction);
+      const match = detect(farcasterAddFor0x3152d411 as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(farcasterAddFor0x3152d411 as Transaction);
+      const transaction = generate(
+        farcasterAddFor0x3152d411 as unknown as Transaction,
+      );
       expect(transaction.context?.variables?.addedKey?.type).toBe(
         'contextAction',
       );
@@ -44,7 +48,7 @@ describe('KeyGateway', () => {
 
   describe('Other transactions', () => {
     it('Should not detect transaction', () => {
-      const match = detect(catchall0xc35c01ac as Transaction);
+      const match = detect(catchall0xc35c01ac as unknown as Transaction);
       expect(match).toBe(false);
     });
 
@@ -54,7 +58,7 @@ describe('KeyGateway', () => {
         to: farcasterAdd0x9e5f9b45.to,
       };
 
-      expect(() => detect(mockTxn as Transaction)).not.toThrow();
+      expect(() => detect(mockTxn as unknown as Transaction)).not.toThrow();
     });
   });
 });

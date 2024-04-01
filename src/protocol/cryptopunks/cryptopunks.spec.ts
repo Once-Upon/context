@@ -7,7 +7,9 @@ import { contextSummary } from '../../helpers/utils';
 
 describe('Cryptopunks', () => {
   it('Should detect cryptopunks', () => {
-    const cryptopunks1 = detect(cryptopunks0x3f68294b as Transaction);
+    const cryptopunks1 = detect(
+      cryptopunks0x3f68294b as unknown as Transaction,
+    );
     expect(cryptopunks1).toBe(true);
 
     const cryptopunks2 = detect(cryptopunks0xd0d8cbaa as Transaction);
@@ -15,7 +17,9 @@ describe('Cryptopunks', () => {
   });
 
   it('Should generate context for cryptopunks', () => {
-    const cryptopunks1 = generate(cryptopunks0x3f68294b as Transaction);
+    const cryptopunks1 = generate(
+      cryptopunks0x3f68294b as unknown as Transaction,
+    );
     expect(cryptopunks1.context?.summaries?.category).toBe('PROTOCOL_1');
     expect(cryptopunks1.context?.summaries?.en.title).toBe('CryptoPunks');
     const desc1 = contextSummary(cryptopunks1.context);
@@ -33,7 +37,7 @@ describe('Cryptopunks', () => {
   });
 
   it('Should not detect as cryptopunks', () => {
-    const cryptopunks1 = detect(catchall0xc35c01ac as Transaction);
+    const cryptopunks1 = detect(catchall0xc35c01ac as unknown as Transaction);
     expect(cryptopunks1).toBe(false);
   });
 });

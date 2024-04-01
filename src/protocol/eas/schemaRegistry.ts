@@ -48,6 +48,7 @@ export const generate = (transaction: Transaction): Transaction => {
   if (!decoded) {
     return transaction;
   }
+  if (!transaction.chainId) return transaction;
 
   switch (decoded.functionName) {
     case 'register': {

@@ -6,13 +6,15 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 describe('Bundler', () => {
   describe('register', () => {
     it('Should detect transaction', () => {
-      const match = detect(farcasterBundlerRegister0x7b8fe471 as Transaction);
+      const match = detect(
+        farcasterBundlerRegister0x7b8fe471 as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
       const transaction = generate(
-        farcasterBundlerRegister0x7b8fe471 as Transaction,
+        farcasterBundlerRegister0x7b8fe471 as unknown as Transaction,
       );
       expect(transaction.context?.variables?.registered?.type).toBe(
         'contextAction',
@@ -29,7 +31,7 @@ describe('Bundler', () => {
 
   describe('Other transactions', () => {
     it('Should not detect transaction', () => {
-      const match = detect(catchall0xc35c01ac as Transaction);
+      const match = detect(catchall0xc35c01ac as unknown as Transaction);
       expect(match).toBe(false);
     });
 
@@ -39,7 +41,7 @@ describe('Bundler', () => {
         to: farcasterBundlerRegister0x7b8fe471.to,
       };
 
-      expect(() => detect(mockTxn as Transaction)).not.toThrow();
+      expect(() => detect(mockTxn as unknown as Transaction)).not.toThrow();
     });
   });
 });

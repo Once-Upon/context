@@ -1,8 +1,10 @@
 import { makeContextualize } from '../helpers/utils';
 import { optimismContextualizer } from './opStack';
+import { reservoirContextualizer } from './reservoir';
 
 const children = {
   optimismContextualizer,
+  reservoirContextualizer,
 };
 
 const bridgeContextualizers = Object.fromEntries(

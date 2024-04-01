@@ -7,13 +7,15 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 describe('IdRegistry', () => {
   describe('changeRecoveryAddressFor', () => {
     it('Should detect transaction', () => {
-      const match = detect(farcasterChangeRecoveryFor0x07c03c85 as Transaction);
+      const match = detect(
+        farcasterChangeRecoveryFor0x07c03c85 as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
       const transaction = generate(
-        farcasterChangeRecoveryFor0x07c03c85 as Transaction,
+        farcasterChangeRecoveryFor0x07c03c85 as unknown as Transaction,
       );
       expect(transaction.context?.variables?.changedRecoveryAddress?.type).toBe(
         'contextAction',
@@ -29,12 +31,16 @@ describe('IdRegistry', () => {
 
   describe('transfer', () => {
     it('Should detect transaction', () => {
-      const match = detect(farcasterTransfer0x9344e0d0 as Transaction);
+      const match = detect(
+        farcasterTransfer0x9344e0d0 as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(farcasterTransfer0x9344e0d0 as Transaction);
+      const transaction = generate(
+        farcasterTransfer0x9344e0d0 as unknown as Transaction,
+      );
       expect(transaction.context?.variables?.transferredId?.type).toBe(
         'contextAction',
       );
@@ -49,7 +55,7 @@ describe('IdRegistry', () => {
 
   describe('Other transactions', () => {
     it('Should not detect transaction', () => {
-      const match = detect(catchall0xc35c01ac as Transaction);
+      const match = detect(catchall0xc35c01ac as unknown as Transaction);
       expect(match).toBe(false);
     });
 
@@ -59,7 +65,7 @@ describe('IdRegistry', () => {
         to: farcasterTransfer0x9344e0d0.to,
       };
 
-      expect(() => detect(mockTxn as Transaction)).not.toThrow();
+      expect(() => detect(mockTxn as unknown as Transaction)).not.toThrow();
     });
   });
 });

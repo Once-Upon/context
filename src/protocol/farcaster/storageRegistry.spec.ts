@@ -9,12 +9,14 @@ import { contextSummary } from '../../helpers/utils';
 describe('StorageRegistry', () => {
   describe('rent', () => {
     it('Should detect transaction', () => {
-      const match = detect(farcasterRent0x09794a62 as Transaction);
+      const match = detect(farcasterRent0x09794a62 as unknown as Transaction);
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
-      const transaction = generate(farcasterRent0x09794a62 as Transaction);
+      const transaction = generate(
+        farcasterRent0x09794a62 as unknown as Transaction,
+      );
       expect(transaction.context?.variables?.rented?.type).toBe(
         'contextAction',
       );
@@ -30,7 +32,9 @@ describe('StorageRegistry', () => {
     });
 
     it('Should pluralize units', () => {
-      const transaction = generate(farcasterRentMany0x4a23db3d as Transaction);
+      const transaction = generate(
+        farcasterRentMany0x4a23db3d as unknown as Transaction,
+      );
       expect(transaction.context?.variables?.caller['value']).toBe(
         '0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2',
       );
@@ -48,13 +52,15 @@ describe('StorageRegistry', () => {
   // transaction
   describe('batchRent', () => {
     it('Should detect transaction', () => {
-      const match = detect(farcasterBatchRentMOCK as unknown as Transaction);
+      const match = detect(
+        farcasterBatchRentMOCK as unknown as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
       const transaction = generate(
-        farcasterBatchRentMOCK as unknown as Transaction,
+        farcasterBatchRentMOCK as unknown as unknown as Transaction,
       );
       expect(transaction.context?.variables?.rented?.type).toBe(
         'contextAction',
@@ -73,7 +79,7 @@ describe('StorageRegistry', () => {
 
   describe('Other transactions', () => {
     it('Should not detect transaction', () => {
-      const match = detect(catchall0xc35c01ac as Transaction);
+      const match = detect(catchall0xc35c01ac as unknown as Transaction);
       expect(match).toBe(false);
     });
 
@@ -83,7 +89,7 @@ describe('StorageRegistry', () => {
         to: farcasterRent0x09794a62.to,
       };
 
-      expect(() => detect(mockTxn as Transaction)).not.toThrow();
+      expect(() => detect(mockTxn as unknown as Transaction)).not.toThrow();
     });
   });
 });

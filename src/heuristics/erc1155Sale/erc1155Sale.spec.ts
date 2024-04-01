@@ -5,12 +5,14 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 
 describe('ERC1155 Sale', () => {
   it('Should detect ERC1155 Sale transaction', () => {
-    const isERC1155Sale1 = detect(erc1155Sale0x16b2334d as Transaction);
+    const isERC1155Sale1 = detect(
+      erc1155Sale0x16b2334d as unknown as Transaction,
+    );
     expect(isERC1155Sale1).toBe(true);
   });
 
   it('Should not detect ERC1155 Sale transaction', () => {
-    const isERC1155Sale1 = detect(catchall0xc35c01ac as Transaction);
+    const isERC1155Sale1 = detect(catchall0xc35c01ac as unknown as Transaction);
     expect(isERC1155Sale1).toBe(false);
   });
 });

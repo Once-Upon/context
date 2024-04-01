@@ -13,7 +13,7 @@ export function detect(transaction: Transaction): boolean {
   if (
     transaction.to === transaction.from &&
     (transaction.input === '0x' || transaction.input === '0x0') &&
-    transaction.value === '0'
+    transaction.value.toString() === BigInt(0).toString()
   ) {
     return true;
   }

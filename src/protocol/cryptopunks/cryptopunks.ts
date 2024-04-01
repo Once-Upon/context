@@ -245,7 +245,7 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       const price: ContextSummaryVariableType = {
         type: AssetType.ETH,
-        value: transaction.value,
+        value: transaction.value.toString(),
         unit: 'wei',
       };
       if (transaction.receipt?.status) {
@@ -352,7 +352,7 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       const price: ContextSummaryVariableType = {
         type: AssetType.ETH,
-        value: transaction.value,
+        value: transaction.value.toString(),
         unit: 'wei',
       };
       if (transaction.receipt?.status) {

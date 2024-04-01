@@ -7,15 +7,21 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 
 describe('ERC721 Purchase', () => {
   it('Should detect ERC721 Purchase transaction', () => {
-    const isERC721Purchase1 = detect(erc721Purchase0x2558f104 as Transaction);
+    const isERC721Purchase1 = detect(
+      erc721Purchase0x2558f104 as unknown as Transaction,
+    );
     expect(isERC721Purchase1).toBe(true);
 
-    const isERC721Purchase2 = detect(erc721Purchase0x97a38a23 as Transaction);
+    const isERC721Purchase2 = detect(
+      erc721Purchase0x97a38a23 as unknown as Transaction,
+    );
     expect(isERC721Purchase2).toBe(true);
   });
 
   it('Should generate ERC721 Purchase context', () => {
-    const erc721Purchase1 = generate(erc721Purchase0x2558f104 as Transaction);
+    const erc721Purchase1 = generate(
+      erc721Purchase0x2558f104 as unknown as Transaction,
+    );
     expect(erc721Purchase1.context?.summaries?.en.title).toBe('NFT Purchase');
     expect(erc721Purchase1.context?.variables?.tokenOrTokens['value']).toBe(
       '0x82f5ef9ddc3d231962ba57a9c2ebb307dc8d26c2',
@@ -26,7 +32,9 @@ describe('ERC721 Purchase', () => {
       '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 BOUGHT 2 0x82f5ef9ddc3d231962ba57a9c2ebb307dc8d26c2 for 0.05 ETH from 2 users',
     );
 
-    const erc721Purchase2 = generate(erc721Purchase0x97a38a23 as Transaction);
+    const erc721Purchase2 = generate(
+      erc721Purchase0x97a38a23 as unknown as Transaction,
+    );
     expect(erc721Purchase2.context?.summaries?.en.title).toBe('NFT Purchase');
     expect(erc721Purchase2.context?.variables?.tokenOrTokens['value']).toBe(
       '0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270',
@@ -39,7 +47,9 @@ describe('ERC721 Purchase', () => {
   });
 
   it('Should not detect ERC721 Purchase transaction', () => {
-    const isERC721Purchase1 = detect(catchall0xc35c01ac as Transaction);
+    const isERC721Purchase1 = detect(
+      catchall0xc35c01ac as unknown as Transaction,
+    );
     expect(isERC721Purchase1).toBe(false);
   });
 });
