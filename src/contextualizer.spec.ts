@@ -39,6 +39,9 @@ import friendTech0xde5ce243 from './test/transactions/friendTech-0xde5ce243.json
 import friendTech0xe65b4bd6 from './test/transactions/friendTech-0xe65b4bd6.json';
 import friendTech0xed2dd79e from './test/transactions/friendTech-0xed2dd79e.json';
 import friendTech0x703647d1 from './test/transactions/friendTech-0x703647d1.json';
+// cryptopunks
+import cryptopunks0x3f68294b from './test/transactions/cryptopunks-0x3f68294b.json';
+import cryptopunks0xd0d8cbaa from './test/transactions/cryptopunks-0xd0d8cbaa.json';
 // ENS
 import ens0xdb203e93 from './test/transactions/ens-0xdb203e93.json';
 import ens0xea1b4ab6 from './test/transactions/ens-0xea1b4ab6.json';
@@ -202,6 +205,14 @@ describe('ContextualizerService', () => {
         friendTech0x703647d1 as unknown as Transaction,
       );
       expect(friendTech4.context?.summaries?.en.title).toBe('friend.tech');
+    });
+
+    it('should detect cryptopunks', () => {
+      const cryptopunks1 = contextualize(cryptopunks0x3f68294b as Transaction);
+      expect(cryptopunks1.context?.summaries?.en.title).toBe('CryptoPunks');
+
+      const cryptopunks2 = contextualize(cryptopunks0xd0d8cbaa as Transaction);
+      expect(cryptopunks2.context?.summaries?.en.title).toBe('CryptoPunks');
     });
 
     it('Should detect ENS transaction', () => {
