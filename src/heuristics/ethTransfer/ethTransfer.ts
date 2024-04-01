@@ -11,8 +11,8 @@ export function detect(transaction: Transaction): boolean {
   // TODO; check logs from transaction
   if (
     transaction.to &&
-    (transaction.input === '0x' || transaction.input === '') &&
-    transaction.value !== '0' &&
+    transaction.input === '0x' &&
+    transaction.value !== BigInt(0) &&
     transaction.logs?.length === 0
   ) {
     return true;
@@ -35,7 +35,7 @@ export function generate(transaction: Transaction): Transaction {
 
       amount: {
         type: AssetType.ETH,
-        value: transaction.value,
+        value: transaction.value.toString(),
         unit: 'wei',
       },
       to: {

@@ -16,6 +16,7 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
+  if (!transaction.chainId) return false;
   if (transaction.to !== CLAIM_CAMPAIGNS[transaction.chainId]) {
     return false;
   }

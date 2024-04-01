@@ -8,13 +8,15 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 describe('Nouns Auction House', () => {
   describe('createBid', () => {
     it('Should detect transaction', () => {
-      const match = detect(nounsAuctionHouseBid0x4efdef57 as Transaction);
+      const match = detect(
+        nounsAuctionHouseBid0x4efdef57 as unknown as Transaction,
+      );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
       const transaction = generate(
-        nounsAuctionHouseBid0x4efdef57 as Transaction,
+        nounsAuctionHouseBid0x4efdef57 as unknown as Transaction,
       );
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
@@ -27,14 +29,14 @@ describe('Nouns Auction House', () => {
   describe('settleCurrentAndCreateNewAuction', () => {
     it('Should detect transaction', () => {
       const match = detect(
-        nounsAuctionHouseSettleAndCreate0x354aea2d as Transaction,
+        nounsAuctionHouseSettleAndCreate0x354aea2d as unknown as Transaction,
       );
       expect(match).toBe(true);
     });
 
     it('Should generate context', () => {
       const transaction = generate(
-        nounsAuctionHouseSettleAndCreate0x354aea2d as Transaction,
+        nounsAuctionHouseSettleAndCreate0x354aea2d as unknown as Transaction,
       );
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
@@ -46,7 +48,7 @@ describe('Nouns Auction House', () => {
 
   describe('Other transactions', () => {
     it('Should not detect', () => {
-      const other = detect(catchall0xc35c01ac as Transaction);
+      const other = detect(catchall0xc35c01ac as unknown as Transaction);
       expect(other).toBe(false);
     });
   });

@@ -10,26 +10,28 @@ import ensRegistrar0xb14b4771 from '../../test/transactions/ensRegistrar-0xb14b4
 
 describe('ENS Registrar', () => {
   it('Should detect ens registrar', () => {
-    const ensRegistrar1 = detect(ens0xdb203e93 as Transaction);
+    const ensRegistrar1 = detect(ens0xdb203e93 as unknown as Transaction);
     expect(ensRegistrar1).toBe(true);
 
-    const ensRegistrar2 = detect(ens0xea1b4ab6 as Transaction);
+    const ensRegistrar2 = detect(ens0xea1b4ab6 as unknown as Transaction);
     expect(ensRegistrar2).toBe(true);
 
-    const bulkRenew = detect(ensBulkRenew0x25add712 as Transaction);
+    const bulkRenew = detect(ensBulkRenew0x25add712 as unknown as Transaction);
     expect(bulkRenew).toBe(true);
 
     const registrarWithConfig = detect(
-      registrarWithConfig0x5d31a49e as Transaction,
+      registrarWithConfig0x5d31a49e as unknown as Transaction,
     );
     expect(registrarWithConfig).toBe(true);
 
-    const ensRegistrar3 = detect(ensRegistrar0xb14b4771 as Transaction);
+    const ensRegistrar3 = detect(
+      ensRegistrar0xb14b4771 as unknown as Transaction,
+    );
     expect(ensRegistrar3).toBe(true);
   });
 
   it('Should generate ens context', () => {
-    const ensRegistrar1 = generate(ens0xdb203e93 as Transaction);
+    const ensRegistrar1 = generate(ens0xdb203e93 as unknown as Transaction);
     expect(ensRegistrar1.context?.summaries?.en.title).toBe('ENS');
     const desc1 = contextSummary(ensRegistrar1.context);
     expect(desc1).toBe(
@@ -37,7 +39,7 @@ describe('ENS Registrar', () => {
     );
     expect(containsBigInt(ensRegistrar1.context)).toBe(false);
 
-    const ensRegistrar2 = generate(ens0xea1b4ab6 as Transaction);
+    const ensRegistrar2 = generate(ens0xea1b4ab6 as unknown as Transaction);
     expect(ensRegistrar2.context?.summaries?.en.title).toBe('ENS');
     const desc2 = contextSummary(ensRegistrar2.context);
     expect(desc2).toBe(
@@ -48,7 +50,9 @@ describe('ENS Registrar', () => {
 
   it('Should generate bulk ens context', () => {
     // bulk renew
-    const bulkRenew = generate(ensBulkRenew0x25add712 as Transaction);
+    const bulkRenew = generate(
+      ensBulkRenew0x25add712 as unknown as Transaction,
+    );
     expect(bulkRenew.context?.summaries?.en.title).toBe('ENS');
     const desc2 = contextSummary(bulkRenew.context);
     expect(desc2).toBe(
@@ -58,7 +62,7 @@ describe('ENS Registrar', () => {
 
     // registrar with config
     const registrarWithConfig = generate(
-      registrarWithConfig0x5d31a49e as Transaction,
+      registrarWithConfig0x5d31a49e as unknown as Transaction,
     );
     expect(bulkRenew.context?.summaries?.en.title).toBe('ENS');
     const desc3 = contextSummary(registrarWithConfig.context);
@@ -68,7 +72,9 @@ describe('ENS Registrar', () => {
     expect(containsBigInt(registrarWithConfig.context)).toBe(false);
 
     // registrar
-    const registrar1 = generate(ensRegistrar0xb14b4771 as Transaction);
+    const registrar1 = generate(
+      ensRegistrar0xb14b4771 as unknown as Transaction,
+    );
     expect(registrar1.context?.summaries?.en.title).toBe('ENS');
     const desc4 = contextSummary(registrar1.context);
     expect(desc4).toBe(
@@ -78,7 +84,7 @@ describe('ENS Registrar', () => {
   });
 
   it('Should not detect as ens registrar', () => {
-    const ensRegistrar1 = detect(catchall0xc35c01ac as Transaction);
+    const ensRegistrar1 = detect(catchall0xc35c01ac as unknown as Transaction);
     expect(ensRegistrar1).toBe(false);
   });
 });

@@ -52,7 +52,7 @@ export const generate = (transaction: Transaction): Transaction => {
       // Capture cost to register
       const cost: ContextSummaryVariableType = {
         type: AssetType.ETH,
-        value: transaction.value,
+        value: transaction.value.toString(),
         unit: 'wei',
       };
       // Capture FID

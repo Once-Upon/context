@@ -8,28 +8,38 @@ import hopSource0x8603ffab from '../../test/transactions/hop-source-0x8603ffab.j
 
 describe('Optimism Source', () => {
   it('Should detect transaction', () => {
-    const isOptimismSource1 = detect(baseSource0x8a83b7b4 as Transaction);
+    const isOptimismSource1 = detect(
+      baseSource0x8a83b7b4 as unknown as Transaction,
+    );
     expect(isOptimismSource1).toBe(true);
 
-    const isOptimismSource2 = detect(hopSource0x8603ffab as Transaction);
+    const isOptimismSource2 = detect(
+      hopSource0x8603ffab as unknown as Transaction,
+    );
     expect(isOptimismSource2).toBe(false);
 
-    const isOptimismSource3 = detect(baseBridge0xce910123 as Transaction);
+    const isOptimismSource3 = detect(
+      baseBridge0xce910123 as unknown as Transaction,
+    );
     expect(isOptimismSource3).toBe(true);
 
-    const isOptimismSource4 = detect(optimismSource0x992b053b as Transaction);
+    const isOptimismSource4 = detect(
+      optimismSource0x992b053b as unknown as Transaction,
+    );
     expect(isOptimismSource4).toBe(true);
   });
 
   it('Should generate context', () => {
-    const baseTransaction1 = generate(baseSource0x8a83b7b4 as Transaction);
+    const baseTransaction1 = generate(
+      baseSource0x8a83b7b4 as unknown as Transaction,
+    );
     expect(baseTransaction1.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(baseTransaction1.context)).toBe(
       '0x661ea32f349f857075cae289e7f6222c2ad083b9 BRIDGED 0.1 ETH to 8453 resulting in 0x2563ad7929d8efa2e4d00c865cdb9090d8fbcd4ebc50ac85db61123b21ea476c',
     );
 
     const optimismTransaction1 = generate(
-      optimismSource0x992b053b as Transaction,
+      optimismSource0x992b053b as unknown as Transaction,
     );
     expect(optimismTransaction1.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(optimismTransaction1.context)).toBe(

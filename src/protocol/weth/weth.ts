@@ -57,7 +57,7 @@ export const generate = (transaction: Transaction): Transaction => {
           value: {
             type: AssetType.ERC20,
             token: transaction.to,
-            value: transaction.value,
+            value: transaction.value.toString(),
           },
           from: {
             type: 'address',

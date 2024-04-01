@@ -77,7 +77,7 @@ export const generate = (transaction: Transaction): Transaction => {
         },
         amount: {
           type: AssetType.ETH,
-          value: transaction.value,
+          value: transaction.value.toString(),
           unit: 'wei',
         },
       };

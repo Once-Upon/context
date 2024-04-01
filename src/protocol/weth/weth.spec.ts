@@ -8,29 +8,29 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 
 describe('Weth', () => {
   it('Should detect weth', () => {
-    const weth1 = detect(weth0x8ae756d0 as Transaction);
+    const weth1 = detect(weth0x8ae756d0 as unknown as Transaction);
     expect(weth1).toBe(true);
 
-    const weth2 = detect(weth0x0917947d as Transaction);
+    const weth2 = detect(weth0x0917947d as unknown as Transaction);
     expect(weth2).toBe(true);
 
-    const weth3 = detect(weth0x57ebdd96 as Transaction);
+    const weth3 = detect(weth0x57ebdd96 as unknown as Transaction);
     expect(weth3).toBe(true);
   });
 
   it('Should not detect as weth', () => {
-    const weth1 = detect(catchall0xc35c01ac as Transaction);
+    const weth1 = detect(catchall0xc35c01ac as unknown as Transaction);
     expect(weth1).toBe(false);
   });
 
   it('should generate weth context', () => {
-    const weth1 = generate(weth0x8ae756d0 as Transaction);
+    const weth1 = generate(weth0x8ae756d0 as unknown as Transaction);
     expect(weth1.context?.summaries?.en.title).toBe('WETH');
     expect(weth1.context?.variables?.wrapped).toBeDefined();
     expect(weth1.context?.variables?.wrapped.type).toBe('contextAction');
     expect(weth1.context?.variables?.wrapped['value']).toBe('WRAPPED');
 
-    const weth2 = generate(weth0x0917947d as Transaction);
+    const weth2 = generate(weth0x0917947d as unknown as Transaction);
     expect(weth2.context?.summaries?.en.title).toBe('WETH');
     expect(weth2.context?.variables?.unwrapped).toBeDefined();
     expect(weth2.context?.variables?.unwrapped.type).toBe('contextAction');
@@ -40,7 +40,7 @@ describe('Weth', () => {
       '0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c UNWRAPPED 0.05 ETH',
     );
 
-    const weth3 = generate(weth0x57ebdd96 as Transaction);
+    const weth3 = generate(weth0x57ebdd96 as unknown as Transaction);
     expect(weth3.context?.summaries?.en.title).toBe('WETH');
     expect(weth3.context?.variables?.unwrapped).toBeDefined();
     expect(weth3.context?.variables?.unwrapped.type).toBe('contextAction');

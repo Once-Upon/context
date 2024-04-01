@@ -7,14 +7,14 @@ import { contextSummary } from '../../helpers/utils';
 describe('Cancel Pending Transaction', () => {
   it('Should detect CancelPendingTransaction', () => {
     const cancelPendingTransaction1 = detect(
-      cancelPendingTransaction0x62bf9724 as Transaction,
+      cancelPendingTransaction0x62bf9724 as unknown as Transaction,
     );
     expect(cancelPendingTransaction1).toBe(true);
   });
 
   it('Should generate context for CancelPendingTransaction', () => {
     const cancelPendingTransaction1 = generate(
-      cancelPendingTransaction0x62bf9724 as Transaction,
+      cancelPendingTransaction0x62bf9724 as unknown as Transaction,
     );
     expect(cancelPendingTransaction1.context?.summaries?.en.title).toBe(
       'Cancellation',
@@ -26,7 +26,9 @@ describe('Cancel Pending Transaction', () => {
   });
 
   it('Should not detect as CancelPendingTransaction', () => {
-    const notContractDeployed1 = detect(catchall0xc35c01ac as Transaction);
+    const notContractDeployed1 = detect(
+      catchall0xc35c01ac as unknown as Transaction,
+    );
     expect(notContractDeployed1).toBe(false);
   });
 });

@@ -8,19 +8,19 @@ import { containsBigInt, contextSummary } from '../../helpers/utils';
 describe('Zora Mint', () => {
   it('Should detect zora mint with rewards transaction', () => {
     const zoraMintWithRewards1 = detect(
-      mintWithRewards0x6ccb3140 as Transaction,
+      mintWithRewards0x6ccb3140 as unknown as Transaction,
     );
     expect(zoraMintWithRewards1).toBe(true);
 
     const zoraMintWithRewards2 = detect(
-      zoraMintWithRewards0x837a9a69 as Transaction,
+      zoraMintWithRewards0x837a9a69 as unknown as Transaction,
     );
     expect(zoraMintWithRewards2).toBe(true);
   });
 
   it('Should generate context for mintWithRewards transaction', () => {
     const zoraMintWithRewards1 = generate(
-      mintWithRewards0x6ccb3140 as Transaction,
+      mintWithRewards0x6ccb3140 as unknown as Transaction,
     );
     expect(zoraMintWithRewards1.context?.summaries?.category).toBe(
       'PROTOCOL_1',
@@ -33,7 +33,7 @@ describe('Zora Mint', () => {
     expect(containsBigInt(zoraMintWithRewards1.context)).toBe(false);
 
     const zoraMintWithRewards2 = generate(
-      zoraMintWithRewards0x837a9a69 as Transaction,
+      zoraMintWithRewards0x837a9a69 as unknown as Transaction,
     );
     expect(zoraMintWithRewards2.context?.summaries?.category).toBe(
       'PROTOCOL_1',
@@ -47,7 +47,9 @@ describe('Zora Mint', () => {
   });
 
   it('Should not detect as zora creator', () => {
-    const zoraMintWithRewards1 = detect(catchall0xc35c01ac as Transaction);
+    const zoraMintWithRewards1 = detect(
+      catchall0xc35c01ac as unknown as Transaction,
+    );
     expect(zoraMintWithRewards1).toBe(false);
   });
 });

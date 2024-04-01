@@ -15,6 +15,7 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
+  if (!transaction.chainId) return false;
   if (transaction.to !== DISPERSE_CONTRACTS[transaction.chainId]) {
     return false;
   }
@@ -36,6 +37,7 @@ export const detect = (transaction: Transaction): boolean => {
   const tipFeeTransfer = assetTransfers.find(
     (transfer) =>
       transfer.to === TIP_FEE_RECEIVER &&
+      transaction.chainId &&
       transfer.to !== DISPERSE_CONTRACTS[transaction.chainId],
   );
   if (!tipFeeTransfer) {
@@ -64,6 +66,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const tipTransfer = assetTransfers.find(
         (transfer) =>
           transfer.to !== TIP_FEE_RECEIVER &&
+          transaction.chainId &&
           transfer.to !== DISPERSE_CONTRACTS[transaction.chainId],
       ) as ETHAssetTransfer;
       if (!tipTransfer) return transaction;

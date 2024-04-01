@@ -215,7 +215,7 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       const tipAmount: ContextSummaryVariableType = {
         type: AssetType.ETH,
-        value: transaction.value,
+        value: transaction.value.toString(),
         unit: 'wei',
       };
       const bytesUsername = decoded[0];

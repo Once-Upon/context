@@ -10,31 +10,43 @@ import { contextSummary } from '../../helpers/utils';
 
 describe('ERC1155 Mint', () => {
   it('Should detect ERC1155 Mint transaction', () => {
-    const erc1155Mint1 = detect(erc1155Mint0x45d1ed7b as Transaction);
+    const erc1155Mint1 = detect(
+      erc1155Mint0x45d1ed7b as unknown as Transaction,
+    );
     expect(erc1155Mint1).toBe(true);
 
-    const erc1155Mint2 = detect(erc1155Mint0xdb571cc5 as Transaction);
+    const erc1155Mint2 = detect(
+      erc1155Mint0xdb571cc5 as unknown as Transaction,
+    );
     expect(erc1155Mint2).toBe(true);
 
-    const erc1155Mint3 = detect(erc1155Mint0x65bfc065 as Transaction);
+    const erc1155Mint3 = detect(
+      erc1155Mint0x65bfc065 as unknown as Transaction,
+    );
     expect(erc1155Mint3).toBe(true);
   });
 
   it('Should detect ERC1155 Mint transaction when by someone else', () => {
-    const erc1155Mint2 = detect(erc1155MintBySomeoneElse as Transaction);
+    const erc1155Mint2 = detect(
+      erc1155MintBySomeoneElse as unknown as Transaction,
+    );
     expect(erc1155Mint2).toBe(true);
   });
 
   it('Should not detect as ERC1155 Mint', () => {
-    const isERC1155Mint1 = detect(erc20Swap0xd55dc9b2 as Transaction);
+    const isERC1155Mint1 = detect(
+      erc20Swap0xd55dc9b2 as unknown as Transaction,
+    );
     expect(isERC1155Mint1).toBe(false);
 
-    const isERC1155Mint2 = detect(catchall0xc35c01ac as Transaction);
+    const isERC1155Mint2 = detect(catchall0xc35c01ac as unknown as Transaction);
     expect(isERC1155Mint2).toBe(false);
   });
 
   it('Should generate a context for ERC1155 Mint', () => {
-    const tokenMint1 = generate(erc1155Mint0x45d1ed7b as Transaction);
+    const tokenMint1 = generate(
+      erc1155Mint0x45d1ed7b as unknown as Transaction,
+    );
     expect(tokenMint1.context?.summaries?.category).toBe('NFT');
     const desc1 = contextSummary(tokenMint1.context);
     expect(desc1).toBe(
