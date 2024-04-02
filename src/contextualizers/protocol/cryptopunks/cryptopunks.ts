@@ -63,7 +63,6 @@ export const generate = (transaction: Transaction): Transaction => {
   ) {
     return transaction;
   }
-  const chainId = transaction.chainId ?? 1;
 
   const decoded = decodeTransactionInput(
     transaction.input as Hex,
@@ -132,7 +131,7 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: decoded.args[0].toString(),
       };
       const price: ContextSummaryVariableType = {
-        type: formatNativeToken(chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: decoded.args[1].toString(),
         unit: 'wei',
       };
@@ -192,7 +191,7 @@ export const generate = (transaction: Transaction): Transaction => {
       if (!ethAssetTransfer) return transaction;
 
       const price: ContextSummaryVariableType = {
-        type: formatNativeToken(chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: ethAssetTransfer.value,
         unit: 'wei',
       };
@@ -248,7 +247,7 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: decoded.args[0].toString(),
       };
       const price: ContextSummaryVariableType = {
-        type: formatNativeToken(chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: transaction.value.toString(),
         unit: 'wei',
       };
@@ -301,7 +300,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const ethAssetTransfer = transaction
         .assetTransfers?.[0] as ETHAssetTransfer;
       const amount: ContextSummaryVariableType = {
-        type: formatNativeToken(chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: ethAssetTransfer.value,
         unit: 'wei',
       };
@@ -355,7 +354,7 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: decoded.args[0].toString(),
       };
       const price: ContextSummaryVariableType = {
-        type: formatNativeToken(chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: transaction.value.toString(),
         unit: 'wei',
       };
@@ -530,7 +529,7 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: decoded.args[0].toString(),
       };
       const price: ContextSummaryVariableType = {
-        type: formatNativeToken(chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: decoded.args[1].toString(),
         unit: 'wei',
       };

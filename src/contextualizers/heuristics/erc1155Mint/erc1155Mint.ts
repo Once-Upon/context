@@ -113,7 +113,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       minted: { type: 'contextAction', value: 'MINTED' },
       price: {
-        type: formatNativeToken(transaction.chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: price,
         unit: 'wei',
       },

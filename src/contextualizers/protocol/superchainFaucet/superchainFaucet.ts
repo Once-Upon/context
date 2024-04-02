@@ -36,7 +36,7 @@ export function generate(transaction: Transaction): Transaction {
         value: ethTransfer.to,
       },
       amount: {
-        type: formatNativeToken(transaction.chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: ethTransfer.value,
         unit: 'wei',
       },

@@ -96,13 +96,13 @@ export const generate = (transaction: Transaction): Transaction => {
         value: sender,
       },
       price: {
-        type: formatNativeToken(transaction.chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: price,
         unit: 'wei',
       },
       minted: { type: 'contextAction', value: 'MINTED' },
       numOfEth: {
-        type: formatNativeToken(transaction.chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: decodedLog.args['mintReferralReward'].toString(),
         unit: 'wei',
       },

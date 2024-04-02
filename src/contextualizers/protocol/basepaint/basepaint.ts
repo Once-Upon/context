@@ -121,7 +121,7 @@ export const generate = (transaction: Transaction): Transaction => {
           value: transaction.from,
         },
         amount: {
-          type: formatNativeToken(transaction.chainId),
+          type: formatNativeToken(transaction.chainId ?? 1),
           value,
           unit: 'wei',
         },

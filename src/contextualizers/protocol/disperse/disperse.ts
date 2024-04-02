@@ -89,7 +89,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: tipTransfer.to,
           },
           numOfEth: {
-            type: formatNativeToken(transaction.chainId),
+            type: formatNativeToken(transaction.chainId ?? 1),
             value: tipTransfer.value,
             unit: 'wei',
           },

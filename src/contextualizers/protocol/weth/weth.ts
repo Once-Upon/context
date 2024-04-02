@@ -82,7 +82,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const withdrawalAmount: ContextSummaryVariableType = {
-        type: formatNativeToken(transaction.chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: decode.args ? decode.args[0].toString() : '0',
         unit: 'wei',
       };

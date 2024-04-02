@@ -17,7 +17,6 @@ export const contextualize = (transaction: Transaction): Transaction => {
 
 // Contextualize for txs
 export const generate = (transaction: Transaction): Transaction => {
-  const chainId = transaction.chainId ?? 1;
   // Failed transaction
   if (!transaction.receipt?.status) {
     // buyShares(address sharesSubject, uint256 amount)
@@ -33,7 +32,7 @@ export const generate = (transaction: Transaction): Transaction => {
       transaction.context = {
         variables: {
           price: {
-            type: formatNativeToken(chainId),
+            type: formatNativeToken(transaction.chainId ?? 1),
             value: transaction.value.toString(),
             unit: 'wei',
           },
@@ -114,7 +113,7 @@ export const generate = (transaction: Transaction): Transaction => {
       transaction.context = {
         variables: {
           price: {
-            type: formatNativeToken(chainId),
+            type: formatNativeToken(transaction.chainId ?? 1),
             value: ethAmount,
             unit: 'wei',
           },
@@ -174,7 +173,7 @@ export const generate = (transaction: Transaction): Transaction => {
       transaction.context = {
         variables: {
           price: {
-            type: formatNativeToken(chainId),
+            type: formatNativeToken(transaction.chainId ?? 1),
             value: ethAmount,
             unit: 'wei',
           },

@@ -51,10 +51,9 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'register': {
       const owner = decoded.args[0].to;
       const callerIsOwner = owner.toLowerCase() === caller.toLowerCase();
-      const chainId = transaction.chainId ?? 1;
       // Capture cost to register
       const cost: ContextSummaryVariableType = {
-        type: formatNativeToken(chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: transaction.value.toString(),
         unit: 'wei',
       };

@@ -51,8 +51,6 @@ export const generate = (transaction: Transaction): Transaction => {
   );
   if (!decoded) return transaction;
 
-  const chainId = transaction.chainId ?? 1;
-
   switch (decoded.functionName) {
     case 'addLiquidityETH': {
       transaction.context = {
@@ -66,7 +64,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: 'ADDED_LIQUIDITY',
           },
           numETH: {
-            type: formatNativeToken(chainId),
+            type: formatNativeToken(transaction.chainId ?? 1),
             value: transaction.value.toString(),
             unit: 'wei',
           },

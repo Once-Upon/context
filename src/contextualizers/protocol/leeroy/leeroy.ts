@@ -44,7 +44,6 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  const chainId = transaction.chainId ?? 1;
   switch (transaction.sigHash) {
     case '0x8ee93cf3': {
       // post(string)
@@ -214,7 +213,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const tipAmount: ContextSummaryVariableType = {
-        type: formatNativeToken(chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: transaction.value.toString(),
         unit: 'wei',
       };
@@ -232,7 +231,7 @@ export const generate = (transaction: Transaction): Transaction => {
         const asset = transaction.netAssetTransfers[transaction.to]
           .received[0] as ETHAsset;
         const leeroyTake: ContextSummaryVariableType = {
-          type: formatNativeToken(chainId),
+          type: formatNativeToken(transaction.chainId ?? 1),
           value: asset.value,
           unit: 'wei',
         };

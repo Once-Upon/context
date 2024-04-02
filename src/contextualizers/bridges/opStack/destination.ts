@@ -42,7 +42,7 @@ export function generate(transaction: Transaction): Transaction {
   switch (assetTransfer.type) {
     case AssetType.ETH:
       asset = {
-        type: formatNativeToken(transaction.chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: assetTransfer.value,
         unit: 'wei',
       } as ContextETHType;

@@ -27,8 +27,6 @@ export function generate(transaction: Transaction): Transaction {
     return transaction;
   }
 
-  const chainId = transaction.chainId ?? 1;
-
   transaction.context = {
     variables: {
       sender: {
@@ -37,7 +35,7 @@ export function generate(transaction: Transaction): Transaction {
       },
 
       amount: {
-        type: formatNativeToken(chainId),
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: transaction.value.toString(),
         unit: 'wei',
       },

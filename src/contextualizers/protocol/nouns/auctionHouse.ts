@@ -55,7 +55,6 @@ export const generate = (transaction: Transaction): Transaction => {
   );
   if (!decoded) return transaction;
 
-  const chainId = transaction.chainId ?? 1;
   switch (decoded.functionName) {
     case 'createBid': {
       transaction.context = {
@@ -74,7 +73,7 @@ export const generate = (transaction: Transaction): Transaction => {
             tokenId: decoded.args[0].toString(),
           },
           amount: {
-            type: formatNativeToken(chainId),
+            type: formatNativeToken(transaction.chainId ?? 1),
             value: transaction.value.toString(),
             unit: 'wei',
           },

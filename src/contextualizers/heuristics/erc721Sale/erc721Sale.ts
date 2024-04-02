@@ -169,7 +169,7 @@ export function generate(transaction: Transaction): Transaction {
             }
           : ethPayments.length > 0
             ? {
-                type: formatNativeToken(transaction.chainId),
+                type: formatNativeToken(transaction.chainId ?? 1),
                 value: totalETHPayment.toString(),
                 unit: 'wei',
               }
