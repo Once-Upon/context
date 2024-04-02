@@ -76,7 +76,7 @@
   "blockHash": "0xcb1c733462728a33fcab4dfa358c80c7204b52e4517cb91e55cceb41e2dbd05c",
   "blockNumber": 19385111,
   "burntFees": "7803812510214654",
-  "decode": {
+  "decoded": {
     "fragment": {
       "type": "function",
       "inputs": [
@@ -206,48 +206,29 @@
       "blockHash": "0xcb1c733462728a33fcab4dfa358c80c7204b52e4517cb91e55cceb41e2dbd05c",
       "blockNumber": 19385111,
       "data": "0x0000000000000000000000000000000000000000000000000000000000000001",
-      "decode": {
-        "fragment": {
-          "type": "event",
-          "inputs": [
-            {
-              "name": "from",
-              "type": "address",
-              "baseType": "address",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "to",
-              "type": "address",
-              "baseType": "address",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "value",
-              "type": "uint256",
-              "baseType": "uint256",
-              "indexed": false,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            }
-          ],
-          "name": "Transfer",
-          "anonymous": false
-        },
-        "name": "Transfer",
+      "decoded": {
         "signature": "Transfer(address,address,uint256)",
-        "topic": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
-        "args": [
-          "0x0232d1083e970f0c78f56202b9a666b526fa379f",
-          "0x93b6af9f6fd83cf2a6a22a7ef529ff65f4724f17",
-          "1"
+        "signature_with_arg_names": "Transfer(address indexed from,address indexed to,uint256 value)",
+        "name": "Transfer",
+        "decoded": [
+          {
+            "indexed": true,
+            "name": "from",
+            "type": "address",
+            "decoded": "0x0232d1083e970f0c78f56202b9a666b526fa379f"
+          },
+          {
+            "indexed": true,
+            "name": "to",
+            "type": "address",
+            "decoded": "0x93b6af9f6fd83cf2a6a22a7ef529ff65f4724f17"
+          },
+          {
+            "indexed": false,
+            "name": "value",
+            "type": "uint256",
+            "decoded": "1"
+          }
         ]
       },
       "removed": false,
@@ -265,27 +246,18 @@
       "blockHash": "0xcb1c733462728a33fcab4dfa358c80c7204b52e4517cb91e55cceb41e2dbd05c",
       "blockNumber": 19385111,
       "data": "0x",
-      "decode": {
-        "fragment": {
-          "type": "event",
-          "inputs": [
-            {
-              "name": "punkIndex",
-              "type": "uint256",
-              "baseType": "uint256",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            }
-          ],
-          "name": "PunkNoLongerForSale",
-          "anonymous": false
-        },
-        "name": "PunkNoLongerForSale",
+      "decoded": {
         "signature": "PunkNoLongerForSale(uint256)",
-        "topic": "0xb0e0a660b4e50f26f0b7ce75c24655fc76cc66e3334a54ff410277229fa10bd4",
-        "args": ["8515"]
+        "signature_with_arg_names": "PunkNoLongerForSale(uint256 indexed punkIndex)",
+        "name": "PunkNoLongerForSale",
+        "decoded": [
+          {
+            "indexed": true,
+            "name": "punkIndex",
+            "type": "uint256",
+            "decoded": "8515"
+          }
+        ]
       },
       "removed": false,
       "topic0": "0xb0e0a660b4e50f26f0b7ce75c24655fc76cc66e3334a54ff410277229fa10bd4",
@@ -301,58 +273,35 @@
       "blockHash": "0xcb1c733462728a33fcab4dfa358c80c7204b52e4517cb91e55cceb41e2dbd05c",
       "blockNumber": 19385111,
       "data": "0x000000000000000000000000000000000000000000000008816cc6b54aca0000",
-      "decode": {
-        "fragment": {
-          "type": "event",
-          "inputs": [
-            {
-              "name": "punkIndex",
-              "type": "uint256",
-              "baseType": "uint256",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "value",
-              "type": "uint256",
-              "baseType": "uint256",
-              "indexed": false,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "fromAddress",
-              "type": "address",
-              "baseType": "address",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            },
-            {
-              "name": "toAddress",
-              "type": "address",
-              "baseType": "address",
-              "indexed": true,
-              "components": null,
-              "arrayLength": null,
-              "arrayChildren": null
-            }
-          ],
-          "name": "PunkBought",
-          "anonymous": false
-        },
-        "name": "PunkBought",
+      "decoded": {
         "signature": "PunkBought(uint256,uint256,address,address)",
-        "topic": "0x58e5d5a525e3b40bc15abaa38b5882678db1ee68befd2f60bafe3a7fd06db9e3",
-        "args": [
-          "8515",
-          "156900000000000000000",
-          "0x0232d1083e970f0c78f56202b9a666b526fa379f",
-          "0x93b6af9f6fd83cf2a6a22a7ef529ff65f4724f17"
+        "signature_with_arg_names": "PunkBought(uint256 indexed punkIndex,uint256 value,address indexed fromAddress,address indexed toAddress)",
+        "name": "PunkBought",
+        "decoded": [
+          {
+            "indexed": true,
+            "name": "punkIndex",
+            "type": "uint256",
+            "decoded": "8515"
+          },
+          {
+            "indexed": false,
+            "name": "value",
+            "type": "uint256",
+            "decoded": "156900000000000000000"
+          },
+          {
+            "indexed": true,
+            "name": "fromAddress",
+            "type": "address",
+            "decoded": "0x0232d1083e970f0c78f56202b9a666b526fa379f"
+          },
+          {
+            "indexed": true,
+            "name": "toAddress",
+            "type": "address",
+            "decoded": "0x93b6af9f6fd83cf2a6a22a7ef529ff65f4724f17"
+          }
         ]
       },
       "removed": false,

@@ -22,14 +22,14 @@
   "yParity": "0x1",
   "assetTransfers": [
     {
-      "asset": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+      "contract": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
       "from": "0xc9034c3e7f58003e6ae0c8438e7c8f4598d5acaa",
       "to": "0x6e947ba373a53bd41139d68e8dfb4fb0472767b6",
       "value": "79907887473934231137403",
       "type": "erc20"
     },
     {
-      "asset": "0x4200000000000000000000000000000000000006",
+      "contract": "0x4200000000000000000000000000000000000006",
       "from": "0x6e947ba373a53bd41139d68e8dfb4fb0472767b6",
       "to": "0xc9034c3e7f58003e6ae0c8438e7c8f4598d5acaa",
       "value": "300000000000000000",
@@ -107,7 +107,7 @@
     "0x6e947ba373a53bd41139d68e8dfb4fb0472767b6": {
       "received": [
         {
-          "asset": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+          "contract": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
           "id": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
           "type": "erc20",
           "value": "79907887473934231137403"
@@ -115,7 +115,7 @@
       ],
       "sent": [
         {
-          "asset": "0x4200000000000000000000000000000000000006",
+          "contract": "0x4200000000000000000000000000000000000006",
           "id": "0x4200000000000000000000000000000000000006",
           "type": "erc20",
           "value": "300000000000000000"

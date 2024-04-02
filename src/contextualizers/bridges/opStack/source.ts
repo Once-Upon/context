@@ -59,10 +59,7 @@ export function generate(transaction: Transaction): Transaction {
 
   const logs = transaction.logs ?? [];
   const transactionDepositedLog = logs.find((log: any) => {
-    return (
-      log.topics?.length > 0 &&
-      log.topics[0] === TRANSACTION_DEPOSITED_EVENT_HASH
-    );
+    return log.topic0 === TRANSACTION_DEPOSITED_EVENT_HASH;
   });
 
   if (!transactionDepositedLog) return transaction;
