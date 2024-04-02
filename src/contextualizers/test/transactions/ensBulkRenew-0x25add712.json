@@ -74,9 +74,7 @@
     },
     {
       "key": "eth",
-      "value": [
-        0.002962096670631547
-      ]
+      "value": [0.002962096670631547]
     }
   ],
   "baseFeePerGas": 19704166631,
@@ -269,10 +267,8 @@
         ]
       },
       "removed": false,
-      "topics": [
-        "0x9b87a00e30f1ac65d898f070f8a3488fe60517182d0a2098e1b4b93a54aa9bd6",
-        "0x2e4789358448601207851c99136e9691ad0f1658818bd6bb7bc2556cc5ccc8c7"
-      ],
+      "topic0": "0x9b87a00e30f1ac65d898f070f8a3488fe60517182d0a2098e1b4b93a54aa9bd6",
+      "topic1": "0x2e4789358448601207851c99136e9691ad0f1658818bd6bb7bc2556cc5ccc8c7",
       "transactionIndex": 283
     },
     {
@@ -339,10 +335,8 @@
         ]
       },
       "removed": false,
-      "topics": [
-        "0x3da24c024582931cfaf8267d8ed24d13a82a8068d5bd337d30ec45cea4e506ae",
-        "0x2e4789358448601207851c99136e9691ad0f1658818bd6bb7bc2556cc5ccc8c7"
-      ],
+      "topic0": "0x3da24c024582931cfaf8267d8ed24d13a82a8068d5bd337d30ec45cea4e506ae",
+      "topic1": "0x2e4789358448601207851c99136e9691ad0f1658818bd6bb7bc2556cc5ccc8c7",
       "transactionIndex": 283
     }
   ],

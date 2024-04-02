@@ -65,15 +65,11 @@
     },
     {
       "key": "eth",
-      "value": [
-        156.9
-      ]
+      "value": [156.9]
     },
     {
       "key": "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
-      "value": [
-        1e-18
-      ]
+      "value": [1e-18]
     }
   ],
   "baseFeePerGas": 98855013937,
@@ -101,9 +97,7 @@
       "gas": null
     },
     "name": "buyPunk",
-    "args": [
-      "8515"
-    ],
+    "args": ["8515"],
     "signature": "buyPunk(uint256)",
     "selector": "0x8264fe98",
     "value": "0"
@@ -257,11 +251,9 @@
         ]
       },
       "removed": false,
-      "topics": [
-        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
-        "0x0000000000000000000000000232d1083e970f0c78f56202b9a666b526fa379f",
-        "0x00000000000000000000000093b6af9f6fd83cf2a6a22a7ef529ff65f4724f17"
-      ],
+      "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+      "topic1": "0x0000000000000000000000000232d1083e970f0c78f56202b9a666b526fa379f",
+      "topic2": "0x00000000000000000000000093b6af9f6fd83cf2a6a22a7ef529ff65f4724f17",
       "transactionIndex": 28
     },
     {
@@ -293,15 +285,11 @@
         "name": "PunkNoLongerForSale",
         "signature": "PunkNoLongerForSale(uint256)",
         "topic": "0xb0e0a660b4e50f26f0b7ce75c24655fc76cc66e3334a54ff410277229fa10bd4",
-        "args": [
-          "8515"
-        ]
+        "args": ["8515"]
       },
       "removed": false,
-      "topics": [
-        "0xb0e0a660b4e50f26f0b7ce75c24655fc76cc66e3334a54ff410277229fa10bd4",
-        "0x0000000000000000000000000000000000000000000000000000000000002143"
-      ],
+      "topic0": "0xb0e0a660b4e50f26f0b7ce75c24655fc76cc66e3334a54ff410277229fa10bd4",
+      "topic1": "0x0000000000000000000000000000000000000000000000000000000000002143",
       "transactionIndex": 28
     },
     {
@@ -368,12 +356,10 @@
         ]
       },
       "removed": false,
-      "topics": [
-        "0x58e5d5a525e3b40bc15abaa38b5882678db1ee68befd2f60bafe3a7fd06db9e3",
-        "0x0000000000000000000000000000000000000000000000000000000000002143",
-        "0x0000000000000000000000000232d1083e970f0c78f56202b9a666b526fa379f",
-        "0x00000000000000000000000093b6af9f6fd83cf2a6a22a7ef529ff65f4724f17"
-      ],
+      "topic0": "0x58e5d5a525e3b40bc15abaa38b5882678db1ee68befd2f60bafe3a7fd06db9e3",
+      "topic1": "0x0000000000000000000000000000000000000000000000000000000000002143",
+      "topic2": "0x0000000000000000000000000232d1083e970f0c78f56202b9a666b526fa379f",
+      "topic3": "0x00000000000000000000000093b6af9f6fd83cf2a6a22a7ef529ff65f4724f17",
       "transactionIndex": 28
     }
   ],
