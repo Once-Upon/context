@@ -54,12 +54,12 @@ export const generate = (transaction: Transaction): Transaction => {
         type: 'contextAction',
         value: 'SWAP',
       },
-      numETH: {
+      erc20Token1: {
         type: AssetType.ETH,
         value: transaction.value.toString(),
         unit: 'wei',
       },
-      numENJOY: {
+      erc20Token2: {
         type: AssetType.ERC20,
         value: decoded.args[2].toString(),
         token: ENJOY_CONTRACT_ADDRESS,
@@ -69,7 +69,7 @@ export const generate = (transaction: Transaction): Transaction => {
       category: 'PROTOCOL_1',
       en: {
         title: 'Uniswap',
-        default: '[[lp]][[contextAction]]with[[numETH]]and[[numENJOY]]',
+        default: '[[sender]][[contextAction]]with[[erc20Token1]]and[[erc20Token2]]',
       },
     },
   };
