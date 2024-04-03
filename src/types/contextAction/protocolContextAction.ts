@@ -70,7 +70,7 @@ export type NounsGovernorAction =
   | 'CANCELED'
   | 'VETOED';
 
-export type UniswapV2RouterAction = 'ADDED_LIQUIDITY' | 'SWAP';
+export type UniswapV2RouterAction = 'ADDED_LIQUIDITY';
 
 export type ClaimCampaignsAction = 'CLAIMED';
 
