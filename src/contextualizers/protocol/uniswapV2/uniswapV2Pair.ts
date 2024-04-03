@@ -8,8 +8,8 @@ import {
 import { decodeLog } from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
-  const isEnjoy = detect(transaction);
-  if (!isEnjoy) return transaction;
+  const isUniswapV2Pair = detect(transaction);
+  if (!isUniswapV2Pair) return transaction;
 
   return generate(transaction);
 };
