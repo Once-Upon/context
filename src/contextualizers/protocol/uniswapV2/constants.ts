@@ -1,5 +1,4 @@
 import uniswapV2RouterAbi from './abis/UniswapV2Router';
-import uniswapV2PairAbi from './abis/UniswapV2Pair';
 
 export const UNISWAP_V2_ROUTERS = {
   7777777: '0xa00f34a632630efd15223b1968358ba4845beec7',
@@ -12,4 +11,3 @@ export const UNISWAP_V2_SWAP_EVENT_HASH =
   '0xd78ad95fa46c994b6551d0da85fc275fe613ce37657fb8d5e3d130840159d822';
 
 export const UNISWAP_V2_ROUTER_ABI = uniswapV2RouterAbi;
-export const UNISWAP_V2_PAIR_ABI = uniswapV2PairAbi;
