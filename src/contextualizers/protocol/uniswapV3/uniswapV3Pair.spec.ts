@@ -16,7 +16,7 @@ describe('Uniswap', () => {
     expect(enjoy1.context?.summaries?.en.title).toBe('Uniswap');
     const desc1 = contextSummary(enjoy1.context);
     expect(desc1).toBe(
-      '0x6b3210caa59c0367edc0b0e60636db02a623ce58 ADDED_LIQUIDITY with 0.022175029426293734 ETH and 1862664875000000000000000 0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39',
+      '0xcb1355ff08ab38bbce60111f1bb2b784be25d7e8 swapped 1412595572402230 0x4200000000000000000000000000000000000006 for 1372743836828975471 0x4200000000000000000000000000000000000042',
     );
     expect(containsBigInt(enjoy1.context)).toBe(false);
   });

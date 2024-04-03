@@ -1,10 +1,11 @@
 import { Abi, Hex } from 'viem';
-import { AssetType, EventLogTopics, Transaction } from '../../../types';
 import {
-  ENJOY_CONTRACT_ADDRESS,
-  UNISWAP_V3_SWAP_EVENT_HASH,
-  UNISWAP_V3_PAIR_ABI,
-} from './constants';
+  AssetType,
+  ERC20Asset,
+  EventLogTopics,
+  Transaction,
+} from '../../../types';
+import { UNISWAP_V3_SWAP_EVENT_HASH, UNISWAP_V3_PAIR_ABI } from './constants';
 import { decodeLog } from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -27,6 +28,7 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
+  if (!transaction.netAssetTransfers) return transaction;
   const swapLog = transaction.logs
     ? transaction.logs.find((log) => log.topic0 === UNISWAP_V3_SWAP_EVENT_HASH)
     : null;
@@ -44,32 +46,52 @@ export const generate = (transaction: Transaction): Transaction => {
   );
   if (!decoded) return transaction;
 
+  const sender: string = decoded.args['sender'].toLowerCase();
+  const recipient: string = decoded.args['recipient'].toLowerCase();
+  if (
+    !transaction.netAssetTransfers[sender] ||
+    !transaction.netAssetTransfers[sender].sent?.length ||
+    !transaction.netAssetTransfers[recipient] ||
+    !transaction.netAssetTransfers[recipient].received?.length
+  ) {
+    return transaction;
+  }
+
+  const sentAssetTransfer = transaction.netAssetTransfers[sender]
+    .sent[0] as ERC20Asset;
+  const receivedAssetTransfer = transaction.netAssetTransfers[recipient]
+    .received[0] as ERC20Asset;
+
   transaction.context = {
     variables: {
       sender: {
         type: 'address',
-        value: decoded.args['sender'],
+        value: sender,
+      },
+      recipient: {
+        type: 'address',
+        value: recipient,
+      },
+      tokenIn: {
+        type: AssetType.ERC20,
+        value: sentAssetTransfer.value,
+        token: sentAssetTransfer.contract,
+      },
+      tokenOut: {
+        type: AssetType.ERC20,
+        value: receivedAssetTransfer.value,
+        token: receivedAssetTransfer.contract,
       },
       contextAction: {
         type: 'contextAction',
         value: 'SWAP',
-      },
-      numETH: {
-        type: AssetType.ETH,
-        value: transaction.value.toString(),
-        unit: 'wei',
-      },
-      numENJOY: {
-        type: AssetType.ERC20,
-        value: decoded.args[2].toString(),
-        token: ENJOY_CONTRACT_ADDRESS,
       },
     },
     summaries: {
       category: 'PROTOCOL_1',
       en: {
         title: 'Uniswap',
-        default: '[[lp]][[contextAction]]with[[numETH]]and[[numENJOY]]',
+        default: '[[sender]]swapped[[tokenIn]]for[[tokenOut]]',
       },
     },
   };
