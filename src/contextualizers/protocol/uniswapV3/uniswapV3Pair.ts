@@ -5,7 +5,7 @@ import {
   EventLogTopics,
   Transaction,
 } from '../../../types';
-import { UNISWAP_V3_SWAP_EVENT_HASH, UNISWAP_V3_PAIR_ABI } from './constants';
+import { UNISWAP_V3_PAIR_ABI } from './constants';
 import { decodeLog } from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -20,30 +20,32 @@ export const detect = (transaction: Transaction): boolean => {
   const logs = transaction.logs;
   if (!logs) return false;
 
-  const swapLog = logs.find((log) => log.topic0 === UNISWAP_V3_SWAP_EVENT_HASH);
-  if (!swapLog) return false;
+  for (const log of logs) {
+    const decoded = decodeLog(
+      UNISWAP_V3_PAIR_ABI as Abi,
+      log.data as Hex,
+      [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
+    );
+    if (decoded && decoded.eventName === 'Swap') return true;
+  }
 
-  return true;
+  return false;
 };
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  if (!transaction.netAssetTransfers) return transaction;
-  const swapLog = transaction.logs
-    ? transaction.logs.find((log) => log.topic0 === UNISWAP_V3_SWAP_EVENT_HASH)
-    : null;
-  if (!swapLog) return transaction;
-  // decode swap event
-  const decoded = decodeLog(
-    UNISWAP_V3_PAIR_ABI as Abi,
-    swapLog.data as Hex,
-    [
-      swapLog.topic0,
-      swapLog.topic1,
-      swapLog.topic2,
-      swapLog.topic3,
-    ] as EventLogTopics,
-  );
+  if (!transaction.netAssetTransfers || !transaction.logs) return transaction;
+  let decoded;
+  for (const log of transaction.logs) {
+    decoded = decodeLog(
+      UNISWAP_V3_PAIR_ABI as Abi,
+      log.data as Hex,
+      [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
+    );
+    if (decoded && decoded.eventName === 'Swap') {
+      break;
+    }
+  }
   if (!decoded) return transaction;
 
   const sender: string = decoded.args['sender'].toLowerCase();
