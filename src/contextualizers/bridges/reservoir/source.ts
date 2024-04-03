@@ -32,6 +32,7 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
+  if (!transaction.to) return transaction;
   const assetSent = transaction.netAssetTransfers
     ? transaction.netAssetTransfers[transaction.from]?.sent
     : [];
@@ -42,33 +43,22 @@ export function generate(transaction: Transaction): Transaction {
     return transaction;
   }
 
-  const destinationChainId = transaction.chainId === 7777777 ? 1 : 7777777;
-
   transaction.context = {
     summaries: {
       category: 'MULTICHAIN',
       en: {
         title: `Bridge`,
-        default: '[[sender]][[bridged]][[asset]]to[[chainID]]',
+        default: '[[person]]initiated cross chain interaction via[[address]]',
       },
     },
     variables: {
-      sender: {
+      person: {
         type: 'address',
         value: transaction.from,
       },
-      chainID: {
-        type: 'chainID',
-        value: destinationChainId,
-      },
-      bridged: {
-        type: 'contextAction',
-        value: 'BRIDGED',
-      },
-      asset: {
-        type: AssetType.ETH,
-        value: assetTransfer.value,
-        unit: 'wei',
+      address: {
+        type: 'address',
+        value: transaction.to,
       },
     },
   };
