@@ -89,12 +89,21 @@ export type RawTransaction = StdObj & {
   accessList?: StdObj[];
   blockNumber: number;
   from: string;
+  to: string;
   hash: string;
   input: string;
+  chainId: number;
+  blockHash: string;
+  gas: number;
+  nonce: number;
+  transactionIndex: number;
+  type: number;
   value: string;
+  v: string;
+  r: string;
+  s: string;
   receipt: RawReceipt;
   gasPrice: string;
-  to: string;
   traces: RawTrace[];
   contracts?: Contract[];
   decoded?: TransactionDescription;
@@ -103,7 +112,18 @@ export type RawTransaction = StdObj & {
   netAssetTransfers: NetAssetTransfers;
   errors: string[];
   parties: string[];
+  delegateCalls: string[];
+  sigHash: string;
+  internalSigHashes: InternalSigHash[];
+  timestamp: number;
+  transactionFee: string;
 };
+
+interface InternalSigHash {
+  from: string;
+  to: string;
+  sigHash: string;
+}
 
 export type RawTraceAction = StdObj & {
   address: string;
