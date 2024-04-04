@@ -18,9 +18,12 @@ export function detect(transaction: Transaction): boolean {
    */
   if (transaction.to !== BRIDGE_ZORA_ENERGY) return false;
 
-  const assetSent = transaction.netAssetTransfers
-    ? transaction.netAssetTransfers[transaction.from]?.sent
-    : [];
+  const assetSent =
+    transaction.netAssetTransfers &&
+    transaction.netAssetTransfers[transaction.from] &&
+    transaction.netAssetTransfers[transaction.from].sent
+      ? transaction.netAssetTransfers[transaction.from].sent
+      : [];
   const assetTransfer: ETHAsset | undefined = assetSent.find(
     (asset) => asset.type === AssetType.ETH,
   ) as ETHAsset;
@@ -33,9 +36,12 @@ export function detect(transaction: Transaction): boolean {
 
 export function generate(transaction: Transaction): Transaction {
   if (!transaction.to) return transaction;
-  const assetSent = transaction.netAssetTransfers
-    ? transaction.netAssetTransfers[transaction.from]?.sent
-    : [];
+  const assetSent =
+    transaction.netAssetTransfers &&
+    transaction.netAssetTransfers[transaction.from] &&
+    transaction.netAssetTransfers[transaction.from].sent
+      ? transaction.netAssetTransfers[transaction.from].sent
+      : [];
   const assetTransfer: ETHAsset | undefined = assetSent.find(
     (asset) => asset.type === AssetType.ETH,
   ) as ETHAsset;

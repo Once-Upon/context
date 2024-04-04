@@ -15,9 +15,12 @@ export function detect(transaction: Transaction): boolean {
     return false;
   }
 
-  const assetReceived = transaction.netAssetTransfers
-    ? transaction.netAssetTransfers[transaction.to]?.received
-    : [];
+  const assetReceived =
+    transaction.netAssetTransfers &&
+    transaction.netAssetTransfers[transaction.to] &&
+    transaction.netAssetTransfers[transaction.to].received
+      ? transaction.netAssetTransfers[transaction.to].received
+      : [];
   const assetTransfer: ETHAsset | undefined = assetReceived.find(
     (asset) => asset.type === AssetType.ETH,
   ) as ETHAsset;
@@ -31,9 +34,12 @@ export function detect(transaction: Transaction): boolean {
 export function generate(transaction: Transaction): Transaction {
   if (!transaction.to) return transaction;
 
-  const assetReceived = transaction.netAssetTransfers
-    ? transaction.netAssetTransfers[transaction.to]?.received
-    : [];
+  const assetReceived =
+    transaction.netAssetTransfers &&
+    transaction.netAssetTransfers[transaction.to] &&
+    transaction.netAssetTransfers[transaction.to].received
+      ? transaction.netAssetTransfers[transaction.to].received
+      : [];
   const assetTransfer: ETHAsset | undefined = assetReceived.find(
     (asset) => asset.type === AssetType.ETH,
   ) as ETHAsset;
