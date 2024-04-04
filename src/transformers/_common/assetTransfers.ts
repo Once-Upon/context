@@ -176,7 +176,7 @@ function getTokenTransfers(tx: RawTransaction) {
 export function transform(block: RawBlock): RawBlock {
   block.transactions = block.transactions.map((tx) => {
     // don't count transfers for failed txs
-    if (!tx.receipt.status) {
+    if (!tx.receipt.status || !tx.to) {
       return tx;
     }
 
