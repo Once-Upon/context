@@ -2,7 +2,7 @@ import { Transaction as BaseTransaction, TransactionReceipt } from 'viem';
 import { Log, RawReceipt } from './log';
 import { ContextVariable, ContextSummaryType } from './context';
 import { NetAssetTransfers, AssetTransfer } from './asset';
-import { StdObj } from './shared';
+import { InternalHashType, StdObj } from './shared';
 import { Contract } from './contract';
 
 export type SigHash = {
@@ -112,18 +112,12 @@ export type RawTransaction = StdObj & {
   netAssetTransfers: NetAssetTransfers;
   errors: string[];
   parties: string[];
-  delegateCalls: string[];
+  delegateCalls: RawTrace[];
   sigHash: string;
-  internalSigHashes: InternalSigHash[];
+  internalSigHashes: InternalHashType[];
   timestamp: number;
   transactionFee: string;
 };
-
-interface InternalSigHash {
-  from: string;
-  to: string;
-  sigHash: string;
-}
 
 export type RawTraceAction = StdObj & {
   address: string;
