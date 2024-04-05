@@ -5,7 +5,7 @@ const children = { uniswapV3Pair };
 
 const contextualize = makeContextualize(children);
 
-export const uniswapV2Contextualizer = {
+export const uniswapV3Contextualizer = {
   contextualize,
   children,
 };
