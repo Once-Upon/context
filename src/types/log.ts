@@ -1,21 +1,14 @@
+import { Log as BaseLog } from 'viem';
 import { StdObj } from './shared';
 
-export interface Log {
-  address: string;
-  data: string;
-  blockNumber: number;
-  transactionHash: string;
-  transactionIndex: number;
-  blockHash: string;
-  logIndex: number;
-  removed: boolean;
+export type Log = BaseLog & {
   chainId: number;
   decoded?: LogDescription;
   topic0: string;
   topic1: string;
   topic2: string;
   topic3: string;
-}
+};
 
 export type EventArgument = {
   indexed: boolean;
@@ -36,11 +29,7 @@ export type EventLogTopics = [
   ...args: `0x${string}`[],
 ];
 
-export type RawLog = StdObj & {
-  address: string;
-  data: string;
-  logIndex: number;
-  topics: string[];
+export type RawLog = BaseLog & {
   decoded?: LogDescription;
 };
 

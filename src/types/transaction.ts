@@ -1,14 +1,20 @@
-import { Transaction as BaseTransaction, TransactionReceipt } from 'viem';
+import {
+  Address,
+  Transaction as BaseTransaction,
+  Hash,
+  Hex,
+  TransactionReceipt,
+} from 'viem';
 import { Log, RawReceipt } from './log';
 import { ContextVariable, ContextSummaryType } from './context';
 import { NetAssetTransfers, AssetTransfer } from './asset';
-import { StdObj } from './shared';
+import { InternalHashType, StdObj } from './shared';
 import { Contract } from './contract';
 
 export type SigHash = {
-  from: string;
-  to?: string;
-  sigHash: string;
+  from: Address;
+  to?: Address;
+  sigHash: Hash;
 };
 
 export type ParamType = {
@@ -37,21 +43,21 @@ export type TransactionDescription = {
 export type Trace = {
   action: {
     callType: string;
-    from: string;
+    from: Address;
     gas: string;
-    input: string;
-    to: string;
+    input: Hex;
+    to: Address;
     value: string;
   };
-  blockHash: string;
-  blockNumber: number;
+  blockHash: Hash;
+  blockNumber: bigint;
   result: {
     gasUsed: string;
     output: string;
   };
   subtraces: number;
   traceAddress: number[];
-  transactionHash: string;
+  transactionHash: Hash;
   transactionPosition: number;
   type: string;
 };
@@ -81,47 +87,49 @@ export type Transaction = BaseTransaction & {
   canCopy?: boolean;
   context?: TransactionContextType;
   logs?: Log[];
+  delegateCalls: RawTrace[];
   timestamp: number;
   isoTimestamp: string;
 };
 
-export type RawTransaction = StdObj & {
-  accessList?: StdObj[];
-  blockNumber: number;
-  from: string;
-  hash: string;
-  input: string;
-  value: string;
+export type RawTransaction = BaseTransaction & {
+  assetTransfers: AssetTransfer[];
+  sigHash: string;
+  internalSigHashes: InternalHashType[];
+  parties: string[];
+  decoded?: TransactionDescription;
+  netAssetTransfers: NetAssetTransfers;
   receipt: RawReceipt;
   gasPrice: string;
-  to: string;
-  traces: RawTrace[];
-  contracts?: Contract[];
-  decoded?: TransactionDescription;
   context: TxContext;
-  assetTransfers: AssetTransfer[];
-  netAssetTransfers: NetAssetTransfers;
+  traces: RawTrace[];
+  transactionFee: string;
+  baseFeePerGas: number | string;
+  contracts?: Contract[];
   errors: string[];
-  parties: string[];
+  delegateCalls: RawTrace[];
+  timestamp: number;
+  isoTimestamp: string;
+  neighbor: RawNeighbor;
 };
 
 export type RawTraceAction = StdObj & {
-  address: string;
+  address: Address;
   balance?: string;
   callType?: string;
-  from: string;
+  from: Address;
   refundAddress?: string;
-  to?: string;
+  to?: Address;
   value?: string;
-  input?: string;
+  input?: Hex;
 };
 
 export type RawTraceResult = StdObj & {
-  address?: string;
+  address?: Address;
   code: string;
-  hash: string;
+  hash: Hash;
   receipt: StdObj;
-  to: string;
+  to: Address;
   traces: RawTrace[];
   transactionIndex: number;
 };
@@ -129,15 +137,20 @@ export type RawTraceResult = StdObj & {
 export type RawTrace = StdObj & {
   action: RawTraceAction;
   blockNumber: number;
-  blockhash: string;
+  blockHash: Hash;
   error?: string;
   result: RawTraceResult;
   subtraces: number;
-  traceAddress: number[];
-  transactionHash: string;
+  traceAddress: Address[];
+  transactionHash: Hash;
   transactionPosition: number;
   type: string;
   decoded?: TransactionDescription;
+};
+
+export type RawNeighbor = {
+  address: Address;
+  neighbor: string;
 };
 
 export type TxContext = {

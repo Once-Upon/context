@@ -62,7 +62,8 @@ export function generate(transaction: Transaction): Transaction {
     return log.topic0 === TRANSACTION_DEPOSITED_EVENT_HASH;
   });
 
-  if (!transactionDepositedLog) return transaction;
+  if (!transactionDepositedLog || !transactionDepositedLog.logIndex)
+    return transaction;
 
   let asset: ContextSummaryVariableType;
   switch (assetTransfer.type) {
