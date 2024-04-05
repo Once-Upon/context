@@ -1,4 +1,4 @@
-import { Transaction } from '../../../types';
+import { HeuristicContextActionEnum, Transaction } from '../../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isCanceledPendingTransaction = detect(transaction);
@@ -30,7 +30,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       canceled: {
         type: 'contextAction',
-        value: 'CANCELED_A_PENDING_TRANSACTION',
+        value: HeuristicContextActionEnum.CANCELED_A_PENDING_TRANSACTION,
       },
       nonce: {
         type: 'number',

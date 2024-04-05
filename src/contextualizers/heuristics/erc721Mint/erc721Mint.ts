@@ -2,6 +2,7 @@ import {
   AssetType,
   ERC721AssetTransfer,
   ETHAsset,
+  HeuristicContextActionEnum,
   Transaction,
 } from '../../../types';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
@@ -104,7 +105,10 @@ export function generate(transaction: Transaction): Transaction {
         value: price,
         unit: 'wei',
       },
-      minted: { type: 'contextAction', value: 'MINTED' },
+      minted: {
+        type: 'contextAction',
+        value: HeuristicContextActionEnum.MINTED,
+      },
     },
     summaries: {
       category: 'NFT',

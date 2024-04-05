@@ -3,6 +3,7 @@ import {
   AssetType,
   ETHAsset,
   ERC1155AssetTransfer,
+  HeuristicContextActionEnum,
 } from '../../../types';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
 
@@ -110,7 +111,10 @@ export function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: sender,
       },
-      minted: { type: 'contextAction', value: 'MINTED' },
+      minted: {
+        type: 'contextAction',
+        value: HeuristicContextActionEnum.MINTED,
+      },
       price: {
         type: AssetType.ETH,
         value: price,

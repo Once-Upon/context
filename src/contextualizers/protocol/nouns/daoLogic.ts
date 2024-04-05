@@ -1,13 +1,17 @@
 import { Hex } from 'viem';
-import { EventLogTopics, Transaction } from '../../../types';
+import {
+  EventLogTopics,
+  NounsGovernorActionEnum,
+  Transaction,
+} from '../../../types';
 import { NounsContracts, ABIs } from './constants';
 import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
 
 const translateSupport = (support: number) => {
-  if (support === 0) return 'VOTED_AGAINST';
-  if (support === 1) return 'VOTED_FOR';
+  if (support === 0) return NounsGovernorActionEnum.VOTED_AGAINST;
+  if (support === 1) return NounsGovernorActionEnum.VOTED_FOR;
 
-  return 'ABSTAINED';
+  return NounsGovernorActionEnum.ABSTAINED;
 };
 
 const proposalUrl = (proposalId: bigint | number) => {
@@ -15,10 +19,10 @@ const proposalUrl = (proposalId: bigint | number) => {
 };
 
 const FUNCTION_CONTEXT_ACTION_MAPPING = {
-  execute: 'EXECUTED',
-  queue: 'QUEUED',
-  cancel: 'CANCELED',
-  veto: 'VETOED',
+  execute: NounsGovernorActionEnum.EXECUTED,
+  queue: NounsGovernorActionEnum.QUEUED,
+  cancel: NounsGovernorActionEnum.CANCELED,
+  veto: NounsGovernorActionEnum.VETOED,
 } as const;
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -118,7 +122,7 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           contextAction: {
             type: 'contextAction',
-            value: 'CREATED_PROPOSAL',
+            value: NounsGovernorActionEnum.CREATED_PROPOSAL,
           },
           subject: {
             type: 'address',
@@ -189,7 +193,7 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           contextAction: {
             type: 'contextAction',
-            value: 'CREATED_PROPOSAL',
+            value: NounsGovernorActionEnum.CREATED_PROPOSAL,
           },
           subject: {
             type: 'address',
@@ -262,7 +266,9 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'Nouns',
             default: `[[subject]][[contextAction]]${
-              action === 'ABSTAINED' ? 'from voting on ' : ''
+              action === NounsGovernorActionEnum.ABSTAINED
+                ? 'from voting on '
+                : ''
             }proposal[[proposalId]]`,
           },
         },
@@ -270,7 +276,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
       if (reason) {
         transaction.context!.summaries!.en.long = `[[subject]][[contextAction]]${
-          action === 'ABSTAINED' ? 'from voting on ' : ''
+          action === NounsGovernorActionEnum.ABSTAINED ? 'from voting on ' : ''
         }proposal[[proposalId]][[reason]]`;
       }
 
@@ -340,7 +346,9 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'Nouns',
             default: `[[voter]][[contextAction]]${
-              action === 'ABSTAINED' ? 'from voting on ' : ''
+              action === NounsGovernorActionEnum.ABSTAINED
+                ? 'from voting on '
+                : ''
             }proposal[[proposalId]]`,
           },
         },

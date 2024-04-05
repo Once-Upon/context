@@ -1,5 +1,9 @@
 import { Hex } from 'viem';
-import { EventLogTopics, Transaction } from '../../../types';
+import {
+  ENSContextActionEnum,
+  EventLogTopics,
+  Transaction,
+} from '../../../types';
 import { ENS_CONTRACTS, ENS_ADDRESSES } from './constants';
 import { convertDate, decodeLog } from '../../../helpers/utils';
 
@@ -94,7 +98,7 @@ export const generate = (transaction: Transaction): Transaction => {
             },
             registered: {
               type: 'contextAction',
-              value: 'REGISTERED',
+              value: ENSContextActionEnum.REGISTERED,
             },
           },
         };
@@ -132,7 +136,7 @@ export const generate = (transaction: Transaction): Transaction => {
             },
             renewed: {
               type: 'contextAction',
-              value: 'RENEWED',
+              value: ENSContextActionEnum.RENEWED,
             },
           },
         };

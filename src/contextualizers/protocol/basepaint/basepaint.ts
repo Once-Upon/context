@@ -2,6 +2,7 @@ import { Hex } from 'viem';
 import {
   Asset,
   AssetType,
+  BasepaintActionEnum,
   ContextVariable,
   ETHAsset,
   Transaction,
@@ -63,7 +64,7 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           contextAction: {
             type: 'contextAction',
-            value: 'PAINTED',
+            value: BasepaintActionEnum.PAINTED,
           },
           subject: {
             type: 'address',
@@ -111,7 +112,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const variables: ContextVariable = {
         contextAction: {
           type: 'contextAction',
-          value: 'WITHDREW_REWARDS',
+          value: BasepaintActionEnum.WITHDREW_REWARDS,
         },
         subject: {
           type: 'address',

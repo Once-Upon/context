@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import { Transaction } from '../../../types';
+import { FarcasterContextActionEnum, Transaction } from '../../../types';
 import { FarcasterContracts } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -43,7 +43,7 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           rented: {
             type: 'contextAction',
-            value: 'RENTED',
+            value: FarcasterContextActionEnum.RENTED,
           },
           caller: {
             type: 'address',
@@ -80,7 +80,7 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           rented: {
             type: 'contextAction',
-            value: 'RENTED',
+            value: FarcasterContextActionEnum.RENTED,
           },
           caller: {
             type: 'address',

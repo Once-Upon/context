@@ -1,4 +1,4 @@
-import { Transaction } from '../../../types';
+import { Transaction, WETHContextActionEnum } from '../../../types';
 import { detect, generate } from './weth';
 import { contextSummary } from '../../../helpers/utils';
 import weth0x8ae756d0 from '../../test/transactions/weth-0x8ae756d0.json';
@@ -28,13 +28,17 @@ describe('Weth', () => {
     expect(weth1.context?.summaries?.en.title).toBe('WETH');
     expect(weth1.context?.variables?.wrapped).toBeDefined();
     expect(weth1.context?.variables?.wrapped.type).toBe('contextAction');
-    expect(weth1.context?.variables?.wrapped['value']).toBe('WRAPPED');
+    expect(weth1.context?.variables?.wrapped['value']).toBe(
+      WETHContextActionEnum.WRAPPED,
+    );
 
     const weth2 = generate(weth0x0917947d as unknown as Transaction);
     expect(weth2.context?.summaries?.en.title).toBe('WETH');
     expect(weth2.context?.variables?.unwrapped).toBeDefined();
     expect(weth2.context?.variables?.unwrapped.type).toBe('contextAction');
-    expect(weth2.context?.variables?.unwrapped['value']).toBe('UNWRAPPED');
+    expect(weth2.context?.variables?.unwrapped['value']).toBe(
+      WETHContextActionEnum.UNWRAPPED,
+    );
     const wethDesc2 = contextSummary(weth2.context);
     expect(wethDesc2).toBe(
       '0x223a1b8d6f2ef8d83e0df91542b99601bc558e2c UNWRAPPED 0.05 ETH',
@@ -44,7 +48,9 @@ describe('Weth', () => {
     expect(weth3.context?.summaries?.en.title).toBe('WETH');
     expect(weth3.context?.variables?.unwrapped).toBeDefined();
     expect(weth3.context?.variables?.unwrapped.type).toBe('contextAction');
-    expect(weth3.context?.variables?.unwrapped['value']).toBe('UNWRAPPED');
+    expect(weth3.context?.variables?.unwrapped['value']).toBe(
+      WETHContextActionEnum.UNWRAPPED,
+    );
     const wethDesc3 = contextSummary(weth3.context);
     expect(wethDesc3).toBe(
       '0x50509d22b1bd2f10de15515140e80a7e48f74b44 UNWRAPPED 0.41031062797756485 ETH',

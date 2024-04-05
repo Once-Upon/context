@@ -6,6 +6,7 @@ import {
   ContextERC20Type,
   ETHAsset,
   ContextETHType,
+  HeuristicContextActionEnum,
 } from '../../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -116,7 +117,7 @@ export function generate(transaction: Transaction): Transaction {
       swapTo,
       swapped: {
         type: 'contextAction',
-        value: 'SWAPPED',
+        value: HeuristicContextActionEnum.SWAPPED,
       },
     },
     summaries: {

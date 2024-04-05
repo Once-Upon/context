@@ -7,6 +7,7 @@ import {
   ContextERC721Type,
   ContextERC1155Type,
   AssetTransfer,
+  HeuristicContextActionEnum,
 } from '../../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -90,7 +91,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       bridged: {
         type: 'contextAction',
-        value: 'BRIDGED',
+        value: HeuristicContextActionEnum.BRIDGED,
       },
       asset,
     },

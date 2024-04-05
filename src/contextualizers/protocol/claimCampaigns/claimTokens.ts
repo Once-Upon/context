@@ -1,5 +1,9 @@
 import { Hex } from 'viem';
-import { AssetType, Transaction } from '../../../types';
+import {
+  AssetType,
+  ClaimCampaignsActionEnum,
+  Transaction,
+} from '../../../types';
 import {
   CLAIM_CAMPAIGNS_ABI,
   ENJOY_CONTRACT_ADDRESS,
@@ -59,7 +63,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           contextAction: {
             type: 'contextAction',
-            value: 'CLAIMED',
+            value: ClaimCampaignsActionEnum.CLAIMED,
           },
           numTokens: {
             type: AssetType.ERC20,

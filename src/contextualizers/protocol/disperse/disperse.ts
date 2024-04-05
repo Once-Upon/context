@@ -1,5 +1,10 @@
 import { Hex } from 'viem';
-import { AssetType, ETHAssetTransfer, Transaction } from '../../../types';
+import {
+  AssetType,
+  DisperseActionEnum,
+  ETHAssetTransfer,
+  Transaction,
+} from '../../../types';
 import {
   DISPERSE_ABI,
   DISPERSE_CONTRACTS,
@@ -79,7 +84,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           contextAction: {
             type: 'contextAction',
-            value: 'TIPPED',
+            value: DisperseActionEnum.TIPPED,
           },
           receiver: {
             type: 'address',

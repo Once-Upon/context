@@ -2,6 +2,7 @@ import { Hex } from 'viem';
 import {
   AssetType,
   ContextSummaryVariableType,
+  HeuristicContextActionEnum,
   Transaction,
 } from '../../../types';
 import ERC20ERC721transferABI from './abis/combined';
@@ -79,7 +80,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       sent: {
         type: 'contextAction',
-        value: 'SENT',
+        value: HeuristicContextActionEnum.SENT,
       },
     },
     summaries: {

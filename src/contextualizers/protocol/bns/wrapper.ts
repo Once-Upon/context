@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import { Transaction } from '../../../types';
+import { BNSContextActionEnum, Transaction } from '../../../types';
 import { BNS_ADDRESSES, BNS_CONTRACTS } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -56,7 +56,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           transfered: {
             type: 'contextAction',
-            value: 'TRANSFERED_NAME',
+            value: BNSContextActionEnum.TRANSFERED_NAME,
           },
           receiver: {
             type: 'address',
@@ -84,7 +84,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           transfered: {
             type: 'contextAction',
-            value: 'TRANSFERED_NAMES',
+            value: BNSContextActionEnum.TRANSFERED_NAMES,
           },
           receiver: {
             type: 'address',

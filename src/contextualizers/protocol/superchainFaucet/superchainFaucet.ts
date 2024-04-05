@@ -1,4 +1,9 @@
-import { AssetType, ETHAssetTransfer, Transaction } from '../../../types';
+import {
+  AssetType,
+  ETHAssetTransfer,
+  HeuristicContextActionEnum,
+  Transaction,
+} from '../../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isSuperchainFaucetTransaction = detect(transaction);
@@ -41,7 +46,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       received: {
         type: 'contextAction',
-        value: 'RECEIVED',
+        value: HeuristicContextActionEnum.RECEIVED,
       },
     },
     summaries: {

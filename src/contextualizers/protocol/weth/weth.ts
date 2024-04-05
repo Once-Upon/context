@@ -3,6 +3,7 @@ import {
   AssetType,
   ContextSummaryVariableType,
   Transaction,
+  WETHContextActionEnum,
 } from '../../../types';
 import { WETH_ADDRESSES } from '../../../helpers/constants';
 import { WETH_ABI } from './constants';
@@ -63,7 +64,10 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'address',
             value: transaction.from,
           },
-          wrapped: { type: 'contextAction', value: 'WRAPPED' },
+          wrapped: {
+            type: 'contextAction',
+            value: WETHContextActionEnum.WRAPPED,
+          },
         },
       };
 
@@ -94,7 +98,10 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           withdrawalAmount,
           withdrawer,
-          unwrapped: { type: 'contextAction', value: 'UNWRAPPED' },
+          unwrapped: {
+            type: 'contextAction',
+            value: WETHContextActionEnum.UNWRAPPED,
+          },
         },
       };
 

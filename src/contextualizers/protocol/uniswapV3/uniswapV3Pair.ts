@@ -3,6 +3,7 @@ import {
   AssetType,
   ERC20Asset,
   EventLogTopics,
+  HeuristicContextActionEnum,
   Transaction,
 } from '../../../types';
 import { UNISWAP_V3_PAIR_ABI } from './constants';
@@ -86,7 +87,7 @@ export const generate = (transaction: Transaction): Transaction => {
       },
       contextAction: {
         type: 'contextAction',
-        value: 'SWAPPED',
+        value: HeuristicContextActionEnum.SWAPPED,
       },
     },
     summaries: {
