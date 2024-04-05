@@ -1,3 +1,3 @@
-### Uniswap V3 contract
+### Uniswap V3 contracts
 
-Note: For a quick proof of concept, we're only using this contextualizer for the Uniswap V3 Pair.
+TODO: Add a Uniswap V3 Pair contract link here.
