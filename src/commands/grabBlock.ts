@@ -3,6 +3,32 @@ import * as fs from 'fs';
 import * as zlib from 'zlib';
 import axios from 'axios';
 import { program } from './main';
+import { normalizeBlock } from 'src/helpers/utils';
+import { RawBlock } from 'src/types';
+
+// Get block number from filenames in ../blocks/{chain}
+export function loadBlockFixture(
+  chain: string,
+  blockNumber: number | string,
+): RawBlock {
+  // first load the raw data and parse it as a RawBlock
+  const raw = fs
+    .readFileSync(
+      path.join(
+        __dirname,
+        '..',
+        'transformers',
+        'test',
+        'blocks',
+        chain,
+        `${blockNumber}.json`,
+      ),
+    )
+    .toString();
+  const rawBlock = JSON.parse(raw) as RawBlock;
+  const block = normalizeBlock(rawBlock);
+  return block;
+}
 
 export function registerGrabBlockCommand() {
   program
