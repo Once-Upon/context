@@ -1,3 +1,7 @@
+// TODO: Find a good way to dedupe this with the one in src/transformers/helpers/dev.ts
+// Currently doing this to allow npm lint, npm build, and npm test to pass
+// while also not exporting fs in the built js for use in FE clients
+
 import { RawBlock } from 'src/types';
 
 import * as path from 'path';

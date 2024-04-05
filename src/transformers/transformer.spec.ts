@@ -2,10 +2,6 @@ import { loadBlockFixture } from '../helpers/dev';
 import { KNOWN_ADDRESSES } from '../helpers/constants';
 import { transformer } from './index';
 
-// TODO: It probably makes sense for this helper to live elsewhere, but TBD where
-// We don't want to put it in the same helpers file that gets built
-// because this is only used for tests and CLI commands, and because if this package is imported in a FE, fs is not available
-
 describe('transformations', () => {
   it('should transform block', () => {
     const block = loadBlockFixture('ethereum', '17686037_decode');
