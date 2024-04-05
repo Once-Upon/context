@@ -5,3 +5,5 @@ export type ContextAction =
   | HeuristicContextAction
   | ProtocolContextAction
   | 'CALLED';
+
+export { HeuristicContextAction, ProtocolContextAction };

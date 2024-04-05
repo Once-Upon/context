@@ -5,7 +5,7 @@ import { shortenTxHash } from '../helpers/utils';
 import { Transaction } from '../types';
 
 export const grabTx = async (txHash: string, prefix: string) => {
-  const srcDir = path.join(__dirname, '..', '..', 'src');
+  const srcDir = path.join(__dirname, '..', '..', 'src', 'contextualizers');
 
   const txHashShorten = shortenTxHash(txHash);
   const fileName = prefix + '-' + txHashShorten;
