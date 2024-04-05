@@ -11,6 +11,7 @@ import { friendTechContextualizer } from './friendTech';
 import { nounsContextualizer } from './nouns';
 import { nounsBuilderContextualizer } from './nounsBuilder';
 import { uniswapV2Contextualizer } from './uniswapV2';
+import { uniswapV3Contextualizer } from './uniswapV3';
 import { claimCampaignsContextualizer } from './claimCampaigns';
 import { basepaintContextualizer } from './basepaint';
 import { disperseContextualizer } from './disperse';
@@ -30,6 +31,7 @@ const children = {
   nounsContextualizer,
   nounsBuilderContextualizer,
   uniswapV2Contextualizer,
+  uniswapV3Contextualizer,
   claimCampaignsContextualizer,
   basepaintContextualizer,
   disperseContextualizer,
