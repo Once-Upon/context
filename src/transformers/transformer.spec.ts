@@ -1,5 +1,5 @@
+import { loadBlockFixture } from '../helpers/dev';
 import { KNOWN_ADDRESSES } from '../helpers/constants';
-import { loadBlockFixture } from '../helpers/utils';
 import { transformer } from './index';
 
 describe('transformations', () => {

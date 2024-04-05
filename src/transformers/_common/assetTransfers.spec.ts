@@ -1,5 +1,5 @@
 import { transform } from './assetTransfers';
-import { loadBlockFixture } from '../../helpers/utils';
+import { loadBlockFixture } from '../helpers/dev';
 import { KNOWN_ADDRESSES } from '../../helpers/constants';
 
 describe('transactionAssetTransfers', () => {

@@ -1,5 +1,5 @@
 import { transform } from './parties';
-import { loadBlockFixture } from '../../helpers/utils';
+import { loadBlockFixture } from '../helpers/dev';
 
 describe('transactionParties', () => {
   it('should return transaction parties', () => {

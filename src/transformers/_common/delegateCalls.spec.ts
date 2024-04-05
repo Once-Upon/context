@@ -1,5 +1,5 @@
 import { transform } from './delegateCalls';
-import { loadBlockFixture } from '../../helpers/utils';
+import { loadBlockFixture } from '../helpers/dev';
 
 describe('transactionDelegateCalls', () => {
   it('should return delegate calls', () => {
