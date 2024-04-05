@@ -1,5 +1,5 @@
 import { transform } from './errors';
-import { loadBlockFixture } from '../../helpers/utils';
+import { loadBlockFixture } from '../helpers/dev';
 
 describe('transactionErrors', () => {
   it('should return transaction errors', () => {

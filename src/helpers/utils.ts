@@ -15,7 +15,6 @@ import {
   RawBlock,
   StdObj,
 } from '../types';
-import path from 'path';
 
 const VALID_CHARS =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.? ';

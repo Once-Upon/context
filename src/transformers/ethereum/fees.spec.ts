@@ -1,5 +1,5 @@
 import { transform } from './fees';
-import { loadBlockFixture } from '../../helpers/utils';
+import { loadBlockFixture } from '../helpers/dev';
 
 describe('transactionFees', () => {
   it('should return transaction fees', () => {

@@ -1,5 +1,5 @@
 import { transform } from './sigHash';
-import { loadBlockFixture } from '../../helpers/utils';
+import { loadBlockFixture } from '../helpers/dev';
 
 describe('transactionSigHash', () => {
   it('should return transaction sigHash', () => {

@@ -1,4 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "test", "dist", "**/*spec.ts", "src/contextualizers/test", "src/transformers/test"]
+  "exclude": ["node_modules", "test", "dist", "**/*spec.ts", "src/contextualizers/test", "src/transformers/test", "src/helpers/dev.ts", "src/transformers/helpers/dev.ts"]
 }

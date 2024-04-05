@@ -1,4 +1,8 @@
 src/commands/
+src/helpers/dev.ts
+src/transformers/helpers/dev.ts
 dist/commands/
 dist/contextualizers/test/
 dist/transformers/test/
+dist/helpers/dev.ts
+dist/transformers/helpers/dev.ts

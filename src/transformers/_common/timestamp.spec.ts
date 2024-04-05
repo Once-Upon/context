@@ -1,5 +1,5 @@
 import { transform } from './timestamp';
-import { loadBlockFixture } from '../../helpers/utils';
+import { loadBlockFixture } from '../helpers/dev';
 
 describe('transactionTimestamp', () => {
   it('should return transaction timestamp', () => {

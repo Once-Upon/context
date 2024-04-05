@@ -1,5 +1,5 @@
 import { transform } from './derivativesNeighbors';
-import { loadBlockFixture } from '../../helpers/utils';
+import { loadBlockFixture } from '../helpers/dev';
 
 describe('transactionDerivativesNeighbors', () => {
   it('should return derivatives neighbors', () => {
