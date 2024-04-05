@@ -1,5 +1,5 @@
 import { Transaction } from '../../../types';
-import { detect, generate } from './uniswapV2';
+import { detect, generate } from './uniswapV2Router';
 import enjoyAddLiquidity0x5005b386 from '../../test/transactions/enjoyAddLiquidity-0x5005b386.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 import { containsBigInt, contextSummary } from '../../../helpers/utils';
@@ -26,7 +26,7 @@ describe('Uniswap', () => {
   });
 
   it('Should not detect as UniswapV2 with Enjoy token', () => {
-    const enjoy1 = detect(catchall0xc35c01ac as unknown as Transaction);
-    expect(enjoy1).toBe(false);
+    const catchall1 = detect(catchall0xc35c01ac as unknown as Transaction);
+    expect(catchall1).toBe(false);
   });
 });

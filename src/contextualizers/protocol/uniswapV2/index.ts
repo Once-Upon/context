@@ -1,7 +1,7 @@
-import { contextualize as uniswapV2 } from './uniswapV2';
+import { contextualize as uniswapV2Router } from './uniswapV2Router';
 import { makeContextualize } from '../../../helpers/utils';
 
-const children = { uniswapV2 };
+const children = { uniswapV2Router };
 
 const contextualize = makeContextualize(children);
 
