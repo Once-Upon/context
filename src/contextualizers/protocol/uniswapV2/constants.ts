@@ -7,7 +7,4 @@ export const UNISWAP_V2_ROUTERS = {
 export const ENJOY_CONTRACT_ADDRESS =
   '0xa6b280b42cb0b7c4a4f789ec6ccc3a7609a1bc39';
 
-export const UNISWAP_V2_SWAP_EVENT_HASH =
-  '0xd78ad95fa46c994b6551d0da85fc275fe613ce37657fb8d5e3d130840159d822';
-
 export const UNISWAP_V2_ROUTER_ABI = uniswapV2RouterAbi;

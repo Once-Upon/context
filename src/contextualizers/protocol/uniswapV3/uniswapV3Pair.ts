@@ -86,7 +86,7 @@ export const generate = (transaction: Transaction): Transaction => {
       },
       contextAction: {
         type: 'contextAction',
-        value: 'SWAP',
+        value: 'SWAPPED',
       },
     },
     summaries: {
