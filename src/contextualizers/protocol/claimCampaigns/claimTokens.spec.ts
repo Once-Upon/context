@@ -24,7 +24,7 @@ describe('Enjoy claimTokens', () => {
   });
 
   it('Should not detect as enjoy', () => {
-    const enjoy1 = detect(catchall0xc35c01ac as unknown as Transaction);
-    expect(enjoy1).toBe(false);
+    const catchall1 = detect(catchall0xc35c01ac as unknown as Transaction);
+    expect(catchall1).toBe(false);
   });
 });
