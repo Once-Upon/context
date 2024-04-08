@@ -1,10 +1,9 @@
-import { decodeLog } from '../../helpers/utils';
+import { type TxnTransformer, decodeLog } from '../../helpers/utils';
 import {
   AssetType,
   type AssetTransfer,
   type EventLogTopics,
-  type RawBlock,
-  type RawTransaction,
+  type PartialTransaction,
 } from '../../types';
 import {
   KNOWN_ADDRESSES,
@@ -14,7 +13,7 @@ import {
 } from '../../helpers/constants';
 import { Hex } from 'viem';
 
-function updateTokenTransfers(tx: RawTransaction) {
+function updateTokenTransfers(tx: PartialTransaction) {
   const oldNFTsTransfers: AssetTransfer[] = [];
 
   for (const log of tx.receipt.logs) {
@@ -67,18 +66,14 @@ function updateTokenTransfers(tx: RawTransaction) {
   return assetTransfers;
 }
 
-export function transform(block: RawBlock): RawBlock {
-  block.transactions = block.transactions.map((tx) => {
-    const hasOldNFTTransfer = tx.assetTransfers?.some(
-      (assetTransfer) =>
-        assetTransfer.type !== AssetType.ETH &&
-        OLD_NFT_ADDRESSES.includes(assetTransfer.contract),
-    );
-    if (hasOldNFTTransfer) {
-      tx.assetTransfers = updateTokenTransfers(tx);
-    }
-    return tx;
-  });
-
-  return block;
-}
+export const transform: TxnTransformer = (_block, tx) => {
+  const hasOldNFTTransfer = tx.assetTransfers?.some(
+    (assetTransfer) =>
+      assetTransfer.type !== AssetType.ETH &&
+      OLD_NFT_ADDRESSES.includes(assetTransfer.contract),
+  );
+  if (hasOldNFTTransfer) {
+    tx.assetTransfers = updateTokenTransfers(tx);
+  }
+  return tx;
+};

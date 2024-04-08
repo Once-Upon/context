@@ -1,6 +1,9 @@
-import { transform } from './assetTransfers';
+import { transform as _transform } from './assetTransfers';
 import { loadBlockFixture } from '../helpers/dev';
+import { makeTransform } from '../../helpers/utils';
 import { KNOWN_ADDRESSES } from '../../helpers/constants';
+
+const transform = makeTransform({ test: _transform });
 
 describe('transactionAssetTransfers', () => {
   it('should return asset transfers for eth transactions', () => {

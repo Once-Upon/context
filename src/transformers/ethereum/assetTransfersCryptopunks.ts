@@ -1,10 +1,9 @@
-import { decodeLog } from '../../helpers/utils';
+import { type TxnTransformer, decodeLog } from '../../helpers/utils';
 import {
   AssetType,
   EventLogTopics,
   type AssetTransfer,
-  type RawBlock,
-  type RawTransaction,
+  type PartialTransaction,
 } from '../../types';
 import {
   CRYPTO_PUNKS_ADDRESSES,
@@ -13,7 +12,7 @@ import {
 } from '../../helpers/constants';
 import { Hex } from 'viem';
 
-function updateTokenTransfers(tx: RawTransaction) {
+function updateTokenTransfers(tx: PartialTransaction) {
   const cryptopunksTransfers: AssetTransfer[] = [];
 
   for (const log of tx.receipt.logs) {
@@ -76,18 +75,14 @@ function updateTokenTransfers(tx: RawTransaction) {
   return assetTransfers;
 }
 
-export function transform(block: RawBlock): RawBlock {
-  block.transactions = block.transactions.map((tx) => {
-    const logs = tx.receipt.logs;
-    const hasCryptopunksTransfer = logs?.some((log) =>
-      CRYPTO_PUNKS_ADDRESSES.includes(log.address),
-    );
+export const transform: TxnTransformer = (_block, tx) => {
+  const logs = tx.receipt.logs;
+  const hasCryptopunksTransfer = logs?.some((log) =>
+    CRYPTO_PUNKS_ADDRESSES.includes(log.address),
+  );
 
-    if (hasCryptopunksTransfer) {
-      tx.assetTransfers = updateTokenTransfers(tx);
-    }
-    return tx;
-  });
-
-  return block;
-}
+  if (hasCryptopunksTransfer) {
+    tx.assetTransfers = updateTokenTransfers(tx);
+  }
+  return tx;
+};

@@ -1,5 +1,8 @@
-import { transform } from './sigHash';
+import { transform as _transform } from './sigHash';
 import { loadBlockFixture } from '../helpers/dev';
+import { makeTransform } from '../../helpers/utils';
+
+const transform = makeTransform({ test: _transform });
 
 describe('transactionSigHash', () => {
   it('should return transaction sigHash', () => {

@@ -3,8 +3,7 @@ import {
   AssetType,
   EventLogTopics,
   type AssetTransfer,
-  type RawBlock,
-  type RawTransaction,
+  type PartialTransaction,
 } from '../../types';
 import {
   KNOWN_ADDRESSES,
@@ -15,13 +14,13 @@ import {
   ERC721_TRANSFER_EVENT_1,
   ERC721_TRANSFER_EVENT_2,
 } from '../../helpers/constants';
-import { decodeLog } from '../../helpers/utils';
+import { type TxnTransformer, decodeLog } from '../../helpers/utils';
 
 // 1. pull out token transfers from logs
 // 2. pull out ETH transfers from traces (this covers tx.value transfers)
 // 3. order it all by looking at when contracts where called via traces
 
-function getTokenTransfers(tx: RawTransaction) {
+function getTokenTransfers(tx: PartialTransaction) {
   const txAssetTransfers: AssetTransfer[] = [];
 
   for (const log of tx.receipt.logs) {
@@ -173,87 +172,83 @@ function getTokenTransfers(tx: RawTransaction) {
   return txAssetTransfers;
 }
 
-export function transform(block: RawBlock): RawBlock {
-  block.transactions = block.transactions.map((tx) => {
-    // don't count transfers for failed txs
-    if (!tx.receipt.status || !tx.to) {
-      return tx;
-    }
-
-    // first get all of the token transfers from transaction logs
-    const tokenTransfers = getTokenTransfers(tx);
-
-    // then group by contract
-    const tokenTransfersByContract: Record<string, AssetTransfer[]> = {};
-    for (const transfer of tokenTransfers) {
-      if (transfer.type !== AssetType.ETH) {
-        if (!tokenTransfersByContract[transfer.contract]) {
-          tokenTransfersByContract[transfer.contract] = [];
-        }
-        tokenTransfersByContract[transfer.contract].push(transfer);
-      }
-    }
-
-    // now prepare a final set of *all* asset transfers (including ETH)
-    const assetTransfers: AssetTransfer[] = [];
-
-    // iterate through the traces
-    for (const trace of tx.traces) {
-      // check for ETH transfers
-      if (trace.action.callType !== 'delegatecall') {
-        // track contract suicides
-        if (
-          trace.type === 'suicide' &&
-          trace.action.balance &&
-          trace.action.balance !== '0x0'
-        ) {
-          assetTransfers.push({
-            from: trace.action.address,
-            to: trace.action.refundAddress ?? '',
-            type: AssetType.ETH,
-            value: BigInt(trace.action.balance).toString(),
-          });
-        }
-        // otherwise track ETH transfers
-        else if (trace.action.value && trace.action.value !== '0x0') {
-          assetTransfers.push({
-            from: trace.action.from,
-            to:
-              trace.type === 'create'
-                ? trace.result.address ?? ''
-                : trace.action.to ?? '',
-            type: AssetType.ETH,
-            value: BigInt(trace.action.value).toString(),
-          });
-        }
-      }
-
-      // check if this is a call to one of our asset transfer contracts
-      if (
-        trace.action.callType?.endsWith('call') &&
-        trace.action.to &&
-        tokenTransfersByContract[trace.action.to]?.length > 0
-      ) {
-        assetTransfers.push(...tokenTransfersByContract[trace.action.to]);
-        delete tokenTransfersByContract[trace.action.to];
-      }
-    }
-
-    if (tokenTransfersByContract[tx.to]?.length > 0) {
-      assetTransfers.push(...tokenTransfersByContract[tx.to]);
-      delete tokenTransfersByContract[tx.to];
-    }
-
-    for (const leftOverTxfers of Object.values(tokenTransfersByContract)) {
-      assetTransfers.push(...leftOverTxfers);
-    }
-
-    if (assetTransfers.length > 0) {
-      tx.assetTransfers = assetTransfers;
-    }
-
+export const transform: TxnTransformer = (_block, tx) => {
+  // don't count transfers for failed txs
+  if (!tx.receipt.status || !tx.to) {
     return tx;
-  });
+  }
 
-  return block;
-}
+  // first get all of the token transfers from transaction logs
+  const tokenTransfers = getTokenTransfers(tx);
+
+  // then group by contract
+  const tokenTransfersByContract: Record<string, AssetTransfer[]> = {};
+  for (const transfer of tokenTransfers) {
+    if (transfer.type !== AssetType.ETH) {
+      if (!tokenTransfersByContract[transfer.contract]) {
+        tokenTransfersByContract[transfer.contract] = [];
+      }
+      tokenTransfersByContract[transfer.contract].push(transfer);
+    }
+  }
+
+  // now prepare a final set of *all* asset transfers (including ETH)
+  const assetTransfers: AssetTransfer[] = [];
+
+  // iterate through the traces
+  for (const trace of tx.traces) {
+    // check for ETH transfers
+    if (trace.action.callType !== 'delegatecall') {
+      // track contract suicides
+      if (
+        trace.type === 'suicide' &&
+        trace.action.balance &&
+        trace.action.balance !== '0x0'
+      ) {
+        assetTransfers.push({
+          from: trace.action.address,
+          to: trace.action.refundAddress ?? '',
+          type: AssetType.ETH,
+          value: BigInt(trace.action.balance).toString(),
+        });
+      }
+      // otherwise track ETH transfers
+      else if (trace.action.value && trace.action.value !== '0x0') {
+        assetTransfers.push({
+          from: trace.action.from,
+          to:
+            trace.type === 'create'
+              ? trace.result.address ?? ''
+              : trace.action.to ?? '',
+          type: AssetType.ETH,
+          value: BigInt(trace.action.value).toString(),
+        });
+      }
+    }
+
+    // check if this is a call to one of our asset transfer contracts
+    if (
+      trace.action.callType?.endsWith('call') &&
+      trace.action.to &&
+      tokenTransfersByContract[trace.action.to]?.length > 0
+    ) {
+      assetTransfers.push(...tokenTransfersByContract[trace.action.to]);
+      delete tokenTransfersByContract[trace.action.to];
+    }
+  }
+
+  if (tokenTransfersByContract[tx.to]?.length > 0) {
+    assetTransfers.push(...tokenTransfersByContract[tx.to]);
+    delete tokenTransfersByContract[tx.to];
+  }
+
+  for (const leftOverTxfers of Object.values(tokenTransfersByContract)) {
+    assetTransfers.push(...leftOverTxfers);
+  }
+
+  if (assetTransfers.length > 0) {
+    tx.assetTransfers = assetTransfers;
+  }
+
+  return tx;
+};

@@ -9,6 +9,8 @@ import {
 import {
   TransactionContextType,
   Transaction,
+  RawTransaction,
+  PartialTransaction,
   ContextSummaryVariableType,
   EventLogTopics,
   AssetType,
@@ -196,12 +198,41 @@ export const convertDate = (epochTime: number): string => {
   return dateString;
 };
 
+export type TxnTransformer = <T extends PartialTransaction>(
+  block: RawBlock,
+  transaction: T,
+) => T;
+
+export type BlockTransformer = (block: RawBlock) => RawBlock;
+
+export const isRawTransaction = (
+  v: PartialTransaction,
+): v is RawTransaction => {
+  return 'hash' in v;
+};
+
+const isTxnTransformer = (
+  v: TxnTransformer | BlockTransformer,
+): v is TxnTransformer => v.length == 2;
+
 export const makeTransform = (
-  children: Record<string, (block: RawBlock) => RawBlock>,
+  children: Record<string, TxnTransformer | BlockTransformer>,
 ) => {
   return (block: RawBlock): RawBlock => {
     for (const childTransformer of Object.values(children)) {
-      block = childTransformer(block);
+      if (isTxnTransformer(childTransformer)) {
+        block.transactions = block.transactions.map((txn) => {
+          const xformed = childTransformer(block, txn);
+
+          xformed.pseudoTransactions = xformed.pseudoTransactions?.map(
+            (pseudoTxn) => childTransformer(block, pseudoTxn),
+          );
+
+          return xformed;
+        });
+      } else {
+        block = childTransformer(block);
+      }
     }
     return block;
   };

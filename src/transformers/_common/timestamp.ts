@@ -1,10 +1,6 @@
-import type { RawBlock } from '../../types';
+import { type TxnTransformer } from '../../helpers/utils';
 
-export function transform(block: RawBlock): RawBlock {
-  block.transactions = block.transactions.map((tx) => {
-    tx.timestamp = block.timestamp;
-    return tx;
-  });
-
-  return block;
-}
+export const transform: TxnTransformer = (block, tx) => {
+  tx.timestamp = block.timestamp;
+  return tx;
+};
