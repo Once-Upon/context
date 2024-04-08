@@ -9,7 +9,6 @@ import {
   ERC20Asset,
   ContextERC721Type,
   ERC721Asset,
-  HeuristicContextActionEnum,
   FrenpetContextActionEnum,
 } from '../../../types';
 import { decodeFunction, decodeLog } from '../../../helpers/utils';
@@ -231,7 +230,7 @@ export const generate = (transaction: Transaction): Transaction => {
             minter,
             contextAction: {
               type: 'contextAction',
-              value: FrenpetContextActionEnum.MINTED, // TODO: Make a Zora version of this
+              value: FrenpetContextActionEnum.MINTED, // TODO: Make a Frenpet version of this
             },
           },
           summaries: {
