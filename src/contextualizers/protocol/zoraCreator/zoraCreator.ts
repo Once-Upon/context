@@ -103,7 +103,7 @@ export const generate = (transaction: Transaction): Transaction => {
       },
       minted: {
         type: 'contextAction',
-        value: HeuristicContextActionEnum.MINTED,
+        value: HeuristicContextActionEnum.MINTED, // TODO: Make a Zora version of this
       },
       numOfEth: {
         type: AssetType.ETH,
