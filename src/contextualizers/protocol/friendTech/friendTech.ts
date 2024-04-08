@@ -1,5 +1,10 @@
 import { Hex } from 'viem';
-import { AssetType, EventLogTopics, Transaction } from '../../../types';
+import {
+  AssetType,
+  EventLogTopics,
+  FriendTechContextActionEnum,
+  Transaction,
+} from '../../../types';
 import { ABIs } from './constants';
 import { decodeTransactionInput, decodeLog } from '../../../helpers/utils';
 import { detect } from './detect';
@@ -47,7 +52,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           failedToBuyKeys: {
             type: 'contextAction',
-            value: 'FAILED_TO_BUY_KEYS',
+            value: FriendTechContextActionEnum.FAILED_TO_BUY_KEYS,
           },
         },
         summaries: {
@@ -99,7 +104,7 @@ export const generate = (transaction: Transaction): Transaction => {
             },
             signedUp: {
               type: 'contextAction',
-              value: 'SIGNED_UP',
+              value: FriendTechContextActionEnum.SIGNED_UP,
             },
           },
         };
@@ -128,7 +133,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           boughtKeys: {
             type: 'contextAction',
-            value: 'BOUGHT_KEYS',
+            value: FriendTechContextActionEnum.BOUGHT_KEYS,
           },
         },
         summaries: {
@@ -188,7 +193,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           soldKeys: {
             type: 'contextAction',
-            value: 'SOLD_KEYS',
+            value: FriendTechContextActionEnum.SOLD_KEYS,
           },
         },
         summaries: {

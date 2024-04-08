@@ -3,6 +3,7 @@ import {
   ERC1155Asset,
   ERC20Asset,
   ETHAsset,
+  HeuristicContextActionEnum,
   Transaction,
 } from '../../../types';
 
@@ -208,7 +209,7 @@ function generate(transaction: Transaction): Transaction {
             },
       bought: {
         type: 'contextAction',
-        value: 'BOUGHT',
+        value: HeuristicContextActionEnum.BOUGHT,
       },
     },
     summaries: {

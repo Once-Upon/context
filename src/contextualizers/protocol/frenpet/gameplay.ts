@@ -9,6 +9,7 @@ import {
   ERC20Asset,
   ContextERC721Type,
   ERC721Asset,
+  FrenpetContextActionEnum,
 } from '../../../types';
 import { decodeFunction, decodeLog } from '../../../helpers/utils';
 
@@ -67,7 +68,7 @@ export const generate = (transaction: Transaction): Transaction => {
             purchasePrice,
             contextAction: {
               type: 'contextAction',
-              value: 'BOUGHT_ACCESSORY',
+              value: FrenpetContextActionEnum.BOUGHT_ACCESSORY,
             },
           },
           summaries: {
@@ -85,7 +86,7 @@ export const generate = (transaction: Transaction): Transaction => {
             pet,
             contextAction: {
               type: 'contextAction',
-              value: 'BOUGHT_ACCESSORY',
+              value: FrenpetContextActionEnum.BOUGHT_ACCESSORY,
             },
           },
           summaries: {
@@ -148,7 +149,7 @@ export const generate = (transaction: Transaction): Transaction => {
             attacked,
             contextAction: {
               type: 'contextAction',
-              value: 'ATTACKED',
+              value: FrenpetContextActionEnum.ATTACKED,
             },
           },
           summaries: {
@@ -166,7 +167,7 @@ export const generate = (transaction: Transaction): Transaction => {
             attacked,
             contextAction: {
               type: 'contextAction',
-              value: 'ATTACKED',
+              value: FrenpetContextActionEnum.ATTACKED,
             },
           },
           summaries: {
@@ -212,7 +213,7 @@ export const generate = (transaction: Transaction): Transaction => {
             cost,
             contextAction: {
               type: 'contextAction',
-              value: 'MINTED',
+              value: FrenpetContextActionEnum.MINTED,
             },
           },
           summaries: {
@@ -229,7 +230,7 @@ export const generate = (transaction: Transaction): Transaction => {
             minter,
             contextAction: {
               type: 'contextAction',
-              value: 'MINTED',
+              value: FrenpetContextActionEnum.MINTED, // TODO: Make a Frenpet version of this
             },
           },
           summaries: {
@@ -265,7 +266,7 @@ export const generate = (transaction: Transaction): Transaction => {
           pet,
           contextAction: {
             type: 'contextAction',
-            value: 'SET_PET_NAME',
+            value: FrenpetContextActionEnum.SET_PET_NAME,
           },
         },
         summaries: {
@@ -290,7 +291,7 @@ export const generate = (transaction: Transaction): Transaction => {
             user,
             contextAction: {
               type: 'contextAction',
-              value: 'WHEEL_COMMITTED',
+              value: FrenpetContextActionEnum.WHEEL_COMMITTED,
             },
           },
           summaries: {
@@ -307,7 +308,7 @@ export const generate = (transaction: Transaction): Transaction => {
             user,
             contextAction: {
               type: 'contextAction',
-              value: 'WHEEL_COMMITTED',
+              value: FrenpetContextActionEnum.WHEEL_COMMITTED,
             },
           },
           summaries: {
@@ -346,7 +347,7 @@ export const generate = (transaction: Transaction): Transaction => {
             pet,
             contextAction: {
               type: 'contextAction',
-              value: 'REDEEMED',
+              value: FrenpetContextActionEnum.REDEEMED,
             },
           },
           summaries: {
@@ -386,7 +387,7 @@ export const generate = (transaction: Transaction): Transaction => {
             redeemedAmount,
             contextAction: {
               type: 'contextAction',
-              value: 'REDEEMED',
+              value: FrenpetContextActionEnum.REDEEMED,
             },
           },
           summaries: {
@@ -431,7 +432,7 @@ export const generate = (transaction: Transaction): Transaction => {
           target,
           contextAction: {
             type: 'contextAction',
-            value: 'COMMITTED_TO_ATTACKING',
+            value: FrenpetContextActionEnum.COMMITTED_TO_ATTACKING,
           },
         },
         summaries: {
@@ -481,7 +482,7 @@ export const generate = (transaction: Transaction): Transaction => {
               attacker,
               contextAction: {
                 type: 'contextAction',
-                value: 'TOO_SLOW_TO_ATTACK',
+                value: FrenpetContextActionEnum.TOO_SLOW_TO_ATTACK,
               },
             },
             summaries: {
@@ -541,7 +542,7 @@ export const generate = (transaction: Transaction): Transaction => {
               },
               contextAction: {
                 type: 'contextAction',
-                value: 'ATTACKED',
+                value: FrenpetContextActionEnum.ATTACKED,
               },
             },
             summaries: {
@@ -560,7 +561,7 @@ export const generate = (transaction: Transaction): Transaction => {
             attacker,
             contextAction: {
               type: 'contextAction',
-              value: 'ATTACKED',
+              value: FrenpetContextActionEnum.ATTACKED,
             },
           },
           summaries: {
@@ -603,7 +604,7 @@ export const generate = (transaction: Transaction): Transaction => {
           killer,
           contextAction: {
             type: 'contextAction',
-            value: 'KILLED',
+            value: FrenpetContextActionEnum.KILLED,
           },
         },
         summaries: {
@@ -639,7 +640,7 @@ export const generate = (transaction: Transaction): Transaction => {
           pet,
           contextAction: {
             type: 'contextAction',
-            value: 'WHEEL_COMMITTED',
+            value: FrenpetContextActionEnum.WHEEL_COMMITTED,
           },
         },
         summaries: {
@@ -675,7 +676,7 @@ export const generate = (transaction: Transaction): Transaction => {
           pet,
           contextAction: {
             type: 'contextAction',
-            value: 'WHEEL_REVEALED',
+            value: FrenpetContextActionEnum.WHEEL_REVEALED,
           },
         },
         summaries: {

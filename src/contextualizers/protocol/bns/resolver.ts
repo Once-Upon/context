@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import { Transaction } from '../../../types';
+import { BNSContextActionEnum, Transaction } from '../../../types';
 import { BNS_ADDRESSES, BNS_CONTRACTS } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -58,7 +58,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           updated: {
             type: 'contextAction',
-            value: 'UPDATED_RECORDS',
+            value: BNSContextActionEnum.UPDATED_RECORDS,
           },
         },
       };
@@ -81,7 +81,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           updated: {
             type: 'contextAction',
-            value: 'UPDATED_ADDRESS',
+            value: BNSContextActionEnum.UPDATED_ADDRESS,
           },
         },
       };
@@ -105,7 +105,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           updated: {
             type: 'contextAction',
-            value: 'UPDATED_TEXT',
+            value: BNSContextActionEnum.UPDATED_TEXT,
           },
         },
       };
@@ -129,7 +129,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           updated: {
             type: 'contextAction',
-            value: 'UPDATED_CONTENTHASH',
+            value: BNSContextActionEnum.UPDATED_CONTENTHASH,
           },
         },
       };

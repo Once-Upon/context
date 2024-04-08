@@ -1,4 +1,9 @@
-import { Transaction, AssetType, ETHAsset } from '../../../types';
+import {
+  Transaction,
+  AssetType,
+  ETHAsset,
+  HeuristicContextActionEnum,
+} from '../../../types';
 import { BRIDGE_ZORA_ENERGY } from './constants';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -67,7 +72,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       bridged: {
         type: 'contextAction',
-        value: 'BRIDGED',
+        value: HeuristicContextActionEnum.BRIDGED,
       },
       asset: {
         type: AssetType.ETH,

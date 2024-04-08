@@ -1,5 +1,9 @@
 import { Hex } from 'viem';
-import { AssetType, Transaction } from '../../../types';
+import {
+  AssetType,
+  Transaction,
+  UniswapV2RouterActionEnum,
+} from '../../../types';
 import { ENJOY_CONTRACT_ADDRESS, UNISWAP_V2_ROUTERS } from './constants';
 import { UNISWAP_V2_ROUTER_ABI } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
@@ -58,7 +62,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           contextAction: {
             type: 'contextAction',
-            value: 'ADDED_LIQUIDITY',
+            value: UniswapV2RouterActionEnum.ADDED_LIQUIDITY,
           },
           numETH: {
             type: AssetType.ETH,

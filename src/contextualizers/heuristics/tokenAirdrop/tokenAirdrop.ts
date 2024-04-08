@@ -7,6 +7,7 @@ import {
   ERC1155AssetTransfer,
   ERC20AssetTransfer,
   ERC721AssetTransfer,
+  HeuristicContextActionEnum,
 } from '../../../types';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
 
@@ -165,7 +166,7 @@ function generate(transaction: Transaction): Transaction {
             },
       receivedAirdrop: {
         type: 'contextAction',
-        value: 'RECEIVED_AIRDROP',
+        value: HeuristicContextActionEnum.RECEIVED_AIRDROP,
       },
     },
     summaries: {

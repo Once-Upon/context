@@ -1,4 +1,4 @@
-import { Transaction } from '../../../types';
+import { HeuristicContextActionEnum, Transaction } from '../../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isContractDeployment = detect(transaction);
@@ -32,7 +32,7 @@ function generate(transaction: Transaction): Transaction {
       },
       deployed: {
         type: 'contextAction',
-        value: 'DEPLOYED',
+        value: HeuristicContextActionEnum.DEPLOYED,
       },
     },
     summaries: {

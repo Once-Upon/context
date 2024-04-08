@@ -5,6 +5,7 @@ import {
   ERC721AssetTransfer,
   ETHAsset,
   EventLogTopics,
+  HeuristicContextActionEnum,
   Transaction,
 } from '../../../types';
 import {
@@ -100,7 +101,10 @@ export const generate = (transaction: Transaction): Transaction => {
         value: price,
         unit: 'wei',
       },
-      minted: { type: 'contextAction', value: 'MINTED' },
+      minted: {
+        type: 'contextAction',
+        value: HeuristicContextActionEnum.MINTED, // TODO: Make a Zora version of this
+      },
       numOfEth: {
         type: AssetType.ETH,
         value: decodedLog.args['mintReferralReward'].toString(),

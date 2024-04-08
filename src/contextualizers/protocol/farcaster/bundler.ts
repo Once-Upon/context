@@ -3,6 +3,7 @@ import {
   AssetType,
   ContextSummaryVariableType,
   EventLogTopics,
+  FarcasterContextActionEnum,
   Transaction,
 } from '../../../types';
 import { FarcasterContracts } from './constants';
@@ -95,7 +96,7 @@ export const generate = (transaction: Transaction): Transaction => {
           cost,
           registered: {
             type: 'contextAction',
-            value: 'REGISTERED_FARCASTER_ID',
+            value: FarcasterContextActionEnum.REGISTERED_FARCASTER_ID,
           },
         },
         summaries: {

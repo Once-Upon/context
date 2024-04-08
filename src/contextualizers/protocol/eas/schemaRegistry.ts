@@ -1,5 +1,9 @@
 import { Hex } from 'viem';
-import { EventLogTopics, Transaction } from '../../../types';
+import {
+  EASContextActionEnum,
+  EventLogTopics,
+  Transaction,
+} from '../../../types';
 import { decodeTransactionInput, decodeLog } from '../../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
@@ -103,7 +107,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           registered: {
             type: 'contextAction',
-            value: 'REGISTERED',
+            value: EASContextActionEnum.REGISTERED,
           },
         },
         summaries: {

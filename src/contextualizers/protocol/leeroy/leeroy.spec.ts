@@ -1,4 +1,4 @@
-import { Transaction } from '../../../types';
+import { LeeroyContextActionEnum, Transaction } from '../../../types';
 import { detect, generate } from './leeroy';
 import leeroy0x9c6d7a1a from '../../test/transactions/leeroy-0x9c6d7a1a.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
@@ -13,7 +13,9 @@ describe('Leeroy', () => {
     const leeroy1 = generate(leeroy0x9c6d7a1a as unknown as Transaction);
     expect(leeroy1.context?.summaries?.category).toBe('PROTOCOL_1');
     expect(leeroy1.context?.summaries?.en.title).toBe('Leeroy');
-    expect(leeroy1.context?.variables?.contextAction['value']).toBe('POSTED');
+    expect(leeroy1.context?.variables?.contextAction['value']).toBe(
+      LeeroyContextActionEnum.POSTED,
+    );
   });
 
   it('Should not detect as leeroy', () => {

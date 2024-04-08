@@ -1,4 +1,8 @@
-import { AssetType, Transaction } from '../../../types';
+import {
+  AssetType,
+  HeuristicContextActionEnum,
+  Transaction,
+} from '../../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isEthTransfer = detect(transaction);
@@ -44,7 +48,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       sent: {
         type: 'contextAction',
-        value: 'SENT',
+        value: HeuristicContextActionEnum.SENT,
       },
     },
     summaries: {

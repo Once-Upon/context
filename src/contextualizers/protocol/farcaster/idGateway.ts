@@ -1,5 +1,9 @@
 import { Hex } from 'viem';
-import { EventLogTopics, Transaction } from '../../../types';
+import {
+  EventLogTopics,
+  FarcasterContextActionEnum,
+  Transaction,
+} from '../../../types';
 import { FarcasterContracts } from './constants';
 import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
 
@@ -72,7 +76,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           registered: {
             type: 'contextAction',
-            value: 'REGISTERED_FARCASTER_ID',
+            value: FarcasterContextActionEnum.REGISTERED_FARCASTER_ID,
           },
         },
         summaries: {
@@ -103,7 +107,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           registered: {
             type: 'contextAction',
-            value: 'REGISTERED_FARCASTER_ID',
+            value: FarcasterContextActionEnum.REGISTERED_FARCASTER_ID,
           },
         },
         summaries: {

@@ -1,4 +1,4 @@
-import { Transaction } from '../../../types';
+import { HeuristicContextActionEnum, Transaction } from '../../../types';
 import { hexToString, countValidChars } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -40,7 +40,7 @@ function generate(transaction: Transaction): Transaction {
       },
       sentMessage: {
         type: 'contextAction',
-        value: 'SENT_MESSAGE',
+        value: HeuristicContextActionEnum.SENT_MESSAGE,
       },
       receiver: {
         type: 'address',

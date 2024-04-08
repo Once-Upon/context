@@ -1,9 +1,7 @@
 import { HeuristicContextAction } from './heuristicContextAction';
 import { ProtocolContextAction } from './protocolContextAction';
 
-export type ContextAction =
-  | HeuristicContextAction
-  | ProtocolContextAction
-  | 'CALLED';
+export type ContextAction = HeuristicContextAction | ProtocolContextAction;
 
-export { HeuristicContextAction, ProtocolContextAction };
+export * from './heuristicContextAction';
+export * from './protocolContextAction';

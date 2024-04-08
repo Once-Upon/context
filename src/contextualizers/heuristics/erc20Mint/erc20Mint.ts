@@ -3,6 +3,7 @@ import {
   ETHAsset,
   Transaction,
   ERC20AssetTransfer,
+  HeuristicContextActionEnum,
 } from '../../../types';
 import { KNOWN_ADDRESSES, WETH_ADDRESSES } from '../../../helpers/constants';
 
@@ -119,7 +120,10 @@ export function generate(transaction: Transaction): Transaction {
         value: price,
         unit: 'wei',
       },
-      minted: { type: 'contextAction', value: 'MINTED' },
+      minted: {
+        type: 'contextAction',
+        value: HeuristicContextActionEnum.MINTED,
+      },
     },
     summaries: {
       category: 'FUNGIBLE_TOKEN',

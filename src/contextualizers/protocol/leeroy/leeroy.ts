@@ -3,6 +3,7 @@ import {
   AssetType,
   ContextSummaryVariableType,
   ETHAsset,
+  LeeroyContextActionEnum,
   Transaction,
 } from '../../../types';
 import { LeeroyContracts } from './constants';
@@ -66,7 +67,7 @@ export const generate = (transaction: Transaction): Transaction => {
             poster,
             contextAction: {
               type: 'contextAction',
-              value: 'POSTED',
+              value: LeeroyContextActionEnum.POSTED,
             },
           },
           summaries: {
@@ -83,7 +84,7 @@ export const generate = (transaction: Transaction): Transaction => {
             poster,
             contextAction: {
               type: 'contextAction',
-              value: 'POSTED',
+              value: LeeroyContextActionEnum.POSTED,
             },
           },
           summaries: {
@@ -119,7 +120,7 @@ export const generate = (transaction: Transaction): Transaction => {
             user,
             contextAction: {
               type: 'contextAction',
-              value: 'FOLLOWED',
+              value: LeeroyContextActionEnum.FOLLOWED,
             },
           },
           summaries: {
@@ -136,7 +137,7 @@ export const generate = (transaction: Transaction): Transaction => {
             user,
             contextAction: {
               type: 'contextAction',
-              value: 'FOLLOWED',
+              value: LeeroyContextActionEnum.FOLLOWED,
             },
           },
           summaries: {
@@ -172,7 +173,7 @@ export const generate = (transaction: Transaction): Transaction => {
             user,
             contextAction: {
               type: 'contextAction',
-              value: 'UNFOLLOWED',
+              value: LeeroyContextActionEnum.UNFOLLOWED,
             },
           },
           summaries: {
@@ -189,7 +190,7 @@ export const generate = (transaction: Transaction): Transaction => {
             user,
             contextAction: {
               type: 'contextAction',
-              value: 'UNFOLLOWED',
+              value: LeeroyContextActionEnum.UNFOLLOWED,
             },
           },
           summaries: {
@@ -243,7 +244,7 @@ export const generate = (transaction: Transaction): Transaction => {
             leeroyTake,
             contextAction: {
               type: 'contextAction',
-              value: 'TIPPED',
+              value: LeeroyContextActionEnum.TIPPED,
             },
           },
           summaries: {
@@ -261,7 +262,7 @@ export const generate = (transaction: Transaction): Transaction => {
             tipAmount,
             contextAction: {
               type: 'contextAction',
-              value: 'TIPPED',
+              value: LeeroyContextActionEnum.TIPPED,
             },
           },
           summaries: {
@@ -295,7 +296,7 @@ export const generate = (transaction: Transaction): Transaction => {
             user,
             contextAction: {
               type: 'contextAction',
-              value: 'UPDATED_USER_DETAILS',
+              value: LeeroyContextActionEnum.UPDATED_USER_DETAILS,
             },
           },
           summaries: {
@@ -314,7 +315,7 @@ export const generate = (transaction: Transaction): Transaction => {
             user,
             contextAction: {
               type: 'contextAction',
-              value: 'UPDATED_USER_DETAILS',
+              value: LeeroyContextActionEnum.UPDATED_USER_DETAILS,
             },
           },
           summaries: {
@@ -355,7 +356,7 @@ export const generate = (transaction: Transaction): Transaction => {
             transactionHash,
             contextAction: {
               type: 'contextAction',
-              value: 'REPLIED_TO',
+              value: LeeroyContextActionEnum.REPLIED_TO,
             },
           },
           summaries: {
@@ -373,7 +374,7 @@ export const generate = (transaction: Transaction): Transaction => {
             transactionHash,
             contextAction: {
               type: 'contextAction',
-              value: 'REPLIED_TO',
+              value: LeeroyContextActionEnum.REPLIED_TO,
             },
           },
           summaries: {
@@ -408,7 +409,7 @@ export const generate = (transaction: Transaction): Transaction => {
             transactionHash,
             contextAction: {
               type: 'contextAction',
-              value: 'REPOSTED',
+              value: LeeroyContextActionEnum.REPOSTED,
             },
           },
           summaries: {
@@ -426,7 +427,7 @@ export const generate = (transaction: Transaction): Transaction => {
             transactionHash,
             contextAction: {
               type: 'contextAction',
-              value: 'REPOSTED',
+              value: LeeroyContextActionEnum.REPOSTED,
             },
           },
           summaries: {
@@ -462,7 +463,7 @@ export const generate = (transaction: Transaction): Transaction => {
             user,
             contextAction: {
               type: 'contextAction',
-              value: 'REGISTERED_USERNAME',
+              value: LeeroyContextActionEnum.REGISTERED_USERNAME,
             },
           },
           summaries: {
@@ -479,7 +480,7 @@ export const generate = (transaction: Transaction): Transaction => {
             user,
             contextAction: {
               type: 'contextAction',
-              value: 'REGISTERED_USERNAME',
+              value: LeeroyContextActionEnum.REGISTERED_USERNAME,
             },
           },
           summaries: {

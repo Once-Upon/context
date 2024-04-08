@@ -1,5 +1,10 @@
 import { Hex } from 'viem';
-import { AssetType, EventLogTopics, Transaction } from '../../../types';
+import {
+  AssetType,
+  EventLogTopics,
+  NounsAuctionHouseActionEnum,
+  Transaction,
+} from '../../../types';
 import { NounsContracts, ABIs } from './constants';
 import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
 
@@ -59,7 +64,7 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           contextAction: {
             type: 'contextAction',
-            value: 'BID',
+            value: NounsAuctionHouseActionEnum.BID,
           },
           subject: {
             type: 'address',
@@ -131,7 +136,7 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           contextAction: {
             type: 'contextAction',
-            value: 'SETTLED',
+            value: NounsAuctionHouseActionEnum.SETTLED,
           },
           subject: {
             type: 'address',

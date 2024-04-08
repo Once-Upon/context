@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import { Transaction } from '../../../types';
+import { FarcasterContextActionEnum, Transaction } from '../../../types';
 import { FarcasterContracts } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -58,7 +58,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           changedRecoveryAddress: {
             type: 'contextAction',
-            value: 'CHANGED_RECOVERY_ADDRESS',
+            value: FarcasterContextActionEnum.CHANGED_RECOVERY_ADDRESS,
           },
         },
         summaries: {
@@ -85,7 +85,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           transferredId: {
             type: 'contextAction',
-            value: 'TRANSFERRED_FARCASTER_ID',
+            value: FarcasterContextActionEnum.TRANSFERRED_FARCASTER_ID,
           },
         },
         summaries: {

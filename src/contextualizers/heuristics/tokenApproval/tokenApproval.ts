@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import { Transaction } from '../../../types';
+import { HeuristicContextActionEnum, Transaction } from '../../../types';
 import approveAbi from './abis/Approve';
 import setApprovalForAllAbi from './abis/SetApprovalForAll';
 import { decodeTransactionInput } from '../../../helpers/utils';
@@ -90,7 +90,7 @@ export function generate(transaction: Transaction): Transaction {
           },
           gaveAccess: {
             type: 'contextAction',
-            value: 'GAVE_ACCESS',
+            value: HeuristicContextActionEnum.GAVE_ACCESS,
           },
         },
         summaries: {
@@ -121,7 +121,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             gaveAccess: {
               type: 'contextAction',
-              value: 'GAVE_ACCESS',
+              value: HeuristicContextActionEnum.GAVE_ACCESS,
             },
           },
           summaries: {
@@ -149,7 +149,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             revokedAccess: {
               type: 'contextAction',
-              value: 'REVOKED_ACCESS',
+              value: HeuristicContextActionEnum.REVOKED_ACCESS,
             },
           },
           summaries: {

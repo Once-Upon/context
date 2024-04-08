@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import { Transaction } from '../../../types';
+import { ENSContextActionEnum, Transaction } from '../../../types';
 import { ENS_CONTRACTS, ENS_ADDRESSES } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -60,7 +60,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           reversed: {
             type: 'contextAction',
-            value: 'SET_REVERSE_ENS_TO',
+            value: ENSContextActionEnum.SET_REVERSE_ENS_TO,
           },
         },
       };

@@ -11,6 +11,7 @@ import {
   ContextERC721Type,
   ContextERC1155Type,
   EventLogTopics,
+  HeuristicContextActionEnum,
 } from '../../../types';
 import {
   GATEWAY_CHAIN_ID_MAPPING,
@@ -113,7 +114,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       bridged: {
         type: 'contextAction',
-        value: 'BRIDGED',
+        value: HeuristicContextActionEnum.BRIDGED,
       },
       asset,
     },

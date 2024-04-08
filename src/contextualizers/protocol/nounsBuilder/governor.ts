@@ -3,6 +3,7 @@ import {
   ContextLinkType,
   ContextStringType,
   EventLogTopics,
+  NounsGovernorActionEnum,
   Transaction,
 } from '../../../types';
 import {
@@ -14,10 +15,10 @@ import { NounsContracts } from '../nouns/constants';
 import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
 
 const translateSupport = (support: bigint) => {
-  if (support === 0n) return 'VOTED_AGAINST';
-  if (support === 1n) return 'VOTED_FOR';
+  if (support === 0n) return NounsGovernorActionEnum.VOTED_AGAINST;
+  if (support === 1n) return NounsGovernorActionEnum.VOTED_FOR;
 
-  return 'ABSTAINED';
+  return NounsGovernorActionEnum.ABSTAINED;
 };
 
 const daoByAuctionGovernorContract = (address: string) => {
@@ -29,9 +30,9 @@ const proposalUrl = (proposalId: string, dao: NounsBuilderInstance) => {
 };
 
 const FUNCTION_CONTEXT_ACTION_MAPPING = {
-  queue: 'QUEUED',
-  cancel: 'CANCELED',
-  veto: 'VETOED',
+  queue: NounsGovernorActionEnum.QUEUED,
+  cancel: NounsGovernorActionEnum.CANCELED,
+  veto: NounsGovernorActionEnum.VETOED,
 } as const;
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -161,7 +162,7 @@ export const generate = (transaction: Transaction): Transaction => {
           ...getDynamicVariables(proposalId),
           contextAction: {
             type: 'contextAction',
-            value: 'CREATED_PROPOSAL',
+            value: NounsGovernorActionEnum.CREATED_PROPOSAL,
           },
           subject: {
             type: 'address',
@@ -216,7 +217,9 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'Nouns Builder',
             default: `[[subject]][[contextAction]]${
-              action === 'ABSTAINED' ? 'from voting on' : ''
+              action === NounsGovernorActionEnum.ABSTAINED
+                ? 'from voting on'
+                : ''
             }${dao?.name ? '[[dao]]DAO ' : ''}proposal[[proposalId]]`,
           },
         },
@@ -224,7 +227,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
       if (reason) {
         transaction.context!.summaries!.en.long = `[[subject]][[contextAction]]${
-          action === 'ABSTAINED' ? 'from voting on' : ''
+          action === NounsGovernorActionEnum.ABSTAINED ? 'from voting on' : ''
         }${dao?.name ? '[[dao]]DAO ' : ''}proposal[[proposalId]][[reason]]`;
       }
 
@@ -254,7 +257,9 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'Nouns Builder',
             default: `[[subject]][[contextAction]]${
-              action === 'ABSTAINED' ? 'from voting on' : ''
+              action === NounsGovernorActionEnum.ABSTAINED
+                ? 'from voting on'
+                : ''
             }${dao?.name ? '[[dao]]DAO ' : ''}proposal[[proposalId]]`,
           },
         },
@@ -304,7 +309,7 @@ export const generate = (transaction: Transaction): Transaction => {
           ...getDynamicVariables(proposalId),
           contextAction: {
             type: 'contextAction',
-            value: 'EXECUTED',
+            value: NounsGovernorActionEnum.EXECUTED,
           },
           subject: {
             type: 'address',

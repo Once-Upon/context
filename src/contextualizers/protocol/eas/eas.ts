@@ -1,6 +1,10 @@
 import { Hex } from 'viem';
 import { ExtractAbiFunctionNames } from 'abitype';
-import { Transaction, EventLogTopics } from '../../../types';
+import {
+  Transaction,
+  EventLogTopics,
+  EASContextActionEnum,
+} from '../../../types';
 import { decodeTransactionInput, decodeLog } from '../../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
@@ -125,7 +129,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           attested: {
             type: 'contextAction',
-            value: 'ATTESTED',
+            value: EASContextActionEnum.ATTESTED,
           },
         },
         summaries: {
@@ -182,7 +186,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           attested: {
             type: 'contextAction',
-            value: 'ATTESTED',
+            value: EASContextActionEnum.ATTESTED,
           },
         },
         summaries: {
@@ -223,7 +227,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           attested: {
             type: 'contextAction',
-            value: 'ATTESTED',
+            value: EASContextActionEnum.ATTESTED,
           },
         },
         summaries: {
@@ -269,7 +273,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           attested: {
             type: 'contextAction',
-            value: 'ATTESTED',
+            value: EASContextActionEnum.ATTESTED,
           },
         },
         summaries: {
@@ -317,7 +321,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           revoked: {
             type: 'contextAction',
-            value: 'REVOKED',
+            value: EASContextActionEnum.REVOKED,
           },
         },
         summaries: {
@@ -369,7 +373,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           revoked: {
             type: 'contextAction',
-            value: 'REVOKED',
+            value: EASContextActionEnum.REVOKED,
           },
         },
         summaries: {
@@ -409,7 +413,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           revoked: {
             type: 'contextAction',
-            value: 'REVOKED',
+            value: EASContextActionEnum.REVOKED,
           },
         },
         summaries: {
@@ -453,7 +457,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           revoked: {
             type: 'contextAction',
-            value: 'REVOKED',
+            value: EASContextActionEnum.REVOKED,
           },
         },
         summaries: {
@@ -479,7 +483,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           timestamped: {
             type: 'contextAction',
-            value: 'TIMESTAMPED',
+            value: EASContextActionEnum.TIMESTAMPED,
           },
         },
         summaries: {
@@ -508,7 +512,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           timestamped: {
             type: 'contextAction',
-            value: 'TIMESTAMPED',
+            value: EASContextActionEnum.TIMESTAMPED,
           },
         },
         summaries: {
@@ -531,7 +535,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           revoked: {
             type: 'contextAction',
-            value: 'REVOKED',
+            value: EASContextActionEnum.REVOKED,
           },
         },
         summaries: {
@@ -560,7 +564,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           revoked: {
             type: 'contextAction',
-            value: 'REVOKED',
+            value: EASContextActionEnum.REVOKED,
           },
         },
         summaries: {

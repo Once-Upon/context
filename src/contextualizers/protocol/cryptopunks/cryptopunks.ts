@@ -2,6 +2,7 @@ import { Hex } from 'viem';
 import {
   AssetType,
   ContextSummaryVariableType,
+  CryptoPunksContextActionEnum,
   ETHAssetTransfer,
   Transaction,
 } from '../../../types';
@@ -85,7 +86,7 @@ export const generate = (transaction: Transaction): Transaction => {
             minter,
             contextAction: {
               type: 'contextAction',
-              value: 'MINTED_PUNK',
+              value: CryptoPunksContextActionEnum.MINTED_PUNK,
             },
           },
           summaries: {
@@ -103,7 +104,7 @@ export const generate = (transaction: Transaction): Transaction => {
             minter,
             contextAction: {
               type: 'contextAction',
-              value: 'MINTED_PUNK',
+              value: CryptoPunksContextActionEnum.MINTED_PUNK,
             },
           },
           summaries: {
@@ -140,7 +141,7 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
-              value: 'LISTED_PUNK',
+              value: CryptoPunksContextActionEnum.LISTED_PUNK,
             },
           },
           summaries: {
@@ -159,7 +160,7 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
-              value: 'LISTED_PUNK',
+              value: CryptoPunksContextActionEnum.LISTED_PUNK,
             },
           },
           summaries: {
@@ -200,7 +201,7 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
-              value: 'WITHDREW_BID_FOR',
+              value: CryptoPunksContextActionEnum.WITHDREW_BID_FOR,
             },
           },
           summaries: {
@@ -219,7 +220,7 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
-              value: 'WITHDREW_BID_FOR',
+              value: CryptoPunksContextActionEnum.WITHDREW_BID_FOR,
             },
           },
           summaries: {
@@ -256,7 +257,7 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
-              value: 'BID_ON_PUNK',
+              value: CryptoPunksContextActionEnum.BID_ON_PUNK,
             },
           },
           summaries: {
@@ -275,7 +276,7 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
-              value: 'BID_ON_PUNK',
+              value: CryptoPunksContextActionEnum.BID_ON_PUNK,
             },
           },
           summaries: {
@@ -308,7 +309,7 @@ export const generate = (transaction: Transaction): Transaction => {
             amount,
             contextAction: {
               type: 'contextAction',
-              value: 'WITHDREW_FROM_CONTRACT',
+              value: CryptoPunksContextActionEnum.WITHDREW_FROM_CONTRACT,
             },
           },
           summaries: {
@@ -326,7 +327,7 @@ export const generate = (transaction: Transaction): Transaction => {
             amount,
             contextAction: {
               type: 'contextAction',
-              value: 'WITHDREW_FROM_CONTRACT',
+              value: CryptoPunksContextActionEnum.WITHDREW_FROM_CONTRACT,
             },
           },
           summaries: {
@@ -375,7 +376,7 @@ export const generate = (transaction: Transaction): Transaction => {
             seller,
             contextAction: {
               type: 'contextAction',
-              value: 'BOUGHT_PUNK',
+              value: CryptoPunksContextActionEnum.BOUGHT_PUNK,
             },
           },
           summaries: {
@@ -395,7 +396,7 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
-              value: 'BOUGHT_PUNK',
+              value: CryptoPunksContextActionEnum.BOUGHT_PUNK,
             },
           },
           summaries: {
@@ -431,7 +432,7 @@ export const generate = (transaction: Transaction): Transaction => {
             receiver,
             contextAction: {
               type: 'contextAction',
-              value: 'TRANSFERRED_PUNK',
+              value: CryptoPunksContextActionEnum.TRANSFERRED_PUNK,
             },
           },
           summaries: {
@@ -450,7 +451,7 @@ export const generate = (transaction: Transaction): Transaction => {
             receiver,
             contextAction: {
               type: 'contextAction',
-              value: 'TRANSFERRED_PUNK',
+              value: CryptoPunksContextActionEnum.TRANSFERRED_PUNK,
             },
           },
           summaries: {
@@ -482,7 +483,7 @@ export const generate = (transaction: Transaction): Transaction => {
             punk,
             contextAction: {
               type: 'contextAction',
-              value: 'UNLISTED_PUNK',
+              value: CryptoPunksContextActionEnum.UNLISTED_PUNK,
             },
           },
           summaries: {
@@ -500,7 +501,7 @@ export const generate = (transaction: Transaction): Transaction => {
             punk,
             contextAction: {
               type: 'contextAction',
-              value: 'UNLISTED_PUNK',
+              value: CryptoPunksContextActionEnum.UNLISTED_PUNK,
             },
           },
           summaries: {
@@ -543,7 +544,7 @@ export const generate = (transaction: Transaction): Transaction => {
             buyer,
             contextAction: {
               type: 'contextAction',
-              value: 'LISTED_PUNK',
+              value: CryptoPunksContextActionEnum.LISTED_PUNK,
             },
           },
           summaries: {
@@ -564,7 +565,7 @@ export const generate = (transaction: Transaction): Transaction => {
             buyer,
             contextAction: {
               type: 'contextAction',
-              value: 'LISTED_PUNK',
+              value: CryptoPunksContextActionEnum.LISTED_PUNK,
             },
           },
           summaries: {
