@@ -87,7 +87,7 @@ export const generate = (transaction: Transaction): Transaction => {
       },
       contextAction: {
         type: 'contextAction',
-        value: HeuristicContextActionEnum.SWAPPED,
+        value: HeuristicContextActionEnum.SWAPPED, // TODO: Make a Uniswap version of this
       },
     },
     summaries: {
