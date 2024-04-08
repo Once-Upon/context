@@ -6,7 +6,10 @@ import {
   Transaction,
 } from '../../../types';
 import { CryptopunksContracts, CRYPTOPUNK_ABIS } from './constants';
-import { decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeTransactionInput,
+  formatNativeToken,
+} from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isENS = detect(transaction);
@@ -128,7 +131,7 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: decoded.args[0].toString(),
       };
       const price: ContextSummaryVariableType = {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: decoded.args[1].toString(),
         unit: 'wei',
       };
@@ -188,7 +191,7 @@ export const generate = (transaction: Transaction): Transaction => {
       if (!ethAssetTransfer) return transaction;
 
       const price: ContextSummaryVariableType = {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: ethAssetTransfer.value,
         unit: 'wei',
       };
@@ -244,7 +247,7 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: decoded.args[0].toString(),
       };
       const price: ContextSummaryVariableType = {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: transaction.value.toString(),
         unit: 'wei',
       };
@@ -297,7 +300,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const ethAssetTransfer = transaction
         .assetTransfers?.[0] as ETHAssetTransfer;
       const amount: ContextSummaryVariableType = {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: ethAssetTransfer.value,
         unit: 'wei',
       };
@@ -351,7 +354,7 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: decoded.args[0].toString(),
       };
       const price: ContextSummaryVariableType = {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: transaction.value.toString(),
         unit: 'wei',
       };
@@ -526,7 +529,7 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: decoded.args[0].toString(),
       };
       const price: ContextSummaryVariableType = {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: decoded.args[1].toString(),
         unit: 'wei',
       };

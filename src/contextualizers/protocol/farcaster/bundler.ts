@@ -1,12 +1,15 @@
 import { Hex } from 'viem';
 import {
-  AssetType,
   ContextSummaryVariableType,
   EventLogTopics,
   Transaction,
 } from '../../../types';
 import { FarcasterContracts } from './constants';
-import { decodeTransactionInput, decodeLog } from '../../../helpers/utils';
+import {
+  decodeTransactionInput,
+  decodeLog,
+  formatNativeToken,
+} from '../../../helpers/utils';
 
 // Contextualizer for the Bundler contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IBundler.sol
@@ -48,10 +51,9 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'register': {
       const owner = decoded.args[0].to;
       const callerIsOwner = owner.toLowerCase() === caller.toLowerCase();
-
       // Capture cost to register
       const cost: ContextSummaryVariableType = {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: transaction.value.toString(),
         unit: 'wei',
       };

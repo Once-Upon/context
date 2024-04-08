@@ -1,7 +1,11 @@
 import { Hex } from 'viem';
-import { AssetType, EventLogTopics, Transaction } from '../../../types';
+import { EventLogTopics, Transaction } from '../../../types';
 import { ABIs } from './constants';
-import { decodeTransactionInput, decodeLog } from '../../../helpers/utils';
+import {
+  decodeTransactionInput,
+  decodeLog,
+  formatNativeToken,
+} from '../../../helpers/utils';
 import { detect } from './detect';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -28,7 +32,7 @@ export const generate = (transaction: Transaction): Transaction => {
       transaction.context = {
         variables: {
           price: {
-            type: AssetType.ETH,
+            type: formatNativeToken(transaction.chainId ?? 1),
             value: transaction.value.toString(),
             unit: 'wei',
           },
@@ -109,7 +113,7 @@ export const generate = (transaction: Transaction): Transaction => {
       transaction.context = {
         variables: {
           price: {
-            type: AssetType.ETH,
+            type: formatNativeToken(transaction.chainId ?? 1),
             value: ethAmount,
             unit: 'wei',
           },
@@ -169,7 +173,7 @@ export const generate = (transaction: Transaction): Transaction => {
       transaction.context = {
         variables: {
           price: {
-            type: AssetType.ETH,
+            type: formatNativeToken(transaction.chainId ?? 1),
             value: ethAmount,
             unit: 'wei',
           },

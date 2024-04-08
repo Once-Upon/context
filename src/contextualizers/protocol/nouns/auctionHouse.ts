@@ -1,7 +1,11 @@
 import { Hex } from 'viem';
 import { AssetType, EventLogTopics, Transaction } from '../../../types';
 import { NounsContracts, ABIs } from './constants';
-import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeLog,
+  decodeTransactionInput,
+  formatNativeToken,
+} from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isNouns = detect(transaction);
@@ -45,12 +49,10 @@ export const generate = (transaction: Transaction): Transaction => {
   if (transaction.to !== NounsContracts.AuctionHouse) {
     return transaction;
   }
-
   const decoded = decodeTransactionInput(
     transaction.input as Hex,
     ABIs.NounsAuctionHouse,
   );
-
   if (!decoded) return transaction;
 
   switch (decoded.functionName) {
@@ -71,7 +73,7 @@ export const generate = (transaction: Transaction): Transaction => {
             tokenId: decoded.args[0].toString(),
           },
           amount: {
-            type: AssetType.ETH,
+            type: formatNativeToken(transaction.chainId ?? 1),
             value: transaction.value.toString(),
             unit: 'wei',
           },

@@ -5,6 +5,7 @@ import {
   ERC20AssetTransfer,
 } from '../../../types';
 import { KNOWN_ADDRESSES, WETH_ADDRESSES } from '../../../helpers/constants';
+import { formatNativeToken } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isTokenMint = detect(transaction);
@@ -115,7 +116,7 @@ export function generate(transaction: Transaction): Transaction {
         value: recipient,
       },
       price: {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: price,
         unit: 'wei',
       },

@@ -12,7 +12,7 @@ import {
   PROTOCOL_REWARDS_CONTRACT,
   REWARDS_DEPOSIT_TOPIC,
 } from './constants';
-import { decodeLog } from '../../../helpers/utils';
+import { decodeLog, formatNativeToken } from '../../../helpers/utils';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -96,13 +96,13 @@ export const generate = (transaction: Transaction): Transaction => {
         value: sender,
       },
       price: {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: price,
         unit: 'wei',
       },
       minted: { type: 'contextAction', value: 'MINTED' },
       numOfEth: {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: decodedLog.args['mintReferralReward'].toString(),
         unit: 'wei',
       },

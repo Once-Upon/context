@@ -7,7 +7,10 @@ import {
   Transaction,
 } from '../../../types';
 import { BASEPAINT_CONTRACT, BRUSHES_CONTRACT, ABIs } from './constants';
-import { decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeTransactionInput,
+  formatNativeToken,
+} from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isBasepaint = detect(transaction);
@@ -118,7 +121,7 @@ export const generate = (transaction: Transaction): Transaction => {
           value: transaction.from,
         },
         amount: {
-          type: AssetType.ETH,
+          type: formatNativeToken(transaction.chainId ?? 1),
           value,
           unit: 'wei',
         },

@@ -6,6 +6,8 @@ export enum AssetType {
   ERC1155 = 'erc1155',
 }
 
+export type NativeTokenType = 'eth' | 'degen';
+
 export type ETHAsset = {
   type: AssetType.ETH;
   value: string;

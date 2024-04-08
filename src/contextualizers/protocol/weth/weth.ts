@@ -6,7 +6,10 @@ import {
 } from '../../../types';
 import { WETH_ADDRESSES } from '../../../helpers/constants';
 import { WETH_ABI } from './constants';
-import { decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeTransactionInput,
+  formatNativeToken,
+} from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isWeth = detect(transaction);
@@ -79,7 +82,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: transaction.from,
       };
       const withdrawalAmount: ContextSummaryVariableType = {
-        type: AssetType.ETH,
+        type: formatNativeToken(transaction.chainId ?? 1),
         value: decode.args ? decode.args[0].toString() : '0',
         unit: 'wei',
       };
