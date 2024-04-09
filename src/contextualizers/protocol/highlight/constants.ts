@@ -1,0 +1,14 @@
+import mintManagerAbi from './abis/MintManager';
+
+export const MINT_MANAGER_CONTRACT = {
+  1: '0x1bf979282181f2b7a640d17ab5d2e25125f2de5e',
+  10: '0xfafd47bb399d570b5ac95694c5d2a1fb5ea030bb',
+  137: '0xfbb65c52f439b762f712026cf6dd7d8e82f81eb9',
+  8453: '0x8087039152c472fa74f47398628ff002994056ea',
+  84532: '0x41cbab1028984a34c1338f437c726de791695ae8',
+  42161: '0x41cbab1028984a34c1338f437c726de791695ae8',
+  7777777: '0x3ad45858a983d193d98bd4e6c14852a4cadcdbea',
+  11155111: '0xd698911b1bb2a9c849bf5e2604af110766f396b6',
+};
+
+export const MINT_MANAGER_ABI = mintManagerAbi;
