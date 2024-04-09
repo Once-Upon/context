@@ -87,7 +87,7 @@ export function generate(transaction: Transaction): Transaction {
           value: parseEther(amount).toString(),
           unit: 'wei',
         },
-        chainID: {
+        originChainId: {
           type: 'chainID',
           value: originChainId,
         },
