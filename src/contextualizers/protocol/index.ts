@@ -17,6 +17,7 @@ import { basepaintContextualizer } from './basepaint';
 import { disperseContextualizer } from './disperse';
 import { zoraCreatorContextualizer } from './zoraCreator';
 import { bnsContextualizer } from './bns';
+import { highlightContextualizer } from './highlight';
 
 const children = {
   wethContextualizer,
@@ -37,6 +38,7 @@ const children = {
   disperseContextualizer,
   zoraCreatorContextualizer,
   bnsContextualizer,
+  highlightContextualizer,
 };
 
 const protocolContextualizers = Object.fromEntries(
