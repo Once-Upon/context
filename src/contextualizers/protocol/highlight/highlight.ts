@@ -6,6 +6,7 @@ import {
   ETHAsset,
   EventLogTopics,
   Transaction,
+  HeuristicContextActionEnum,
 } from '../../../types';
 import { MINT_MANAGER_ABI } from './constants';
 import { decodeLog } from '../../../helpers/utils';
@@ -81,7 +82,7 @@ export const generate = (transaction: Transaction): Transaction => {
     variables: {
       recipient: {
         type: 'address',
-        value: decodedLog.args['rewardRecipient'].toLowerCase(),
+        value: recipient,
       },
       sender: {
         type: 'address',
@@ -92,19 +93,17 @@ export const generate = (transaction: Transaction): Transaction => {
         value: price,
         unit: 'wei',
       },
-      minted: { type: 'contextAction', value: 'MINTED' },
+      minted: {
+        type: 'contextAction',
+        value: HeuristicContextActionEnum.MINTED,
+      },
       vectorId: {
         type: 'number',
         value: decodedLog.args['vectorId'].toString(),
       },
-      numOfEth: {
-        type: AssetType.ETH,
-        value: decodedLog.args['mintReferralReward'].toString(),
-        unit: 'wei',
-      },
       mintReferral: {
         type: 'address',
-        value: decodedLog.args['mintReferral'].toLowerCase(),
+        value: decodedLog.args['rewardRecipient'].toLowerCase(),
       },
     },
     summaries: {
@@ -180,7 +179,7 @@ export const generate = (transaction: Transaction): Transaction => {
   }
 
   transaction.context.summaries['en'].default +=
-    'with[[numOfEth]]in rewards for[[mintReferral]]';
+    'with[[vectorId]]for[[mintReferral]]';
 
   return transaction;
 };
