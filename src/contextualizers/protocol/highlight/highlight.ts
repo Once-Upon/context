@@ -12,6 +12,8 @@ import { MINT_MANAGER_ABI } from './constants';
 import { decodeLog } from '../../../helpers/utils';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
 
+import { generate as heuristicGenerate } from '../../heuristics/erc721Mint';
+
 export const contextualize = (transaction: Transaction): Transaction => {
   const isEnjoy = detect(transaction);
   if (!isEnjoy) return transaction;
@@ -45,6 +47,15 @@ export const generate = (transaction: Transaction): Transaction => {
   ) {
     return transaction;
   }
+
+  const heuristicContextualizedTx = heuristicGenerate(transaction);
+
+  // Add vectorId
+
+  transaction.context?.variables.vectorId = {
+    type: 'number',
+    value: '0',
+  };
 
   let decodedLog;
   for (const log of transaction.logs) {
