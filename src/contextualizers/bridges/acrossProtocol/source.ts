@@ -68,8 +68,10 @@ export function generate(transaction: Transaction): Transaction {
     }
   });
   if (fundsDepositedLog) {
-    const destinationChainId = Number(fundsDepositedEvent.args[2] as bigint);
-    const amount = formatEther(fundsDepositedEvent.args[0] as bigint);
+    const destinationChainId = Number(
+      fundsDepositedEvent.args['destinationChainId'] as bigint,
+    );
+    const amount = formatEther(fundsDepositedEvent.args['amount'] as bigint);
     transaction.context = {
       summaries: {
         category: 'MULTICHAIN',

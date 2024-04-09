@@ -2,6 +2,7 @@ import { Transaction } from '../../../types';
 import { detect, generate } from './source';
 import { contextSummary } from '../../../helpers/utils';
 import acrossProtocolBaseEth0xfc9a2f83 from '../../test/transactions/across-protocol-base-eth-0xfc9a2f83.json';
+import acrossProtocolBaseOpt0xe1cb6100 from '../../test/transactions/across-protocol-base-opt-0xe1cb6100.json';
 
 describe('Across Protocol Source', () => {
   it('Should detect transaction', () => {
@@ -9,6 +10,11 @@ describe('Across Protocol Source', () => {
       acrossProtocolBaseEth0xfc9a2f83 as unknown as Transaction,
     );
     expect(isAcrossProtocolSource1).toBe(true);
+
+    const isAcrossProtocolSource2 = detect(
+      acrossProtocolBaseOpt0xe1cb6100 as unknown as Transaction,
+    );
+    expect(isAcrossProtocolSource2).toBe(true);
   });
 
   it('Should generate context', () => {
@@ -17,7 +23,15 @@ describe('Across Protocol Source', () => {
     );
     expect(baseTransaction1.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(baseTransaction1.context)).toBe(
-      '0x661ea32f349f857075cae289e7f6222c2ad083b9 BRIDGED 0.1 ETH to 8453 resulting in 0x2563ad7929d8efa2e4d00c865cdb9090d8fbcd4ebc50ac85db61123b21ea476c',
+      '0xb74091a5c0073f64f7b5246fd73715b9730581f6 BRIDGED 0.1 ETH to 1',
+    );
+
+    const baseTransaction2 = generate(
+      acrossProtocolBaseOpt0xe1cb6100 as unknown as Transaction,
+    );
+    expect(baseTransaction2.context?.summaries?.en.title).toBe('Bridge');
+    expect(contextSummary(baseTransaction2.context)).toBe(
+      '0x8d25b3e415ee15bc404a7b46dd866f2f86ddbf0f BRIDGED 0.0000000012369026 ETH to 10',
     );
   });
 });
