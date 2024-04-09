@@ -1,11 +1,11 @@
-import { contextualize as zora } from './highlight';
+import { contextualize as highlight } from './highlight';
 import { makeContextualize } from '../../../helpers/utils';
 
-const children = { zora };
+const children = { highlight };
 
 const contextualize = makeContextualize(children);
 
-export const zoraCreatorContextualizer = {
+export const highlightContextualizer = {
   contextualize,
   children,
 };
