@@ -13,8 +13,8 @@ import { decodeLog } from '../../../helpers/utils';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
-  const isEnjoy = detect(transaction);
-  if (!isEnjoy) return transaction;
+  const isHighlight = detect(transaction);
+  if (!isHighlight) return transaction;
 
   return generate(transaction);
 };
