@@ -166,7 +166,7 @@ export const generate = (transaction: Transaction): Transaction => {
     transaction.context.summaries = {
       ...transaction.context.summaries,
       en: {
-        title: 'Zora',
+        title: 'Highlight',
         default:
           sender === recipient
             ? '[[recipient]][[minted]][[token]]'
