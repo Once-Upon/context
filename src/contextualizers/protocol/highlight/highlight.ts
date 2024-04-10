@@ -78,9 +78,9 @@ export const generate = (transaction: Transaction): Transaction => {
 
   const mintPriceETH = transaction.value ? transaction.value.toString() : '0';
   const mintPriceERC20 = erc20TransferAsPayment
-    ? erc20TransferAsPayment[0].value.toString()
+    ? erc20TransferAsPayment?.[0]?.value.toString()
     : '0';
-  const mintToken = erc20TransferAsPayment[0].contract;
+  const mintToken = erc20TransferAsPayment?.[0]?.contract;
   const mintReferralAmount = decodedLog.args['amount'].toString();
   const mintReferralCurrency = decodedLog.args['currency'].toLowerCase();
   const sender = transaction.from;
@@ -95,17 +95,18 @@ export const generate = (transaction: Transaction): Transaction => {
         type: 'address',
         value: sender,
       },
-      mintReferralAmount: mintReferralCurrency
-        ? {
-            type: AssetType.ERC20,
-            value: mintReferralAmount,
-            token: mintReferralCurrency,
-          }
-        : {
-            type: AssetType.ETH,
-            value: mintReferralAmount,
-            unit: 'wei',
-          },
+      mintReferralAmount:
+        mintReferralCurrency !== '0x0000000000000000000000000000000000000000'
+          ? {
+              type: AssetType.ERC20,
+              value: mintReferralAmount,
+              token: mintReferralCurrency,
+            }
+          : {
+              type: AssetType.ETH,
+              value: mintReferralAmount,
+              unit: 'wei',
+            },
       mintPrice:
         BigInt(mintPriceETH) > BigInt(0)
           ? {
@@ -212,7 +213,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
   if (BigInt(mintReferralAmount) > BigInt(0)) {
     transaction.context.summaries['en'].default +=
-      'with[[mintReferralAmount]]for[[mintReferralRecipient]]';
+      'with[[mintReferralAmount]]in rewards for[[mintReferralRecipient]]';
   }
 
   return transaction;
