@@ -3,7 +3,6 @@ import {
   AssetType,
   ERC1155AssetTransfer,
   ERC721AssetTransfer,
-  ETHAsset,
   EventLogTopics,
   Transaction,
   HeuristicContextActionEnum,
@@ -69,13 +68,8 @@ export const generate = (transaction: Transaction): Transaction => {
   const recipient = assetTransfer.to;
   const amount = mints.filter((ele) => ele.type === assetTransfer.type).length;
 
-  const assetSent = transaction.netAssetTransfers[transaction.from]
-    ?.sent as ETHAsset[];
-  const price =
-    assetSent && assetSent.length > 0 && assetSent[0]?.value
-      ? assetSent[0].value
-      : '0';
-
+  const mintPrice = transaction.value ? transaction.value.toString() : '0';
+  const mintReferralAmount = decodedLog.args['amount'].toString();
   const sender = transaction.from;
 
   transaction.context = {
@@ -88,9 +82,14 @@ export const generate = (transaction: Transaction): Transaction => {
         type: 'address',
         value: sender,
       },
-      price: {
+      mintReferralAmount: {
         type: AssetType.ETH,
-        value: price,
+        value: mintReferralAmount,
+        unit: 'wei',
+      },
+      mintPrice: {
+        type: AssetType.ETH,
+        value: mintPrice,
         unit: 'wei',
       },
       minted: {
@@ -159,8 +158,8 @@ export const generate = (transaction: Transaction): Transaction => {
             : '[[sender]][[minted]][[amount]][[token]]to[[recipient]]',
       },
     };
-    if (BigInt(price) > BigInt(0)) {
-      transaction.context.summaries['en'].default += 'for[[price]]';
+    if (BigInt(mintPrice) > BigInt(0)) {
+      transaction.context.summaries['en'].default += 'for[[mintPrice]]';
     }
   } else {
     transaction.context.summaries = {
@@ -173,13 +172,13 @@ export const generate = (transaction: Transaction): Transaction => {
             : '[[sender]][[minted]][[token]]to[[recipient]]',
       },
     };
-    if (BigInt(price) > BigInt(0)) {
-      transaction.context.summaries['en'].default += 'for[[price]]';
+    if (BigInt(mintPrice) > BigInt(0)) {
+      transaction.context.summaries['en'].default += 'for[[mintPrice]]';
     }
   }
 
   transaction.context.summaries['en'].default +=
-    'with[[vectorId]]for[[mintReferral]]';
+    'with[[mintReferralAmount]]for[[mintReferral]]';
 
   return transaction;
 };
