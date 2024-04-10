@@ -10,7 +10,7 @@ export function registerGrabTransactionCommand() {
     .argument('<hash>', 'transaction hash')
     .argument('<prefix>', 'file name prefix')
     .action(async (hash, prefix, options) => {
-      const srcDir = path.join(__dirname, '..', '..', 'src');
+      const srcDir = path.join(__dirname, '..', '..', 'src', 'contextualizers');
       // generate a file name
       const fileName = prefix + '-' + shortenTxHash(hash);
       const txFilePath = path.join(
