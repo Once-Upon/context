@@ -19,7 +19,7 @@ export const grabTx = async (txHash: string, prefix: string) => {
   const defaultApiUrl = 'https://api.onceupon.gg';
   const API_URL = process.env.API_URL || defaultApiUrl;
   const transaction = await fetch(
-    `${API_URL}/v1/transactions/${txHash}?withContext=false`,
+    `${API_URL}/v2/transactions/${txHash}?withContext=false`,
   ).then((res) => res.json());
 
   // write to file
