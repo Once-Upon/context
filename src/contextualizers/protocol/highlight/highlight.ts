@@ -96,6 +96,10 @@ export const generate = (transaction: Transaction): Transaction => {
         type: 'contextAction',
         value: HeuristicContextActionEnum.MINTED,
       },
+      vectorId: {
+        type: 'number',
+        value: decodedLog.args['vectorId'].toString(),
+      },
       mintReferral: {
         type: 'address',
         value: decodedLog.args['rewardRecipient'].toLowerCase(),
