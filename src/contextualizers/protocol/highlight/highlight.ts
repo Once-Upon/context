@@ -6,7 +6,9 @@ import {
   EventLogTopics,
   Transaction,
   HeuristicContextActionEnum,
+  ERC20AssetTransfer,
 } from '../../../types';
+import { formatUnits } from 'viem';
 import { MINT_MANAGER_ABI } from './constants';
 import { decodeLog } from '../../../helpers/utils';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
@@ -68,8 +70,20 @@ export const generate = (transaction: Transaction): Transaction => {
   const recipient = assetTransfer.to;
   const amount = mints.filter((ele) => ele.type === assetTransfer.type).length;
 
-  const mintPrice = transaction.value ? transaction.value.toString() : '0';
+  // TODO: Find an ERC20 transferred by the sender from assetTransfers
+
+  const erc20TransferAsPayment = transaction.assetTransfers.filter(
+    (transfer) =>
+      transfer.from === transaction.from && transfer.type === AssetType.ERC20,
+  ) as ERC20AssetTransfer[];
+
+  const mintPriceETH = transaction.value ? transaction.value.toString() : '0';
+  const mintPriceERC20 = erc20TransferAsPayment
+    ? erc20TransferAsPayment[0].value.toString()
+    : '0';
+  const mintToken = erc20TransferAsPayment[0].contract;
   const mintReferralAmount = decodedLog.args['amount'].toString();
+  const mintReferralCurrency = decodedLog.args['currency'].toLowerCase();
   const sender = transaction.from;
 
   transaction.context = {
@@ -82,16 +96,29 @@ export const generate = (transaction: Transaction): Transaction => {
         type: 'address',
         value: sender,
       },
-      mintReferralAmount: {
-        type: AssetType.ETH,
-        value: mintReferralAmount,
-        unit: 'wei',
-      },
-      mintPrice: {
-        type: AssetType.ETH,
-        value: mintPrice,
-        unit: 'wei',
-      },
+      mintReferralAmount: mintReferralCurrency
+        ? {
+            type: AssetType.ERC20,
+            value: mintReferralAmount,
+            token: mintReferralCurrency,
+          }
+        : {
+            type: AssetType.ETH,
+            value: mintReferralAmount,
+            unit: 'wei',
+          },
+      mintPrice:
+        BigInt(mintPriceETH) > BigInt(0)
+          ? {
+              type: AssetType.ETH,
+              value: mintPriceETH,
+              unit: 'wei',
+            }
+          : {
+              type: AssetType.ERC20,
+              value: mintPriceERC20,
+              token: mintToken,
+            },
       minted: {
         type: 'contextAction',
         value: HeuristicContextActionEnum.MINTED,
@@ -100,7 +127,7 @@ export const generate = (transaction: Transaction): Transaction => {
         type: 'number',
         value: decodedLog.args['vectorId'].toString(),
       },
-      mintReferral: {
+      mintReferralRecipient: {
         type: 'address',
         value: decodedLog.args['rewardRecipient'].toLowerCase(),
       },
@@ -113,6 +140,8 @@ export const generate = (transaction: Transaction): Transaction => {
       },
     },
   };
+
+  console.log('transaction.context.variables', transaction.context.variables);
 
   switch (assetTransfer.type) {
     case AssetType.ERC1155:
@@ -158,7 +187,11 @@ export const generate = (transaction: Transaction): Transaction => {
             : '[[sender]][[minted]][[amount]][[token]]to[[recipient]]',
       },
     };
-    if (BigInt(mintPrice) > BigInt(0)) {
+
+    if (
+      BigInt(mintPriceETH) > BigInt(0) ||
+      BigInt(mintPriceERC20) > BigInt(0)
+    ) {
       transaction.context.summaries['en'].default += 'for[[mintPrice]]';
     }
   } else {
@@ -172,13 +205,18 @@ export const generate = (transaction: Transaction): Transaction => {
             : '[[sender]][[minted]][[token]]to[[recipient]]',
       },
     };
-    if (BigInt(mintPrice) > BigInt(0)) {
+    if (
+      BigInt(mintPriceETH) > BigInt(0) ||
+      BigInt(mintPriceERC20) > BigInt(0)
+    ) {
       transaction.context.summaries['en'].default += 'for[[mintPrice]]';
     }
   }
 
-  transaction.context.summaries['en'].default +=
-    'with[[mintReferralAmount]]for[[mintReferral]]';
+  if (BigInt(mintReferralAmount) > BigInt(0)) {
+    transaction.context.summaries['en'].default +=
+      'with[[mintReferralAmount]]for[[mintReferralRecipient]]';
+  }
 
   return transaction;
 };
