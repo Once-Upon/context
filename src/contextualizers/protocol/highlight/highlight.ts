@@ -8,7 +8,6 @@ import {
   HeuristicContextActionEnum,
   ERC20AssetTransfer,
 } from '../../../types';
-import { formatUnits } from 'viem';
 import { MINT_MANAGER_ABI } from './constants';
 import { decodeLog } from '../../../helpers/utils';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
@@ -140,8 +139,6 @@ export const generate = (transaction: Transaction): Transaction => {
       },
     },
   };
-
-  console.log('transaction.context.variables', transaction.context.variables);
 
   switch (assetTransfer.type) {
     case AssetType.ERC1155:
