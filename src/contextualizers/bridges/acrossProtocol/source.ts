@@ -41,6 +41,7 @@ export function detect(transaction: Transaction): boolean {
 
     if (decoded.eventName === 'FundsDeposited') return true;
   });
+
   if (fundsDepositedLog) {
     return true;
   }
@@ -67,40 +68,40 @@ export function generate(transaction: Transaction): Transaction {
       return true;
     }
   });
-  if (fundsDepositedLog) {
-    const destinationChainId = Number(
-      fundsDepositedEvent.args['destinationChainId'] as bigint,
-    );
-    const amount = formatEther(fundsDepositedEvent.args['amount'] as bigint);
-    transaction.context = {
-      summaries: {
-        category: 'MULTICHAIN',
-        en: {
-          title: `Bridge`,
-          default: '[[subject]][[bridged]][[amount]]to[[chainID]]',
-        },
+  if (!fundsDepositedLog) return transaction;
+
+  const destinationChainId = Number(
+    fundsDepositedEvent.args['destinationChainId'] as bigint,
+  );
+  const amount = formatEther(fundsDepositedEvent.args['amount'] as bigint);
+  transaction.context = {
+    summaries: {
+      category: 'MULTICHAIN',
+      en: {
+        title: `Bridge`,
+        default: '[[subject]][[bridged]][[amount]]to[[chainID]]',
       },
-      variables: {
-        subject: {
-          type: 'address',
-          value: transaction.from,
-        },
-        amount: {
-          type: AssetType.ETH,
-          value: parseEther(amount).toString(),
-          unit: 'wei',
-        },
-        chainID: {
-          type: 'chainID',
-          value: destinationChainId,
-        },
-        bridged: {
-          type: 'contextAction',
-          value: HeuristicContextActionEnum.BRIDGED,
-        },
+    },
+    variables: {
+      subject: {
+        type: 'address',
+        value: transaction.from,
       },
-    };
-  }
+      amount: {
+        type: AssetType.ETH,
+        value: parseEther(amount).toString(),
+        unit: 'wei',
+      },
+      chainID: {
+        type: 'chainID',
+        value: destinationChainId,
+      },
+      bridged: {
+        type: 'contextAction',
+        value: HeuristicContextActionEnum.BRIDGED,
+      },
+    },
+  };
 
   return transaction;
 }

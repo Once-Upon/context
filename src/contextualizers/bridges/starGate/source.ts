@@ -97,38 +97,39 @@ export function generate(transaction: Transaction): Transaction {
     }
   }
 
-  if (decodedSwapLog) {
-    const destinationChainId = Number(decodedSwapLog.args['chainId'] as bigint);
-    const amount = formatEther(decodedSwapLog.args['amountSD'] as bigint);
+  if (!decodedSwapLog) return transaction;
 
-    transaction.context = {
-      variables: {
-        subject: {
-          type: 'address',
-          value: transaction.from,
-        },
-        amount: {
-          type: AssetType.ETH,
-          value: parseEther(amount).toString(),
-          unit: 'wei',
-        },
-        chainID: {
-          type: 'chainID',
-          value: destinationChainId,
-        },
-        bridged: {
-          type: 'contextAction',
-          value: HeuristicContextActionEnum.BRIDGED,
-        },
+  const destinationChainId = Number(decodedSwapLog.args['chainId'] as bigint);
+  const amount = formatEther(decodedSwapLog.args['amountSD'] as bigint);
+
+  transaction.context = {
+    variables: {
+      subject: {
+        type: 'address',
+        value: transaction.from,
       },
-      summaries: {
-        category: 'MULTICHAIN',
-        en: {
-          title: `Bridge`,
-          default: '[[subject]][[bridged]][[amount]]to[[chainID]]',
-        },
+      amount: {
+        type: AssetType.ETH,
+        value: parseEther(amount).toString(),
+        unit: 'wei',
       },
-    };
-  }
+      chainID: {
+        type: 'chainID',
+        value: destinationChainId,
+      },
+      bridged: {
+        type: 'contextAction',
+        value: HeuristicContextActionEnum.BRIDGED,
+      },
+    },
+    summaries: {
+      category: 'MULTICHAIN',
+      en: {
+        title: `Bridge`,
+        default: '[[subject]][[bridged]][[amount]]to[[chainID]]',
+      },
+    },
+  };
+
   return transaction;
 }

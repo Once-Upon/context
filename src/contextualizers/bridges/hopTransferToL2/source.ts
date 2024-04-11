@@ -2,16 +2,15 @@ import { formatEther, parseEther, Hex, Abi } from 'viem';
 import {
   AssetType,
   EventLogTopics,
-  Transaction,
   HeuristicContextActionEnum,
-  Log,
+  Transaction,
 } from '../../../types';
-import { FILLED_RELAY_EVENT_ABI, ACROSS_PROTOCOL_RELAYERS } from './constants';
+import { HOP_TRANSFER_SENT_TO_L2_EVENT_ABI, HOP_RELAYERS } from './constants';
 import { decodeLog } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
-  const isAcrossProtocol = detect(transaction);
-  if (!isAcrossProtocol) return transaction;
+  const isHopTransferToL1 = detect(transaction);
+  if (!isHopTransferToL1) return transaction;
 
   const result = generate(transaction);
   return result;
@@ -26,19 +25,19 @@ export function detect(transaction: Transaction): boolean {
    */
   const originChainId = transaction.chainId ?? 1;
   const logs = transaction.logs ?? [];
-  const filledRelayLog = logs.find((log: Log) => {
-    if (log.address !== ACROSS_PROTOCOL_RELAYERS[originChainId]) return false;
+  const transferSentToL2Log = logs.find((log: any) => {
+    if (log.address !== HOP_RELAYERS[originChainId]) return false;
 
     const decoded = decodeLog(
-      FILLED_RELAY_EVENT_ABI as Abi,
+      HOP_TRANSFER_SENT_TO_L2_EVENT_ABI as Abi,
       log.data as Hex,
       [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
     );
     if (!decoded) return false;
 
-    if (decoded.eventName === 'FilledRelay') return true;
+    if (decoded.eventName === 'TransferSentToL2') return true;
   });
-  if (filledRelayLog) {
+  if (transferSentToL2Log) {
     return true;
   }
 
@@ -48,35 +47,32 @@ export function detect(transaction: Transaction): boolean {
 export function generate(transaction: Transaction): Transaction {
   const originChainId = transaction.chainId ?? 1;
   const logs = transaction.logs ?? [];
-  let filledRelayEvent;
-  const filledRelayLog = logs.find((log: Log) => {
-    if (log.address !== ACROSS_PROTOCOL_RELAYERS[originChainId]) return false;
+  let decodedTransferSentToL2Log;
+  for (const log of logs) {
+    if (log.address !== HOP_RELAYERS[originChainId]) continue;
 
     const decoded = decodeLog(
-      FILLED_RELAY_EVENT_ABI as Abi,
+      HOP_TRANSFER_SENT_TO_L2_EVENT_ABI as Abi,
       log.data as Hex,
       [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
     );
-    if (!decoded) return false;
+    if (!decoded) continue;
 
-    if (decoded.eventName === 'FilledRelay') {
-      filledRelayEvent = decoded;
-      return true;
+    if (decoded.eventName === 'TransferSentToL2') {
+      decodedTransferSentToL2Log = decoded;
+      break;
     }
-  });
+  }
 
-  if (!filledRelayLog) return transaction;
+  if (!decodedTransferSentToL2Log) return transaction;
 
-  const chainId = Number(filledRelayEvent.args['originChainId'] as bigint);
-  const amount = formatEther(filledRelayEvent.args['amount'] as bigint);
+  const destinationChainId = Number(
+    decodedTransferSentToL2Log.args['chainId'] as bigint,
+  );
+  const amount = formatEther(
+    decodedTransferSentToL2Log.args['amount'] as bigint,
+  );
   transaction.context = {
-    summaries: {
-      category: 'MULTICHAIN',
-      en: {
-        title: `Bridge`,
-        default: '[[subject]][[bridged]][[amount]]from[[originChainId]]',
-      },
-    },
     variables: {
       subject: {
         type: 'address',
@@ -87,13 +83,20 @@ export function generate(transaction: Transaction): Transaction {
         value: parseEther(amount).toString(),
         unit: 'wei',
       },
-      originChainId: {
+      chainID: {
         type: 'chainID',
-        value: chainId,
+        value: destinationChainId,
       },
       bridged: {
         type: 'contextAction',
         value: HeuristicContextActionEnum.BRIDGED,
+      },
+    },
+    summaries: {
+      category: 'MULTICHAIN',
+      en: {
+        title: `Bridge`,
+        default: '[[subject]][[bridged]][[amount]]to[[chainID]]',
       },
     },
   };

@@ -76,84 +76,85 @@ export function generate(transaction: Transaction): Transaction {
     }
   }
 
-  if (decodedPacketReceivedLog) {
-    const sourceChainId = Number(
-      decodedPacketReceivedLog.args['srcChainId'] as bigint,
-    );
-    let assetTransfer;
-    for (const address in transaction.netAssetTransfers) {
-      const assetTransferred = transaction.netAssetTransfers[address];
-      if (assetTransferred.received.length > 0) {
-        assetTransfer = assetTransferred.received[0];
-        break;
-      }
-      if (assetTransferred.sent.length > 0) {
-        assetTransfer = assetTransferred.sent[0];
-        break;
-      }
-    }
+  if (!decodedPacketReceivedLog) return transaction;
 
-    let asset: ContextSummaryVariableType = {
-      type: AssetType.ETH,
-      value: '0',
-      unit: 'wei',
-    };
-    switch (assetTransfer.type) {
-      case AssetType.ETH:
-        asset = {
-          type: AssetType.ETH,
-          value: assetTransfer.value,
-          unit: 'wei',
-        } as ContextETHType;
-        break;
-      case AssetType.ERC20:
-        asset = {
-          type: AssetType.ERC20,
-          token: assetTransfer.contract,
-          value: assetTransfer.value,
-        } as ContextERC20Type;
-        break;
-      case AssetType.ERC721:
-        asset = {
-          type: AssetType.ERC721,
-          token: assetTransfer.contract,
-          tokenId: assetTransfer.tokenId,
-        } as ContextERC721Type;
-        break;
-      case AssetType.ERC1155:
-        asset = {
-          type: AssetType.ERC1155,
-          token: assetTransfer.contract,
-          tokenId: assetTransfer.tokenId,
-          value: assetTransfer.value,
-        } as ContextERC1155Type;
-        break;
+  const sourceChainId = Number(
+    decodedPacketReceivedLog.args['srcChainId'] as bigint,
+  );
+  let assetTransfer;
+  for (const address in transaction.netAssetTransfers) {
+    const assetTransferred = transaction.netAssetTransfers[address];
+    if (assetTransferred.received.length > 0) {
+      assetTransfer = assetTransferred.received[0];
+      break;
     }
-
-    transaction.context = {
-      variables: {
-        subject: {
-          type: 'address',
-          value: transaction.from,
-        },
-        asset,
-        chainID: {
-          type: 'chainID',
-          value: sourceChainId,
-        },
-        bridged: {
-          type: 'contextAction',
-          value: HeuristicContextActionEnum.BRIDGED,
-        },
-      },
-      summaries: {
-        category: 'MULTICHAIN',
-        en: {
-          title: `Bridge`,
-          default: '[[subject]][[bridged]][[asset]]from[[chainID]]',
-        },
-      },
-    };
+    if (assetTransferred.sent.length > 0) {
+      assetTransfer = assetTransferred.sent[0];
+      break;
+    }
   }
+
+  let asset: ContextSummaryVariableType = {
+    type: AssetType.ETH,
+    value: '0',
+    unit: 'wei',
+  };
+  switch (assetTransfer.type) {
+    case AssetType.ETH:
+      asset = {
+        type: AssetType.ETH,
+        value: assetTransfer.value,
+        unit: 'wei',
+      } as ContextETHType;
+      break;
+    case AssetType.ERC20:
+      asset = {
+        type: AssetType.ERC20,
+        token: assetTransfer.contract,
+        value: assetTransfer.value,
+      } as ContextERC20Type;
+      break;
+    case AssetType.ERC721:
+      asset = {
+        type: AssetType.ERC721,
+        token: assetTransfer.contract,
+        tokenId: assetTransfer.tokenId,
+      } as ContextERC721Type;
+      break;
+    case AssetType.ERC1155:
+      asset = {
+        type: AssetType.ERC1155,
+        token: assetTransfer.contract,
+        tokenId: assetTransfer.tokenId,
+        value: assetTransfer.value,
+      } as ContextERC1155Type;
+      break;
+  }
+
+  transaction.context = {
+    variables: {
+      subject: {
+        type: 'address',
+        value: transaction.from,
+      },
+      asset,
+      chainID: {
+        type: 'chainID',
+        value: sourceChainId,
+      },
+      bridged: {
+        type: 'contextAction',
+        value: HeuristicContextActionEnum.BRIDGED,
+      },
+    },
+    summaries: {
+      category: 'MULTICHAIN',
+      en: {
+        title: `Bridge`,
+        default: '[[subject]][[bridged]][[asset]]from[[chainID]]',
+      },
+    },
+  };
+
   return transaction;
 }
