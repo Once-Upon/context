@@ -50,12 +50,7 @@ export function detect(transaction: Transaction): boolean {
   if (!isSameContract) {
     return false;
   }
-  // transfer.from can send some eth
-  const assetTransfer = transaction.netAssetTransfers[transaction.from];
-  const assetSent = assetTransfer?.sent ?? [];
-  if (assetSent.length > 0 && assetSent[0].type !== AssetType.ETH) {
-    return false;
-  }
+
   // check if other transaction parties received ether
   const transactionParties: string[] = Object.keys(
     transaction.netAssetTransfers,
