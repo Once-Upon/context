@@ -49,6 +49,52 @@ export const HOP_TRANSFER_SENT_TO_L2_EVENT_ABI = [
     type: 'event',
   },
 ];
+
+export const HOP_TRANSFER_FROM_L1_COMPLETED_EVENT_ABI = [
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'recipient',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amountOutMin',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'deadline',
+        type: 'uint256',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'relayer',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'relayerFee',
+        type: 'uint256',
+      },
+    ],
+    name: 'TransferFromL1Completed',
+    type: 'event',
+  },
+];
 // Hop relayers
 export const HOP_RELAYERS = {
   1: '0xb8901acb165ed027e32754e0ffe830802919727f',

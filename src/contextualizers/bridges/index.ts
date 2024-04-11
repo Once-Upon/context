@@ -3,12 +3,16 @@ import { optimismContextualizer } from './opStack';
 import { reservoirContextualizer } from './reservoir';
 import { acrossProtocolContextualizer } from './acrossProtocol';
 import { starGateContextualizer } from './starGate';
+import { hopTransferToL1Contextualizer } from './hopTransferToL1';
+import { hopTransferToL2Contextualizer } from './hopTransferToL2';
 
 const children = {
   optimismContextualizer,
   reservoirContextualizer,
   acrossProtocolContextualizer,
   starGateContextualizer,
+  hopTransferToL1Contextualizer,
+  hopTransferToL2Contextualizer,
 };
 
 const bridgeContextualizers = Object.fromEntries(

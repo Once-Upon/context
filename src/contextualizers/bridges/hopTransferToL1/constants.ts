@@ -61,6 +61,28 @@ export const HOP_TRANSFER_SENT_EVENT_ABI = [
     type: 'event',
   },
 ];
+
+export const HOP_WITHDRAWAL_BONDED_EVENT_ABI = [
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'bytes32',
+        name: 'transferId',
+        type: 'bytes32',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+    ],
+    name: 'WithdrawalBonded',
+    type: 'event',
+  },
+];
 // Hop relayers
 export const HOP_RELAYERS = {
   1: '0xb8901acb165ed027e32754e0ffe830802919727f',
