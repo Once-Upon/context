@@ -1,38 +1,38 @@
 import { Transaction } from '../../../types';
 import { detect, generate } from './destination';
 import { contextSummary, containsBigInt } from '../../../helpers/utils';
-import acrossProtocolDestination0x8c31b118 from '../../test/transactions/acrossProtocolDestination-0x8c31b118.json';
-import acrossProtocolDestination0xdc572089 from '../../test/transactions/acrossProtocolDestination-0xdc572089.json';
+import starGateDestination0x560feb53 from '../../test/transactions/starGateDestination-0x560feb53.json';
+import starGateDestination0x055e99bf from '../../test/transactions/starGateDestination-0x055e99bf.json';
 
-describe('Across Protocol Destination', () => {
+describe('StarGate Destination', () => {
   it('Should detect transaction', () => {
-    const isAcrossProtocolDestination1 = detect(
-      acrossProtocolDestination0x8c31b118 as unknown as Transaction,
+    const isStarGateDestination1 = detect(
+      starGateDestination0x560feb53 as unknown as Transaction,
     );
-    expect(isAcrossProtocolDestination1).toBe(true);
+    expect(isStarGateDestination1).toBe(true);
 
-    const isAcrossProtocolDestination2 = detect(
-      acrossProtocolDestination0xdc572089 as unknown as Transaction,
+    const isStarGateDestination2 = detect(
+      starGateDestination0x055e99bf as unknown as Transaction,
     );
-    expect(isAcrossProtocolDestination2).toBe(true);
+    expect(isStarGateDestination2).toBe(true);
   });
 
   it('Should generate context', () => {
     const transaction1 = generate(
-      acrossProtocolDestination0x8c31b118 as unknown as Transaction,
+      starGateDestination0x560feb53 as unknown as Transaction,
     );
     expect(transaction1.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(transaction1.context)).toBe(
-      '0x29934a66350b35e3fa39826007c54a01c7bc639a BRIDGED 0.000000000203404533 ETH from 324',
+      '0xe93685f3bba03016f02bd1828badd6195988d950 BRIDGED 0.021045118451890345 ETH from 110',
     );
     expect(containsBigInt(transaction1.context)).toBe(false);
 
     const transaction2 = generate(
-      acrossProtocolDestination0xdc572089 as unknown as Transaction,
+      starGateDestination0x055e99bf as unknown as Transaction,
     );
     expect(transaction2.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(transaction2.context)).toBe(
-      '0x15652636f3898f550b257b89926d5566821c32e1 BRIDGED 0.00000000202589206 ETH from 137',
+      '0xe93685f3bba03016f02bd1828badd6195988d950 BRIDGED 295468582 0xdac17f958d2ee523a2206206994597c13d831ec7 from 102',
     );
     expect(containsBigInt(transaction2.context)).toBe(false);
   });

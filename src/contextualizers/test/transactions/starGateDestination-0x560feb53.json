@@ -1,0 +1,926 @@
+{
+  "_id": "6618266837f721adcbd9cbf5",
+  "blockHash": "0x93961e18a34a8a66823b37b145bcc7d1b90c009db7bf11f1b26b7b5bbada438f",
+  "blockNumber": 19634049,
+  "chainId": 1,
+  "from": "0xe93685f3bba03016f02bd1828badd6195988d950",
+  "gas": 1308608,
+  "gasPrice": "25169392524",
+  "hash": "0x560f7ea2339ea8aea0d32b3297037b6f200fdb4408cf03812d07efacffb1eb53",
+  "input": "0x252f7b01000000000000000000000000000000000000000000000000000000000000006e000000000000000000000000296f55f8fb28e498b858d0bcda06d955b2cb3f9700000000000000000000000000000000000000000000000000000000000432382c7ec150431d2f611288ddff8587fdd420899800ae3b1205c50be4fc90cc12222c7ec150431d2f611288ddff8587fdd420899800ae3b1205c50be4fc90cc122200000000000000000000000000000000000000000000000000000000000000c000000000000000000000000000000000000000000000000000000000000002740000000000000000000000004d73adb72bc3dd368966edd0f0b2148401a178e20000000000032513006e352d8275aae3e0c2404d9f68f6cee084b5beb3dd0065296f55f8fb28e498b858d0bcda06d955b2cb3f970000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000d000000000000000000000000000000000000000000000000000000000000000d0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004890b5a2601ce7526b000000000000000000000000000000000000000000000000004ac46c7994b8a90000000000000000000000000000000000000000000000000000266678607f570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000b83a2cd8800000000000000000000000000000000000000000000000000004af65694c2c00000000000000000000000000000000000000000000000000000000000000001c000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000014a8c295acba0718687e9b6e0900fe5cd213d931860000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "nonce": 592093,
+  "r": "0xd1e7db198a298f861f2bc1532330422e474d64aae7a8f515f79585a227f153a1",
+  "s": "0x18041498fa79edd3ea9b3884a795cf6715b556e40d0e980d247e675ec90e43e7",
+  "to": "0x902f09715b6303d4173037652fa7377e5b98089e",
+  "transactionIndex": 20,
+  "type": 0,
+  "v": "0x25",
+  "value": "0",
+  "receipt": {
+    "blockHash": "0x93961e18a34a8a66823b37b145bcc7d1b90c009db7bf11f1b26b7b5bbada438f",
+    "blockNumber": 19634049,
+    "contractAddress": null,
+    "cumulativeGasUsed": 3103512,
+    "effectiveGasPrice": 25169392524,
+    "from": "0xe93685f3bba03016f02bd1828badd6195988d950",
+    "gasUsed": 203818,
+    "logsBloom": "0x000000000000000000002000000000000000000000000000000000000000000000000000000002010000000000100000002000000002000a0000400000400100000040000800000000000004000000000080000000000080000000000000000000000000000000000000000000000000000000000000000002000100000000000002000002000000000000002000000000000000000000000000000000000000000000000000000020000004000000000000000000080000000000000000000080000000000000000400000000000200000000000000000000010000000000000000800000000000000000000000000000000000401000000000002000000800",
+    "status": true,
+    "to": "0x902f09715b6303d4173037652fa7377e5b98089e",
+    "transactionHash": "0x560f7ea2339ea8aea0d32b3297037b6f200fdb4408cf03812d07efacffb1eb53",
+    "transactionIndex": 20,
+    "type": "0x0"
+  },
+  "decoded": null,
+  "assetTransfers": [
+    {
+      "from": "0x72e2f4830b9e45d52f80ac08cb2bec0fef72ed9c",
+      "to": "0xa8c295acba0718687e9b6e0900fe5cd213d93186",
+      "type": "eth",
+      "value": "21045118451890345"
+    }
+  ],
+  "delegateCalls": [
+    {
+      "action": {
+        "callType": "delegatecall",
+        "from": "0x902f09715b6303d4173037652fa7377e5b98089e",
+        "gas": "0x132bbc",
+        "input": "0x252f7b01000000000000000000000000000000000000000000000000000000000000006e000000000000000000000000296f55f8fb28e498b858d0bcda06d955b2cb3f9700000000000000000000000000000000000000000000000000000000000432382c7ec150431d2f611288ddff8587fdd420899800ae3b1205c50be4fc90cc12222c7ec150431d2f611288ddff8587fdd420899800ae3b1205c50be4fc90cc122200000000000000000000000000000000000000000000000000000000000000c000000000000000000000000000000000000000000000000000000000000002740000000000000000000000004d73adb72bc3dd368966edd0f0b2148401a178e20000000000032513006e352d8275aae3e0c2404d9f68f6cee084b5beb3dd0065296f55f8fb28e498b858d0bcda06d955b2cb3f970000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000d000000000000000000000000000000000000000000000000000000000000000d0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004890b5a2601ce7526b000000000000000000000000000000000000000000000000004ac46c7994b8a90000000000000000000000000000000000000000000000000000266678607f570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000b83a2cd8800000000000000000000000000000000000000000000000000004af65694c2c00000000000000000000000000000000000000000000000000000000000000001c000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000014a8c295acba0718687e9b6e0900fe5cd213d931860000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "to": "0xb830a5afcbebb936c30c607a18bbba9f5b0a592f",
+        "value": "0x0"
+      },
+      "blockHash": "0x93961e18a34a8a66823b37b145bcc7d1b90c009db7bf11f1b26b7b5bbada438f",
+      "blockNumber": 19634049,
+      "result": {
+        "gasUsed": "0x2d496",
+        "output": "0x"
+      },
+      "subtraces": 1,
+      "traceAddress": [
+        0
+      ],
+      "transactionHash": "0x560f7ea2339ea8aea0d32b3297037b6f200fdb4408cf03812d07efacffb1eb53",
+      "transactionPosition": 20,
+      "type": "call"
+    }
+  ],
+  "errors": [],
+  "parties": [
+    "0xe93685f3bba03016f02bd1828badd6195988d950",
+    "0x902f09715b6303d4173037652fa7377e5b98089e",
+    "0xb830a5afcbebb936c30c607a18bbba9f5b0a592f",
+    "0x4d73adb72bc3dd368966edd0f0b2148401a178e2",
+    "0x07245eea05826f5984c7c3c8f478b04892e4df89",
+    "0x66a71dcef29a0ffbdbe3c6a460a3b5bc225cd675",
+    "0x296f55f8fb28e498b858d0bcda06d955b2cb3f97",
+    "0x8731d54e9d02c286767d56ac03e8037c07e01e98",
+    "0x06d538690af257da524f25d0cd52fd85b1c2173e",
+    "0x101816545f6bd2b1076434b54383a1e633390a2e",
+    "0x72e2f4830b9e45d52f80ac08cb2bec0fef72ed9c",
+    "0xa8c295acba0718687e9b6e0900fe5cd213d93186"
+  ],
+  "sigHash": "0x252f7b01",
+  "internalSigHashes": [
+    {
+      "from": "0xe93685f3bba03016f02bd1828badd6195988d950",
+      "to": "0x902f09715b6303d4173037652fa7377e5b98089e",
+      "sigHash": "0x252f7b01"
+    },
+    {
+      "from": "0x902f09715b6303d4173037652fa7377e5b98089e",
+      "to": "0xb830a5afcbebb936c30c607a18bbba9f5b0a592f",
+      "sigHash": "0x252f7b01"
+    },
+    {
+      "from": "0x902f09715b6303d4173037652fa7377e5b98089e",
+      "to": "0x4d73adb72bc3dd368966edd0f0b2148401a178e2",
+      "sigHash": "0x987fa2d5"
+    },
+    {
+      "from": "0x4d73adb72bc3dd368966edd0f0b2148401a178e2",
+      "to": "0x07245eea05826f5984c7c3c8f478b04892e4df89",
+      "sigHash": "0xb71e0f71"
+    },
+    {
+      "from": "0x4d73adb72bc3dd368966edd0f0b2148401a178e2",
+      "to": "0x66a71dcef29a0ffbdbe3c6a460a3b5bc225cd675",
+      "sigHash": "0xc2fa4813"
+    },
+    {
+      "from": "0x66a71dcef29a0ffbdbe3c6a460a3b5bc225cd675",
+      "to": "0x296f55f8fb28e498b858d0bcda06d955b2cb3f97",
+      "sigHash": "0x001d3567"
+    },
+    {
+      "from": "0x296f55f8fb28e498b858d0bcda06d955b2cb3f97",
+      "to": "0x8731d54e9d02c286767d56ac03e8037c07e01e98",
+      "sigHash": "0xa18fa804"
+    },
+    {
+      "from": "0x8731d54e9d02c286767d56ac03e8037c07e01e98",
+      "to": "0x06d538690af257da524f25d0cd52fd85b1c2173e",
+      "sigHash": "0x068bcd8d"
+    },
+    {
+      "from": "0x8731d54e9d02c286767d56ac03e8037c07e01e98",
+      "to": "0x101816545f6bd2b1076434b54383a1e633390a2e",
+      "sigHash": "0xb6addec7"
+    },
+    {
+      "from": "0x296f55f8fb28e498b858d0bcda06d955b2cb3f97",
+      "to": "0x8731d54e9d02c286767d56ac03e8037c07e01e98",
+      "sigHash": "0x2f925555"
+    },
+    {
+      "from": "0x8731d54e9d02c286767d56ac03e8037c07e01e98",
+      "to": "0x06d538690af257da524f25d0cd52fd85b1c2173e",
+      "sigHash": "0x068bcd8d"
+    },
+    {
+      "from": "0x8731d54e9d02c286767d56ac03e8037c07e01e98",
+      "to": "0x101816545f6bd2b1076434b54383a1e633390a2e",
+      "sigHash": "0x902b8ab7"
+    },
+    {
+      "from": "0x101816545f6bd2b1076434b54383a1e633390a2e",
+      "to": "0x72e2f4830b9e45d52f80ac08cb2bec0fef72ed9c",
+      "sigHash": "0xa9059cbb"
+    },
+    {
+      "from": "0x72e2f4830b9e45d52f80ac08cb2bec0fef72ed9c",
+      "to": "0xa8c295acba0718687e9b6e0900fe5cd213d93186",
+      "sigHash": "0x"
+    }
+  ],
+  "timestamp": 1712858699,
+  "baseFeePerGas": 20909134928,
+  "transactionFee": "5129975245456632",
+  "logs": [
+    {
+      "_id": "6618266837f721adcbd9c8c4",
+      "address": "0x4d73adb72bc3dd368966edd0f0b2148401a178e2",
+      "blockHash": "0x93961e18a34a8a66823b37b145bcc7d1b90c009db7bf11f1b26b7b5bbada438f",
+      "blockNumber": 19634049,
+      "data": "0x00000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000032513a65326b94180939af802dddf119cd7b4f61938d6f7e6af4f666fb0ac6b63dc0a0000000000000000000000000000000000000000000000000000000000000014352d8275aae3e0c2404d9f68f6cee084b5beb3dd000000000000000000000000",
+      "logIndex": 101,
+      "removed": false,
+      "transactionHash": "0x560f7ea2339ea8aea0d32b3297037b6f200fdb4408cf03812d07efacffb1eb53",
+      "transactionIndex": 20,
+      "decoded": null,
+      "topic0": "0x2bd2d8a84b748439fd50d79a49502b4eb5faa25b864da6a9ab5c150704be9a4d",
+      "topic1": "0x000000000000000000000000000000000000000000000000000000000000006e",
+      "topic2": "0x000000000000000000000000296f55f8fb28e498b858d0bcda06d955b2cb3f97"
+    },
+    {
+      "_id": "6618266837f721adcbd9c8c5",
+      "address": "0x101816545f6bd2b1076434b54383a1e633390a2e",
+      "blockHash": "0x93961e18a34a8a66823b37b145bcc7d1b90c009db7bf11f1b26b7b5bbada438f",
+      "blockNumber": 19634049,
+      "data": "0x000000000000000000000000000000000000000000000000000000000000006e000000000000000000000000000000000000000000000000000000000000000d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004890b5a2601ce7526b",
+      "logIndex": 102,
+      "removed": false,
+      "transactionHash": "0x560f7ea2339ea8aea0d32b3297037b6f200fdb4408cf03812d07efacffb1eb53",
+      "transactionIndex": 20,
+      "decoded": {
+        "signature": "CreditChainPath(uint16,uint256,uint256,uint256)",
+        "signature_with_arg_names": "CreditChainPath(uint16 chainId,uint256 srcPoolId,uint256 amountSD,uint256 idealBalance)",
+        "name": "CreditChainPath",
+        "decoded": [
+          {
+            "indexed": false,
+            "internalType": "uint16",
+            "name": "chainId",
+            "type": "uint16",
+            "decoded": "110"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "srcPoolId",
+            "type": "uint256",
+            "decoded": "13"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amountSD",
+            "type": "uint256",
+            "decoded": "0"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "idealBalance",
+            "type": "uint256",
+            "decoded": "1338592992353019449963"
+          }
+        ]
+      },
+      "topic0": "0xdbdd25248751feb2f3b66721dfdd11662a68bc155af3771e661aabec92fba814"
+    },
+    {
+      "_id": "6618266837f721adcbd9c8c6",
+      "address": "0x72e2f4830b9e45d52f80ac08cb2bec0fef72ed9c",
+      "blockHash": "0x93961e18a34a8a66823b37b145bcc7d1b90c009db7bf11f1b26b7b5bbada438f",
+      "blockNumber": 19634049,
+      "data": "0x000000000000000000000000000000000000000000000000004ac46c7994b8a9",
+      "logIndex": 103,
+      "removed": false,
+      "transactionHash": "0x560f7ea2339ea8aea0d32b3297037b6f200fdb4408cf03812d07efacffb1eb53",
+      "transactionIndex": 20,
+      "decoded": {
+        "signature": "TransferNative(address,address,uint256)",
+        "signature_with_arg_names": "TransferNative(address indexed src,address indexed dst,uint256 wad)",
+        "name": "TransferNative",
+        "decoded": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "src",
+            "type": "address",
+            "decoded": "0x101816545f6bd2b1076434b54383a1e633390a2e"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "dst",
+            "type": "address",
+            "decoded": "0xa8c295acba0718687e9b6e0900fe5cd213d93186"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "wad",
+            "type": "uint256",
+            "decoded": "21045118451890345"
+          }
+        ]
+      },
+      "topic0": "0xb4a87134099d10c48345145381989042ab07dc53e6e62a6511fca55438562e26",
+      "topic1": "0x000000000000000000000000101816545f6bd2b1076434b54383a1e633390a2e",
+      "topic2": "0x000000000000000000000000a8c295acba0718687e9b6e0900fe5cd213d93186"
+    },
+    {
+      "_id": "6618266837f721adcbd9c8c7",
+      "address": "0x101816545f6bd2b1076434b54383a1e633390a2e",
+      "blockHash": "0x93961e18a34a8a66823b37b145bcc7d1b90c009db7bf11f1b26b7b5bbada438f",
+      "blockNumber": 19634049,
+      "data": "0x000000000000000000000000a8c295acba0718687e9b6e0900fe5cd213d93186000000000000000000000000000000000000000000000000004ac46c7994b8a900000000000000000000000000000000000000000000000000000b83a2cd88000000000000000000000000000000000000000000000000000000266678607f57",
+      "logIndex": 104,
+      "removed": false,
+      "transactionHash": "0x560f7ea2339ea8aea0d32b3297037b6f200fdb4408cf03812d07efacffb1eb53",
+      "transactionIndex": 20,
+      "decoded": {
+        "signature": "SwapRemote(address,uint256,uint256,uint256)",
+        "signature_with_arg_names": "SwapRemote(address to,uint256 amountSD,uint256 protocolFee,uint256 dstFee)",
+        "name": "SwapRemote",
+        "decoded": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "to",
+            "type": "address",
+            "decoded": "0xa8c295acba0718687e9b6e0900fe5cd213d93186"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amountSD",
+            "type": "uint256",
+            "decoded": "21045118451890345"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "protocolFee",
+            "type": "uint256",
+            "decoded": "12660000000000"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "dstFee",
+            "type": "uint256",
+            "decoded": "42221548109655"
+          }
+        ]
+      },
+      "topic0": "0xfb2b592367452f1c437675bed47f5e1e6c25188c17d7ba01a12eb030bc41ccef"
+    }
+  ],
+  "netAssetTransfers": {
+    "0x72e2f4830b9e45d52f80ac08cb2bec0fef72ed9c": {
+      "received": [],
+      "sent": [
+        {
+          "type": "eth",
+          "value": "21045118451890345"
+        }
+      ]
+    },
+    "0xa8c295acba0718687e9b6e0900fe5cd213d93186": {
+      "received": [
+        {
+          "type": "eth",
+          "value": "21045118451890345"
+        }
+      ],
+      "sent": []
+    }
+  },
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0xe93685f3bba03016f02bd1828badd6195988d950": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x902f09715b6303d4173037652fa7377e5b98089e": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0xb830a5afcbebb936c30c607a18bbba9f5b0a592f": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x4d73adb72bc3dd368966edd0f0b2148401a178e2": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x07245eea05826f5984c7c3c8f478b04892e4df89": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x66a71dcef29a0ffbdbe3c6a460a3b5bc225cd675": [
+      {
+        "chainId": 8453,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 11155111,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 59144,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 1,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 424,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 5,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 252,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 34443,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 7777777,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x296f55f8fb28e498b858d0bcda06d955b2cb3f97": [
+      {
+        "chainId": 59144,
+        "label": {
+          "public": "Stargate Finance: Bridge"
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 1,
+        "label": {
+          "public": "Stargate Finance: Bridge"
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x8731d54e9d02c286767d56ac03e8037c07e01e98": [
+      {
+        "chainId": 8453,
+        "label": {
+          "public": "Stargate Finance: Router"
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 59144,
+        "label": {
+          "public": "Stargate Finance: Router"
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 1,
+        "label": {
+          "public": "Stargate Finance: Router"
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x06d538690af257da524f25d0cd52fd85b1c2173e": [
+      {
+        "chainId": 59144,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 1,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "tokenStandard": "erc20",
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 8453,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x101816545f6bd2b1076434b54383a1e633390a2e": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": "Stargate Ether Vault-LP"
+        },
+        "isContract": true,
+        "tokenStandard": "erc20",
+        "imgUrl": "",
+        "decimals": "18",
+        "symbol": "S*SGETH",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x72e2f4830b9e45d52f80ac08cb2bec0fef72ed9c": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": "Stargate Ether Vault"
+        },
+        "isContract": true,
+        "tokenStandard": "erc20",
+        "imgUrl": "",
+        "decimals": "18",
+        "symbol": "SGETH",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0xa8c295acba0718687e9b6e0900fe5cd213d93186": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
+}
