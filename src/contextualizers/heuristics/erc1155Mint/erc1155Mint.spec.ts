@@ -61,4 +61,15 @@ describe('ERC1155 Mint', () => {
       '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 MINTED 1 0xf4dd946d1406e215a87029db56c69e1bcf3e1773 #1',
     );
   });
+
+  it('Should generate a context for ERC1155 Mint paid with another token', () => {
+    const erc1155Mint3 = generate(
+      erc1155MintPaidWithEnjoy as unknown as Transaction,
+    );
+    expect(erc1155Mint3.context?.summaries?.category).toBe('NFT');
+    const desc3 = contextSummary(erc1155Mint3.context);
+    expect(desc3).toBe(
+      '0xf1156f02a3f50ab64bce6d637d36c0b77ec1d5a5 MINTED 113 0x634d2e86b78a69fbe91104b6077c0aa403867558 #14 for 113 ETH',
+    );
+  });
 });
