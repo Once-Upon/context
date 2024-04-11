@@ -2,6 +2,7 @@ import { makeContextualize } from '../helpers/utils';
 import { protocolContextualizer } from './protocol';
 import { heuristicContextualizer } from './heuristics';
 import { bridgeContextualizer } from './bridges';
+import { contextualize as catchallContextualizer } from './catchall';
 import { Transaction } from '../types';
 
 // contract deployed
@@ -52,6 +53,7 @@ const contextualize = makeContextualize({
   protocolContextualizer: protocolContextualizer.contextualize,
   heuristicContextualizer: heuristicContextualizer.contextualize,
   bridgeContextualizer: bridgeContextualizer.contextualize,
+  catchallContextualizer,
 });
 
 describe('ContextualizerService', () => {
