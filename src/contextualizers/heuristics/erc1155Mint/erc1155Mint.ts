@@ -88,7 +88,7 @@ export function generate(transaction: Transaction): Transaction {
   const recipient = assetTransfer.to;
   const amount = mints.filter((ele) => ele.type === assetTransfer.type).length;
 
-  const { erc20Payments, ethPayments } = processNetAssetTransfers<ERC1155Asset>(
+  const { erc20Payments, ethPayments } = processNetAssetTransfers(
     transaction.netAssetTransfers,
   );
 

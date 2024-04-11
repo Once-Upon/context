@@ -92,22 +92,20 @@ export function decodeLog<TAbi extends Abi>(
   }
 }
 
-export function processNetAssetTransfers<T extends ERC721Asset | ERC1155Asset>(
-  netAssetTransfers: NetAssetTransfers,
-) {
+export function processNetAssetTransfers(netAssetTransfers: NetAssetTransfers) {
   const receivingAddresses: string[] = [];
   const sendingAddresses: string[] = [];
-  let receivedNfts: T[] = [];
+  let receivedNfts: (ERC721Asset | ERC1155Asset)[] = [];
   let erc20Payments: ERC20Asset[] = [];
   let ethPayments: ETHAsset[] = [];
 
   Object.entries(netAssetTransfers).forEach(([address, data]) => {
     const nftsReceived = data.received.filter((t) =>
       [AssetType.ERC1155, AssetType.ERC721].includes(t.type),
-    ) as T[];
+    ) as (ERC721Asset | ERC1155Asset)[];
     const nftsSent = data.sent.filter((t) =>
       [AssetType.ERC1155, AssetType.ERC721].includes(t.type),
-    ) as T[];
+    ) as (ERC721Asset | ERC1155Asset)[];
     const erc20PaymentTransfers = data.sent.filter(
       (t) => t.type === AssetType.ERC20,
     ) as ERC20Asset[];

@@ -5,7 +5,6 @@ import {
 } from '../../../helpers/utils';
 import {
   AssetType,
-  ERC1155Asset,
   ERC20Asset,
   HeuristicContextActionEnum,
   Transaction,
@@ -82,7 +81,7 @@ function generate(transaction: Transaction): Transaction {
     receivedNftContracts,
     erc20Payments,
     ethPayments,
-  } = processNetAssetTransfers<ERC1155Asset>(transaction.netAssetTransfers);
+  } = processNetAssetTransfers(transaction.netAssetTransfers);
 
   const totalERC20Payment: Record<string, ERC20Asset> =
     computeERC20Price(erc20Payments);
@@ -104,7 +103,7 @@ function generate(transaction: Transaction): Transaction {
               value: receivingAddresses[0],
             },
       tokenOrTokens:
-        receivedNfts.length === 1
+        receivedNfts.length === 1 && receivedNfts[0].type === AssetType.ERC1155
           ? {
               type: AssetType.ERC1155,
               token: receivedNfts[0].contract,

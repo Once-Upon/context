@@ -83,7 +83,7 @@ export function generate(transaction: Transaction): Transaction {
     receivedNftContracts,
     erc20Payments,
     ethPayments,
-  } = processNetAssetTransfers<ERC721Asset>(transaction.netAssetTransfers);
+  } = processNetAssetTransfers(transaction.netAssetTransfers);
 
   const totalERC20Payment: Record<string, ERC20Asset> =
     computeERC20Price(erc20Payments);
@@ -105,7 +105,7 @@ export function generate(transaction: Transaction): Transaction {
               value: receivingAddresses[0],
             },
       tokenOrTokens:
-        receivedNfts.length === 1
+        receivedNfts.length === 1 && receivedNfts[0].type === AssetType.ERC721
           ? {
               type: AssetType.ERC721,
               token: receivedNfts[0].contract,
