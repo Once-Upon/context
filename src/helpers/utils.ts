@@ -14,6 +14,11 @@ import {
   AssetType,
   RawBlock,
   StdObj,
+  NetAssetTransfers,
+  ERC20Asset,
+  ETHAsset,
+  ERC721Asset,
+  ERC1155Asset,
 } from '../types';
 
 const VALID_CHARS =
@@ -85,6 +90,90 @@ export function decodeLog<TAbi extends Abi>(
   } catch (err) {
     return null;
   }
+}
+
+export function processNetAssetTransfers<T extends ERC721Asset | ERC1155Asset>(
+  netAssetTransfers: NetAssetTransfers,
+) {
+  const receivingAddresses: string[] = [];
+  const sendingAddresses: string[] = [];
+  let receivedNfts: T[] = [];
+  let erc20Payments: ERC20Asset[] = [];
+  let ethPayments: ETHAsset[] = [];
+
+  Object.entries(netAssetTransfers).forEach(([address, data]) => {
+    const nftsReceived = data.received.filter((t) =>
+      [AssetType.ERC1155, AssetType.ERC721].includes(t.type),
+    ) as T[];
+    const nftsSent = data.sent.filter((t) =>
+      [AssetType.ERC1155, AssetType.ERC721].includes(t.type),
+    ) as T[];
+    const erc20PaymentTransfers = data.sent.filter(
+      (t) => t.type === AssetType.ERC20,
+    ) as ERC20Asset[];
+    const ethPaymentTransfers = data.sent.filter(
+      (t) => t.type === AssetType.ETH,
+    ) as ETHAsset[];
+
+    if (nftsReceived.length > 0) {
+      receivingAddresses.push(address);
+      receivedNfts = [...receivedNfts, ...nftsReceived];
+    }
+    if (nftsSent.length > 0 && !sendingAddresses.includes(address)) {
+      sendingAddresses.push(address);
+    }
+    if (erc20PaymentTransfers.length > 0) {
+      erc20Payments = [
+        ...erc20Payments,
+        ...erc20PaymentTransfers.map((payment) => ({
+          type: payment.type,
+          contract: payment.contract,
+          value: payment.value,
+        })),
+      ];
+    }
+    if (ethPaymentTransfers.length > 0) {
+      ethPayments = [
+        ...ethPayments,
+        ...ethPaymentTransfers.map((payment) => ({
+          type: payment.type,
+          value: payment.value,
+        })),
+      ];
+    }
+  });
+
+  return {
+    receivingAddresses,
+    sendingAddresses,
+    erc20Payments,
+    ethPayments,
+    receivedNfts,
+    receivedNftContracts: Array.from(
+      new Set(receivedNfts.map((x) => x.contract)),
+    ),
+  };
+}
+
+export function computeETHPrice(ethPayments: ETHAsset[]) {
+  return ethPayments.reduce((acc, next) => {
+    acc = BigInt(acc) + BigInt(next.value);
+    return acc;
+  }, BigInt(0));
+}
+
+export function computeERC20Price(erc20Payments: ERC20Asset[]) {
+  return erc20Payments.reduce((acc, next) => {
+    acc[next.contract] = {
+      id: next.contract,
+      type: next.type,
+      contract: next.contract,
+      value: (
+        BigInt(acc[next.contract]?.value || '0') + BigInt(next.value)
+      ).toString(),
+    };
+    return acc;
+  }, {});
 }
 
 export function contextSummary(

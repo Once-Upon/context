@@ -1,8 +1,12 @@
 import {
+  computeERC20Price,
+  computeETHPrice,
+  processNetAssetTransfers,
+} from '../../../helpers/utils';
+import {
   AssetType,
   ERC1155Asset,
   ERC20Asset,
-  ETHAsset,
   HeuristicContextActionEnum,
   Transaction,
 } from '../../../types';
@@ -71,76 +75,18 @@ function generate(transaction: Transaction): Transaction {
     return transaction;
   }
 
-  const receivingAddresses: string[] = [];
-  const sendingAddresses: string[] = [];
-  let receivedNfts: ERC1155Asset[] = [];
-  let erc20Payments: ERC20Asset[] = [];
-  let ethPayments: ETHAsset[] = [];
+  const {
+    receivingAddresses,
+    sendingAddresses,
+    receivedNfts,
+    receivedNftContracts,
+    erc20Payments,
+    ethPayments,
+  } = processNetAssetTransfers<ERC1155Asset>(transaction.netAssetTransfers);
 
-  Object.entries(transaction.netAssetTransfers).forEach(([address, data]) => {
-    const nftsReceived = data.received.filter(
-      (t) => t.type === AssetType.ERC1155,
-    ) as ERC1155Asset[];
-    const nftsSent = data.sent.filter(
-      (t) => t.type === AssetType.ERC1155,
-    ) as ERC1155Asset[];
-    const erc20PaymentTransfers = data.sent.filter(
-      (t) => t.type === AssetType.ERC20,
-    ) as ERC20Asset[];
-    const ethPaymentTransfers = data.sent.filter(
-      (t) => t.type === AssetType.ETH,
-    ) as ETHAsset[];
-
-    if (nftsReceived.length > 0) {
-      receivingAddresses.push(address);
-      receivedNfts = [...receivedNfts, ...nftsReceived];
-    }
-    if (nftsSent.length > 0 && !sendingAddresses.includes(address)) {
-      sendingAddresses.push(address);
-    }
-    if (erc20PaymentTransfers.length > 0) {
-      erc20Payments = [
-        ...erc20Payments,
-        ...erc20PaymentTransfers.map((payment) => ({
-          type: payment.type,
-          contract: payment.contract,
-          value: payment.value,
-        })),
-      ];
-    }
-    if (ethPaymentTransfers.length > 0) {
-      ethPayments = [
-        ...ethPayments,
-        ...ethPaymentTransfers.map((payment) => ({
-          type: payment.type,
-          value: payment.value,
-        })),
-      ];
-    }
-  });
-
-  const receivedNftContracts = Array.from(
-    new Set(receivedNfts.map((x) => x.contract)),
-  );
-  const totalERC20Payment: Record<string, ERC20Asset> = erc20Payments.reduce(
-    (acc, next) => {
-      acc[next.contract] = {
-        id: next.contract,
-        type: next.type,
-        contract: next.contract,
-        value: (
-          BigInt(acc[next.contract]?.value || '0') + BigInt(next.value)
-        ).toString(),
-      };
-      return acc;
-    },
-    {},
-  );
-
-  const totalETHPayment = ethPayments.reduce((acc, next) => {
-    acc = BigInt(acc) + BigInt(next.value);
-    return acc;
-  }, BigInt(0));
+  const totalERC20Payment: Record<string, ERC20Asset> =
+    computeERC20Price(erc20Payments);
+  const totalETHPayment = computeETHPrice(ethPayments);
   const totalAssets = erc20Payments.length + ethPayments.length;
 
   transaction.context = {
@@ -166,16 +112,16 @@ function generate(transaction: Transaction): Transaction {
               value: receivedNfts[0].value,
             }
           : receivedNftContracts.length === 1
-            ? {
-                type: 'address',
-                value: receivedNftContracts[0],
-              }
-            : {
-                type: 'number',
-                value: receivedNfts.length,
-                emphasis: true,
-                unit: 'NFTs',
-              },
+          ? {
+              type: 'address',
+              value: receivedNftContracts[0],
+            }
+          : {
+              type: 'number',
+              value: receivedNfts.length,
+              emphasis: true,
+              unit: 'NFTs',
+            },
       price:
         totalAssets > 1
           ? {
@@ -185,16 +131,16 @@ function generate(transaction: Transaction): Transaction {
               unit: 'assets',
             }
           : ethPayments.length > 0
-            ? {
-                type: AssetType.ETH,
-                value: totalETHPayment.toString(),
-                unit: 'wei',
-              }
-            : {
-                type: AssetType.ERC20,
-                token: Object.values(totalERC20Payment)[0].contract,
-                value: Object.values(totalERC20Payment)[0].value.toString(),
-              },
+          ? {
+              type: AssetType.ETH,
+              value: totalETHPayment.toString(),
+              unit: 'wei',
+            }
+          : {
+              type: AssetType.ERC20,
+              token: Object.values(totalERC20Payment)[0].contract,
+              value: Object.values(totalERC20Payment)[0].value.toString(),
+            },
       sellerOrSellers:
         sendingAddresses.length > 1
           ? {

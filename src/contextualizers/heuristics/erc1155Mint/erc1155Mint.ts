@@ -1,13 +1,17 @@
 import {
   Transaction,
   AssetType,
-  ETHAsset,
   ERC20Asset,
   ERC1155AssetTransfer,
   HeuristicContextActionEnum,
-  ContextETHType,
+  ERC1155Asset,
 } from '../../../types';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
+import {
+  computeERC20Price,
+  computeETHPrice,
+  processNetAssetTransfers,
+} from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isTokenMint = detect(transaction);
@@ -21,7 +25,7 @@ export function contextualize(transaction: Transaction): Transaction {
  *
  * 1 address receives NFTs, all must be from the same contract.
  * All nfts are minted (meaning they're sent from null address in netAssetTransfers).
- * The from address can send ETH
+ * The from address can send ETH or ERC20
  * Only 1 address should receive nfts
  */
 export function detect(transaction: Transaction): boolean {
@@ -64,6 +68,9 @@ export function generate(transaction: Transaction): Transaction {
   if (!transaction.assetTransfers || !transaction.netAssetTransfers) {
     return transaction;
   }
+
+  const sender = transaction.from;
+
   // Get all the mints where from account == to account for the mint transfer
   const mints = transaction.assetTransfers.filter(
     (transfer) =>
@@ -81,26 +88,16 @@ export function generate(transaction: Transaction): Transaction {
   const recipient = assetTransfer.to;
   const amount = mints.filter((ele) => ele.type === assetTransfer.type).length;
 
-  const assetSent = transaction.netAssetTransfers[transaction.from]?.sent as (
-    | ETHAsset
-    | ERC20Asset
-  )[];
+  const { erc20Payments, ethPayments } = processNetAssetTransfers<ERC1155Asset>(
+    transaction.netAssetTransfers,
+  );
 
-  const price =
-    assetSent && assetSent.length > 0 && assetSent[0].type === 'erc20'
-      ? {
-          type: assetSent[0].type,
-          token: assetSent[0].contract,
-          value: assetSent[0].value,
-          unit: 'wei',
-        }
-      : ({
-          type: AssetType.ETH,
-          value: assetSent?.[0]?.value || '0',
-          unit: 'wei',
-        } as ContextETHType);
-
-  const sender = transaction.from;
+  const totalERC20Payment: Record<string, ERC20Asset> =
+    computeERC20Price(erc20Payments);
+  const totalETHPayment = computeETHPrice(ethPayments);
+  const hasPrice =
+    BigInt(totalETHPayment) > BigInt(0) ||
+    Object.keys(totalERC20Payment).length > 0;
 
   transaction.context = {
     variables: {
@@ -122,7 +119,6 @@ export function generate(transaction: Transaction): Transaction {
         type: 'contextAction',
         value: HeuristicContextActionEnum.MINTED,
       },
-      price,
     },
   };
   transaction.context.summaries = {
@@ -135,8 +131,20 @@ export function generate(transaction: Transaction): Transaction {
           : '[[sender]][[minted]][[token]]to[[recipient]]',
     },
   };
-  if (BigInt(price.value) > BigInt(0)) {
+  if (hasPrice && transaction.context.variables) {
     transaction.context.summaries['en'].default += 'for[[price]]';
+    transaction.context.variables.price =
+      ethPayments.length > 0
+        ? {
+            type: AssetType.ETH,
+            value: totalETHPayment.toString(),
+            unit: 'wei',
+          }
+        : {
+            type: AssetType.ERC20,
+            token: Object.values(totalERC20Payment)[0].contract,
+            value: Object.values(totalERC20Payment)[0].value.toString(),
+          };
   }
 
   if (amount > 1) {
@@ -158,7 +166,7 @@ export function generate(transaction: Transaction): Transaction {
             : '[[sender]][[minted]][[amount]][[token]]to[[recipient]]',
       },
     };
-    if (BigInt(price.value) > BigInt(0)) {
+    if (hasPrice) {
       transaction.context.summaries['en'].default += 'for[[price]]';
     }
   }
