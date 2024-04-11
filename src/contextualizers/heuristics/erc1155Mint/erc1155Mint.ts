@@ -2,8 +2,10 @@ import {
   Transaction,
   AssetType,
   ETHAsset,
+  ERC20Asset,
   ERC1155AssetTransfer,
   HeuristicContextActionEnum,
+  ContextETHType,
 } from '../../../types';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
 
@@ -55,13 +57,6 @@ export function detect(transaction: Transaction): boolean {
     return false;
   }
 
-  // transfer.from can send some eth
-  const assetTransfer = transaction.netAssetTransfers[transaction.from];
-  const assetSent = assetTransfer?.sent ?? [];
-  if (assetSent.length > 0 && assetSent[0].type !== AssetType.ETH) {
-    return false;
-  }
-
   return true;
 }
 
@@ -86,12 +81,24 @@ export function generate(transaction: Transaction): Transaction {
   const recipient = assetTransfer.to;
   const amount = mints.filter((ele) => ele.type === assetTransfer.type).length;
 
-  const assetSent = transaction.netAssetTransfers[transaction.from]
-    ?.sent as ETHAsset[];
+  const assetSent = transaction.netAssetTransfers[transaction.from]?.sent as (
+    | ETHAsset
+    | ERC20Asset
+  )[];
+
   const price =
-    assetSent && assetSent.length > 0 && assetSent[0]?.value
-      ? assetSent[0].value
-      : '0';
+    assetSent && assetSent.length > 0 && assetSent[0].type === 'erc20'
+      ? {
+          type: assetSent[0].type,
+          token: assetSent[0].contract,
+          value: assetSent[0].value,
+          unit: 'wei',
+        }
+      : ({
+          type: AssetType.ETH,
+          value: assetSent?.[0]?.value || '0',
+          unit: 'wei',
+        } as ContextETHType);
 
   const sender = transaction.from;
 
@@ -115,11 +122,7 @@ export function generate(transaction: Transaction): Transaction {
         type: 'contextAction',
         value: HeuristicContextActionEnum.MINTED,
       },
-      price: {
-        type: AssetType.ETH,
-        value: price,
-        unit: 'wei',
-      },
+      price,
     },
   };
   transaction.context.summaries = {
@@ -132,7 +135,7 @@ export function generate(transaction: Transaction): Transaction {
           : '[[sender]][[minted]][[token]]to[[recipient]]',
     },
   };
-  if (BigInt(price) > BigInt(0)) {
+  if (BigInt(price.value) > BigInt(0)) {
     transaction.context.summaries['en'].default += 'for[[price]]';
   }
 
@@ -155,7 +158,7 @@ export function generate(transaction: Transaction): Transaction {
             : '[[sender]][[minted]][[amount]][[token]]to[[recipient]]',
       },
     };
-    if (BigInt(price) > BigInt(0)) {
+    if (BigInt(price.value) > BigInt(0)) {
       transaction.context.summaries['en'].default += 'for[[price]]';
     }
   }
