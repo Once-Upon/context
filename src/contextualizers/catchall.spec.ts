@@ -30,7 +30,7 @@ describe('catchall', () => {
     expect(variables2?.totalERC20s).not.toBeDefined();
     const desc2 = contextSummary(txResult2.context);
     expect(desc2).toBe(
-      '0x662127bf82b794a26b7ddb6b495f6a5a20b81738 CALLED execTransaction on 0x059686e72f1e970da96e335f02e49da3933fa0f6 and 500802548943424475655 0x5afe3855358e112b5647b952709e6165e1c1eeee was transferred from 0xa0b937d5c8e32a80e3a8ed4227cd020221544ee6 to 0x059686e72f1e970da96e335f02e49da3933fa0f6',
+      '0x662127bf82b794a26b7ddb6b495f6a5a20b81738 INTERACTED_WITH 0x059686e72f1e970da96e335f02e49da3933fa0f6 and 500802548943424475655 0x5afe3855358e112b5647b952709e6165e1c1eeee was transferred from 0xa0b937d5c8e32a80e3a8ed4227cd020221544ee6 to 0x059686e72f1e970da96e335f02e49da3933fa0f6',
     );
     // detect eth
     const txResult3 = generate(catchallEth0xc0549c83 as unknown as Transaction);
@@ -38,7 +38,7 @@ describe('catchall', () => {
     expect(variables3?.totalEth['value']).toBe('15000000000000000');
     const desc3 = contextSummary(txResult3.context);
     expect(desc3).toBe(
-      '0x15cce5a86dbec5bca10267f93043b3fe8c8e53bf CALLED depositETHTo on 0x3154cf16ccdb4c6d922629664174b904d80f2c35 and 0.015 ETH was transferred',
+      '0x15cce5a86dbec5bca10267f93043b3fe8c8e53bf INTERACTED_WITH 0x3154cf16ccdb4c6d922629664174b904d80f2c35 and 0.015 ETH was transferred',
     );
     // detect several erc20s
     const txResult4 = generate(catchall0x982d9d88 as unknown as Transaction);
@@ -54,7 +54,7 @@ describe('catchall', () => {
     expect(variables5?.totalEth['value']).toBe('14559963185419400');
     const desc5 = contextSummary(txResult5.context);
     expect(desc5).toBe(
-      '0x43375ce534ea8d3b6b8876186084044f03578826 CALLED handleOps on 0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789 and 4 ERC20s and 0.0145599631854194 ETH were transferred',
+      '0x43375ce534ea8d3b6b8876186084044f03578826 INTERACTED_WITH 0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789 and 4 ERC20s and 0.0145599631854194 ETH were transferred',
     );
     // generate description correctly
     const txResult6 = generate(catchall0x6331ce46 as unknown as Transaction);
@@ -63,7 +63,7 @@ describe('catchall', () => {
     expect(variables6?.totalERC20s['unit']).toBe('ERC20s');
     const desc6 = contextSummary(txResult6.context);
     expect(desc6).toBe(
-      '0x9d5a39938412ff6396843e53f1cfe2d96035f9c8 CALLED openPosition on 0x82ac2ce43e33683c58be4cdc40975e73aa50f459 and 2 ERC20s were transferred',
+      '0x9d5a39938412ff6396843e53f1cfe2d96035f9c8 INTERACTED_WITH 0x82ac2ce43e33683c58be4cdc40975e73aa50f459 and 2 ERC20s were transferred',
     );
 
     const txResult7 = generate(catchall0xdfdb78fd as unknown as Transaction);
@@ -73,7 +73,7 @@ describe('catchall', () => {
     expect(variables7?.totalNFTs['unit']).toBe('NFT');
     const desc7 = contextSummary(txResult7.context);
     expect(desc7).toBe(
-      '0x38e35bff679b66f121ef2a658d42b50d6a37c0fb CALLED createSwapIntent on 0x13d8faf4a690f5ae52e2d2c52938d1167057b9af and 1 NFT and 0.005 ETH were transferred',
+      '0x38e35bff679b66f121ef2a658d42b50d6a37c0fb INTERACTED_WITH 0x13d8faf4a690f5ae52e2d2c52938d1167057b9af and 1 NFT and 0.005 ETH were transferred',
     );
 
     const txResult8 = generate(catchall0x80c1b6eb as unknown as Transaction);
@@ -83,7 +83,7 @@ describe('catchall', () => {
     expect(variables8?.totalNFTs['unit']).toBe('NFTs');
     const desc8 = contextSummary(txResult8.context);
     expect(desc8).toBe(
-      '0xf70da97812cb96acdf810712aa562db8dfa3dbef CALLED mintWithRewards on 0x524d8cf45f38f98d8b08950876d2147f8e20672e and 10 NFTs and 0.00777 ETH were transferred',
+      '0xf70da97812cb96acdf810712aa562db8dfa3dbef INTERACTED_WITH 0x524d8cf45f38f98d8b08950876d2147f8e20672e and 10 NFTs and 0.00777 ETH were transferred',
     );
   });
 });
