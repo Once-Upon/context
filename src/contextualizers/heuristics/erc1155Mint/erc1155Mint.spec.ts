@@ -4,6 +4,7 @@ import erc1155Mint0x45d1ed7b from '../../test/transactions/erc1155Mint-0x45d1ed7
 import erc20Swap0xd55dc9b2 from '../../test/transactions/erc20Swap-0xd55dc9b2.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 import erc1155MintBySomeoneElse from '../../test/transactions/erc1155MintBySomeoneElse-0xa9ddcb75.json';
+import erc1155MintPaidWithEnjoy from '../../test/transactions/erc1155MintPaidWithEnjoy-0x7a3686d7.json';
 import erc1155Mint0xdb571cc5 from '../../test/transactions/erc1155Mint-0xdb571cc5.json';
 import erc1155Mint0x65bfc065 from '../../test/transactions/erc1155Mint-0x65bfc065.json';
 import { contextSummary } from '../../../helpers/utils';
@@ -31,6 +32,13 @@ describe('ERC1155 Mint', () => {
       erc1155MintBySomeoneElse as unknown as Transaction,
     );
     expect(erc1155Mint2).toBe(true);
+  });
+
+  it('Should detect ERC1155 Mint transaction when paid in a non-ETH token', () => {
+    const erc1155Mint3 = detect(
+      erc1155MintPaidWithEnjoy as unknown as Transaction,
+    );
+    expect(erc1155Mint3).toBe(true);
   });
 
   it('Should not detect as ERC1155 Mint', () => {
