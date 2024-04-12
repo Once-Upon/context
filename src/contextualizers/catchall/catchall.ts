@@ -6,7 +6,7 @@ import {
   ETHAsset,
   HeuristicContextActionEnum,
   Transaction,
-} from '../types';
+} from '../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isCatchall = detect(transaction);

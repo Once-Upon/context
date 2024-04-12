@@ -1,14 +1,14 @@
-import { Transaction } from '../types';
+import { Transaction } from '../../types';
 import { detect, generate } from './catchall';
-import { contextSummary } from '../helpers/utils';
-import catchallZeroErc20s0x20f3ee91 from './test/transactions/catchallZeroErc20s-0x20f3ee91.json';
-import catchall0xac15f84b from './test/transactions/catchall-0xac15f84b.json';
-import catchallEth0xc0549c83 from './test/transactions/catchall-eth-0xc0549c83.json';
-import catchall0x982d9d88 from './test/transactions/catchall-0x982d9d88.json';
-import catchall0x26ca372d from './test/transactions/catchall-0x26ca372d.json';
-import catchall0x6331ce46 from './test/transactions/catchall-0x6331ce46.json';
-import catchall0xdfdb78fd from './test/transactions/catchall-0xdfdb78fd.json';
-import catchall0x80c1b6eb from './test/transactions/catchall-0x80c1b6eb.json';
+import { contextSummary } from '../../helpers/utils';
+import catchallZeroErc20s0x20f3ee91 from '../test/transactions/catchallZeroErc20s-0x20f3ee91.json';
+import catchall0xac15f84b from '../test/transactions/catchall-0xac15f84b.json';
+import catchallEth0xc0549c83 from '../test/transactions/catchall-eth-0xc0549c83.json';
+import catchall0x982d9d88 from '../test/transactions/catchall-0x982d9d88.json';
+import catchall0x26ca372d from '../test/transactions/catchall-0x26ca372d.json';
+import catchall0x6331ce46 from '../test/transactions/catchall-0x6331ce46.json';
+import catchall0xdfdb78fd from '../test/transactions/catchall-0xdfdb78fd.json';
+import catchall0x80c1b6eb from '../test/transactions/catchall-0x80c1b6eb.json';
 
 describe('catchall', () => {
   it('Should detect catchall transaction', () => {
