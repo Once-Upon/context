@@ -11,7 +11,9 @@ describe('ERC1155 Purchase', () => {
     );
     expect(isERC1155Purchase1).toBe(true);
 
-    const isERC1155Purchase2 = detect(erc1155Sale0x16b2334d as Transaction);
+    const isERC1155Purchase2 = detect(
+      erc1155Sale0x16b2334d as unknown as Transaction,
+    );
     expect(isERC1155Purchase2).toBe(true);
   });
 
