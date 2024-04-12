@@ -1,0 +1,201 @@
+{
+  "_id": "65ef42b66b9169acfd7cab62",
+  "hash": "0xf5114673f8677c2647b81e85a61a722e478f64b24b305eff6f3123338a392a9d",
+  "chainId": 8453,
+  "accessList": [],
+  "assetTransfers": [
+    {
+      "from": "0xba5e05cb26b78eda3a2f8e3b3814726305dcac83",
+      "to": "0xbaaded465968bd53fbe1915e356ff815d85ee71f",
+      "type": "eth",
+      "value": "54157269702083366"
+    }
+  ],
+  "attributes": [
+    {
+      "key": "blockNumber",
+      "value": 11694822
+    },
+    {
+      "key": "chainId",
+      "value": 8453
+    },
+    {
+      "key": "from",
+      "value": "0xbaaded465968bd53fbe1915e356ff815d85ee71f"
+    },
+    {
+      "key": "parties",
+      "value": [
+        "0xbaaded465968bd53fbe1915e356ff815d85ee71f",
+        "0xba5e05cb26b78eda3a2f8e3b3814726305dcac83"
+      ]
+    },
+    {
+      "key": "sigHash",
+      "value": "0x8abe0991"
+    },
+    {
+      "key": "timestamp",
+      "value": 1710178991
+    },
+    {
+      "key": "to",
+      "value": "0xba5e05cb26b78eda3a2f8e3b3814726305dcac83"
+    },
+    {
+      "key": "value",
+      "value": 0
+    },
+    {
+      "key": "ethTransactors",
+      "value": [
+        "0xba5e05cb26b78eda3a2f8e3b3814726305dcac83",
+        "0xbaaded465968bd53fbe1915e356ff815d85ee71f"
+      ]
+    },
+    {
+      "key": "eth",
+      "value": [0.054157269702083365]
+    }
+  ],
+  "baseFeePerGas": 292,
+  "blockHash": "0x19d371ce3ea2957201c46128e7ce013b8bca7e34add5b9c1de71edfde4eeffad",
+  "blockNumber": 11694822,
+  "burntFees": "0",
+  "from": "0xbaaded465968bd53fbe1915e356ff815d85ee71f",
+  "gas": 62860,
+  "gasPrice": "1000292",
+  "input": "0x8abe09910000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000d6",
+  "internalSigHashes": [
+    {
+      "from": "0xbaaded465968bd53fbe1915e356ff815d85ee71f",
+      "to": "0xba5e05cb26b78eda3a2f8e3b3814726305dcac83",
+      "sigHash": "0x8abe0991"
+    },
+    {
+      "from": "0xba5e05cb26b78eda3a2f8e3b3814726305dcac83",
+      "to": "0xbaaded465968bd53fbe1915e356ff815d85ee71f",
+      "sigHash": "0x"
+    }
+  ],
+  "isoTimestamp": "2024-03-11T17:43:11.000Z",
+  "maxFeePerGas": "1000300",
+  "maxPriorityFeePerGas": "1000000",
+  "minerFees": "44855093864",
+  "netAssetTransfers": {
+    "0xba5e05cb26b78eda3a2f8e3b3814726305dcac83": {
+      "received": [],
+      "sent": [
+        {
+          "type": "eth",
+          "value": "54157269702083366"
+        }
+      ]
+    },
+    "0xbaaded465968bd53fbe1915e356ff815d85ee71f": {
+      "received": [
+        {
+          "type": "eth",
+          "value": "54157269702083366"
+        }
+      ],
+      "sent": []
+    }
+  },
+  "nonce": 972,
+  "parties": [
+    "0xbaaded465968bd53fbe1915e356ff815d85ee71f",
+    "0xba5e05cb26b78eda3a2f8e3b3814726305dcac83"
+  ],
+  "r": "0xd2907b74879236d3e75bf011029151c6cead2b712fe568ddd1e28448e8cb6332",
+  "receipt": {
+    "blockHash": "0x19d371ce3ea2957201c46128e7ce013b8bca7e34add5b9c1de71edfde4eeffad",
+    "blockNumber": 11694822,
+    "contractAddress": null,
+    "cumulativeGasUsed": 112743,
+    "effectiveGasPrice": 1000292,
+    "from": "0xbaaded465968bd53fbe1915e356ff815d85ee71f",
+    "gasUsed": 44842,
+    "l1Fee": "0x80199e4dddcf",
+    "l1FeeScalar": "0.684",
+    "l1GasPrice": "0x13752eda09",
+    "l1GasUsed": "0x9a0",
+    "logsBloom": "0x00000000000000000000802000000000000000800000000000000000000000000000000000008000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000008000000000000000",
+    "status": true,
+    "to": "0xba5e05cb26b78eda3a2f8e3b3814726305dcac83",
+    "transactionHash": "0xf5114673f8677c2647b81e85a61a722e478f64b24b305eff6f3123338a392a9d",
+    "transactionIndex": 2,
+    "type": "0x2"
+  },
+  "s": "0x20821aeae0636b1259541664d4936ac4266fc62699cc2bdcf25e4b69deda3aa7",
+  "sigHash": "0x8abe0991",
+  "timestamp": 1710178991,
+  "to": "0xba5e05cb26b78eda3a2f8e3b3814726305dcac83",
+  "transactionFee": "44855093864",
+  "transactionIndex": 2,
+  "type": 2,
+  "v": "0x0",
+  "value": "0",
+  "yParity": "0x0",
+  "logs": [
+    {
+      "_id": "65ef42b6787340eb15a68640",
+      "chainId": 8453,
+      "logIndex": 0,
+      "transactionHash": "0xf5114673f8677c2647b81e85a61a722e478f64b24b305eff6f3123338a392a9d",
+      "address": "0xba5e05cb26b78eda3a2f8e3b3814726305dcac83",
+      "blockHash": "0x19d371ce3ea2957201c46128e7ce013b8bca7e34add5b9c1de71edfde4eeffad",
+      "blockNumber": 11694822,
+      "data": "0x000000000000000000000000baaded465968bd53fbe1915e356ff815d85ee71f00000000000000000000000000000000000000000000000000c067bff6990326",
+      "id": "log_06121f43",
+      "removed": false,
+      "topic0": "0xcc1db7b1578c9fa756ff3c2d490732a4790a5a1181ab6eb5829daa870e246d95",
+      "topic1": "0x00000000000000000000000000000000000000000000000000000000000000d6",
+      "transactionIndex": 2
+    }
+  ],
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0xbaaded465968bd53fbe1915e356ff815d85ee71f": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": "judebuffum.eth",
+        "ensNew": {
+          "handle": "judebuffum.eth",
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": "judebuffum",
+          "avatar": "https://i.imgur.com/aabBIOc.jpg",
+          "fid": 234286
+        }
+      }
+    ],
+    "0xba5e05cb26b78eda3a2f8e3b3814726305dcac83": [
+      {
+        "chainId": 8453,
+        "label": {
+          "public": "BasePaint"
+        },
+        "isContract": true,
+        "tokenStandard": "erc1155",
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ]
+  },
+  "assetsEnriched": {}
+}

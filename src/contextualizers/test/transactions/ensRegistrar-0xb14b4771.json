@@ -1,0 +1,1032 @@
+{
+  "_id": "65f344fdf69c26841eaee307",
+  "hash": "0xb14b535bbb582f396e52b5f165b8a96f028d6cd9cf1c762419560634acc34771",
+  "chainId": 1,
+  "assetTransfers": [
+    {
+      "from": "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+      "to": "0x00000000008794027c69c26d2a048dbec09de67c",
+      "type": "eth",
+      "value": "1638565744096891"
+    },
+    {
+      "from": "0x00000000008794027c69c26d2a048dbec09de67c",
+      "to": "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5",
+      "type": "eth",
+      "value": "9937421904850475945"
+    },
+    {
+      "asset": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+      "from": "0x9f4c07a862dfc60323e5b8dc656511502ad6e0d1",
+      "to": "0x0000000000000000000000000000000000000000",
+      "tokenId": "84626784014278145841329853376030965554255987151788428515226573591006897301645",
+      "type": "erc721"
+    },
+    {
+      "asset": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+      "from": "0x0000000000000000000000000000000000000000",
+      "to": "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+      "tokenId": "84626784014278145841329853376030965554255987151788428515226573591006897301645",
+      "type": "erc721"
+    },
+    {
+      "from": "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5",
+      "to": "0x00000000008794027c69c26d2a048dbec09de67c",
+      "type": "eth",
+      "value": "9936121455847224444"
+    },
+    {
+      "from": "0x00000000008794027c69c26d2a048dbec09de67c",
+      "to": "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+      "type": "eth",
+      "value": "78026940195090"
+    }
+  ],
+  "attributes": [
+    {
+      "key": "blockNumber",
+      "value": 19435080
+    },
+    {
+      "key": "chainId",
+      "value": 1
+    },
+    {
+      "key": "from",
+      "value": "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584"
+    },
+    {
+      "key": "parties",
+      "value": [
+        "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+        "0x00000000008794027c69c26d2a048dbec09de67c",
+        "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5",
+        "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+        "0xcf7fe2e614f568989869f4aade060f4eb8a105be",
+        "0x5f4ec3df9cbd43714fe2740f5e3616155c5b8419",
+        "0xe62b71cf983019bff55bc83b48601ce8419650cc",
+        "0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e",
+        "0x9f4c07a862dfc60323e5b8dc656511502ad6e0d1",
+        "0x0000000000000000000000000000000000000000",
+        "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85-84626784014278145841329853376030965554255987151788428515226573591006897301645"
+      ]
+    },
+    {
+      "key": "sigHash",
+      "value": "0xad144a94"
+    },
+    {
+      "key": "timestamp",
+      "value": 1710441695
+    },
+    {
+      "key": "to",
+      "value": "0x00000000008794027c69c26d2a048dbec09de67c"
+    },
+    {
+      "key": "value",
+      "value": 0.001638565744096891
+    },
+    {
+      "key": "ethTransactors",
+      "value": [
+        "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+        "0x00000000008794027c69c26d2a048dbec09de67c",
+        "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5"
+      ]
+    },
+    {
+      "key": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85Transactors",
+      "value": [
+        "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+        "0x9f4c07a862dfc60323e5b8dc656511502ad6e0d1"
+      ]
+    },
+    {
+      "key": "eth",
+      "value": [0.001560538803901801, 0.0002600898006503, 0.001300449003251501]
+    },
+    {
+      "key": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+      "value": [1e-18]
+    }
+  ],
+  "baseFeePerGas": 49660845250,
+  "blockHash": "0xa492ab2f1d02f8743f1122d2098b5821b37edb5ea8cc71b9933d95dfd0b42173",
+  "blockNumber": 19435080,
+  "burntFees": "0",
+  "decode": {
+    "fragment": {
+      "type": "function",
+      "inputs": [
+        {
+          "name": "",
+          "type": "bytes[]",
+          "baseType": "array",
+          "indexed": null,
+          "components": null,
+          "arrayLength": -1,
+          "arrayChildren": {
+            "name": "",
+            "type": "bytes",
+            "baseType": "bytes",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null
+          }
+        }
+      ],
+      "name": "register",
+      "constant": false,
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "payable": false,
+      "gas": null
+    },
+    "name": "register",
+    "args": [
+      "0x85f6d155000000000000000000000000000000000000000000000000000000000000008000000000000000000000000053c40473dcdfd927c4201ccfe24e314a7d7c35840000000000000000000000000000000000000000000000000000000001e18558799faa801b1ee0a7ff59e3f345c808ca5461e050b23f7c8acfdac56887dc1a0500000000000000000000000000000000000000000000000000000000000000086c79726963697374000000000000000000000000000000000000000000000000"
+    ],
+    "signature": "register(bytes[])",
+    "selector": "0xad144a94",
+    "value": "0"
+  },
+  "fork": "shanghai",
+  "from": "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+  "gas": 171179,
+  "gasPrice": "51669863497",
+  "input": "0xad144a9400000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000c485f6d155000000000000000000000000000000000000000000000000000000000000008000000000000000000000000053c40473dcdfd927c4201ccfe24e314a7d7c35840000000000000000000000000000000000000000000000000000000001e18558799faa801b1ee0a7ff59e3f345c808ca5461e050b23f7c8acfdac56887dc1a0500000000000000000000000000000000000000000000000000000000000000086c7972696369737400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "internalSigHashes": [
+    {
+      "from": "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+      "to": "0x00000000008794027c69c26d2a048dbec09de67c",
+      "sigHash": "0xad144a94"
+    },
+    {
+      "from": "0x00000000008794027c69c26d2a048dbec09de67c",
+      "to": "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5",
+      "sigHash": "0x85f6d155"
+    },
+    {
+      "from": "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5",
+      "to": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+      "sigHash": "0x96e494e8"
+    },
+    {
+      "from": "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5",
+      "to": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+      "sigHash": "0xd6e4fa86"
+    },
+    {
+      "from": "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5",
+      "to": "0xcf7fe2e614f568989869f4aade060f4eb8a105be",
+      "sigHash": "0x50e9a715"
+    },
+    {
+      "from": "0xcf7fe2e614f568989869f4aade060f4eb8a105be",
+      "to": "0x5f4ec3df9cbd43714fe2740f5e3616155c5b8419",
+      "sigHash": "0x50d25bcd"
+    },
+    {
+      "from": "0x5f4ec3df9cbd43714fe2740f5e3616155c5b8419",
+      "to": "0xe62b71cf983019bff55bc83b48601ce8419650cc",
+      "sigHash": "0x50d25bcd"
+    },
+    {
+      "from": "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5",
+      "to": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+      "sigHash": "0xfca247ac"
+    },
+    {
+      "from": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+      "to": "0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e",
+      "sigHash": "0x02571be3"
+    },
+    {
+      "from": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+      "to": "0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e",
+      "sigHash": "0x06ab5923"
+    },
+    {
+      "from": "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5",
+      "to": "0x00000000008794027c69c26d2a048dbec09de67c",
+      "sigHash": "0x"
+    },
+    {
+      "from": "0x00000000008794027c69c26d2a048dbec09de67c",
+      "to": "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+      "sigHash": "0x"
+    }
+  ],
+  "isoTimestamp": "2024-03-14T18:41:35.000Z",
+  "minerFees": "8064580624748263",
+  "netAssetTransfers": {
+    "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584": {
+      "received": [
+        {
+          "asset": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+          "id": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85-84626784014278145841329853376030965554255987151788428515226573591006897301645",
+          "tokenId": "84626784014278145841329853376030965554255987151788428515226573591006897301645",
+          "type": "erc721"
+        }
+      ],
+      "sent": [
+        {
+          "asset": "eth",
+          "id": "eth",
+          "type": "eth",
+          "value": "1560538803901801"
+        }
+      ]
+    },
+    "0x00000000008794027c69c26d2a048dbec09de67c": {
+      "received": [
+        {
+          "asset": "eth",
+          "id": "eth",
+          "type": "eth",
+          "value": "260089800650300"
+        }
+      ],
+      "sent": []
+    },
+    "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5": {
+      "received": [
+        {
+          "asset": "eth",
+          "id": "eth",
+          "type": "eth",
+          "value": "1300449003251501"
+        }
+      ],
+      "sent": []
+    },
+    "0x9f4c07a862dfc60323e5b8dc656511502ad6e0d1": {
+      "received": [],
+      "sent": [
+        {
+          "asset": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+          "id": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85-84626784014278145841329853376030965554255987151788428515226573591006897301645",
+          "tokenId": "84626784014278145841329853376030965554255987151788428515226573591006897301645",
+          "type": "erc721",
+          "imageUrl": "https://api.reservoir.tools/redirect/tokens/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85:84626784014278145841329853376030965554255987151788428515226573591006897301645/image/v1?imageSize=small"
+        }
+      ]
+    }
+  },
+  "nonce": 1722,
+  "parties": [
+    "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+    "0x00000000008794027c69c26d2a048dbec09de67c",
+    "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5",
+    "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+    "0xcf7fe2e614f568989869f4aade060f4eb8a105be",
+    "0x5f4ec3df9cbd43714fe2740f5e3616155c5b8419",
+    "0xe62b71cf983019bff55bc83b48601ce8419650cc",
+    "0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e",
+    "0x9f4c07a862dfc60323e5b8dc656511502ad6e0d1",
+    "0x0000000000000000000000000000000000000000",
+    "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85-84626784014278145841329853376030965554255987151788428515226573591006897301645"
+  ],
+  "r": "0x9d1a46e8d2ce23e1b14e6c346ecaa8bec961cc174481d0df2a8b843a96356767",
+  "receipt": {
+    "blockHash": "0xa492ab2f1d02f8743f1122d2098b5821b37edb5ea8cc71b9933d95dfd0b42173",
+    "blockNumber": 19435080,
+    "contractAddress": null,
+    "cumulativeGasUsed": 2044190,
+    "effectiveGasPrice": 51669863497,
+    "from": "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+    "gasUsed": 156079,
+    "logsBloom": "0x00000000000008000000000000100000000400000000000000000000100000000000000000000002000000000000000000000000000010000000000000100000000000000000000000000008000000000000002000001000000000000000200000000000020040000000000000000800000000000000000000000010000000000000010000000008000000000000000004000000000000000000004040000000000000000000040000804000010000000000000000000000000000240000000000000002000000000000000000004000000000000000000000000000040020000000000000000004000000000100000000000000000020000040000000002002",
+    "status": true,
+    "to": "0x00000000008794027c69c26d2a048dbec09de67c",
+    "transactionHash": "0xb14b535bbb582f396e52b5f165b8a96f028d6cd9cf1c762419560634acc34771",
+    "transactionIndex": 37,
+    "type": "0x0"
+  },
+  "s": "0x247c84f31764241987c170c185db03249b1e2f52714fde5fe723f8dbe55383fd",
+  "sigHash": "0xad144a94",
+  "timestamp": 1710441695,
+  "to": "0x00000000008794027c69c26d2a048dbec09de67c",
+  "transactionFee": "8064580624748263",
+  "transactionIndex": 37,
+  "type": 0,
+  "v": "0x25",
+  "value": "1638565744096891",
+  "logs": [
+    {
+      "_id": "65f344fd2eee10c4c3169696",
+      "chainId": 1,
+      "logIndex": 46,
+      "transactionHash": "0xb14b535bbb582f396e52b5f165b8a96f028d6cd9cf1c762419560634acc34771",
+      "address": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+      "blockHash": "0xa492ab2f1d02f8743f1122d2098b5821b37edb5ea8cc71b9933d95dfd0b42173",
+      "blockNumber": 19435080,
+      "data": "0x",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "from",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "to",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "tokenId",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Transfer",
+          "anonymous": false
+        },
+        "name": "Transfer",
+        "signature": "Transfer(address,address,uint256)",
+        "topic": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "args": [
+          "0x9f4c07a862dfc60323e5b8dc656511502ad6e0d1",
+          "0x0000000000000000000000000000000000000000",
+          "84626784014278145841329853376030965554255987151788428515226573591006897301645"
+        ]
+      },
+      "removed": false,
+      "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+      "topic1": "0x0000000000000000000000009f4c07a862dfc60323e5b8dc656511502ad6e0d1",
+      "topic2": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "topic3": "0xbb190ff5c95c4a186c1da7b44737bd424192d3204130b7c648d3311102a0e88d",
+      "transactionIndex": 37
+    },
+    {
+      "_id": "65f344fd2eee10c4c31696a1",
+      "chainId": 1,
+      "logIndex": 47,
+      "transactionHash": "0xb14b535bbb582f396e52b5f165b8a96f028d6cd9cf1c762419560634acc34771",
+      "address": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+      "blockHash": "0xa492ab2f1d02f8743f1122d2098b5821b37edb5ea8cc71b9933d95dfd0b42173",
+      "blockNumber": 19435080,
+      "data": "0x",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "from",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "to",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "tokenId",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "Transfer",
+          "anonymous": false
+        },
+        "name": "Transfer",
+        "signature": "Transfer(address,address,uint256)",
+        "topic": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "args": [
+          "0x0000000000000000000000000000000000000000",
+          "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+          "84626784014278145841329853376030965554255987151788428515226573591006897301645"
+        ]
+      },
+      "removed": false,
+      "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+      "topic1": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "topic2": "0x00000000000000000000000053c40473dcdfd927c4201ccfe24e314a7d7c3584",
+      "topic3": "0xbb190ff5c95c4a186c1da7b44737bd424192d3204130b7c648d3311102a0e88d",
+      "transactionIndex": 37
+    },
+    {
+      "_id": "65f344fd2eee10c4c31696a5",
+      "chainId": 1,
+      "logIndex": 48,
+      "transactionHash": "0xb14b535bbb582f396e52b5f165b8a96f028d6cd9cf1c762419560634acc34771",
+      "address": "0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e",
+      "blockHash": "0xa492ab2f1d02f8743f1122d2098b5821b37edb5ea8cc71b9933d95dfd0b42173",
+      "blockNumber": 19435080,
+      "data": "0x00000000000000000000000053c40473dcdfd927c4201ccfe24e314a7d7c3584",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "node",
+              "type": "bytes32",
+              "baseType": "bytes32",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "label",
+              "type": "bytes32",
+              "baseType": "bytes32",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "owner",
+              "type": "address",
+              "baseType": "address",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "NewOwner",
+          "anonymous": false
+        },
+        "name": "NewOwner",
+        "signature": "NewOwner(bytes32,bytes32,address)",
+        "topic": "0xce0457fe73731f824cc272376169235128c118b49d344817417c6d108d155e82",
+        "args": [
+          "0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae",
+          "0xbb190ff5c95c4a186c1da7b44737bd424192d3204130b7c648d3311102a0e88d",
+          "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584"
+        ]
+      },
+      "removed": false,
+      "topic0": "0xce0457fe73731f824cc272376169235128c118b49d344817417c6d108d155e82",
+      "topic1": "0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae",
+      "topic2": "0xbb190ff5c95c4a186c1da7b44737bd424192d3204130b7c648d3311102a0e88d",
+      "transactionIndex": 37
+    },
+    {
+      "_id": "65f344fd2eee10c4c31696aa",
+      "chainId": 1,
+      "logIndex": 49,
+      "transactionHash": "0xb14b535bbb582f396e52b5f165b8a96f028d6cd9cf1c762419560634acc34771",
+      "address": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+      "blockHash": "0xa492ab2f1d02f8743f1122d2098b5821b37edb5ea8cc71b9933d95dfd0b42173",
+      "blockNumber": 19435080,
+      "data": "0x0000000000000000000000000000000000000000000000000000000067d4ca37",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "id",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "owner",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "expires",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "NameRegistered",
+          "anonymous": false
+        },
+        "name": "NameRegistered",
+        "signature": "NameRegistered(uint256,address,uint256)",
+        "topic": "0xb3d987963d01b2f68493b4bdb130988f157ea43070d4ad840fee0466ed9370d9",
+        "args": [
+          "84626784014278145841329853376030965554255987151788428515226573591006897301645",
+          "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+          "1741998647"
+        ]
+      },
+      "removed": false,
+      "topic0": "0xb3d987963d01b2f68493b4bdb130988f157ea43070d4ad840fee0466ed9370d9",
+      "topic1": "0xbb190ff5c95c4a186c1da7b44737bd424192d3204130b7c648d3311102a0e88d",
+      "topic2": "0x00000000000000000000000053c40473dcdfd927c4201ccfe24e314a7d7c3584",
+      "transactionIndex": 37
+    },
+    {
+      "_id": "65f344fd2eee10c4c31696b4",
+      "chainId": 1,
+      "logIndex": 50,
+      "transactionHash": "0xb14b535bbb582f396e52b5f165b8a96f028d6cd9cf1c762419560634acc34771",
+      "address": "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5",
+      "blockHash": "0xa492ab2f1d02f8743f1122d2098b5821b37edb5ea8cc71b9933d95dfd0b42173",
+      "blockNumber": 19435080,
+      "data": "0x000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000049ec060e3272d0000000000000000000000000000000000000000000000000000000067d4ca3700000000000000000000000000000000000000000000000000000000000000086c79726963697374000000000000000000000000000000000000000000000000",
+      "decode": {
+        "fragment": {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "name",
+              "type": "string",
+              "baseType": "string",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "label",
+              "type": "bytes32",
+              "baseType": "bytes32",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "owner",
+              "type": "address",
+              "baseType": "address",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "cost",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            },
+            {
+              "name": "expires",
+              "type": "uint256",
+              "baseType": "uint256",
+              "indexed": false,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null
+            }
+          ],
+          "name": "NameRegistered",
+          "anonymous": false
+        },
+        "name": "NameRegistered",
+        "signature": "NameRegistered(string,bytes32,address,uint256,uint256)",
+        "topic": "0xca6abbe9d7f11422cb6ca7629fbf6fe9efb1c621f71ce8f02b9f2a230097404f",
+        "args": [
+          "lyricist",
+          "0xbb190ff5c95c4a186c1da7b44737bd424192d3204130b7c648d3311102a0e88d",
+          "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584",
+          "1300449003251501",
+          "1741998647"
+        ]
+      },
+      "removed": false,
+      "topic0": "0xca6abbe9d7f11422cb6ca7629fbf6fe9efb1c621f71ce8f02b9f2a230097404f",
+      "topic1": "0xbb190ff5c95c4a186c1da7b44737bd424192d3204130b7c648d3311102a0e88d",
+      "topic2": "0x00000000000000000000000053c40473dcdfd927c4201ccfe24e314a7d7c3584",
+      "transactionIndex": 37
+    }
+  ],
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x53c40473dcdfd927c4201ccfe24e314a7d7c3584": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": "dowjonez.eth",
+        "ensNew": {
+          "handle": "dowjonez.eth",
+          "avatar": "https://assets.airstack.xyz/image/nft/nNBFvZ6wvuIHqDzTFi5pM/pM0Q1IAUgJRNTJrw7f4s297kITduHwptnTfSZ25+vw29XRxavmFl5esndZ6g8h4kBSERgauqnkPUbv2RpB2pKOK8iyurRqjS5dsDpJ2roxW8dNm2v5c9HqSMJuxGaYWuN3w4zG3BdhedU02wrtSzE=/medium.svg"
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x00000000008794027c69c26d2a048dbec09de67c": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": null
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x283af0b28c62c092c9727f1ee09c02ca627eb7f5": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": "ENS: ETH Registrar Controller"
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 5,
+        "label": {
+          "public": "ENS: ETH Registrar Controller"
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": "ENS: Base Registrar Implementation"
+        },
+        "isContract": true,
+        "tokenStandard": "erc721",
+        "imgUrl": "https://i.seadn.io/gae/0cOqWoYA7xL9CkUjGlxsjreSYBdrUBE0c6EO1COG4XE8UeP-Z30ckqUNiL872zHQHQU5MUNMNhfDpyXIP17hRSC5HQ?w=500&auto=format",
+        "decimals": "0",
+        "symbol": "ENS",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 5,
+        "label": {
+          "public": "ENS: Base Registrar Implementation"
+        },
+        "isContract": true,
+        "tokenStandard": "erc721",
+        "imgUrl": "https://lh3.googleusercontent.com/AmzOv-xluKH2sWPCxHR1Fk5pyReN3w0ihzTSIZN0ymoJmnBiJUdzoFeOk0rXINGcfjC3nxmbPoPudNGWrtH2TxJfLpskJe7i6xt_",
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 11155111,
+        "label": {
+          "public": "ENS: Base Registrar Implementation"
+        },
+        "isContract": true,
+        "tokenStandard": "erc721",
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0xcf7fe2e614f568989869f4aade060f4eb8a105be": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": null
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x5f4ec3df9cbd43714fe2740f5e3616155c5b8419": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": null
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0xe62b71cf983019bff55bc83b48601ce8419650cc": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": null
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": "ENS: Registry with Fallback"
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 5,
+        "label": {
+          "public": "ENS: Registry with Fallback"
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 11155111,
+        "label": {
+          "public": "ENS: Registry with Fallback"
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ],
+    "0x9f4c07a862dfc60323e5b8dc656511502ad6e0d1": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ens": "lowlylyricist.eth",
+        "ensNew": {
+          "handle": "lowlylyricist.eth",
+          "avatar": "https://assets.airstack.xyz/image/nft/nNBFvZ6wvuIHqDzTFi5pM/pM0Q1IAUgJRNTJrw7f4s1WfaSHEBZWkLoRbgki/0rnazTP65BcS+Z5MP1q7Ckv5dGRsQ8klsahPMp0RhQvdkoqCVODOTG1w+EgqZ//F25VdndBOXAIv+HiGFniKy1WQMGdIYEWiYe7CO4Ekg+wA0M=/medium.svg"
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x0000000000000000000000000000000000000000": [
+      {
+        "chainId": 5,
+        "label": {
+          "public": "Null: 0x000…000"
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 11155111,
+        "label": {
+          "public": "Null: 0x000…000"
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 10,
+        "label": {
+          "public": "Null: 0x000…000"
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      },
+      {
+        "chainId": 8453,
+        "label": {
+          "public": "Null: 0x000…000"
+        },
+        "isContract": true,
+        "tokenStandard": null,
+        "imgUrl": null,
+        "decimals": null,
+        "symbol": null,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "ens": null
+      }
+    ]
+  },
+  "assetsEnriched": {
+    "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85-84626784014278145841329853376030965554255987151788428515226573591006897301645": {
+      "asset": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+      "id": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85-84626784014278145841329853376030965554255987151788428515226573591006897301645",
+      "tokenId": "84626784014278145841329853376030965554255987151788428515226573591006897301645",
+      "type": "erc721",
+      "imageUrl": "https://api.reservoir.tools/redirect/tokens/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85:84626784014278145841329853376030965554255987151788428515226573591006897301645/image/v1?imageSize=small"
+    }
+  }
+}

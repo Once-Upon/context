@@ -1,33 +1,37 @@
 export enum AssetType {
   ETH = 'eth',
+  DEGEN = 'degen',
   ERC20 = 'erc20',
   ERC721 = 'erc721',
   ERC1155 = 'erc1155',
 }
 
 export type ETHAsset = {
-  id: string;
   type: AssetType.ETH;
   value: string;
 };
 
-export interface ERC20Asset {
+// Other native currencies
+export type DEGENAsset = {
   id: string;
-  asset: string;
+  type: AssetType.DEGEN;
+  value: string;
+};
+
+export interface ERC20Asset {
+  contract: string;
   type: AssetType.ERC20;
   value: string;
 }
 
 export interface ERC721Asset {
-  asset: string;
-  id: string;
+  contract: string;
   type: AssetType.ERC721;
   tokenId: string;
 }
 
 export interface ERC1155Asset {
-  asset: string;
-  id: string;
+  contract: string;
   type: AssetType.ERC1155;
   value: string;
   tokenId: string;
@@ -50,7 +54,7 @@ export type ETHAssetTransfer = {
 };
 
 export interface ERC20AssetTransfer {
-  asset: string;
+  contract: string;
   type: AssetType.ERC20;
   value: string;
   from: string;
@@ -58,7 +62,7 @@ export interface ERC20AssetTransfer {
 }
 
 export interface ERC721AssetTransfer {
-  asset: string;
+  contract: string;
   type: AssetType.ERC721;
   tokenId: string;
   from: string;
@@ -66,7 +70,7 @@ export interface ERC721AssetTransfer {
 }
 
 export interface ERC1155AssetTransfer {
-  asset: string;
+  contract: string;
   type: AssetType.ERC1155;
   value: string;
   tokenId: string;

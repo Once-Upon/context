@@ -1,19 +1,20 @@
 {
   "name": "@once-upon/evm-context",
-  "version": "0.0.82",
+  "version": "1.0.8",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf dist",
     "test": "jest",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "prepublishOnly": "npm run clean && npm run build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "grab:transaction": "npm run build && node ./dist/commands/main.js grab-transaction",
     "create:contextualizer": "npm run build && node ./dist/commands/main.js create-contextualizer",
-    "run:contextualizers": "npm run build && node ./dist/commands/main.js run-contextualizers"
+    "run:contextualizers": "npm run build && node ./dist/commands/main.js run-contextualizers",
+    "grab:block": "npm run build && node ./dist/commands/main.js grab-block"
   },
   "repository": {
     "type": "git",
@@ -58,6 +59,7 @@
     "testEnvironment": "node"
   },
   "dependencies": {
+    "axios": "^1.6.8",
     "commander": "^11.1.0",
     "dotenv": "^16.3.1",
     "handlebars": "^4.7.8",

@@ -1,11 +1,20 @@
-import { Log } from './log';
+import {
+  Address,
+  Transaction as BaseTransaction,
+  Hash,
+  Hex,
+  TransactionReceipt,
+} from 'viem';
+import { Log, RawReceipt } from './log';
 import { ContextVariable, ContextSummaryType } from './context';
 import { NetAssetTransfers, AssetTransfer } from './asset';
+import { InternalHashType, StdObj } from './shared';
+import { Contract } from './contract';
 
 export type SigHash = {
-  from: string;
-  to?: string;
-  sigHash: string;
+  from: Address;
+  to?: Address;
+  sigHash: Hash;
 };
 
 export type ParamType = {
@@ -17,64 +26,47 @@ export type ParamType = {
   arrayChildren: ParamType | null;
 };
 
-export type TransactionDescription = {
-  fragment: {
-    name: string;
-    type: string;
-    inputs: ParamType[];
-    outputs: ParamType[];
-    constant: boolean;
-    stateMutability: 'payable' | 'nonpayable' | 'view' | 'pure';
-    payable: boolean;
-    gas: null | string;
-  };
+export type TransactionMethodArgument = {
   name: string;
-  args: string[];
+  type: string;
+  internalType: string;
+  decoded: string;
+};
+
+export type TransactionDescription = {
+  name: string;
   signature: string;
-  selector: string;
-  value: string;
+  signature_with_arg_names: string;
+  decoded: TransactionMethodArgument[];
 };
 
 export type Trace = {
   action: {
     callType: string;
-    from: string;
+    from: Address;
     gas: string;
-    input: string;
-    to: string;
+    input: Hex;
+    to: Address;
     value: string;
   };
-  blockHash: string;
-  blockNumber: number;
+  blockHash: Hash;
+  blockNumber: bigint;
   result: {
     gasUsed: string;
     output: string;
   };
   subtraces: number;
   traceAddress: number[];
-  transactionHash: string;
+  transactionHash: Hash;
   transactionPosition: number;
   type: string;
 };
 
-export type Receipt = {
-  blockHash: string;
-  blockNumber: number;
-  contractAddress: string | null;
-  cumulativeGasUsed: number | string;
-  effectiveGasPrice: number | string;
-  from: string;
-  gasUsed: number | string;
+export type Receipt = TransactionReceipt & {
   l1Fee?: string;
   l1FeeScalar?: string;
   l1GasPrice?: string;
   l1GasUsed?: string;
-  logsBloom: string;
-  status: boolean;
-  to: string | null;
-  transactionHash: string;
-  transactionIndex: number;
-  type: string;
 };
 
 export type TransactionContextType = {
@@ -84,36 +76,83 @@ export type TransactionContextType = {
 };
 
 // MongoDB document
-export interface Transaction {
-  blockHash: string;
-  blockNumber: number;
-  from: string;
-  gas: number;
-  gasPrice: string;
-  maxFeePerGas?: string;
-  maxPriorityFeePerGas?: string;
-  hash: string;
-  input: string;
-  nonce: number;
-  to: string | null;
-  transactionIndex: number;
-  value: string;
-  type: number;
-  accessList?: any[];
-  chainId: number;
-  v: string;
-  r: string;
-  s: string;
-  timestamp: number;
-  isoTimestamp: string;
-  delegateCalls?: Trace[];
+export type Transaction = BaseTransaction & {
   assetTransfers?: AssetTransfer[];
   sigHash: string;
   internalSigHashes: SigHash[];
   parties: string[];
-  decode?: TransactionDescription;
+  decoded?: TransactionDescription;
   netAssetTransfers?: NetAssetTransfers;
   receipt?: Receipt;
+  canCopy?: boolean;
   context?: TransactionContextType;
   logs?: Log[];
-}
+  delegateCalls: RawTrace[];
+  timestamp: number;
+  isoTimestamp: string;
+};
+
+export type RawTransaction = BaseTransaction & {
+  assetTransfers: AssetTransfer[];
+  sigHash: string;
+  internalSigHashes: InternalHashType[];
+  parties: string[];
+  decoded?: TransactionDescription;
+  netAssetTransfers: NetAssetTransfers;
+  receipt: RawReceipt;
+  gasPrice: string;
+  context: TxContext;
+  traces: RawTrace[];
+  transactionFee: string;
+  baseFeePerGas: number | string;
+  contracts?: Contract[];
+  errors: string[];
+  delegateCalls: RawTrace[];
+  timestamp: number;
+  isoTimestamp: string;
+  neighbor: RawNeighbor;
+};
+
+export type RawTraceAction = StdObj & {
+  address: Address;
+  balance?: string;
+  callType?: string;
+  from: Address;
+  refundAddress?: string;
+  to?: Address;
+  value?: string;
+  input?: Hex;
+};
+
+export type RawTraceResult = StdObj & {
+  address?: Address;
+  code: string;
+  hash: Hash;
+  receipt: StdObj;
+  to: Address;
+  traces: RawTrace[];
+  transactionIndex: number;
+};
+
+export type RawTrace = StdObj & {
+  action: RawTraceAction;
+  blockNumber: number;
+  blockHash: Hash;
+  error?: string;
+  result: RawTraceResult;
+  subtraces: number;
+  traceAddress: Address[];
+  transactionHash: Hash;
+  transactionPosition: number;
+  type: string;
+  decoded?: TransactionDescription;
+};
+
+export type RawNeighbor = {
+  address: Address;
+  neighbor: string;
+};
+
+export type TxContext = {
+  type: string;
+};
