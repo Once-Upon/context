@@ -60,10 +60,14 @@ export const generate = (transaction: Transaction): Transaction => {
     return transaction;
   }
 
-  const sentAssetTransfer = transaction.netAssetTransfers[sender]
-    .sent[0] as ERC20Asset;
-  const receivedAssetTransfer = transaction.netAssetTransfers[recipient]
-    .received[0] as ERC20Asset;
+  const sentAssetTransfer = transaction.netAssetTransfers[sender].sent.find(
+    (assetTransfer) => assetTransfer.type === AssetType.ERC20,
+  ) as ERC20Asset;
+  const receivedAssetTransfer = transaction.netAssetTransfers[
+    recipient
+  ].received.find(
+    (assetTransfer) => assetTransfer.type === AssetType.ERC20,
+  ) as ERC20Asset;
 
   transaction.context = {
     variables: {
