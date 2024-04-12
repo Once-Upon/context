@@ -1,9 +1,4 @@
-import {
-  Transaction,
-  AssetType,
-  ETHAsset,
-  HeuristicContextActionEnum,
-} from '../../../types';
+import { Transaction, AssetType, ETHAsset } from '../../../types';
 import { BRIDGE_ZORA_ENERGY } from './constants';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -52,32 +47,22 @@ export function generate(transaction: Transaction): Transaction {
     return transaction;
   }
 
-  const sourceChainId = transaction.chainId === 7777777 ? 1 : 7777777;
   transaction.context = {
     summaries: {
       category: 'MULTICHAIN',
       en: {
         title: `Bridge`,
-        default: '[[sender]][[bridged]][[asset]]from[[chainID]]',
+        default: '[[person]]completed a cross chain interaction via[[address]]',
       },
     },
     variables: {
-      sender: {
+      person: {
         type: 'address',
         value: transaction.to,
       },
-      chainID: {
-        type: 'chainID',
-        value: sourceChainId,
-      },
-      bridged: {
-        type: 'contextAction',
-        value: HeuristicContextActionEnum.BRIDGED,
-      },
-      asset: {
-        type: AssetType.ETH,
-        value: assetTransfer.value,
-        unit: 'wei',
+      address: {
+        type: 'address',
+        value: transaction.from,
       },
     },
   };
