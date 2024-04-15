@@ -7,7 +7,7 @@ import {
   Transaction,
 } from '../../../types';
 
-const WARPCASTER_MINT_ADDRESSES = [
+const WARPCAST_MINT_ADDRESSES = [
   '0x2d93c2f74b2c4697f9ea85d0450148aa45d4d5a2',
   '0x855a4621d491ff98bc3d02eadbc108403887561c',
 ];
@@ -25,15 +25,15 @@ export function detect(transaction: Transaction): boolean {
   // 9dbb844d - mintWithRewards(address minter, uint256 tokenId, uint256 quantity, bytes minterArguments, address mintReferral)
   if (
     transaction.sigHash === '0x9dbb844d' &&
-    WARPCASTER_MINT_ADDRESSES.indexOf(transaction.from) > -1
+    WARPCAST_MINT_ADDRESSES.indexOf(transaction.from) > -1
   ) {
     console.log('here');
-    for (let i = 0; i < WARPCASTER_MINT_ADDRESSES.length; i++) {
-      const warpcasterMintAddress = WARPCASTER_MINT_ADDRESSES[i];
+    for (let i = 0; i < WARPCAST_MINT_ADDRESSES.length; i++) {
+      const warpcastMintAddress = WARPCAST_MINT_ADDRESSES[i];
       if (
-        transaction.netAssetTransfers?.[warpcasterMintAddress]?.sent?.length ===
+        transaction.netAssetTransfers?.[warpcastMintAddress]?.sent?.length ===
           1 &&
-        transaction.netAssetTransfers?.[warpcasterMintAddress].sent[0].type ===
+        transaction.netAssetTransfers?.[warpcastMintAddress].sent[0].type ===
           'eth'
       )
         return true;
@@ -48,7 +48,7 @@ export function generate(transaction: Transaction): Transaction {
   // Get the receiving address and what they minted
   for (const address in transaction.netAssetTransfers) {
     if (
-      !(WARPCASTER_MINT_ADDRESSES.indexOf(address) > -1) &&
+      !(WARPCAST_MINT_ADDRESSES.indexOf(address) > -1) &&
       transaction.netAssetTransfers[address]?.received?.length === 1 &&
       (transaction.netAssetTransfers[address].received[0].type ===
         AssetType.ERC721 ||
