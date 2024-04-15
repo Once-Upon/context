@@ -5,7 +5,7 @@ import {
   HeuristicContextActionEnum,
 } from '../../../types';
 
-const FARCASTER_DEPOSIT_ADDRESS = '0x79afe0fd5375ca1d30bb6b28ae7529a1e2387baa';
+const WARPCAST_DEPOSIT_ADDRESS = '0x79afe0fd5375ca1d30bb6b28ae7529a1e2387baa';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isBuyWarps = detect(transaction);
@@ -26,9 +26,9 @@ export function detect(transaction: Transaction): boolean {
     (transaction.sigHash === '0x8bf122da' ||
       transaction.sigHash === '0x6614eb71' ||
       transaction.sigHash === '0xccba8aac') &&
-    transaction.netAssetTransfers?.[FARCASTER_DEPOSIT_ADDRESS]?.received
+    transaction.netAssetTransfers?.[WARPCAST_DEPOSIT_ADDRESS]?.received
       .length === 1 &&
-    transaction.netAssetTransfers?.[FARCASTER_DEPOSIT_ADDRESS]?.received[0]
+    transaction.netAssetTransfers?.[WARPCAST_DEPOSIT_ADDRESS]?.received[0]
       .type === 'erc20'
   ) {
     return true;
@@ -41,7 +41,7 @@ export function generate(transaction: Transaction): Transaction {
 
   // This is the ERC20 asset that the Farcaster deposit received
   const farcasterReceived = transaction.netAssetTransfers[
-    FARCASTER_DEPOSIT_ADDRESS
+    WARPCAST_DEPOSIT_ADDRESS
   ].received[0] as ERC20Asset;
 
   // Get the other receiving address for the same asset Farcaster received (USDC)
@@ -51,7 +51,7 @@ export function generate(transaction: Transaction): Transaction {
   for (const address in transaction.netAssetTransfers) {
     // Skip the Farcaster deposit address and only look at addresses that received 1 asset
     if (
-      address !== FARCASTER_DEPOSIT_ADDRESS &&
+      address !== WARPCAST_DEPOSIT_ADDRESS &&
       transaction.netAssetTransfers[address].received.length === 1
     ) {
       const received = transaction.netAssetTransfers[address].received[0];
