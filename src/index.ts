@@ -1,7 +1,5 @@
 // contextualizers
-export * from './contextualizers/heuristics';
-export * from './contextualizers/protocol';
-export * from './contextualizers/bridges';
+export * from './contextualizers';
 // transformations
 export * from './transformers';
 // types

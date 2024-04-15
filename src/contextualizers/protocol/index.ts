@@ -18,6 +18,7 @@ import { disperseContextualizer } from './disperse';
 import { zoraCreatorContextualizer } from './zoraCreator';
 import { bnsContextualizer } from './bns';
 import { highlightContextualizer } from './highlight';
+import { warpcastContextualizer } from './warpcast';
 
 const children = {
   wethContextualizer,
@@ -39,6 +40,7 @@ const children = {
   zoraCreatorContextualizer,
   bnsContextualizer,
   highlightContextualizer,
+  warpcastContextualizer,
 };
 
 const protocolContextualizers = Object.fromEntries(
