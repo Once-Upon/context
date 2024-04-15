@@ -1,9 +1,14 @@
-import { Transaction, AssetType, ETHAsset } from '../../../types';
+import {
+  Transaction,
+  AssetType,
+  ETHAsset,
+  BridgeContextActionEnum,
+} from '../../../types';
 import { DEGEN_BRIDGES } from './constants';
 
 export function contextualize(transaction: Transaction): Transaction {
-  const isBridgeZoraEnergy = detect(transaction);
-  if (!isBridgeZoraEnergy) return transaction;
+  const isDegenBridge = detect(transaction);
+  if (!isDegenBridge) return transaction;
 
   const result = generate(transaction);
   return result;
@@ -58,7 +63,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'MULTICHAIN',
       en: {
         title: `Bridge`,
-        default: '[[person]]initiated cross chain interaction via[[address]]',
+        default: '[[person]][[initiated]]via[[address]]',
       },
     },
     variables: {
@@ -69,6 +74,10 @@ export function generate(transaction: Transaction): Transaction {
       address: {
         type: 'address',
         value: transaction.to,
+      },
+      initiated: {
+        type: 'contextAction',
+        value: BridgeContextActionEnum.INITIATED_A_CROSS_CHAIN_INTERACTION,
       },
     },
   };

@@ -2,13 +2,13 @@ import {
   Transaction,
   AssetType,
   ETHAsset,
-  HeuristicContextActionEnum,
+  BridgeContextActionEnum,
 } from '../../../types';
 import { DEGEN_BRIDGES } from './constants';
 
 export function contextualize(transaction: Transaction): Transaction {
-  const isBridgeZoraEnergy = detect(transaction);
-  if (!isBridgeZoraEnergy) return transaction;
+  const isDegenBridge = detect(transaction);
+  if (!isDegenBridge) return transaction;
 
   const result = generate(transaction);
   return result;
@@ -18,7 +18,7 @@ export function contextualize(transaction: Transaction): Transaction {
 export function detect(transaction: Transaction): boolean {
   if (
     !transaction.chainId ||
-    transaction.to !== DEGEN_BRIDGES[transaction.chainId] ||
+    transaction.from !== DEGEN_BRIDGES[transaction.chainId] ||
     !transaction.to
   ) {
     return false;
@@ -56,32 +56,26 @@ export function generate(transaction: Transaction): Transaction {
     return transaction;
   }
 
-  const sourceChainId = transaction.chainId === 7777777 ? 1 : 7777777;
   transaction.context = {
     summaries: {
       category: 'MULTICHAIN',
       en: {
         title: `Bridge`,
-        default: '[[sender]][[bridged]][[asset]]from[[chainID]]',
+        default: '[[person]][[completedACrossChainInteraction]]via[[address]]',
       },
     },
     variables: {
-      sender: {
+      person: {
+        type: 'address',
+        value: transaction.from,
+      },
+      address: {
         type: 'address',
         value: transaction.to,
       },
-      chainID: {
-        type: 'chainID',
-        value: sourceChainId,
-      },
-      bridged: {
+      completedACrossChainInteraction: {
         type: 'contextAction',
-        value: HeuristicContextActionEnum.BRIDGED,
-      },
-      asset: {
-        type: AssetType.ETH,
-        value: assetTransfer.value,
-        unit: 'wei',
+        value: BridgeContextActionEnum.COMPLETED_A_CROSS_CHAIN_INTERACTION,
       },
     },
   };

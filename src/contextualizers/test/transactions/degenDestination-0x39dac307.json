@@ -1,0 +1,133 @@
+{
+  "_id": "660ac2f15ba04024c48fb07c",
+  "blockHash": "0xb71a32d2211bd47b6d63fa26d2553a5dc510dbd3e4c38f3ca7a9c276a051bd70",
+  "blockNumber": 2767,
+  "chainId": 666666666,
+  "from": "0x888f05d02ea7b42f32f103c089c1750170830642",
+  "gas": 30000,
+  "gasPrice": "10000000",
+  "hash": "0x39da7c1afb5e494be216bad74ff76aabc70925e115881edb1b4162e10cd0c307",
+  "input": "0x",
+  "maxFeePerGas": "10000000",
+  "maxRefund": "0x45d964b800",
+  "nonce": 0,
+  "r": "0x0",
+  "refundTo": "0x729170d38dd5449604f35f349fdfcc9ad08257cd",
+  "s": "0x0",
+  "submissionFeeRefund": "0x0",
+  "ticketId": "0x8576af8c9acdd2b1c782caab1ced8e9299663e36d8eae019f5b6d3a27e66f3ae",
+  "to": "0x729170d38dd5449604f35f349fdfcc9ad08257cd",
+  "transactionIndex": 2,
+  "type": 104,
+  "v": "0x0",
+  "value": "470999993672387790000",
+  "receipt": {
+    "blockHash": "0xb71a32d2211bd47b6d63fa26d2553a5dc510dbd3e4c38f3ca7a9c276a051bd70",
+    "blockNumber": 2767,
+    "contractAddress": null,
+    "cumulativeGasUsed": 51000,
+    "effectiveGasPrice": 10000000,
+    "from": "0x888f05d02ea7b42f32f103c089c1750170830642",
+    "gasUsed": 21000,
+    "gasUsedForL1": "0x0",
+    "l1BlockNumber": "0xbda9ae",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0x729170d38dd5449604f35f349fdfcc9ad08257cd",
+    "transactionHash": "0x39da7c1afb5e494be216bad74ff76aabc70925e115881edb1b4162e10cd0c307",
+    "transactionIndex": 2,
+    "type": "0x68"
+  },
+  "assetTransfers": [
+    {
+      "from": "0x888f05d02ea7b42f32f103c089c1750170830642",
+      "to": "0x729170d38dd5449604f35f349fdfcc9ad08257cd",
+      "type": "eth",
+      "value": "470999993672387790000"
+    }
+  ],
+  "delegateCalls": [],
+  "neighbor": {
+    "address": "0x888f05d02ea7b42f32f103c089c1750170830642",
+    "neighbor": "0x729170d38dd5449604f35f349fdfcc9ad08257cd"
+  },
+  "errors": [],
+  "parties": [
+    "0x888f05d02ea7b42f32f103c089c1750170830642",
+    "0x729170d38dd5449604f35f349fdfcc9ad08257cd"
+  ],
+  "sigHash": "0x",
+  "internalSigHashes": [
+    {
+      "from": "0x888f05d02ea7b42f32f103c089c1750170830642",
+      "to": "0x729170d38dd5449604f35f349fdfcc9ad08257cd",
+      "sigHash": "0x"
+    }
+  ],
+  "timestamp": 1711648843,
+  "baseFeePerGas": 10000000,
+  "transactionFee": "210000000000",
+  "logs": [],
+  "netAssetTransfers": {
+    "0x888f05d02ea7b42f32f103c089c1750170830642": {
+      "received": [],
+      "sent": [
+        {
+          "type": "eth",
+          "value": "470999993672387790000"
+        }
+      ]
+    },
+    "0x729170d38dd5449604f35f349fdfcc9ad08257cd": {
+      "received": [
+        {
+          "type": "eth",
+          "value": "470999993672387790000"
+        }
+      ],
+      "sent": []
+    }
+  },
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x888f05d02ea7b42f32f103c089c1750170830642": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x729170d38dd5449604f35f349fdfcc9ad08257cd": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ensNew": {
+          "handle": "pirosb3.eth",
+          "avatar": "https://assets.airstack.xyz/image/nft/nNBFvZ6wvuIHqDzTFi5pM/pM0Q1IAUgJRNTJrw7f4s2E/fxyWDH/G56nnXyvmEZ1DNXxnhcynqG4rmAmivegg3sklCFIbk76duKqd7xRNtXemgQqoES2nhnxc03b/caO0EvY+3ZLr9RS+CyJ3d+qGty8FFsqQAuugzOy6FF1cY0=/medium.svg"
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": "pirosb3",
+          "avatar": "https://i.imgur.com/ltFR0Wv.jpg",
+          "fid": 12152
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
+}
