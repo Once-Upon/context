@@ -109,7 +109,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'PROTOCOL_1',
       en: {
         title: 'Farcaster',
-        default: '[[buyer]][[bought]]Warps ([[costInUSDC]]) for[[cost]]',
+        default: '[[buyer]][[bought]][[costInUSDC]]of Warps for[[cost]]',
       },
     },
   };
