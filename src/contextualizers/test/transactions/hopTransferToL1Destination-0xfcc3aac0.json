@@ -1,0 +1,243 @@
+{
+  "_id": "661838fae5a08f850827a53e",
+  "accessList": [],
+  "blockHash": "0xc4444e997290f09300d1a048b035b54a9876ed2ced466e5b5763873dc0e31adf",
+  "blockNumber": 19634443,
+  "chainId": 1,
+  "from": "0x710bda329b2a6224e4b44833de30f38e7f81d564",
+  "gas": 500000,
+  "gasPrice": "24191126594",
+  "hash": "0xfcc3ac1fdd86ff77cec201e0f7d094c10f32a381d236576cb0d53bd1726daac0",
+  "input": "0x23c452cd000000000000000000000000feace2f06f03181be72add407ed94e89602d0c020000000000000000000000000000000000000000000000000016eeb95b4ac309080fb40721069b1c1bf15b6d5d7c53f953b40c1c146ffe68d853c5bd080a9638000000000000000000000000000000000000000000000000000f4b3b983b0304",
+  "maxFeePerGas": "52847368322",
+  "maxPriorityFeePerGas": "90000000",
+  "nonce": 694911,
+  "r": "0x5489b03e04f8ec76a4070b6a725c37e14f6f6025e9ca979690e89917a0d57c40",
+  "s": "0x2d2f7d2b611a625b447507cc98b26f5847863c692323ceb5216c88b9dd3538bc",
+  "to": "0xb8901acb165ed027e32754e0ffe830802919727f",
+  "transactionIndex": 182,
+  "type": 2,
+  "v": "0x0",
+  "value": "0",
+  "yParity": "0x0",
+  "receipt": {
+    "blockHash": "0xc4444e997290f09300d1a048b035b54a9876ed2ced466e5b5763873dc0e31adf",
+    "blockNumber": 19634443,
+    "contractAddress": null,
+    "cumulativeGasUsed": 8885357,
+    "effectiveGasPrice": 24191126594,
+    "from": "0x710bda329b2a6224e4b44833de30f38e7f81d564",
+    "gasUsed": 115447,
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000020000000100000000000800000000000800000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0xb8901acb165ed027e32754e0ffe830802919727f",
+    "transactionHash": "0xfcc3ac1fdd86ff77cec201e0f7d094c10f32a381d236576cb0d53bd1726daac0",
+    "transactionIndex": 182,
+    "type": "0x2"
+  },
+  "decoded": {
+    "signature": "bondWithdrawal(address,uint256,bytes32,uint256)",
+    "signature_with_arg_names": "bondWithdrawal(address recipient,uint256 amount,bytes32 transferNonce,uint256 bonderFee)",
+    "name": "bondWithdrawal",
+    "decoded": [
+      {
+        "internalType": "address",
+        "name": "recipient",
+        "type": "address",
+        "decoded": "0xfeace2f06f03181be72add407ed94e89602d0c02"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256",
+        "decoded": "6454929355621129"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "transferNonce",
+        "type": "bytes32",
+        "decoded": "0x080fb40721069b1c1bf15b6d5d7c53f953b40c1c146ffe68d853c5bd080a9638"
+      },
+      {
+        "internalType": "uint256",
+        "name": "bonderFee",
+        "type": "uint256",
+        "decoded": "4304843979817732"
+      }
+    ]
+  },
+  "assetTransfers": [
+    {
+      "from": "0xb8901acb165ed027e32754e0ffe830802919727f",
+      "to": "0xfeace2f06f03181be72add407ed94e89602d0c02",
+      "type": "eth",
+      "value": "2150085375803397"
+    },
+    {
+      "from": "0xb8901acb165ed027e32754e0ffe830802919727f",
+      "to": "0x710bda329b2a6224e4b44833de30f38e7f81d564",
+      "type": "eth",
+      "value": "4304843979817732"
+    }
+  ],
+  "delegateCalls": [],
+  "errors": [],
+  "parties": [
+    "0x710bda329b2a6224e4b44833de30f38e7f81d564",
+    "0xb8901acb165ed027e32754e0ffe830802919727f",
+    "0xfeace2f06f03181be72add407ed94e89602d0c02"
+  ],
+  "sigHash": "0x23c452cd",
+  "internalSigHashes": [
+    {
+      "from": "0x710bda329b2a6224e4b44833de30f38e7f81d564",
+      "to": "0xb8901acb165ed027e32754e0ffe830802919727f",
+      "sigHash": "0x23c452cd"
+    },
+    {
+      "from": "0xb8901acb165ed027e32754e0ffe830802919727f",
+      "to": "0xfeace2f06f03181be72add407ed94e89602d0c02",
+      "sigHash": "0x"
+    },
+    {
+      "from": "0xb8901acb165ed027e32754e0ffe830802919727f",
+      "to": "0x710bda329b2a6224e4b44833de30f38e7f81d564",
+      "sigHash": "0x"
+    }
+  ],
+  "timestamp": 1712863451,
+  "baseFeePerGas": 24101126594,
+  "transactionFee": "2792792991897518",
+  "logs": [
+    {
+      "_id": "661838fae5a08f850827a281",
+      "address": "0xb8901acb165ed027e32754e0ffe830802919727f",
+      "blockHash": "0xc4444e997290f09300d1a048b035b54a9876ed2ced466e5b5763873dc0e31adf",
+      "blockNumber": 19634443,
+      "data": "0x0000000000000000000000000000000000000000000000000016eeb95b4ac309",
+      "logIndex": 164,
+      "removed": false,
+      "transactionHash": "0xfcc3ac1fdd86ff77cec201e0f7d094c10f32a381d236576cb0d53bd1726daac0",
+      "transactionIndex": 182,
+      "decoded": {
+        "signature": "WithdrawalBonded(bytes32,uint256)",
+        "signature_with_arg_names": "WithdrawalBonded(bytes32 indexed transferId,uint256 amount)",
+        "name": "WithdrawalBonded",
+        "decoded": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "transferId",
+            "type": "bytes32",
+            "decoded": "0xe127252b6baabf90f2f58657eb0db8d3f8a2f96d44400d1bccb5de526f694218"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256",
+            "decoded": "6454929355621129"
+          }
+        ]
+      },
+      "topic0": "0x0c3d250c7831051e78aa6a56679e590374c7c424415ffe4aa474491def2fe705",
+      "topic1": "0xe127252b6baabf90f2f58657eb0db8d3f8a2f96d44400d1bccb5de526f694218"
+    }
+  ],
+  "netAssetTransfers": {
+    "0xb8901acb165ed027e32754e0ffe830802919727f": {
+      "received": [],
+      "sent": [
+        {
+          "type": "eth",
+          "value": "6454929355621129"
+        }
+      ]
+    },
+    "0xfeace2f06f03181be72add407ed94e89602d0c02": {
+      "received": [
+        {
+          "type": "eth",
+          "value": "2150085375803397"
+        }
+      ],
+      "sent": []
+    },
+    "0x710bda329b2a6224e4b44833de30f38e7f81d564": {
+      "received": [
+        {
+          "type": "eth",
+          "value": "4304843979817732"
+        }
+      ],
+      "sent": []
+    }
+  },
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x710bda329b2a6224e4b44833de30f38e7f81d564": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0xb8901acb165ed027e32754e0ffe830802919727f": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": "Hop Protocol: Ethereum Bridge"
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0xfeace2f06f03181be72add407ed94e89602d0c02": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
+}

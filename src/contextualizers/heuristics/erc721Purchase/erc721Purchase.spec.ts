@@ -58,10 +58,10 @@ describe('ERC721 Purchase', () => {
     expect(erc721Purchase3.context?.variables?.tokenOrTokens['token']).toBe(
       '0x598061a4ac7fa240acc3e7025b4b047ada178704',
     );
-    expect(erc721Purchase3.context?.variables?.numOfToken['value']).toBe('');
+    expect(erc721Purchase3.context?.variables?.numOfToken).toBe(undefined);
     const desc3 = contextSummary(erc721Purchase3.context);
     expect(desc3).toBe(
-      '0x940034ad75e41e2c0e968969efad37f127c7ded0 BOUGHT  0x598061a4ac7fa240acc3e7025b4b047ada178704 #331 for 12100000000000000 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 from 0x8da3582320cc6420316af0ae145f95af8344af2d',
+      '0x940034ad75e41e2c0e968969efad37f127c7ded0 BOUGHT 0x598061a4ac7fa240acc3e7025b4b047ada178704 #331 for 12100000000000000 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 from 0x8da3582320cc6420316af0ae145f95af8344af2d',
     );
   });
 
