@@ -21,7 +21,7 @@ export function contextualize(transaction: Transaction): Transaction {
 }
 
 export function detect(transaction: Transaction): boolean {
-  // A mint with Warps originates from WARPCASTER_MINT_ADDRESS on the Zora network calling mintWithRewards(address minter, uint256 tokenId, uint256 quantity, bytes minterArguments, address mintReferral)
+  // A mint with Warps originates from WARPCAST_MINT_ADDRESS on the Zora network calling mintWithRewards(address minter, uint256 tokenId, uint256 quantity, bytes minterArguments, address mintReferral)
   // 9dbb844d - mintWithRewards(address minter, uint256 tokenId, uint256 quantity, bytes minterArguments, address mintReferral)
   if (
     transaction.sigHash === '0x9dbb844d' &&
