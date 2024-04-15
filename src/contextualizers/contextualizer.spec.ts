@@ -75,11 +75,11 @@ describe('ContextualizerService', () => {
       expect(erc721Purchase1.context?.summaries?.en.title).toBe('NFT Purchase');
     });
 
-    it('Should detect ERC721 Sale', async () => {
+    it('Should detect ERC721 Purchase', async () => {
       const erc721Sale1 = contextualizer.contextualize(
         erc721Sale0x05b8cee6 as unknown as Transaction,
       );
-      expect(erc721Sale1.context?.summaries?.en.title).toBe('NFT Purchase'); // TODO; This should be NFT Sale, update with new version
+      expect(erc721Sale1.context?.summaries?.en.title).toBe('NFT Purchase');
     });
 
     it('Should detect ERC1155 Purchase', async () => {
@@ -91,11 +91,11 @@ describe('ContextualizerService', () => {
       );
     });
 
-    it('Should detect ERC1155 Sale', async () => {
+    it('Should detect ERC1155 Purchase', async () => {
       const erc1155Sale1 = contextualizer.contextualize(
         erc1155Sale0x16b2334d as unknown as Transaction,
       );
-      expect(erc1155Sale1.context?.summaries?.en.title).toBe('NFT Purchase'); // TODO; This should be NFT Sale, update with new version
+      expect(erc1155Sale1.context?.summaries?.en.title).toBe('NFT Purchase');
     });
 
     it('Should detect IDM', async () => {
