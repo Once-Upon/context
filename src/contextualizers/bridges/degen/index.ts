@@ -6,6 +6,6 @@ const children = { source, destination };
 
 const contextualize = makeContextualize(children);
 
-export const reservoirContextualizer = {
+export const degenContextualizer = {
   contextualize,
 };
