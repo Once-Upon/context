@@ -106,7 +106,7 @@ export function generate(transaction: Transaction): Transaction {
     summaries: {
       category: 'PROTOCOL_1',
       en: {
-        title: 'Farcaster',
+        title: 'Warpcast',
         default: '[[buyer]][[contextAction]][[minted]]with Warps ([[cost]])',
       },
     },
