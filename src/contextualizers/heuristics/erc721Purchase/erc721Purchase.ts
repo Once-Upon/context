@@ -6,7 +6,6 @@ import {
 import {
   AssetType,
   ERC20Asset,
-  ERC721Asset,
   HeuristicContextActionEnum,
   Transaction,
 } from '../../../types';
