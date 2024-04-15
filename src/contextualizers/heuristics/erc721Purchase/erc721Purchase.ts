@@ -177,17 +177,6 @@ export function generate(transaction: Transaction): Transaction {
                 value: 'NFTs',
                 emphasis: true,
               },
-      numOfToken:
-        receivedNfts.length === 1
-          ? {
-              type: 'string',
-              value: '',
-            }
-          : {
-              type: 'number',
-              value: receivedNfts.length,
-              emphasis: true,
-            },
       price:
         totalAssets > 1
           ? {
@@ -229,10 +218,29 @@ export function generate(transaction: Transaction): Transaction {
       en: {
         title: 'NFT Purchase',
         default:
-          '[[userOrUsers]][[bought]][[numOfToken]][[tokenOrTokens]]for[[price]]from[[sellerOrSellers]]',
+          '[[userOrUsers]][[bought]][[tokenOrTokens]]for[[price]]from[[sellerOrSellers]]',
       },
     },
   };
+
+  if (receivedNfts.length > 1) {
+    transaction.context.variables = {
+      ...transaction.context.variables,
+      numOfToken: {
+        type: 'number',
+        value: receivedNfts.length,
+        emphasis: true,
+      },
+    };
+    transaction.context.summaries = {
+      category: 'NFT',
+      en: {
+        title: 'NFT Purchase',
+        default:
+          '[[userOrUsers]][[bought]][[numOfToken]][[tokenOrTokens]]for[[price]]from[[sellerOrSellers]]',
+      },
+    };
+  }
 
   return transaction;
 }
