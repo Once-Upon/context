@@ -1,20 +1,11 @@
 import { Hex } from 'viem';
-import {
-  AssetType,
-  ERC1155AssetTransfer,
-  ERC721AssetTransfer,
-  ETHAsset,
-  EventLogTopics,
-  HeuristicContextActionEnum,
-  Transaction,
-} from '../../../types';
+import { AssetType, EventLogTopics, Transaction } from '../../../types';
 import {
   PROTOCOL_REWARDS_ABI,
   PROTOCOL_REWARDS_CONTRACT,
   REWARDS_DEPOSIT_TOPIC,
 } from './constants';
-import { decodeLog } from '../../../helpers/utils';
-import { KNOWN_ADDRESSES } from '../../../helpers/constants';
+import { decodeLog, processNFTTransaction } from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isEnjoy = detect(transaction);
@@ -39,9 +30,14 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  if (!transaction.assetTransfers || !transaction.netAssetTransfers) {
+  // detect as heuristic erc721 or erc1155 mint
+  transaction = processNFTTransaction(transaction);
+  if (!transaction.context?.summaries?.category) {
     return transaction;
   }
+  // update category and title
+  transaction.context.summaries.category = 'PROTOCOL_1';
+  transaction.context.summaries.en.title = 'Zora';
 
   const logs =
     transaction.logs && transaction.logs.length > 0 ? transaction.logs : [];
@@ -65,127 +61,19 @@ export const generate = (transaction: Transaction): Transaction => {
     !decodedLog.args['mintReferral']
   )
     return transaction;
-  // Get all the mints where from account == to account for the mint transfer
-  const mints = transaction.assetTransfers.filter(
-    (transfer) =>
-      transfer.from === KNOWN_ADDRESSES.NULL &&
-      (transfer.type === AssetType.ERC1155 ||
-        transfer.type === AssetType.ERC721),
-  ) as (ERC1155AssetTransfer | ERC721AssetTransfer)[];
 
-  const assetTransfer = mints[0];
-  const recipient = assetTransfer.to;
-  const amount = mints.filter((ele) => ele.type === assetTransfer.type).length;
-
-  const assetSent = transaction.netAssetTransfers[transaction.from]
-    ?.sent as ETHAsset[];
-  const price =
-    assetSent && assetSent.length > 0 && assetSent[0]?.value
-      ? assetSent[0].value
-      : '0';
-
-  const sender = transaction.from;
-
-  transaction.context = {
-    variables: {
-      recipient: {
-        type: 'address',
-        value: recipient,
-      },
-      sender: {
-        type: 'address',
-        value: sender,
-      },
-      price: {
-        type: AssetType.ETH,
-        value: price,
-        unit: 'wei',
-      },
-      minted: {
-        type: 'contextAction',
-        value: HeuristicContextActionEnum.MINTED, // TODO: Make a Zora version of this
-      },
-      numOfEth: {
-        type: AssetType.ETH,
-        value: decodedLog.args['mintReferralReward'].toString(),
-        unit: 'wei',
-      },
-      mintReferral: {
-        type: 'address',
-        value: decodedLog.args['mintReferral'].toLowerCase(),
-      },
+  transaction.context.variables = {
+    ...transaction.context.variables,
+    numOfEth: {
+      type: AssetType.ETH,
+      value: decodedLog.args['mintReferralReward'].toString(),
+      unit: 'wei',
     },
-    summaries: {
-      category: 'PROTOCOL_1',
-      en: {
-        title: 'Zora',
-        default: '', // filled in below
-      },
+    mintReferral: {
+      type: 'address',
+      value: decodedLog.args['mintReferral'].toLowerCase(),
     },
   };
-
-  switch (assetTransfer.type) {
-    case AssetType.ERC1155:
-      transaction.context.variables = {
-        ...transaction.context.variables,
-        token: {
-          type: AssetType.ERC1155,
-          token: assetTransfer.contract,
-          value: assetTransfer.value,
-          tokenId: assetTransfer.tokenId,
-        },
-      };
-      break;
-    case AssetType.ERC721:
-      transaction.context.variables = {
-        ...transaction.context.variables,
-        token: {
-          type: AssetType.ERC721,
-          token: assetTransfer.contract,
-          tokenId: assetTransfer.tokenId,
-        },
-      };
-      break;
-  }
-
-  if (amount > 1) {
-    transaction.context.variables = {
-      ...transaction.context.variables,
-      amount: {
-        type: 'number',
-        value: amount,
-        unit: 'x',
-      },
-    };
-
-    transaction.context.summaries = {
-      ...transaction.context.summaries,
-      en: {
-        title: 'Zora',
-        default:
-          sender === recipient
-            ? '[[recipient]][[minted]][[amount]][[token]]'
-            : '[[sender]][[minted]][[amount]][[token]]to[[recipient]]',
-      },
-    };
-    if (BigInt(price) > BigInt(0)) {
-      transaction.context.summaries['en'].default += 'for[[price]]';
-    }
-  } else {
-    transaction.context.summaries = {
-      ...transaction.context.summaries,
-      en: {
-        title: 'Zora',
-        default:
-          sender === recipient
-            ? '[[recipient]][[minted]][[token]]'
-            : '[[sender]][[minted]][[token]]to[[recipient]]',
-      },
-    };
-    if (BigInt(price) > BigInt(0)) {
-      transaction.context.summaries['en'].default += 'for[[price]]';
-    }
-  }
 
   transaction.context.summaries['en'].default +=
     'with[[numOfEth]]in rewards for[[mintReferral]]';
