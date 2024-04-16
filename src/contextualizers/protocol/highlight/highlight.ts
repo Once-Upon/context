@@ -1,16 +1,7 @@
 import { Abi, Hex } from 'viem';
-import {
-  AssetType,
-  ERC1155AssetTransfer,
-  ERC721AssetTransfer,
-  EventLogTopics,
-  Transaction,
-  HeuristicContextActionEnum,
-  ERC20AssetTransfer,
-} from '../../../types';
+import { AssetType, EventLogTopics, Transaction } from '../../../types';
 import { MINT_MANAGER_ABI, MINT_MANAGER_CONTRACT } from './constants';
-import { decodeLog } from '../../../helpers/utils';
-import { KNOWN_ADDRESSES } from '../../../helpers/constants';
+import { decodeLog, processNFTTransaction } from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isHighlight = detect(transaction);
@@ -32,144 +23,15 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  if (!transaction.assetTransfers || !transaction.netAssetTransfers) {
+  // detect as heuristic erc721 or erc1155 mint
+  transaction = processNFTTransaction(transaction);
+  if (!transaction.context?.summaries?.category) {
     return transaction;
   }
 
-  // Get all the mints where from account == to account for the mint transfer
-  const mints = transaction.assetTransfers.filter(
-    (transfer) =>
-      transfer.from === KNOWN_ADDRESSES.NULL &&
-      (transfer.type === AssetType.ERC1155 ||
-        transfer.type === AssetType.ERC721),
-  ) as (ERC1155AssetTransfer | ERC721AssetTransfer)[];
-
-  const assetTransfer = mints[0];
-  const recipient = assetTransfer.to;
-  const amount = mints.filter((ele) => ele.type === assetTransfer.type).length;
-
-  // TODO: Find an ERC20 transferred by the sender from assetTransfers
-
-  const erc20TransferAsPayment = transaction.assetTransfers.filter(
-    (transfer) =>
-      transfer.from === transaction.from && transfer.type === AssetType.ERC20,
-  ) as ERC20AssetTransfer[];
-
-  const mintPriceETH = transaction.value ? transaction.value.toString() : '0';
-  const mintPriceERC20 =
-    erc20TransferAsPayment &&
-    erc20TransferAsPayment?.[0] &&
-    erc20TransferAsPayment?.[0]?.value
-      ? erc20TransferAsPayment?.[0]?.value.toString()
-      : '0';
-  const mintToken = erc20TransferAsPayment?.[0]?.contract;
-  const sender = transaction.from;
-
-  transaction.context = {
-    variables: {
-      recipient: {
-        type: 'address',
-        value: recipient,
-      },
-      sender: {
-        type: 'address',
-        value: sender,
-      },
-      mintPrice:
-        BigInt(mintPriceETH) > BigInt(0)
-          ? {
-              type: AssetType.ETH,
-              value: mintPriceETH,
-              unit: 'wei',
-            }
-          : {
-              type: AssetType.ERC20,
-              value: mintPriceERC20,
-              token: mintToken,
-            },
-      minted: {
-        type: 'contextAction',
-        value: HeuristicContextActionEnum.MINTED,
-      },
-    },
-    summaries: {
-      category: 'PROTOCOL_1',
-      en: {
-        title: 'Highlight',
-        default: '',
-      },
-    },
-  };
-
-  switch (assetTransfer.type) {
-    case AssetType.ERC1155:
-      transaction.context.variables = {
-        ...transaction.context.variables,
-        token: {
-          type: AssetType.ERC1155,
-          token: assetTransfer.contract,
-          value: assetTransfer.value,
-          tokenId: assetTransfer.tokenId,
-        },
-      };
-      break;
-    case AssetType.ERC721:
-      transaction.context.variables = {
-        ...transaction.context.variables,
-        token: {
-          type: AssetType.ERC721,
-          token: assetTransfer.contract,
-          tokenId: assetTransfer.tokenId,
-        },
-      };
-      break;
-  }
-
-  if (amount > 1) {
-    transaction.context.variables = {
-      ...transaction.context.variables,
-      amount: {
-        type: 'number',
-        value: amount,
-        unit: 'x',
-      },
-    };
-
-    transaction.context.summaries = {
-      ...transaction.context.summaries,
-      en: {
-        title: 'Highlight',
-        default:
-          sender === recipient
-            ? '[[recipient]][[minted]][[amount]][[token]]'
-            : '[[sender]][[minted]][[amount]][[token]]to[[recipient]]',
-      },
-    };
-
-    if (
-      BigInt(mintPriceETH) > BigInt(0) ||
-      BigInt(mintPriceERC20) > BigInt(0)
-    ) {
-      transaction.context.summaries['en'].default += 'for[[mintPrice]]';
-    }
-  } else {
-    transaction.context.summaries = {
-      ...transaction.context.summaries,
-      en: {
-        title: 'Highlight',
-        default:
-          sender === recipient
-            ? '[[recipient]][[minted]][[token]]'
-            : '[[sender]][[minted]][[token]]to[[recipient]]',
-      },
-    };
-    if (
-      BigInt(mintPriceETH) > BigInt(0) ||
-      BigInt(mintPriceERC20) > BigInt(0)
-    ) {
-      transaction.context.summaries['en'].default += 'for[[mintPrice]]';
-    }
-  }
+  // update category and title
+  transaction.context.summaries.category = 'PROTOCOL_1';
+  transaction.context.summaries.en.title = 'Highlight';
 
   // check if mint with rewards
   const logs = transaction.logs ?? [];

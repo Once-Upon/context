@@ -4,7 +4,6 @@ import {
   ERC20Asset,
   ERC1155AssetTransfer,
   HeuristicContextActionEnum,
-  ERC1155Asset,
 } from '../../../types';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
 import {
