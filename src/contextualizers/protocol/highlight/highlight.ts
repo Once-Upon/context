@@ -180,7 +180,9 @@ export const generate = (transaction: Transaction): Transaction => {
       log.data as Hex,
       [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
     );
+
     if (decodedLog && decodedLog.eventName === 'CreatorRewardPayout') break;
+    decodedLog = null;
   }
 
   if (decodedLog) {
