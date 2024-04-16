@@ -1,6 +1,5 @@
 import {
   AssetType,
-  ERC1155Asset,
   ERC20Asset,
   ERC721AssetTransfer,
   HeuristicContextActionEnum,

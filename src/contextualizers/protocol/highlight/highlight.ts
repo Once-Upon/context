@@ -8,7 +8,7 @@ import {
   HeuristicContextActionEnum,
   ERC20AssetTransfer,
 } from '../../../types';
-import { MINT_MANAGER_ABI } from './constants';
+import { MINT_MANAGER_ABI, MINT_MANAGER_CONTRACT } from './constants';
 import { decodeLog } from '../../../helpers/utils';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
 
@@ -20,43 +20,22 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
-  // check logs
-  const logs = transaction.logs;
-  if (!logs) return false;
+  // check if transaction is interacted with mint manager
+  if (
+    !transaction.chainId ||
+    transaction.to !== MINT_MANAGER_CONTRACT[transaction.chainId]
+  )
+    return false;
 
-  for (const log of logs) {
-    const decoded = decodeLog(
-      MINT_MANAGER_ABI as Abi,
-      log.data as Hex,
-      [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
-    );
-    if (decoded && decoded.eventName === 'CreatorRewardPayout') return true;
-  }
-
-  return false;
+  return true;
 };
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  if (
-    !transaction.assetTransfers ||
-    !transaction.netAssetTransfers ||
-    !transaction.logs
-  ) {
+  if (!transaction.assetTransfers || !transaction.netAssetTransfers) {
     return transaction;
   }
 
-  let decodedLog;
-  for (const log of transaction.logs) {
-    decodedLog = decodeLog(
-      MINT_MANAGER_ABI as Abi,
-      log.data as Hex,
-      [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
-    );
-    if (decodedLog && decodedLog.eventName === 'CreatorRewardPayout') break;
-  }
-
-  if (!decodedLog) return transaction;
   // Get all the mints where from account == to account for the mint transfer
   const mints = transaction.assetTransfers.filter(
     (transfer) =>
@@ -81,8 +60,6 @@ export const generate = (transaction: Transaction): Transaction => {
     ? erc20TransferAsPayment?.[0]?.value.toString()
     : '0';
   const mintToken = erc20TransferAsPayment?.[0]?.contract;
-  const mintReferralAmount = decodedLog.args['amount'].toString();
-  const mintReferralCurrency = decodedLog.args['currency'].toLowerCase();
   const sender = transaction.from;
 
   transaction.context = {
@@ -95,18 +72,6 @@ export const generate = (transaction: Transaction): Transaction => {
         type: 'address',
         value: sender,
       },
-      mintReferralAmount:
-        mintReferralCurrency !== '0x0000000000000000000000000000000000000000'
-          ? {
-              type: AssetType.ERC20,
-              value: mintReferralAmount,
-              token: mintReferralCurrency,
-            }
-          : {
-              type: AssetType.ETH,
-              value: mintReferralAmount,
-              unit: 'wei',
-            },
       mintPrice:
         BigInt(mintPriceETH) > BigInt(0)
           ? {
@@ -122,14 +87,6 @@ export const generate = (transaction: Transaction): Transaction => {
       minted: {
         type: 'contextAction',
         value: HeuristicContextActionEnum.MINTED,
-      },
-      vectorId: {
-        type: 'number',
-        value: decodedLog.args['vectorId'].toString(),
-      },
-      mintReferralRecipient: {
-        type: 'address',
-        value: decodedLog.args['rewardRecipient'].toLowerCase(),
       },
     },
     summaries: {
@@ -211,9 +168,50 @@ export const generate = (transaction: Transaction): Transaction => {
     }
   }
 
-  if (BigInt(mintReferralAmount) > BigInt(0)) {
-    transaction.context.summaries['en'].default +=
-      'with[[mintReferralAmount]]in rewards for[[mintReferralRecipient]]';
+  // check if mint with rewards
+  const logs = transaction.logs ?? [];
+  let decodedLog;
+  for (const log of logs) {
+    decodedLog = decodeLog(
+      MINT_MANAGER_ABI as Abi,
+      log.data as Hex,
+      [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
+    );
+    if (decodedLog && decodedLog.eventName === 'CreatorRewardPayout') break;
+  }
+
+  if (decodedLog) {
+    const mintReferralAmount = decodedLog.args['amount'].toString();
+    const mintReferralCurrency = decodedLog.args['currency'].toLowerCase();
+
+    transaction.context.variables = {
+      ...transaction.context.variables,
+      vectorId: {
+        type: 'number',
+        value: decodedLog.args['vectorId'].toString(),
+      },
+      mintReferralRecipient: {
+        type: 'address',
+        value: decodedLog.args['rewardRecipient'].toLowerCase(),
+      },
+      mintReferralAmount:
+        mintReferralCurrency !== '0x0000000000000000000000000000000000000000'
+          ? {
+              type: AssetType.ERC20,
+              value: mintReferralAmount,
+              token: mintReferralCurrency,
+            }
+          : {
+              type: AssetType.ETH,
+              value: mintReferralAmount,
+              unit: 'wei',
+            },
+    };
+
+    if (BigInt(mintReferralAmount) > BigInt(0)) {
+      transaction.context.summaries['en'].default +=
+        'with[[mintReferralAmount]]in rewards for[[mintReferralRecipient]]';
+    }
   }
 
   return transaction;
