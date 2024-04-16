@@ -56,9 +56,12 @@ export const generate = (transaction: Transaction): Transaction => {
   ) as ERC20AssetTransfer[];
 
   const mintPriceETH = transaction.value ? transaction.value.toString() : '0';
-  const mintPriceERC20 = erc20TransferAsPayment
-    ? erc20TransferAsPayment?.[0]?.value.toString()
-    : '0';
+  const mintPriceERC20 =
+    erc20TransferAsPayment &&
+    erc20TransferAsPayment?.[0] &&
+    erc20TransferAsPayment?.[0]?.value
+      ? erc20TransferAsPayment?.[0]?.value.toString()
+      : '0';
   const mintToken = erc20TransferAsPayment?.[0]?.contract;
   const sender = transaction.from;
 
