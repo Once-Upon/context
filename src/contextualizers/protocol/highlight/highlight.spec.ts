@@ -4,7 +4,7 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 import highlight0x61e3c3cb from '../../test/transactions/highlight-0x61e3c3cb.json';
 import highlightErc20_0x1f0c411b from '../../test/transactions/highlightErc20-0x1f0c411b.json';
 import highlightWithoutEvent0xc8f2b82a from '../../test/transactions/highlightWithoutEvent-0xc8f2b82a.json';
-import highlightMultipeMint0xd4c3efc5 from '../../test/transactions/highlightMultipeMint-0xd4c3efc5.json';
+import highlightMultipleMint0xd4c3efc5 from '../../test/transactions/highlightMultipleMint-0xd4c3efc5.json';
 import { containsBigInt, contextSummary } from '../../../helpers/utils';
 
 describe('Highlight', () => {
@@ -21,7 +21,7 @@ describe('Highlight', () => {
     expect(highlightMint1).toBe(true);
     // multiple mint
     const highlightMint2 = detect(
-      highlightMultipeMint0xd4c3efc5 as unknown as Transaction,
+      highlightMultipleMint0xd4c3efc5 as unknown as Transaction,
     );
     expect(highlightMint2).toBe(true);
   });
@@ -75,7 +75,7 @@ describe('Highlight', () => {
 
   it('Should generate context for highlight multiple mint transaction', () => {
     const highlightMultipleMint1 = generate(
-      highlightMultipeMint0xd4c3efc5 as unknown as Transaction,
+      highlightMultipleMint0xd4c3efc5 as unknown as Transaction,
     );
     expect(highlightMultipleMint1.context?.summaries?.category).toBe(
       'PROTOCOL_1',
