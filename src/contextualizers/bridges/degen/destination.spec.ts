@@ -17,7 +17,7 @@ describe('Degen Bridge Destination', () => {
     );
     expect(transaction.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(transaction.context)).toBe(
-      '0x888f05d02ea7b42f32f103c089c1750170830642 COMPLETED_A_CROSS_CHAIN_INTERACTION via 0x729170d38dd5449604f35f349fdfcc9ad08257cd',
+      '0x888f05d02ea7b42f32f103c089c1750170830642 COMPLETED_A_CROSS_CHAIN_INTERACTION via 0x729170d38dd5449604f35f349fdfcc9ad08257cd and 470.99999367238779 ETH was transferred',
     );
     expect(containsBigInt(transaction.context)).toBe(false);
   });

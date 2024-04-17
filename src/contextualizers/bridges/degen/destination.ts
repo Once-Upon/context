@@ -61,7 +61,8 @@ export function generate(transaction: Transaction): Transaction {
       category: 'MULTICHAIN',
       en: {
         title: `Bridge`,
-        default: '[[person]][[completedACrossChainInteraction]]via[[address]]',
+        default:
+          '[[person]][[completedACrossChainInteraction]]via[[address]]and[[asset]]was transferred',
       },
     },
     variables: {
@@ -72,6 +73,11 @@ export function generate(transaction: Transaction): Transaction {
       address: {
         type: 'address',
         value: transaction.to,
+      },
+      asset: {
+        type: AssetType.ETH,
+        value: assetTransfer.value,
+        unit: 'wei',
       },
       completedACrossChainInteraction: {
         type: 'contextAction',

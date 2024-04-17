@@ -1,0 +1,134 @@
+{
+  "_id": "661d911b84b983a70babd907",
+  "accessList": [],
+  "blockHash": "0x5536967894e93a85ead212dab042b820dc5f4530acca8b8ae34ab4bf5907cf51",
+  "blockNumber": 13212184,
+  "chainId": 8453,
+  "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+  "gas": 25200,
+  "gasPrice": "138005700",
+  "hash": "0x1edd2e93514801de58e440391b00ca6591855ea76fcfa300d52e31d9cb00564e",
+  "input": "0x562ffb",
+  "maxFeePerGas": "149824286",
+  "maxPriorityFeePerGas": "21099610",
+  "nonce": 337195,
+  "r": "0x7def2c8971ddb3f9563d920ff5a2960a33c1985ed860a6763f71d57bf8a0bc8c",
+  "s": "0x259b020e3f1ed4889c3aa4bc1f7f8dd3cd24aa1139f07085bf4f2764c042b9aa",
+  "to": "0xc761b876e04afa1a67c76bfd8c2c7aa5a5e8e35f",
+  "transactionIndex": 11,
+  "type": 2,
+  "v": "0x1",
+  "value": "267540986846706630",
+  "yParity": "0x1",
+  "receipt": {
+    "blockHash": "0x5536967894e93a85ead212dab042b820dc5f4530acca8b8ae34ab4bf5907cf51",
+    "blockNumber": 13212184,
+    "contractAddress": null,
+    "cumulativeGasUsed": 1350771,
+    "effectiveGasPrice": 138005700,
+    "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+    "gasUsed": 21048,
+    "l1Fee": "0x737eecd0b",
+    "l1GasPrice": "0x34734e01c",
+    "l1GasUsed": "0x7d0",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0xc761b876e04afa1a67c76bfd8c2c7aa5a5e8e35f",
+    "transactionHash": "0x1edd2e93514801de58e440391b00ca6591855ea76fcfa300d52e31d9cb00564e",
+    "transactionIndex": 11,
+    "type": "0x2"
+  },
+  "decoded": null,
+  "assetTransfers": [
+    {
+      "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+      "to": "0xc761b876e04afa1a67c76bfd8c2c7aa5a5e8e35f",
+      "type": "eth",
+      "value": "267540986846706630"
+    }
+  ],
+  "delegateCalls": [],
+  "neighbor": {
+    "address": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+    "neighbor": "0xc761b876e04afa1a67c76bfd8c2c7aa5a5e8e35f"
+  },
+  "errors": [],
+  "parties": [
+    "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+    "0xc761b876e04afa1a67c76bfd8c2c7aa5a5e8e35f"
+  ],
+  "sigHash": "0x562ffb",
+  "internalSigHashes": [
+    {
+      "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+      "to": "0xc761b876e04afa1a67c76bfd8c2c7aa5a5e8e35f",
+      "sigHash": "0x562ffb"
+    }
+  ],
+  "timestamp": 1713213715,
+  "baseFeePerGas": 116906090,
+  "transactionFee": "2904743973600",
+  "logs": [],
+  "netAssetTransfers": {
+    "0xf70da97812cb96acdf810712aa562db8dfa3dbef": {
+      "received": [],
+      "sent": [
+        {
+          "type": "eth",
+          "value": "267540986846706630"
+        }
+      ]
+    },
+    "0xc761b876e04afa1a67c76bfd8c2c7aa5a5e8e35f": {
+      "received": [
+        {
+          "type": "eth",
+          "value": "267540986846706630"
+        }
+      ],
+      "sent": []
+    }
+  },
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0xf70da97812cb96acdf810712aa562db8dfa3dbef": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0xc761b876e04afa1a67c76bfd8c2c7aa5a5e8e35f": [
+      {
+        "chainId": 1,
+        "isContract": false,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
+}
