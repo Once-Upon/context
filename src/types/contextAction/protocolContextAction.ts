@@ -74,9 +74,9 @@ export enum FrenpetContextActionEnum {
   WHEEL_COMMITTED = 'WHEEL_COMMITTED',
   KILLED = 'KILLED',
   MINTED = 'MINTED',
-  // SOLD_ITEM = 'SOLD_ITEM', // Not used
-  // JOINED_DICE_GAME = 'JOINED_DICE_GAME', // Not used
-  // DICE_GAME_SETTLED = 'DICE_GAME_SETTLED', // Not used
+  SOLD_ITEM = 'SOLD_ITEM', // Not used
+  JOINED_DICE_GAME = 'JOINED_DICE_GAME', // Not used
+  DICE_GAME_SETTLED = 'DICE_GAME_SETTLED', // Not used
 }
 
 export type FrenpetContextAction =
@@ -89,10 +89,10 @@ export type FrenpetContextAction =
   | FrenpetContextActionEnum.WHEEL_REVEALED
   | FrenpetContextActionEnum.WHEEL_COMMITTED
   | FrenpetContextActionEnum.KILLED
-  | FrenpetContextActionEnum.MINTED;
-// | FrenpetContextActionEnum.SOLD_ITEM
-// | FrenpetContextActionEnum.JOINED_DICE_GAME
-// | FrenpetContextActionEnum.DICE_GAME_SETTLED
+  | FrenpetContextActionEnum.MINTED
+  | FrenpetContextActionEnum.SOLD_ITEM
+  | FrenpetContextActionEnum.JOINED_DICE_GAME
+  | FrenpetContextActionEnum.DICE_GAME_SETTLED;
 
 export enum FarcasterContextActionEnum {
   REGISTERED_FARCASTER_ID = 'REGISTERED_FARCASTER_ID',
