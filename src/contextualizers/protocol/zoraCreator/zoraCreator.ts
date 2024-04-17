@@ -5,7 +5,9 @@ import {
   PROTOCOL_REWARDS_CONTRACT,
   REWARDS_DEPOSIT_TOPIC,
 } from './constants';
-import { decodeLog, processNFTTransaction } from '../../../helpers/utils';
+import { decodeLog } from '../../../helpers/utils';
+import { generate as erc721Generate } from '../../heuristics/erc721Mint/erc721Mint';
+import { generate as erc1155Generate } from '../../heuristics/erc1155Mint/erc1155Mint';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isEnjoy = detect(transaction);
@@ -31,9 +33,12 @@ export const detect = (transaction: Transaction): boolean => {
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
   // detect as heuristic erc721 or erc1155 mint
-  transaction = processNFTTransaction(transaction);
-  if (!transaction.context?.summaries?.category) {
-    return transaction;
+  transaction = erc721Generate(transaction);
+  if (transaction.context?.summaries?.en.title !== 'NFT Mint') {
+    transaction = erc1155Generate(transaction);
+    if (transaction.context?.summaries?.en.title !== 'NFT Mint') {
+      return transaction;
+    }
   }
   // update category and title
   transaction.context.summaries.category = 'PROTOCOL_1';

@@ -20,8 +20,6 @@ import {
   ERC721Asset,
   ERC1155Asset,
 } from '../types';
-import { generate as erc721Generate } from '../contextualizers/heuristics/erc721Mint/erc721Mint';
-import { generate as erc1155Generate } from '../contextualizers/heuristics/erc1155Mint/erc1155Mint';
 
 const VALID_CHARS =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.? ';
@@ -410,26 +408,4 @@ export function decodeEVMAddress(addressString: string): string {
   }
   const address = '0x' + buf.toString('hex', 12, 32); // grab the last 20 bytes
   return address.toLocaleLowerCase();
-}
-
-export function processNFTTransaction(transaction: Transaction): Transaction {
-  // Attempt to identify and process the transaction as an ERC721 mint
-  transaction = erc721Generate(transaction);
-  if (isNFTMint(transaction)) {
-    return transaction;
-  }
-
-  // If not identified as an ERC721 mint, attempt to process as an ERC1155 mint
-  transaction = erc1155Generate(transaction);
-  if (isNFTMint(transaction)) {
-    return transaction;
-  }
-
-  // If the transaction is neither an ERC721 nor ERC1155 mint, return it unchanged
-  return transaction;
-}
-
-// Helper function to check if the transaction is an NFT Mint
-export function isNFTMint(transaction: Transaction): boolean {
-  return transaction.context?.summaries?.en.title === 'NFT Mint';
 }
