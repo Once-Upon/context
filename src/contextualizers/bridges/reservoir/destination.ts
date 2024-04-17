@@ -57,7 +57,8 @@ export function generate(transaction: Transaction): Transaction {
       category: 'MULTICHAIN',
       en: {
         title: `Bridge`,
-        default: '[[person]][[completedACrossChainInteraction]]via[[address]]',
+        default:
+          '[[person]][[completedACrossChainInteraction]]via[[address]]and[[asset]]was transferred',
       },
     },
     variables: {
