@@ -53,6 +53,7 @@ function* dropWhile<T>(xs: T[], fn: (v: T) => boolean) {
 // NOTE: we need to handle events that don't conform to the EntryPoint
 // ABI here since the UserOp can emit arbitrary events
 const filterOutUserOpLogs = (logs: RawLog[], userOpHash: string) => {
+  if (!logs) return [];
   const parsedLogs = logs.map((log) => {
     try {
       const { data, topics } = log;
