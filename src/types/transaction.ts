@@ -78,6 +78,7 @@ export type TransactionContextType = {
 // MongoDB document
 export type Transaction = BaseTransaction & {
   assetTransfers?: AssetTransfer[];
+  pseudotransactions?: PseudoTransaction[];
   sigHash: string;
   internalSigHashes: SigHash[];
   parties: string[];
@@ -92,7 +93,7 @@ export type Transaction = BaseTransaction & {
   isoTimestamp: string;
 };
 
-export type PartialTransaction = Omit<BaseTransaction, "hash"> & {
+export type PartialTransaction = Omit<BaseTransaction, 'hash'> & {
   receipt: RawReceipt;
   traces: RawTrace[];
 
@@ -115,7 +116,7 @@ export type PartialTransaction = Omit<BaseTransaction, "hash"> & {
 
 export type PseudoTransaction = PartialTransaction & {
   meta: {
-    type: "ERC4337";
+    type: 'ERC4337';
     key: string;
   } & Record<string, any>;
 };
