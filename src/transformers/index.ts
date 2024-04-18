@@ -1,4 +1,10 @@
-import { AssetTransfer, NetAssetTransfers, RawBlock } from 'src/types';
+import {
+  AssetTransfer,
+  NetAssetTransfers,
+  PartialTransaction,
+  PseudoTransaction,
+  RawBlock,
+} from 'src/types';
 import { makeTransform } from '../helpers/utils';
 import * as pseudoTransactionsFromUserOps from './_common/accountAbstraction';
 import * as transactionAssetTransfers from './_common/assetTransfers';
@@ -30,9 +36,11 @@ const children = {
   transactionForks,
 };
 
-const utils = {
+const utils: Utils = {
   extractNetAssetTransfers:
     transactionNetAssetTransfers.extractNetAssetTransfers,
+  unpackERC4337Transactions:
+    pseudoTransactionsFromUserOps.unpackERC4337Transactions,
 };
 
 const transformers = Object.fromEntries(
@@ -41,14 +49,19 @@ const transformers = Object.fromEntries(
 
 const transform = makeTransform(transformers);
 
+type Utils = {
+  extractNetAssetTransfers: (
+    assetTransfers: AssetTransfer[],
+  ) => NetAssetTransfers;
+  unpackERC4337Transactions: (
+    transaction: PartialTransaction,
+  ) => PseudoTransaction[];
+};
+
 type UsabilityTransformer = {
   transform: (block: RawBlock) => RawBlock;
   children: Record<string, unknown>;
-  utils: {
-    extractNetAssetTransfers: (
-      assetTransfers: AssetTransfer[],
-    ) => NetAssetTransfers;
-  };
+  utils: Utils;
 };
 
 export const transformer: UsabilityTransformer = {
