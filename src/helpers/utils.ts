@@ -211,6 +211,9 @@ export const isRawTransaction = (
   return 'hash' in v;
 };
 
+// Differentiating between the two types depends on the assumption that
+// TxnTransformer accepts two arguments and BlockTransformer one
+// If that changes, we'll need to update this
 const isTxnTransformer = (
   v: TxnTransformer | BlockTransformer,
 ): v is TxnTransformer => v.length == 2;
