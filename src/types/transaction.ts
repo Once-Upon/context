@@ -103,6 +103,7 @@ export type PartialTransaction = Omit<BaseTransaction, 'hash'> & {
   context: TxContext;
   assetTransfers: AssetTransfer[];
   netAssetTransfers: NetAssetTransfers;
+  logs?: Log[];
   errors: string[];
   parties?: string[];
   neighbor?: RawNeighbor;
