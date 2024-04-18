@@ -19,6 +19,11 @@ import {
   ETHAsset,
   ERC721Asset,
   ERC1155Asset,
+  AssetTransfer,
+  ETHAssetTransfer,
+  ERC721AssetTransfer,
+  ERC1155AssetTransfer,
+  ERC20AssetTransfer,
 } from '../types';
 
 const VALID_CHARS =
@@ -153,25 +158,81 @@ export function processNetAssetTransfers(netAssetTransfers: NetAssetTransfers) {
   };
 }
 
-export function computeETHPrice(ethPayments: ETHAsset[]) {
-  return ethPayments.reduce((acc, next) => {
-    acc = BigInt(acc) + BigInt(next.value);
-    return acc;
-  }, BigInt(0));
+export function processAssetTransfers(assetTransfers: AssetTransfer[]) {
+  const receivingAddresses: string[] = [];
+  const sendingAddresses: string[] = [];
+  const receivedNfts: (ERC721AssetTransfer | ERC1155AssetTransfer)[] = [];
+  const erc20Payments: ERC20AssetTransfer[] = [];
+  const ethPayments: ETHAssetTransfer[] = [];
+
+  for (const assetTransfer of assetTransfers) {
+    if (
+      assetTransfer.type === AssetType.ERC1155 ||
+      assetTransfer.type === AssetType.ERC721
+    ) {
+      receivingAddresses.push(assetTransfer.to);
+      sendingAddresses.push(assetTransfer.from);
+      if (
+        !receivedNfts.find(
+          (x) =>
+            x.contract === assetTransfer.contract &&
+            x.tokenId === assetTransfer.tokenId,
+        )
+      ) {
+        receivedNfts.push(
+          assetTransfer as ERC721AssetTransfer | ERC1155AssetTransfer,
+        );
+      }
+    }
+    if (assetTransfer.type === AssetType.ERC20) {
+      erc20Payments.push(assetTransfer);
+    }
+    if (assetTransfer.type === AssetType.ETH) {
+      ethPayments.push(assetTransfer);
+    }
+  }
+
+  return {
+    receivingAddresses,
+    sendingAddresses,
+    erc20Payments,
+    ethPayments,
+    receivedNfts,
+    receivedNftContracts: Array.from(
+      new Set(receivedNfts.map((x) => x.contract)),
+    ),
+  };
 }
 
-export function computeERC20Price(erc20Payments: ERC20Asset[]) {
-  return erc20Payments.reduce((acc, next) => {
-    acc[next.contract] = {
-      id: next.contract,
-      type: next.type,
-      contract: next.contract,
-      value: (
-        BigInt(acc[next.contract]?.value || '0') + BigInt(next.value)
-      ).toString(),
-    };
-    return acc;
-  }, {});
+export function computeETHPrice(
+  ethPayments: ETHAssetTransfer[],
+  address: string,
+) {
+  return ethPayments
+    .filter((ethPayment) => ethPayment.from === address)
+    .reduce((acc, next) => {
+      acc = BigInt(acc) + BigInt(next.value);
+      return acc;
+    }, BigInt(0));
+}
+
+export function computeERC20Price(
+  erc20Payments: ERC20AssetTransfer[],
+  address: string,
+) {
+  return erc20Payments
+    .filter((erc20Payment) => erc20Payment.from === address)
+    .reduce((acc, next) => {
+      acc[next.contract] = {
+        id: next.contract,
+        type: next.type,
+        contract: next.contract,
+        value: (
+          BigInt(acc[next.contract]?.value || '0') + BigInt(next.value)
+        ).toString(),
+      };
+      return acc;
+    }, {});
 }
 
 export function contextSummary(

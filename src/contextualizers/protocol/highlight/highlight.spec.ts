@@ -38,7 +38,7 @@ describe('Highlight', () => {
     );
     const desc1 = contextSummary(highlightMintWithRewards1.context);
     expect(desc1).toBe(
-      '0x0989cd2871b36d638140354731301a32d2409c3a MINTED 0x31c5c70330c9a1d3099d8f77381e82a218d5c71a #2 for 0.0004 ETH with 0.0004 ETH in rewards for 0x0989cd2871b36d638140354731301a32d2409c3a',
+      '0x0989cd2871b36d638140354731301a32d2409c3a MINTED 0x31c5c70330c9a1d3099d8f77381e82a218d5c71a #2 for 0.0008 ETH with 0.0004 ETH in rewards for 0x0989cd2871b36d638140354731301a32d2409c3a',
     );
     expect(containsBigInt(highlightMintWithRewards1.context)).toBe(false);
   });
@@ -55,7 +55,7 @@ describe('Highlight', () => {
     );
     const desc1 = contextSummary(highlightMintWithRewardsErc20.context);
     expect(desc1).toBe(
-      '0x0989cd2871b36d638140354731301a32d2409c3a MINTED 0x31c5c70330c9a1d3099d8f77381e82a218d5c71a #3 for 36000000000000000000 0x13a75904899733587219d10c3af2f198408c7f7c with 36000000000000000000 0x13a75904899733587219d10c3af2f198408c7f7c in rewards for 0x0989cd2871b36d638140354731301a32d2409c3a',
+      '0x0989cd2871b36d638140354731301a32d2409c3a MINTED 0x31c5c70330c9a1d3099d8f77381e82a218d5c71a #3 for 72000000000000000000 0x13a75904899733587219d10c3af2f198408c7f7c with 36000000000000000000 0x13a75904899733587219d10c3af2f198408c7f7c in rewards for 0x0989cd2871b36d638140354731301a32d2409c3a',
     );
     expect(containsBigInt(highlightMintWithRewardsErc20.context)).toBe(false);
   });
