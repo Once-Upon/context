@@ -92,25 +92,39 @@ export type Transaction = BaseTransaction & {
   isoTimestamp: string;
 };
 
-export type RawTransaction = BaseTransaction & {
-  assetTransfers: AssetTransfer[];
-  sigHash: string;
-  internalSigHashes: InternalHashType[];
-  parties: string[];
-  decoded?: TransactionDescription;
-  netAssetTransfers: NetAssetTransfers;
+export type PartialTransaction = Omit<BaseTransaction, "hash"> & {
   receipt: RawReceipt;
-  gasPrice: string;
-  context: TxContext;
   traces: RawTrace[];
-  transactionFee: string;
-  baseFeePerGas: number | string;
+
+  // From transformers
   contracts?: Contract[];
+  decoded?: TransactionDescription;
+  context: TxContext;
+  assetTransfers: AssetTransfer[];
+  netAssetTransfers: NetAssetTransfers;
   errors: string[];
-  delegateCalls: RawTrace[];
-  timestamp: number;
-  isoTimestamp: string;
-  neighbor: RawNeighbor;
+  parties?: string[];
+  neighbor?: RawNeighbor;
+  sigHash?: string;
+  internalSigHashes?: InternalHashType[];
+  timestamp?: number;
+  delegateCalls?: RawTrace[];
+  baseFeePerGas?: string | number;
+  transactionFee?: string;
+};
+
+export type PseudoTransaction = PartialTransaction & {
+  meta: {
+    type: "ERC4337";
+    key: string;
+  } & Record<string, any>;
+};
+
+export type RawTransaction = PartialTransaction & {
+  hash: Hex;
+  accessList?: StdObj[];
+
+  pseudoTransactions?: PseudoTransaction[];
 };
 
 export type RawTraceAction = StdObj & {

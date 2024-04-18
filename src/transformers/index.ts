@@ -1,5 +1,6 @@
 import { AssetTransfer, NetAssetTransfers, RawBlock } from 'src/types';
 import { makeTransform } from '../helpers/utils';
+import * as pseudoTransactionsFromUserOps from './_common/accountAbstraction';
 import * as transactionAssetTransfers from './_common/assetTransfers';
 import * as transactionDelegateCalls from './_common/delegateCalls';
 import * as transactionDerivativesNeighbors from './_common/derivativesNeighbors';
@@ -14,6 +15,7 @@ import * as transactionFees from './ethereum/fees';
 import * as transactionForks from './ethereum/forks';
 
 const children = {
+  pseudoTransactionsFromUserOps,
   transactionAssetTransfers,
   transactionAssetTransfersOldNFTs,
   transactionAssetTransfersCryptopunks,
@@ -34,7 +36,7 @@ const utils = {
 };
 
 const transformers = Object.fromEntries(
-  Object.keys(children).map((key) => [key, children[key].transform]),
+  Object.entries(children).map(([key, { transform }]) => [key, transform]),
 );
 
 const transform = makeTransform(transformers);

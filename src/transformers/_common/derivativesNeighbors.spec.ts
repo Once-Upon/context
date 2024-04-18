@@ -1,5 +1,8 @@
-import { transform } from './derivativesNeighbors';
+import { transform as _transform } from './derivativesNeighbors';
 import { loadBlockFixture } from '../helpers/dev';
+import { makeTransform } from '../../helpers/utils';
+
+const transform = makeTransform({ test: _transform });
 
 describe('transactionDerivativesNeighbors', () => {
   it('should return derivatives neighbors', () => {

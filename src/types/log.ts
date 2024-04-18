@@ -34,6 +34,7 @@ export type RawLog = BaseLog & {
 };
 
 export type RawReceipt = StdObj & {
+  status: number;
   logs: RawLog[];
   gasUsed: number | string;
   effectiveGasPrice: number | string;

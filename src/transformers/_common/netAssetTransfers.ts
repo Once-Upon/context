@@ -1,5 +1,5 @@
+import { type TxnTransformer } from '../../helpers/utils';
 import {
-  type RawBlock,
   type NetAssetTransfers,
   type Asset,
   AssetType,
@@ -152,17 +152,13 @@ export function extractNetAssetTransfers(
   return {};
 }
 
-export function transform(block: RawBlock): RawBlock {
-  block.transactions = block.transactions.map((tx) => {
-    const assetTransfers = tx.assetTransfers;
-    if (!assetTransfers?.length) {
-      return tx;
-    }
-
-    tx.netAssetTransfers = extractNetAssetTransfers(assetTransfers);
-
+export const transform: TxnTransformer = (_block, tx) => {
+  const assetTransfers = tx.assetTransfers;
+  if (!assetTransfers?.length) {
     return tx;
-  });
+  }
 
-  return block;
-}
+  tx.netAssetTransfers = extractNetAssetTransfers(assetTransfers);
+
+  return tx;
+};

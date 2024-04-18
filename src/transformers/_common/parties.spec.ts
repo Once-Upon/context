@@ -1,5 +1,8 @@
-import { transform } from './parties';
+import { transform as _transform } from './parties';
 import { loadBlockFixture } from '../helpers/dev';
+import { makeTransform } from '../../helpers/utils';
+
+const transform = makeTransform({ test: _transform });
 
 describe('transactionParties', () => {
   it('should return transaction parties', () => {
