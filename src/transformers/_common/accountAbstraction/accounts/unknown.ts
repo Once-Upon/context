@@ -2,7 +2,16 @@ import { Hex } from 'viem';
 import type { PseudoTransaction } from '../../../../types';
 import { decodeTransactionInput } from '../../../../helpers/utils';
 
-// TODO source unknown
+// Source unknown
+// To find this, looked at transactions to the EntryPoint contract
+// and saw that many of them were from accounts using this these signatures.
+
+// Method for finding them:
+// - Look at transactions to the EntryPoint
+// - Reverse lookup the function signature using tenderly or openchain
+// - Search for the function signature on github/google
+
+// For this one, couldn't find the source code anywhere
 const abi = [
   {
     inputs: [
