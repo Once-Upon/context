@@ -27,14 +27,14 @@ const accountExecutionDecoders = [
 
 // TODO replace with non-generator impls? so that we don't have to Array.from all the time
 function* takeWhile<T>(xs: T[], fn: (v: T) => boolean) {
-  for (let x of xs)
+  for (const x of xs)
     if (fn(x)) yield x;
     else break;
 }
 
 function* dropWhile<T>(xs: T[], fn: (v: T) => boolean) {
   let dropping = true;
-  for (let x of xs) {
+  for (const x of xs) {
     if (dropping && fn(x)) {
       continue;
     } else {
@@ -166,7 +166,12 @@ export const unpackERC4337Transactions = (
           input: v.callData,
         };
 
-        let { hash: _hash, receipt, traces, ...rest } = transaction;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { hash: _hash, receipt, traces, ...rest } = transaction;
+
+        if (!receipt.logs) {
+          return [];
+        }
 
         const [first, ...reversedLogs] = filterOutUserOpLogs(
           receipt.logs,
@@ -178,7 +183,7 @@ export const unpackERC4337Transactions = (
             ? first.decoded
             : undefined;
 
-        let userOpReceipt: RawReceipt = {
+        const userOpReceipt: RawReceipt = {
           status: resultEvent?.args.success ? 1 : 0,
           logs: otherLogs.map(({ log }) => log),
           gasUsed: 0,
