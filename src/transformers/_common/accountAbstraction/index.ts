@@ -169,7 +169,7 @@ export const unpackERC4337Transactions = (
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { hash: _hash, receipt, traces, ...rest } = transaction;
 
-        if (!transaction.logs) {
+        if (!receipt.logs) {
           return [];
         }
 
