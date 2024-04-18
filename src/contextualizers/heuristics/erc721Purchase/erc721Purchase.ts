@@ -71,7 +71,7 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
-  if (!transaction.assetTransfers) {
+  if (!transaction.assetTransfers || !transaction.netAssetTransfers) {
     return transaction;
   }
 
@@ -82,14 +82,19 @@ export function generate(transaction: Transaction): Transaction {
     receivedNftContracts,
     erc20Payments,
     ethPayments,
-  } = processAssetTransfers(transaction.assetTransfers);
+  } = processAssetTransfers(
+    transaction.netAssetTransfers,
+    transaction.assetTransfers,
+  );
 
   const totalERC20Payment: Record<string, ERC20Asset> = computeERC20Price(
     erc20Payments,
-    transaction.from,
+    receivingAddresses,
   );
-  const totalETHPayment = computeETHPrice(ethPayments, transaction.from);
-  const totalAssets = erc20Payments.length + ethPayments.length;
+  const totalETHPayment = computeETHPrice(ethPayments, receivingAddresses);
+  const totalAssets =
+    Object.keys(totalERC20Payment).length +
+    (totalETHPayment > BigInt(0) ? 1 : 0);
 
   transaction.context = {
     variables: {
@@ -170,13 +175,6 @@ export function generate(transaction: Transaction): Transaction {
       },
     },
   };
-
-  if (
-    transaction.hash ===
-    '0x25589b7a2ac724d087243c486ea57a27c02e50954c58c6e2b2ce55ad4a67f104'
-  ) {
-    console.log('receivedNfts', receivedNfts);
-  }
 
   if (receivedNfts.length > 1) {
     transaction.context.variables = {

@@ -21,8 +21,6 @@ import {
   ERC1155Asset,
   AssetTransfer,
   ETHAssetTransfer,
-  ERC721AssetTransfer,
-  ERC1155AssetTransfer,
   ERC20AssetTransfer,
 } from '../types';
 
@@ -97,12 +95,15 @@ export function decodeLog<TAbi extends Abi>(
   }
 }
 
-export function processNetAssetTransfers(netAssetTransfers: NetAssetTransfers) {
+export function processAssetTransfers(
+  netAssetTransfers: NetAssetTransfers,
+  assetTransfers: AssetTransfer[],
+) {
   const receivingAddresses: string[] = [];
   const sendingAddresses: string[] = [];
   let receivedNfts: (ERC721Asset | ERC1155Asset)[] = [];
-  let erc20Payments: ERC20Asset[] = [];
-  let ethPayments: ETHAsset[] = [];
+  const erc20Payments: ERC20AssetTransfer[] = [];
+  const ethPayments: ETHAssetTransfer[] = [];
 
   Object.entries(netAssetTransfers).forEach(([address, data]) => {
     const nftsReceived = data.received.filter((t) =>
@@ -111,12 +112,6 @@ export function processNetAssetTransfers(netAssetTransfers: NetAssetTransfers) {
     const nftsSent = data.sent.filter((t) =>
       [AssetType.ERC1155, AssetType.ERC721].includes(t.type),
     ) as (ERC721Asset | ERC1155Asset)[];
-    const erc20PaymentTransfers = data.sent.filter(
-      (t) => t.type === AssetType.ERC20,
-    ) as ERC20Asset[];
-    const ethPaymentTransfers = data.sent.filter(
-      (t) => t.type === AssetType.ETH,
-    ) as ETHAsset[];
 
     if (nftsReceived.length > 0) {
       receivingAddresses.push(address);
@@ -125,65 +120,9 @@ export function processNetAssetTransfers(netAssetTransfers: NetAssetTransfers) {
     if (nftsSent.length > 0 && !sendingAddresses.includes(address)) {
       sendingAddresses.push(address);
     }
-    if (erc20PaymentTransfers.length > 0) {
-      erc20Payments = [
-        ...erc20Payments,
-        ...erc20PaymentTransfers.map((payment) => ({
-          type: payment.type,
-          contract: payment.contract,
-          value: payment.value,
-        })),
-      ];
-    }
-    if (ethPaymentTransfers.length > 0) {
-      ethPayments = [
-        ...ethPayments,
-        ...ethPaymentTransfers.map((payment) => ({
-          type: payment.type,
-          value: payment.value,
-        })),
-      ];
-    }
   });
 
-  return {
-    receivingAddresses,
-    sendingAddresses,
-    erc20Payments,
-    ethPayments,
-    receivedNfts,
-    receivedNftContracts: Array.from(
-      new Set(receivedNfts.map((x) => x.contract)),
-    ),
-  };
-}
-
-export function processAssetTransfers(assetTransfers: AssetTransfer[]) {
-  const receivingAddresses: string[] = [];
-  const sendingAddresses: string[] = [];
-  const receivedNfts: (ERC721AssetTransfer | ERC1155AssetTransfer)[] = [];
-  const erc20Payments: ERC20AssetTransfer[] = [];
-  const ethPayments: ETHAssetTransfer[] = [];
-
   for (const assetTransfer of assetTransfers) {
-    if (
-      assetTransfer.type === AssetType.ERC1155 ||
-      assetTransfer.type === AssetType.ERC721
-    ) {
-      receivingAddresses.push(assetTransfer.to);
-      sendingAddresses.push(assetTransfer.from);
-      if (
-        !receivedNfts.find(
-          (x) =>
-            x.contract === assetTransfer.contract &&
-            x.tokenId === assetTransfer.tokenId,
-        )
-      ) {
-        receivedNfts.push(
-          assetTransfer as ERC721AssetTransfer | ERC1155AssetTransfer,
-        );
-      }
-    }
     if (assetTransfer.type === AssetType.ERC20) {
       erc20Payments.push(assetTransfer);
     }
@@ -206,10 +145,10 @@ export function processAssetTransfers(assetTransfers: AssetTransfer[]) {
 
 export function computeETHPrice(
   ethPayments: ETHAssetTransfer[],
-  address: string,
+  addresses: string[],
 ) {
   return ethPayments
-    .filter((ethPayment) => ethPayment.from === address)
+    .filter((ethPayment) => addresses.includes(ethPayment.from))
     .reduce((acc, next) => {
       acc = BigInt(acc) + BigInt(next.value);
       return acc;
@@ -218,10 +157,10 @@ export function computeETHPrice(
 
 export function computeERC20Price(
   erc20Payments: ERC20AssetTransfer[],
-  address: string,
+  addresses: string[],
 ) {
   return erc20Payments
-    .filter((erc20Payment) => erc20Payment.from === address)
+    .filter((erc20Payment) => addresses.includes(erc20Payment.from))
     .reduce((acc, next) => {
       acc[next.contract] = {
         id: next.contract,

@@ -86,14 +86,15 @@ export function generate(transaction: Transaction): Transaction {
   const amount = mints.filter((ele) => ele.type === assetTransfer.type).length;
 
   const { erc20Payments, ethPayments } = processAssetTransfers(
+    transaction.netAssetTransfers,
     transaction.assetTransfers,
   );
 
   const totalERC20Payment: Record<string, ERC20Asset> = computeERC20Price(
     erc20Payments,
-    transaction.from,
+    [transaction.from],
   );
-  const totalETHPayment = computeETHPrice(ethPayments, transaction.from);
+  const totalETHPayment = computeETHPrice(ethPayments, [transaction.from]);
   const hasPrice =
     BigInt(totalETHPayment) > BigInt(0) ||
     Object.keys(totalERC20Payment).length > 0;
