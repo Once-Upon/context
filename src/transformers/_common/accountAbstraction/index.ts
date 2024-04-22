@@ -101,20 +101,22 @@ const filterOutUserOpLogs = (logs: RawLog[], userOpHash: string) => {
 // all subtraces by comparing traceAddress
 const filterOutUserOpTraces = (traces: RawTrace[], userOpHash: string) => {
   const opEntryTrace = traces
-    .filter(
-      ({ action }) =>
-        action.from === ENTRY_POINT_V060 && action.to === ENTRY_POINT_V060,
-    )
-    .find((v) => {
-      const decoded = decodeFunctionData({
-        abi: ABIs.EntryPointV060,
-        data: v.action.input as Hex,
-      });
+    ? traces
+        .filter(
+          ({ action }) =>
+            action.from === ENTRY_POINT_V060 && action.to === ENTRY_POINT_V060,
+        )
+        .find((v) => {
+          const decoded = decodeFunctionData({
+            abi: ABIs.EntryPointV060,
+            data: v.action.input as Hex,
+          });
 
-      if (decoded.functionName !== 'innerHandleOp') return false;
+          if (decoded.functionName !== 'innerHandleOp') return false;
 
-      return decoded.args[1].userOpHash == userOpHash;
-    });
+          return decoded.args[1].userOpHash == userOpHash;
+        })
+    : null;
 
   if (!opEntryTrace) return [];
 
@@ -179,7 +181,7 @@ export const unpackERC4337Transactions = (
         ).reverse();
         const otherLogs = reversedLogs.reverse();
         const resultEvent =
-          first.decoded?.eventName === 'UserOperationEvent'
+          first?.decoded?.eventName === 'UserOperationEvent'
             ? first.decoded
             : undefined;
 
