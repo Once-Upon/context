@@ -14,6 +14,7 @@ import {
 import {
   STAR_GATE_RELAYERS,
   STAR_GATE_PACKET_RECEIVED_EVENT_ABI,
+  STAR_GATE_CHAIN_IDS,
 } from './constants';
 import { decodeLog } from '../../../helpers/utils';
 
@@ -81,6 +82,8 @@ export function generate(transaction: Transaction): Transaction {
   const sourceChainId = Number(
     decodedPacketReceivedLog.args['srcChainId'] as bigint,
   );
+  if (!STAR_GATE_CHAIN_IDS[sourceChainId]) return transaction;
+
   let assetTransfer;
   for (const address in transaction.netAssetTransfers) {
     const assetTransferred = transaction.netAssetTransfers[address];
@@ -140,7 +143,7 @@ export function generate(transaction: Transaction): Transaction {
       asset,
       chainID: {
         type: 'chainID',
-        value: sourceChainId,
+        value: STAR_GATE_CHAIN_IDS[sourceChainId],
       },
       bridged: {
         type: 'contextAction',

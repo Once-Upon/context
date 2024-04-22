@@ -163,9 +163,15 @@ export const STAR_GATE_PACKET_RECEIVED_EVENT_ABI = [
 
 export const STAR_GATE_CHAIN_IDS = {
   101: 1,
+  102: 56,
+  106: 43114,
   109: 137,
   110: 42161,
   111: 10,
+  112: 250,
+  151: 1088,
+  177: 2222,
+  181: 5000,
   183: 59144,
   184: 8453,
 };

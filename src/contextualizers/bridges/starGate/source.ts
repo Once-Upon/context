@@ -13,6 +13,7 @@ import {
   STAR_GATE_SWAP_EVENT_ABI,
   STAR_GATE_RELAYERS,
   STAR_GATE_PACKET_EVENT_ABI,
+  STAR_GATE_CHAIN_IDS,
 } from './constants';
 import { decodeLog } from '../../../helpers/utils';
 
@@ -100,6 +101,8 @@ export function generate(transaction: Transaction): Transaction {
   if (!decodedSwapLog) return transaction;
 
   const destinationChainId = Number(decodedSwapLog.args['chainId'] as bigint);
+  if (!STAR_GATE_CHAIN_IDS[destinationChainId]) return transaction;
+
   const amount = formatEther(decodedSwapLog.args['amountSD'] as bigint);
 
   transaction.context = {
@@ -115,7 +118,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       chainID: {
         type: 'chainID',
-        value: destinationChainId,
+        value: STAR_GATE_CHAIN_IDS[destinationChainId],
       },
       bridged: {
         type: 'contextAction',
