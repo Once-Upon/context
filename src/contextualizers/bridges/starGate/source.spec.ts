@@ -23,7 +23,7 @@ describe('StarGate Source', () => {
     );
     expect(transaction1.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(transaction1.context)).toBe(
-      '0xe32adaa5ae4a32e28a6967d9780047d45cf120b1 BRIDGED 0.001341312588796022 ETH to 184',
+      '0xe32adaa5ae4a32e28a6967d9780047d45cf120b1 BRIDGED 0.001341312588796022 ETH to 8453',
     );
     expect(containsBigInt(transaction1.context)).toBe(false);
 
@@ -32,7 +32,7 @@ describe('StarGate Source', () => {
     );
     expect(transaction2.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(transaction2.context)).toBe(
-      '0x6b638d60e0718f27f0f0d60d3513206632c41980 BRIDGED 0.004997 ETH to 184',
+      '0x6b638d60e0718f27f0f0d60d3513206632c41980 BRIDGED 0.004997 ETH to 8453',
     );
     expect(containsBigInt(transaction2.context)).toBe(false);
   });
