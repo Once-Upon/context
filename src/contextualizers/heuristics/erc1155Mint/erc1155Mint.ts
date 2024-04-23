@@ -182,7 +182,7 @@ export function generate(transaction: Transaction): Transaction {
       },
     };
     // TODO: update below summary text
-    transaction.context.summaries['en'].default += 'by[[referrer]]';
+    transaction.context.summaries['en'].default += 'via[[referrer]]';
   }
 
   return transaction;
