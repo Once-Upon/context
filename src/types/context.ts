@@ -76,6 +76,14 @@ export type ContextChainIDType = {
   emphasis?: boolean;
 };
 
+export type ContextReferrerType = {
+  type: 'referrer';
+  value: string;
+  rawValue: string;
+  indexed?: boolean;
+  emphasis?: boolean;
+};
+
 export type ContextNumberType = {
   type: 'number';
   value: number;
@@ -102,6 +110,7 @@ export type ContextSummaryVariableType =
   | ContextERC1155Type
   | ContextETHType
   | ContextChainIDType
+  | ContextReferrerType
   | ContextNumberType
   | ContextLinkType;
 
