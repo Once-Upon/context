@@ -171,6 +171,19 @@ export function generate(transaction: Transaction): Transaction {
       transaction.context.summaries['en'].default += 'for[[price]]';
     }
   }
+  // add referrer
+  if (transaction.input.endsWith('fc000023c0')) {
+    transaction.context.variables = {
+      ...transaction.context.variables,
+      referrer: {
+        type: 'referrer',
+        value: 'Warpcast',
+        rawValue: '0xfc000023c0',
+      },
+    };
+    // TODO: update below summary text
+    transaction.context.summaries['en'].default += 'via[[referrer]]';
+  }
 
   return transaction;
 }

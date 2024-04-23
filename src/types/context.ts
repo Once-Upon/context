@@ -91,6 +91,14 @@ export type ContextLinkType = {
   link: string;
 };
 
+export type ContextReferrerType = {
+  type: 'referrer';
+  value: string;
+  rawValue: string;
+  indexed?: boolean;
+  emphasis?: boolean;
+};
+
 export type ContextSummaryVariableType =
   | ContextStringType
   | ContextHexType
@@ -103,7 +111,8 @@ export type ContextSummaryVariableType =
   | ContextETHType
   | ContextChainIDType
   | ContextNumberType
-  | ContextLinkType;
+  | ContextLinkType
+  | ContextReferrerType;
 
 export type ContextVariable = {
   [key: string]: ContextSummaryVariableType;
