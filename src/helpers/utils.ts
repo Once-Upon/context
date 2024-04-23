@@ -21,6 +21,9 @@ import {
   ETHAsset,
   ERC721Asset,
   ERC1155Asset,
+  AssetTransfer,
+  ETHAssetTransfer,
+  ERC20AssetTransfer,
 } from '../types';
 
 const VALID_CHARS =
@@ -94,12 +97,15 @@ export function decodeLog<TAbi extends Abi>(
   }
 }
 
-export function processNetAssetTransfers(netAssetTransfers: NetAssetTransfers) {
+export function processAssetTransfers(
+  netAssetTransfers: NetAssetTransfers,
+  assetTransfers: AssetTransfer[],
+) {
   const receivingAddresses: string[] = [];
   const sendingAddresses: string[] = [];
   let receivedNfts: (ERC721Asset | ERC1155Asset)[] = [];
-  let erc20Payments: ERC20Asset[] = [];
-  let ethPayments: ETHAsset[] = [];
+  const erc20Payments: ERC20AssetTransfer[] = [];
+  const ethPayments: ETHAssetTransfer[] = [];
 
   Object.entries(netAssetTransfers).forEach(([address, data]) => {
     const nftsReceived = data.received.filter((t) =>
@@ -108,12 +114,6 @@ export function processNetAssetTransfers(netAssetTransfers: NetAssetTransfers) {
     const nftsSent = data.sent.filter((t) =>
       [AssetType.ERC1155, AssetType.ERC721].includes(t.type),
     ) as (ERC721Asset | ERC1155Asset)[];
-    const erc20PaymentTransfers = data.sent.filter(
-      (t) => t.type === AssetType.ERC20,
-    ) as ERC20Asset[];
-    const ethPaymentTransfers = data.sent.filter(
-      (t) => t.type === AssetType.ETH,
-    ) as ETHAsset[];
 
     if (nftsReceived.length > 0) {
       receivingAddresses.push(address);
@@ -122,26 +122,16 @@ export function processNetAssetTransfers(netAssetTransfers: NetAssetTransfers) {
     if (nftsSent.length > 0 && !sendingAddresses.includes(address)) {
       sendingAddresses.push(address);
     }
-    if (erc20PaymentTransfers.length > 0) {
-      erc20Payments = [
-        ...erc20Payments,
-        ...erc20PaymentTransfers.map((payment) => ({
-          type: payment.type,
-          contract: payment.contract,
-          value: payment.value,
-        })),
-      ];
-    }
-    if (ethPaymentTransfers.length > 0) {
-      ethPayments = [
-        ...ethPayments,
-        ...ethPaymentTransfers.map((payment) => ({
-          type: payment.type,
-          value: payment.value,
-        })),
-      ];
-    }
   });
+
+  for (const assetTransfer of assetTransfers) {
+    if (assetTransfer.type === AssetType.ERC20) {
+      erc20Payments.push(assetTransfer);
+    }
+    if (assetTransfer.type === AssetType.ETH) {
+      ethPayments.push(assetTransfer);
+    }
+  }
 
   return {
     receivingAddresses,
@@ -155,25 +145,35 @@ export function processNetAssetTransfers(netAssetTransfers: NetAssetTransfers) {
   };
 }
 
-export function computeETHPrice(ethPayments: ETHAsset[]) {
-  return ethPayments.reduce((acc, next) => {
-    acc = BigInt(acc) + BigInt(next.value);
-    return acc;
-  }, BigInt(0));
+export function computeETHPrice(
+  ethPayments: ETHAssetTransfer[],
+  addresses: string[],
+) {
+  return ethPayments
+    .filter((ethPayment) => addresses.includes(ethPayment.from))
+    .reduce((acc, next) => {
+      acc = BigInt(acc) + BigInt(next.value);
+      return acc;
+    }, BigInt(0));
 }
 
-export function computeERC20Price(erc20Payments: ERC20Asset[]) {
-  return erc20Payments.reduce((acc, next) => {
-    acc[next.contract] = {
-      id: next.contract,
-      type: next.type,
-      contract: next.contract,
-      value: (
-        BigInt(acc[next.contract]?.value || '0') + BigInt(next.value)
-      ).toString(),
-    };
-    return acc;
-  }, {});
+export function computeERC20Price(
+  erc20Payments: ERC20AssetTransfer[],
+  addresses: string[],
+) {
+  return erc20Payments
+    .filter((erc20Payment) => addresses.includes(erc20Payment.from))
+    .reduce((acc, next) => {
+      acc[next.contract] = {
+        id: next.contract,
+        type: next.type,
+        contract: next.contract,
+        value: (
+          BigInt(acc[next.contract]?.value || '0') + BigInt(next.value)
+        ).toString(),
+      };
+      return acc;
+    }, {});
 }
 
 export function contextSummary(

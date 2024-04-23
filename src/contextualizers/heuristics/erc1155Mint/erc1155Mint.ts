@@ -4,13 +4,12 @@ import {
   ERC20Asset,
   ERC1155AssetTransfer,
   HeuristicContextActionEnum,
-  ERC1155Asset,
 } from '../../../types';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
 import {
   computeERC20Price,
   computeETHPrice,
-  processNetAssetTransfers,
+  processAssetTransfers,
 } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -88,13 +87,15 @@ export function generate(transaction: Transaction): Transaction {
   const recipient = assetTransfer.to;
   const amount = mints.filter((ele) => ele.type === assetTransfer.type).length;
 
-  const { erc20Payments, ethPayments } = processNetAssetTransfers(
+  const { erc20Payments, ethPayments } = processAssetTransfers(
     transaction.netAssetTransfers,
+    transaction.assetTransfers,
   );
-
-  const totalERC20Payment: Record<string, ERC20Asset> =
-    computeERC20Price(erc20Payments);
-  const totalETHPayment = computeETHPrice(ethPayments);
+  const totalERC20Payment: Record<string, ERC20Asset> = computeERC20Price(
+    erc20Payments,
+    [transaction.from],
+  );
+  const totalETHPayment = computeETHPrice(ethPayments, [transaction.from]);
   const hasPrice =
     BigInt(totalETHPayment) > BigInt(0) ||
     Object.keys(totalERC20Payment).length > 0;

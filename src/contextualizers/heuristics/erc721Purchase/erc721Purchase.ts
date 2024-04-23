@@ -1,7 +1,7 @@
 import {
   computeERC20Price,
   computeETHPrice,
-  processNetAssetTransfers,
+  processAssetTransfers,
 } from '../../../helpers/utils';
 import {
   AssetType,
@@ -71,7 +71,7 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
-  if (!transaction.netAssetTransfers) {
+  if (!transaction.assetTransfers || !transaction.netAssetTransfers) {
     return transaction;
   }
 
@@ -82,12 +82,19 @@ export function generate(transaction: Transaction): Transaction {
     receivedNftContracts,
     erc20Payments,
     ethPayments,
-  } = processNetAssetTransfers(transaction.netAssetTransfers);
+  } = processAssetTransfers(
+    transaction.netAssetTransfers,
+    transaction.assetTransfers,
+  );
 
-  const totalERC20Payment: Record<string, ERC20Asset> =
-    computeERC20Price(erc20Payments);
-  const totalETHPayment = computeETHPrice(ethPayments);
-  const totalAssets = erc20Payments.length + ethPayments.length;
+  const totalERC20Payment: Record<string, ERC20Asset> = computeERC20Price(
+    erc20Payments,
+    receivingAddresses,
+  );
+  const totalETHPayment = computeETHPrice(ethPayments, receivingAddresses);
+  const totalAssets =
+    Object.keys(totalERC20Payment).length +
+    (totalETHPayment > BigInt(0) ? 1 : 0);
 
   transaction.context = {
     variables: {
