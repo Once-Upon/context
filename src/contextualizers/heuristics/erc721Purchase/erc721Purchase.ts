@@ -1,3 +1,4 @@
+import { zeroAddress } from 'viem';
 import {
   computeERC20Price,
   computeETHPrice,
@@ -33,7 +34,8 @@ export function detect(transaction: Transaction): boolean {
    * established patterns in our other modules. This consistency is beneficial,
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
-  if (!transaction.netAssetTransfers) return false;
+  if (!transaction.netAssetTransfers || !transaction.assetTransfers)
+    return false;
 
   // check if nft receiver sent some eth or erc20
   for (const address in transaction.netAssetTransfers) {
@@ -50,7 +52,11 @@ export function detect(transaction: Transaction): boolean {
       tokenSent &&
       tokenSent.length > 0
     ) {
-      return true;
+      const { receivingAddresses } = processAssetTransfers(
+        transaction.netAssetTransfers,
+        transaction.assetTransfers,
+      );
+      if (receivingAddresses[0] !== zeroAddress) return true;
     }
 
     const nftsSent = transfers?.sent.filter((t) => t.type === AssetType.ERC721);
@@ -63,7 +69,11 @@ export function detect(transaction: Transaction): boolean {
       tokenReceived &&
       tokenReceived.length > 0
     ) {
-      return true;
+      const { receivingAddresses } = processAssetTransfers(
+        transaction.netAssetTransfers,
+        transaction.assetTransfers,
+      );
+      if (receivingAddresses[0] !== zeroAddress) return true;
     }
   }
 
