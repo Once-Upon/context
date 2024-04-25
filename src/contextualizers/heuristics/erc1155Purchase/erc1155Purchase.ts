@@ -1,3 +1,4 @@
+import { zeroAddress } from 'viem';
 import {
   computeERC20Price,
   computeETHPrice,
@@ -25,7 +26,8 @@ export function detect(transaction: Transaction): boolean {
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
 
-  if (!transaction.netAssetTransfers) return false;
+  if (!transaction.netAssetTransfers || !transaction.assetTransfers)
+    return false;
 
   const addresses = transaction.netAssetTransfers
     ? Object.keys(transaction.netAssetTransfers)
@@ -53,7 +55,11 @@ export function detect(transaction: Transaction): boolean {
       ethOrErc20Sent &&
       ethOrErc20Sent.length > 0
     ) {
-      return true;
+      const { receivingAddresses } = processAssetTransfers(
+        transaction.netAssetTransfers,
+        transaction.assetTransfers,
+      );
+      if (receivingAddresses[0] !== zeroAddress) return true;
     }
 
     if (
@@ -62,7 +68,11 @@ export function detect(transaction: Transaction): boolean {
       ethOrErc20Received &&
       ethOrErc20Received.length > 0
     ) {
-      return true;
+      const { receivingAddresses } = processAssetTransfers(
+        transaction.netAssetTransfers,
+        transaction.assetTransfers,
+      );
+      if (receivingAddresses[0] !== zeroAddress) return true;
     }
   }
 
