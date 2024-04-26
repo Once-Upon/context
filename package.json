@@ -14,7 +14,8 @@
     "grab:transaction": "npm run build && node ./dist/commands/main.js grab-transaction",
     "create:contextualizer": "npm run build && node ./dist/commands/main.js create-contextualizer",
     "run:contextualizers": "npm run build && node ./dist/commands/main.js run-contextualizers",
-    "grab:block": "npm run build && node ./dist/commands/main.js grab-block"
+    "grab:block": "npm run build && node ./dist/commands/main.js grab-block",
+    "detect:contextualizers": "npm run build && node ./dist/commands/main.js detect-contextualizers"
   },
   "repository": {
     "type": "git",

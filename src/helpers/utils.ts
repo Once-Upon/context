@@ -237,9 +237,12 @@ export const makeContextualize = (
   children: Record<string, (transaction: Transaction) => Transaction>,
 ) => {
   return (transaction: Transaction): Transaction => {
-    for (const childContextualizer of Object.values(children)) {
+    for (const [contextualizerName, childContextualizer] of Object.entries(
+      children,
+    )) {
       const result = childContextualizer(transaction);
       if (result.context?.summaries?.en.title) {
+        console.log('contextualizer: ', contextualizerName);
         return result;
       }
     }
