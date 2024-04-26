@@ -1,8 +1,7 @@
 import { program } from './main';
 import { fetchTransactions } from './utils';
 import { Transaction } from '../types';
-import { protocolContextualizer } from '../contextualizers/protocol';
-import { heuristicContextualizer } from '../contextualizers/heuristics';
+import { contextualizer } from '../contextualizers';
 
 export function registerRunContextualizersCommand() {
   program
@@ -22,10 +21,10 @@ export function registerRunContextualizersCommand() {
       try {
         console.log(`Running contextualizers`);
         transactions.forEach((transaction) => {
-          // run protocol contextualizer
+          // run contextualizers
           console.log(`Running protocol contextualizer`);
           try {
-            const txResult = protocolContextualizer.contextualize(transaction);
+            const txResult = contextualizer.contextualize(transaction);
             if (!txResult.from) {
               console.error(
                 `No matching protocol contextualizer on ${transaction.hash}`,
@@ -34,22 +33,6 @@ export function registerRunContextualizersCommand() {
           } catch (err) {
             console.error(
               `failed to run protocol contextualizer on ${transaction.hash}: `,
-              err,
-            );
-          }
-
-          // run heuristic contextualizer
-          try {
-            console.log(`Running heuristic contextualizer`);
-            const txResult = heuristicContextualizer.contextualize(transaction);
-            if (!txResult.from) {
-              console.error(
-                `No matching heuristic contextualizers on ${transaction.hash}`,
-              );
-            }
-          } catch (err) {
-            console.error(
-              `failed to run heuristic contextualizer on ${transaction.hash}: `,
               err,
             );
           }
