@@ -17,8 +17,6 @@ import {
   RawBlock,
   StdObj,
   NetAssetTransfers,
-  ERC20Asset,
-  ETHAsset,
   ERC721Asset,
   ERC1155Asset,
   AssetTransfer,

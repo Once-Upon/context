@@ -79,7 +79,7 @@ export function detect(transaction: Transaction): boolean {
   return false;
 }
 
-function generate(transaction: Transaction): Transaction {
+export function generate(transaction: Transaction): Transaction {
   if (!transaction.assetTransfers || !transaction.netAssetTransfers) {
     return transaction;
   }
@@ -98,10 +98,12 @@ function generate(transaction: Transaction): Transaction {
 
   const totalERC20Payment: Record<string, ERC20Asset> = computeERC20Price(
     erc20Payments,
-    [transaction.from],
+    receivingAddresses,
   );
-  const totalETHPayment = computeETHPrice(ethPayments, [transaction.from]);
-  const totalAssets = erc20Payments.length + ethPayments.length;
+  const totalETHPayment = computeETHPrice(ethPayments, receivingAddresses);
+  const totalAssets =
+    Object.keys(totalERC20Payment).length +
+    (totalETHPayment > BigInt(0) ? 1 : 0);
 
   transaction.context = {
     variables: {
