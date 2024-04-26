@@ -26,6 +26,16 @@ export const grabTx = async (txHash: string, prefix: string) => {
   fs.writeFileSync(txFilePath, JSON.stringify(transaction, null, 2));
 };
 
+export const getTransaction = async (txHash: string) => {
+  const defaultApiUrl = 'https://api.onceupon.gg';
+  const API_URL = process.env.API_URL || defaultApiUrl;
+  const transaction = await fetch(
+    `${API_URL}/v2/transactions/${txHash}?withContext=false`,
+  ).then((res) => res.json());
+
+  return transaction;
+};
+
 export const fetchTransactions = async (
   limit: number,
 ): Promise<Transaction[]> => {
