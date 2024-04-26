@@ -173,7 +173,7 @@ export function generate(transaction: Transaction): Transaction {
     return transaction;
   } else if (assetAmount > 1) {
     desc += 'were transferred';
-  } else if (assetAmount === 1 && ethTransfers.length === 1) {
+  } else if (assetAmount === 1 && ethTransfers.length >= 1) {
     // eth
     desc += 'was transferred';
   } else {

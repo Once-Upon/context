@@ -9,6 +9,7 @@ import catchall0x26ca372d from '../test/transactions/catchall-0x26ca372d.json';
 import catchall0x6331ce46 from '../test/transactions/catchall-0x6331ce46.json';
 import catchall0xdfdb78fd from '../test/transactions/catchall-0xdfdb78fd.json';
 import catchall0x80c1b6eb from '../test/transactions/catchall-0x80c1b6eb.json';
+import catchall0x26f6c382 from '../test/transactions/catchall-0x26f6c382.json';
 
 describe('catchall', () => {
   it('Should detect catchall transaction', () => {
@@ -16,6 +17,9 @@ describe('catchall', () => {
       catchallZeroErc20s0x20f3ee91 as unknown as Transaction,
     );
     expect(catchallZeroErc20s).toBe(true);
+
+    const isCatchall1 = detect(catchall0x26f6c382 as unknown as Transaction);
+    expect(isCatchall1).toBe(true);
   });
 
   it('Should generate catchall context', () => {
@@ -84,6 +88,15 @@ describe('catchall', () => {
     const desc8 = contextSummary(txResult8.context);
     expect(desc8).toBe(
       '0xf70da97812cb96acdf810712aa562db8dfa3dbef INTERACTED_WITH 0x524d8cf45f38f98d8b08950876d2147f8e20672e and 10 NFTs and 0.00777 ETH were transferred',
+    );
+
+    const txResult9 = generate(catchall0x26f6c382 as unknown as Transaction);
+    const variables9 = txResult9.context?.variables;
+    expect(variables9?.totalEth['type']).toBe('eth');
+    expect(variables9?.totalEth['value']).toBe('171202858968251372000');
+    const desc9 = contextSummary(txResult9.context);
+    expect(desc9).toBe(
+      '0x4337003fcd2f56de3977ccb806383e9161628d0e INTERACTED_WITH 0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789 and 171.202858968251372 ETH was transferred',
     );
   });
 });
