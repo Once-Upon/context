@@ -2,6 +2,7 @@ import { Abi, Hex } from 'viem';
 import { BoomBoxContextActionEnum, Transaction } from '../../../types';
 import { BOOMBOX_ABI, BOOMBOX_ARTIST_SPOTIFY_LINK } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
+import { CHAIN_IDS } from '../../../helpers/constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isBoomBox = detect(transaction);
@@ -11,6 +12,9 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
+  // check chainId
+  if (transaction.chainId !== CHAIN_IDS['stack']) return false;
+
   // decode input
   const decoded = decodeTransactionInput(
     transaction.input as Hex,
