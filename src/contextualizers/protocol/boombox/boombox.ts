@@ -12,7 +12,7 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
-  // check chainId
+  // check if stack chain
   if (transaction.chainId !== CHAIN_IDS['stack']) return false;
 
   // decode input
@@ -30,17 +30,15 @@ export const detect = (transaction: Transaction): boolean => {
 // Contextualize for BoomBox txs
 export const generate = (transaction: Transaction): Transaction => {
   // decode input
-  const decoded = decodeTransactionInput(
-    transaction.input as Hex,
-    BOOMBOX_ABI as Abi,
-  );
+  const decoded = decodeTransactionInput(transaction.input as Hex, BOOMBOX_ABI);
   if (!decoded) return transaction;
 
   switch (decoded.functionName) {
     case 'setBatchTierCost':
-      const artistId = decoded.args ? decoded.args['_artistId'] : '';
-      const cost = decoded.args ? decoded.args['_cost'] : '';
-      console.log('cost', cost);
+      const artistId =
+        decoded.args && decoded.args.length > 1 ? decoded.args[0] : '';
+      const cost =
+        decoded.args && decoded.args.length > 1 ? decoded.args[1] : [];
 
       transaction.context = {
         variables: {
@@ -53,6 +51,10 @@ export const generate = (transaction: Transaction): Transaction => {
             value: 'link',
             truncate: true,
             link: `${BOOMBOX_ARTIST_SPOTIFY_LINK}/${artistId}`,
+          },
+          cost: {
+            type: 'string',
+            value: cost.join(', '),
           },
           contextAction: {
             type: 'contextAction',

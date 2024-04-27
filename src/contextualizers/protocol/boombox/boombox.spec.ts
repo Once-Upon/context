@@ -13,6 +13,12 @@ describe('BoomBox', () => {
   it('Should generate context', () => {
     const transaction = generate(boombox0x460925a4 as unknown as Transaction);
     expect(transaction.context?.summaries?.en.title).toBe('BoomBox');
+    expect(transaction.context?.variables?.artist['link']).toBe(
+      'https://open.spotify.com/artist/1TdIV4gSwfVNsd4EMn7R99',
+    );
+    expect(transaction.context?.variables?.cost['value']).toBe(
+      '0, 0, 20000000, 60000000, 140000000, 300000000, 620000000',
+    );
     expect(contextSummary(transaction.context)).toBe(
       '0xab18fdc21c33c3c60bbca753997a657f00d43f9e SET_BATCH_TIER_COST for link',
     );
