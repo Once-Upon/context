@@ -27,7 +27,7 @@ export const detect = (transaction: Transaction): boolean => {
   return true;
 };
 
-// Contextualize for BoomBox txs
+// Contextualize for Boombox txs
 export const generate = (transaction: Transaction): Transaction => {
   // decode input
   const decoded = decodeTransactionInput(transaction.input as Hex, BOOMBOX_ABI);
@@ -64,7 +64,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'BoomBox',
+            title: 'Boombox',
             default: '[[sender]][[contextAction]]for[[artist]]',
           },
         },

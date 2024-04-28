@@ -4,7 +4,7 @@ import { contextSummary, containsBigInt } from '../../../helpers/utils';
 import boombox0x460925a4 from '../../test/transactions/boombox-0x460925a4.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 
-describe('BoomBox', () => {
+describe('Boombox', () => {
   it('Should detect transaction', () => {
     const isBoomBox = detect(boombox0x460925a4 as unknown as Transaction);
     expect(isBoomBox).toBe(true);
@@ -12,7 +12,7 @@ describe('BoomBox', () => {
 
   it('Should generate context', () => {
     const transaction = generate(boombox0x460925a4 as unknown as Transaction);
-    expect(transaction.context?.summaries?.en.title).toBe('BoomBox');
+    expect(transaction.context?.summaries?.en.title).toBe('Boombox');
     expect(transaction.context?.variables?.artist['link']).toBe(
       'https://open.spotify.com/artist/1TdIV4gSwfVNsd4EMn7R99',
     );
