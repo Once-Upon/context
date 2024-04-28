@@ -217,10 +217,10 @@ export type BNSContextAction =
   | BNSContextActionEnum.TRANSFERED_NAMES;
 
 export enum BoomboxContextActionEnum {
-  SET_BATCH_TIER_COST = 'SET_BATCH_TIER_COST',
+  ADDED = 'ADDED',
 }
 
-export type BoomboxContextAction = BoomboxContextActionEnum.SET_BATCH_TIER_COST;
+export type BoomboxContextAction = BoomboxContextActionEnum.ADDED;
 
 export enum Protocols {
   WETH = 'WETH',

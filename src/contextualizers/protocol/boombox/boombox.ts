@@ -58,14 +58,14 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           contextAction: {
             type: 'contextAction',
-            value: BoomboxContextActionEnum.SET_BATCH_TIER_COST,
+            value: BoomboxContextActionEnum.ADDED,
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Boombox',
-            default: '[[sender]][[contextAction]]for[[artist]]on Spotify',
+            default: '[[sender]][[contextAction]][[artist]]on Spotify',
           },
         },
       };
