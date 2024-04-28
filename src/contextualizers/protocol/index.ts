@@ -19,6 +19,7 @@ import { zoraCreatorContextualizer } from './zoraCreator';
 import { bnsContextualizer } from './bns';
 import { highlightContextualizer } from './highlight';
 import { warpcastContextualizer } from './warpcast';
+import { boomboxContextualizer } from './boombox';
 
 const children = {
   wethContextualizer,
@@ -41,6 +42,7 @@ const children = {
   bnsContextualizer,
   highlightContextualizer,
   warpcastContextualizer,
+  boomboxContextualizer,
 };
 
 const protocolContextualizers = Object.fromEntries(
