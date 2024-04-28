@@ -48,13 +48,13 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           artist: {
             type: 'link',
-            value: 'link',
+            value: artistId,
             truncate: true,
             link: `${BOOMBOX_ARTIST_SPOTIFY_LINK}/${artistId}`,
           },
           cost: {
-            type: 'string',
-            value: cost.join(', '),
+            type: 'array',
+            value: cost.length > 0 ? cost.map((c: bigint) => c.toString()) : [],
           },
           contextAction: {
             type: 'contextAction',
@@ -65,7 +65,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Boombox',
-            default: '[[sender]][[contextAction]]🔗[[artist]]',
+            default: '[[sender]][[contextAction]]for[[artist]]on Spotify',
           },
         },
       };

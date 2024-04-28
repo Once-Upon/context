@@ -10,6 +10,12 @@ export type ContextStringType = {
   unit?: string;
 };
 
+export type ContextArrayType = {
+  type: 'array';
+  value: string[] | number[];
+  unit?: string;
+};
+
 export type ContextHexType = {
   type: 'address' | 'transaction' | 'farcasterID' | 'crosschain';
   value: string;
@@ -101,6 +107,7 @@ export type ContextReferrerType = {
 
 export type ContextSummaryVariableType =
   | ContextStringType
+  | ContextArrayType
   | ContextHexType
   | ContextCodeType
   | ContextActionType
