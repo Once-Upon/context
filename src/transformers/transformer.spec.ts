@@ -8,7 +8,7 @@ describe('transformations', () => {
     const block = loadBlockFixture('ethereum', '17686037_decode');
     const result = transformer.transform(block);
 
-    // testing direct ETH transfer in tx: https://www.onceupon.gg/finder/0x9e7654743c06585d5754ee9cfd087b50f431484d53a757d57d5b51144e51bc95
+    // testing direct ETH transfer in tx: https://www.onceupon.xyz/0x9e7654743c06585d5754ee9cfd087b50f431484d53a757d57d5b51144e51bc95
     const tx = result.transactions.find(
       (wr) =>
         wr.hash ===

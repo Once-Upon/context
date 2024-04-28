@@ -1,0 +1,143 @@
+{
+  "_id": "662c1041f3589a27a940db05",
+  "accessList": [],
+  "blockHash": "0xe3b96e8b492b6d009e8454b0f4710ff8dfc2c70367c90bfb8a85cc4fab6d3138",
+  "blockNumber": 4483664,
+  "chainId": 78225,
+  "from": "0xab18fdc21c33c3c60bbca753997a657f00d43f9e",
+  "gas": 51818,
+  "gasPrice": "1000252",
+  "hash": "0x4609854a80fec57c63aa015604c16323a7200b2c67036f4942c7ce75f27a25a4",
+  "input": "0x958a0bf300000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000001631546449563467537766564e736434454d6e37523939000000000000000000000000000000000000000000000000000000000000000000000000000000000007000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001312d0000000000000000000000000000000000000000000000000000000000039387000000000000000000000000000000000000000000000000000000000008583b000000000000000000000000000000000000000000000000000000000011e1a3000000000000000000000000000000000000000000000000000000000024f47300",
+  "maxFeePerGas": "1000302",
+  "maxPriorityFeePerGas": "1000000",
+  "nonce": 119003,
+  "r": "0x98528bc3c9b39ebe74fd9060d6abae1ae7d129bbeac97d72d3dd195fc416d418",
+  "s": "0x2a31148d819760ad43ef387598bced09438666a38d34013e2420070727d2390f",
+  "to": "0x000bea71d6cb2b2b7af013f0038ccff36bc02c9c",
+  "transactionIndex": 1,
+  "type": 2,
+  "v": "0x0",
+  "value": "0",
+  "yParity": "0x0",
+  "receipt": {
+    "blockHash": "0xe3b96e8b492b6d009e8454b0f4710ff8dfc2c70367c90bfb8a85cc4fab6d3138",
+    "blockNumber": 4483664,
+    "contractAddress": null,
+    "cumulativeGasUsed": 98302,
+    "effectiveGasPrice": 1000252,
+    "from": "0xab18fdc21c33c3c60bbca753997a657f00d43f9e",
+    "gasUsed": 51425,
+    "l1Fee": "0x4ca67ba084",
+    "l1FeeScalar": "0.684",
+    "l1GasPrice": "0x6f4d105",
+    "l1GasUsed": "0x101c",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0x000bea71d6cb2b2b7af013f0038ccff36bc02c9c",
+    "transactionHash": "0x4609854a80fec57c63aa015604c16323a7200b2c67036f4942c7ce75f27a25a4",
+    "transactionIndex": 1,
+    "type": "0x2",
+    "logs": []
+  },
+  "decoded": null,
+  "delegateCalls": [],
+  "errors": [],
+  "parties": [
+    "0xab18fdc21c33c3c60bbca753997a657f00d43f9e",
+    "0x000bea71d6cb2b2b7af013f0038ccff36bc02c9c",
+    "0x000000000c2b4a5816cbb76e9bb3f70d175940a3"
+  ],
+  "sigHash": "0x958a0bf3",
+  "internalSigHashes": [
+    {
+      "from": "0xab18fdc21c33c3c60bbca753997a657f00d43f9e",
+      "to": "0x000bea71d6cb2b2b7af013f0038ccff36bc02c9c",
+      "sigHash": "0x958a0bf3"
+    },
+    {
+      "from": "0x000bea71d6cb2b2b7af013f0038ccff36bc02c9c",
+      "to": "0x000000000c2b4a5816cbb76e9bb3f70d175940a3",
+      "sigHash": "0x93552a3d"
+    }
+  ],
+  "timestamp": 1714163775,
+  "baseFeePerGas": 252,
+  "transactionFee": "329210634372624000051437959100",
+  "logs": [],
+  "netAssetTransfers": {},
+  "pseudotransactions": [],
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0xab18fdc21c33c3c60bbca753997a657f00d43f9e": [
+      {
+        "chainId": 0,
+        "isContract": false,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x000bea71d6cb2b2b7af013f0038ccff36bc02c9c": [
+      {
+        "chainId": 78225,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x000000000c2b4a5816cbb76e9bb3f70d175940a3": [
+      {
+        "chainId": 78225,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
+}
