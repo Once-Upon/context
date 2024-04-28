@@ -18,7 +18,7 @@ describe('Boombox', () => {
     );
     expect(transaction.context?.variables?.cost['value']?.[3]).toBe('60000000');
     expect(contextSummary(transaction.context)).toBe(
-      '0xab18fdc21c33c3c60bbca753997a657f00d43f9e SET_BATCH_TIER_COST for 1TdIV4gSwfVNsd4EMn7R99 on Spotify',
+      '0xab18fdc21c33c3c60bbca753997a657f00d43f9e ADDED 1TdIV4gSwfVNsd4EMn7R99 on Spotify',
     );
     expect(containsBigInt(transaction.context)).toBe(false);
   });
