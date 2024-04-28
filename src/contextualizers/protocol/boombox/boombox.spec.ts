@@ -6,8 +6,8 @@ import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json
 
 describe('Boombox', () => {
   it('Should detect transaction', () => {
-    const isBoomBox = detect(boombox0x460925a4 as unknown as Transaction);
-    expect(isBoomBox).toBe(true);
+    const isBoombox = detect(boombox0x460925a4 as unknown as Transaction);
+    expect(isBoombox).toBe(true);
   });
 
   it('Should generate context', () => {
@@ -20,7 +20,7 @@ describe('Boombox', () => {
       '0, 0, 20000000, 60000000, 140000000, 300000000, 620000000',
     );
     expect(contextSummary(transaction.context)).toBe(
-      '0xab18fdc21c33c3c60bbca753997a657f00d43f9e SET_BATCH_TIER_COST for link',
+      '0xab18fdc21c33c3c60bbca753997a657f00d43f9e SET_BATCH_TIER_COST 🔗 link',
     );
     expect(containsBigInt(transaction.context)).toBe(false);
   });

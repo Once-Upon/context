@@ -216,11 +216,11 @@ export type BNSContextAction =
   | BNSContextActionEnum.TRANSFERED_NAME
   | BNSContextActionEnum.TRANSFERED_NAMES;
 
-export enum BoomBoxContextActionEnum {
+export enum BoomboxContextActionEnum {
   SET_BATCH_TIER_COST = 'SET_BATCH_TIER_COST',
 }
 
-export type BoomBoxContextAction = BoomBoxContextActionEnum.SET_BATCH_TIER_COST;
+export type BoomboxContextAction = BoomboxContextActionEnum.SET_BATCH_TIER_COST;
 
 export enum Protocols {
   WETH = 'WETH',
@@ -257,4 +257,4 @@ export type ProtocolContextAction =
   | BasepaintAction
   | DisperseAction
   | BNSContextAction
-  | BoomBoxContextAction;
+  | BoomboxContextAction;

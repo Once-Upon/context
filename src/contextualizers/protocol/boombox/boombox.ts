@@ -1,12 +1,12 @@
 import { Abi, Hex } from 'viem';
-import { BoomBoxContextActionEnum, Transaction } from '../../../types';
+import { BoomboxContextActionEnum, Transaction } from '../../../types';
 import { BOOMBOX_ABI, BOOMBOX_ARTIST_SPOTIFY_LINK } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 import { CHAIN_IDS } from '../../../helpers/constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
-  const isBoomBox = detect(transaction);
-  if (!isBoomBox) return transaction;
+  const isBoombox = detect(transaction);
+  if (!isBoombox) return transaction;
 
   return generate(transaction);
 };
@@ -58,14 +58,14 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           contextAction: {
             type: 'contextAction',
-            value: BoomBoxContextActionEnum.SET_BATCH_TIER_COST,
+            value: BoomboxContextActionEnum.SET_BATCH_TIER_COST,
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
             title: 'Boombox',
-            default: '[[sender]][[contextAction]]for[[artist]]',
+            default: '[[sender]][[contextAction]]🔗[[artist]]',
           },
         },
       };
