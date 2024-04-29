@@ -22,7 +22,11 @@ export const detect = (transaction: Transaction): boolean => {
   );
   if (!decoded) return false;
 
-  if (decoded.functionName !== 'setBatchTierCost') return false;
+  if (
+    decoded.functionName !== 'setBatchTierCost' &&
+    decoded.functionName !== 'signArtist'
+  )
+    return false;
 
   return true;
 };
@@ -35,7 +39,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
   switch (decoded.functionName) {
     case 'setBatchTierCost':
-      const artistId =
+      const _artistId =
         decoded.args && decoded.args.length > 1 ? decoded.args[0] : '';
       const cost =
         decoded.args && decoded.args.length > 1 ? decoded.args[1] : [];
@@ -48,9 +52,9 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           artist: {
             type: 'link',
-            value: artistId,
+            value: _artistId,
             truncate: true,
-            link: `${BOOMBOX_ARTIST_SPOTIFY_LINK}/${artistId}`,
+            link: `${BOOMBOX_ARTIST_SPOTIFY_LINK}/${_artistId}`,
           },
           cost: {
             type: 'array',
@@ -66,6 +70,44 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'Boombox',
             default: '[[sender]][[contextAction]][[artist]]on Spotify',
+          },
+        },
+      };
+      return transaction;
+    case 'signArtist':
+      const artistId =
+        decoded.args && decoded.args.length > 1 ? decoded.args[0] : '';
+      const user =
+        decoded.args && decoded.args.length > 1 ? decoded.args[1] : '';
+      const points =
+        decoded.args && decoded.args.length > 1 ? decoded.args[2] : BigInt(0);
+
+      transaction.context = {
+        variables: {
+          user: {
+            type: 'address',
+            value: user,
+          },
+          artist: {
+            type: 'link',
+            value: artistId,
+            truncate: true,
+            link: `${BOOMBOX_ARTIST_SPOTIFY_LINK}/${artistId}`,
+          },
+          points: {
+            type: 'string',
+            value: points.toString(),
+          },
+          contextAction: {
+            type: 'contextAction',
+            value: BoomboxContextActionEnum.SIGNED,
+          },
+        },
+        summaries: {
+          category: 'PROTOCOL_1',
+          en: {
+            title: 'Boombox',
+            default: '[[user]][[contextAction]][[artist]]',
           },
         },
       };
