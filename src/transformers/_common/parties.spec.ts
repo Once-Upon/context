@@ -87,5 +87,21 @@ describe('transactionParties', () => {
     const result2 = transform(block2);
 
     expect(result2).toBeDefined();
+
+    const block3 = loadBlockFixture('base_sepolia', '9312985_decoded');
+    const result3 = transform(block3);
+
+    const txResult5 = result3.transactions.find(
+      (tx) =>
+        tx.hash ===
+        '0x4eac93e327071ba5313ef7c0d8f243ff0653d63ed3403954db41c2b14c2b50b3',
+    );
+    expect(txResult5).toBeDefined();
+    if (txResult5) {
+      expect(txResult5.parties).toStrictEqual([
+        '0x0e204e46a52f1c701e54efd525062a4da96f2b59',
+        '0xe4347cb90e809a9d8526458eaa6e4a1bfff4cc2f',
+      ]);
+    }
   });
 });

@@ -34,6 +34,9 @@ export const transform: TxnTransformer = (_block, tx) => {
     if (trace.action?.to) {
       result = [...result, trace.action.to.toLowerCase()];
     }
+    if (trace.result?.address) {
+      result = [...result, trace.result.address.toLowerCase()];
+    }
     if (trace.type === 'suicide') {
       result = [...result, trace.action.address.toLowerCase()];
       if (trace.action.refundAddress) {
