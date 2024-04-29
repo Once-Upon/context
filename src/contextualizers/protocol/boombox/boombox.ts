@@ -115,7 +115,7 @@ export const generate = (transaction: Transaction): Transaction => {
       return transaction;
     case 'distribute':
       const distributeArtistId =
-        decoded.args && decoded.args.length > 1 ? decoded.args[0] : '';
+        decoded.args && decoded.args.length > 0 ? decoded.args[0] : '';
 
       transaction.context = {
         variables: {

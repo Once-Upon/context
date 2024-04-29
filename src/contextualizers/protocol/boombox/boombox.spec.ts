@@ -3,6 +3,7 @@ import { detect, generate } from './boombox';
 import { contextSummary, containsBigInt } from '../../../helpers/utils';
 import boombox0x460925a4 from '../../test/transactions/boombox-0x460925a4.json';
 import boombox0xde83b70f from '../../test/transactions/boombox-0xde83b70f.json';
+import boombox0xe25e9ec5 from '../../test/transactions/boombox-0xe25e9ec5.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 
 describe('Boombox', () => {
@@ -12,6 +13,9 @@ describe('Boombox', () => {
 
     const isBoombox2 = detect(boombox0xde83b70f as unknown as Transaction);
     expect(isBoombox2).toBe(true);
+
+    const isBoombox3 = detect(boombox0xe25e9ec5 as unknown as Transaction);
+    expect(isBoombox3).toBe(true);
   });
 
   it('Should generate context', () => {
@@ -36,6 +40,16 @@ describe('Boombox', () => {
       '0x59F34a706AD87eb353Dd73fb1F50eBD3b2F18751 SIGNED 06HL4z0CvFAxyc27GXpf02',
     );
     expect(containsBigInt(boombox2.context)).toBe(false);
+
+    const boombox3 = generate(boombox0xe25e9ec5 as unknown as Transaction);
+    expect(boombox3.context?.summaries?.en.title).toBe('Boombox');
+    expect(boombox3.context?.variables?.artist['link']).toBe(
+      'https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02',
+    );
+    expect(contextSummary(boombox3.context)).toBe(
+      '0xab18fdc21c33c3c60bbca753997a657f00d43f9e DISTRIBUTED for 06HL4z0CvFAxyc27GXpf02',
+    );
+    expect(containsBigInt(boombox3.context)).toBe(false);
   });
 
   it('Should not detect transaction', () => {
