@@ -14,7 +14,7 @@ export function registerDetectContextualizersCommand() {
         console.log(`Fetching a transaction`);
         transaction = await getTransaction(options.hash);
 
-        const txResult = contextualizer.contextualize(transaction);
+        const txResult = contextualizer.contextualize(transaction, true);
         if (!txResult.from) {
           console.error(
             `No matching protocol contextualizer on ${transaction.hash}`,
