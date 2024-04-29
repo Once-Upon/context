@@ -219,11 +219,13 @@ export type BNSContextAction =
 export enum BoomboxContextActionEnum {
   ADDED = 'ADDED',
   SIGNED = 'SIGNED',
+  DISTRIBUTED = 'DISTRIBUTED',
 }
 
 export type BoomboxContextAction =
   | BoomboxContextActionEnum.ADDED
-  | BoomboxContextActionEnum.SIGNED;
+  | BoomboxContextActionEnum.SIGNED
+  | BoomboxContextActionEnum.DISTRIBUTED;
 
 export enum Protocols {
   WETH = 'WETH',

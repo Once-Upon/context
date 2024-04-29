@@ -24,7 +24,8 @@ export const detect = (transaction: Transaction): boolean => {
 
   if (
     decoded.functionName !== 'setBatchTierCost' &&
-    decoded.functionName !== 'signArtist'
+    decoded.functionName !== 'signArtist' &&
+    decoded.functionName !== 'distribute'
   )
     return false;
 
@@ -108,6 +109,36 @@ export const generate = (transaction: Transaction): Transaction => {
           en: {
             title: 'Boombox',
             default: '[[user]][[contextAction]][[artist]]',
+          },
+        },
+      };
+      return transaction;
+    case 'distribute':
+      const distributeArtistId =
+        decoded.args && decoded.args.length > 1 ? decoded.args[0] : '';
+
+      transaction.context = {
+        variables: {
+          sender: {
+            type: 'address',
+            value: transaction.from,
+          },
+          artist: {
+            type: 'link',
+            value: distributeArtistId,
+            truncate: true,
+            link: `${BOOMBOX_ARTIST_SPOTIFY_LINK}/${distributeArtistId}`,
+          },
+          contextAction: {
+            type: 'contextAction',
+            value: BoomboxContextActionEnum.DISTRIBUTED,
+          },
+        },
+        summaries: {
+          category: 'PROTOCOL_1',
+          en: {
+            title: 'Boombox',
+            default: '[[sender]][[contextAction]]for[[artist]]',
           },
         },
       };
