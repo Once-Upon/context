@@ -1,0 +1,185 @@
+{
+  "_id": "662e52ddf4ed624d17bfca50",
+  "accessList": [],
+  "blockHash": "0x00d3b3c4ad3ac683362fd04abc5acd6a339f145b97c7d46973bb8fd65f2dafa9",
+  "blockNumber": 4631786,
+  "chainId": 78225,
+  "from": "0xab18fdc21c33c3c60bbca753997a657f00d43f9e",
+  "gas": 165547,
+  "gasPrice": "1000252",
+  "hash": "0xde834100603306ab9802d91bd550b6e23fcfad86cf74141beb73cf418962b70f",
+  "input": "0x93cd046c000000000000000000000000000000000000000000000000000000000000006000000000000000000000000059f34a706ad87eb353dd73fb1f50ebd3b2f187510000000000000000000000000000000000000000000000000000000005f5e10000000000000000000000000000000000000000000000000000000000000000163036484c347a3043764641787963323747587066303200000000000000000000",
+  "maxFeePerGas": "1000302",
+  "maxPriorityFeePerGas": "1000000",
+  "nonce": 120323,
+  "r": "0x6532d75920c254daa042296b4fdadfa515861026d65a5ecd5b499003784a0000",
+  "s": "0x637b55289aba7ce7cadcc538aba3ecc6140928fadbdd03ad6e4a4f4536c8af8",
+  "to": "0x000bea71d6cb2b2b7af013f0038ccff36bc02c9c",
+  "transactionIndex": 1,
+  "type": 2,
+  "v": "0x0",
+  "value": "0",
+  "yParity": "0x0",
+  "receipt": {
+    "blockHash": "0x00d3b3c4ad3ac683362fd04abc5acd6a339f145b97c7d46973bb8fd65f2dafa9",
+    "blockNumber": 4631786,
+    "contractAddress": null,
+    "cumulativeGasUsed": 215562,
+    "effectiveGasPrice": 1000252,
+    "from": "0xab18fdc21c33c3c60bbca753997a657f00d43f9e",
+    "gasUsed": 163085,
+    "l1Fee": "0x232729d7bd",
+    "l1FeeScalar": "0.684",
+    "l1GasPrice": "0x4041db1",
+    "l1GasUsed": "0xccc",
+    "logsBloom": "0x00002000000000002000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000100000000000000000008000000000000000000000000000000000010000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000800200000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0x000bea71d6cb2b2b7af013f0038ccff36bc02c9c",
+    "transactionHash": "0xde834100603306ab9802d91bd550b6e23fcfad86cf74141beb73cf418962b70f",
+    "transactionIndex": 1,
+    "type": "0x2",
+    "logs": [
+      {
+        "_id": "662e52ddf4ed624d17bfca4e",
+        "address": "0x000000000c2b4a5816cbb76e9bb3f70d175940a3",
+        "blockHash": "0x00d3b3c4ad3ac683362fd04abc5acd6a339f145b97c7d46973bb8fd65f2dafa9",
+        "blockNumber": 4631786,
+        "data": "0x0000000000000000000000000000000000000000000000000000000005f5e100",
+        "logIndex": 0,
+        "removed": false,
+        "transactionHash": "0xde834100603306ab9802d91bd550b6e23fcfad86cf74141beb73cf418962b70f",
+        "transactionIndex": 1,
+        "id": "log_ac283d91",
+        "decoded": null,
+        "topic0": "0xef1018e00967991fa59565627e1089ab3736f8b5e40be9d44dad236c757077a8",
+        "topic1": "0x000000000000000000000000000000000000000000000000000000000000041a",
+        "topic2": "0x00000000000000000000000059f34a706ad87eb353dd73fb1f50ebd3b2f18751"
+      }
+    ]
+  },
+  "decoded": null,
+  "delegateCalls": [],
+  "errors": [],
+  "parties": [
+    "0xab18fdc21c33c3c60bbca753997a657f00d43f9e",
+    "0x000bea71d6cb2b2b7af013f0038ccff36bc02c9c",
+    "0x000000000c2b4a5816cbb76e9bb3f70d175940a3"
+  ],
+  "sigHash": "0x93cd046c",
+  "internalSigHashes": [
+    {
+      "from": "0xab18fdc21c33c3c60bbca753997a657f00d43f9e",
+      "to": "0x000bea71d6cb2b2b7af013f0038ccff36bc02c9c",
+      "sigHash": "0x93cd046c"
+    },
+    {
+      "from": "0x000bea71d6cb2b2b7af013f0038ccff36bc02c9c",
+      "to": "0x000000000c2b4a5816cbb76e9bb3f70d175940a3",
+      "sigHash": "0x93552a3d"
+    },
+    {
+      "from": "0x000bea71d6cb2b2b7af013f0038ccff36bc02c9c",
+      "to": "0x000000000c2b4a5816cbb76e9bb3f70d175940a3",
+      "sigHash": "0xe838684a"
+    }
+  ],
+  "timestamp": 1714311897,
+  "baseFeePerGas": 252,
+  "transactionFee": "150980908989456020163126097420",
+  "logs": [
+    {
+      "_id": "662e52ddf4ed624d17bfca4e",
+      "address": "0x000000000c2b4a5816cbb76e9bb3f70d175940a3",
+      "blockHash": "0x00d3b3c4ad3ac683362fd04abc5acd6a339f145b97c7d46973bb8fd65f2dafa9",
+      "blockNumber": 4631786,
+      "data": "0x0000000000000000000000000000000000000000000000000000000005f5e100",
+      "logIndex": 0,
+      "removed": false,
+      "transactionHash": "0xde834100603306ab9802d91bd550b6e23fcfad86cf74141beb73cf418962b70f",
+      "transactionIndex": 1,
+      "id": "log_ac283d91",
+      "decoded": null,
+      "topic0": "0xef1018e00967991fa59565627e1089ab3736f8b5e40be9d44dad236c757077a8",
+      "topic1": "0x000000000000000000000000000000000000000000000000000000000000041a",
+      "topic2": "0x00000000000000000000000059f34a706ad87eb353dd73fb1f50ebd3b2f18751"
+    }
+  ],
+  "netAssetTransfers": {},
+  "pseudotransactions": [],
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0xab18fdc21c33c3c60bbca753997a657f00d43f9e": [
+      {
+        "chainId": 0,
+        "isContract": false,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        },
+        "label": {
+          "public": "Boombox Relayer"
+        }
+      }
+    ],
+    "0x000bea71d6cb2b2b7af013f0038ccff36bc02c9c": [
+      {
+        "chainId": 78225,
+        "label": {
+          "public": "Boombox"
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x000000000c2b4a5816cbb76e9bb3f70d175940a3": [
+      {
+        "chainId": 78225,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": "",
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
+}
