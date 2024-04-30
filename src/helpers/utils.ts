@@ -234,12 +234,20 @@ function formatSection(section: ContextSummaryVariableType) {
 }
 
 export const makeContextualize = (
-  children: Record<string, (transaction: Transaction) => Transaction>,
+  children: Record<
+    string,
+    (transaction: Transaction, isDebug: boolean) => Transaction
+  >,
 ) => {
-  return (transaction: Transaction): Transaction => {
-    for (const childContextualizer of Object.values(children)) {
-      const result = childContextualizer(transaction);
+  return (transaction: Transaction, isDebug = false): Transaction => {
+    for (const [contextualizerName, childContextualizer] of Object.entries(
+      children,
+    )) {
+      const result = childContextualizer(transaction, isDebug);
       if (result.context?.summaries?.en.title) {
+        if (isDebug) {
+          console.log('contextualizer: ', contextualizerName);
+        }
         return result;
       }
     }
