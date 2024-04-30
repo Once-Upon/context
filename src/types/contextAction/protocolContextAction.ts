@@ -246,20 +246,35 @@ export enum Protocols {
   BOOMBOX = 'BOOMBOX',
 }
 
+// Function to merge enums into a single object
+function mergeEnums(...enums: any[]): { [key: string]: string } {
+  const result: { [key: string]: string } = {};
+  enums.forEach((enumObj) => {
+    Object.keys(enumObj).forEach((key) => {
+      result[key] = enumObj[key];
+    });
+  });
+  return result;
+}
+
+export const ProtocolContextActionEnum = mergeEnums(
+  WETHContextActionEnum,
+  ENSContextActionEnum,
+  CryptoPunksContextActionEnum,
+  LeeroyContextActionEnum,
+  FrenpetContextActionEnum,
+  FarcasterContextActionEnum,
+  EASContextActionEnum,
+  FriendTechContextActionEnum,
+  NounsAuctionHouseActionEnum,
+  NounsGovernorActionEnum,
+  UniswapV2RouterActionEnum,
+  ClaimCampaignsActionEnum,
+  BasepaintActionEnum,
+  DisperseActionEnum,
+  BNSContextActionEnum,
+  BoomboxContextActionEnum,
+);
+
 export type ProtocolContextAction =
-  | WETHContextAction
-  | ENSContextAction
-  | CryptoPunksContextAction
-  | LeeroyContextAction
-  | FrenpetContextAction
-  | FarcasterContextAction
-  | EASContextAction
-  | FriendTechContextAction
-  | NounsAuctionHouseAction
-  | NounsGovernorAction
-  | UniswapV2RouterAction
-  | ClaimCampaignsAction
-  | BasepaintAction
-  | DisperseAction
-  | BNSContextAction
-  | BoomboxContextAction;
+  (typeof ProtocolContextActionEnum)[keyof typeof ProtocolContextActionEnum];
