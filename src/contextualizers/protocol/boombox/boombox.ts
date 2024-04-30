@@ -1,4 +1,4 @@
-import { Abi, Hex } from 'viem';
+import { Abi, Hex, hexToBigInt } from 'viem';
 import { BoomboxContextActionEnum, Transaction } from '../../../types';
 import {
   BOOMBOX_ABI,
@@ -124,12 +124,18 @@ export const generate = (transaction: Transaction): Transaction => {
       const distributeArtistId =
         decoded.args && decoded.args.length > 0 ? decoded.args[0] : '';
       // decode logs
-      const recipients = transaction.logs
-        ? transaction.logs
-            .filter((log) => log.topic0 === EVENT_DISTRIBUTE_TOPIC)
-            .map((log) => decodeEVMAddress(log.topic2))
+      const distributeLogs = transaction.logs
+        ? transaction.logs.filter(
+            (log) => log.topic0 === EVENT_DISTRIBUTE_TOPIC,
+          )
         : [];
-
+      const recipients = distributeLogs.map((log) =>
+        decodeEVMAddress(log.topic2),
+      );
+      const amount =
+        distributeLogs.length > 0
+          ? hexToBigInt(distributeLogs[0].topic1 as Hex).toString()
+          : '';
       transaction.context = {
         variables: {
           sender: {
@@ -146,6 +152,10 @@ export const generate = (transaction: Transaction): Transaction => {
             type: 'array',
             value: recipients,
           },
+          amount: {
+            type: 'string',
+            value: amount,
+          },
           contextAction: {
             type: 'contextAction',
             value: BoomboxContextActionEnum.DISTRIBUTED,
@@ -155,7 +165,7 @@ export const generate = (transaction: Transaction): Transaction => {
           category: 'PROTOCOL_1',
           en: {
             title: 'Boombox',
-            default: '[[sender]][[contextAction]]for[[artist]]',
+            default: '[[sender]][[contextAction]][[amount]]for[[artist]]',
           },
         },
       };
