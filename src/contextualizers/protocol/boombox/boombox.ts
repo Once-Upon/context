@@ -1,7 +1,14 @@
 import { Abi, Hex } from 'viem';
 import { BoomboxContextActionEnum, Transaction } from '../../../types';
-import { BOOMBOX_ABI, BOOMBOX_ARTIST_SPOTIFY_LINK } from './constants';
-import { decodeTransactionInput } from '../../../helpers/utils';
+import {
+  BOOMBOX_ABI,
+  BOOMBOX_ARTIST_SPOTIFY_LINK,
+  EVENT_DISTRIBUTE_TOPIC,
+} from './constants';
+import {
+  decodeEVMAddress,
+  decodeTransactionInput,
+} from '../../../helpers/utils';
 import { CHAIN_IDS } from '../../../helpers/constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -116,6 +123,12 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'distribute':
       const distributeArtistId =
         decoded.args && decoded.args.length > 0 ? decoded.args[0] : '';
+      // decode logs
+      const recipients = transaction.logs
+        ? transaction.logs
+            .filter((log) => log.topic0 === EVENT_DISTRIBUTE_TOPIC)
+            .map((log) => decodeEVMAddress(log.topic2))
+        : [];
 
       transaction.context = {
         variables: {
@@ -128,6 +141,10 @@ export const generate = (transaction: Transaction): Transaction => {
             value: distributeArtistId,
             truncate: true,
             link: `${BOOMBOX_ARTIST_SPOTIFY_LINK}/${distributeArtistId}`,
+          },
+          recipients: {
+            type: 'array',
+            value: recipients,
           },
           contextAction: {
             type: 'contextAction',
