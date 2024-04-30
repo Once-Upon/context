@@ -1,14 +1,13 @@
 import {
   Transaction,
   AssetType,
-  ETHAsset,
   ContextERC1155Type,
   ContextERC721Type,
   ContextERC20Type,
   ContextETHType,
   ContextSummaryVariableType,
-  Asset,
   HeuristicContextActionEnum,
+  AssetTransfer,
 } from '../../../types';
 import { DEGEN_BRIDGES } from './constants';
 
@@ -30,35 +29,28 @@ export function detect(transaction: Transaction): boolean {
     return false;
   }
 
-  const assetReceived =
-    transaction.netAssetTransfers &&
-    transaction.netAssetTransfers[transaction.to] &&
-    transaction.netAssetTransfers[transaction.to].received
-      ? transaction.netAssetTransfers[transaction.to].received
-      : [];
-  const assetTransfer: ETHAsset | undefined = assetReceived.find(
-    (asset) => asset.type === AssetType.ETH,
-  ) as ETHAsset;
-  if (!assetTransfer) {
+  const assetSent =
+    transaction.assetTransfers?.filter(
+      (asset) => asset.from === transaction.from,
+    ) ?? [];
+  if (!assetSent.length) {
     return false;
   }
-
   return true;
 }
 
 export function generate(transaction: Transaction): Transaction {
   if (!transaction.to) return transaction;
 
-  const assetReceived =
-    transaction.netAssetTransfers &&
-    transaction.netAssetTransfers[transaction.to] &&
-    transaction.netAssetTransfers[transaction.to].received
-      ? transaction.netAssetTransfers[transaction.to].received
-      : [];
-  if (!assetReceived?.length) {
+  const assetSent =
+    transaction.assetTransfers?.filter(
+      (asset) => asset.from === transaction.from,
+    ) ?? [];
+  if (!assetSent?.length) {
     return transaction;
   }
-  const assetTransfer: Asset = assetReceived[0];
+
+  const assetTransfer: AssetTransfer = assetSent[0];
   let asset: ContextSummaryVariableType;
   switch (assetTransfer.type) {
     case AssetType.ETH:
