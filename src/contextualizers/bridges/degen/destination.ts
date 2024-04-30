@@ -2,13 +2,13 @@ import {
   Transaction,
   AssetType,
   ETHAsset,
-  BridgeContextActionEnum,
   ContextERC1155Type,
   ContextERC721Type,
   ContextERC20Type,
   ContextETHType,
   ContextSummaryVariableType,
   Asset,
+  HeuristicContextActionEnum,
 } from '../../../types';
 import { DEGEN_BRIDGES } from './constants';
 
@@ -98,7 +98,7 @@ export function generate(transaction: Transaction): Transaction {
       en: {
         title: `Bridge`,
         default:
-          '[[person]][[completedACrossChainInteraction]]via[[address]]and[[asset]]was transferred',
+          '[[person]][[bridged]]via[[address]]and[[asset]]was transferred',
       },
     },
     variables: {
@@ -111,9 +111,9 @@ export function generate(transaction: Transaction): Transaction {
         value: transaction.to,
       },
       asset,
-      completedACrossChainInteraction: {
+      bridged: {
         type: 'contextAction',
-        value: BridgeContextActionEnum.COMPLETED_A_CROSS_CHAIN_INTERACTION,
+        value: HeuristicContextActionEnum.BRIDGED,
       },
     },
   };

@@ -2,7 +2,7 @@ import {
   Transaction,
   AssetType,
   ETHAsset,
-  BridgeContextActionEnum,
+  HeuristicContextActionEnum,
 } from '../../../types';
 import { DEGEN_BRIDGES } from './constants';
 
@@ -63,7 +63,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'MULTICHAIN',
       en: {
         title: `Bridge`,
-        default: '[[person]][[initiated]]via[[address]]',
+        default: '[[person]][[bridged]]via[[address]]',
       },
     },
     variables: {
@@ -75,9 +75,9 @@ export function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: transaction.to,
       },
-      initiated: {
+      bridged: {
         type: 'contextAction',
-        value: BridgeContextActionEnum.INITIATED_A_CROSS_CHAIN_INTERACTION,
+        value: HeuristicContextActionEnum.BRIDGED,
       },
     },
   };
