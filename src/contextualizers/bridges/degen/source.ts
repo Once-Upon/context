@@ -1,8 +1,13 @@
 import {
   Transaction,
   AssetType,
-  ETHAsset,
-  BridgeContextActionEnum,
+  HeuristicContextActionEnum,
+  ContextERC721Type,
+  ContextERC1155Type,
+  ContextERC20Type,
+  ContextETHType,
+  AssetTransfer,
+  ContextSummaryVariableType,
 } from '../../../types';
 import { DEGEN_BRIDGES } from './constants';
 
@@ -28,15 +33,10 @@ export function detect(transaction: Transaction): boolean {
     return false;
 
   const assetSent =
-    transaction.netAssetTransfers &&
-    transaction.netAssetTransfers[transaction.from] &&
-    transaction.netAssetTransfers[transaction.from].sent
-      ? transaction.netAssetTransfers[transaction.from].sent
-      : [];
-  const assetTransfer: ETHAsset | undefined = assetSent.find(
-    (asset) => asset.type === AssetType.ETH,
-  ) as ETHAsset;
-  if (!assetTransfer) {
+    transaction.assetTransfers?.filter(
+      (asset) => asset.from === transaction.from,
+    ) ?? [];
+  if (!assetSent.length) {
     return false;
   }
 
@@ -46,16 +46,45 @@ export function detect(transaction: Transaction): boolean {
 export function generate(transaction: Transaction): Transaction {
   if (!transaction.to) return transaction;
   const assetSent =
-    transaction.netAssetTransfers &&
-    transaction.netAssetTransfers[transaction.from] &&
-    transaction.netAssetTransfers[transaction.from].sent
-      ? transaction.netAssetTransfers[transaction.from].sent
-      : [];
-  const assetTransfer: ETHAsset | undefined = assetSent.find(
-    (asset) => asset.type === AssetType.ETH,
-  ) as ETHAsset;
-  if (!assetTransfer) {
+    transaction.assetTransfers?.filter(
+      (asset) => asset.from === transaction.from,
+    ) ?? [];
+  if (!assetSent?.length) {
     return transaction;
+  }
+
+  const assetTransfer: AssetTransfer = assetSent[0];
+  let asset: ContextSummaryVariableType;
+  switch (assetTransfer.type) {
+    case AssetType.ETH:
+      asset = {
+        type: AssetType.ETH,
+        value: assetTransfer.value,
+        unit: 'wei',
+      } as ContextETHType;
+      break;
+    case AssetType.ERC20:
+      asset = {
+        type: AssetType.ERC20,
+        token: assetTransfer.contract,
+        value: assetTransfer.value,
+      } as ContextERC20Type;
+      break;
+    case AssetType.ERC721:
+      asset = {
+        type: AssetType.ERC721,
+        token: assetTransfer.contract,
+        tokenId: assetTransfer.tokenId,
+      } as ContextERC721Type;
+      break;
+    case AssetType.ERC1155:
+      asset = {
+        type: AssetType.ERC1155,
+        token: assetTransfer.contract,
+        tokenId: assetTransfer.tokenId,
+        value: assetTransfer.value,
+      } as ContextERC1155Type;
+      break;
   }
 
   transaction.context = {
@@ -63,7 +92,8 @@ export function generate(transaction: Transaction): Transaction {
       category: 'MULTICHAIN',
       en: {
         title: `Bridge`,
-        default: '[[person]][[initiated]]via[[address]]',
+        default:
+          '[[person]][[bridged]]via[[address]]and[[asset]]was transferred',
       },
     },
     variables: {
@@ -75,9 +105,10 @@ export function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: transaction.to,
       },
-      initiated: {
+      asset,
+      bridged: {
         type: 'contextAction',
-        value: BridgeContextActionEnum.INITIATED_A_CROSS_CHAIN_INTERACTION,
+        value: HeuristicContextActionEnum.BRIDGED,
       },
     },
   };

@@ -17,7 +17,7 @@ describe('Degen Bridge Source', () => {
     );
     expect(transaction1.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(transaction1.context)).toBe(
-      '0x729170d38dd5449604f35f349fdfcc9ad08257cd INITIATED_A_CROSS_CHAIN_INTERACTION via 0x43019f8be1f192587883b67dea2994999f5a2de2',
+      '0x729170d38dd5449604f35f349fdfcc9ad08257cd BRIDGED via 0x43019f8be1f192587883b67dea2994999f5a2de2 and 0.00016 ETH was transferred',
     );
     expect(containsBigInt(transaction1.context)).toBe(false);
   });
