@@ -1,14 +1,15 @@
-import { Abi, Hex, hexToBigInt } from 'viem';
-import { BoomboxContextActionEnum, Transaction } from '../../../types';
+import { Abi, Hex } from 'viem';
+import {
+  BoomboxContextActionEnum,
+  EventLogTopics,
+  Transaction,
+} from '../../../types';
 import {
   BOOMBOX_ABI,
   BOOMBOX_ARTIST_SPOTIFY_LINK,
-  EVENT_DISTRIBUTE_TOPIC,
+  POINTS_ADDED_EVENT_ABI,
 } from './constants';
-import {
-  decodeEVMAddress,
-  decodeTransactionInput,
-} from '../../../helpers/utils';
+import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
 import { CHAIN_IDS } from '../../../helpers/constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -124,18 +125,35 @@ export const generate = (transaction: Transaction): Transaction => {
       const distributeArtistId =
         decoded.args && decoded.args.length > 0 ? decoded.args[0] : '';
       // decode logs
-      const distributeLogs = transaction.logs
-        ? transaction.logs.filter(
-            (log) => log.topic0 === EVENT_DISTRIBUTE_TOPIC,
-          )
+      const decodedLogs = transaction.logs
+        ? transaction.logs
+            .map((log) => {
+              const decoded = decodeLog(
+                POINTS_ADDED_EVENT_ABI as Abi,
+                log.data as Hex,
+                [
+                  log.topic0,
+                  log.topic1,
+                  log.topic2,
+                  log.topic3,
+                ] as EventLogTopics,
+              );
+
+              if (decoded && decoded.eventName === 'PointsAdded')
+                return decoded;
+              return null;
+            })
+            .filter((log) => log)
         : [];
-      const recipients = distributeLogs.map((log) =>
-        decodeEVMAddress(log.topic2),
-      );
+      const recipients = decodedLogs
+        .map((log) =>
+          log?.args['user'] ? log?.args['user'].toLowerCase() : null,
+        )
+        .filter((log) => log);
       const amount =
-        distributeLogs.length > 0
-          ? hexToBigInt(distributeLogs[0].topic1 as Hex).toString()
-          : '';
+        decodedLogs[0] && decodedLogs[0].args['points']
+          ? decodedLogs[0].args['points'].toString()
+          : BigInt(0).toString();
       transaction.context = {
         variables: {
           sender: {
