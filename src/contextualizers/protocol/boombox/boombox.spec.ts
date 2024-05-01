@@ -52,7 +52,7 @@ describe('Boombox', () => {
     );
     expect(boombox3.context?.variables?.recipients['value'].length).toBe(798);
     expect(contextSummary(boombox3.context)).toBe(
-      '0xab18fdc21c33c3c60bbca753997a657f00d43f9e DISTRIBUTED 1050 for 06HL4z0CvFAxyc27GXpf02',
+      '0xab18fdc21c33c3c60bbca753997a657f00d43f9e DISTRIBUTED 4500000 for 06HL4z0CvFAxyc27GXpf02',
     );
     expect(containsBigInt(boombox3.context)).toBe(false);
 
@@ -63,7 +63,7 @@ describe('Boombox', () => {
     );
     expect(boombox4.context?.variables?.recipients['value'].length).toBe(817);
     expect(contextSummary(boombox4.context)).toBe(
-      '0xab18fdc21c33c3c60bbca753997a657f00d43f9e DISTRIBUTED 1050 for 06HL4z0CvFAxyc27GXpf02',
+      '0xab18fdc21c33c3c60bbca753997a657f00d43f9e DISTRIBUTED 4500000 for 06HL4z0CvFAxyc27GXpf02',
     );
     expect(containsBigInt(boombox4.context)).toBe(false);
   });
