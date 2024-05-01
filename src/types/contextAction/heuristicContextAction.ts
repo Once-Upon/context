@@ -13,7 +13,8 @@ export type HeuristicContextAction =
   | HeuristicContextActionEnum.INTERACTED_WITH // Not yet used in this repo
   | HeuristicContextActionEnum.CALLED // Not yet used in this repo
   | HeuristicContextActionEnum.SENT_MESSAGE
-  | HeuristicContextActionEnum.CANCELED_A_PENDING_TRANSACTION;
+  | HeuristicContextActionEnum.CANCELED_A_PENDING_TRANSACTION
+  | HeuristicContextActionEnum.SUBMITTED_ACCOUNT_ABSTRACTION_BUNDLE;
 
 export enum HeuristicContextActionEnum {
   BOUGHT = 'BOUGHT',
@@ -31,4 +32,5 @@ export enum HeuristicContextActionEnum {
   CALLED = 'CALLED', // Not yet used in this repo
   SENT_MESSAGE = 'SENT_MESSAGE',
   CANCELED_A_PENDING_TRANSACTION = 'CANCELED_A_PENDING_TRANSACTION',
+  SUBMITTED_ACCOUNT_ABSTRACTION_BUNDLE = 'SUBMITTED_ACCOUNT_ABSTRACTION_BUNDLE',
 }

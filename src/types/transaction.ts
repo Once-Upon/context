@@ -78,7 +78,7 @@ export type TransactionContextType = {
 // MongoDB document
 export type Transaction = BaseTransaction & {
   assetTransfers?: AssetTransfer[];
-  pseudotransactions?: PseudoTransaction[];
+  pseudotransactions?: (Transaction & { meta: { key: string } })[];
   sigHash: string;
   internalSigHashes: SigHash[];
   parties: string[];
