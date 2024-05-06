@@ -146,7 +146,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       zGold: {
         type: AssetType.ERC20,
-        token: Z_GOLD_CONTRACT_ADDRESS,
+        token: Z_GOLD_CONTRACT_ADDRESS, // TODO: Find a way to get this programmatically
         value: zGoldAmount,
       },
       received: {
