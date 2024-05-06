@@ -20,45 +20,32 @@ export function contextualize(transaction: Transaction): Transaction {
 
 // Always chain id 1 through the Zora bridge UI
 export function detect(transaction: Transaction): boolean {
-  if (
-    transaction.from !== PACK_ACTIVATION_DESTINATION_CONTRACT ||
-    transaction.chainId !== CHAIN_IDS.gold
-  ) {
+  if (transaction.chainId !== CHAIN_IDS.gold) {
     return false;
   }
   // check logs
   if (!transaction.logs) return false;
-  const activatedStarterPackOnDestinationEvent = transaction.logs.find(
-    (log) => {
-      const decoded = decodeLog(PACK_ACTIVATION_DESTINATION_ABI, log.data, [
-        log.topic0,
-        log.topic1,
-        log.topic2,
-        log.topic3,
-      ] as EventLogTopics);
 
-      if (
-        decoded &&
-        decoded.eventName === 'ActivatedStarterPackOnDestination'
-      ) {
-        return true;
-      }
+  for (const log of transaction.logs) {
+    if (log.address !== PACK_ACTIVATION_DESTINATION_CONTRACT) continue;
 
-      return false;
-    },
-  );
+    const decoded = decodeLog(PACK_ACTIVATION_DESTINATION_ABI, log.data, [
+      log.topic0,
+      log.topic1,
+      log.topic2,
+      log.topic3,
+    ] as EventLogTopics);
 
-  if (activatedStarterPackOnDestinationEvent) return true;
+    if (decoded && decoded.eventName === 'ActivatedStarterPackOnDestination') {
+      return true;
+    }
+  }
 
   return false;
 }
 
 export function generate(transaction: Transaction): Transaction {
-  if (
-    transaction.to !== PACK_ACTIVATION_DESTINATION_CONTRACT ||
-    !transaction.logs ||
-    transaction.chainId !== CHAIN_IDS.gold
-  )
+  if (!transaction.logs || transaction.chainId !== CHAIN_IDS.gold)
     return transaction;
 
   // decode input
@@ -66,7 +53,7 @@ export function generate(transaction: Transaction): Transaction {
     transaction.input,
     PACK_ACTIVATION_DESTINATION_ABI,
   );
-  if (!decodedInput || decodedInput.functionName == 'activateDestination') {
+  if (!decodedInput || decodedInput.functionName != 'activateDestination') {
     return transaction;
   }
   // decode ActivatedStarterPackOnDestination event
@@ -104,12 +91,12 @@ export function generate(transaction: Transaction): Transaction {
 
   // grab variables from decoded event
   const cropName = decodedInput.args[2];
-  const plots = activatedStarterPackOnDestinationDecoded.args['plots'];
+  const plotIds = activatedStarterPackOnDestinationDecoded.args['plotIds'];
   const zGoldAmount = BigInt(
-    mintedPlotPackActivateDecoded[0].args['amount'],
+    gameMintedTokenDecoded[0].args['amount'],
   ).toString();
   const cropAmount = BigInt(
-    mintedPlotPackActivateDecoded[1].args['amount'],
+    gameMintedTokenDecoded[1].args['amount'],
   ).toString();
   const activator = activatedStarterPackOnDestinationDecoded.args['activator'];
 
@@ -119,7 +106,7 @@ export function generate(transaction: Transaction): Transaction {
       en: {
         title: `Gold`,
         default:
-          '[[activator]][[received]]plots[[plots]][[cropAmount]]amount of[[cropName]]and[[zGoldAmount]]amount of Sky Gold',
+          '[[activator]][[received]]plots[[plotIds]],[[cropAmount]]amount of[[cropName]]and[[zGoldAmount]]amount of Sky Gold',
       },
     },
     variables: {
@@ -127,9 +114,12 @@ export function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: activator,
       },
-      plots: {
+      plotIds: {
         type: 'array',
-        value: plots,
+        value:
+          plotIds.length > 0
+            ? plotIds.map((c: bigint) => '#' + c.toString())
+            : [],
       },
       cropName: {
         type: 'string',
