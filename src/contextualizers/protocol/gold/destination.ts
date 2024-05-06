@@ -1,19 +1,18 @@
+import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
+import { CHAIN_IDS } from '../../../helpers/constants';
 import {
   Transaction,
-  AssetType,
-  BridgeContextActionEnum,
-  ContextSummaryVariableType,
-  ContextETHType,
-  ContextERC20Type,
-  ContextERC721Type,
-  ContextERC1155Type,
-  AssetTransfer,
+  EventLogTopics,
+  GoldContextActionEnum,
 } from '../../../types';
-import { BRIDGE_ZORA_ENERGY } from './constants';
+import {
+  PACK_ACTIVATION_DESTINATION_ABI,
+  PACK_ACTIVATION_DESTINATION_CONTRACT,
+} from './constants';
 
 export function contextualize(transaction: Transaction): Transaction {
-  const isBridgeZoraEnergy = detect(transaction);
-  if (!isBridgeZoraEnergy) return transaction;
+  const isPackActivationDestination = detect(transaction);
+  if (!isPackActivationDestination) return transaction;
 
   const result = generate(transaction);
   return result;
@@ -21,87 +20,132 @@ export function contextualize(transaction: Transaction): Transaction {
 
 // Always chain id 1 through the Zora bridge UI
 export function detect(transaction: Transaction): boolean {
-  if (transaction.from !== BRIDGE_ZORA_ENERGY || !transaction.to) {
+  if (
+    transaction.from !== PACK_ACTIVATION_DESTINATION_CONTRACT ||
+    transaction.chainId !== CHAIN_IDS.gold
+  ) {
     return false;
   }
+  // check logs
+  if (!transaction.logs) return false;
+  const activatedStarterPackOnDestinationEvent = transaction.logs.find(
+    (log) => {
+      const decoded = decodeLog(PACK_ACTIVATION_DESTINATION_ABI, log.data, [
+        log.topic0,
+        log.topic1,
+        log.topic2,
+        log.topic3,
+      ] as EventLogTopics);
 
-  const assetSent =
-    transaction.assetTransfers?.filter(
-      (asset) => asset.from === transaction.from,
-    ) ?? [];
-  if (!assetSent.length) {
-    return false;
-  }
+      if (
+        decoded &&
+        decoded.eventName === 'ActivatedStarterPackOnDestination'
+      ) {
+        return true;
+      }
 
-  return true;
+      return false;
+    },
+  );
+
+  if (activatedStarterPackOnDestinationEvent) return true;
+
+  return false;
 }
 
 export function generate(transaction: Transaction): Transaction {
-  if (!transaction.to) return transaction;
+  if (
+    transaction.to !== PACK_ACTIVATION_DESTINATION_CONTRACT ||
+    !transaction.logs ||
+    transaction.chainId !== CHAIN_IDS.gold
+  )
+    return transaction;
 
-  const assetSent =
-    transaction.assetTransfers?.filter(
-      (asset) => asset.from === transaction.from,
-    ) ?? [];
-  if (!assetSent?.length) {
+  // decode input
+  const decodedInput = decodeTransactionInput(
+    transaction.input,
+    PACK_ACTIVATION_DESTINATION_ABI,
+  );
+  if (!decodedInput || decodedInput.functionName == 'activateDestination') {
     return transaction;
   }
-  const assetTransfer: AssetTransfer = assetSent[0];
-  let asset: ContextSummaryVariableType;
-  switch (assetTransfer.type) {
-    case AssetType.ETH:
-      asset = {
-        type: AssetType.ETH,
-        value: assetTransfer.value,
-        unit: 'wei',
-      } as ContextETHType;
-      break;
-    case AssetType.ERC20:
-      asset = {
-        type: AssetType.ERC20,
-        token: assetTransfer.contract,
-        value: assetTransfer.value,
-      } as ContextERC20Type;
-      break;
-    case AssetType.ERC721:
-      asset = {
-        type: AssetType.ERC721,
-        token: assetTransfer.contract,
-        tokenId: assetTransfer.tokenId,
-      } as ContextERC721Type;
-      break;
-    case AssetType.ERC1155:
-      asset = {
-        type: AssetType.ERC1155,
-        token: assetTransfer.contract,
-        tokenId: assetTransfer.tokenId,
-        value: assetTransfer.value,
-      } as ContextERC1155Type;
-      break;
+  // decode ActivatedStarterPackOnDestination event
+  let activatedStarterPackOnDestinationDecoded, mintedPlotPackActivateDecoded;
+  const gameMintedTokenDecoded: any[] = [];
+  for (const log of transaction.logs) {
+    const decoded = decodeLog(PACK_ACTIVATION_DESTINATION_ABI, log.data, [
+      log.topic0,
+      log.topic1,
+      log.topic2,
+      log.topic3,
+    ] as EventLogTopics);
+    if (!decoded) continue;
+
+    switch (decoded.eventName) {
+      case 'ActivatedStarterPackOnDestination':
+        activatedStarterPackOnDestinationDecoded = decoded;
+        break;
+      case 'MintedPlotPackActivate':
+        mintedPlotPackActivateDecoded = decoded;
+        break;
+      case 'GameMintedToken':
+        gameMintedTokenDecoded.push(decoded);
+        break;
+      default:
+        break;
+    }
   }
+  if (
+    !activatedStarterPackOnDestinationDecoded ||
+    !mintedPlotPackActivateDecoded ||
+    gameMintedTokenDecoded.length !== 2
+  )
+    return transaction;
+
+  // grab variables from decoded event
+  const cropName = decodedInput.args[2];
+  const plots = activatedStarterPackOnDestinationDecoded.args['plots'];
+  const zGoldAmount = BigInt(
+    mintedPlotPackActivateDecoded[0].args['amount'],
+  ).toString();
+  const cropAmount = BigInt(
+    mintedPlotPackActivateDecoded[1].args['amount'],
+  ).toString();
+  const activator = activatedStarterPackOnDestinationDecoded.args['activator'];
 
   transaction.context = {
     summaries: {
-      category: 'MULTICHAIN',
+      category: 'PROTOCOL_1',
       en: {
-        title: `Bridge`,
+        title: `Gold`,
         default:
-          '[[person]][[completedACrossChainInteraction]]via[[address]]and[[asset]]was transferred',
+          '[[activator]][[received]]plots[[plots]][[cropAmount]]amount of[[cropName]]and[[zGoldAmount]]amount of Sky Gold',
       },
     },
     variables: {
-      person: {
+      activator: {
         type: 'address',
-        value: assetTransfer.to,
+        value: activator,
       },
-      address: {
-        type: 'address',
-        value: transaction.from,
+      plots: {
+        type: 'array',
+        value: plots,
       },
-      asset,
-      completedACrossChainInteraction: {
+      cropName: {
+        type: 'string',
+        value: cropName,
+      },
+      cropAmount: {
+        type: 'string',
+        value: cropAmount,
+      },
+      zGoldAmount: {
+        type: 'string',
+        value: zGoldAmount,
+      },
+      received: {
         type: 'contextAction',
-        value: BridgeContextActionEnum.COMPLETED_A_CROSS_CHAIN_INTERACTION,
+        value: GoldContextActionEnum.RECEIVED,
       },
     },
   };

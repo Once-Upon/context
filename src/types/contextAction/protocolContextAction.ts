@@ -229,9 +229,12 @@ export type BoomboxContextAction =
 
 export enum GoldContextActionEnum {
   ACTIVATED_A_STARTER_PACK = 'ACTIVATED_A_STARTER_PACK',
+  RECEIVED = 'RECEIVED',
 }
 
-export type GoldContextAction = GoldContextActionEnum.ACTIVATED_A_STARTER_PACK;
+export type GoldContextAction =
+  | GoldContextActionEnum.ACTIVATED_A_STARTER_PACK
+  | GoldContextActionEnum.RECEIVED;
 
 export enum Protocols {
   WETH = 'WETH',

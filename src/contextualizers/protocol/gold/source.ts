@@ -1,4 +1,3 @@
-import { CHAIN_IDS } from '../../../helpers/constants';
 import {
   Transaction,
   EventLogTopics,
@@ -25,11 +24,7 @@ export function detect(transaction: Transaction): boolean {
    * established patterns in our other modules. This consistency is beneficial,
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
-  if (
-    transaction.to !== PACK_ACTIVATION_SOURCE_CONTRACT ||
-    transaction.chainId !== CHAIN_IDS.gold
-  )
-    return false;
+  if (transaction.to !== PACK_ACTIVATION_SOURCE_CONTRACT) return false;
 
   // check logs
   if (!transaction.logs) return false;
@@ -82,9 +77,9 @@ export function generate(transaction: Transaction): Transaction {
 
   transaction.context = {
     summaries: {
-      category: 'MULTICHAIN',
+      category: 'PROTOCOL_1',
       en: {
-        title: `Bridge`,
+        title: `Gold`,
         default: '[[activator]][[activated]]on[[chainID]]',
       },
     },
