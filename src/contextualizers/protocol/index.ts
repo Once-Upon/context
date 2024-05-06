@@ -20,6 +20,7 @@ import { bnsContextualizer } from './bns';
 import { highlightContextualizer } from './highlight';
 import { warpcastContextualizer } from './warpcast';
 import { boomboxContextualizer } from './boombox';
+import { goldContextualizer } from './gold';
 
 const children = {
   wethContextualizer,
@@ -43,6 +44,7 @@ const children = {
   highlightContextualizer,
   warpcastContextualizer,
   boomboxContextualizer,
+  goldContextualizer,
 };
 
 const protocolContextualizers = Object.fromEntries(
