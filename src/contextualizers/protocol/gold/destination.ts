@@ -11,6 +11,7 @@ import {
   PACK_ACTIVATION_DESTINATION_ABI,
   PACK_ACTIVATION_DESTINATION_CONTRACT,
   PLOT_ERC721_CONTRACT,
+  Z_GOLD_CONTRACT_ADDRESS,
 } from './constants';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -140,12 +141,12 @@ export function generate(transaction: Transaction): Transaction {
       },
       crop: {
         type: AssetType.ERC20,
-        token: cropGameAddress,
+        token: cropGameAddress.toLowerCase(),
         value: cropAmount,
       },
       zGold: {
         type: AssetType.ERC20,
-        token: zGoldGameAddress,
+        token: Z_GOLD_CONTRACT_ADDRESS,
         value: zGoldAmount,
       },
       received: {

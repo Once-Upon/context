@@ -7,6 +7,8 @@ export const PACK_ACTIVATION_SOURCE_CONTRACT =
   '0xde1bc6e9164af5a48c45111b811c61f11ce58d91';
 export const PLOT_ERC721_CONTRACT =
   '0xe2f275b2a5c376fd10006b67a9be0cc3bd5488e8';
+export const Z_GOLD_CONTRACT_ADDRESS =
+  '0x387d73bd8682dceb3327b940213d5de50ee2bba2';
 
 export const PACK_ACTIVATION_SOURCE_ABI = packActivationSourceAbi;
 export const PACK_ACTIVATION_DESTINATION_ABI = packActivationDestinationAbi;
