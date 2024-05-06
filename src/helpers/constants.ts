@@ -36,6 +36,7 @@ export const CHAIN_IDS = {
   zora_goerli: 999,
   zora_sepolia: 999999999,
   stack: 78225,
+  gold: 4653,
 };
 
 export const FORKS = {
