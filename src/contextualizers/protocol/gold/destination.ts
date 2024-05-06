@@ -4,10 +4,13 @@ import {
   Transaction,
   EventLogTopics,
   GoldContextActionEnum,
+  AssetType,
+  ContextNumberType,
 } from '../../../types';
 import {
   PACK_ACTIVATION_DESTINATION_ABI,
   PACK_ACTIVATION_DESTINATION_CONTRACT,
+  PLOT_ERC721_CONTRACT,
 } from './constants';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -90,7 +93,7 @@ export function generate(transaction: Transaction): Transaction {
     return transaction;
 
   // grab variables from decoded event
-  const cropName = decodedInput.args[2];
+  // const cropName = decodedInput.args[2];
   const plotIds = activatedStarterPackOnDestinationDecoded.args['plotIds'];
   const zGoldAmount = BigInt(
     gameMintedTokenDecoded[0].args['amount'],
@@ -98,7 +101,26 @@ export function generate(transaction: Transaction): Transaction {
   const cropAmount = BigInt(
     gameMintedTokenDecoded[1].args['amount'],
   ).toString();
+  const zGoldGameAddress = gameMintedTokenDecoded[0].args['gameAddress'];
+  const cropGameAddress = gameMintedTokenDecoded[1].args['gameAddress'];
   const activator = activatedStarterPackOnDestinationDecoded.args['activator'];
+
+  const erc721PlotArray =
+    plotIds.length > 0
+      ? plotIds.map((c: bigint) => {
+          return {
+            type: AssetType.ERC721,
+            token: PLOT_ERC721_CONTRACT, // Future improvement: Get the address of the contract that emitted the mintedPlotPackActivateDecoded event
+            tokenId: c.toString(),
+          };
+        })
+      : [];
+
+  const erc721ManyPlotsVariable: ContextNumberType = {
+    type: 'number',
+    unit: plotIds.length > 1 ? 'plots' : 'plot',
+    value: plotIds.length,
+  };
 
   transaction.context = {
     summaries: {
@@ -106,7 +128,9 @@ export function generate(transaction: Transaction): Transaction {
       en: {
         title: `Gold`,
         default:
-          '[[activator]][[received]]plots[[plotIds]],[[cropAmount]]amount of[[cropName]]and[[zGoldAmount]]amount of Sky Gold',
+          plotIds?.length === 2
+            ? '[[activator]][[received]]plots[[plotId0]]and[[plotId1]]and[[crop]]and[[zGold]]'
+            : '[[activator]][[received]][[plots]]and[[crop]]and[[zGold]]',
       },
     },
     variables: {
@@ -114,23 +138,14 @@ export function generate(transaction: Transaction): Transaction {
         type: 'address',
         value: activator,
       },
-      plotIds: {
-        type: 'array',
-        value:
-          plotIds.length > 0
-            ? plotIds.map((c: bigint) => '#' + c.toString())
-            : [],
-      },
-      cropName: {
-        type: 'string',
-        value: cropName,
-      },
-      cropAmount: {
-        type: 'string',
+      crop: {
+        type: AssetType.ERC20,
+        token: cropGameAddress,
         value: cropAmount,
       },
-      zGoldAmount: {
-        type: 'string',
+      zGold: {
+        type: AssetType.ERC20,
+        token: zGoldGameAddress,
         value: zGoldAmount,
       },
       received: {
@@ -139,6 +154,15 @@ export function generate(transaction: Transaction): Transaction {
       },
     },
   };
+
+  if (transaction && transaction.context && transaction.context.variables) {
+    if (erc721PlotArray?.length === 2) {
+      transaction.context.variables.plotId0 = erc721PlotArray[0];
+      transaction.context.variables.plotId1 = erc721PlotArray[1];
+    } else {
+      transaction.context.variables.plots = erc721ManyPlotsVariable;
+    }
+  }
 
   return transaction;
 }

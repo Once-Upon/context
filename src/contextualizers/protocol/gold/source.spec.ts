@@ -23,7 +23,7 @@ describe('Gold Source', () => {
     );
     expect(transaction1.context?.summaries?.en.title).toBe('Gold');
     expect(contextSummary(transaction1.context)).toBe(
-      '0xB374FDD2951A65e827Dab88f692a6819dc43c6D7 ACTIVATED_A_STARTER_PACK on 8453',
+      '0xB374FDD2951A65e827Dab88f692a6819dc43c6D7 ACTIVATED_A_STARTER_PACK',
     );
     expect(containsBigInt(transaction1.context)).toBe(false);
 
@@ -32,7 +32,7 @@ describe('Gold Source', () => {
     );
     expect(transaction2.context?.summaries?.en.title).toBe('Gold');
     expect(contextSummary(transaction2.context)).toBe(
-      '0x18F33CEf45817C428d98C4E188A770191fDD4B79 ACTIVATED_A_STARTER_PACK on 8453',
+      '0x18F33CEf45817C428d98C4E188A770191fDD4B79 ACTIVATED_A_STARTER_PACK',
     );
     expect(containsBigInt(transaction2.context)).toBe(false);
   });

@@ -74,17 +74,13 @@ export function generate(transaction: Transaction): Transaction {
       category: 'PROTOCOL_1',
       en: {
         title: `Gold`,
-        default: '[[activator]][[activated]]on[[chainID]]',
+        default: '[[activator]][[activated]]',
       },
     },
     variables: {
       activator: {
         type: 'address',
         value: activator,
-      },
-      chainID: {
-        type: 'chainID',
-        value: transaction.chainId,
       },
       activated: {
         type: 'contextAction',
