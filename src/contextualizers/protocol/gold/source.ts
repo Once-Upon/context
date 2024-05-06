@@ -24,11 +24,12 @@ export function detect(transaction: Transaction): boolean {
    * established patterns in our other modules. This consistency is beneficial,
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
-  if (transaction.to !== PACK_ACTIVATION_SOURCE_CONTRACT) return false;
-
   // check logs
   if (!transaction.logs) return false;
-  const activatedStarterPackOnSourceEvent = transaction.logs.find((log) => {
+
+  for (const log of transaction.logs) {
+    if (log.address !== PACK_ACTIVATION_SOURCE_CONTRACT) continue;
+
     const decoded = decodeLog(PACK_ACTIVATION_SOURCE_ABI, log.data, [
       log.topic0,
       log.topic1,
@@ -39,26 +40,19 @@ export function detect(transaction: Transaction): boolean {
     if (decoded && decoded.eventName === 'ActivatedStarterPackOnSource') {
       return true;
     }
-
-    return false;
-  });
-
-  if (activatedStarterPackOnSourceEvent) return true;
+  }
 
   return false;
 }
 
 export function generate(transaction: Transaction): Transaction {
-  if (
-    transaction.to !== PACK_ACTIVATION_SOURCE_CONTRACT ||
-    !transaction.logs ||
-    !transaction.chainId
-  )
-    return transaction;
+  if (!transaction.logs || !transaction.chainId) return transaction;
 
   // decode ActivatedStarterPackOnSource event
   let decoded;
   for (const log of transaction.logs) {
+    if (log.address !== PACK_ACTIVATION_SOURCE_CONTRACT) continue;
+
     decoded = decodeLog(PACK_ACTIVATION_SOURCE_ABI, log.data, [
       log.topic0,
       log.topic1,
