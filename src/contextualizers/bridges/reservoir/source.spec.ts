@@ -5,6 +5,7 @@ import bridgeZoraEnergySource0x72084c64 from '../../test/transactions/bridgeZora
 import zoraSource0xf2e656b3 from '../../test/transactions/zoraSource-0xf2e656b3.json';
 import hopSource0x8603ffab from '../../test/transactions/hop-source-0x8603ffab.json';
 import reservoirSource0x35c5ac27 from '../../test/transactions/reservoirSource-0x35c5ac27.json';
+import reservoirSource0x7e8671f6 from '../../test/transactions/reservoirSource-0x7e8671f6.json';
 
 describe('Bridge Zora Energy Source', () => {
   it('Should detect transaction', () => {
@@ -27,6 +28,11 @@ describe('Bridge Zora Energy Source', () => {
       reservoirSource0x35c5ac27 as unknown as Transaction,
     );
     expect(isBridgeZoraEnergySource4).toBe(true);
+
+    const isBridgeZoraEnergySource5 = detect(
+      reservoirSource0x7e8671f6 as unknown as Transaction,
+    );
+    expect(isBridgeZoraEnergySource5).toBe(true);
   });
 
   it('Should generate context', () => {
@@ -56,5 +62,14 @@ describe('Bridge Zora Energy Source', () => {
       '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 INITIATED_A_CROSS_CHAIN_INTERACTION via 0xf70da97812cb96acdf810712aa562db8dfa3dbef and 0.201463549452958 ETH was transferred',
     );
     expect(containsBigInt(transaction3.context)).toBe(false);
+
+    const transaction4 = generate(
+      reservoirSource0x7e8671f6 as unknown as Transaction,
+    );
+    expect(transaction4.context?.summaries?.en.title).toBe('Bridge');
+    expect(contextSummary(transaction4.context)).toBe(
+      '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 INITIATED_A_CROSS_CHAIN_INTERACTION via 0xf70da97812cb96acdf810712aa562db8dfa3dbef and 1.2529691246238144 ETH was transferred',
+    );
+    expect(containsBigInt(transaction4.context)).toBe(false);
   });
 });
