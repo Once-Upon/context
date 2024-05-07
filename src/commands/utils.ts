@@ -16,7 +16,7 @@ export const grabTx = async (txHash: string, prefix: string) => {
     `${fileName}.json`,
   );
 
-  const defaultApiUrl = 'https://api.onceupon.gg';
+  const defaultApiUrl = 'https://api.onceupon.xyz';
   const API_URL = process.env.API_URL || defaultApiUrl;
   const transaction = await fetch(
     `${API_URL}/v2/transactions/${txHash}?withContext=false`,
@@ -27,7 +27,7 @@ export const grabTx = async (txHash: string, prefix: string) => {
 };
 
 export const getTransaction = async (txHash: string) => {
-  const defaultApiUrl = 'https://api.onceupon.gg';
+  const defaultApiUrl = 'https://api.onceupon.xyz';
   const API_URL = process.env.API_URL || defaultApiUrl;
   const transaction = await fetch(
     `${API_URL}/v2/transactions/${txHash}?withContext=false`,
@@ -39,7 +39,7 @@ export const getTransaction = async (txHash: string) => {
 export const fetchTransactions = async (
   limit: number,
 ): Promise<Transaction[]> => {
-  const defaultApiUrl = 'https://api.onceupon.gg';
+  const defaultApiUrl = 'https://api.onceupon.xyz';
   const API_URL = process.env.API_URL ?? defaultApiUrl;
   const requestBody = {
     contextAddress: {},
