@@ -70,6 +70,7 @@ export function generate(transaction: Transaction): Transaction {
 
   const nftAssets = new Set();
   const tokenAssets = new Set();
+  const tokenTransfers: ERC20Asset[] = [];
   const ethTransfers: ETHAsset[] = [];
   Object.keys(transaction.netAssetTransfers).forEach((address) => {
     const sentAssets = transaction.netAssetTransfers
@@ -83,6 +84,7 @@ export function generate(transaction: Transaction): Transaction {
           break;
         case 'erc20':
           tokenAssets.add(assetTransfer.contract);
+          tokenTransfers.push(assetTransfer);
           break;
         case 'eth':
           ethTransfers.push(assetTransfer);
@@ -148,12 +150,19 @@ export function generate(transaction: Transaction): Transaction {
     const unit = tokenAssets.size > 1 ? 'ERC20s' : 'ERC20';
     assetAmount += tokenAssets.size;
 
-    variables['totalERC20s'] = {
-      type: 'number',
-      value: tokenAssets.size,
-      unit,
-      emphasis: true,
-    };
+    variables['totalERC20s'] =
+      tokenAssets.size > 1
+        ? {
+            type: 'number',
+            value: tokenAssets.size,
+            unit,
+            emphasis: true,
+          }
+        : {
+            type: AssetType.ERC20,
+            token: tokenTransfers[0].contract,
+            value: tokenTransfers[0].value,
+          };
     desc += 'and[[totalERC20s]]';
   }
   if (ethTransfers.length > 0) {
