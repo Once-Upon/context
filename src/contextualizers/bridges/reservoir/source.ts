@@ -1,3 +1,4 @@
+import { addAssetTransfersToContext } from '../../../helpers/utils';
 import {
   Transaction,
   AssetType,
@@ -40,7 +41,12 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
-  if (!transaction.to) return transaction;
+  if (
+    !transaction.to ||
+    !transaction.netAssetTransfers ||
+    !transaction.assetTransfers
+  )
+    return transaction;
   const assetSent =
     transaction.netAssetTransfers &&
     transaction.netAssetTransfers[transaction.from] &&
@@ -78,5 +84,6 @@ export function generate(transaction: Transaction): Transaction {
     },
   };
 
-  return transaction;
+  // add asset transfers in context
+  return addAssetTransfersToContext(transaction);
 }
