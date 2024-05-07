@@ -227,6 +227,15 @@ export type BoomboxContextAction =
   | BoomboxContextActionEnum.SIGNED
   | BoomboxContextActionEnum.DISTRIBUTED;
 
+export enum GoldContextActionEnum {
+  ACTIVATED_A_STARTER_PACK = 'ACTIVATED_A_STARTER_PACK',
+  RECEIVED = 'RECEIVED',
+}
+
+export type GoldContextAction =
+  | GoldContextActionEnum.ACTIVATED_A_STARTER_PACK
+  | GoldContextActionEnum.RECEIVED;
+
 export enum Protocols {
   WETH = 'WETH',
   ENS = 'ENS',
@@ -244,6 +253,7 @@ export enum Protocols {
   DISPERSE = 'DISPERSE',
   BNS = 'BNS',
   BOOMBOX = 'BOOMBOX',
+  GOLD = 'GOLD',
 }
 
 export type ProtocolContextAction =
@@ -262,4 +272,5 @@ export type ProtocolContextAction =
   | BasepaintAction
   | DisperseAction
   | BNSContextAction
-  | BoomboxContextAction;
+  | BoomboxContextAction
+  | GoldContextAction;
