@@ -79,8 +79,6 @@ export function generate(transaction: Transaction): Transaction {
     transaction.assetTransfers,
   );
 
-  console.log('erc20Payments', erc20Payments);
-
   // decode ActivatedStarterPackOnDestination event
   let activatedStarterPackOnDestinationDecoded, mintedPlotPackActivateDecoded;
   const gameMintedTokenDecoded: any[] = [];
