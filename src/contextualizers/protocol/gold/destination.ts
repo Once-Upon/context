@@ -1,4 +1,8 @@
-import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeLog,
+  decodeTransactionInput,
+  processAssetTransfers,
+} from '../../../helpers/utils';
 import { CHAIN_IDS } from '../../../helpers/constants';
 import {
   Transaction,
@@ -24,7 +28,11 @@ export function contextualize(transaction: Transaction): Transaction {
 
 // Always chain id 1 through the Zora bridge UI
 export function detect(transaction: Transaction): boolean {
-  if (transaction.chainId !== CHAIN_IDS.gold) {
+  if (
+    transaction.chainId !== CHAIN_IDS.gold ||
+    !transaction.assetTransfers ||
+    !transaction.netAssetTransfers
+  ) {
     return false;
   }
   // check logs
@@ -49,7 +57,12 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
-  if (!transaction.logs || transaction.chainId !== CHAIN_IDS.gold)
+  if (
+    !transaction.logs ||
+    transaction.chainId !== CHAIN_IDS.gold ||
+    !transaction.assetTransfers ||
+    !transaction.netAssetTransfers
+  )
     return transaction;
 
   // decode input
@@ -60,6 +73,14 @@ export function generate(transaction: Transaction): Transaction {
   if (!decodedInput || decodedInput.functionName != 'activateDestination') {
     return transaction;
   }
+
+  const { erc20Payments } = processAssetTransfers(
+    transaction.netAssetTransfers,
+    transaction.assetTransfers,
+  );
+
+  console.log('erc20Payments', erc20Payments);
+
   // decode ActivatedStarterPackOnDestination event
   let activatedStarterPackOnDestinationDecoded, mintedPlotPackActivateDecoded;
   const gameMintedTokenDecoded: any[] = [];
@@ -141,13 +162,13 @@ export function generate(transaction: Transaction): Transaction {
       },
       crop: {
         type: AssetType.ERC20,
-        token: cropGameAddress.toLowerCase(),
-        value: cropAmount,
+        token: erc20Payments[1].contract,
+        value: erc20Payments[1].value,
       },
       zGold: {
         type: AssetType.ERC20,
-        token: Z_GOLD_CONTRACT_ADDRESS, // TODO: Find a way to get this programmatically
-        value: zGoldAmount,
+        token: erc20Payments[0].contract,
+        value: erc20Payments[0].value,
       },
       received: {
         type: 'contextAction',
