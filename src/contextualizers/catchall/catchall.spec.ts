@@ -10,6 +10,7 @@ import catchall0x6331ce46 from '../test/transactions/catchall-0x6331ce46.json';
 import catchall0xdfdb78fd from '../test/transactions/catchall-0xdfdb78fd.json';
 import catchall0x80c1b6eb from '../test/transactions/catchall-0x80c1b6eb.json';
 import catchall0x26f6c382 from '../test/transactions/catchall-0x26f6c382.json';
+import catchall0x27cdbe9f from '../test/transactions/catchall-0x27cdbe9f.json';
 
 describe('catchall', () => {
   it('Should detect catchall transaction', () => {
@@ -97,6 +98,20 @@ describe('catchall', () => {
     const desc9 = contextSummary(txResult9.context);
     expect(desc9).toBe(
       '0x4337003fcd2f56de3977ccb806383e9161628d0e INTERACTED_WITH 0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789 and 171.202858968251372 ETH was transferred',
+    );
+    // 1 ERC20
+    const txResult10 = generate(catchall0x27cdbe9f as unknown as Transaction);
+    const variables10 = txResult10.context?.variables;
+    expect(variables10?.totalEth['type']).toBe('eth');
+    expect(variables10?.totalEth['value']).toBe('17230758755630');
+    expect(variables10?.totalERC20s['type']).toBe('erc20');
+    expect(variables10?.totalERC20s['token']).toBe(
+      '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913',
+    );
+    expect(variables10?.totalERC20s['value']).toBe('10991363');
+    const desc10 = contextSummary(txResult10.context);
+    expect(desc10).toBe(
+      '0x433702256b464248dcbe403c1334757be4ed9f26 INTERACTED_WITH 0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789 and 10991363 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 and 0.00001723075875563 ETH were transferred',
     );
   });
 });
