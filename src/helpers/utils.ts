@@ -22,6 +22,7 @@ import {
   AssetTransfer,
   ETHAssetTransfer,
   ERC20AssetTransfer,
+  ERC20Asset,
 } from '../types';
 
 const VALID_CHARS =
@@ -449,3 +450,50 @@ export function decodeEVMAddress(addressString: string): string {
   const address = '0x' + buf.toString('hex', 12, 32); // grab the last 20 bytes
   return address.toLocaleLowerCase();
 }
+
+export const addAssetTransfersToContext = (
+  transaction: Transaction,
+): Transaction => {
+  if (
+    !transaction.netAssetTransfers ||
+    !transaction.assetTransfers ||
+    !transaction.context
+  )
+    return transaction;
+
+  const { erc20Payments, ethPayments } = processAssetTransfers(
+    transaction.netAssetTransfers,
+    transaction.assetTransfers,
+  );
+  const totalERC20Asset: Record<string, ERC20Asset> = computeERC20Price(
+    erc20Payments,
+    [transaction.from],
+  );
+  const totalETHAsset = computeETHPrice(ethPayments, [transaction.from]);
+  const isAssetTransferred =
+    BigInt(totalETHAsset) > BigInt(0) ||
+    Object.keys(totalERC20Asset).length > 0;
+
+  if (
+    isAssetTransferred &&
+    transaction.context.variables &&
+    transaction.context.summaries
+  ) {
+    transaction.context.summaries['en'].default +=
+      'and[[asset]]was transferred';
+    transaction.context.variables.asset =
+      ethPayments.length > 0
+        ? {
+            type: AssetType.ETH,
+            value: totalETHAsset.toString(),
+            unit: 'wei',
+          }
+        : {
+            type: AssetType.ERC20,
+            token: Object.values(totalERC20Asset)[0].contract,
+            value: Object.values(totalERC20Asset)[0].value.toString(),
+          };
+  }
+
+  return transaction;
+};

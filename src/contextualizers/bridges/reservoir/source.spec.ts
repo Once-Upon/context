@@ -29,7 +29,7 @@ describe('Bridge Zora Energy Source', () => {
     );
     expect(transaction1.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(transaction1.context)).toBe(
-      '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 INITIATED_A_CROSS_CHAIN_INTERACTION via 0xf70da97812cb96acdf810712aa562db8dfa3dbef',
+      '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 INITIATED_A_CROSS_CHAIN_INTERACTION via 0xf70da97812cb96acdf810712aa562db8dfa3dbef and 0.020210725986515996 ETH was transferred',
     );
     expect(containsBigInt(transaction1.context)).toBe(false);
 
@@ -38,7 +38,7 @@ describe('Bridge Zora Energy Source', () => {
     );
     expect(transaction2.context?.summaries?.en.title).toBe('Bridge');
     expect(contextSummary(transaction2.context)).toBe(
-      '0x17cd072cbd45031efc21da538c783e0ed3b25dcc INITIATED_A_CROSS_CHAIN_INTERACTION via 0xf70da97812cb96acdf810712aa562db8dfa3dbef',
+      '0x17cd072cbd45031efc21da538c783e0ed3b25dcc INITIATED_A_CROSS_CHAIN_INTERACTION via 0xf70da97812cb96acdf810712aa562db8dfa3dbef and 3.829842894866116 ETH was transferred',
     );
     expect(containsBigInt(transaction2.context)).toBe(false);
   });
