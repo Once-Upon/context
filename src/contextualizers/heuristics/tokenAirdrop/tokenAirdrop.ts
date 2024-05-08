@@ -39,8 +39,8 @@ export function detect(transaction: Transaction): boolean {
   }
 
   // check if only 1 address is sending
-  const sendAddresses = transaction.assetTransfers.map(
-    (assetTransfer) => assetTransfer.from,
+  const sendAddresses = Object.keys(transaction.netAssetTransfers).filter(
+    (address) => transaction.netAssetTransfers![address]?.sent.length > 0,
   );
   if (sendAddresses.length !== 1) {
     return false;
@@ -58,26 +58,26 @@ export function detect(transaction: Transaction): boolean {
     }
   }
   // check if all assets sent are the same contract
-  const assetsSent = transaction.netAssetTransfers[
-    sendAddresses[0]
-  ].sent.filter((ele) => ele.type !== AssetType.ETH) as (
-    | ERC20Asset
-    | ERC1155Asset
-    | ERC721Asset
-  )[];
-  if (
-    transaction.hash ===
-    '0xcce0b3924cf1be66ad19fbaa255ab8a3d65cd6ad42e1fde3486f23b30293327b'
-  ) {
-    console.log(
-      'assetsSent',
-      assetsSent[0],
-      assetsSent.every((ele) => ele.contract === assetsSent[0].contract),
-    );
-  }
-  if (!assetsSent.every((ele) => ele.contract === assetsSent[0].contract)) {
-    return false;
-  }
+  // const assetsSent = transaction.netAssetTransfers[
+  //   sendAddresses[0]
+  // ].sent.filter((ele) => ele.type !== AssetType.ETH) as (
+  //   | ERC20Asset
+  //   | ERC1155Asset
+  //   | ERC721Asset
+  // )[];
+  // if (
+  //   transaction.hash ===
+  //   '0xcce0b3924cf1be66ad19fbaa255ab8a3d65cd6ad42e1fde3486f23b30293327b'
+  // ) {
+  //   console.log(
+  //     'assetsSent',
+  //     assetsSent[0],
+  //     assetsSent.filter((ele) => ele.contract !== assetsSent[0].contract),
+  //   );
+  // }
+  // if (!assetsSent.every((ele) => ele.contract === assetsSent[0].contract)) {
+  //   return false;
+  // }
   // check if there are more than AIRDROP_THRESHOLD number of receivers
   if (
     Object.keys(transaction.netAssetTransfers).length - 1 <
