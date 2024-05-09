@@ -60,7 +60,7 @@ describe('Zora Mint', () => {
     expect(zoraMintWithRewards3.context?.summaries?.en.title).toBe('Zora');
     const desc3 = contextSummary(zoraMintWithRewards3.context);
     expect(desc3).toBe(
-      '0xf70da97812cb96acdf810712aa562db8dfa3dbef MINTED 1 0xf41a3e3033d4e878943194b729aec993a4ea2045 #29 to 0xd97622b57112f82a0db8b1aee08e37aa6b4b2a03 for 0.000777 ETH with 0.000111 ETH in rewards for 0xecfc2ee50409e459c554a2b0376f882ce916d853',
+      '0x74b78e98093f5b522a7ebdac3b994641ca7c2b20 MINTED 28 x 0x878dd96c70b1bef2d1a4c307266579cb958cbf04 for 0.021756 ETH with 0.000111 ETH in rewards for 0x7bf90111ad7c22bec9e9dff8a01a44713cc1b1b6',
     );
     expect(containsBigInt(zoraMintWithRewards3.context)).toBe(false);
   });
