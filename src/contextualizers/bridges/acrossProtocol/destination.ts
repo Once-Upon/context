@@ -6,7 +6,10 @@ import {
   HeuristicContextActionEnum,
   Log,
 } from '../../../types';
-import { FILLED_RELAY_EVENT_ABI, ACROSS_PROTOCOL_RELAYERS } from './constants';
+import {
+  ACROSS_PROTOCOL_RELAYER_ABI,
+  ACROSS_PROTOCOL_RELAYERS,
+} from './constants';
 import { decodeLog } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -30,7 +33,7 @@ export function detect(transaction: Transaction): boolean {
     if (log.address !== ACROSS_PROTOCOL_RELAYERS[originChainId]) return false;
 
     const decoded = decodeLog(
-      FILLED_RELAY_EVENT_ABI as Abi,
+      ACROSS_PROTOCOL_RELAYER_ABI as Abi,
       log.data as Hex,
       [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
     );
@@ -53,7 +56,7 @@ export function generate(transaction: Transaction): Transaction {
     if (log.address !== ACROSS_PROTOCOL_RELAYERS[originChainId]) return false;
 
     const decoded = decodeLog(
-      FILLED_RELAY_EVENT_ABI as Abi,
+      ACROSS_PROTOCOL_RELAYER_ABI as Abi,
       log.data as Hex,
       [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
     );
