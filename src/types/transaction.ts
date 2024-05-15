@@ -7,7 +7,7 @@ import {
 } from 'viem';
 import { Log, RawReceipt } from './log';
 import { ContextVariable, ContextSummaryType } from './context';
-import { NetAssetTransfers, AssetTransfer } from './asset';
+import { NetAssetTransfers, AssetTransfer, Asset } from './asset';
 import { InternalHashType, StdObj } from './shared';
 import { Contract } from './contract';
 
@@ -69,6 +69,32 @@ export type Receipt = TransactionReceipt & {
   l1GasUsed?: string;
 };
 
+export type AddressMeta = {
+  chainId: number;
+  isContract: boolean;
+  ensNew: {
+    handle: string | null;
+    avatar: string | null;
+  };
+  bns: {
+    handle: string | null;
+    avatar: string | null;
+  };
+  farcaster: {
+    handle: string | null;
+    avatar: string | null;
+    fid: number | null;
+  };
+};
+
+export type TransactionEnrichedParties = {
+  [address: string]: AddressMeta[];
+};
+
+export type TransactionAssetsEnriched = {
+  [address: string]: Asset & { imageUrl: string | null };
+};
+
 export type TransactionContextType = {
   variables?: ContextVariable;
   summaries?: ContextSummaryType;
@@ -78,7 +104,9 @@ export type TransactionContextType = {
 // MongoDB document
 export type Transaction = BaseTransaction & {
   assetTransfers?: AssetTransfer[];
-  pseudotransactions?: PseudoTransaction[];
+  pseudoTransactions?: PseudoTransaction[];
+  enrichedParties: TransactionEnrichedParties;
+  assetsEnriched: TransactionAssetsEnriched;
   sigHash: string;
   internalSigHashes: SigHash[];
   parties: string[];
