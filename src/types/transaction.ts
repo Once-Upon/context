@@ -105,8 +105,8 @@ export type TransactionContextType = {
 export type Transaction = BaseTransaction & {
   assetTransfers?: AssetTransfer[];
   pseudoTransactions?: PseudoTransaction[];
-  enrichedParties: TransactionEnrichedParties;
-  assetsEnriched: TransactionAssetsEnriched;
+  enrichedParties?: TransactionEnrichedParties;
+  assetsEnriched?: TransactionAssetsEnriched;
   sigHash: string;
   internalSigHashes: SigHash[];
   parties: string[];
