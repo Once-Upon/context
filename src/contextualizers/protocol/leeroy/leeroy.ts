@@ -17,10 +17,6 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
-  if (transaction.decoded === null) {
-    return false;
-  }
-
   if (
     transaction.to !== LeeroyContracts.v1 &&
     transaction.to !== LeeroyContracts.v2

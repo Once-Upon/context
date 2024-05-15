@@ -1,0 +1,170 @@
+{
+  "_id": "65ead981de536371b73d1506",
+  "blockHash": "0x595030a6ffc481df46ee47849f4bd53cf12cf47208955068687b794e1c962c6e",
+  "blockNumber": 5369446,
+  "from": "0x16d3e35a25a51fabd9d512dcb07554bff545837b",
+  "gas": 135498,
+  "gasPrice": "1000000000",
+  "hash": "0xa8af56f4a0bcb4c202bc58b8d4dd9c82d7e6d3178d6596af8fc61c2129f4ad2c",
+  "input": "0x7e93163b736c697073747265616d000000000000000000000000000000000000000000005e3d8d62c3ae264c16938047534f1a796ef0440f6c45a15ad796d27e4334e7a6",
+  "nonce": 42,
+  "to": "0xcb04fbb44bb2aa0e3d402d0bde2de60b2de028af",
+  "transactionIndex": 57,
+  "value": "262308842431078",
+  "type": 0,
+  "chainId": 1,
+  "v": "0x25",
+  "r": "0x7467896279b41b977ef3c7c0363ebbba486e0b4ee682bb16e85615d519074029",
+  "s": "0x515bd77dc0a88df97e449e9dfbd9e03fbd55f1be3a5a5dcf4d8e87da5d473305",
+  "receipt": {
+    "blockHash": "0x595030a6ffc481df46ee47849f4bd53cf12cf47208955068687b794e1c962c6e",
+    "blockNumber": 5369446,
+    "contractAddress": null,
+    "cumulativeGasUsed": "3206778",
+    "effectiveGasPrice": "1000000000",
+    "from": "0x16d3e35a25a51fabd9d512dcb07554bff545837b",
+    "gasUsed": "33249",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0xcb04fbb44bb2aa0e3d402d0bde2de60b2de028af",
+    "transactionHash": "0xa8af56f4a0bcb4c202bc58b8d4dd9c82d7e6d3178d6596af8fc61c2129f4ad2c",
+    "transactionIndex": 57,
+    "type": "0x0",
+    "logs": []
+  },
+  "decoded": null,
+  "assetTransfers": [
+    {
+      "from": "0x16d3e35a25a51fabd9d512dcb07554bff545837b",
+      "to": "0xcb04fbb44bb2aa0e3d402d0bde2de60b2de028af",
+      "type": "eth",
+      "value": "262308842431078"
+    },
+    {
+      "from": "0xcb04fbb44bb2aa0e3d402d0bde2de60b2de028af",
+      "to": "0x2845a83d2a6cb264a5e35103ef10472746f43c4d",
+      "type": "eth",
+      "value": "183616189701754"
+    }
+  ],
+  "delegateCalls": [],
+  "errors": [],
+  "parties": [
+    "0x16d3e35a25a51fabd9d512dcb07554bff545837b",
+    "0xcb04fbb44bb2aa0e3d402d0bde2de60b2de028af",
+    "0x2845a83d2a6cb264a5e35103ef10472746f43c4d"
+  ],
+  "sigHash": "0x7e93163b",
+  "internalSigHashes": [
+    {
+      "from": "0x16d3e35a25a51fabd9d512dcb07554bff545837b",
+      "to": "0xcb04fbb44bb2aa0e3d402d0bde2de60b2de028af",
+      "sigHash": "0x7e93163b"
+    },
+    {
+      "from": "0xcb04fbb44bb2aa0e3d402d0bde2de60b2de028af",
+      "to": "0x2845a83d2a6cb264a5e35103ef10472746f43c4d",
+      "sigHash": "0x"
+    }
+  ],
+  "timestamp": 1522707065,
+  "transactionFee": "33249000000000",
+  "logs": [],
+  "netAssetTransfers": {
+    "0x16d3e35a25a51fabd9d512dcb07554bff545837b": {
+      "received": [],
+      "sent": [
+        {
+          "type": "eth",
+          "value": "262308842431078"
+        }
+      ]
+    },
+    "0xcb04fbb44bb2aa0e3d402d0bde2de60b2de028af": {
+      "received": [
+        {
+          "type": "eth",
+          "value": "78692652729324"
+        }
+      ],
+      "sent": []
+    },
+    "0x2845a83d2a6cb264a5e35103ef10472746f43c4d": {
+      "received": [
+        {
+          "type": "eth",
+          "value": "183616189701754"
+        }
+      ],
+      "sent": []
+    }
+  },
+  "pseudotransactions": [],
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x16d3e35a25a51fabd9d512dcb07554bff545837b": [
+      {
+        "chainId": 0,
+        "isContract": false,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0xcb04fbb44bb2aa0e3d402d0bde2de60b2de028af": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": "Leeroy v2"
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": 0,
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x2845a83d2a6cb264a5e35103ef10472746f43c4d": [
+      {
+        "chainId": 0,
+        "isContract": false,
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
+}

@@ -530,12 +530,12 @@ describe('transformations', () => {
       input: '0x',
       value: 5000000000000000n,
       assetTransfers: [
-        expect.objectContaining({
+        {
           type: 'eth',
           from: '0x2991c3845396c9f1d262b2ca0674111a59e2c90a',
           to: '0x5d72015cc621025c265fabffc2fa55ac4821d79f',
           value: '5000000000000000',
-        }),
+        },
       ],
       netAssetTransfers: {
         '0x2991c3845396c9f1d262b2ca0674111a59e2c90a': expect.objectContaining({
