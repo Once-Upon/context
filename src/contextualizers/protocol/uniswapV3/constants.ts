@@ -1,3 +1,83 @@
 import uniswapV3PairAbi from './abis/UniswapV3Pair';
 
 export const UNISWAP_V3_PAIR_ABI = uniswapV3PairAbi;
+
+export const UNIVERSAL_ROUTERS = {
+  42161: [
+    '0x4c60051384bd2d3c01bfc845cf5f4b44bcbe9de5',
+    '0xec8b0f7ffe3ae75d7ffab09429e3675bb63503e4',
+    '0x5e325eda8064b456f4781070c0738d849c824258',
+    '0xef1c6e67703c7bd7107eed8303fbe6ec2554bf6b',
+  ],
+  421613: [
+    '0x4648a43b2c14da09fdf82b161150d3f634f40491',
+    '0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad',
+    '0x5302086a3a25d473aabbd0356eff8dd811a4d89b',
+  ],
+  43114: [
+    '0x82635af6146972cd6601161c4472ffe97237d292',
+    '0x4dae2f939acf50408e13d58534ff8c2776d45265',
+    '0x5302086a3a25d473aabbd0356eff8dd811a4d89b',
+  ],
+  8453: [
+    '0xec8b0f7ffe3ae75d7ffab09429e3675bb63503e4',
+    '0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad',
+    '0x9e18efb3be848940b0c92d300504fb08c287fe85',
+  ],
+  84531: [
+    '0xd0872d928672ae2ff74bdb2f5130ac12229cafaf',
+    '0x7b46ee9bab49bd5b37117494689a035b0f187b59',
+  ],
+  56: [
+    '0x5dc88340e1c5c6366864ee415d6034cadd1a9897',
+    '0xec8b0f7ffe3ae75d7ffab09429e3675bb63503e4',
+    '0x4dae2f939acf50408e13d58534ff8c2776d45265',
+    '0x5302086a3a25d473aabbd0356eff8dd811a4d89b',
+  ],
+  44787: [
+    '0x4648a43b2c14da09fdf82b161150d3f634f40491',
+    '0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad',
+    '0x5302086a3a25d473aabbd0356eff8dd811a4d89b',
+  ],
+  42220: [
+    '0xc73d61d192fb994157168fb56730fdec64c9cb8f',
+    '0x643770e279d5d0733f21d6dc03a8efbabf3255b4',
+    '0x5dc88340e1c5c6366864ee415d6034cadd1a9897',
+  ],
+  5: [
+    '0x4648a43b2c14da09fdf82b161150d3f634f40491',
+    '0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad',
+    '0x5302086a3a25d473aabbd0356eff8dd811a4d89b',
+  ],
+  1: [
+    '0xef1c6e67703c7bd7107eed8303fbe6ec2554bf6b',
+    '0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad',
+    '0x76d631990d505e4e5b432eedb852a60897824d68',
+  ],
+  420: [
+    '0x4648a43b2c14da09fdf82b161150d3f634f40491',
+    '0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad',
+    '0x5302086a3a25d473aabbd0356eff8dd811a4d89b',
+  ],
+  10: [
+    '0xb555edf5dcf85f42ceef1f3630a52a108e55a654',
+    '0xec8b0f7ffe3ae75d7ffab09429e3675bb63503e4',
+    '0xcb1355ff08ab38bbce60111f1bb2b784be25d7e8',
+    '0x40d51104da22e3e77b683894e7e3e12e8fc61e65',
+  ],
+  80001: [
+    '0x4648a43b2c14da09fdf82b161150d3f634f40491',
+    '0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad',
+    '0x5302086a3a25d473aabbd0356eff8dd811a4d89b',
+  ],
+  137: [
+    '0x4c60051384bd2d3c01bfc845cf5f4b44bcbe9de5',
+    '0x643770e279d5d0733f21d6dc03a8efbabf3255b4',
+    '0xec7be89e9d109e7e3fec59c222cf297125fefda2',
+    '0xef1c6e67703c7bd7107eed8303fbe6ec2554bf6b',
+  ],
+  11155111: [
+    '0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad',
+    '0x5302086a3a25d473aabbd0356eff8dd811a4d89b',
+  ],
+};
