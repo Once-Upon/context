@@ -2,6 +2,7 @@ import { program } from './main';
 import { fetchTransactions } from './utils';
 import { Transaction } from '../types';
 import { contextualizer } from '../contextualizers';
+import { Hash } from 'viem';
 
 export function registerRunContextualizersCommand() {
   program
@@ -35,6 +36,30 @@ export function registerRunContextualizersCommand() {
               `failed to run protocol contextualizer on ${transaction.hash}: `,
               err,
             );
+          }
+
+          if (transaction.pseudotransactions?.length) {
+            transaction.pseudotransactions.forEach((pseudoTransaction) => {
+              const toContextualize = {
+                ...pseudoTransaction,
+                hash: pseudoTransaction.meta.key as unknown as Hash,
+              };
+
+              console.log(`Running contextualizer on pseudoTransaction`);
+              try {
+                const txResult = contextualizer.contextualize(toContextualize);
+                if (!txResult.from) {
+                  console.error(
+                    `No matching contextualizer on pseudoTransaction ${pseudoTransaction.meta}`,
+                  );
+                }
+              } catch (err) {
+                console.error(
+                  `failed to run contextualizer on pseudoTransaction ${pseudoTransaction.meta}: `,
+                  err,
+                );
+              }
+            });
           }
         });
 

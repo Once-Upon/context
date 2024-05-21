@@ -1,5 +1,6 @@
 import { contextualizer } from './index';
 import { Transaction } from '../types';
+import { contextSummary } from '../helpers/utils';
 
 // contract deployed
 import contractDeployed0x88e7d866 from './test/transactions/contractDeployed-0x88e7d866.json';
@@ -44,6 +45,8 @@ import ens0xdb203e93 from './test/transactions/ens-0xdb203e93.json';
 import ens0xea1b4ab6 from './test/transactions/ens-0xea1b4ab6.json';
 import ensRegistrar0xb14b4771 from './test/transactions/ensRegistrar-0xb14b4771.json';
 import ensBulkRenew0x25add712 from './test/transactions/ensBulkRenew-0x25add712.json';
+// ERC4337
+import accountAbstractionEthTransfer0x7a5e9ca7 from './test/transactions/erc4337-eth-transfer-0x7a5e9ca7.json';
 
 describe('ContextualizerService', () => {
   describe('Detect transactions correctly', () => {
@@ -233,6 +236,20 @@ describe('ContextualizerService', () => {
         ensBulkRenew0x25add712 as unknown as Transaction,
       );
       expect(bulkRenew.context?.summaries?.en.title).toBe('ENS');
+    });
+  });
+
+  describe('pseudo transactions', () => {
+    it('Should detect ETH transfer', () => {
+      const transfer = contextualizer.contextualize(
+        (accountAbstractionEthTransfer0x7a5e9ca7 as unknown as Transaction)
+          .pseudotransactions![0],
+      );
+
+      expect(transfer.context?.summaries?.en.title).toBe('ETH Transfer');
+      expect(contextSummary(transfer.context)).toBe(
+        '0x2991c3845396c9f1d262b2ca0674111a59e2c90a SENT 0.005 ETH to 0x5d72015cc621025c265fabffc2fa55ac4821d79f',
+      );
     });
   });
 });
