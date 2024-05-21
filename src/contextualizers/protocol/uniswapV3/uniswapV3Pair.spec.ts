@@ -24,7 +24,7 @@ describe('Uniswap', () => {
     expect(swap1.context?.summaries?.en.title).toBe('Uniswap');
     const desc1 = contextSummary(swap1.context);
     expect(desc1).toBe(
-      '0xcb1355ff08ab38bbce60111f1bb2b784be25d7e8 swapped 1412595572402230 0x4200000000000000000000000000000000000006 for 1372743836828975471 0x4200000000000000000000000000000000000042',
+      '0xf70da97812cb96acdf810712aa562db8dfa3dbef swapped 1412595572402230 0x4200000000000000000000000000000000000006 for 1372743836828975471 0x4200000000000000000000000000000000000042',
     );
     expect(containsBigInt(swap1.context)).toBe(false);
 
@@ -42,7 +42,7 @@ describe('Uniswap', () => {
     expect(swap3.context?.summaries?.en.title).toBe('Uniswap');
     const desc3 = contextSummary(swap3.context);
     expect(desc3).toBe(
-      '0xec8b0f7ffe3ae75d7ffab09429e3675bb63503e4 swapped 50000000000000000 0x4200000000000000000000000000000000000006 for 9670369113186014800347 0x4ed4e862860bed51a9570b96d89af5e1b0efefed',
+      '0x1e474b50bdc2b39dccaa2b8ddf37b3f022b128a8 swapped 50000000000000000 0x4200000000000000000000000000000000000006 for 9670369113186014800347 0x4ed4e862860bed51a9570b96d89af5e1b0efefed',
     );
     expect(containsBigInt(swap3.context)).toBe(false);
   });
