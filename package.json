@@ -1,6 +1,6 @@
 {
   "name": "@once-upon/evm-context",
-  "version": "1.0.37",
+  "version": "1.0.39",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
