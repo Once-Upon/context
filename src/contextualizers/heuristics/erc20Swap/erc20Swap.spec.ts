@@ -6,6 +6,7 @@ import erc20SwapNot0xb376ca2f from '../../test/transactions/erc20Swap-not-0xb376
 import erc20Swap0xd55dc9b2 from '../../test/transactions/erc20Swap-0xd55dc9b2.json';
 import erc20Swap0x6ef80cce from '../../test/transactions/erc20Swap-0x6ef80cce.json';
 import erc20swap0x2c631258 from '../../test/transactions/erc20swap-0x2c631258.json';
+import erc20Swap0x96f5e3fb from '../../test/transactions/erc20Swap-0x96f5e3fb.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 
 describe('ERC20 Swap', () => {
@@ -21,6 +22,9 @@ describe('ERC20 Swap', () => {
 
     const isERC20Swap3 = detect(erc20swap0x2c631258 as unknown as Transaction);
     expect(isERC20Swap3).toBe(true);
+
+    const isERC20Swap4 = detect(erc20Swap0x96f5e3fb as unknown as Transaction);
+    expect(isERC20Swap4).toBe(true);
   });
 
   it('Should generate context', () => {
@@ -46,6 +50,12 @@ describe('ERC20 Swap', () => {
     const desc3 = contextSummary(generated3.context);
     expect(desc3).toBe(
       '0x6e947ba373a53bd41139d68e8dfb4fb0472767b6 SWAPPED 300000000000000000 0x4200000000000000000000000000000000000006 for 79907887473934231137403 0x4ed4e862860bed51a9570b96d89af5e1b0efefed',
+    );
+
+    const generated4 = generate(erc20Swap0x96f5e3fb as unknown as Transaction);
+    const desc4 = contextSummary(generated4.context);
+    expect(desc4).toBe(
+      '0x605e05bf092ebd18e06d1b0f699df5b9dd85d452 SWAPPED 20398910132192029774490 0xeb1c32ea4e392346795aed3607f37646e2a9c13f for 2748.521373404267795478 ETH',
     );
   });
 
