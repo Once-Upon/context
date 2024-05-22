@@ -57,6 +57,7 @@ export const generate = (transaction: Transaction): Transaction => {
   const sender: string = decoded.args['sender'].toLowerCase();
   const recipient: string = decoded.args['recipient'].toLowerCase();
   const isUniversalRouter =
+    UNIVERSAL_ROUTERS[transaction.chainId] &&
     UNIVERSAL_ROUTERS[transaction.chainId].includes(sender);
   if (
     !transaction.netAssetTransfers[sender] ||
