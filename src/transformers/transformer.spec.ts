@@ -495,7 +495,7 @@ describe('transformations', () => {
     });
   });
 
-  it('should unpack and transform pseudoTransactions', () => {
+  it('should unpack and transform pseudotransactions', () => {
     const block = loadBlockFixture('ethereum', 19_298_068);
     const result = transformer.transform(block);
 
@@ -519,11 +519,11 @@ describe('transformations', () => {
       ]),
     });
 
-    expect(txn?.pseudoTransactions).toBeDefined();
-    expect(txn?.pseudoTransactions?.length).toBe(1);
+    expect(txn?.pseudotransactions).toBeDefined();
+    expect(txn?.pseudotransactions?.length).toBe(1);
 
     // pseudo transaction should NOT include eth transfer from entry point to beneficiary
-    const pseudoTransaction = txn!.pseudoTransactions![0];
+    const pseudoTransaction = txn!.pseudotransactions![0];
     expect(pseudoTransaction).toMatchObject({
       from: '0x2991c3845396c9f1d262b2ca0674111a59e2c90a',
       to: '0x5d72015cc621025c265fabffc2fa55ac4821d79f',

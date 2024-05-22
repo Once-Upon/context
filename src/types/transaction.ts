@@ -104,7 +104,7 @@ export type TransactionContextType = {
 // MongoDB document
 export type Transaction = BaseTransaction & {
   assetTransfers?: AssetTransfer[];
-  pseudoTransactions?: PseudoTransaction[];
+  pseudotransactions?: PseudoTransaction[];
   enrichedParties?: TransactionEnrichedParties;
   assetsEnriched?: TransactionAssetsEnriched;
   sigHash: string;
@@ -154,7 +154,7 @@ export type RawTransaction = PartialTransaction & {
   hash: Hex;
   accessList?: StdObj[];
 
-  pseudoTransactions?: PseudoTransaction[];
+  pseudotransactions?: PseudoTransaction[];
 };
 
 export type RawTraceAction = StdObj & {
