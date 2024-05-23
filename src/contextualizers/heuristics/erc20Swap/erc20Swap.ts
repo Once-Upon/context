@@ -48,9 +48,8 @@ export function detect(transaction: Transaction): boolean {
   // From account (swapper) sent and received 1 asset
   if (
     !(
-      transaction.netAssetTransfers?.[transaction.from]?.received?.length ===
-        1 &&
-      transaction.netAssetTransfers?.[transaction.from]?.sent?.length === 1
+      transaction.netAssetTransfers?.[transaction.from]?.sent?.length === 1 &&
+      transaction.netAssetTransfers?.[transaction.from]?.received?.length >= 1
     )
   ) {
     return false;
@@ -59,12 +58,13 @@ export function detect(transaction: Transaction): boolean {
   const swapperSent = transaction.netAssetTransfers[transaction.from]
     .sent[0] as ERC20Asset;
   const swapperReceived = transaction.netAssetTransfers[transaction.from]
-    .received[0] as ERC20Asset;
+    .received as ERC20Asset[];
 
   // Swapper did not send and receive the same type of asset
   if (
-    swapperSent.type === swapperReceived.type &&
-    swapperSent.contract === swapperReceived.contract
+    swapperReceived.filter((asset) => asset.type === swapperSent.type).length &&
+    swapperReceived.filter((asset) => asset.contract === swapperSent.contract)
+      .length
   ) {
     return false;
   }
@@ -97,15 +97,20 @@ export function generate(transaction: Transaction): Transaction {
           ...assetSent[0],
           unit: 'wei',
         } as ContextETHType);
+
+  // Find the asset received with the most amount
+  const assetSwappedTo = assetReceived.reduce((max, item) => {
+    return item.value > max.value ? item : max;
+  }, assetReceived[0]);
   // Net asset transfers calls the token contract 'asset' instead of 'token'
   const swapTo =
-    assetReceived[0].type === AssetType.ERC20
+    assetSwappedTo.type === AssetType.ERC20
       ? ({
-          ...assetReceived[0],
-          token: assetReceived[0]?.contract,
+          ...assetSwappedTo,
+          token: assetSwappedTo?.contract,
         } as ContextERC20Type)
       : ({
-          ...assetReceived[0],
+          ...assetSwappedTo,
           unit: 'wei',
         } as ContextETHType);
   // Net asset transfers calls the token contract 'asset' instead of 'token'
