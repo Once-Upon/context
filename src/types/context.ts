@@ -67,9 +67,10 @@ export type ContextERC1155Type = {
   emphasis?: boolean;
 };
 
-export type ContextMultipleERC71155Type = {
+export type ContextMultipleERC1155Type = {
   type: AssetType.ERC1155;
   token: string;
+  value: string;
   indexed?: boolean;
   emphasis?: boolean;
 };
@@ -122,7 +123,7 @@ export type ContextSummaryVariableType =
   | ContextERC721Type
   | ContextMultipleERC721Type
   | ContextERC1155Type
-  | ContextMultipleERC71155Type
+  | ContextMultipleERC1155Type
   | ContextETHType
   | ContextChainIDType
   | ContextNumberType

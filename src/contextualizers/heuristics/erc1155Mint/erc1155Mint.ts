@@ -154,11 +154,7 @@ export function generate(transaction: Transaction): Transaction {
       multipleERC11155s: {
         type: AssetType.ERC1155,
         token: assetTransfer.contract,
-      },
-      amount: {
-        type: 'number',
-        value: amount,
-        unit: 'x',
+        value: amount.toString(),
       },
     };
     transaction.context.summaries = {
@@ -167,8 +163,8 @@ export function generate(transaction: Transaction): Transaction {
         title: 'NFT Mint',
         default:
           sender === recipient
-            ? '[[recipient]][[minted]][[amount]][[multipleERC11155s]]'
-            : '[[sender]][[minted]][[amount]][[multipleERC11155s]]to[[recipient]]',
+            ? '[[recipient]][[minted]][[multipleERC11155s]]'
+            : '[[sender]][[minted]][[multipleERC11155s]]to[[recipient]]',
       },
     };
     if (hasPrice) {
