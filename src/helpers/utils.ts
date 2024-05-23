@@ -225,7 +225,9 @@ function formatSection(section: ContextSummaryVariableType) {
   }
 
   if (varContext?.type === 'erc1155') {
-    return `${varContext.value} ${varContext.token} #${varContext.tokenId}`;
+    return varContext['value'] && varContext['tokenId']
+      ? `${varContext['value']} ${varContext.token} #${varContext['tokenId']}`
+      : `${varContext.token}`;
   }
 
   if (varContext?.type === 'erc20')
