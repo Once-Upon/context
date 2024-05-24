@@ -98,7 +98,6 @@ export function generate(transaction: Transaction): Transaction {
           unit: 'wei',
         } as ContextETHType);
   // Net asset transfers calls the token contract 'asset' instead of 'token'
-  console.log('assetReceived', transaction.hash, assetReceived[0]);
   const swapTo =
     assetReceived[0].type === AssetType.ERC20
       ? ({
