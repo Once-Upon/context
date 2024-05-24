@@ -28,6 +28,8 @@ describe('Uniswap', () => {
     );
     expect(containsBigInt(swap1.context)).toBe(false);
 
+    // TODO; need to contextualize correctly for mev bots
+
     // const swap2 = generate(uniswapV3Pair0x6953c36b as unknown as Transaction);
     // expect(swap2.context?.summaries?.category).toBe('PROTOCOL_1');
     // expect(swap2.context?.summaries?.en.title).toBe('Uniswap');
