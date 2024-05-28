@@ -192,7 +192,7 @@ export type TransactionEnriched = {
       sent: TransferDetails[]; 
     };
   };
-    assetTransfers: AssetTransfer[]; 
+  assetTransfers: AssetTransfer[]; 
   pseudotransactions?: PseudoTransaction[]; 
 } & Transaction;
 
