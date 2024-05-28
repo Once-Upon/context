@@ -174,26 +174,25 @@ export type TxContext = {
 };
 
 /**
-  * @note These `/v3/transactions` endpoint types are currently in alpha and may change.
-  */
+ * @note These `/v3/transactions` endpoint types are currently in alpha and may change.
+ */
 export type TransactionQueryResponse = {
   transactions: TransactionEnriched[];
   cursor: string | null;
   partiesEnriched?: { [key: string]: PartyEnriched };
   assetsEnriched?: { [key: string]: AssetEnriched };
 };
- 
 export type TransactionEnriched = {
   parties: string[];
   context: TransactionContextType;
   netAssetTransfers: {
     [address: string]: {
       received: TransferDetails[];
-      sent: TransferDetails[]; 
+      sent: TransferDetails[];
     };
   };
-  assetTransfers: AssetTransfer[]; 
-  pseudotransactions?: PseudoTransaction[]; 
+  assetTransfers: AssetTransfer[];
+  pseudotransactions?: PseudoTransaction[];
 } & Transaction;
 
 type TransferDetails = {
@@ -204,12 +203,12 @@ type TransferDetails = {
 };
 
 type HandleAvatar = {
-  handle: string | null; 
-  avatar: string | null; 
+  handle: string | null;
+  avatar: string | null;
 };
 
 type FarcasterDetails = HandleAvatar & {
-  fid: string | null; 
+  fid: string | null;
 };
 
 export type PartyEnriched = {
@@ -223,8 +222,8 @@ export type PartyEnriched = {
   decimals: number;
   symbol: string;
   ensNew: HandleAvatar;
-  bns: HandleAvatar; 
-  farcaster: FarcasterDetails
+  bns: HandleAvatar;
+  farcaster: FarcasterDetails;
 };
 
 export type AssetEnriched = {
