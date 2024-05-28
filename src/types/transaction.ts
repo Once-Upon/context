@@ -173,7 +173,9 @@ export type TxContext = {
   type: string;
 };
 
-// v3 types
+/**
+  * @note These `/v3/transactions` endpoint types are currently in alpha and may change.
+  */
 export type TransactionQueryResponse = {
   transactions: TransactionEnriched[];
   cursor: string | null;
@@ -186,13 +188,38 @@ export type TransactionEnriched = {
   context: TransactionContextType;
   netAssetTransfers: {
     [address: string]: {
-      received: [{ type; contract; value; tokenId? }];
-      sent: [{ type; contract; value; tokenId? }];
+      received: TransferDetails[];
+      sent: TransferDetails[]; 
     };
   };
-  assetTransfers: { from; to; value; type; contract; tokenId }[];
-  pseudotransactions?: PseudoTransaction[];
+    assetTransfers: AssetTransfer[]; 
+  pseudotransactions?: PseudoTransaction[]; 
 } & Transaction;
+
+type TransferDetails = {
+  type: string;
+  contract: string;
+  value: string;
+  tokenId?: string;
+};
+
+type AssetTransfer = {
+  from: string;
+  to: string;
+  value: string;
+  type: string;
+  contract: string;
+  tokenId?: string;
+};
+
+type HandleAvatar = {
+  handle: string | null; 
+  avatar: string | null; 
+};
+
+type FarcasterDetails = HandleAvatar & {
+  fid: string | null; 
+};
 
 export type PartyEnriched = {
   chainId: number;
@@ -204,19 +231,9 @@ export type PartyEnriched = {
   imgUrl: string;
   decimals: number;
   symbol: string;
-  ensNew: {
-    handle: string | null;
-    avatar: string | null;
-  };
-  bns: {
-    handle: string | null;
-    avatar: string | null;
-  };
-  farcaster: {
-    handle: string | null;
-    avatar: string | null;
-    fid: string | null;
-  };
+  ensNew: HandleAvatar;
+  bns: HandleAvatar; 
+  farcaster: FarcasterDetails
 };
 
 export type AssetEnriched = {
