@@ -185,22 +185,10 @@ export type TransactionQueryResponse = {
 export type TransactionEnriched = {
   parties: string[];
   context: TransactionContextType;
-  netAssetTransfers: {
-    [address: string]: {
-      received: TransferDetails[];
-      sent: TransferDetails[];
-    };
-  };
+  netAssetTransfers: NetAssetTransfers;
   assetTransfers: AssetTransfer[];
   pseudotransactions?: PseudoTransaction[];
 } & Transaction;
-
-type TransferDetails = {
-  type: string;
-  contract: string;
-  value: string;
-  tokenId?: string;
-};
 
 type HandleAvatar = {
   handle: string | null;
