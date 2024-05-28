@@ -172,3 +172,57 @@ export type RawNeighbor = {
 export type TxContext = {
   type: string;
 };
+
+// v3 types
+export type TransactionQueryResponse = {
+  transactions: TransactionEnriched[];
+  cursor: string | null;
+  partiesEnriched?: { [key: string]: PartyEnriched };
+  assetsEnriched?: { [key: string]: AssetEnriched };
+};
+ 
+export type TransactionEnriched = {
+  parties: string[];
+  context: TransactionContextType;
+  netAssetTransfers: {
+    [address: string]: {
+      received: [{ type; contract; value; tokenId? }];
+      sent: [{ type; contract; value; tokenId? }];
+    };
+  };
+  assetTransfers: { from; to; value; type; contract; tokenId }[];
+  pseudotransactions?: PseudoTransaction[];
+} & Transaction;
+
+export type PartyEnriched = {
+  chainId: number;
+  label: {
+    public: string;
+  };
+  isContract: boolean;
+  tokenStandard: string;
+  imgUrl: string;
+  decimals: number;
+  symbol: string;
+  ensNew: {
+    handle: string | null;
+    avatar: string | null;
+  };
+  bns: {
+    handle: string | null;
+    avatar: string | null;
+  };
+  farcaster: {
+    handle: string | null;
+    avatar: string | null;
+    fid: string | null;
+  };
+};
+
+export type AssetEnriched = {
+  contract: string;
+  tokenId: string;
+  type: string;
+  value: string;
+  imageUrl: string | null;
+};
