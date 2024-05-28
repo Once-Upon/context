@@ -203,15 +203,6 @@ type TransferDetails = {
   tokenId?: string;
 };
 
-type AssetTransfer = {
-  from: string;
-  to: string;
-  value: string;
-  type: string;
-  contract: string;
-  tokenId?: string;
-};
-
 type HandleAvatar = {
   handle: string | null; 
   avatar: string | null; 
