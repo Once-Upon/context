@@ -172,3 +172,52 @@ export type RawNeighbor = {
 export type TxContext = {
   type: string;
 };
+
+/**
+ * @note These `/v3/transactions` endpoint types are currently in alpha and may change.
+ */
+export type TransactionQueryResponse = {
+  transactions: TransactionEnriched[];
+  cursor: string | null;
+  partiesEnriched?: { [key: string]: PartyEnriched };
+  assetsEnriched?: { [key: string]: AssetEnriched };
+};
+export type TransactionEnriched = {
+  parties: string[];
+  context: TransactionContextType;
+  netAssetTransfers: NetAssetTransfers;
+  assetTransfers: AssetTransfer[];
+  pseudotransactions?: PseudoTransaction[];
+} & Transaction;
+
+type HandleAvatar = {
+  handle: string | null;
+  avatar: string | null;
+};
+
+type FarcasterDetails = HandleAvatar & {
+  fid: string | null;
+};
+
+export type PartyEnriched = {
+  chainId: number;
+  label: {
+    public: string;
+  };
+  isContract: boolean;
+  tokenStandard: string;
+  imgUrl: string;
+  decimals: number;
+  symbol: string;
+  ensNew: HandleAvatar;
+  bns: HandleAvatar;
+  farcaster: FarcasterDetails;
+};
+
+export type AssetEnriched = {
+  contract: string;
+  tokenId: string;
+  type: string;
+  value: string;
+  imageUrl: string | null;
+};
