@@ -1,15 +1,13 @@
 import {
   Transaction,
   AssetType,
-  ERC20Asset,
-  ERC1155Asset,
-  ERC721Asset,
   ERC1155AssetTransfer,
   ERC20AssetTransfer,
   ERC721AssetTransfer,
   HeuristicContextActionEnum,
 } from '../../../types';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
+import { zeroAddress } from 'viem';
 
 const AIRDROP_THRESHOLD = 10;
 
@@ -57,17 +55,6 @@ export function detect(transaction: Transaction): boolean {
       return false;
     }
   }
-  // check if all assets sent are the same contract
-  const assetsSent = transaction.netAssetTransfers[
-    sendAddresses[0]
-  ].sent.filter((ele) => ele.type !== AssetType.ETH) as (
-    | ERC20Asset
-    | ERC1155Asset
-    | ERC721Asset
-  )[];
-  if (!assetsSent.every((ele) => ele.contract === assetsSent[0].contract)) {
-    return false;
-  }
   // check if there are more than AIRDROP_THRESHOLD number of receivers
   if (
     Object.keys(transaction.netAssetTransfers).length - 1 <
@@ -79,7 +66,7 @@ export function detect(transaction: Transaction): boolean {
   return true;
 }
 
-function generate(transaction: Transaction): Transaction {
+export function generate(transaction: Transaction): Transaction {
   if (!transaction.assetTransfers) {
     return transaction;
   }
@@ -91,7 +78,13 @@ function generate(transaction: Transaction): Transaction {
       x.type === AssetType.ERC20,
   ) as (ERC1155AssetTransfer | ERC20AssetTransfer | ERC721AssetTransfer)[];
   const assets = Array.from(new Set(tokenTransfers.map((x) => x.contract)));
-  const senders = Array.from(new Set(tokenTransfers.map((x) => x.from)));
+  const senders = Array.from(
+    new Set(
+      tokenTransfers
+        .map((x) => x.from)
+        .filter((address) => address != zeroAddress),
+    ),
+  );
   const recipients = Array.from(new Set(tokenTransfers.map((x) => x.to)));
 
   const firstAssetTransfer =

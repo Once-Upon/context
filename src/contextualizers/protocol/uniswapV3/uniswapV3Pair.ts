@@ -6,7 +6,7 @@ import {
   HeuristicContextActionEnum,
   Transaction,
 } from '../../../types';
-import { UNISWAP_V3_PAIR_ABI } from './constants';
+import { UNISWAP_V3_PAIR_ABI, UNIVERSAL_ROUTERS } from './constants';
 import { decodeLog } from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -35,7 +35,12 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  if (!transaction.netAssetTransfers || !transaction.logs) return transaction;
+  if (
+    !transaction.netAssetTransfers ||
+    !transaction.logs ||
+    !transaction.chainId
+  )
+    return transaction;
   let decoded;
   for (const log of transaction.logs) {
     decoded = decodeLog(
@@ -51,6 +56,9 @@ export const generate = (transaction: Transaction): Transaction => {
 
   const sender: string = decoded.args['sender'].toLowerCase();
   const recipient: string = decoded.args['recipient'].toLowerCase();
+  const isUniversalRouter =
+    UNIVERSAL_ROUTERS[transaction.chainId] &&
+    UNIVERSAL_ROUTERS[transaction.chainId].includes(sender);
   if (
     !transaction.netAssetTransfers[sender] ||
     !transaction.netAssetTransfers[sender].sent?.length ||
@@ -73,7 +81,7 @@ export const generate = (transaction: Transaction): Transaction => {
     variables: {
       sender: {
         type: 'address',
-        value: sender,
+        value: isUniversalRouter ? transaction.from : sender,
       },
       recipient: {
         type: 'address',
