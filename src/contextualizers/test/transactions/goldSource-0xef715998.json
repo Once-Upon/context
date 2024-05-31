@@ -187,7 +187,7 @@
     ]
   },
   "decoded": null,
-  "pseudotransactions": [],
+  "pseudoTransactions": [],
   "assetTransfers": [
     {
       "contract": "0x12f885808f616b8056a37be00fdd029e1c59ab08",
@@ -1050,7 +1050,7 @@
       "sent": []
     }
   },
-  "pseudotransactions": [],
+  "pseudoTransactions": [],
   "contractsCreated": [],
   "enrichedParties": {
     "0x18f33cef45817c428d98c4e188a770191fdd4b79": [

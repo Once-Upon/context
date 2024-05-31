@@ -321,7 +321,7 @@ export const makeTransform = (
         block.transactions = block.transactions.map((txn) => {
           const xformed = childTransformer(block, txn);
 
-          xformed.pseudotransactions = xformed.pseudotransactions?.map(
+          xformed.pseudoTransactions = xformed.pseudoTransactions?.map(
             (pseudoTxn) => childTransformer(block, pseudoTxn),
           );
 

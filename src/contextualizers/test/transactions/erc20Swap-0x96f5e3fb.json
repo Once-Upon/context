@@ -729,7 +729,7 @@
       ]
     }
   },
-  "pseudotransactions": [],
+  "pseudoTransactions": [],
   "contractsCreated": [],
   "enrichedParties": {
     "0x605e05bf092ebd18e06d1b0f699df5b9dd85d452": [

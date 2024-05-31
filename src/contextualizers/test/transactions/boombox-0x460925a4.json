@@ -66,7 +66,7 @@
   "transactionFee": "329210634372624000051437959100",
   "logs": [],
   "netAssetTransfers": {},
-  "pseudotransactions": [],
+  "pseudoTransactions": [],
   "contractsCreated": [],
   "enrichedParties": {
     "0xab18fdc21c33c3c60bbca753997a657f00d43f9e": [

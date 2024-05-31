@@ -250,7 +250,7 @@ export const unpackERC4337Transactions = (
 export const transform: TxnTransformer = (_block, tx) => {
   if (!isRawTransaction(tx)) return tx;
 
-  const pseudotransactions = unpackERC4337Transactions(tx);
+  const pseudoTransactions = unpackERC4337Transactions(tx);
 
-  return { ...tx, pseudotransactions };
+  return { ...tx, pseudoTransactions };
 };
