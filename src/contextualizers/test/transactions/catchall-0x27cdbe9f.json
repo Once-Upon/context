@@ -667,7 +667,7 @@
       "sent": []
     }
   },
-  "pseudoTransactions": [],
+  "pseudotransactions": [],
   "contractsCreated": [],
   "enrichedParties": {
     "0x433702256b464248dcbe403c1334757be4ed9f26": [

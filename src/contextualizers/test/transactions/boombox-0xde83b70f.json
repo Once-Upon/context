@@ -105,7 +105,7 @@
     }
   ],
   "netAssetTransfers": {},
-  "pseudoTransactions": [],
+  "pseudotransactions": [],
   "contractsCreated": [],
   "enrichedParties": {
     "0xab18fdc21c33c3c60bbca753997a657f00d43f9e": [
