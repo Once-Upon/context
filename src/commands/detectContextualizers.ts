@@ -16,9 +16,7 @@ export function registerDetectContextualizersCommand() {
 
         const txResult = contextualizer.contextualize(transaction, true);
         if (!txResult.from) {
-          console.error(
-            `No matching protocol contextualizer on ${transaction.hash}`,
-          );
+          console.error(`No matching contextualizer on ${transaction.hash}`);
         }
 
         console.log('Successfully ran contextualizers');
