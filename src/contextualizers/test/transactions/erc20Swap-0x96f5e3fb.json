@@ -232,7 +232,7 @@
     ]
   },
   "decoded": null,
-  "pseudotransactions": [],
+  "pseudoTransactions": [],
   "assetTransfers": [
     {
       "contract": "0xeb54dacb4c2ccb64f8074eceea33b5ebb38e5387",
