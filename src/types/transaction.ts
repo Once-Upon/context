@@ -178,7 +178,7 @@ export type TxContext = {
  */
 export type TransactionQueryResponse = {
   transactions: TransactionEnriched[];
-  cursor: string | null;
+  nextCursor: string | null;
   partiesEnriched?: { [key: string]: PartyEnriched };
   assetsEnriched?: { [key: string]: AssetEnriched };
 };
