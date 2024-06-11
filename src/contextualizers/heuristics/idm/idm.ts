@@ -41,6 +41,7 @@ function generate(transaction: Transaction): Transaction {
       message: {
         type: 'string',
         value: hexToString(transaction.input.slice(2)),
+        truncate: true,
       },
       sentMessage: {
         type: 'contextAction',
