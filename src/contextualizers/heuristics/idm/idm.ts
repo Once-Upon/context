@@ -1,5 +1,9 @@
 import { HeuristicContextActionEnum, Transaction } from '../../../types';
-import { hexToString, countValidChars } from '../../../helpers/utils';
+import {
+  hexToString,
+  countValidChars,
+  addAssetTransfersToContext,
+} from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isIdm = detect(transaction);
@@ -37,6 +41,7 @@ function generate(transaction: Transaction): Transaction {
       message: {
         type: 'string',
         value: hexToString(transaction.input.slice(2)),
+        truncate: true,
       },
       sentMessage: {
         type: 'contextAction',
@@ -56,5 +61,6 @@ function generate(transaction: Transaction): Transaction {
     },
   };
 
-  return transaction;
+  // add asset transfers in context
+  return addAssetTransfersToContext(transaction);
 }
