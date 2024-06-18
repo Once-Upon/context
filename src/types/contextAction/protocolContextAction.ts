@@ -299,4 +299,6 @@ export const ProtocolMap = {
   [Protocols.FARCASTER]: 'Farcaster',
   [Protocols.WARPCAST]: 'Warpcast',
   [Protocols.FRENPET]: 'Fren Pet',
+  [Protocols.FRIENDTECH]: 'friend.tech',
+  
 };
