@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import { BNSContextActionEnum, Transaction } from '../../../types';
+import { BNSContextActionEnum, ProtocolMap, Protocols, Transaction } from '../../../types';
 import { BNS_ADDRESSES, BNS_CONTRACTS } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -45,7 +45,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'IDENTITY',
           en: {
-            title: 'BNS',
+            title: ProtocolMap[Protocols.BNS],
             default: `[[sender]][[transfered]]to[[receiver]]`,
           },
         },
@@ -56,6 +56,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           transfered: {
             type: 'contextAction',
+            id: `${Protocols.BNS}.${BNSContextActionEnum.TRANSFERED_NAME}`,
             value: BNSContextActionEnum.TRANSFERED_NAME,
           },
           receiver: {
@@ -73,7 +74,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'IDENTITY',
           en: {
-            title: 'BNS',
+            title: ProtocolMap[Protocols.BNS],
             default: `[[sender]][[transfered]]to[[receiver]]`,
           },
         },
@@ -84,6 +85,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           transfered: {
             type: 'contextAction',
+            id: `${Protocols.BNS}.${BNSContextActionEnum.TRANSFERED_NAMES}`,
             value: BNSContextActionEnum.TRANSFERED_NAMES,
           },
           receiver: {

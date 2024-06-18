@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import { BNSContextActionEnum, Transaction } from '../../../types';
+import { BNSContextActionEnum, ProtocolMap, Protocols, Transaction } from '../../../types';
 import { BNS_CONTRACTS, BNS_ADDRESSES } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -44,7 +44,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'IDENTITY',
           en: {
-            title: 'BNS',
+            title: ProtocolMap[Protocols.BNS],
             default: `[[setter]][[reversed]][[name]]`,
           },
         },
@@ -60,6 +60,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           reversed: {
             type: 'contextAction',
+            id: `${Protocols.BNS}.${BNSContextActionEnum.SET_REVERSE_BNS_TO}`,
             value: BNSContextActionEnum.SET_REVERSE_BNS_TO,
           },
         },
