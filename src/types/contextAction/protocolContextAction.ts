@@ -283,4 +283,5 @@ export const ProtocolMap = {
   [Protocols.CRYPTOPUNKS]: 'CryptoPunks',
   [Protocols.DISPERSE]: 'Disperse',
   [Protocols.EAS]: 'EAS',
+  [Protocols.ENS]: 'ENS',
 };

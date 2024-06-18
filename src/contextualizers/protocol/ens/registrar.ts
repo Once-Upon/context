@@ -2,6 +2,8 @@ import { Hex } from 'viem';
 import {
   ENSContextActionEnum,
   EventLogTopics,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { ENS_CONTRACTS, ENS_ADDRESSES } from './constants';
@@ -77,7 +79,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'IDENTITY',
             en: {
-              title: 'ENS',
+              title: ProtocolMap[Protocols.ENS],
               default: `[[registerer]][[registered]][[name]]with an expiration of[[expireDate]]`,
             },
           },
@@ -98,6 +100,7 @@ export const generate = (transaction: Transaction): Transaction => {
             },
             registered: {
               type: 'contextAction',
+              id: `${Protocols.ENS}.${ENSContextActionEnum.REGISTERED}`,
               value: ENSContextActionEnum.REGISTERED,
             },
           },
@@ -115,7 +118,7 @@ export const generate = (transaction: Transaction): Transaction => {
           summaries: {
             category: 'IDENTITY',
             en: {
-              title: 'ENS',
+              title: ProtocolMap[Protocols.ENS],
               default: `[[renewer]][[renewed]][[name]]with an expiration of[[expireDate]]`,
             },
           },
@@ -136,6 +139,7 @@ export const generate = (transaction: Transaction): Transaction => {
             },
             renewed: {
               type: 'contextAction',
+              id: `${Protocols.ENS}.${ENSContextActionEnum.RENEWED}`,
               value: ENSContextActionEnum.RENEWED,
             },
           },
