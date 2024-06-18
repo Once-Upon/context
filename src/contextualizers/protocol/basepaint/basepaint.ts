@@ -5,6 +5,7 @@ import {
   BasepaintActionEnum,
   ContextVariable,
   ETHAsset,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { BASEPAINT_CONTRACT, BRUSHES_CONTRACT, ABIs } from './constants';
@@ -64,6 +65,7 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.BASEPAINT}.${BasepaintActionEnum.PAINTED}`,
             value: BasepaintActionEnum.PAINTED,
           },
           subject: {

@@ -119,7 +119,7 @@ export function generate(transaction: Transaction): Transaction {
       minted: {
         type: 'contextAction',
         id: HeuristicContextActionEnum.MINTED,
-        value: HeuristicContextActionEnum.MINTED.split(".").pop() || "",
+        value: HeuristicContextActionEnum.MINTED,
       },
     },
     summaries: {
