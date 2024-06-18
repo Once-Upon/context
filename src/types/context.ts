@@ -1,4 +1,10 @@
-import { ContextAction } from './contextAction';
+import {
+  BridgeContextAction,
+  ContextAction,
+  HeuristicContextAction,
+  ProtocolContextAction,
+  Protocols,
+} from './contextAction';
 import { AssetType } from './asset';
 
 export type ContextStringType = {
@@ -30,7 +36,10 @@ export type ContextCodeType = {
 
 export type ContextActionType = {
   type: 'contextAction';
-  id: string;
+  id:
+    | `${Protocols}.${ProtocolContextAction}`
+    | HeuristicContextAction
+    | BridgeContextAction;
   value: ContextAction;
   indexed?: boolean;
   emphasis?: boolean;
