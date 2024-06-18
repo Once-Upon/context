@@ -46,6 +46,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       received: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.RECEIVED,
         value: HeuristicContextActionEnum.RECEIVED, // TODO: Make a Superchain version of this
       },
     },

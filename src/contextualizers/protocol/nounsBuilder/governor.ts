@@ -4,6 +4,7 @@ import {
   ContextStringType,
   EventLogTopics,
   NounsGovernorActionEnum,
+  Protocols,
   Transaction,
 } from '../../../types';
 import {
@@ -162,6 +163,7 @@ export const generate = (transaction: Transaction): Transaction => {
           ...getDynamicVariables(proposalId),
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.CREATED_PROPOSAL}`,
             value: NounsGovernorActionEnum.CREATED_PROPOSAL,
           },
           subject: {
@@ -204,6 +206,7 @@ export const generate = (transaction: Transaction): Transaction => {
           ...getDynamicVariables(proposalId),
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_GOVERNOR}.${action}`,
             value: action,
           },
           subject: {
@@ -245,6 +248,7 @@ export const generate = (transaction: Transaction): Transaction => {
           ...getDynamicVariables(proposalId),
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_GOVERNOR}.${action}`,
             value: action,
           },
           voter: {
@@ -309,6 +313,7 @@ export const generate = (transaction: Transaction): Transaction => {
           ...getDynamicVariables(proposalId),
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.EXECUTED}`,
             value: NounsGovernorActionEnum.EXECUTED,
           },
           subject: {
@@ -343,6 +348,7 @@ export const generate = (transaction: Transaction): Transaction => {
           ...getDynamicVariables(proposalId),
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_GOVERNOR}.${contextAction}`,
             value: contextAction,
           },
           subject: {
