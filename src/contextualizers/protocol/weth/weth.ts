@@ -2,6 +2,8 @@ import { Hex } from 'viem';
 import {
   AssetType,
   ContextSummaryVariableType,
+  ProtocolMap,
+  Protocols,
   Transaction,
   WETHContextActionEnum,
 } from '../../../types';
@@ -50,7 +52,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'FUNGIBLE_TOKEN',
           en: {
-            title: 'WETH',
+            title: ProtocolMap[Protocols.WETH],
             default: `[[from]][[wrapped]][[value]]`,
           },
         },
@@ -66,6 +68,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           wrapped: {
             type: 'contextAction',
+            id: `${Protocols.WETH}.${WETHContextActionEnum.WRAPPED}`,
             value: WETHContextActionEnum.WRAPPED,
           },
         },
@@ -91,7 +94,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'FUNGIBLE_TOKEN',
           en: {
-            title: 'WETH',
+            title: ProtocolMap[Protocols.WETH],
             default: `[[withdrawer]][[unwrapped]][[withdrawalAmount]]`,
           },
         },
@@ -100,6 +103,7 @@ export const generate = (transaction: Transaction): Transaction => {
           withdrawer,
           unwrapped: {
             type: 'contextAction',
+            id: `${Protocols.WETH}.${WETHContextActionEnum.UNWRAPPED}`,
             value: WETHContextActionEnum.UNWRAPPED,
           },
         },

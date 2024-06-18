@@ -313,4 +313,5 @@ export const ProtocolMap = {
   [Protocols.NOUNS_AUCTION_HOUSE]: 'Nouns',
   [Protocols.UNISWAP_V2_ROUTER]: 'Uniswap',
   [Protocols.UNISWAP_V3_PAIR]: 'Uniswap',
+  [Protocols.WETH]: 'WETH',
 };
