@@ -183,6 +183,11 @@ export enum UniswapV2RouterActionEnum {
 
 export type UniswapV2RouterAction = UniswapV2RouterActionEnum.ADDED_LIQUIDITY;
 
+export enum UniswapV3PairActionEnum {
+  SWAPPED = 'SWAPPED',
+}
+export type UniswapV3PairAction = UniswapV3PairActionEnum.SWAPPED;
+
 export enum ClaimCampaignsActionEnum {
   CLAIMED = 'CLAIMED',
 }
@@ -259,6 +264,7 @@ export type ProtocolContextAction =
   | NounsAuctionHouseAction
   | NounsGovernorAction
   | UniswapV2RouterAction
+  | UniswapV3PairAction
   | ClaimCampaignsAction
   | BasepaintAction
   | DisperseAction
@@ -279,6 +285,7 @@ export enum Protocols {
   NOUNS_AUCTION_HOUSE = 'NOUNS_AUCTION_HOUSE',
   NOUNS_GOVERNOR = 'NOUNS_GOVERNOR',
   UNISWAP_V2_ROUTER = 'UNISWAP_V2_ROUTER',
+  UNISWAP_V3_PAIR = 'UNISWAP_V3_PAIR',
   CLAIM_CAMPAIGNS = 'CLAIM_CAMPAIGNS',
   BASEPAINT = 'BASEPAINT',
   DISPERSE = 'DISPERSE',
@@ -304,4 +311,6 @@ export const ProtocolMap = {
   [Protocols.LEEROY]: 'Leeroy',
   [Protocols.NOUNS_GOVERNOR]: 'Nouns',
   [Protocols.NOUNS_AUCTION_HOUSE]: 'Nouns',
+  [Protocols.UNISWAP_V2_ROUTER]: 'Uniswap',
+  [Protocols.UNISWAP_V3_PAIR]: 'Uniswap',
 };
