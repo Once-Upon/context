@@ -89,6 +89,7 @@ export const generate = (transaction: Transaction): Transaction => {
             pet,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.BOUGHT_ACCESSORY}`,
               value: FrenpetContextActionEnum.BOUGHT_ACCESSORY,
             },
           },
