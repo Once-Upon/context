@@ -4,6 +4,8 @@ import {
   ContextSummaryVariableType,
   CryptoPunksContextActionEnum,
   ETHAssetTransfer,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { CryptopunksContracts, CRYPTOPUNK_ABIS } from './constants';
@@ -86,13 +88,14 @@ export const generate = (transaction: Transaction): Transaction => {
             minter,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.MINTED_PUNK}`,
               value: CryptoPunksContextActionEnum.MINTED_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: '[[minter]][[contextAction]][[punk]]',
             },
           },
@@ -104,13 +107,14 @@ export const generate = (transaction: Transaction): Transaction => {
             minter,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.MINTED_PUNK}`,
               value: CryptoPunksContextActionEnum.MINTED_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: 'Failed:[[minter]][[contextAction]][[punk]]',
             },
           },
@@ -141,13 +145,14 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.LISTED_PUNK}`,
               value: CryptoPunksContextActionEnum.LISTED_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: '[[seller]][[contextAction]][[punk]]for[[price]]',
             },
           },
@@ -160,13 +165,14 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.LISTED_PUNK}`,
               value: CryptoPunksContextActionEnum.LISTED_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: 'Failed:[[seller]][[contextAction]][[punk]]for[[price]]',
             },
           },
@@ -201,13 +207,14 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.WITHDREW_BID_FOR}`,
               value: CryptoPunksContextActionEnum.WITHDREW_BID_FOR,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: '[[bidder]][[contextAction]][[punk]]for[[price]]',
             },
           },
@@ -220,13 +227,14 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.WITHDREW_BID_FOR}`,
               value: CryptoPunksContextActionEnum.WITHDREW_BID_FOR,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: 'Failed:[[bidder]][[contextAction]][[punk]]for[[price]]',
             },
           },
@@ -257,13 +265,14 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.BID_ON_PUNK}`,
               value: CryptoPunksContextActionEnum.BID_ON_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: '[[buyer]][[contextAction]][[punk]]for[[price]]',
             },
           },
@@ -276,13 +285,14 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.BID_ON_PUNK}`,
               value: CryptoPunksContextActionEnum.BID_ON_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: 'Failed:[[buyer]][[contextAction]][[punk]]for[[price]]',
             },
           },
@@ -309,13 +319,14 @@ export const generate = (transaction: Transaction): Transaction => {
             amount,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.WITHDREW_FROM_CONTRACT}`,
               value: CryptoPunksContextActionEnum.WITHDREW_FROM_CONTRACT,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: '[[withdrawer]][[contextAction]][[amount]]',
             },
           },
@@ -327,13 +338,14 @@ export const generate = (transaction: Transaction): Transaction => {
             amount,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.WITHDREW_FROM_CONTRACT}`,
               value: CryptoPunksContextActionEnum.WITHDREW_FROM_CONTRACT,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: 'Failed:[[withdrawer]][[contextAction]][[amount]]',
             },
           },
@@ -376,13 +388,14 @@ export const generate = (transaction: Transaction): Transaction => {
             seller,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.BOUGHT_PUNK}`,
               value: CryptoPunksContextActionEnum.BOUGHT_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default:
                 '[[buyer]][[contextAction]][[punk]]from[[seller]]for[[price]]',
             },
@@ -396,13 +409,14 @@ export const generate = (transaction: Transaction): Transaction => {
             price,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.BOUGHT_PUNK}`,
               value: CryptoPunksContextActionEnum.BOUGHT_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: 'Failed:[[buyer]][[contextAction]][[punk]]for[[price]]',
             },
           },
@@ -432,13 +446,14 @@ export const generate = (transaction: Transaction): Transaction => {
             receiver,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.TRANSFERRED_PUNK}`,
               value: CryptoPunksContextActionEnum.TRANSFERRED_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: '[[sender]][[contextAction]][[punk]]to[[receiver]]',
             },
           },
@@ -451,13 +466,14 @@ export const generate = (transaction: Transaction): Transaction => {
             receiver,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.TRANSFERRED_PUNK}`,
               value: CryptoPunksContextActionEnum.TRANSFERRED_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default:
                 'Failed:[[sender]][[contextAction]][[punk]]to[[receiver]]',
             },
@@ -483,13 +499,14 @@ export const generate = (transaction: Transaction): Transaction => {
             punk,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.UNLISTED_PUNK}`,
               value: CryptoPunksContextActionEnum.UNLISTED_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: '[[seller]][[contextAction]][[punk]]',
             },
           },
@@ -501,13 +518,14 @@ export const generate = (transaction: Transaction): Transaction => {
             punk,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.UNLISTED_PUNK}`,
               value: CryptoPunksContextActionEnum.UNLISTED_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default: 'Failed:[[seller]][[contextAction]][[punk]]',
             },
           },
@@ -544,13 +562,14 @@ export const generate = (transaction: Transaction): Transaction => {
             buyer,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.LISTED_PUNK}`,
               value: CryptoPunksContextActionEnum.LISTED_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default:
                 '[[seller]][[contextAction]][[punk]]to[[buyer]]for[[price]]',
             },
@@ -565,13 +584,14 @@ export const generate = (transaction: Transaction): Transaction => {
             buyer,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.LISTED_PUNK}`,
               value: CryptoPunksContextActionEnum.LISTED_PUNK,
             },
           },
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'CryptoPunks',
+              title: ProtocolMap[Protocols.CRYPTOPUNKS],
               default:
                 'Failed:[[seller]][[contextAction]][[punk]]to[[buyer]]for[[price]]',
             },
