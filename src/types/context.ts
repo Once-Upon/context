@@ -30,7 +30,8 @@ export type ContextCodeType = {
 
 export type ContextActionType = {
   type: 'contextAction';
-  value: ContextAction;
+  id: ContextAction;
+  value: string;
   indexed?: boolean;
   emphasis?: boolean;
 };
