@@ -119,7 +119,6 @@ export function generate(transaction: Transaction): Transaction {
       minted: {
         type: 'contextAction',
         id: HeuristicContextActionEnum.MINTED,
-        id: HeuristicContextActionEnum.MINTED,
         value: HeuristicContextActionEnum.MINTED,
       },
     },

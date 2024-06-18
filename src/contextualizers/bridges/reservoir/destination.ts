@@ -101,6 +101,7 @@ export function generate(transaction: Transaction): Transaction {
       asset,
       completedACrossChainInteraction: {
         type: 'contextAction',
+        id: BridgeContextActionEnum.COMPLETED_A_CROSS_CHAIN_INTERACTION,
         value: BridgeContextActionEnum.COMPLETED_A_CROSS_CHAIN_INTERACTION,
       },
     },

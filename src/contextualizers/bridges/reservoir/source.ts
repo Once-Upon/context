@@ -79,6 +79,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       initiated: {
         type: 'contextAction',
+        id: BridgeContextActionEnum.INITIATED_A_CROSS_CHAIN_INTERACTION,
         value: BridgeContextActionEnum.INITIATED_A_CROSS_CHAIN_INTERACTION,
       },
     },
