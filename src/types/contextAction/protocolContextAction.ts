@@ -298,4 +298,5 @@ export const ProtocolMap = {
   [Protocols.ENS]: 'ENS',
   [Protocols.FARCASTER]: 'Farcaster',
   [Protocols.WARPCAST]: 'Warpcast',
+  [Protocols.FRENPET]: 'Fren Pet',
 };
