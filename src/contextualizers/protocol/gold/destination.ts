@@ -10,6 +10,8 @@ import {
   GoldContextActionEnum,
   AssetType,
   ContextNumberType,
+  Protocols,
+  ProtocolMap,
 } from '../../../types';
 import {
   PACK_ACTIVATION_DESTINATION_ABI,
@@ -146,7 +148,7 @@ export function generate(transaction: Transaction): Transaction {
     summaries: {
       category: 'PROTOCOL_1',
       en: {
-        title: `Gold`,
+        title: ProtocolMap[Protocols.GOLD],
         default:
           plotIds?.length === 2
             ? '[[activator]][[received]]plots[[plotId0]]and[[plotId1]]and[[crop]]and[[zGold]]'
@@ -170,6 +172,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       received: {
         type: 'contextAction',
+        id: `${Protocols.GOLD}.${GoldContextActionEnum.RECEIVED}`,
         value: GoldContextActionEnum.RECEIVED,
       },
     },
