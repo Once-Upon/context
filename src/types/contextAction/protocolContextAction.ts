@@ -302,4 +302,6 @@ export const ProtocolMap = {
   [Protocols.FRIENDTECH]: 'friend.tech',
   [Protocols.GOLD]: 'Gold',
   [Protocols.LEEROY]: 'Leeroy',
+  [Protocols.NOUNS_GOVERNOR]: 'Nouns',
+  [Protocols.NOUNS_AUCTION_HOUSE]: 'Nouns',
 };
