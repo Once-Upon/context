@@ -3,6 +3,8 @@ import {
   AssetType,
   DisperseActionEnum,
   ETHAssetTransfer,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import {
@@ -84,6 +86,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.DISPERSE}.${DisperseActionEnum.TIPPED}`,
             value: DisperseActionEnum.TIPPED,
           },
           receiver: {
@@ -99,7 +102,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Disperse',
+            title: ProtocolMap[Protocols.DISPERSE],
             default: '[[subject]][[contextAction]][[receiver]][[numOfEth]]',
           },
         },

@@ -281,5 +281,5 @@ export const ProtocolMap = {
   [Protocols.BOOMBOX]: 'Boombox',
   [Protocols.CLAIM_CAMPAIGNS]: 'Claim',
   [Protocols.CRYPTOPUNKS]: 'CryptoPunks',
-  
+  [Protocols.DISPERSE]: 'Disperse',
 };
