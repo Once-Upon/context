@@ -279,4 +279,5 @@ export const ProtocolMap = {
   [Protocols.BASEPAINT]: 'Basepaint',
   [Protocols.BNS]: 'BNS',
   [Protocols.BOOMBOX]: 'Boombox',
+  [Protocols.CLAIM_CAMPAIGNS]: 'Claim',
 };
