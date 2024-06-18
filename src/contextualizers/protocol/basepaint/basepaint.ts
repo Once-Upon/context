@@ -5,6 +5,7 @@ import {
   BasepaintActionEnum,
   ContextVariable,
   ETHAsset,
+  ProtocolMap,
   Protocols,
   Transaction,
 } from '../../../types';
@@ -90,7 +91,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Basepaint',
+            title: ProtocolMap[Protocols.BASEPAINT],
             default:
               '[[subject]][[contextAction]][[pixels]]pixels to day[[day]]using[[brush]]',
           },
@@ -140,7 +141,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Basepaint',
+            title: ProtocolMap[Protocols.BASEPAINT],
             default: `[[subject]][[contextAction]]of[[amount]]for[[days]]day${
               days.length === 1 ? "'s" : "s'"
             } contributions`,

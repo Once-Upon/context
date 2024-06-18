@@ -236,6 +236,25 @@ export type GoldContextAction =
   | GoldContextActionEnum.ACTIVATED_A_STARTER_PACK
   | GoldContextActionEnum.RECEIVED;
 
+export type ProtocolContextAction =
+  | WETHContextAction
+  | ENSContextAction
+  | CryptoPunksContextAction
+  | LeeroyContextAction
+  | FrenpetContextAction
+  | FarcasterContextAction
+  | EASContextAction
+  | FriendTechContextAction
+  | NounsAuctionHouseAction
+  | NounsGovernorAction
+  | UniswapV2RouterAction
+  | ClaimCampaignsAction
+  | BasepaintAction
+  | DisperseAction
+  | BNSContextAction
+  | BoomboxContextAction
+  | GoldContextAction;
+
 export enum Protocols {
   WETH = 'WETH',
   ENS = 'ENS',
@@ -256,21 +275,7 @@ export enum Protocols {
   GOLD = 'GOLD',
 }
 
-export type ProtocolContextAction =
-  | WETHContextAction
-  | ENSContextAction
-  | CryptoPunksContextAction
-  | LeeroyContextAction
-  | FrenpetContextAction
-  | FarcasterContextAction
-  | EASContextAction
-  | FriendTechContextAction
-  | NounsAuctionHouseAction
-  | NounsGovernorAction
-  | UniswapV2RouterAction
-  | ClaimCampaignsAction
-  | BasepaintAction
-  | DisperseAction
-  | BNSContextAction
-  | BoomboxContextAction
-  | GoldContextAction;
+export const ProtocolMap = {
+  [Protocols.BASEPAINT]: 'Basepaint',
+  [Protocols.BNS]: 'BNS',
+}
