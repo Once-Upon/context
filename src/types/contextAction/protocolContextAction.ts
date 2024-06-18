@@ -300,5 +300,6 @@ export const ProtocolMap = {
   [Protocols.WARPCAST]: 'Warpcast',
   [Protocols.FRENPET]: 'Fren Pet',
   [Protocols.FRIENDTECH]: 'friend.tech',
-  
+  [Protocols.GOLD]: 'Gold',
+  [Protocols.LEEROY]: 'Leeroy',
 };
