@@ -282,4 +282,5 @@ export const ProtocolMap = {
   [Protocols.CLAIM_CAMPAIGNS]: 'Claim',
   [Protocols.CRYPTOPUNKS]: 'CryptoPunks',
   [Protocols.DISPERSE]: 'Disperse',
+  [Protocols.EAS]: 'EAS',
 };

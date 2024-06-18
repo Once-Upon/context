@@ -2,6 +2,8 @@ import { Hex } from 'viem';
 import {
   EASContextActionEnum,
   EventLogTopics,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { decodeTransactionInput, decodeLog } from '../../../helpers/utils';
@@ -107,13 +109,14 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           registered: {
             type: 'contextAction',
+            id: `${Protocols.EAS}.${EASContextActionEnum.REGISTERED}`,
             value: EASContextActionEnum.REGISTERED,
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'EAS',
+            title: ProtocolMap[Protocols.EAS],
             default: '[[from]][[registered]]new schema with id[[id]]',
             long: '[[from]][[registered]]new schema with id[[id]]and schema[[schema]]',
           },
