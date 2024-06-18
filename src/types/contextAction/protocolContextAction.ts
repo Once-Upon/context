@@ -278,4 +278,5 @@ export enum Protocols {
 export const ProtocolMap = {
   [Protocols.BASEPAINT]: 'Basepaint',
   [Protocols.BNS]: 'BNS',
-}
+  [Protocols.BOOMBOX]: 'Boombox',
+};

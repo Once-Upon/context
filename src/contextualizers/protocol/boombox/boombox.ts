@@ -1,5 +1,10 @@
 import { Abi, Hex, hexToBigInt } from 'viem';
-import { BoomboxContextActionEnum, Transaction } from '../../../types';
+import {
+  BoomboxContextActionEnum,
+  ProtocolMap,
+  Protocols,
+  Transaction,
+} from '../../../types';
 import {
   BOOMBOX_ABI,
   BOOMBOX_ARTIST_SPOTIFY_LINK,
@@ -70,13 +75,14 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.BOOMBOX}.${BoomboxContextActionEnum.ADDED}`,
             value: BoomboxContextActionEnum.ADDED,
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Boombox',
+            title: ProtocolMap[Protocols.BOOMBOX],
             default: '[[sender]][[contextAction]][[artist]]on Spotify',
           },
         },
@@ -108,13 +114,14 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.BOOMBOX}.${BoomboxContextActionEnum.SIGNED}`,
             value: BoomboxContextActionEnum.SIGNED,
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Boombox',
+            title: ProtocolMap[Protocols.BOOMBOX],
             default: '[[user]][[contextAction]][[artist]]',
           },
         },
@@ -158,13 +165,14 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.BOOMBOX}.${BoomboxContextActionEnum.DISTRIBUTED}`,
             value: BoomboxContextActionEnum.DISTRIBUTED,
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Boombox',
+            title: ProtocolMap[Protocols.BOOMBOX],
             default: '[[sender]][[contextAction]][[amount]]for[[artist]]',
           },
         },
