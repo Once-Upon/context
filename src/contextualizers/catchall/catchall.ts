@@ -46,10 +46,12 @@ export function generate(transaction: Transaction): Transaction {
       },
       interactedWith: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.INTERACTED_WITH,
         value: HeuristicContextActionEnum.INTERACTED_WITH,
       },
       called: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.CALLED,
         value: HeuristicContextActionEnum.CALLED,
       },
     },
@@ -230,17 +232,17 @@ export function generate(transaction: Transaction): Transaction {
               value: assetTransfer.value,
             }
           : assetTransfer.type === AssetType.ERC721
-            ? {
-                type: AssetType.ERC721,
-                tokenId: assetTransfer.tokenId,
-                token: assetTransfer.contract,
-              }
-            : {
-                type: AssetType.ERC1155,
-                tokenId: assetTransfer.tokenId,
-                token: assetTransfer.contract,
-                value: assetTransfer.value,
-              },
+          ? {
+              type: AssetType.ERC721,
+              tokenId: assetTransfer.tokenId,
+              token: assetTransfer.contract,
+            }
+          : {
+              type: AssetType.ERC1155,
+              tokenId: assetTransfer.tokenId,
+              token: assetTransfer.contract,
+              value: assetTransfer.value,
+            },
       sender: {
         type: 'address',
         value: sender,

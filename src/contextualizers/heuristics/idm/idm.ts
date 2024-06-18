@@ -40,6 +40,7 @@ function generate(transaction: Transaction): Transaction {
       },
       sentMessage: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.SENT_MESSAGE,
         value: HeuristicContextActionEnum.SENT_MESSAGE,
       },
       receiver: {

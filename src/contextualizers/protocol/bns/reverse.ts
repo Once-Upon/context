@@ -1,5 +1,10 @@
 import { Hex } from 'viem';
-import { BNSContextActionEnum, ProtocolMap, Protocols, Transaction } from '../../../types';
+import {
+  BNSContextActionEnum,
+  ProtocolMap,
+  Protocols,
+  Transaction,
+} from '../../../types';
 import { BNS_CONTRACTS, BNS_ADDRESSES } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 

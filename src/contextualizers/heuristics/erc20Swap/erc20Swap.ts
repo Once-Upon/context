@@ -117,6 +117,7 @@ export function generate(transaction: Transaction): Transaction {
       swapTo,
       swapped: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.SWAPPED,
         value: HeuristicContextActionEnum.SWAPPED,
       },
     },

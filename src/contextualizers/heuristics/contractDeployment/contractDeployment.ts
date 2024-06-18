@@ -32,6 +32,7 @@ function generate(transaction: Transaction): Transaction {
       },
       deployed: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.DEPLOYED,
         value: HeuristicContextActionEnum.DEPLOYED,
       },
     },

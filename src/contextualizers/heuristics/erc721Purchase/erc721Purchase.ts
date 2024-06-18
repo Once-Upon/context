@@ -128,18 +128,18 @@ export function generate(transaction: Transaction): Transaction {
               tokenId: receivedNfts[0].tokenId,
             }
           : receivedNftContracts.length === 1 ||
-              receivedNftContracts.every(
-                (contract) => contract === receivedNfts[0].contract,
-              )
-            ? {
-                type: 'address',
-                value: receivedNfts[0].contract,
-              }
-            : {
-                type: 'string',
-                value: 'NFTs',
-                emphasis: true,
-              },
+            receivedNftContracts.every(
+              (contract) => contract === receivedNfts[0].contract,
+            )
+          ? {
+              type: 'address',
+              value: receivedNfts[0].contract,
+            }
+          : {
+              type: 'string',
+              value: 'NFTs',
+              emphasis: true,
+            },
       price:
         totalAssets > 1
           ? {
@@ -149,16 +149,16 @@ export function generate(transaction: Transaction): Transaction {
               unit: 'assets',
             }
           : ethPayments.length > 0
-            ? {
-                type: AssetType.ETH,
-                value: totalETHPayment.toString(),
-                unit: 'wei',
-              }
-            : {
-                type: AssetType.ERC20,
-                token: Object.values(totalERC20Payment)[0].contract,
-                value: Object.values(totalERC20Payment)[0].value,
-              },
+          ? {
+              type: AssetType.ETH,
+              value: totalETHPayment.toString(),
+              unit: 'wei',
+            }
+          : {
+              type: AssetType.ERC20,
+              token: Object.values(totalERC20Payment)[0].contract,
+              value: Object.values(totalERC20Payment)[0].value,
+            },
       sellerOrSellers:
         sendingAddresses.length > 1
           ? {
@@ -173,6 +173,7 @@ export function generate(transaction: Transaction): Transaction {
             },
       bought: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.BOUGHT,
         value: HeuristicContextActionEnum.BOUGHT,
       },
     },

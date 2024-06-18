@@ -90,6 +90,7 @@ export function generate(transaction: Transaction): Transaction {
           },
           gaveAccess: {
             type: 'contextAction',
+            id: HeuristicContextActionEnum.GAVE_ACCESS,
             value: HeuristicContextActionEnum.GAVE_ACCESS,
           },
         },
@@ -121,6 +122,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             gaveAccess: {
               type: 'contextAction',
+              id: HeuristicContextActionEnum.GAVE_ACCESS,
               value: HeuristicContextActionEnum.GAVE_ACCESS,
             },
           },
@@ -149,6 +151,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             revokedAccess: {
               type: 'contextAction',
+              id: HeuristicContextActionEnum.REVOKED_ACCESS,
               value: HeuristicContextActionEnum.REVOKED_ACCESS,
             },
           },

@@ -30,6 +30,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       canceled: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.CANCELED_A_PENDING_TRANSACTION,
         value: HeuristicContextActionEnum.CANCELED_A_PENDING_TRANSACTION,
       },
       nonce: {

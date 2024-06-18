@@ -105,6 +105,7 @@ export function generate(transaction: Transaction): Transaction {
       asset,
       bridged: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.BRIDGED,
         value: HeuristicContextActionEnum.BRIDGED,
       },
     },

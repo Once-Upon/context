@@ -80,6 +80,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       sent: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.SENT,
         value: HeuristicContextActionEnum.SENT,
       },
     },

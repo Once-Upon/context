@@ -128,16 +128,16 @@ export function generate(transaction: Transaction): Transaction {
               value: receivedNfts[0].value,
             }
           : receivedNftContracts.length === 1
-            ? {
-                type: 'address',
-                value: receivedNftContracts[0],
-              }
-            : {
-                type: 'number',
-                value: receivedNfts.length,
-                emphasis: true,
-                unit: 'NFTs',
-              },
+          ? {
+              type: 'address',
+              value: receivedNftContracts[0],
+            }
+          : {
+              type: 'number',
+              value: receivedNfts.length,
+              emphasis: true,
+              unit: 'NFTs',
+            },
       price:
         totalAssets > 1
           ? {
@@ -147,16 +147,16 @@ export function generate(transaction: Transaction): Transaction {
               unit: 'assets',
             }
           : ethPayments.length > 0
-            ? {
-                type: AssetType.ETH,
-                value: totalETHPayment.toString(),
-                unit: 'wei',
-              }
-            : {
-                type: AssetType.ERC20,
-                token: Object.values(totalERC20Payment)[0].contract,
-                value: Object.values(totalERC20Payment)[0].value.toString(),
-              },
+          ? {
+              type: AssetType.ETH,
+              value: totalETHPayment.toString(),
+              unit: 'wei',
+            }
+          : {
+              type: AssetType.ERC20,
+              token: Object.values(totalERC20Payment)[0].contract,
+              value: Object.values(totalERC20Payment)[0].value.toString(),
+            },
       sellerOrSellers:
         sendingAddresses.length > 1
           ? {
@@ -171,6 +171,7 @@ export function generate(transaction: Transaction): Transaction {
             },
       bought: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.BOUGHT,
         value: HeuristicContextActionEnum.BOUGHT,
       },
     },
