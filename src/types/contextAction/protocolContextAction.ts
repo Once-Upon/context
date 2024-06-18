@@ -101,6 +101,8 @@ export enum FarcasterContextActionEnum {
   RENTED = 'RENTED',
   REMOVED_A_KEY = 'REMOVED_A_KEY',
   ADDED_A_KEY = 'ADDED_A_KEY',
+  MINTED = 'MINTED',
+  BOUGHT = 'BOUGHT',
 }
 
 export type FarcasterContextAction =
@@ -109,7 +111,15 @@ export type FarcasterContextAction =
   | FarcasterContextActionEnum.TRANSFERRED_FARCASTER_ID
   | FarcasterContextActionEnum.RENTED
   | FarcasterContextActionEnum.REMOVED_A_KEY
-  | FarcasterContextActionEnum.ADDED_A_KEY;
+  | FarcasterContextActionEnum.ADDED_A_KEY
+  | FarcasterContextActionEnum.MINTED
+  | FarcasterContextActionEnum.BOUGHT;
+
+export enum WarpcastContextActionEnum {
+  MINTED = 'MINTED',
+}
+
+export type WarpcastContextAction = WarpcastContextActionEnum.MINTED;
 
 export enum EASContextActionEnum {
   ATTESTED = 'ATTESTED',
@@ -243,6 +253,7 @@ export type ProtocolContextAction =
   | LeeroyContextAction
   | FrenpetContextAction
   | FarcasterContextAction
+  | WarpcastContextAction
   | EASContextAction
   | FriendTechContextAction
   | NounsAuctionHouseAction
@@ -262,6 +273,7 @@ export enum Protocols {
   LEEROY = 'LEEROY',
   FRENPET = 'FRENPET',
   FARCASTER = 'FARCASTER',
+  WARPCAST = 'WARPCAST',
   EAS = 'EAS',
   FRIENDTECH = 'FRIENDTECH',
   NOUNS_AUCTION_HOUSE = 'NOUNS_AUCTION_HOUSE',
@@ -284,4 +296,6 @@ export const ProtocolMap = {
   [Protocols.DISPERSE]: 'Disperse',
   [Protocols.EAS]: 'EAS',
   [Protocols.ENS]: 'ENS',
+  [Protocols.FARCASTER]: 'Farcaster',
+  [Protocols.WARPCAST]: 'Warpcast',
 };

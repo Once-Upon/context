@@ -1,5 +1,10 @@
 import { Hex } from 'viem';
-import { FarcasterContextActionEnum, Transaction } from '../../../types';
+import {
+  FarcasterContextActionEnum,
+  ProtocolMap,
+  Protocols,
+  Transaction,
+} from '../../../types';
 import { FarcasterContracts } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -44,13 +49,14 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           addedKey: {
             type: 'contextAction',
+            id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.ADDED_A_KEY}`,
             value: FarcasterContextActionEnum.ADDED_A_KEY,
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Farcaster',
+            title: ProtocolMap[Protocols.FARCASTER],
             default: '[[owner]][[addedKey]]',
           },
         },
@@ -71,13 +77,14 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           addedKey: {
             type: 'contextAction',
+            id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.ADDED_A_KEY}`,
             value: FarcasterContextActionEnum.ADDED_A_KEY,
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Farcaster',
+            title: ProtocolMap[Protocols.FARCASTER],
             default: '[[caller]][[addedKey]]for[[owner]]',
           },
         },

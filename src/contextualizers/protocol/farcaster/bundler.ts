@@ -4,6 +4,8 @@ import {
   ContextSummaryVariableType,
   EventLogTopics,
   FarcasterContextActionEnum,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { FarcasterContracts } from './constants';
@@ -96,13 +98,14 @@ export const generate = (transaction: Transaction): Transaction => {
           cost,
           registered: {
             type: 'contextAction',
+            id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REGISTERED_FARCASTER_ID}`,
             value: FarcasterContextActionEnum.REGISTERED_FARCASTER_ID,
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Farcaster',
+            title: ProtocolMap[Protocols.FARCASTER],
             default: callerIsOwner
               ? '[[caller]][[registered]][[fid]]for[[cost]]'
               : '[[caller]][[registered]][[fid]]for[[owner]]for[[cost]]',

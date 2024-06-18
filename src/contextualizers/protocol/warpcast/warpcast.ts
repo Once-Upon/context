@@ -2,7 +2,9 @@ import {
   AssetType,
   ERC20Asset,
   Transaction,
-  HeuristicContextActionEnum,
+  ProtocolMap,
+  Protocols,
+  FarcasterContextActionEnum,
 } from '../../../types';
 
 const WARPCAST_DEPOSIT_ADDRESS = '0x79afe0fd5375ca1d30bb6b28ae7529a1e2387baa';
@@ -102,13 +104,14 @@ export function generate(transaction: Transaction): Transaction {
       },
       bought: {
         type: 'contextAction',
-        value: HeuristicContextActionEnum.BOUGHT,
+        id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.BOUGHT}`,
+        value: FarcasterContextActionEnum.BOUGHT,
       },
     },
     summaries: {
       category: 'PROTOCOL_1',
       en: {
-        title: 'Farcaster',
+        title: ProtocolMap[Protocols.FARCASTER],
         default: '[[buyer]][[bought]][[costInUSDC]]of Warps for[[cost]]',
       },
     },

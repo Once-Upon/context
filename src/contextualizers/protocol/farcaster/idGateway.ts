@@ -2,6 +2,8 @@ import { Hex } from 'viem';
 import {
   EventLogTopics,
   FarcasterContextActionEnum,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { FarcasterContracts } from './constants';
@@ -76,13 +78,14 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           registered: {
             type: 'contextAction',
+            id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REGISTERED_FARCASTER_ID}`,
             value: FarcasterContextActionEnum.REGISTERED_FARCASTER_ID,
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Farcaster',
+            title: ProtocolMap[Protocols.FARCASTER],
             default: `[[owner]][[registered]][[fid]]`,
           },
         },
@@ -107,13 +110,14 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           registered: {
             type: 'contextAction',
+            id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REGISTERED_FARCASTER_ID}`,
             value: FarcasterContextActionEnum.REGISTERED_FARCASTER_ID,
           },
         },
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Farcaster',
+            title: ProtocolMap[Protocols.FARCASTER],
             default: '[[caller]][[registered]][[fid]]for[[owner]]',
           },
         },
