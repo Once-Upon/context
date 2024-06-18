@@ -114,6 +114,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const variables: ContextVariable = {
         contextAction: {
           type: 'contextAction',
+          id: `${Protocols.BASEPAINT}.${BasepaintActionEnum.WITHDREW_REWARDS}`,
           value: BasepaintActionEnum.WITHDREW_REWARDS,
         },
         subject: {
