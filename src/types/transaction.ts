@@ -7,7 +7,7 @@ import {
 } from 'viem';
 import { Log, RawReceipt } from './log';
 import { ContextVariable, ContextSummaryType } from './context';
-import { ContextActionFull } from './contextAction';
+import { ContextActionID } from './contextAction';
 import { NetAssetTransfers, AssetTransfer } from './asset';
 import { InternalHashType, StdObj } from './shared';
 import { Contract } from './contract';
@@ -71,7 +71,7 @@ export type Receipt = TransactionReceipt & {
 };
 
 export type TransactionContextType = {
-  actions?: ContextActionFull[];
+  actions?: ContextActionID[];
   variables?: ContextVariable;
   summaries?: ContextSummaryType;
   crossChainTx?: Transaction[];
@@ -88,6 +88,7 @@ export type Transaction = BaseTransaction & {
   netAssetTransfers?: NetAssetTransfers;
   receipt?: Receipt;
   canCopy?: boolean;
+  actions?: ContextActionID[];
   context?: TransactionContextType;
   logs?: Log[];
   delegateCalls: RawTrace[];

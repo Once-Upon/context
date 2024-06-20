@@ -1,4 +1,4 @@
-import { ContextAction, ContextActionFull } from './contextAction';
+import { ContextAction, ContextActionID } from './contextAction';
 import { AssetType } from './asset';
 
 export type ContextStringType = {
@@ -30,7 +30,7 @@ export type ContextCodeType = {
 
 export type ContextActionType = {
   type: 'contextAction';
-  id: ContextActionFull;
+  id: ContextActionID;
   value: ContextAction;
   indexed?: boolean;
   emphasis?: boolean;

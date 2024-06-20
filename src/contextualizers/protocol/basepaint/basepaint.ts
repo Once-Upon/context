@@ -62,6 +62,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
       const pixels = pixelData.slice(2).length / 3;
 
+      transaction.actions = [`${Protocols.BASEPAINT}.${BasepaintActionEnum.PAINTED}`];
       transaction.context = {
         variables: {
           contextAction: {
