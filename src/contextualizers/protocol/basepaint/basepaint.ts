@@ -62,8 +62,8 @@ export const generate = (transaction: Transaction): Transaction => {
 
       const pixels = pixelData.slice(2).length / 3;
 
-      transaction.actions = [`${Protocols.BASEPAINT}.${BasepaintActionEnum.PAINTED}`];
       transaction.context = {
+        actions: [`${Protocols.BASEPAINT}.${BasepaintActionEnum.PAINTED}`],
         variables: {
           contextAction: {
             type: 'contextAction',
@@ -138,6 +138,9 @@ export const generate = (transaction: Transaction): Transaction => {
       if (!transaction.to) return transaction;
 
       transaction.context = {
+        actions: [
+          `${Protocols.BASEPAINT}.${BasepaintActionEnum.WITHDREW_REWARDS}`,
+        ],
         variables,
         summaries: {
           category: 'PROTOCOL_1',

@@ -88,7 +88,6 @@ export type Transaction = BaseTransaction & {
   netAssetTransfers?: NetAssetTransfers;
   receipt?: Receipt;
   canCopy?: boolean;
-  actions?: ContextActionID[];
   context?: TransactionContextType;
   logs?: Log[];
   delegateCalls: RawTrace[];
