@@ -7,8 +7,8 @@ module.exports = function (fileInfo, api) {
   const findTransactionContextVariableId = (path) => {
     const firstVariableId = path.value.right.properties
       .find((property) => property.key.name === 'variables')
-      .value.properties.find((property2) => {
-        return property2.value.properties?.some(
+      .value.properties?.find((property2) => {
+        return property2.value?.properties?.some(
           (property3) => property3.key.name === 'id',
         );
       });
@@ -27,20 +27,22 @@ module.exports = function (fileInfo, api) {
     })
     .forEach((path) => {
       const t = findTransactionContextVariableId(path);
-      if (t) {
+      const newValue =
+        t.type === 'TemplateLiteral'
+          // ? j.templateLiteral(
+          //     t.quasis.map((q) => j.templateElement(q.value, q.tail)),
+          //     t.expressions.map((e) =>
+          //       j.memberExpression(e.object, e.property),
+          //     ),
+          //   )
+          ? null
+          : j.memberExpression(t.object, t.property);
+      if (newValue) {
         const actionsPropertyAssignment = j.objectProperty(
           j.identifier('actions'),
-          j.arrayExpression([
-            j.templateLiteral(
-              t.quasis.map((q) => j.templateElement(q.value, q.tail)),
-              t.expressions.map((e) =>
-                j.memberExpression(e.object, e.property),
-              ),
-            ),
-          ]),
+          j.arrayExpression([newValue]),
         );
-
-        path.value.right["properties"].unshift(actionsPropertyAssignment);
+        path.value.right['properties'].unshift(actionsPropertyAssignment);
       }
     });
 

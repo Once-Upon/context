@@ -250,10 +250,6 @@ export const generate = (transaction: Transaction): Transaction => {
             `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.WITHDREW_BID_FOR}`,
           ],
 
-          actions: [
-            `${Protocols.CRYPTOPUNKS}.${CryptoPunksContextActionEnum.WITHDREW_BID_FOR}`,
-          ],
-
           variables: {
             bidder,
             punk,
