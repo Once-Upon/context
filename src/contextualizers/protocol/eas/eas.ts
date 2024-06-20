@@ -103,6 +103,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const attestationID = getAttestationID(transaction);
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.ATTESTED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -135,6 +137,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: EASContextActionEnum.ATTESTED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -156,6 +159,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const attestationID = getAttestationID(transaction);
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.ATTESTED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -193,6 +198,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: EASContextActionEnum.ATTESTED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -212,6 +218,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const count = arg.map((v) => v.data).flat().length;
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.ATTESTED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -235,6 +243,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: EASContextActionEnum.ATTESTED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -253,6 +262,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const count = arg.map((v) => v.data).flat().length;
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.ATTESTED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -282,6 +293,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: EASContextActionEnum.ATTESTED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -302,6 +314,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const attestationID = getAttestationID(transaction);
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.REVOKED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -331,6 +345,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: EASContextActionEnum.REVOKED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -351,6 +366,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const attestationID = getAttestationID(transaction);
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.REVOKED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -384,6 +401,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: EASContextActionEnum.REVOKED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -402,6 +420,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const count = arg.map((v) => v.data).flat().length;
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.REVOKED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -425,6 +445,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: EASContextActionEnum.REVOKED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -443,6 +464,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const count = arg.map((v) => v.data).flat().length;
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.REVOKED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -470,6 +493,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: EASContextActionEnum.REVOKED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -486,6 +510,8 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'timestamp': {
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.TIMESTAMPED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -497,6 +523,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: EASContextActionEnum.TIMESTAMPED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -511,6 +538,8 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'multiTimestamp': {
       const data = decoded.args[0];
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.TIMESTAMPED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -527,6 +556,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: EASContextActionEnum.TIMESTAMPED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -540,6 +570,8 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'revokeOffchain': {
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.REVOKED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -551,6 +583,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: EASContextActionEnum.REVOKED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -565,6 +598,8 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'multiRevokeOffchain': {
       const data = decoded.args[0];
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.REVOKED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -581,6 +616,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: EASContextActionEnum.REVOKED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

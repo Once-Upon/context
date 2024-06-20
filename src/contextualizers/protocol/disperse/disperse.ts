@@ -79,6 +79,8 @@ export const generate = (transaction: Transaction): Transaction => {
       if (!tipTransfer) return transaction;
 
       transaction.context = {
+        actions: [`${Protocols.DISPERSE}.${DisperseActionEnum.TIPPED}`],
+
         variables: {
           subject: {
             type: 'address',
@@ -99,6 +101,7 @@ export const generate = (transaction: Transaction): Transaction => {
             unit: 'wei',
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

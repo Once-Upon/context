@@ -64,6 +64,10 @@ export const generate = (transaction: Transaction): Transaction => {
           value: asset.value,
         };
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.BOUGHT_ACCESSORY}`,
+          ],
+
           variables: {
             buyer,
             pet,
@@ -74,6 +78,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: FrenpetContextActionEnum.BOUGHT_ACCESSORY,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -84,6 +89,10 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.BOUGHT_ACCESSORY}`,
+          ],
+
           variables: {
             buyer,
             pet,
@@ -93,6 +102,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: FrenpetContextActionEnum.BOUGHT_ACCESSORY,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -148,6 +158,10 @@ export const generate = (transaction: Transaction): Transaction => {
         const scoresWon = (scoresWonArg / BigInt(100000000000)).toString();
         const winOrLose = attackerArg === winnerArg ? 'won' : 'lost';
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.ATTACKED}`,
+          ],
+
           variables: {
             attacker,
             attacked,
@@ -157,6 +171,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: FrenpetContextActionEnum.ATTACKED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -167,6 +182,10 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.ATTACKED}`,
+          ],
+
           variables: {
             attacker,
             attacked,
@@ -176,6 +195,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: FrenpetContextActionEnum.ATTACKED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -213,6 +233,8 @@ export const generate = (transaction: Transaction): Transaction => {
           value: assetSent.value,
         };
         transaction.context = {
+          actions: [`${Protocols.FRENPET}.${FrenpetContextActionEnum.MINTED}`],
+
           variables: {
             minter,
             pet,
@@ -223,6 +245,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: FrenpetContextActionEnum.MINTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -233,6 +256,8 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
+          actions: [`${Protocols.FRENPET}.${FrenpetContextActionEnum.MINTED}`],
+
           variables: {
             minter,
             contextAction: {
@@ -241,6 +266,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: FrenpetContextActionEnum.MINTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -269,6 +295,10 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       const name = parsed.args[1];
       transaction.context = {
+        actions: [
+          `${Protocols.FRENPET}.${FrenpetContextActionEnum.SET_PET_NAME}`,
+        ],
+
         variables: {
           user,
           pet,
@@ -278,6 +308,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FrenpetContextActionEnum.SET_PET_NAME,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -296,6 +327,10 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.WHEEL_COMMITTED}`,
+          ],
+
           variables: {
             user,
             contextAction: {
@@ -304,6 +339,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: FrenpetContextActionEnum.WHEEL_COMMITTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -314,6 +350,10 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.WHEEL_COMMITTED}`,
+          ],
+
           variables: {
             user,
             contextAction: {
@@ -322,6 +362,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: FrenpetContextActionEnum.WHEEL_COMMITTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -353,6 +394,10 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       if (!transaction.receipt?.status) {
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.REDEEMED}`,
+          ],
+
           variables: {
             user,
             pet,
@@ -362,6 +407,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: FrenpetContextActionEnum.REDEEMED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -393,6 +439,10 @@ export const generate = (transaction: Transaction): Transaction => {
           value: redeemedAmountString,
         };
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.REDEEMED}`,
+          ],
+
           variables: {
             user,
             pet,
@@ -403,6 +453,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: FrenpetContextActionEnum.REDEEMED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -439,6 +490,10 @@ export const generate = (transaction: Transaction): Transaction => {
       };
 
       transaction.context = {
+        actions: [
+          `${Protocols.FRENPET}.${FrenpetContextActionEnum.COMMITTED_TO_ATTACKING}`,
+        ],
+
         variables: {
           user,
           attacker,
@@ -449,6 +504,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FrenpetContextActionEnum.COMMITTED_TO_ATTACKING,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -491,6 +547,10 @@ export const generate = (transaction: Transaction): Transaction => {
         ) {
           // bonkTooSlowEvent
           transaction.context = {
+            actions: [
+              `${Protocols.FRENPET}.${FrenpetContextActionEnum.TOO_SLOW_TO_ATTACK}`,
+            ],
+
             variables: {
               user,
               attacker,
@@ -500,6 +560,7 @@ export const generate = (transaction: Transaction): Transaction => {
                 value: FrenpetContextActionEnum.TOO_SLOW_TO_ATTACK,
               },
             },
+
             summaries: {
               category: 'PROTOCOL_1',
               en: {
@@ -540,6 +601,10 @@ export const generate = (transaction: Transaction): Transaction => {
             scoresWon / BigInt(100000000000)
           ).toString();
           transaction.context = {
+            actions: [
+              `${Protocols.FRENPET}.${FrenpetContextActionEnum.ATTACKED}`,
+            ],
+
             variables: {
               user,
               attacker,
@@ -561,6 +626,7 @@ export const generate = (transaction: Transaction): Transaction => {
                 value: FrenpetContextActionEnum.ATTACKED,
               },
             },
+
             summaries: {
               category: 'PROTOCOL_1',
               en: {
@@ -572,6 +638,10 @@ export const generate = (transaction: Transaction): Transaction => {
         }
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.ATTACKED}`,
+          ],
+
           variables: {
             user,
             attacker,
@@ -581,6 +651,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: FrenpetContextActionEnum.ATTACKED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -615,6 +686,8 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: (parsed.args[1] as bigint).toString(),
       };
       transaction.context = {
+        actions: [`${Protocols.FRENPET}.${FrenpetContextActionEnum.KILLED}`],
+
         variables: {
           user,
           dead,
@@ -625,6 +698,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FrenpetContextActionEnum.KILLED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -653,6 +727,10 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: (parsed.args[0] as bigint).toString(),
       };
       transaction.context = {
+        actions: [
+          `${Protocols.FRENPET}.${FrenpetContextActionEnum.WHEEL_COMMITTED}`,
+        ],
+
         variables: {
           user,
           pet,
@@ -662,6 +740,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FrenpetContextActionEnum.WHEEL_COMMITTED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -690,6 +769,10 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: (parsed.args[0] as bigint).toString(),
       };
       transaction.context = {
+        actions: [
+          `${Protocols.FRENPET}.${FrenpetContextActionEnum.WHEEL_REVEALED}`,
+        ],
+
         variables: {
           user,
           pet,
@@ -699,6 +782,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FrenpetContextActionEnum.WHEEL_REVEALED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

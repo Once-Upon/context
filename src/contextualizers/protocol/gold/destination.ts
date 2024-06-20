@@ -145,6 +145,8 @@ export function generate(transaction: Transaction): Transaction {
   };
 
   transaction.context = {
+    actions: [`${Protocols.GOLD}.${GoldContextActionEnum.RECEIVED}`],
+
     summaries: {
       category: 'PROTOCOL_1',
       en: {
@@ -155,6 +157,7 @@ export function generate(transaction: Transaction): Transaction {
             : '[[activator]][[received]][[plots]]and[[crop]]and[[zGold]]',
       },
     },
+
     variables: {
       activator: {
         type: 'address',

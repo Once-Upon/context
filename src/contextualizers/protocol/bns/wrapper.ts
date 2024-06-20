@@ -47,6 +47,8 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decode.functionName) {
     case 'safeTransferFrom': {
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.TRANSFERED_NAME}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
@@ -54,6 +56,7 @@ export const generate = (transaction: Transaction): Transaction => {
             default: `[[sender]][[transfered]]to[[receiver]]`,
           },
         },
+
         variables: {
           sender: {
             type: 'address',
@@ -76,6 +79,8 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'safeBatchTransferFrom': {
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.TRANSFERED_NAMES}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
@@ -83,6 +88,7 @@ export const generate = (transaction: Transaction): Transaction => {
             default: `[[sender]][[transfered]]to[[receiver]]`,
           },
         },
+
         variables: {
           sender: {
             type: 'address',

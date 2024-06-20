@@ -58,6 +58,8 @@ export const generate = (transaction: Transaction): Transaction => {
         decoded.args && decoded.args.length > 1 ? decoded.args[1] : [];
 
       transaction.context = {
+        actions: [`${Protocols.BOOMBOX}.${BoomboxContextActionEnum.ADDED}`],
+
         variables: {
           sender: {
             type: 'address',
@@ -79,6 +81,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: BoomboxContextActionEnum.ADDED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -97,6 +100,8 @@ export const generate = (transaction: Transaction): Transaction => {
         decoded.args && decoded.args.length > 1 ? decoded.args[2] : BigInt(0);
 
       transaction.context = {
+        actions: [`${Protocols.BOOMBOX}.${BoomboxContextActionEnum.SIGNED}`],
+
         variables: {
           user: {
             type: 'address',
@@ -118,6 +123,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: BoomboxContextActionEnum.SIGNED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -144,6 +150,10 @@ export const generate = (transaction: Transaction): Transaction => {
           ? hexToBigInt(distributeLogs[0].topic1 as Hex).toString()
           : '';
       transaction.context = {
+        actions: [
+          `${Protocols.BOOMBOX}.${BoomboxContextActionEnum.DISTRIBUTED}`,
+        ],
+
         variables: {
           sender: {
             type: 'address',
@@ -169,6 +179,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: BoomboxContextActionEnum.DISTRIBUTED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

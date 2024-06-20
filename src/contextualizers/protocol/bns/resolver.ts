@@ -49,6 +49,8 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decode.functionName) {
     case 'multicall': {
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.UPDATED_RECORDS}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
@@ -56,6 +58,7 @@ export const generate = (transaction: Transaction): Transaction => {
             default: `[[owner]][[updated]]`,
           },
         },
+
         variables: {
           owner: {
             type: 'address',
@@ -73,6 +76,8 @@ export const generate = (transaction: Transaction): Transaction => {
     }
     case 'setAddr': {
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.UPDATED_ADDRESS}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
@@ -80,6 +85,7 @@ export const generate = (transaction: Transaction): Transaction => {
             default: `[[owner]][[updated]]`,
           },
         },
+
         variables: {
           owner: {
             type: 'address',
@@ -98,6 +104,8 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'setText': {
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.UPDATED_TEXT}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
@@ -105,6 +113,7 @@ export const generate = (transaction: Transaction): Transaction => {
             default: `[[owner]][[updated]]`,
           },
         },
+
         variables: {
           owner: {
             type: 'address',
@@ -123,6 +132,10 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'setContenthash': {
       transaction.context = {
+        actions: [
+          `${Protocols.BNS}.${BNSContextActionEnum.UPDATED_CONTENTHASH}`,
+        ],
+
         summaries: {
           category: 'IDENTITY',
           en: {
@@ -130,6 +143,7 @@ export const generate = (transaction: Transaction): Transaction => {
             default: `[[owner]][[updated]]`,
           },
         },
+
         variables: {
           owner: {
             type: 'address',

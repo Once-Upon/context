@@ -61,6 +61,8 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.POSTED}`],
+
           variables: {
             poster,
             contextAction: {
@@ -69,6 +71,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.POSTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -79,6 +82,8 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.POSTED}`],
+
           variables: {
             poster,
             contextAction: {
@@ -87,6 +92,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.POSTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -116,6 +122,8 @@ export const generate = (transaction: Transaction): Transaction => {
       });
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.FOLLOWED}`],
+
           variables: {
             user,
             contextAction: {
@@ -124,6 +132,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.FOLLOWED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -134,6 +143,8 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.FOLLOWED}`],
+
           variables: {
             user,
             contextAction: {
@@ -142,6 +153,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.FOLLOWED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -171,6 +183,10 @@ export const generate = (transaction: Transaction): Transaction => {
       });
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.UNFOLLOWED}`,
+          ],
+
           variables: {
             user,
             contextAction: {
@@ -179,6 +195,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.UNFOLLOWED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -189,6 +206,10 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.UNFOLLOWED}`,
+          ],
+
           variables: {
             user,
             contextAction: {
@@ -197,6 +218,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.UNFOLLOWED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -242,6 +264,8 @@ export const generate = (transaction: Transaction): Transaction => {
           unit: 'wei',
         };
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.TIPPED}`],
+
           variables: {
             tipper,
             tipAmount,
@@ -252,6 +276,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.TIPPED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -262,6 +287,8 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.TIPPED}`],
+
           variables: {
             tipper,
             tipAmount,
@@ -271,6 +298,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.TIPPED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -298,6 +326,10 @@ export const generate = (transaction: Transaction): Transaction => {
       } catch (e) {}
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.UPDATED_USER_DETAILS}`,
+          ],
+
           variables: {
             user,
             contextAction: {
@@ -306,6 +338,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.UPDATED_USER_DETAILS,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -318,6 +351,10 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.UPDATED_USER_DETAILS}`,
+          ],
+
           variables: {
             user,
             contextAction: {
@@ -326,6 +363,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.UPDATED_USER_DETAILS,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -359,6 +397,10 @@ export const generate = (transaction: Transaction): Transaction => {
       } catch (e) {}
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.REPLIED_TO}`,
+          ],
+
           variables: {
             user,
             transactionHash,
@@ -368,6 +410,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.REPLIED_TO,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -378,6 +421,10 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.REPLIED_TO}`,
+          ],
+
           variables: {
             user,
             transactionHash,
@@ -387,6 +434,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.REPLIED_TO,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -414,6 +462,8 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.REPOSTED}`],
+
           variables: {
             user,
             transactionHash,
@@ -423,6 +473,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.REPOSTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -433,6 +484,8 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.REPOSTED}`],
+
           variables: {
             user,
             transactionHash,
@@ -442,6 +495,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.REPOSTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -471,6 +525,10 @@ export const generate = (transaction: Transaction): Transaction => {
       });
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.REGISTERED_USERNAME}`,
+          ],
+
           variables: {
             user,
             contextAction: {
@@ -479,6 +537,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.REGISTERED_USERNAME,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -489,6 +548,10 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.REGISTERED_USERNAME}`,
+          ],
+
           variables: {
             user,
             contextAction: {
@@ -497,6 +560,7 @@ export const generate = (transaction: Transaction): Transaction => {
               value: LeeroyContextActionEnum.REGISTERED_USERNAME,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {

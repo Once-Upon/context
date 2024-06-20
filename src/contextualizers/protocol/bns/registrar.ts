@@ -51,6 +51,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const durationInDays = Math.trunc(duration / 60 / 60 / 24);
 
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.REGISTERED}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
@@ -58,6 +60,7 @@ export const generate = (transaction: Transaction): Transaction => {
             default: `[[registerer]][[registered]][[name]]for[[duration]]`,
           },
         },
+
         variables: {
           registerer: {
             type: 'address',
@@ -91,6 +94,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const durationInDays = Math.trunc(duration / 60 / 60 / 24);
 
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.RENEWED}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
@@ -98,6 +103,7 @@ export const generate = (transaction: Transaction): Transaction => {
             default: `[[renewer]][[renewed]][[name]]for[[duration]]`,
           },
         },
+
         variables: {
           renewer: {
             type: 'address',

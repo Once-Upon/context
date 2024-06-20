@@ -72,6 +72,10 @@ export function generate(transaction: Transaction): Transaction {
   const activator = decoded.args['activator'];
 
   transaction.context = {
+    actions: [
+      `${Protocols.GOLD}.${GoldContextActionEnum.ACTIVATED_A_STARTER_PACK}`,
+    ],
+
     summaries: {
       category: 'PROTOCOL_1',
       en: {
@@ -79,6 +83,7 @@ export function generate(transaction: Transaction): Transaction {
         default: '[[activator]][[activated]]',
       },
     },
+
     variables: {
       activator: {
         type: 'address',

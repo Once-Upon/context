@@ -90,6 +90,8 @@ export const generate = (transaction: Transaction): Transaction => {
 
       const code = decoded.args[0];
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.REGISTERED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -113,6 +115,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: EASContextActionEnum.REGISTERED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

@@ -33,6 +33,10 @@ export const generate = (transaction: Transaction): Transaction => {
       const subject = parsedTx.args[0].toString();
       const shareAmount = Number(parsedTx.args[1]);
       transaction.context = {
+        actions: [
+          `${Protocols.FRIENDTECH}.${FriendTechContextActionEnum.FAILED_TO_BUY_KEYS}`,
+        ],
+
         variables: {
           price: {
             type: AssetType.ETH,
@@ -58,6 +62,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FriendTechContextActionEnum.FAILED_TO_BUY_KEYS,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -93,6 +98,10 @@ export const generate = (transaction: Transaction): Transaction => {
       // Check if this is a user signing up
       if (trader === subject && ethAmount === '0' && supply === 1) {
         transaction.context = {
+          actions: [
+            `${Protocols.FRIENDTECH}.${FriendTechContextActionEnum.SIGNED_UP}`,
+          ],
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
@@ -100,6 +109,7 @@ export const generate = (transaction: Transaction): Transaction => {
               default: '[[subject]][[signedUp]]',
             },
           },
+
           variables: {
             subject: {
               type: 'address',
@@ -116,6 +126,10 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [
+          `${Protocols.FRIENDTECH}.${FriendTechContextActionEnum.BOUGHT_KEYS}`,
+        ],
+
         variables: {
           price: {
             type: AssetType.ETH,
@@ -141,6 +155,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FriendTechContextActionEnum.BOUGHT_KEYS,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -177,6 +192,10 @@ export const generate = (transaction: Transaction): Transaction => {
       const shareAmount = Number(parsedLog.args['shareAmount']);
 
       transaction.context = {
+        actions: [
+          `${Protocols.FRIENDTECH}.${FriendTechContextActionEnum.SOLD_KEYS}`,
+        ],
+
         variables: {
           price: {
             type: AssetType.ETH,
@@ -202,6 +221,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FriendTechContextActionEnum.SOLD_KEYS,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

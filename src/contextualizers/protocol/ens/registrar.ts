@@ -76,6 +76,8 @@ export const generate = (transaction: Transaction): Transaction => {
         const expireDate = convertDate(expires);
 
         transaction.context = {
+          actions: [`${Protocols.ENS}.${ENSContextActionEnum.REGISTERED}`],
+
           summaries: {
             category: 'IDENTITY',
             en: {
@@ -83,6 +85,7 @@ export const generate = (transaction: Transaction): Transaction => {
               default: `[[registerer]][[registered]][[name]]with an expiration of[[expireDate]]`,
             },
           },
+
           variables: {
             registerer: {
               type: 'address',
@@ -115,6 +118,8 @@ export const generate = (transaction: Transaction): Transaction => {
         const expireDate = convertDate(expires);
 
         transaction.context = {
+          actions: [`${Protocols.ENS}.${ENSContextActionEnum.RENEWED}`],
+
           summaries: {
             category: 'IDENTITY',
             en: {
@@ -122,6 +127,7 @@ export const generate = (transaction: Transaction): Transaction => {
               default: `[[renewer]][[renewed]][[name]]with an expiration of[[expireDate]]`,
             },
           },
+
           variables: {
             renewer: {
               type: 'address',

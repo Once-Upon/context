@@ -80,6 +80,10 @@ export const generate = (transaction: Transaction): Transaction => {
   ) as ERC20Asset;
 
   transaction.context = {
+    actions: [
+      `${Protocols.UNISWAP_V3_PAIR}.${UniswapV3PairActionEnum.SWAPPED}`,
+    ],
+
     variables: {
       sender: {
         type: 'address',
@@ -105,6 +109,7 @@ export const generate = (transaction: Transaction): Transaction => {
         value: UniswapV3PairActionEnum.SWAPPED,
       },
     },
+
     summaries: {
       category: 'PROTOCOL_1',
       en: {

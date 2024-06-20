@@ -63,6 +63,10 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decoded.functionName) {
     case 'createBid': {
       transaction.context = {
+        actions: [
+          `${Protocols.NOUNS_AUCTION_HOUSE}.${NounsAuctionHouseActionEnum.BID}`,
+        ],
+
         variables: {
           contextAction: {
             type: 'contextAction',
@@ -84,6 +88,7 @@ export const generate = (transaction: Transaction): Transaction => {
             unit: 'wei',
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -136,6 +141,10 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [
+          `${Protocols.NOUNS_AUCTION_HOUSE}.${NounsAuctionHouseActionEnum.SETTLED}`,
+        ],
+
         variables: {
           contextAction: {
             type: 'contextAction',
@@ -156,6 +165,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: winner,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

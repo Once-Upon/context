@@ -46,6 +46,10 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'setName': {
       const name = decode.args[0];
       transaction.context = {
+        actions: [
+          `${Protocols.BNS}.${BNSContextActionEnum.SET_REVERSE_BNS_TO}`,
+        ],
+
         summaries: {
           category: 'IDENTITY',
           en: {
@@ -53,6 +57,7 @@ export const generate = (transaction: Transaction): Transaction => {
             default: `[[setter]][[reversed]][[name]]`,
           },
         },
+
         variables: {
           setter: {
             type: 'address',

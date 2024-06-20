@@ -89,6 +89,8 @@ export function generate(transaction: Transaction): Transaction {
 
   // Pull out relevant data for faucet transaction
   transaction.context = {
+    actions: [`${Protocols.FARCASTER}.${FarcasterContextActionEnum.BOUGHT}`],
+
     variables: {
       buyer: {
         type: 'address',
@@ -108,6 +110,7 @@ export function generate(transaction: Transaction): Transaction {
         value: FarcasterContextActionEnum.BOUGHT,
       },
     },
+
     summaries: {
       category: 'PROTOCOL_1',
       en: {

@@ -58,6 +58,10 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decoded.functionName) {
     case 'claimTokens': {
       transaction.context = {
+        actions: [
+          `${Protocols.CLAIM_CAMPAIGNS}.${ClaimCampaignsActionEnum.CLAIMED}`,
+        ],
+
         variables: {
           receiver: {
             type: 'address',
@@ -74,6 +78,7 @@ export const generate = (transaction: Transaction): Transaction => {
             token: ENJOY_CONTRACT_ADDRESS,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

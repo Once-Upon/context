@@ -82,6 +82,10 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REGISTERED_FARCASTER_ID}`,
+        ],
+
         variables: {
           caller: {
             type: 'address',
@@ -102,6 +106,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FarcasterContextActionEnum.REGISTERED_FARCASTER_ID,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

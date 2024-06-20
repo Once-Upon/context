@@ -52,6 +52,10 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decoded.functionName) {
     case 'changeRecoveryAddressFor': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.CHANGED_RECOVERY_ADDRESS}`,
+        ],
+
         variables: {
           owner: {
             type: 'address',
@@ -67,6 +71,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FarcasterContextActionEnum.CHANGED_RECOVERY_ADDRESS,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -80,6 +85,10 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'transfer': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.TRANSFERRED_FARCASTER_ID}`,
+        ],
+
         variables: {
           owner: {
             type: 'address',
@@ -95,6 +104,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FarcasterContextActionEnum.TRANSFERRED_FARCASTER_ID,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

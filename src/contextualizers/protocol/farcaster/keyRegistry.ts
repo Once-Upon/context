@@ -44,6 +44,10 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decoded.functionName) {
     case 'remove': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REMOVED_A_KEY}`,
+        ],
+
         variables: {
           owner: {
             type: 'address',
@@ -55,6 +59,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FarcasterContextActionEnum.REMOVED_A_KEY,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -68,6 +73,10 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'removeFor': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REMOVED_A_KEY}`,
+        ],
+
         variables: {
           caller: {
             type: 'address',
@@ -83,6 +92,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FarcasterContextActionEnum.REMOVED_A_KEY,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

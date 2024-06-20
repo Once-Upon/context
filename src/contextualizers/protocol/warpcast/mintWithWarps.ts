@@ -89,6 +89,8 @@ export function generate(transaction: Transaction): Transaction {
   if (!sent) return transaction;
 
   transaction.context = {
+    actions: [`${Protocols.WARPCAST}.${WarpcastContextActionEnum.MINTED}`],
+
     variables: {
       buyer: {
         type: 'address',
@@ -106,6 +108,7 @@ export function generate(transaction: Transaction): Transaction {
         value: WarpcastContextActionEnum.MINTED,
       },
     },
+
     summaries: {
       category: 'PROTOCOL_1',
       en: {

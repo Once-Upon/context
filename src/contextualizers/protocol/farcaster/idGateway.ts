@@ -67,6 +67,10 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decoded.functionName) {
     case 'register': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REGISTERED_FARCASTER_ID}`,
+        ],
+
         variables: {
           owner: {
             type: 'address',
@@ -82,6 +86,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FarcasterContextActionEnum.REGISTERED_FARCASTER_ID,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -95,6 +100,10 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'registerFor': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REGISTERED_FARCASTER_ID}`,
+        ],
+
         variables: {
           caller: {
             type: 'address',
@@ -114,6 +123,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FarcasterContextActionEnum.REGISTERED_FARCASTER_ID,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

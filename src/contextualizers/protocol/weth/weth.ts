@@ -49,6 +49,8 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decode.functionName) {
     case 'deposit': {
       transaction.context = {
+        actions: [`${Protocols.WETH}.${WETHContextActionEnum.WRAPPED}`],
+
         summaries: {
           category: 'FUNGIBLE_TOKEN',
           en: {
@@ -56,6 +58,7 @@ export const generate = (transaction: Transaction): Transaction => {
             default: `[[from]][[wrapped]][[value]]`,
           },
         },
+
         variables: {
           value: {
             type: AssetType.ERC20,
@@ -91,6 +94,8 @@ export const generate = (transaction: Transaction): Transaction => {
         unit: 'wei',
       };
       transaction.context = {
+        actions: [`${Protocols.WETH}.${WETHContextActionEnum.UNWRAPPED}`],
+
         summaries: {
           category: 'FUNGIBLE_TOKEN',
           en: {
@@ -98,6 +103,7 @@ export const generate = (transaction: Transaction): Transaction => {
             default: `[[withdrawer]][[unwrapped]][[withdrawalAmount]]`,
           },
         },
+
         variables: {
           withdrawalAmount,
           withdrawer,

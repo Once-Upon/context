@@ -45,6 +45,10 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'rent': {
       const units = Number(decoded.args[1]);
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.RENTED}`,
+        ],
+
         variables: {
           rented: {
             type: 'contextAction',
@@ -66,6 +70,7 @@ export const generate = (transaction: Transaction): Transaction => {
             unit: `storage unit${units > 1 ? 's' : ''}`,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -83,6 +88,10 @@ export const generate = (transaction: Transaction): Transaction => {
       const unitsArg = decoded.args[1];
       const units = unitsArg.reduce((acc, curr) => acc + curr);
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.RENTED}`,
+        ],
+
         variables: {
           rented: {
             type: 'contextAction',
@@ -106,6 +115,7 @@ export const generate = (transaction: Transaction): Transaction => {
             unit: `storage unit${units > 1 ? 's' : ''}`,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

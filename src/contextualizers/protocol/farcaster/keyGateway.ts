@@ -42,6 +42,10 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decoded.functionName) {
     case 'add': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.ADDED_A_KEY}`,
+        ],
+
         variables: {
           owner: {
             type: 'address',
@@ -53,6 +57,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FarcasterContextActionEnum.ADDED_A_KEY,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
@@ -66,6 +71,10 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'addFor': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.ADDED_A_KEY}`,
+        ],
+
         variables: {
           caller: {
             type: 'address',
@@ -81,6 +90,7 @@ export const generate = (transaction: Transaction): Transaction => {
             value: FarcasterContextActionEnum.ADDED_A_KEY,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {

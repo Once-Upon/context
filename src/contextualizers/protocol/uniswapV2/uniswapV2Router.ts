@@ -57,6 +57,10 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decoded.functionName) {
     case 'addLiquidityETH': {
       transaction.context = {
+        actions: [
+          `${Protocols.UNISWAP_V2_ROUTER}.${UniswapV2RouterActionEnum.ADDED_LIQUIDITY}`,
+        ],
+
         variables: {
           lp: {
             type: 'address',
@@ -78,6 +82,7 @@ export const generate = (transaction: Transaction): Transaction => {
             token: ENJOY_CONTRACT_ADDRESS,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
