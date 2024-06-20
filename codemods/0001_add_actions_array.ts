@@ -27,16 +27,16 @@ module.exports = function (fileInfo, api) {
     })
     .forEach((path) => {
       const t = findTransactionContextVariableId(path);
-      const newValue =
-        t.type === 'TemplateLiteral'
-          // ? j.templateLiteral(
-          //     t.quasis.map((q) => j.templateElement(q.value, q.tail)),
-          //     t.expressions.map((e) =>
-          //       j.memberExpression(e.object, e.property),
-          //     ),
-          //   )
-          ? null
-          : j.memberExpression(t.object, t.property);
+      const newValue = t
+        ? t.type === 'MemberExpression'
+          ? j.memberExpression(t.object, t.property)
+          : j.templateLiteral(
+              t.quasis.map((q) => j.templateElement(q.value, q.tail)),
+              t.expressions.map((e) =>
+                j.memberExpression(e.object, e.property),
+              ),
+            )
+        : null;
       if (newValue) {
         const actionsPropertyAssignment = j.objectProperty(
           j.identifier('actions'),

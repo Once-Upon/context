@@ -159,6 +159,9 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [
+          `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.CREATED_PROPOSAL}`,
+        ],
         variables: {
           ...getDynamicVariables(proposalId),
           contextAction: {
@@ -202,6 +205,7 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [`${Protocols.NOUNS_GOVERNOR}.${action}`],
         variables: {
           ...getDynamicVariables(proposalId),
           contextAction: {
@@ -244,6 +248,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const action = translateSupport(support);
 
       transaction.context = {
+        actions: [`${Protocols.NOUNS_GOVERNOR}.${action}`],
         variables: {
           ...getDynamicVariables(proposalId),
           contextAction: {
@@ -309,6 +314,9 @@ export const generate = (transaction: Transaction): Transaction => {
         }
       }
       transaction.context = {
+        actions: [
+          `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.EXECUTED}`,
+        ],
         variables: {
           ...getDynamicVariables(proposalId),
           contextAction: {
@@ -344,6 +352,7 @@ export const generate = (transaction: Transaction): Transaction => {
         FUNCTION_CONTEXT_ACTION_MAPPING[decoded.functionName];
 
       transaction.context = {
+        actions: [`${Protocols.NOUNS_GOVERNOR}.${contextAction}`],
         variables: {
           ...getDynamicVariables(proposalId),
           contextAction: {
