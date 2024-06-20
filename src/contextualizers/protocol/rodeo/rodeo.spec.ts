@@ -1,49 +1,24 @@
 import { Transaction } from '../../../types';
 import { detect, generate } from './rodeo';
 import { containsBigInt, contextSummary } from '../../../helpers/utils';
-import mintWithRewards0x6ccb3140 from '../../test/transactions/mintWithRewards-0x6ccb3140.json';
-import zoraMintWithRewards0x837a9a69 from '../../test/transactions/zoraMintWithRewards-0x837a9a69.json';
+import rodeo0x3c346a6d from '../../test/transactions/rodeo-0x3c346a6d.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 
-describe('Zora Mint', () => {
-  it('Should detect zora mint with rewards transaction', () => {
-    const zoraMintWithRewards1 = detect(
-      mintWithRewards0x6ccb3140 as unknown as Transaction,
-    );
-    expect(zoraMintWithRewards1).toBe(true);
-
-    const zoraMintWithRewards2 = detect(
-      zoraMintWithRewards0x837a9a69 as unknown as Transaction,
-    );
-    expect(zoraMintWithRewards2).toBe(true);
+describe('Rodeo Mint', () => {
+  it('Should detect rodeo mint with rewards transaction', () => {
+    const rodeo1 = detect(rodeo0x3c346a6d as unknown as Transaction);
+    expect(rodeo1).toBe(true);
   });
 
   it('Should generate context for mintWithRewards transaction', () => {
-    const zoraMintWithRewards1 = generate(
-      mintWithRewards0x6ccb3140 as unknown as Transaction,
-    );
-    expect(zoraMintWithRewards1.context?.summaries?.category).toBe(
-      'PROTOCOL_1',
-    );
-    expect(zoraMintWithRewards1.context?.summaries?.en.title).toBe('Zora');
-    const desc1 = contextSummary(zoraMintWithRewards1.context);
+    const rodeo1 = generate(rodeo0x3c346a6d as unknown as Transaction);
+    expect(rodeo1.context?.summaries?.category).toBe('PROTOCOL_1');
+    expect(rodeo1.context?.summaries?.en.title).toBe('Rodeo');
+    const desc1 = contextSummary(rodeo1.context);
     expect(desc1).toBe(
-      '0x6bd6d5f98c5ad557eed0df2fd73b9666188cac96 MINTED 1 0xf41a3e3033d4e878943194b729aec993a4ea2045 #26 for 0.000777 ETH with 0.000111 ETH in rewards for 0xecfc2ee50409e459c554a2b0376f882ce916d853',
+      '0x5507dbd48a5a5bace8a6030e878cc4e0af147c33 MINTED 1 0x5ad72a748e30b92fa2e81f6d5f447aefbec5c644 #116263 for 0.0008 ETH with 0.0002 ETH in rewards for 0xdc0753f6b3cc6034317b73c10413c19958d36ed1',
     );
-    expect(containsBigInt(zoraMintWithRewards1.context)).toBe(false);
-
-    const zoraMintWithRewards2 = generate(
-      zoraMintWithRewards0x837a9a69 as unknown as Transaction,
-    );
-    expect(zoraMintWithRewards2.context?.summaries?.category).toBe(
-      'PROTOCOL_1',
-    );
-    expect(zoraMintWithRewards2.context?.summaries?.en.title).toBe('Zora');
-    const desc2 = contextSummary(zoraMintWithRewards2.context);
-    expect(desc2).toBe(
-      '0xf70da97812cb96acdf810712aa562db8dfa3dbef MINTED 1 0xf41a3e3033d4e878943194b729aec993a4ea2045 #29 to 0xd97622b57112f82a0db8b1aee08e37aa6b4b2a03 for 0.000777 ETH with 0.000111 ETH in rewards for 0xecfc2ee50409e459c554a2b0376f882ce916d853',
-    );
-    expect(containsBigInt(zoraMintWithRewards2.context)).toBe(false);
+    expect(containsBigInt(rodeo1.context)).toBe(false);
   });
 
   it('Should not detect as zora creator', () => {
