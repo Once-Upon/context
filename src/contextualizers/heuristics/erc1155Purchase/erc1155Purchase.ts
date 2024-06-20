@@ -185,7 +185,7 @@ export function generate(transaction: Transaction): Transaction {
         default:
           '[[userOrUsers]][[bought]][[tokenOrTokens]]for[[price]]from[[sellerOrSellers]]',
       },
-    }
+    },
   };
 
   return transaction;

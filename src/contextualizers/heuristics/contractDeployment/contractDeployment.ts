@@ -45,7 +45,7 @@ function generate(transaction: Transaction): Transaction {
         title: 'Contract Deployed',
         default: '[[deployerAddress]][[deployed]][[contractAddress]]',
       },
-    }
+    },
   };
 
   return transaction;

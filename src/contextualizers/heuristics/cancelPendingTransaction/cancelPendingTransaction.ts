@@ -47,7 +47,7 @@ export function generate(transaction: Transaction): Transaction {
         title: 'Cancellation',
         default: '[[subject]][[canceled]]with nonce[[nonce]]',
       },
-    }
+    },
   };
 
   return transaction;

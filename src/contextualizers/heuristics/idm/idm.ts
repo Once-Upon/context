@@ -57,7 +57,7 @@ function generate(transaction: Transaction): Transaction {
         title: 'Input Data Message',
         default: '[[messageSender]][[sentMessage]]to[[receiver]][[message]]',
       },
-    }
+    },
   };
 
   return transaction;

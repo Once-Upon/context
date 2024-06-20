@@ -131,7 +131,7 @@ export function generate(transaction: Transaction): Transaction {
         title: 'ERC20 Mint',
         default: '[[recipient]][[minted]][[token]]for[[price]]',
       },
-    }
+    },
   };
 
   return transaction;

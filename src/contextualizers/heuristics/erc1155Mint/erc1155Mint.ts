@@ -123,7 +123,7 @@ export function generate(transaction: Transaction): Transaction {
         id: HeuristicContextActionEnum.MINTED,
         value: HeuristicContextActionEnum.MINTED,
       },
-    }
+    },
   };
   transaction.context.summaries = {
     category: 'NFT',

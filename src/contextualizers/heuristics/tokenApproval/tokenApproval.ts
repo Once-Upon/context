@@ -103,7 +103,7 @@ export function generate(transaction: Transaction): Transaction {
             title: 'Token Approval',
             default: '[[approver]][[gaveAccess]]to[[operator]]for[[token]]',
           },
-        }
+        },
       };
       return transaction;
     case 'setApprovalForAll':
@@ -138,7 +138,7 @@ export function generate(transaction: Transaction): Transaction {
               title: 'Token Approval',
               default: '[[approver]][[gaveAccess]]to[[operator]]for[[token]]',
             },
-          }
+          },
         };
       } else {
         transaction.context = {
@@ -171,7 +171,7 @@ export function generate(transaction: Transaction): Transaction {
               default:
                 '[[approver]][[revokedAccess]]from[[operator]]for[[token]]',
             },
-          }
+          },
         };
       }
       return transaction;

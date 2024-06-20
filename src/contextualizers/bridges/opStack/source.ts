@@ -121,7 +121,7 @@ export function generate(transaction: Transaction): Transaction {
         value: HeuristicContextActionEnum.BRIDGED,
       },
       asset,
-    }
+    },
   };
 
   // Note: Other contextualizers fetch this id dynamically

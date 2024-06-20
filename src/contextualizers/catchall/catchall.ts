@@ -67,7 +67,7 @@ export function generate(transaction: Transaction): Transaction {
             ? '[[address]][[called]][[functionName]]on[[toAddress]]'
             : '[[address]][[interactedWith]][[toAddress]]',
       },
-    }
+    },
   };
   if (!transaction.netAssetTransfers) {
     return transaction;

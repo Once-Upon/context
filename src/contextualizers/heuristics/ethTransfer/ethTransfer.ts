@@ -61,7 +61,7 @@ export function generate(transaction: Transaction): Transaction {
         title: 'ETH Transfer',
         default: '[[sender]][[sent]][[amount]]to[[to]]',
       },
-    }
+    },
   };
 
   return transaction;

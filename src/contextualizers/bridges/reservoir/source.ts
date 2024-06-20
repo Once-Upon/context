@@ -85,7 +85,7 @@ export function generate(transaction: Transaction): Transaction {
         id: BridgeContextActionEnum.INITIATED_A_CROSS_CHAIN_INTERACTION,
         value: BridgeContextActionEnum.INITIATED_A_CROSS_CHAIN_INTERACTION,
       },
-    }
+    },
   };
 
   // add asset transfers in context

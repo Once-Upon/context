@@ -124,7 +124,7 @@ export function generate(transaction: Transaction): Transaction {
         title: 'NFT Mint',
         default: '', // filled in below
       },
-    }
+    },
   };
 
   if (amount > 1) {

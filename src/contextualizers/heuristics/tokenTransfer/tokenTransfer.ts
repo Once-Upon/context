@@ -93,7 +93,7 @@ export function generate(transaction: Transaction): Transaction {
         title: 'Token Transfer',
         default: '[[sender]][[sent]][[token]]to[[recipient]]',
       },
-    }
+    },
   };
 
   return transaction;

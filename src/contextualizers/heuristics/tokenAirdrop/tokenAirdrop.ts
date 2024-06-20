@@ -176,7 +176,7 @@ export function generate(transaction: Transaction): Transaction {
             : ''
         }`,
       },
-    }
+    },
   };
 
   return transaction;

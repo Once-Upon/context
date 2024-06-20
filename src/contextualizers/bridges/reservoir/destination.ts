@@ -107,7 +107,7 @@ export function generate(transaction: Transaction): Transaction {
         id: BridgeContextActionEnum.COMPLETED_A_CROSS_CHAIN_INTERACTION,
         value: BridgeContextActionEnum.COMPLETED_A_CROSS_CHAIN_INTERACTION,
       },
-    }
+    },
   };
 
   return transaction;

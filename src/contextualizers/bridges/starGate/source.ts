@@ -135,7 +135,7 @@ export function generate(transaction: Transaction): Transaction {
         title: `Bridge`,
         default: '[[subject]][[bridged]][[amount]]to[[chainID]]',
       },
-    }
+    },
   };
 
   return transaction;

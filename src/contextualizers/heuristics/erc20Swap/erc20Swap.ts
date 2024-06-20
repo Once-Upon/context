@@ -130,7 +130,7 @@ export function generate(transaction: Transaction): Transaction {
         title: 'ERC20 Swap',
         default: '[[swapper]][[swapped]][[swapFrom]]for[[swapTo]]',
       },
-    }
+    },
   };
   return transaction;
 }

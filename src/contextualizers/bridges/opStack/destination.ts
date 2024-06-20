@@ -98,7 +98,7 @@ export function generate(transaction: Transaction): Transaction {
         value: HeuristicContextActionEnum.BRIDGED,
       },
       asset,
-    }
+    },
   };
 
   return transaction;
