@@ -101,7 +101,6 @@ export function generate(transaction: Transaction): Transaction {
 
   transaction.context = {
     actions: [HeuristicContextActionEnum.MINTED],
-    actions: [HeuristicContextActionEnum.MINTED],
 
     variables: {
       token: {

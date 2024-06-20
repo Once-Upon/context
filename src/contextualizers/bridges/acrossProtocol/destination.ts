@@ -74,7 +74,6 @@ export function generate(transaction: Transaction): Transaction {
   const amount = formatEther(filledRelayEvent.args['amount'] as bigint);
   transaction.context = {
     actions: [HeuristicContextActionEnum.BRIDGED],
-    actions: [HeuristicContextActionEnum.BRIDGED],
 
     summaries: {
       category: 'MULTICHAIN',
