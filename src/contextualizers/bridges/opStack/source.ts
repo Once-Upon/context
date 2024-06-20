@@ -100,6 +100,8 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
+    actions: [HeuristicContextActionEnum.BRIDGED],
+
     summaries: {
       category: 'MULTICHAIN',
       en: {
@@ -107,6 +109,7 @@ export function generate(transaction: Transaction): Transaction {
         default: '[[sender]][[bridged]][[asset]]',
       },
     },
+
     variables: {
       sender: {
         type: 'address',
@@ -118,7 +121,7 @@ export function generate(transaction: Transaction): Transaction {
         value: HeuristicContextActionEnum.BRIDGED,
       },
       asset,
-    },
+    }
   };
 
   // Note: Other contextualizers fetch this id dynamically

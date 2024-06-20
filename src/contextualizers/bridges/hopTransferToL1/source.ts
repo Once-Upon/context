@@ -70,6 +70,8 @@ export function generate(transaction: Transaction): Transaction {
   const amount = formatEther(decodedTransferSentLog.args['amount'] as bigint);
 
   transaction.context = {
+    actions: [HeuristicContextActionEnum.BRIDGED],
+
     summaries: {
       category: 'MULTICHAIN',
       en: {
@@ -77,6 +79,7 @@ export function generate(transaction: Transaction): Transaction {
         default: '[[subject]][[bridged]][[amount]]to[[chainID]]',
       },
     },
+
     variables: {
       subject: {
         type: 'address',
@@ -96,7 +99,7 @@ export function generate(transaction: Transaction): Transaction {
         id: HeuristicContextActionEnum.BRIDGED,
         value: HeuristicContextActionEnum.BRIDGED,
       },
-    },
+    }
   };
 
   return transaction;

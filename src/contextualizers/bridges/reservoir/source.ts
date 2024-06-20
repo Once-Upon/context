@@ -61,6 +61,8 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
+    actions: [BridgeContextActionEnum.INITIATED_A_CROSS_CHAIN_INTERACTION],
+
     summaries: {
       category: 'MULTICHAIN',
       en: {
@@ -68,6 +70,7 @@ export function generate(transaction: Transaction): Transaction {
         default: '[[person]][[initiated]]via[[address]]',
       },
     },
+
     variables: {
       person: {
         type: 'address',
@@ -82,7 +85,7 @@ export function generate(transaction: Transaction): Transaction {
         id: BridgeContextActionEnum.INITIATED_A_CROSS_CHAIN_INTERACTION,
         value: BridgeContextActionEnum.INITIATED_A_CROSS_CHAIN_INTERACTION,
       },
-    },
+    }
   };
 
   // add asset transfers in context

@@ -68,6 +68,8 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
+    actions: [HeuristicContextActionEnum.SENT],
+
     variables: {
       sender: {
         type: 'address',
@@ -84,13 +86,14 @@ export function generate(transaction: Transaction): Transaction {
         value: HeuristicContextActionEnum.SENT,
       },
     },
+
     summaries: {
       category: 'FUNGIBLE_TOKEN',
       en: {
         title: 'Token Transfer',
         default: '[[sender]][[sent]][[token]]to[[recipient]]',
       },
-    },
+    }
   };
 
   return transaction;

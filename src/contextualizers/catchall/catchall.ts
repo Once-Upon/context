@@ -30,6 +30,8 @@ export function generate(transaction: Transaction): Transaction {
   const functionName = transaction?.decoded?.name || '';
 
   transaction.context = {
+    actions: [HeuristicContextActionEnum.INTERACTED_WITH],
+
     variables: {
       address: {
         type: 'address',
@@ -55,6 +57,7 @@ export function generate(transaction: Transaction): Transaction {
         value: HeuristicContextActionEnum.CALLED,
       },
     },
+
     summaries: {
       category: 'UNKNOWN',
       en: {
@@ -64,7 +67,7 @@ export function generate(transaction: Transaction): Transaction {
             ? '[[address]][[called]][[functionName]]on[[toAddress]]'
             : '[[address]][[interactedWith]][[toAddress]]',
       },
-    },
+    }
   };
   if (!transaction.netAssetTransfers) {
     return transaction;

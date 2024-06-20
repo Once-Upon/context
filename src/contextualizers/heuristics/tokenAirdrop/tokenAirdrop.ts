@@ -118,6 +118,8 @@ export function generate(transaction: Transaction): Transaction {
     firstAssetTransfer.type === 'erc721' ? 'NFT' : 'FUNGIBLE_TOKEN';
 
   transaction.context = {
+    actions: [HeuristicContextActionEnum.RECEIVED_AIRDROP],
+
     variables: {
       recipient:
         recipients.length === 1
@@ -163,6 +165,7 @@ export function generate(transaction: Transaction): Transaction {
         value: HeuristicContextActionEnum.RECEIVED_AIRDROP,
       },
     },
+
     summaries: {
       category,
       en: {
@@ -173,7 +176,7 @@ export function generate(transaction: Transaction): Transaction {
             : ''
         }`,
       },
-    },
+    }
   };
 
   return transaction;

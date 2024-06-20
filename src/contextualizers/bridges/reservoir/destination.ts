@@ -81,6 +81,8 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
+    actions: [BridgeContextActionEnum.COMPLETED_A_CROSS_CHAIN_INTERACTION],
+
     summaries: {
       category: 'MULTICHAIN',
       en: {
@@ -89,6 +91,7 @@ export function generate(transaction: Transaction): Transaction {
           '[[person]][[completedACrossChainInteraction]]via[[address]]and[[asset]]was transferred',
       },
     },
+
     variables: {
       person: {
         type: 'address',
@@ -104,7 +107,7 @@ export function generate(transaction: Transaction): Transaction {
         id: BridgeContextActionEnum.COMPLETED_A_CROSS_CHAIN_INTERACTION,
         value: BridgeContextActionEnum.COMPLETED_A_CROSS_CHAIN_INTERACTION,
       },
-    },
+    }
   };
 
   return transaction;

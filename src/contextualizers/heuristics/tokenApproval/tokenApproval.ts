@@ -75,6 +75,8 @@ export function generate(transaction: Transaction): Transaction {
   switch (decoded.functionName) {
     case 'approve':
       transaction.context = {
+        actions: [HeuristicContextActionEnum.GAVE_ACCESS],
+
         variables: {
           approver: {
             type: 'address',
@@ -94,19 +96,22 @@ export function generate(transaction: Transaction): Transaction {
             value: HeuristicContextActionEnum.GAVE_ACCESS,
           },
         },
+
         summaries: {
           category: 'FUNGIBLE_TOKEN',
           en: {
             title: 'Token Approval',
             default: '[[approver]][[gaveAccess]]to[[operator]]for[[token]]',
           },
-        },
+        }
       };
       return transaction;
     case 'setApprovalForAll':
       const approved = args[1];
       if (approved === true) {
         transaction.context = {
+          actions: [HeuristicContextActionEnum.GAVE_ACCESS],
+
           variables: {
             approver: {
               type: 'address',
@@ -126,16 +131,19 @@ export function generate(transaction: Transaction): Transaction {
               value: HeuristicContextActionEnum.GAVE_ACCESS,
             },
           },
+
           summaries: {
             category: 'FUNGIBLE_TOKEN',
             en: {
               title: 'Token Approval',
               default: '[[approver]][[gaveAccess]]to[[operator]]for[[token]]',
             },
-          },
+          }
         };
       } else {
         transaction.context = {
+          actions: [HeuristicContextActionEnum.REVOKED_ACCESS],
+
           variables: {
             approver: {
               type: 'address',
@@ -155,6 +163,7 @@ export function generate(transaction: Transaction): Transaction {
               value: HeuristicContextActionEnum.REVOKED_ACCESS,
             },
           },
+
           summaries: {
             category: 'FUNGIBLE_TOKEN',
             en: {
@@ -162,7 +171,7 @@ export function generate(transaction: Transaction): Transaction {
               default:
                 '[[approver]][[revokedAccess]]from[[operator]]for[[token]]',
             },
-          },
+          }
         };
       }
       return transaction;

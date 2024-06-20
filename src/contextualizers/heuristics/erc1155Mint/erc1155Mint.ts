@@ -101,6 +101,8 @@ export function generate(transaction: Transaction): Transaction {
     Object.keys(totalERC20Payment).length > 0;
 
   transaction.context = {
+    actions: [HeuristicContextActionEnum.MINTED],
+
     variables: {
       token: {
         type: AssetType.ERC1155,
@@ -121,7 +123,7 @@ export function generate(transaction: Transaction): Transaction {
         id: HeuristicContextActionEnum.MINTED,
         value: HeuristicContextActionEnum.MINTED,
       },
-    },
+    }
   };
   transaction.context.summaries = {
     category: 'NFT',

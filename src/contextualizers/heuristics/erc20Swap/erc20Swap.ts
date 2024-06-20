@@ -111,6 +111,8 @@ export function generate(transaction: Transaction): Transaction {
   // Net asset transfers calls the token contract 'asset' instead of 'token'
 
   transaction.context = {
+    actions: [HeuristicContextActionEnum.SWAPPED],
+
     variables: {
       swapper,
       swapFrom,
@@ -121,13 +123,14 @@ export function generate(transaction: Transaction): Transaction {
         value: HeuristicContextActionEnum.SWAPPED,
       },
     },
+
     summaries: {
       category: 'FUNGIBLE_TOKEN',
       en: {
         title: 'ERC20 Swap',
         default: '[[swapper]][[swapped]][[swapFrom]]for[[swapTo]]',
       },
-    },
+    }
   };
   return transaction;
 }

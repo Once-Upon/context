@@ -23,6 +23,8 @@ export function detect(transaction: Transaction): boolean {
 
 export function generate(transaction: Transaction): Transaction {
   transaction.context = {
+    actions: [HeuristicContextActionEnum.CANCELED_A_PENDING_TRANSACTION],
+
     variables: {
       subject: {
         type: 'address',
@@ -38,13 +40,14 @@ export function generate(transaction: Transaction): Transaction {
         value: transaction.nonce,
       },
     },
+
     summaries: {
       category: 'DEV',
       en: {
         title: 'Cancellation',
         default: '[[subject]][[canceled]]with nonce[[nonce]]',
       },
-    },
+    }
   };
 
   return transaction;

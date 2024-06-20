@@ -106,6 +106,8 @@ export function generate(transaction: Transaction): Transaction {
     (totalETHPayment > BigInt(0) ? 1 : 0);
 
   transaction.context = {
+    actions: [HeuristicContextActionEnum.BOUGHT],
+
     variables: {
       userOrUsers:
         receivingAddresses.length > 1
@@ -175,6 +177,7 @@ export function generate(transaction: Transaction): Transaction {
         value: HeuristicContextActionEnum.BOUGHT,
       },
     },
+
     summaries: {
       category: 'NFT',
       en: {
@@ -182,7 +185,7 @@ export function generate(transaction: Transaction): Transaction {
         default:
           '[[userOrUsers]][[bought]][[tokenOrTokens]]for[[price]]from[[sellerOrSellers]]',
       },
-    },
+    }
   };
 
   return transaction;

@@ -77,6 +77,8 @@ export function generate(transaction: Transaction): Transaction {
   );
 
   transaction.context = {
+    actions: [HeuristicContextActionEnum.BRIDGED],
+
     summaries: {
       category: 'MULTICHAIN',
       en: {
@@ -84,6 +86,7 @@ export function generate(transaction: Transaction): Transaction {
         default: '[[subject]][[bridged]][[amount]]from[[chainID]]',
       },
     },
+
     variables: {
       subject: {
         type: 'address',
@@ -103,7 +106,7 @@ export function generate(transaction: Transaction): Transaction {
         id: HeuristicContextActionEnum.BRIDGED,
         value: HeuristicContextActionEnum.BRIDGED,
       },
-    },
+    }
   };
 
   return transaction;

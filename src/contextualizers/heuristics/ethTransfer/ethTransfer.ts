@@ -31,6 +31,8 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
+    actions: [HeuristicContextActionEnum.SENT],
+
     variables: {
       sender: {
         type: 'address',
@@ -52,13 +54,14 @@ export function generate(transaction: Transaction): Transaction {
         value: HeuristicContextActionEnum.SENT,
       },
     },
+
     summaries: {
       category: 'CORE',
       en: {
         title: 'ETH Transfer',
         default: '[[sender]][[sent]][[amount]]to[[to]]',
       },
-    },
+    }
   };
 
   return transaction;
