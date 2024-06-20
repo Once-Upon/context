@@ -75,6 +75,7 @@ export function generate(transaction: Transaction): Transaction {
   );
   const amount = formatEther(fundsDepositedEvent.args['amount'] as bigint);
   transaction.context = {
+    actions: [HeuristicContextActionEnum.BRIDGED],
     summaries: {
       category: 'MULTICHAIN',
       en: {
