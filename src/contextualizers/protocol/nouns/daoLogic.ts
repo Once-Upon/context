@@ -121,6 +121,9 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [
+          `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.CREATED_PROPOSAL}`,
+        ],
         variables: {
           contextAction: {
             type: 'contextAction',
@@ -193,6 +196,9 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [
+          `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.CREATED_PROPOSAL}`,
+        ],
         variables: {
           contextAction: {
             type: 'contextAction',
@@ -242,6 +248,7 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [`${Protocols.NOUNS_GOVERNOR}.${action}`],
         variables: {
           contextAction: {
             type: 'contextAction',
@@ -331,6 +338,7 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [`${Protocols.NOUNS_GOVERNOR}.${action}`],
         variables: {
           contextAction: {
             type: 'contextAction',
@@ -373,6 +381,7 @@ export const generate = (transaction: Transaction): Transaction => {
         FUNCTION_CONTEXT_ACTION_MAPPING[decoded.functionName];
 
       transaction.context = {
+        actions: [`${Protocols.NOUNS_GOVERNOR}.${contextAction}`],
         variables: {
           contextAction: {
             type: 'contextAction',
