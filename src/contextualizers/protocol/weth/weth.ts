@@ -2,6 +2,8 @@ import { Hex } from 'viem';
 import {
   AssetType,
   ContextSummaryVariableType,
+  ProtocolMap,
+  Protocols,
   Transaction,
   WETHContextActionEnum,
 } from '../../../types';
@@ -47,13 +49,16 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decode.functionName) {
     case 'deposit': {
       transaction.context = {
+        actions: [`${Protocols.WETH}.${WETHContextActionEnum.WRAPPED}`],
+
         summaries: {
           category: 'FUNGIBLE_TOKEN',
           en: {
-            title: 'WETH',
+            title: ProtocolMap[Protocols.WETH],
             default: `[[from]][[wrapped]][[value]]`,
           },
         },
+
         variables: {
           value: {
             type: AssetType.ERC20,
@@ -66,6 +71,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           wrapped: {
             type: 'contextAction',
+            id: `${Protocols.WETH}.${WETHContextActionEnum.WRAPPED}`,
             value: WETHContextActionEnum.WRAPPED,
           },
         },
@@ -88,18 +94,22 @@ export const generate = (transaction: Transaction): Transaction => {
         unit: 'wei',
       };
       transaction.context = {
+        actions: [`${Protocols.WETH}.${WETHContextActionEnum.UNWRAPPED}`],
+
         summaries: {
           category: 'FUNGIBLE_TOKEN',
           en: {
-            title: 'WETH',
+            title: ProtocolMap[Protocols.WETH],
             default: `[[withdrawer]][[unwrapped]][[withdrawalAmount]]`,
           },
         },
+
         variables: {
           withdrawalAmount,
           withdrawer,
           unwrapped: {
             type: 'contextAction',
+            id: `${Protocols.WETH}.${WETHContextActionEnum.UNWRAPPED}`,
             value: WETHContextActionEnum.UNWRAPPED,
           },
         },

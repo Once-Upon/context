@@ -21,6 +21,8 @@ function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
+    actions: [HeuristicContextActionEnum.DEPLOYED],
+
     variables: {
       deployerAddress: {
         type: 'address',
@@ -32,9 +34,11 @@ function generate(transaction: Transaction): Transaction {
       },
       deployed: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.DEPLOYED,
         value: HeuristicContextActionEnum.DEPLOYED,
       },
     },
+
     summaries: {
       category: 'DEV',
       en: {

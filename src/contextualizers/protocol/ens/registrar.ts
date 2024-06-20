@@ -2,6 +2,8 @@ import { Hex } from 'viem';
 import {
   ENSContextActionEnum,
   EventLogTopics,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { ENS_CONTRACTS, ENS_ADDRESSES } from './constants';
@@ -74,13 +76,16 @@ export const generate = (transaction: Transaction): Transaction => {
         const expireDate = convertDate(expires);
 
         transaction.context = {
+          actions: [`${Protocols.ENS}.${ENSContextActionEnum.REGISTERED}`],
+
           summaries: {
             category: 'IDENTITY',
             en: {
-              title: 'ENS',
+              title: ProtocolMap[Protocols.ENS],
               default: `[[registerer]][[registered]][[name]]with an expiration of[[expireDate]]`,
             },
           },
+
           variables: {
             registerer: {
               type: 'address',
@@ -98,6 +103,7 @@ export const generate = (transaction: Transaction): Transaction => {
             },
             registered: {
               type: 'contextAction',
+              id: `${Protocols.ENS}.${ENSContextActionEnum.REGISTERED}`,
               value: ENSContextActionEnum.REGISTERED,
             },
           },
@@ -112,13 +118,16 @@ export const generate = (transaction: Transaction): Transaction => {
         const expireDate = convertDate(expires);
 
         transaction.context = {
+          actions: [`${Protocols.ENS}.${ENSContextActionEnum.RENEWED}`],
+
           summaries: {
             category: 'IDENTITY',
             en: {
-              title: 'ENS',
+              title: ProtocolMap[Protocols.ENS],
               default: `[[renewer]][[renewed]][[name]]with an expiration of[[expireDate]]`,
             },
           },
+
           variables: {
             renewer: {
               type: 'address',
@@ -136,6 +145,7 @@ export const generate = (transaction: Transaction): Transaction => {
             },
             renewed: {
               type: 'contextAction',
+              id: `${Protocols.ENS}.${ENSContextActionEnum.RENEWED}`,
               value: ENSContextActionEnum.RENEWED,
             },
           },

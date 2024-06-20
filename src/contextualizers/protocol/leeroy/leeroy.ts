@@ -4,6 +4,8 @@ import {
   ContextSummaryVariableType,
   ETHAsset,
   LeeroyContextActionEnum,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { LeeroyContracts } from './constants';
@@ -59,34 +61,42 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.POSTED}`],
+
           variables: {
             poster,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.POSTED}`,
               value: LeeroyContextActionEnum.POSTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `[[poster]][[contextAction]]${post.text}`,
             },
           },
         };
       } else {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.POSTED}`],
+
           variables: {
             poster,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.POSTED}`,
               value: LeeroyContextActionEnum.POSTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `Failed:[[poster]][[contextAction]]${post.text}`,
             },
           },
@@ -112,34 +122,42 @@ export const generate = (transaction: Transaction): Transaction => {
       });
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.FOLLOWED}`],
+
           variables: {
             user,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.FOLLOWED}`,
               value: LeeroyContextActionEnum.FOLLOWED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `[[user]][[contextAction]]${username}`,
             },
           },
         };
       } else {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.FOLLOWED}`],
+
           variables: {
             user,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.FOLLOWED}`,
               value: LeeroyContextActionEnum.FOLLOWED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `Failed:[[user]][[contextAction]]${username}`,
             },
           },
@@ -165,34 +183,46 @@ export const generate = (transaction: Transaction): Transaction => {
       });
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.UNFOLLOWED}`,
+          ],
+
           variables: {
             user,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.UNFOLLOWED}`,
               value: LeeroyContextActionEnum.UNFOLLOWED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `[[user]][[contextAction]]${username}`,
             },
           },
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.UNFOLLOWED}`,
+          ],
+
           variables: {
             user,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.UNFOLLOWED}`,
               value: LeeroyContextActionEnum.UNFOLLOWED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `Failed:[[user]][[contextAction]]${username}`,
             },
           },
@@ -234,37 +264,45 @@ export const generate = (transaction: Transaction): Transaction => {
           unit: 'wei',
         };
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.TIPPED}`],
+
           variables: {
             tipper,
             tipAmount,
             leeroyTake,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.TIPPED}`,
               value: LeeroyContextActionEnum.TIPPED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `[[tipper]][[contextAction]]${username}[[tipAmount]](Leeroy fee:[[leeroyTake]])`,
             },
           },
         };
       } else {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.TIPPED}`],
+
           variables: {
             tipper,
             tipAmount,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.TIPPED}`,
               value: LeeroyContextActionEnum.TIPPED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `Failed:[[tipper]][[contextAction]]${username}[[tipAmount]]`,
             },
           },
@@ -288,17 +326,23 @@ export const generate = (transaction: Transaction): Transaction => {
       } catch (e) {}
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.UPDATED_USER_DETAILS}`,
+          ],
+
           variables: {
             user,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.UPDATED_USER_DETAILS}`,
               value: LeeroyContextActionEnum.UPDATED_USER_DETAILS,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `[[user]][[contextAction]]${JSON.stringify(
                 userDetails,
               )}`,
@@ -307,17 +351,23 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.UPDATED_USER_DETAILS}`,
+          ],
+
           variables: {
             user,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.UPDATED_USER_DETAILS}`,
               value: LeeroyContextActionEnum.UPDATED_USER_DETAILS,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `Failed:[[user]][[contextAction]]${JSON.stringify(
                 userDetails,
               )}`,
@@ -347,36 +397,48 @@ export const generate = (transaction: Transaction): Transaction => {
       } catch (e) {}
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.REPLIED_TO}`,
+          ],
+
           variables: {
             user,
             transactionHash,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.REPLIED_TO}`,
               value: LeeroyContextActionEnum.REPLIED_TO,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `[[user]][[contextAction]][[transactionHash]]${post.text}`,
             },
           },
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.REPLIED_TO}`,
+          ],
+
           variables: {
             user,
             transactionHash,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.REPLIED_TO}`,
               value: LeeroyContextActionEnum.REPLIED_TO,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `Failed:[[user]][[contextAction]][[transactionHash]]${post.text}`,
             },
           },
@@ -400,36 +462,44 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.REPOSTED}`],
+
           variables: {
             user,
             transactionHash,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.REPOSTED}`,
               value: LeeroyContextActionEnum.REPOSTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `[[user]][[contextAction]][[transactionHash]]`,
             },
           },
         };
       } else {
         transaction.context = {
+          actions: [`${Protocols.LEEROY}.${LeeroyContextActionEnum.REPOSTED}`],
+
           variables: {
             user,
             transactionHash,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.REPOSTED}`,
               value: LeeroyContextActionEnum.REPOSTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `Failed:[[user]][[contextAction]][[transactionHash]]`,
             },
           },
@@ -455,34 +525,46 @@ export const generate = (transaction: Transaction): Transaction => {
       });
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.REGISTERED_USERNAME}`,
+          ],
+
           variables: {
             user,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.REGISTERED_USERNAME}`,
               value: LeeroyContextActionEnum.REGISTERED_USERNAME,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `[[user]][[contextAction]]${username}`,
             },
           },
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.LEEROY}.${LeeroyContextActionEnum.REGISTERED_USERNAME}`,
+          ],
+
           variables: {
             user,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.LEEROY}.${LeeroyContextActionEnum.REGISTERED_USERNAME}`,
               value: LeeroyContextActionEnum.REGISTERED_USERNAME,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Leeroy',
+              title: ProtocolMap[Protocols.LEEROY],
               default: `Failed:[[user]][[contextAction]]${username}`,
             },
           },

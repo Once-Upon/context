@@ -75,6 +75,8 @@ export function generate(transaction: Transaction): Transaction {
   switch (decoded.functionName) {
     case 'approve':
       transaction.context = {
+        actions: [HeuristicContextActionEnum.GAVE_ACCESS],
+
         variables: {
           approver: {
             type: 'address',
@@ -90,9 +92,11 @@ export function generate(transaction: Transaction): Transaction {
           },
           gaveAccess: {
             type: 'contextAction',
+            id: HeuristicContextActionEnum.GAVE_ACCESS,
             value: HeuristicContextActionEnum.GAVE_ACCESS,
           },
         },
+
         summaries: {
           category: 'FUNGIBLE_TOKEN',
           en: {
@@ -106,6 +110,8 @@ export function generate(transaction: Transaction): Transaction {
       const approved = args[1];
       if (approved === true) {
         transaction.context = {
+          actions: [HeuristicContextActionEnum.GAVE_ACCESS],
+
           variables: {
             approver: {
               type: 'address',
@@ -121,9 +127,11 @@ export function generate(transaction: Transaction): Transaction {
             },
             gaveAccess: {
               type: 'contextAction',
+              id: HeuristicContextActionEnum.GAVE_ACCESS,
               value: HeuristicContextActionEnum.GAVE_ACCESS,
             },
           },
+
           summaries: {
             category: 'FUNGIBLE_TOKEN',
             en: {
@@ -134,6 +142,8 @@ export function generate(transaction: Transaction): Transaction {
         };
       } else {
         transaction.context = {
+          actions: [HeuristicContextActionEnum.REVOKED_ACCESS],
+
           variables: {
             approver: {
               type: 'address',
@@ -149,9 +159,11 @@ export function generate(transaction: Transaction): Transaction {
             },
             revokedAccess: {
               type: 'contextAction',
+              id: HeuristicContextActionEnum.REVOKED_ACCESS,
               value: HeuristicContextActionEnum.REVOKED_ACCESS,
             },
           },
+
           summaries: {
             category: 'FUNGIBLE_TOKEN',
             en: {

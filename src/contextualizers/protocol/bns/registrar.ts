@@ -1,5 +1,10 @@
 import { Hex } from 'viem';
-import { BNSContextActionEnum, Transaction } from '../../../types';
+import {
+  BNSContextActionEnum,
+  ProtocolMap,
+  Protocols,
+  Transaction,
+} from '../../../types';
 import { BNS_ADDRESSES, BNS_CONTRACTS } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -46,13 +51,16 @@ export const generate = (transaction: Transaction): Transaction => {
       const durationInDays = Math.trunc(duration / 60 / 60 / 24);
 
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.REGISTERED}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
-            title: 'BNS',
+            title: ProtocolMap[Protocols.BNS],
             default: `[[registerer]][[registered]][[name]]for[[duration]]`,
           },
         },
+
         variables: {
           registerer: {
             type: 'address',
@@ -71,6 +79,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           registered: {
             type: 'contextAction',
+            id: `${Protocols.BNS}.${BNSContextActionEnum.REGISTERED}`,
             value: BNSContextActionEnum.REGISTERED,
           },
         },
@@ -85,13 +94,16 @@ export const generate = (transaction: Transaction): Transaction => {
       const durationInDays = Math.trunc(duration / 60 / 60 / 24);
 
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.RENEWED}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
-            title: 'BNS',
+            title: ProtocolMap[Protocols.BNS],
             default: `[[renewer]][[renewed]][[name]]for[[duration]]`,
           },
         },
+
         variables: {
           renewer: {
             type: 'address',
@@ -110,6 +122,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           renewed: {
             type: 'contextAction',
+            id: `${Protocols.BNS}.${BNSContextActionEnum.RENEWED}`,
             value: BNSContextActionEnum.RENEWED,
           },
         },

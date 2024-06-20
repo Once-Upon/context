@@ -1,5 +1,10 @@
 import { Hex } from 'viem';
-import { FarcasterContextActionEnum, Transaction } from '../../../types';
+import {
+  FarcasterContextActionEnum,
+  ProtocolMap,
+  Protocols,
+  Transaction,
+} from '../../../types';
 import { FarcasterContracts } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -47,6 +52,10 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decoded.functionName) {
     case 'changeRecoveryAddressFor': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.CHANGED_RECOVERY_ADDRESS}`,
+        ],
+
         variables: {
           owner: {
             type: 'address',
@@ -58,13 +67,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           changedRecoveryAddress: {
             type: 'contextAction',
+            id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.CHANGED_RECOVERY_ADDRESS}`,
             value: FarcasterContextActionEnum.CHANGED_RECOVERY_ADDRESS,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Farcaster',
+            title: ProtocolMap[Protocols.FARCASTER],
             default: '[[owner]][[changedRecoveryAddress]]to[[recoveryAddress]]',
           },
         },
@@ -74,6 +85,10 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'transfer': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.TRANSFERRED_FARCASTER_ID}`,
+        ],
+
         variables: {
           owner: {
             type: 'address',
@@ -85,13 +100,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           transferredId: {
             type: 'contextAction',
+            id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.TRANSFERRED_FARCASTER_ID}`,
             value: FarcasterContextActionEnum.TRANSFERRED_FARCASTER_ID,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Farcaster',
+            title: ProtocolMap[Protocols.FARCASTER],
             default: '[[owner]][[transferredId]]to[[to]]',
           },
         },

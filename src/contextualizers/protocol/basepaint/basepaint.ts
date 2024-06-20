@@ -5,6 +5,8 @@ import {
   BasepaintActionEnum,
   ContextVariable,
   ETHAsset,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { BASEPAINT_CONTRACT, BRUSHES_CONTRACT, ABIs } from './constants';
@@ -61,9 +63,11 @@ export const generate = (transaction: Transaction): Transaction => {
       const pixels = pixelData.slice(2).length / 3;
 
       transaction.context = {
+        actions: [`${Protocols.BASEPAINT}.${BasepaintActionEnum.PAINTED}`],
         variables: {
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.BASEPAINT}.${BasepaintActionEnum.PAINTED}`,
             value: BasepaintActionEnum.PAINTED,
           },
           subject: {
@@ -88,7 +92,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Basepaint',
+            title: ProtocolMap[Protocols.BASEPAINT],
             default:
               '[[subject]][[contextAction]][[pixels]]pixels to day[[day]]using[[brush]]',
           },
@@ -112,6 +116,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const variables: ContextVariable = {
         contextAction: {
           type: 'contextAction',
+          id: `${Protocols.BASEPAINT}.${BasepaintActionEnum.WITHDREW_REWARDS}`,
           value: BasepaintActionEnum.WITHDREW_REWARDS,
         },
         subject: {
@@ -133,11 +138,14 @@ export const generate = (transaction: Transaction): Transaction => {
       if (!transaction.to) return transaction;
 
       transaction.context = {
+        actions: [
+          `${Protocols.BASEPAINT}.${BasepaintActionEnum.WITHDREW_REWARDS}`,
+        ],
         variables,
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Basepaint',
+            title: ProtocolMap[Protocols.BASEPAINT],
             default: `[[subject]][[contextAction]]of[[amount]]for[[days]]day${
               days.length === 1 ? "'s" : "s'"
             } contributions`,

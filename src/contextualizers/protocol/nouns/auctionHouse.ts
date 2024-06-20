@@ -3,6 +3,8 @@ import {
   AssetType,
   EventLogTopics,
   NounsAuctionHouseActionEnum,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { NounsContracts, ABIs } from './constants';
@@ -61,9 +63,14 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decoded.functionName) {
     case 'createBid': {
       transaction.context = {
+        actions: [
+          `${Protocols.NOUNS_AUCTION_HOUSE}.${NounsAuctionHouseActionEnum.BID}`,
+        ],
+
         variables: {
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_AUCTION_HOUSE}.${NounsAuctionHouseActionEnum.BID}`,
             value: NounsAuctionHouseActionEnum.BID,
           },
           subject: {
@@ -81,10 +88,11 @@ export const generate = (transaction: Transaction): Transaction => {
             unit: 'wei',
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Nouns',
+            title: ProtocolMap[Protocols.NOUNS_AUCTION_HOUSE],
             default: '[[subject]][[contextAction]][[amount]]on[[noun]]',
           },
         },
@@ -133,9 +141,14 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [
+          `${Protocols.NOUNS_AUCTION_HOUSE}.${NounsAuctionHouseActionEnum.SETTLED}`,
+        ],
+
         variables: {
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_AUCTION_HOUSE}.${NounsAuctionHouseActionEnum.SETTLED}`,
             value: NounsAuctionHouseActionEnum.SETTLED,
           },
           subject: {
@@ -152,10 +165,11 @@ export const generate = (transaction: Transaction): Transaction => {
             value: winner,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Nouns',
+            title: ProtocolMap[Protocols.NOUNS_AUCTION_HOUSE],
             default:
               '[[subject]][[contextAction]]auction for[[noun]]won by[[winner]]',
           },

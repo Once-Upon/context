@@ -2,6 +2,8 @@ import { Hex } from 'viem';
 import {
   EventLogTopics,
   FarcasterContextActionEnum,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { FarcasterContracts } from './constants';
@@ -65,6 +67,10 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decoded.functionName) {
     case 'register': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REGISTERED_FARCASTER_ID}`,
+        ],
+
         variables: {
           owner: {
             type: 'address',
@@ -76,13 +82,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           registered: {
             type: 'contextAction',
+            id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REGISTERED_FARCASTER_ID}`,
             value: FarcasterContextActionEnum.REGISTERED_FARCASTER_ID,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Farcaster',
+            title: ProtocolMap[Protocols.FARCASTER],
             default: `[[owner]][[registered]][[fid]]`,
           },
         },
@@ -92,6 +100,10 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'registerFor': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REGISTERED_FARCASTER_ID}`,
+        ],
+
         variables: {
           caller: {
             type: 'address',
@@ -107,13 +119,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           registered: {
             type: 'contextAction',
+            id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REGISTERED_FARCASTER_ID}`,
             value: FarcasterContextActionEnum.REGISTERED_FARCASTER_ID,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Farcaster',
+            title: ProtocolMap[Protocols.FARCASTER],
             default: '[[caller]][[registered]][[fid]]for[[owner]]',
           },
         },

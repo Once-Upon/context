@@ -1,5 +1,10 @@
 import { Hex } from 'viem';
-import { BNSContextActionEnum, Transaction } from '../../../types';
+import {
+  BNSContextActionEnum,
+  ProtocolMap,
+  Protocols,
+  Transaction,
+} from '../../../types';
 import { BNS_ADDRESSES, BNS_CONTRACTS } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -44,13 +49,16 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decode.functionName) {
     case 'multicall': {
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.UPDATED_RECORDS}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
-            title: 'BNS',
+            title: ProtocolMap[Protocols.BNS],
             default: `[[owner]][[updated]]`,
           },
         },
+
         variables: {
           owner: {
             type: 'address',
@@ -58,6 +66,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           updated: {
             type: 'contextAction',
+            id: `${Protocols.BNS}.${BNSContextActionEnum.UPDATED_RECORDS}`,
             value: BNSContextActionEnum.UPDATED_RECORDS,
           },
         },
@@ -67,13 +76,16 @@ export const generate = (transaction: Transaction): Transaction => {
     }
     case 'setAddr': {
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.UPDATED_ADDRESS}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
-            title: 'BNS',
+            title: ProtocolMap[Protocols.BNS],
             default: `[[owner]][[updated]]`,
           },
         },
+
         variables: {
           owner: {
             type: 'address',
@@ -81,6 +93,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           updated: {
             type: 'contextAction',
+            id: `${Protocols.BNS}.${BNSContextActionEnum.UPDATED_ADDRESS}`,
             value: BNSContextActionEnum.UPDATED_ADDRESS,
           },
         },
@@ -91,13 +104,16 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'setText': {
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.UPDATED_TEXT}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
-            title: 'BNS',
+            title: ProtocolMap[Protocols.BNS],
             default: `[[owner]][[updated]]`,
           },
         },
+
         variables: {
           owner: {
             type: 'address',
@@ -105,6 +121,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           updated: {
             type: 'contextAction',
+            id: `${Protocols.BNS}.${BNSContextActionEnum.UPDATED_TEXT}`,
             value: BNSContextActionEnum.UPDATED_TEXT,
           },
         },
@@ -115,13 +132,18 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'setContenthash': {
       transaction.context = {
+        actions: [
+          `${Protocols.BNS}.${BNSContextActionEnum.UPDATED_CONTENTHASH}`,
+        ],
+
         summaries: {
           category: 'IDENTITY',
           en: {
-            title: 'BNS',
+            title: ProtocolMap[Protocols.BNS],
             default: `[[owner]][[updated]]`,
           },
         },
+
         variables: {
           owner: {
             type: 'address',
@@ -129,6 +151,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           updated: {
             type: 'contextAction',
+            id: `${Protocols.BNS}.${BNSContextActionEnum.UPDATED_CONTENTHASH}`,
             value: BNSContextActionEnum.UPDATED_CONTENTHASH,
           },
         },

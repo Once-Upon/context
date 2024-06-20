@@ -2,6 +2,8 @@ import {
   Transaction,
   EventLogTopics,
   GoldContextActionEnum,
+  Protocols,
+  ProtocolMap,
 } from '../../../types';
 import {
   PACK_ACTIVATION_SOURCE_CONTRACT,
@@ -70,13 +72,18 @@ export function generate(transaction: Transaction): Transaction {
   const activator = decoded.args['activator'];
 
   transaction.context = {
+    actions: [
+      `${Protocols.GOLD}.${GoldContextActionEnum.ACTIVATED_A_STARTER_PACK}`,
+    ],
+
     summaries: {
       category: 'PROTOCOL_1',
       en: {
-        title: `Gold`,
+        title: ProtocolMap[Protocols.GOLD],
         default: '[[activator]][[activated]]',
       },
     },
+
     variables: {
       activator: {
         type: 'address',
@@ -84,6 +91,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       activated: {
         type: 'contextAction',
+        id: `${Protocols.GOLD}.${GoldContextActionEnum.ACTIVATED_A_STARTER_PACK}`,
         value: GoldContextActionEnum.ACTIVATED_A_STARTER_PACK,
       },
     },

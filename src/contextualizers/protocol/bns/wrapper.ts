@@ -1,5 +1,10 @@
 import { Hex } from 'viem';
-import { BNSContextActionEnum, Transaction } from '../../../types';
+import {
+  BNSContextActionEnum,
+  ProtocolMap,
+  Protocols,
+  Transaction,
+} from '../../../types';
 import { BNS_ADDRESSES, BNS_CONTRACTS } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -42,13 +47,16 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decode.functionName) {
     case 'safeTransferFrom': {
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.TRANSFERED_NAME}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
-            title: 'BNS',
+            title: ProtocolMap[Protocols.BNS],
             default: `[[sender]][[transfered]]to[[receiver]]`,
           },
         },
+
         variables: {
           sender: {
             type: 'address',
@@ -56,6 +64,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           transfered: {
             type: 'contextAction',
+            id: `${Protocols.BNS}.${BNSContextActionEnum.TRANSFERED_NAME}`,
             value: BNSContextActionEnum.TRANSFERED_NAME,
           },
           receiver: {
@@ -70,13 +79,16 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'safeBatchTransferFrom': {
       transaction.context = {
+        actions: [`${Protocols.BNS}.${BNSContextActionEnum.TRANSFERED_NAMES}`],
+
         summaries: {
           category: 'IDENTITY',
           en: {
-            title: 'BNS',
+            title: ProtocolMap[Protocols.BNS],
             default: `[[sender]][[transfered]]to[[receiver]]`,
           },
         },
+
         variables: {
           sender: {
             type: 'address',
@@ -84,6 +96,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           transfered: {
             type: 'contextAction',
+            id: `${Protocols.BNS}.${BNSContextActionEnum.TRANSFERED_NAMES}`,
             value: BNSContextActionEnum.TRANSFERED_NAMES,
           },
           receiver: {

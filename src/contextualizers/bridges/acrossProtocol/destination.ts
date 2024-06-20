@@ -73,6 +73,8 @@ export function generate(transaction: Transaction): Transaction {
   const chainId = Number(filledRelayEvent.args['originChainId'] as bigint);
   const amount = formatEther(filledRelayEvent.args['amount'] as bigint);
   transaction.context = {
+    actions: [HeuristicContextActionEnum.BRIDGED],
+
     summaries: {
       category: 'MULTICHAIN',
       en: {
@@ -80,6 +82,7 @@ export function generate(transaction: Transaction): Transaction {
         default: '[[subject]][[bridged]][[amount]]from[[originChainId]]',
       },
     },
+
     variables: {
       subject: {
         type: 'address',
@@ -96,6 +99,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       bridged: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.BRIDGED,
         value: HeuristicContextActionEnum.BRIDGED,
       },
     },

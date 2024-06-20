@@ -100,6 +100,8 @@ export function generate(transaction: Transaction): Transaction {
       : '0';
 
   transaction.context = {
+    actions: [HeuristicContextActionEnum.MINTED],
+
     variables: {
       token: {
         type: AssetType.ERC20,
@@ -117,9 +119,11 @@ export function generate(transaction: Transaction): Transaction {
       },
       minted: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.MINTED,
         value: HeuristicContextActionEnum.MINTED,
       },
     },
+
     summaries: {
       category: 'FUNGIBLE_TOKEN',
       en: {

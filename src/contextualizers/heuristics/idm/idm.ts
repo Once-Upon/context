@@ -29,6 +29,8 @@ function generate(transaction: Transaction): Transaction {
   if (!transaction.to) return transaction;
 
   transaction.context = {
+    actions: [HeuristicContextActionEnum.SENT_MESSAGE],
+
     variables: {
       messageSender: {
         type: 'address',
@@ -40,6 +42,7 @@ function generate(transaction: Transaction): Transaction {
       },
       sentMessage: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.SENT_MESSAGE,
         value: HeuristicContextActionEnum.SENT_MESSAGE,
       },
       receiver: {
@@ -47,6 +50,7 @@ function generate(transaction: Transaction): Transaction {
         value: transaction.to,
       },
     },
+
     summaries: {
       category: 'OTHER',
       en: {

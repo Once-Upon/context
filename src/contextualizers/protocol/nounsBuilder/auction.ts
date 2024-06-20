@@ -4,6 +4,7 @@ import {
   ContextVariable,
   EventLogTopics,
   NounsAuctionHouseActionEnum,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { ABIs, NOUNS_BUILDER_INSTANCES } from './constants';
@@ -66,6 +67,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const variables: ContextVariable = {
         contextAction: {
           type: 'contextAction',
+          id: `${Protocols.NOUNS_AUCTION_HOUSE}.${NounsAuctionHouseActionEnum.BID}`,
           value: NounsAuctionHouseActionEnum.BID,
         },
         subject: {
@@ -170,6 +172,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const variables: ContextVariable = {
         contextAction: {
           type: 'contextAction',
+          id: `${Protocols.NOUNS_AUCTION_HOUSE}.${NounsAuctionHouseActionEnum.SETTLED}`,
           value: NounsAuctionHouseActionEnum.SETTLED,
         },
         subject: {

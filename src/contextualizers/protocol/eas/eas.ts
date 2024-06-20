@@ -4,6 +4,8 @@ import {
   Transaction,
   EventLogTopics,
   EASContextActionEnum,
+  ProtocolMap,
+  Protocols,
 } from '../../../types';
 import { decodeTransactionInput, decodeLog } from '../../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
@@ -101,6 +103,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const attestationID = getAttestationID(transaction);
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.ATTESTED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -129,13 +133,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           attested: {
             type: 'contextAction',
+            id: `${Protocols.EAS}.${EASContextActionEnum.ATTESTED}`,
             value: EASContextActionEnum.ATTESTED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'EAS',
+            title: ProtocolMap[Protocols.EAS],
             default: recipient
               ? '[[from]][[attested]]to[[recipient]]with schema[[schema]]🔗[[attestation]]'
               : '[[from]][[attested]]with schema[[schema]]🔗[[attestation]]',
@@ -153,6 +159,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const attestationID = getAttestationID(transaction);
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.ATTESTED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -186,13 +194,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           attested: {
             type: 'contextAction',
+            id: `${Protocols.EAS}.${EASContextActionEnum.ATTESTED}`,
             value: EASContextActionEnum.ATTESTED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'EAS',
+            title: ProtocolMap[Protocols.EAS],
             default: recipient
               ? '[[attester]][[attested]]to[[recipient]]with schema[[schema]]by delegation via[[from]]🔗[[attestation]]'
               : '[[attester]][[attested]]with schema[[schema]]by delegation via[[from]]🔗[[attestation]]',
@@ -208,6 +218,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const count = arg.map((v) => v.data).flat().length;
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.ATTESTED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -227,13 +239,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           attested: {
             type: 'contextAction',
+            id: `${Protocols.EAS}.${EASContextActionEnum.ATTESTED}`,
             value: EASContextActionEnum.ATTESTED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'EAS',
+            title: ProtocolMap[Protocols.EAS],
             default: `[[from]][[attested]][[count]]with[[schemas]]`,
           },
         },
@@ -248,6 +262,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const count = arg.map((v) => v.data).flat().length;
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.ATTESTED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -273,13 +289,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           attested: {
             type: 'contextAction',
+            id: `${Protocols.EAS}.${EASContextActionEnum.ATTESTED}`,
             value: EASContextActionEnum.ATTESTED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'EAS',
+            title: ProtocolMap[Protocols.EAS],
             default: `[[attesters]][[attested]][[count]]with[[schemas]]by delegation via[[from]]`,
           },
         },
@@ -296,6 +314,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const attestationID = getAttestationID(transaction);
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.REVOKED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -321,13 +341,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           revoked: {
             type: 'contextAction',
+            id: `${Protocols.EAS}.${EASContextActionEnum.REVOKED}`,
             value: EASContextActionEnum.REVOKED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'EAS',
+            title: ProtocolMap[Protocols.EAS],
             default:
               '[[from]][[revoked]]an attestation with schema[[schema]]🔗[[attestation]]',
           },
@@ -344,6 +366,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const attestationID = getAttestationID(transaction);
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.REVOKED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -373,13 +397,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           revoked: {
             type: 'contextAction',
+            id: `${Protocols.EAS}.${EASContextActionEnum.REVOKED}`,
             value: EASContextActionEnum.REVOKED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'EAS',
+            title: ProtocolMap[Protocols.EAS],
             default:
               '[[revoker]][[revoked]]an attestation with schema[[schema]]by delegation via[[from]]🔗[[attestation]]',
           },
@@ -394,6 +420,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const count = arg.map((v) => v.data).flat().length;
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.REVOKED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -413,13 +441,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           revoked: {
             type: 'contextAction',
+            id: `${Protocols.EAS}.${EASContextActionEnum.REVOKED}`,
             value: EASContextActionEnum.REVOKED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'EAS',
+            title: ProtocolMap[Protocols.EAS],
             default: `[[from]][[revoked]][[count]]with[[schemas]]`,
           },
         },
@@ -434,6 +464,8 @@ export const generate = (transaction: Transaction): Transaction => {
       const count = arg.map((v) => v.data).flat().length;
 
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.REVOKED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -457,13 +489,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           revoked: {
             type: 'contextAction',
+            id: `${Protocols.EAS}.${EASContextActionEnum.REVOKED}`,
             value: EASContextActionEnum.REVOKED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'EAS',
+            title: ProtocolMap[Protocols.EAS],
             default: `[[revokers]][[revoked]]${pluralize(
               'account',
               revokers,
@@ -476,6 +510,8 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'timestamp': {
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.TIMESTAMPED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -483,13 +519,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           timestamped: {
             type: 'contextAction',
+            id: `${Protocols.EAS}.${EASContextActionEnum.TIMESTAMPED}`,
             value: EASContextActionEnum.TIMESTAMPED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'EAS',
+            title: ProtocolMap[Protocols.EAS],
             default: '[[from]][[timestamped]]data',
           },
         },
@@ -500,6 +538,8 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'multiTimestamp': {
       const data = decoded.args[0];
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.TIMESTAMPED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -512,13 +552,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           timestamped: {
             type: 'contextAction',
+            id: `${Protocols.EAS}.${EASContextActionEnum.TIMESTAMPED}`,
             value: EASContextActionEnum.TIMESTAMPED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'EAS',
+            title: ProtocolMap[Protocols.EAS],
             default: '[[from]][[timestamped]][[count]]data',
           },
         },
@@ -528,6 +570,8 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'revokeOffchain': {
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.REVOKED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -535,13 +579,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           revoked: {
             type: 'contextAction',
+            id: `${Protocols.EAS}.${EASContextActionEnum.REVOKED}`,
             value: EASContextActionEnum.REVOKED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'EAS',
+            title: ProtocolMap[Protocols.EAS],
             default: '[[from]][[revoked]]offchain data',
           },
         },
@@ -552,6 +598,8 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'multiRevokeOffchain': {
       const data = decoded.args[0];
       transaction.context = {
+        actions: [`${Protocols.EAS}.${EASContextActionEnum.REVOKED}`],
+
         variables: {
           from: {
             type: 'address',
@@ -564,13 +612,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           revoked: {
             type: 'contextAction',
+            id: `${Protocols.EAS}.${EASContextActionEnum.REVOKED}`,
             value: EASContextActionEnum.REVOKED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'EAS',
+            title: ProtocolMap[Protocols.EAS],
             default: '[[from]][[revoked]][[count]]offchain data',
           },
         },

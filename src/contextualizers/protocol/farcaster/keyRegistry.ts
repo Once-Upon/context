@@ -1,5 +1,10 @@
 import { Hex } from 'viem';
-import { FarcasterContextActionEnum, Transaction } from '../../../types';
+import {
+  FarcasterContextActionEnum,
+  ProtocolMap,
+  Protocols,
+  Transaction,
+} from '../../../types';
 import { FarcasterContracts } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -39,6 +44,10 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decoded.functionName) {
     case 'remove': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REMOVED_A_KEY}`,
+        ],
+
         variables: {
           owner: {
             type: 'address',
@@ -46,13 +55,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           removedKey: {
             type: 'contextAction',
+            id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REMOVED_A_KEY}`,
             value: FarcasterContextActionEnum.REMOVED_A_KEY,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Farcaster',
+            title: ProtocolMap[Protocols.FARCASTER],
             default: '[[owner]][[removedKey]]',
           },
         },
@@ -62,6 +73,10 @@ export const generate = (transaction: Transaction): Transaction => {
 
     case 'removeFor': {
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REMOVED_A_KEY}`,
+        ],
+
         variables: {
           caller: {
             type: 'address',
@@ -73,13 +88,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           removedKey: {
             type: 'contextAction',
+            id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.REMOVED_A_KEY}`,
             value: FarcasterContextActionEnum.REMOVED_A_KEY,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Farcaster',
+            title: ProtocolMap[Protocols.FARCASTER],
             default: '[[caller]][[removedKey]]for[[owner]]',
           },
         },
