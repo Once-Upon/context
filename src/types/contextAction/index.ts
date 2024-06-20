@@ -7,7 +7,7 @@ export type ContextAction =
   | ProtocolContextAction
   | BridgeContextAction;
 
-export type ContextActionFull =
+export type ContextActionID =
   | `${Protocols}.${ProtocolContextAction}`
   | HeuristicContextAction
   | BridgeContextAction;
