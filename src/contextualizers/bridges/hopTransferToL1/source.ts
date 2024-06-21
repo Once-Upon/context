@@ -3,6 +3,7 @@ import {
   AssetType,
   EventLogTopics,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Transaction,
 } from '../../../types';
 import { HOP_TRANSFER_SENT_EVENT_ABI, HOP_RELAYERS } from './constants';
@@ -70,7 +71,10 @@ export function generate(transaction: Transaction): Transaction {
   const amount = formatEther(decodedTransferSentLog.args['amount'] as bigint);
 
   transaction.context = {
-    actions: [HeuristicContextActionEnum.BRIDGED],
+    actions: [
+      HeuristicContextActionEnum.BRIDGED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BRIDGED}`,
+    ],
 
     summaries: {
       category: 'MULTICHAIN',

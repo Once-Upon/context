@@ -2,6 +2,7 @@ import {
   AssetType,
   ETHAssetTransfer,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Transaction,
 } from '../../../types';
 
@@ -30,7 +31,10 @@ export function generate(transaction: Transaction): Transaction {
   const ethTransfer = transaction.assetTransfers[1] as ETHAssetTransfer;
   // Pull out relevant data for faucet transaction
   transaction.context = {
-    actions: [HeuristicContextActionEnum.RECEIVED],
+    actions: [
+      HeuristicContextActionEnum.RECEIVED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.RECEIVED}`,
+    ],
 
     variables: {
       depositer: {

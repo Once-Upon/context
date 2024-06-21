@@ -4,6 +4,7 @@ import {
   Transaction,
   ERC20AssetTransfer,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
 } from '../../../types';
 import { KNOWN_ADDRESSES, WETH_ADDRESSES } from '../../../helpers/constants';
 
@@ -100,7 +101,7 @@ export function generate(transaction: Transaction): Transaction {
       : '0';
 
   transaction.context = {
-    actions: [HeuristicContextActionEnum.MINTED],
+    actions: [HeuristicContextActionEnum.MINTED, `${HeuristicPrefix}.${HeuristicContextActionEnum.MINTED}`],
 
     variables: {
       token: {

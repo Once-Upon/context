@@ -5,6 +5,7 @@ import {
   ERC20AssetTransfer,
   ERC721AssetTransfer,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
 } from '../../../types';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
 import { zeroAddress } from 'viem';
@@ -102,23 +103,26 @@ export function generate(transaction: Transaction): Transaction {
           value: firstAssetTransfer.value,
         }
       : firstAssetTransfer.type === AssetType.ERC721
-      ? {
-          type: firstAssetTransfer.type,
-          token: firstAssetTransfer.contract,
-          tokenId: firstAssetTransfer.tokenId,
-        }
-      : {
-          type: firstAssetTransfer.type,
-          token: firstAssetTransfer.contract,
-          tokenId: firstAssetTransfer.tokenId,
-          value: firstAssetTransfer.value,
-        };
+        ? {
+            type: firstAssetTransfer.type,
+            token: firstAssetTransfer.contract,
+            tokenId: firstAssetTransfer.tokenId,
+          }
+        : {
+            type: firstAssetTransfer.type,
+            token: firstAssetTransfer.contract,
+            tokenId: firstAssetTransfer.tokenId,
+            value: firstAssetTransfer.value,
+          };
 
   const category =
     firstAssetTransfer.type === 'erc721' ? 'NFT' : 'FUNGIBLE_TOKEN';
 
   transaction.context = {
-    actions: [HeuristicContextActionEnum.RECEIVED_AIRDROP],
+    actions: [
+      HeuristicContextActionEnum.RECEIVED_AIRDROP,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.RECEIVED_AIRDROP}`,
+    ],
 
     variables: {
       recipient:
@@ -137,16 +141,16 @@ export function generate(transaction: Transaction): Transaction {
         transaction.assetTransfers.length === 1
           ? firstToken
           : assets.length === 1
-          ? {
-              type: 'address',
-              value: firstAssetTransfer.contract,
-            }
-          : {
-              type: 'number',
-              value: transaction.assetTransfers.length,
-              emphasis: true,
-              unit: 'assets',
-            },
+            ? {
+                type: 'address',
+                value: firstAssetTransfer.contract,
+              }
+            : {
+                type: 'number',
+                value: transaction.assetTransfers.length,
+                emphasis: true,
+                unit: 'assets',
+              },
       sender:
         senders.length === 1
           ? {

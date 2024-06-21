@@ -3,6 +3,7 @@ import {
   ERC20Asset,
   ERC721AssetTransfer,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Transaction,
 } from '../../../types';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
@@ -100,7 +101,10 @@ export function generate(transaction: Transaction): Transaction {
     Object.keys(totalERC20Payment).length > 0;
 
   transaction.context = {
-    actions: [HeuristicContextActionEnum.MINTED],
+    actions: [
+      HeuristicContextActionEnum.MINTED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.MINTED}`,
+    ],
 
     variables: {
       recipient: {

@@ -8,6 +8,7 @@ import {
   ContextSummaryVariableType,
   EventLogTopics,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Log,
   Transaction,
 } from '../../../types';
@@ -135,7 +136,10 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
-    actions: [HeuristicContextActionEnum.BRIDGED],
+    actions: [
+      HeuristicContextActionEnum.BRIDGED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BRIDGED}`,
+    ],
 
     variables: {
       subject: {

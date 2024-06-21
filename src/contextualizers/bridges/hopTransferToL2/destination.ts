@@ -3,6 +3,7 @@ import {
   AssetType,
   EventLogTopics,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Transaction,
 } from '../../../types';
 import {
@@ -77,7 +78,10 @@ export function generate(transaction: Transaction): Transaction {
   );
 
   transaction.context = {
-    actions: [HeuristicContextActionEnum.BRIDGED],
+    actions: [
+      HeuristicContextActionEnum.BRIDGED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BRIDGED}`,
+    ],
 
     summaries: {
       category: 'MULTICHAIN',
