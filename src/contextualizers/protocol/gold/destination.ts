@@ -147,8 +147,8 @@ export function generate(transaction: Transaction): Transaction {
 
   transaction.context = {
     actions: [
-      HeuristicContextActionEnum.RECEIVED,
       `${Protocols.GOLD}.${GoldContextActionEnum.RECEIVED}`,
+      HeuristicContextActionEnum.RECEIVED,
     ],
 
     summaries: {

@@ -235,8 +235,8 @@ export const generate = (transaction: Transaction): Transaction => {
         };
         transaction.context = {
           actions: [
-            HeuristicContextActionEnum.MINTED,
             `${Protocols.FRENPET}.${FrenpetContextActionEnum.MINTED}`,
+            HeuristicContextActionEnum.MINTED,
           ],
 
           variables: {
@@ -261,8 +261,8 @@ export const generate = (transaction: Transaction): Transaction => {
       } else {
         transaction.context = {
           actions: [
-            HeuristicContextActionEnum.MINTED,
             `${Protocols.FRENPET}.${FrenpetContextActionEnum.MINTED}`,
+            HeuristicContextActionEnum.MINTED,
           ],
 
           variables: {

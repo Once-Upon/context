@@ -91,8 +91,8 @@ export function generate(transaction: Transaction): Transaction {
   // Pull out relevant data for faucet transaction
   transaction.context = {
     actions: [
-      HeuristicContextActionEnum.BOUGHT,
       `${Protocols.FARCASTER}.${FarcasterContextActionEnum.BOUGHT}`,
+      HeuristicContextActionEnum.BOUGHT,
     ],
 
     variables: {

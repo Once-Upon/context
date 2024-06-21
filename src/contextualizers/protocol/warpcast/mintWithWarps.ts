@@ -91,8 +91,8 @@ export function generate(transaction: Transaction): Transaction {
 
   transaction.context = {
     actions: [
-      HeuristicContextActionEnum.MINTED,
       `${Protocols.WARPCAST}.${WarpcastContextActionEnum.MINTED}`,
+      HeuristicContextActionEnum.MINTED,
     ],
 
     variables: {
