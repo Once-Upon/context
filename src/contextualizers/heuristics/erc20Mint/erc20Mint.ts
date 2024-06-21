@@ -101,7 +101,10 @@ export function generate(transaction: Transaction): Transaction {
       : '0';
 
   transaction.context = {
-    actions: [HeuristicContextActionEnum.MINTED, `${HeuristicPrefix}.${HeuristicContextActionEnum.MINTED}`],
+    actions: [
+      HeuristicContextActionEnum.MINTED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.MINTED}`,
+    ],
 
     variables: {
       token: {
