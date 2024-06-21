@@ -89,7 +89,10 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
-    actions: [HeuristicContextActionEnum.BRIDGED, `${HeuristicPrefix}.${HeuristicContextActionEnum.BRIDGED}`],
+    actions: [
+      HeuristicContextActionEnum.BRIDGED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BRIDGED}`,
+    ],
 
     summaries: {
       category: 'MULTICHAIN',
