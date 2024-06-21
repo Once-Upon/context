@@ -8,6 +8,7 @@ import {
   AssetType,
   ERC20Asset,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Transaction,
 } from '../../../types';
 
@@ -106,7 +107,10 @@ export function generate(transaction: Transaction): Transaction {
     (totalETHPayment > BigInt(0) ? 1 : 0);
 
   transaction.context = {
-    actions: [HeuristicContextActionEnum.BOUGHT],
+    actions: [
+      HeuristicContextActionEnum.BOUGHT,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BOUGHT}`,
+    ],
 
     variables: {
       userOrUsers:
@@ -130,16 +134,16 @@ export function generate(transaction: Transaction): Transaction {
               value: receivedNfts[0].value,
             }
           : receivedNftContracts.length === 1
-          ? {
-              type: 'address',
-              value: receivedNftContracts[0],
-            }
-          : {
-              type: 'number',
-              value: receivedNfts.length,
-              emphasis: true,
-              unit: 'NFTs',
-            },
+            ? {
+                type: 'address',
+                value: receivedNftContracts[0],
+              }
+            : {
+                type: 'number',
+                value: receivedNfts.length,
+                emphasis: true,
+                unit: 'NFTs',
+              },
       price:
         totalAssets > 1
           ? {
@@ -149,16 +153,16 @@ export function generate(transaction: Transaction): Transaction {
               unit: 'assets',
             }
           : ethPayments.length > 0
-          ? {
-              type: AssetType.ETH,
-              value: totalETHPayment.toString(),
-              unit: 'wei',
-            }
-          : {
-              type: AssetType.ERC20,
-              token: Object.values(totalERC20Payment)[0].contract,
-              value: Object.values(totalERC20Payment)[0].value.toString(),
-            },
+            ? {
+                type: AssetType.ETH,
+                value: totalETHPayment.toString(),
+                unit: 'wei',
+              }
+            : {
+                type: AssetType.ERC20,
+                token: Object.values(totalERC20Payment)[0].contract,
+                value: Object.values(totalERC20Payment)[0].value.toString(),
+              },
       sellerOrSellers:
         sendingAddresses.length > 1
           ? {

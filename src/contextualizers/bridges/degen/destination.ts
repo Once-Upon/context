@@ -8,6 +8,7 @@ import {
   ContextSummaryVariableType,
   HeuristicContextActionEnum,
   AssetTransfer,
+  HeuristicPrefix,
 } from '../../../types';
 import { DEGEN_BRIDGES } from './constants';
 
@@ -85,7 +86,10 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
-    actions: [HeuristicContextActionEnum.BRIDGED],
+    actions: [
+      HeuristicContextActionEnum.BRIDGED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BRIDGED}`,
+    ],
 
     summaries: {
       category: 'MULTICHAIN',

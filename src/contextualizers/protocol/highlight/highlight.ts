@@ -1,5 +1,11 @@
 import { Abi, Hex } from 'viem';
-import { AssetType, EventLogTopics, Transaction } from '../../../types';
+import {
+  AssetType,
+  EventLogTopics,
+  HighlightContextActionEnum,
+  Protocols,
+  Transaction,
+} from '../../../types';
 import { MINT_MANAGER_ABI, MINT_MANAGER_CONTRACT } from './constants';
 import { decodeLog } from '../../../helpers/utils';
 import { generate as erc721Generate } from '../../heuristics/erc721Mint/erc721Mint';
@@ -55,6 +61,11 @@ export const generate = (transaction: Transaction): Transaction => {
   if (decodedLog) {
     const mintReferralAmount = decodedLog.args['amount'].toString();
     const mintReferralCurrency = decodedLog.args['currency'].toLowerCase();
+
+    transaction.context.actions = [
+      `${Protocols.HIGHLIGHT}.${HighlightContextActionEnum.MINTED}`,
+      ...(transaction.context.actions || []),
+    ];
 
     transaction.context.variables = {
       ...transaction.context.variables,

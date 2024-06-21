@@ -1,4 +1,7 @@
-import { HeuristicContextAction } from './heuristicContextAction';
+import {
+  HeuristicContextAction,
+  HeuristicPrefix,
+} from './heuristicContextAction';
 import { ProtocolContextAction, Protocols } from './protocolContextAction';
 import { BridgeContextAction } from './bridge';
 
@@ -9,6 +12,7 @@ export type ContextAction =
 
 export type ContextActionID =
   | `${Protocols}.${ProtocolContextAction}`
+  | `${typeof HeuristicPrefix}.${HeuristicContextAction | BridgeContextAction}`
   | HeuristicContextAction
   | BridgeContextAction;
 

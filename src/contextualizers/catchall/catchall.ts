@@ -5,6 +5,7 @@ import {
   ERC721Asset,
   ETHAsset,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Transaction,
 } from '../../types';
 
@@ -30,7 +31,10 @@ export function generate(transaction: Transaction): Transaction {
   const functionName = transaction?.decoded?.name || '';
 
   transaction.context = {
-    actions: [HeuristicContextActionEnum.INTERACTED_WITH],
+    actions: [
+      HeuristicContextActionEnum.INTERACTED_WITH,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.INTERACTED_WITH}`,
+    ],
 
     variables: {
       address: {
@@ -235,17 +239,17 @@ export function generate(transaction: Transaction): Transaction {
               value: assetTransfer.value,
             }
           : assetTransfer.type === AssetType.ERC721
-          ? {
-              type: AssetType.ERC721,
-              tokenId: assetTransfer.tokenId,
-              token: assetTransfer.contract,
-            }
-          : {
-              type: AssetType.ERC1155,
-              tokenId: assetTransfer.tokenId,
-              token: assetTransfer.contract,
-              value: assetTransfer.value,
-            },
+            ? {
+                type: AssetType.ERC721,
+                tokenId: assetTransfer.tokenId,
+                token: assetTransfer.contract,
+              }
+            : {
+                type: AssetType.ERC1155,
+                tokenId: assetTransfer.tokenId,
+                token: assetTransfer.contract,
+                value: assetTransfer.value,
+              },
       sender: {
         type: 'address',
         value: sender,

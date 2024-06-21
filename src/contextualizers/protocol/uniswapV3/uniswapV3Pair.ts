@@ -3,6 +3,7 @@ import {
   AssetType,
   ERC20Asset,
   EventLogTopics,
+  HeuristicContextActionEnum,
   ProtocolMap,
   Protocols,
   Transaction,
@@ -82,6 +83,7 @@ export const generate = (transaction: Transaction): Transaction => {
   transaction.context = {
     actions: [
       `${Protocols.UNISWAP_V3_PAIR}.${UniswapV3PairActionEnum.SWAPPED}`,
+      HeuristicContextActionEnum.SWAPPED,
     ],
 
     variables: {

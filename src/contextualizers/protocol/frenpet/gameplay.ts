@@ -12,6 +12,7 @@ import {
   FrenpetContextActionEnum,
   ProtocolMap,
   Protocols,
+  HeuristicContextActionEnum,
 } from '../../../types';
 import { decodeFunction, decodeLog } from '../../../helpers/utils';
 
@@ -233,7 +234,10 @@ export const generate = (transaction: Transaction): Transaction => {
           value: assetSent.value,
         };
         transaction.context = {
-          actions: [`${Protocols.FRENPET}.${FrenpetContextActionEnum.MINTED}`],
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.MINTED}`,
+            HeuristicContextActionEnum.MINTED,
+          ],
 
           variables: {
             minter,
@@ -256,7 +260,10 @@ export const generate = (transaction: Transaction): Transaction => {
         };
       } else {
         transaction.context = {
-          actions: [`${Protocols.FRENPET}.${FrenpetContextActionEnum.MINTED}`],
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.MINTED}`,
+            HeuristicContextActionEnum.MINTED,
+          ],
 
           variables: {
             minter,

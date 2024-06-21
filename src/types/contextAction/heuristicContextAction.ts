@@ -15,6 +15,8 @@ export type HeuristicContextAction =
   | HeuristicContextActionEnum.SENT_MESSAGE
   | HeuristicContextActionEnum.CANCELED_A_PENDING_TRANSACTION;
 
+export const HeuristicPrefix = 'HEURISTIC' as const;
+
 export enum HeuristicContextActionEnum {
   BOUGHT = 'BOUGHT',
   BRIDGED = 'BRIDGED',

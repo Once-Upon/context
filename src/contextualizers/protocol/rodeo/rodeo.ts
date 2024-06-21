@@ -1,5 +1,12 @@
 import { Hex } from 'viem';
-import { AssetType, EventLogTopics, Transaction, Log } from '../../../types';
+import {
+  AssetType,
+  EventLogTopics,
+  Transaction,
+  Log,
+  RodeoContextActionEnum,
+  Protocols,
+} from '../../../types';
 import {
   MULTI_TOKEN_DROP_MARKET_ABI,
   MULTI_TOKEN_DROP_MARKET_CONTRACT,
@@ -61,6 +68,10 @@ export const generate = (transaction: Transaction): Transaction => {
   )
     return transaction;
 
+  transaction.context.actions = [
+    `${Protocols.RODEO}.${RodeoContextActionEnum.MINTED}`,
+    ...(transaction.context.actions || []),
+  ];
   transaction.context.variables = {
     ...transaction.context.variables,
     numOfEth: {

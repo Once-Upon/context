@@ -8,6 +8,7 @@ import {
   ContextERC1155Type,
   AssetTransfer,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
 } from '../../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -73,7 +74,10 @@ export function generate(transaction: Transaction): Transaction {
 
   // TODO; not sure why we didn't set context here for optimism
   transaction.context = {
-    actions: [HeuristicContextActionEnum.BRIDGED],
+    actions: [
+      HeuristicContextActionEnum.BRIDGED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BRIDGED}`,
+    ],
 
     summaries: {
       category: 'MULTICHAIN',

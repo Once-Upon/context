@@ -3,6 +3,7 @@ import {
   ERC1155Asset,
   ERC721Asset,
   ETHAsset,
+  HeuristicContextActionEnum,
   ProtocolMap,
   Protocols,
   Transaction,
@@ -89,7 +90,10 @@ export function generate(transaction: Transaction): Transaction {
   if (!sent) return transaction;
 
   transaction.context = {
-    actions: [`${Protocols.WARPCAST}.${WarpcastContextActionEnum.MINTED}`],
+    actions: [
+      `${Protocols.WARPCAST}.${WarpcastContextActionEnum.MINTED}`,
+      HeuristicContextActionEnum.MINTED,
+    ],
 
     variables: {
       buyer: {

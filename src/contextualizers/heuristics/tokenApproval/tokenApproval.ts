@@ -1,5 +1,9 @@
 import { Hex } from 'viem';
-import { HeuristicContextActionEnum, Transaction } from '../../../types';
+import {
+  HeuristicContextActionEnum,
+  HeuristicPrefix,
+  Transaction,
+} from '../../../types';
 import approveAbi from './abis/Approve';
 import setApprovalForAllAbi from './abis/SetApprovalForAll';
 import { decodeTransactionInput } from '../../../helpers/utils';
@@ -75,7 +79,10 @@ export function generate(transaction: Transaction): Transaction {
   switch (decoded.functionName) {
     case 'approve':
       transaction.context = {
-        actions: [HeuristicContextActionEnum.GAVE_ACCESS],
+        actions: [
+          HeuristicContextActionEnum.GAVE_ACCESS,
+          `${HeuristicPrefix}.${HeuristicContextActionEnum.GAVE_ACCESS}`,
+        ],
 
         variables: {
           approver: {
@@ -110,7 +117,10 @@ export function generate(transaction: Transaction): Transaction {
       const approved = args[1];
       if (approved === true) {
         transaction.context = {
-          actions: [HeuristicContextActionEnum.GAVE_ACCESS],
+          actions: [
+            HeuristicContextActionEnum.GAVE_ACCESS,
+            `${HeuristicPrefix}.${HeuristicContextActionEnum.GAVE_ACCESS}`,
+          ],
 
           variables: {
             approver: {
@@ -142,7 +152,10 @@ export function generate(transaction: Transaction): Transaction {
         };
       } else {
         transaction.context = {
-          actions: [HeuristicContextActionEnum.REVOKED_ACCESS],
+          actions: [
+            HeuristicContextActionEnum.REVOKED_ACCESS,
+            `${HeuristicPrefix}.${HeuristicContextActionEnum.REVOKED_ACCESS}`,
+          ],
 
           variables: {
             approver: {

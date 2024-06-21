@@ -12,6 +12,7 @@ import {
   ContextNumberType,
   Protocols,
   ProtocolMap,
+  HeuristicContextActionEnum,
 } from '../../../types';
 import {
   PACK_ACTIVATION_DESTINATION_ABI,
@@ -145,7 +146,10 @@ export function generate(transaction: Transaction): Transaction {
   };
 
   transaction.context = {
-    actions: [`${Protocols.GOLD}.${GoldContextActionEnum.RECEIVED}`],
+    actions: [
+      `${Protocols.GOLD}.${GoldContextActionEnum.RECEIVED}`,
+      HeuristicContextActionEnum.RECEIVED,
+    ],
 
     summaries: {
       category: 'PROTOCOL_1',

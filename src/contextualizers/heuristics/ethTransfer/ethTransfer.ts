@@ -1,6 +1,7 @@
 import {
   AssetType,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Transaction,
 } from '../../../types';
 
@@ -31,7 +32,10 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
-    actions: [HeuristicContextActionEnum.SENT],
+    actions: [
+      HeuristicContextActionEnum.SENT,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.SENT}`,
+    ],
 
     variables: {
       sender: {
