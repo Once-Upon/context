@@ -251,7 +251,24 @@ export type GoldContextAction =
   | GoldContextActionEnum.ACTIVATED_A_STARTER_PACK
   | GoldContextActionEnum.RECEIVED;
 
+// Zora-pattern minting contracts
+export enum ZoraContextActionEnum {
+  MINTED = 'MINTED',
+}
+export type ZoraContextAction = ZoraContextActionEnum.MINTED;
+export enum HighlightContextActionEnum {
+  MINTED = 'MINTED',
+}
+export type HighlightContextAction = HighlightContextActionEnum.MINTED;
+export enum RodeoContextActionEnum {
+  MINTED = 'MINTED',
+}
+export type RodeoContextAction = RodeoContextActionEnum.MINTED;
+
 export type ProtocolContextAction =
+  | ZoraContextAction
+  | HighlightContextAction
+  | RodeoContextAction
   | WETHContextAction
   | ENSContextAction
   | CryptoPunksContextAction
@@ -273,6 +290,9 @@ export type ProtocolContextAction =
   | GoldContextAction;
 
 export enum Protocols {
+  ZORA = 'ZORA',
+  HIGHLIGHT = 'HIGHLIGHT',
+  RODEO = 'RODEO',
   WETH = 'WETH',
   ENS = 'ENS',
   CRYPTOPUNKS = 'CRYPTOPUNKS',
@@ -304,6 +324,7 @@ export const ProtocolMap = {
   [Protocols.EAS]: 'EAS',
   [Protocols.ENS]: 'ENS',
   [Protocols.FARCASTER]: 'Farcaster',
+  [Protocols.HIGHLIGHT]: 'Highlight',
   [Protocols.WARPCAST]: 'Warpcast',
   [Protocols.FRENPET]: 'Fren Pet',
   [Protocols.FRIENDTECH]: 'friend.tech',
@@ -311,7 +332,9 @@ export const ProtocolMap = {
   [Protocols.LEEROY]: 'Leeroy',
   [Protocols.NOUNS_GOVERNOR]: 'Nouns',
   [Protocols.NOUNS_AUCTION_HOUSE]: 'Nouns',
+  [Protocols.RODEO]: 'Rodeo',
   [Protocols.UNISWAP_V2_ROUTER]: 'Uniswap',
   [Protocols.UNISWAP_V3_PAIR]: 'Uniswap',
   [Protocols.WETH]: 'WETH',
+  [Protocols.ZORA]: 'Zora',
 };

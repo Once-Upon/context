@@ -1,5 +1,11 @@
 import { Hex } from 'viem';
-import { AssetType, EventLogTopics, Transaction } from '../../../types';
+import {
+  AssetType,
+  EventLogTopics,
+  Protocols,
+  Transaction,
+  ZoraContextActionEnum,
+} from '../../../types';
 import {
   PROTOCOL_REWARDS_ABI,
   PROTOCOL_REWARDS_CONTRACT,
@@ -67,6 +73,10 @@ export const generate = (transaction: Transaction): Transaction => {
   )
     return transaction;
 
+  transaction.context.actions = [
+    `${Protocols.ZORA}.${ZoraContextActionEnum.MINTED}`,
+    ...(transaction.context.actions || []),
+  ];
   transaction.context.variables = {
     ...transaction.context.variables,
     numOfEth: {
