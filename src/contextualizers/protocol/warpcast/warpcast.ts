@@ -5,6 +5,7 @@ import {
   ProtocolMap,
   Protocols,
   FarcasterContextActionEnum,
+  HeuristicContextActionEnum,
 } from '../../../types';
 
 const WARPCAST_DEPOSIT_ADDRESS = '0x79afe0fd5375ca1d30bb6b28ae7529a1e2387baa';
@@ -89,7 +90,10 @@ export function generate(transaction: Transaction): Transaction {
 
   // Pull out relevant data for faucet transaction
   transaction.context = {
-    actions: [`${Protocols.FARCASTER}.${FarcasterContextActionEnum.BOUGHT}`],
+    actions: [
+      HeuristicContextActionEnum.BOUGHT,
+      `${Protocols.FARCASTER}.${FarcasterContextActionEnum.BOUGHT}`,
+    ],
 
     variables: {
       buyer: {
