@@ -21,6 +21,7 @@ import { highlightContextualizer } from './highlight';
 import { warpcastContextualizer } from './warpcast';
 import { boomboxContextualizer } from './boombox';
 import { goldContextualizer } from './gold';
+import { rodeoContextualizer } from './rodeo';
 
 const children = {
   wethContextualizer,
@@ -45,6 +46,7 @@ const children = {
   warpcastContextualizer,
   boomboxContextualizer,
   goldContextualizer,
+  rodeoContextualizer,
 };
 
 const protocolContextualizers = Object.fromEntries(
