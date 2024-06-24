@@ -3,7 +3,7 @@ import { detect, generate } from './zoraCreator';
 import { containsBigInt, contextSummary } from '../../../helpers/utils';
 import mintWithRewards0x6ccb3140 from '../../test/transactions/mintWithRewards-0x6ccb3140.json';
 import zoraMintWithRewards0x837a9a69 from '../../test/transactions/zoraMintWithRewards-0x837a9a69.json';
-import zoraEarlyReturn0xf811acb9 from '../../test/transactions/zoraEarlyReturn-0xf811acb9.json';
+import zoraProtocolSpecific0xf811acb9 from '../../test/transactions/zoraProtocolSpecific-0xf811acb9.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 
 describe('Zora Mint', () => {
@@ -55,13 +55,13 @@ describe('Zora Mint', () => {
   });
 
   it('Should have protocol-specific context action even with early return', () => {
-    const zoraEarlyReturn1 = detect(
-      zoraEarlyReturn0xf811acb9 as unknown as Transaction,
+    const zoraProtocolSpecific1 = detect(
+      zoraProtocolSpecific0xf811acb9 as unknown as Transaction,
     );
-    expect(zoraEarlyReturn1).toBe(true);
+    expect(zoraProtocolSpecific).toBe(true);
 
     const contextualized = generate(
-      zoraEarlyReturn0xf811acb9 as unknown as Transaction,
+      zoraProtocolSpecific0xf811acb9 as unknown as Transaction,
     );
     expect(contextualized['contextActions']).toContain('ZORA.MINTED');
   });
