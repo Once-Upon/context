@@ -91,11 +91,18 @@ describe('Highlight', () => {
   });
 
   it('Should have protocol-specific context action', () => {
-    const highlight1 = detect(highlightErc20_0x1f0c411b as unknown as Transaction);
+    const highlight1 = detect(
+      highlightErc20_0x1f0c411b as unknown as Transaction,
+    );
     expect(highlight1).toBe(true);
 
-    const contextualized = generate(highlightErc20_0x1f0c411b as unknown as Transaction);
-    expect(contextualized['contextActions']).toContain('HIGHLIGHT.MINTED');
+    const contextualized = generate(
+      highlightErc20_0x1f0c411b as unknown as Transaction,
+    );
+    if (!contextualized.context) {
+      throw new Error('Context is undefined');
+    }
+    expect(contextualized['context']['actions']).toContain('HIGHLIGHT.MINTED');
   });
 
   it('Should not detect as highlight', () => {

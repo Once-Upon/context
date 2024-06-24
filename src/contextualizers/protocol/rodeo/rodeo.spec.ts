@@ -33,6 +33,9 @@ describe('Rodeo Mint', () => {
     expect(rodeo1).toBe(true);
 
     const contextualized = generate(rodeo0x3c346a6d as unknown as Transaction);
-    expect(contextualized['contextActions']).toContain('RODEO.MINTED');
+    if (!contextualized.context) {
+      throw new Error('Context is undefined');
+    }
+    expect(contextualized['context']['actions']).toContain('RODEO.MINTED');
   });
 });

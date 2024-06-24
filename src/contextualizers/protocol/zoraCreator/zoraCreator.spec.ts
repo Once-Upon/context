@@ -63,6 +63,9 @@ describe('Zora Mint', () => {
     const contextualized = generate(
       zoraProtocolSpecific0xf811acb9 as unknown as Transaction,
     );
-    expect(contextualized['contextActions']).toContain('ZORA.MINTED');
+    if (!contextualized.context) {
+      throw new Error('Context is undefined');
+    }
+    expect(contextualized['context']['actions']).toContain('ZORA.MINTED');
   });
 });
