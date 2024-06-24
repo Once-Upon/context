@@ -58,7 +58,7 @@ describe('Zora Mint', () => {
     const zoraProtocolSpecific1 = detect(
       zoraProtocolSpecific0xf811acb9 as unknown as Transaction,
     );
-    expect(zoraProtocolSpecific).toBe(true);
+    expect(zoraProtocolSpecific1).toBe(true);
 
     const contextualized = generate(
       zoraProtocolSpecific0xf811acb9 as unknown as Transaction,
