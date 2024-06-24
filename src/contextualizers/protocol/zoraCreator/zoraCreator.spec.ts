@@ -59,5 +59,10 @@ describe('Zora Mint', () => {
       zoraEarlyReturn0xf811acb9 as unknown as Transaction,
     );
     expect(zoraEarlyReturn1).toBe(true);
+
+    const contextualized = generate(
+      zoraEarlyReturn0xf811acb9 as unknown as Transaction,
+    );
+    expect(contextualized['contextActions']).toContain('ZORA.MINTED');
   });
 });

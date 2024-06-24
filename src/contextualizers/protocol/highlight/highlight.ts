@@ -45,7 +45,7 @@ export const generate = (transaction: Transaction): Transaction => {
   transaction.context.summaries.en.title = 'Highlight';
 
   // update context action list
-  transaction.context.actions = [
+  transaction['contextActions'] = [
     `${Protocols.HIGHLIGHT}.${HighlightContextActionEnum.MINTED}`,
     ...(transaction.context.actions || []),
   ];

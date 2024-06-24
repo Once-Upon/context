@@ -48,7 +48,7 @@ export const generate = (transaction: Transaction): Transaction => {
   transaction.context.summaries.en.title = 'Rodeo';
 
   // update context action list
-  transaction.context.actions = [
+  transaction['contextActions'] = [
     `${Protocols.RODEO}.${RodeoContextActionEnum.MINTED}`,
     ...(transaction.context.actions || []),
   ];
