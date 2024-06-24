@@ -44,6 +44,12 @@ export const generate = (transaction: Transaction): Transaction => {
   transaction.context.summaries.category = 'PROTOCOL_1';
   transaction.context.summaries.en.title = 'Highlight';
 
+  // update context action list
+  transaction.context.actions = [
+    `${Protocols.HIGHLIGHT}.${HighlightContextActionEnum.MINTED}`,
+    ...(transaction.context.actions || []),
+  ];
+
   // check if mint with rewards
   const logs = transaction.logs ?? [];
   let decodedLog;
@@ -61,11 +67,6 @@ export const generate = (transaction: Transaction): Transaction => {
   if (decodedLog) {
     const mintReferralAmount = decodedLog.args['amount'].toString();
     const mintReferralCurrency = decodedLog.args['currency'].toLowerCase();
-
-    transaction.context.actions = [
-      `${Protocols.HIGHLIGHT}.${HighlightContextActionEnum.MINTED}`,
-      ...(transaction.context.actions || []),
-    ];
 
     transaction.context.variables = {
       ...transaction.context.variables,

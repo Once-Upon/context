@@ -50,6 +50,12 @@ export const generate = (transaction: Transaction): Transaction => {
   transaction.context.summaries.category = 'PROTOCOL_1';
   transaction.context.summaries.en.title = 'Zora';
 
+  // update context action list
+  transaction.context.actions = [
+    `${Protocols.ZORA}.${ZoraContextActionEnum.MINTED}`,
+    ...(transaction.context.actions || []),
+  ];
+
   const logs =
     transaction.logs && transaction.logs.length > 0 ? transaction.logs : [];
   const rewardsDepositLog = logs.find(
@@ -73,10 +79,6 @@ export const generate = (transaction: Transaction): Transaction => {
   )
     return transaction;
 
-  transaction.context.actions = [
-    `${Protocols.ZORA}.${ZoraContextActionEnum.MINTED}`,
-    ...(transaction.context.actions || []),
-  ];
   transaction.context.variables = {
     ...transaction.context.variables,
     numOfEth: {

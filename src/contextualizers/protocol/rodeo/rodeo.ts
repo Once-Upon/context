@@ -47,6 +47,12 @@ export const generate = (transaction: Transaction): Transaction => {
   transaction.context.summaries.category = 'PROTOCOL_1';
   transaction.context.summaries.en.title = 'Rodeo';
 
+  // update context action list
+  transaction.context.actions = [
+    `${Protocols.RODEO}.${RodeoContextActionEnum.MINTED}`,
+    ...(transaction.context.actions || []),
+  ];
+
   const logs =
     transaction.logs && transaction.logs.length > 0 ? transaction.logs : [];
   const mintFromFixedPriceSaleLog = findMintFromFixedPriceSaleLog(logs);
@@ -68,10 +74,6 @@ export const generate = (transaction: Transaction): Transaction => {
   )
     return transaction;
 
-  transaction.context.actions = [
-    `${Protocols.RODEO}.${RodeoContextActionEnum.MINTED}`,
-    ...(transaction.context.actions || []),
-  ];
   transaction.context.variables = {
     ...transaction.context.variables,
     numOfEth: {
