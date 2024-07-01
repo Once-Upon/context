@@ -11,7 +11,7 @@ export const PLOT_ERC721_CONTRACT =
 export const Z_GOLD_CONTRACT_ADDRESS =
   '0x387d73bd8682dceb3327b940213d5de50ee2bba2';
 export const PLOT_ACTION_CONTRACT_ADDRESS =
-  '0xB45805566A842efB6329c11e092158f3E0eDdaa2';
+  '0xb45805566a842efb6329c11e092158f3e0eddaa2';
 
 export const PACK_ACTIVATION_SOURCE_ABI = packActivationSourceAbi;
 export const PACK_ACTIVATION_DESTINATION_ABI = packActivationDestinationAbi;
