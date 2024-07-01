@@ -18,7 +18,7 @@ describe('Gold Destination', () => {
       );
       expect(transaction1.context?.summaries?.en.title).toBe('Gold');
       expect(contextSummary(transaction1.context)).toBe(
-        '0xB374FDD2951A65e827Dab88f692a6819dc43c6D7 RECEIVED plots 0xe2f275b2a5c376fd10006b67a9be0cc3bd5488e8 #0 and 0xe2f275b2a5c376fd10006b67a9be0cc3bd5488e8 #1 and 81 0x12647ceec053d386a7343b7739a1e1fddadef796 and 912670 0x387d73bd8682dceb3327b940213d5de50ee2bba2',
+        '0x9a37e57d177c5ff8817b55da36f2a2b3532cde3f RECEIVED plots 0xe2f275b2a5c376fd10006b67a9be0cc3bd5488e8 #4 and 0xe2f275b2a5c376fd10006b67a9be0cc3bd5488e8 #5 and 9 0xf4a785a80d91cadc149f778ee17d35cd008203f7 and 202816 0x387d73bd8682dceb3327b940213d5de50ee2bba2',
       );
       expect(containsBigInt(transaction1.context)).toBe(false);
     });
