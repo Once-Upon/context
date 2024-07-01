@@ -67,7 +67,11 @@ export function generate(transaction: Transaction): Transaction {
   if (!decoded) return transaction;
 
   // grab variables from decoded event
-  const activator = decoded.args['activator'];
+  const addressListing = decoded.args['addressListing'];
+  const activator =
+    addressListing && addressListing.length > 0
+      ? addressListing[0].toLowerCase()
+      : '';
 
   transaction.context = {
     summaries: {

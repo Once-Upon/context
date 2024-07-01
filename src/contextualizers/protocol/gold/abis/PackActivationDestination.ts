@@ -2,6 +2,11 @@ const abi = [
   {
     inputs: [
       {
+        internalType: 'address[]',
+        name: 'addressListing',
+        type: 'address[]',
+      },
+      {
         internalType: 'uint256',
         name: 'activationSourceNonce',
         type: 'uint256',
@@ -25,11 +30,6 @@ const abi = [
         internalType: 'uint8[]',
         name: 'randomListingYield',
         type: 'uint8[]',
-      },
-      {
-        internalType: 'address',
-        name: 'activator',
-        type: 'address',
       },
       {
         internalType: 'uint8',
@@ -72,6 +72,12 @@ const abi = [
     inputs: [
       {
         indexed: false,
+        internalType: 'address[]',
+        name: 'addressListing',
+        type: 'address[]',
+      },
+      {
+        indexed: false,
         internalType: 'uint256[]',
         name: 'plotIds',
         type: 'uint256[]',
@@ -96,8 +102,14 @@ const abi = [
       },
       {
         indexed: true,
+        internalType: 'bytes32',
+        name: 'sugarcaneId',
+        type: 'bytes32',
+      },
+      {
+        indexed: true,
         internalType: 'address',
-        name: 'activator',
+        name: 'assetDestination',
         type: 'address',
       },
       {

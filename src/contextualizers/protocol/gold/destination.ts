@@ -123,7 +123,12 @@ export function generate(transaction: Transaction): Transaction {
   ).toString();
   const zGoldGameAddress = gameMintedTokenDecoded[0].args['gameAddress'];
   const cropGameAddress = gameMintedTokenDecoded[1].args['gameAddress'];
-  const activator = activatedStarterPackOnDestinationDecoded.args['activator'];
+  const addressListing =
+    activatedStarterPackOnDestinationDecoded.args['addressListing'];
+  const activator =
+    addressListing && addressListing.length > 0
+      ? addressListing[0].toLowerCase()
+      : '';
 
   const erc721PlotArray =
     plotIds.length > 0
