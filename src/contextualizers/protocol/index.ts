@@ -20,7 +20,7 @@ import { bnsContextualizer } from './bns';
 import { highlightContextualizer } from './highlight';
 import { warpcastContextualizer } from './warpcast';
 import { boomboxContextualizer } from './boombox';
-import { goldContextualizer } from './gold';
+import { goldContextualizer } from './cropXYZ';
 import { rodeoContextualizer } from './rodeo';
 
 const children = {
