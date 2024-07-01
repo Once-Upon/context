@@ -230,11 +230,17 @@ export type BoomboxContextAction =
 export enum GoldContextActionEnum {
   ACTIVATED_A_STARTER_PACK = 'ACTIVATED_A_STARTER_PACK',
   RECEIVED = 'RECEIVED',
+  HARVESTED_PLOT = 'HARVESTED_PLOT',
+  CLEARED_HARVEST = 'CLEARED_HARVEST',
+  STAKED_CROP = 'STAKED_CROP',
 }
 
 export type GoldContextAction =
   | GoldContextActionEnum.ACTIVATED_A_STARTER_PACK
-  | GoldContextActionEnum.RECEIVED;
+  | GoldContextActionEnum.RECEIVED
+  | GoldContextActionEnum.HARVESTED_PLOT
+  | GoldContextActionEnum.CLEARED_HARVEST
+  | GoldContextActionEnum.STAKED_CROP;
 
 export enum Protocols {
   WETH = 'WETH',
