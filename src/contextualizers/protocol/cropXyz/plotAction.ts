@@ -113,18 +113,13 @@ export function generate(transaction: Transaction): Transaction {
             category: 'PROTOCOL_1',
             en: {
               title: `CropXYZ`,
-              default: '[[player]][[clearedHarvest]][[crop]]',
+              default: '[[player]][[clearedHarvest]]',
             },
           },
           variables: {
             player: {
               type: 'address',
               value: player,
-            },
-            crop: {
-              type: AssetType.ERC20,
-              token: erc20Payments[0].contract,
-              value: erc20Payments[0].value,
             },
             clearedHarvest: {
               type: 'contextAction',
@@ -140,18 +135,13 @@ export function generate(transaction: Transaction): Transaction {
             category: 'PROTOCOL_1',
             en: {
               title: `CropXYZ`,
-              default: '[[player]][[clearedHarvest]][[crop]]',
+              default: '[[player]][[clearedHarvest]]',
             },
           },
           variables: {
             player: {
               type: 'address',
               value: player,
-            },
-            crop: {
-              type: AssetType.ERC20,
-              token: erc20Payments[0].contract,
-              value: erc20Payments[0].value,
             },
             clearedHarvest: {
               type: 'contextAction',
