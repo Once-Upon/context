@@ -157,7 +157,7 @@ export function generate(transaction: Transaction): Transaction {
             category: 'PROTOCOL_1',
             en: {
               title: `CropXYZ`,
-              default: '[[player]][[stakedCrop]][[crop]]',
+              default: '[[player]][[planted]][[crop]]',
             },
           },
           variables: {
@@ -170,9 +170,9 @@ export function generate(transaction: Transaction): Transaction {
               token: erc20Payments[0].contract,
               value: erc20Payments[0].value,
             },
-            stakedCrop: {
+            planted: {
               type: 'contextAction',
-              value: CropXyzContextActionEnum.STAKED_CROP,
+              value: CropXyzContextActionEnum.PLANTED,
             },
           },
         };

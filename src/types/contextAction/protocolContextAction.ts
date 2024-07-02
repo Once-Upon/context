@@ -232,7 +232,7 @@ export enum CropXyzContextActionEnum {
   RECEIVED = 'RECEIVED',
   HARVESTED_PLOT = 'HARVESTED_PLOT',
   CLEARED_HARVEST = 'CLEARED_HARVEST',
-  STAKED_CROP = 'STAKED_CROP',
+  PLANTED = 'PLANTED',
 }
 
 export type CropXyzContextAction =
@@ -240,7 +240,7 @@ export type CropXyzContextAction =
   | CropXyzContextActionEnum.RECEIVED
   | CropXyzContextActionEnum.HARVESTED_PLOT
   | CropXyzContextActionEnum.CLEARED_HARVEST
-  | CropXyzContextActionEnum.STAKED_CROP;
+  | CropXyzContextActionEnum.PLANTED;
 
 export enum Protocols {
   WETH = 'WETH',
