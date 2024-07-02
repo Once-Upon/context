@@ -44,6 +44,10 @@ import ens0xdb203e93 from './test/transactions/ens-0xdb203e93.json';
 import ens0xea1b4ab6 from './test/transactions/ens-0xea1b4ab6.json';
 import ensRegistrar0xb14b4771 from './test/transactions/ensRegistrar-0xb14b4771.json';
 import ensBulkRenew0x25add712 from './test/transactions/ensBulkRenew-0x25add712.json';
+// CropXyz
+import cropXyzPlotAction0x9436b659 from './test/transactions/cropXyzPlotAction-0x9436b659.json';
+import cropXyzPlotAction0x9bb5a737 from './test/transactions/cropXyzPlotAction-0x9bb5a737.json';
+import cropXyzPlotAction0x496c6309 from './test/transactions/cropXyzPlotAction-0x496c6309.json';
 
 describe('ContextualizerService', () => {
   describe('Detect transactions correctly', () => {
@@ -233,6 +237,23 @@ describe('ContextualizerService', () => {
         ensBulkRenew0x25add712 as unknown as Transaction,
       );
       expect(bulkRenew.context?.summaries?.en.title).toBe('ENS');
+    });
+
+    it('Should detect CropXYZ', () => {
+      const plotAction1 = contextualizer.contextualize(
+        cropXyzPlotAction0x9436b659 as unknown as Transaction,
+      );
+      expect(plotAction1.context?.summaries?.en.title).toBe('CropXYZ');
+
+      const plotAction2 = contextualizer.contextualize(
+        cropXyzPlotAction0x9bb5a737 as unknown as Transaction,
+      );
+      expect(plotAction2.context?.summaries?.en.title).toBe('CropXYZ');
+
+      const plotAction3 = contextualizer.contextualize(
+        cropXyzPlotAction0x496c6309 as unknown as Transaction,
+      );
+      expect(plotAction3.context?.summaries?.en.title).toBe('CropXYZ');
     });
   });
 });
