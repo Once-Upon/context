@@ -7,7 +7,7 @@ import { CHAIN_IDS } from '../../../helpers/constants';
 import {
   Transaction,
   EventLogTopics,
-  CropXyzContextActionEnum,
+  SkyoneerContextActionEnum,
   AssetType,
   ContextNumberType,
 } from '../../../types';
@@ -151,7 +151,7 @@ export function generate(transaction: Transaction): Transaction {
     summaries: {
       category: 'PROTOCOL_1',
       en: {
-        title: `CropXYZ`,
+        title: `Skyoneer`,
         default:
           plotIds?.length === 2
             ? '[[activator]][[received]]plots[[plotId0]]and[[plotId1]]and[[crop]]and[[zGold]]'
@@ -175,7 +175,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       received: {
         type: 'contextAction',
-        value: CropXyzContextActionEnum.RECEIVED,
+        value: SkyoneerContextActionEnum.RECEIVED,
       },
     },
   };
