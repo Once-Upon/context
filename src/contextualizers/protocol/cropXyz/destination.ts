@@ -7,7 +7,7 @@ import { CHAIN_IDS } from '../../../helpers/constants';
 import {
   Transaction,
   EventLogTopics,
-  GoldContextActionEnum,
+  CropXyzContextActionEnum,
   AssetType,
   ContextNumberType,
 } from '../../../types';
@@ -15,7 +15,6 @@ import {
   PACK_ACTIVATION_DESTINATION_ABI,
   PACK_ACTIVATION_DESTINATION_CONTRACT,
   PLOT_ERC721_CONTRACT,
-  Z_GOLD_CONTRACT_ADDRESS,
 } from './constants';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -81,7 +80,7 @@ export function generate(transaction: Transaction): Transaction {
 
   // decode ActivatedStarterPackOnDestination event
   let activatedStarterPackOnDestinationDecoded, mintedPlotPackActivateDecoded;
-  const gameMintedTokenDecoded: any[] = [];
+  // const gameMintedTokenDecoded: any[] = [];
   for (const log of transaction.logs) {
     const decoded = decodeLog(PACK_ACTIVATION_DESTINATION_ABI, log.data, [
       log.topic0,
@@ -98,32 +97,38 @@ export function generate(transaction: Transaction): Transaction {
       case 'MintedPlotPackActivate':
         mintedPlotPackActivateDecoded = decoded;
         break;
-      case 'GameMintedToken':
-        gameMintedTokenDecoded.push(decoded);
-        break;
+      // case 'GameMintedToken':
+      //   gameMintedTokenDecoded.push(decoded);
+      //   break;
       default:
         break;
     }
   }
+
   if (
     !activatedStarterPackOnDestinationDecoded ||
-    !mintedPlotPackActivateDecoded ||
-    gameMintedTokenDecoded.length !== 2
+    !mintedPlotPackActivateDecoded
+    // || gameMintedTokenDecoded.length !== 2
   )
     return transaction;
 
   // grab variables from decoded event
   // const cropName = decodedInput.args[2];
   const plotIds = activatedStarterPackOnDestinationDecoded.args['plotIds'];
-  const zGoldAmount = BigInt(
-    gameMintedTokenDecoded[0].args['amount'],
-  ).toString();
-  const cropAmount = BigInt(
-    gameMintedTokenDecoded[1].args['amount'],
-  ).toString();
-  const zGoldGameAddress = gameMintedTokenDecoded[0].args['gameAddress'];
-  const cropGameAddress = gameMintedTokenDecoded[1].args['gameAddress'];
-  const activator = activatedStarterPackOnDestinationDecoded.args['activator'];
+  // const zGoldAmount = BigInt(
+  //   gameMintedTokenDecoded[0].args['amount'],
+  // ).toString();
+  // const cropAmount = BigInt(
+  //   gameMintedTokenDecoded[1].args['amount'],
+  // ).toString();
+  // const zGoldGameAddress = gameMintedTokenDecoded[0].args['gameAddress'];
+  // const cropGameAddress = gameMintedTokenDecoded[1].args['gameAddress'];
+  const addressListing =
+    activatedStarterPackOnDestinationDecoded.args['addressListing'];
+  const activator =
+    addressListing && addressListing.length > 0
+      ? addressListing[0].toLowerCase()
+      : '';
 
   const erc721PlotArray =
     plotIds.length > 0
@@ -146,7 +151,7 @@ export function generate(transaction: Transaction): Transaction {
     summaries: {
       category: 'PROTOCOL_1',
       en: {
-        title: `Gold`,
+        title: `CropXYZ`,
         default:
           plotIds?.length === 2
             ? '[[activator]][[received]]plots[[plotId0]]and[[plotId1]]and[[crop]]and[[zGold]]'
@@ -170,7 +175,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       received: {
         type: 'contextAction',
-        value: GoldContextActionEnum.RECEIVED,
+        value: CropXyzContextActionEnum.RECEIVED,
       },
     },
   };
