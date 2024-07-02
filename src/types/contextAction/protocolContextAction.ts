@@ -227,7 +227,7 @@ export type BoomboxContextAction =
   | BoomboxContextActionEnum.SIGNED
   | BoomboxContextActionEnum.DISTRIBUTED;
 
-export enum GoldContextActionEnum {
+export enum CropXyzContextActionEnum {
   ACTIVATED_A_STARTER_PACK = 'ACTIVATED_A_STARTER_PACK',
   RECEIVED = 'RECEIVED',
   HARVESTED_PLOT = 'HARVESTED_PLOT',
@@ -235,12 +235,12 @@ export enum GoldContextActionEnum {
   STAKED_CROP = 'STAKED_CROP',
 }
 
-export type GoldContextAction =
-  | GoldContextActionEnum.ACTIVATED_A_STARTER_PACK
-  | GoldContextActionEnum.RECEIVED
-  | GoldContextActionEnum.HARVESTED_PLOT
-  | GoldContextActionEnum.CLEARED_HARVEST
-  | GoldContextActionEnum.STAKED_CROP;
+export type CropXyzContextAction =
+  | CropXyzContextActionEnum.ACTIVATED_A_STARTER_PACK
+  | CropXyzContextActionEnum.RECEIVED
+  | CropXyzContextActionEnum.HARVESTED_PLOT
+  | CropXyzContextActionEnum.CLEARED_HARVEST
+  | CropXyzContextActionEnum.STAKED_CROP;
 
 export enum Protocols {
   WETH = 'WETH',
@@ -279,4 +279,4 @@ export type ProtocolContextAction =
   | DisperseAction
   | BNSContextAction
   | BoomboxContextAction
-  | GoldContextAction;
+  | CropXyzContextAction;

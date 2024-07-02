@@ -1,7 +1,7 @@
 import {
   Transaction,
   EventLogTopics,
-  GoldContextActionEnum,
+  CropXyzContextActionEnum,
 } from '../../../types';
 import { PLOT_ACTION_CONTRACT_ADDRESS, PLOT_ACTION_ABI } from './constants';
 import { decodeLog } from '../../../helpers/utils';
@@ -85,7 +85,7 @@ export function generate(transaction: Transaction): Transaction {
           },
           harvested: {
             type: 'contextAction',
-            value: GoldContextActionEnum.HARVESTED_PLOT,
+            value: CropXyzContextActionEnum.HARVESTED_PLOT,
           },
         },
       };
@@ -114,7 +114,7 @@ export function generate(transaction: Transaction): Transaction {
           },
           clearedHarvest: {
             type: 'contextAction',
-            value: GoldContextActionEnum.CLEARED_HARVEST,
+            value: CropXyzContextActionEnum.CLEARED_HARVEST,
           },
         },
       };
@@ -128,7 +128,7 @@ export function generate(transaction: Transaction): Transaction {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: `Gold`,
+            title: `CropXYZ`,
             default: '[[player]][[stakedCrop]]plots[[plotId]]',
           },
         },
@@ -143,7 +143,7 @@ export function generate(transaction: Transaction): Transaction {
           },
           stakedCrop: {
             type: 'contextAction',
-            value: GoldContextActionEnum.STAKED_CROP,
+            value: CropXyzContextActionEnum.STAKED_CROP,
           },
         },
       };

@@ -1,7 +1,7 @@
 import {
   Transaction,
   EventLogTopics,
-  GoldContextActionEnum,
+  CropXyzContextActionEnum,
 } from '../../../types';
 import {
   PACK_ACTIVATION_SOURCE_CONTRACT,
@@ -77,7 +77,7 @@ export function generate(transaction: Transaction): Transaction {
     summaries: {
       category: 'PROTOCOL_1',
       en: {
-        title: `Gold`,
+        title: `CropXYZ`,
         default: '[[activator]][[activated]]',
       },
     },
@@ -88,7 +88,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       activated: {
         type: 'contextAction',
-        value: GoldContextActionEnum.ACTIVATED_A_STARTER_PACK,
+        value: CropXyzContextActionEnum.ACTIVATED_A_STARTER_PACK,
       },
     },
   };
