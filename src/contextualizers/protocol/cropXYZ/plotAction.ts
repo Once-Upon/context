@@ -2,9 +2,11 @@ import {
   Transaction,
   EventLogTopics,
   CropXyzContextActionEnum,
+  AssetType,
 } from '../../../types';
 import { PLOT_ACTION_CONTRACT_ADDRESS, PLOT_ACTION_ABI } from './constants';
-import { decodeLog } from '../../../helpers/utils';
+import { decodeLog, processAssetTransfers } from '../../../helpers/utils';
+import { CHAIN_IDS } from '../../../helpers/constants';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isPackActivationSource = detect(transaction);
@@ -49,9 +51,19 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
-  if (!transaction.logs || !transaction.chainId) return transaction;
+  if (
+    !transaction.logs ||
+    transaction.chainId !== CHAIN_IDS.gold ||
+    !transaction.assetTransfers ||
+    !transaction.netAssetTransfers
+  )
+    return transaction;
 
-  // decode ActivatedStarterPackOnSource event
+  const { erc20Payments } = processAssetTransfers(
+    transaction.netAssetTransfers,
+    transaction.assetTransfers,
+  );
+
   let decoded;
   for (const log of transaction.logs) {
     if (log.address !== PLOT_ACTION_CONTRACT_ADDRESS) continue;
@@ -63,91 +75,120 @@ export function generate(transaction: Transaction): Transaction {
       log.topic3,
     ] as EventLogTopics);
 
-    if (decoded && decoded.eventName === 'HarvestedPlot') {
-      const player = decoded.args['player'];
-      const plotId = decoded.args['plotId'];
-      transaction.context = {
-        summaries: {
-          category: 'PROTOCOL_1',
-          en: {
-            title: `Gold`,
-            default: '[[player]][[harvested]]plots[[plotId]]',
-          },
-        },
-        variables: {
-          player: {
-            type: 'address',
-            value: player,
-          },
-          plotId: {
-            type: 'number',
-            value: plotId,
-          },
-          harvested: {
-            type: 'contextAction',
-            value: CropXyzContextActionEnum.HARVESTED_PLOT,
-          },
-        },
-      };
-      return transaction;
-    }
+    if (!decoded) continue;
 
-    if (decoded && decoded.eventName === 'ClearedHarvest') {
-      const player = decoded.args['player'];
-      const plotId = decoded.args['plotId'];
-      transaction.context = {
-        summaries: {
-          category: 'PROTOCOL_1',
-          en: {
-            title: `Gold`,
-            default: '[[player]][[clearedHarvest]]plots[[plotId]]',
+    let player = '';
+    switch (decoded.eventName) {
+      case 'HarvestedPlot':
+        player = decoded.args['player'].toLowerCase();
+        transaction.context = {
+          summaries: {
+            category: 'PROTOCOL_1',
+            en: {
+              title: `CropXYZ`,
+              default: '[[player]][[harvested]][[crop]]',
+            },
           },
-        },
-        variables: {
-          player: {
-            type: 'address',
-            value: player,
+          variables: {
+            player: {
+              type: 'address',
+              value: player,
+            },
+            crop: {
+              type: AssetType.ERC20,
+              token: erc20Payments[0].contract,
+              value: erc20Payments[0].value,
+            },
+            harvested: {
+              type: 'contextAction',
+              value: CropXyzContextActionEnum.HARVESTED_PLOT,
+            },
           },
-          plotId: {
-            type: 'number',
-            value: plotId,
+        };
+        return transaction;
+      case 'ClearedDiedHarvest':
+        player = decoded.args['player'].toLowerCase();
+        transaction.context = {
+          summaries: {
+            category: 'PROTOCOL_1',
+            en: {
+              title: `CropXYZ`,
+              default: '[[player]][[clearedHarvest]][[crop]]',
+            },
           },
-          clearedHarvest: {
-            type: 'contextAction',
-            value: CropXyzContextActionEnum.CLEARED_HARVEST,
+          variables: {
+            player: {
+              type: 'address',
+              value: player,
+            },
+            crop: {
+              type: AssetType.ERC20,
+              token: erc20Payments[0].contract,
+              value: erc20Payments[0].value,
+            },
+            clearedHarvest: {
+              type: 'contextAction',
+              value: CropXyzContextActionEnum.CLEARED_HARVEST,
+            },
           },
-        },
-      };
-      return transaction;
-    }
-
-    if (decoded && decoded.eventName === 'StakedCrop') {
-      const player = decoded.args['player'];
-      const plotId = decoded.args['plotId'];
-      transaction.context = {
-        summaries: {
-          category: 'PROTOCOL_1',
-          en: {
-            title: `CropXYZ`,
-            default: '[[player]][[stakedCrop]]plots[[plotId]]',
+        };
+        return transaction;
+      case 'ClearedHarvest':
+        player = decoded.args['player'].toLowerCase();
+        transaction.context = {
+          summaries: {
+            category: 'PROTOCOL_1',
+            en: {
+              title: `CropXYZ`,
+              default: '[[player]][[clearedHarvest]][[crop]]',
+            },
           },
-        },
-        variables: {
-          player: {
-            type: 'address',
-            value: player,
+          variables: {
+            player: {
+              type: 'address',
+              value: player,
+            },
+            crop: {
+              type: AssetType.ERC20,
+              token: erc20Payments[0].contract,
+              value: erc20Payments[0].value,
+            },
+            clearedHarvest: {
+              type: 'contextAction',
+              value: CropXyzContextActionEnum.CLEARED_HARVEST,
+            },
           },
-          plotId: {
-            type: 'number',
-            value: plotId,
+        };
+        return transaction;
+      case 'StakedCrop':
+        player = decoded.args['player'].toLowerCase();
+        transaction.context = {
+          summaries: {
+            category: 'PROTOCOL_1',
+            en: {
+              title: `CropXYZ`,
+              default: '[[player]][[stakedCrop]][[crop]]',
+            },
           },
-          stakedCrop: {
-            type: 'contextAction',
-            value: CropXyzContextActionEnum.STAKED_CROP,
+          variables: {
+            player: {
+              type: 'address',
+              value: player,
+            },
+            crop: {
+              type: AssetType.ERC20,
+              token: erc20Payments[0].contract,
+              value: erc20Payments[0].value,
+            },
+            stakedCrop: {
+              type: 'contextAction',
+              value: CropXyzContextActionEnum.STAKED_CROP,
+            },
           },
-        },
-      };
-      return transaction;
+        };
+        return transaction;
+      default:
+        break;
     }
   }
 
