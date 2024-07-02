@@ -47,7 +47,7 @@ describe('CropXYZ PlotAction', () => {
     );
     expect(transaction3.context?.summaries?.en.title).toBe('CropXYZ');
     expect(contextSummary(transaction3.context)).toBe(
-      '0x402533d5240a0c51e02d3714c0d0a057384d4872 STAKED_CROP 36 0x9c82ca3332898bea9c9fa5f9642ba4a4628e1321',
+      '0x402533d5240a0c51e02d3714c0d0a057384d4872 PLANTED 36 0x9c82ca3332898bea9c9fa5f9642ba4a4628e1321',
     );
     expect(containsBigInt(transaction3.context)).toBe(false);
   });
