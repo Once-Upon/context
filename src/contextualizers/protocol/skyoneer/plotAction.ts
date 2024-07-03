@@ -1,7 +1,7 @@
 import {
   Transaction,
   EventLogTopics,
-  CropXyzContextActionEnum,
+  SkyoneerContextActionEnum,
   AssetType,
 } from '../../../types';
 import { PLOT_ACTION_CONTRACT_ADDRESS, PLOT_ACTION_ABI } from './constants';
@@ -85,7 +85,7 @@ export function generate(transaction: Transaction): Transaction {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: `CropXYZ`,
+              title: `Skyoneer`,
               default: '[[player]][[harvested]][[crop]]',
             },
           },
@@ -101,7 +101,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             harvested: {
               type: 'contextAction',
-              value: CropXyzContextActionEnum.HARVESTED_PLOT,
+              value: SkyoneerContextActionEnum.HARVESTED_PLOT,
             },
           },
         };
@@ -112,7 +112,7 @@ export function generate(transaction: Transaction): Transaction {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: `CropXYZ`,
+              title: `Skyoneer`,
               default: '[[player]][[clearedHarvest]]',
             },
           },
@@ -123,7 +123,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             clearedHarvest: {
               type: 'contextAction',
-              value: CropXyzContextActionEnum.CLEARED_HARVEST,
+              value: SkyoneerContextActionEnum.CLEARED_HARVEST,
             },
           },
         };
@@ -134,7 +134,7 @@ export function generate(transaction: Transaction): Transaction {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: `CropXYZ`,
+              title: `Skyoneer`,
               default: '[[player]][[clearedHarvest]]',
             },
           },
@@ -145,7 +145,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             clearedHarvest: {
               type: 'contextAction',
-              value: CropXyzContextActionEnum.CLEARED_HARVEST,
+              value: SkyoneerContextActionEnum.CLEARED_HARVEST,
             },
           },
         };
@@ -156,8 +156,8 @@ export function generate(transaction: Transaction): Transaction {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: `CropXYZ`,
-              default: '[[player]][[stakedCrop]][[crop]]',
+              title: `Skyoneer`,
+              default: '[[player]][[planted]][[crop]]',
             },
           },
           variables: {
@@ -170,9 +170,9 @@ export function generate(transaction: Transaction): Transaction {
               token: erc20Payments[0].contract,
               value: erc20Payments[0].value,
             },
-            stakedCrop: {
+            planted: {
               type: 'contextAction',
-              value: CropXyzContextActionEnum.STAKED_CROP,
+              value: SkyoneerContextActionEnum.PLANTED,
             },
           },
         };

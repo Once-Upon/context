@@ -7,6 +7,6 @@ const children = { source, destination, plotAction };
 
 const contextualize = makeContextualize(children);
 
-export const cropXyzContextualizer = {
+export const skyoneerContextualizer = {
   contextualize,
 };

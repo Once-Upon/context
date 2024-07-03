@@ -20,7 +20,7 @@ import { bnsContextualizer } from './bns';
 import { highlightContextualizer } from './highlight';
 import { warpcastContextualizer } from './warpcast';
 import { boomboxContextualizer } from './boombox';
-import { cropXyzContextualizer } from './cropXyz';
+import { skyoneerContextualizer } from './skyoneer';
 import { rodeoContextualizer } from './rodeo';
 
 const children = {
@@ -45,7 +45,7 @@ const children = {
   highlightContextualizer,
   warpcastContextualizer,
   boomboxContextualizer,
-  cropXyzContextualizer,
+  skyoneerContextualizer,
   rodeoContextualizer,
 };
 

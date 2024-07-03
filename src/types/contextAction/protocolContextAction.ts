@@ -227,20 +227,20 @@ export type BoomboxContextAction =
   | BoomboxContextActionEnum.SIGNED
   | BoomboxContextActionEnum.DISTRIBUTED;
 
-export enum CropXyzContextActionEnum {
+export enum SkyoneerContextActionEnum {
   ACTIVATED_A_STARTER_PACK = 'ACTIVATED_A_STARTER_PACK',
   RECEIVED = 'RECEIVED',
   HARVESTED_PLOT = 'HARVESTED_PLOT',
   CLEARED_HARVEST = 'CLEARED_HARVEST',
-  STAKED_CROP = 'STAKED_CROP',
+  PLANTED = 'PLANTED',
 }
 
-export type CropXyzContextAction =
-  | CropXyzContextActionEnum.ACTIVATED_A_STARTER_PACK
-  | CropXyzContextActionEnum.RECEIVED
-  | CropXyzContextActionEnum.HARVESTED_PLOT
-  | CropXyzContextActionEnum.CLEARED_HARVEST
-  | CropXyzContextActionEnum.STAKED_CROP;
+export type SkyoneerContextAction =
+  | SkyoneerContextActionEnum.ACTIVATED_A_STARTER_PACK
+  | SkyoneerContextActionEnum.RECEIVED
+  | SkyoneerContextActionEnum.HARVESTED_PLOT
+  | SkyoneerContextActionEnum.CLEARED_HARVEST
+  | SkyoneerContextActionEnum.PLANTED;
 
 export enum Protocols {
   WETH = 'WETH',
@@ -279,4 +279,4 @@ export type ProtocolContextAction =
   | DisperseAction
   | BNSContextAction
   | BoomboxContextAction
-  | CropXyzContextAction;
+  | SkyoneerContextAction;
