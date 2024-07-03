@@ -1,9 +1,9 @@
 import {
   Transaction,
   EventLogTopics,
-  GoldContextActionEnum,
-  Protocols,
+  SkyoneerContextActionEnum,
   ProtocolMap,
+  Protocols,
 } from '../../../types';
 import {
   PACK_ACTIVATION_SOURCE_CONTRACT,
@@ -69,17 +69,21 @@ export function generate(transaction: Transaction): Transaction {
   if (!decoded) return transaction;
 
   // grab variables from decoded event
-  const activator = decoded.args['activator'];
+  const addressListing = decoded.args['addressListing'];
+  const activator =
+    addressListing && addressListing.length > 0
+      ? addressListing[0].toLowerCase()
+      : '';
 
   transaction.context = {
     actions: [
-      `${Protocols.GOLD}.${GoldContextActionEnum.ACTIVATED_A_STARTER_PACK}`,
+      `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.ACTIVATED_A_STARTER_PACK}`,
     ],
 
     summaries: {
       category: 'PROTOCOL_1',
       en: {
-        title: ProtocolMap[Protocols.GOLD],
+        title: ProtocolMap[Protocols.SKYONEER],
         default: '[[activator]][[activated]]',
       },
     },
@@ -91,8 +95,8 @@ export function generate(transaction: Transaction): Transaction {
       },
       activated: {
         type: 'contextAction',
-        id: `${Protocols.GOLD}.${GoldContextActionEnum.ACTIVATED_A_STARTER_PACK}`,
-        value: GoldContextActionEnum.ACTIVATED_A_STARTER_PACK,
+        id: `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.ACTIVATED_A_STARTER_PACK}`,
+        value: SkyoneerContextActionEnum.ACTIVATED_A_STARTER_PACK,
       },
     },
   };

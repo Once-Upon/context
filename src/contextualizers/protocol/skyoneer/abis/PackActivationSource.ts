@@ -4,6 +4,12 @@ const abi = [
     inputs: [
       {
         indexed: false,
+        internalType: 'address[]',
+        name: 'addressListing',
+        type: 'address[]',
+      },
+      {
+        indexed: false,
         internalType: 'bytes32',
         name: 'blockHash',
         type: 'bytes32',
@@ -27,7 +33,7 @@ const abi = [
         type: 'uint256',
       },
       {
-        indexed: false,
+        indexed: true,
         internalType: 'uint256',
         name: 'sizeSpecificTokenId',
         type: 'uint256',
@@ -49,12 +55,6 @@ const abi = [
         internalType: 'string',
         name: 'tokenURI',
         type: 'string',
-      },
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'activator',
-        type: 'address',
       },
     ],
     name: 'ActivatedStarterPackOnSource',

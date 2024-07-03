@@ -242,14 +242,20 @@ export type BoomboxContextAction =
   | BoomboxContextActionEnum.SIGNED
   | BoomboxContextActionEnum.DISTRIBUTED;
 
-export enum GoldContextActionEnum {
+export enum SkyoneerContextActionEnum {
   ACTIVATED_A_STARTER_PACK = 'ACTIVATED_A_STARTER_PACK',
   RECEIVED = 'RECEIVED',
+  HARVESTED_PLOT = 'HARVESTED_PLOT',
+  CLEARED_HARVEST = 'CLEARED_HARVEST',
+  PLANTED = 'PLANTED',
 }
 
-export type GoldContextAction =
-  | GoldContextActionEnum.ACTIVATED_A_STARTER_PACK
-  | GoldContextActionEnum.RECEIVED;
+export type SkyoneerContextAction =
+  | SkyoneerContextActionEnum.ACTIVATED_A_STARTER_PACK
+  | SkyoneerContextActionEnum.RECEIVED
+  | SkyoneerContextActionEnum.HARVESTED_PLOT
+  | SkyoneerContextActionEnum.CLEARED_HARVEST
+  | SkyoneerContextActionEnum.PLANTED;
 
 // Zora-pattern minting contracts
 export enum ZoraContextActionEnum {
@@ -287,7 +293,7 @@ export type ProtocolContextAction =
   | DisperseAction
   | BNSContextAction
   | BoomboxContextAction
-  | GoldContextAction;
+  | SkyoneerContextAction;
 
 export enum Protocols {
   ZORA = 'ZORA',
@@ -311,7 +317,7 @@ export enum Protocols {
   DISPERSE = 'DISPERSE',
   BNS = 'BNS',
   BOOMBOX = 'BOOMBOX',
-  GOLD = 'GOLD',
+  SKYONEER = 'SKYONEER',
 }
 
 export const ProtocolMap = {
@@ -328,7 +334,7 @@ export const ProtocolMap = {
   [Protocols.WARPCAST]: 'Warpcast',
   [Protocols.FRENPET]: 'Fren Pet',
   [Protocols.FRIENDTECH]: 'friend.tech',
-  [Protocols.GOLD]: 'Gold',
+  [Protocols.SKYONEER]: 'Skyoneer',
   [Protocols.LEEROY]: 'Leeroy',
   [Protocols.NOUNS_GOVERNOR]: 'Nouns',
   [Protocols.NOUNS_AUCTION_HOUSE]: 'Nouns',
