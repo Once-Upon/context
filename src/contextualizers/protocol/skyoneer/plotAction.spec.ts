@@ -4,6 +4,7 @@ import { containsBigInt, contextSummary } from '../../../helpers/utils';
 import skyoneerPlotAction0x9436b659 from '../../test/transactions/skyoneerPlotAction-0x9436b659.json';
 import skyoneerPlotAction0x9bb5a737 from '../../test/transactions/skyoneerPlotAction-0x9bb5a737.json';
 import skyoneerPlotAction0x496c6309 from '../../test/transactions/skyoneerPlotAction-0x496c6309.json';
+import skyoneerPlotAction0xdc00b06d from '../../test/transactions/skyoneerPlotAction-0xdc00b06d.json';
 
 describe('Skyoneer PlotAction', () => {
   it('Should detect transaction', () => {
@@ -21,6 +22,11 @@ describe('Skyoneer PlotAction', () => {
       skyoneerPlotAction0x496c6309 as unknown as Transaction,
     );
     expect(isPlotAction3).toBe(true);
+
+    const isPlotAction4 = detect(
+      skyoneerPlotAction0xdc00b06d as unknown as Transaction,
+    );
+    expect(isPlotAction4).toBe(true);
   });
 
   it('Should generate context', () => {
@@ -50,5 +56,14 @@ describe('Skyoneer PlotAction', () => {
       '0x402533d5240a0c51e02d3714c0d0a057384d4872 PLANTED 36 0x9c82ca3332898bea9c9fa5f9642ba4a4628e1321',
     );
     expect(containsBigInt(transaction3.context)).toBe(false);
+
+    const transaction4 = generate(
+      skyoneerPlotAction0xdc00b06d as unknown as Transaction,
+    );
+    expect(transaction4.context?.summaries?.en.title).toBe('Skyoneer');
+    expect(contextSummary(transaction4.context)).toBe(
+      '0xf1fbb7b98d1fd2037e80ac41486d761ccf7735e7 CLEARED_HARVEST',
+    );
+    expect(containsBigInt(transaction4.context)).toBe(false);
   });
 });
