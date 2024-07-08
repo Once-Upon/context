@@ -101,7 +101,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             harvested: {
               type: 'contextAction',
-              value: SkyoneerContextActionEnum.HARVESTED_PLOT,
+              value: SkyoneerContextActionEnum.HARVESTED,
             },
           },
         };
@@ -123,7 +123,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             clearedHarvest: {
               type: 'contextAction',
-              value: SkyoneerContextActionEnum.CLEARED_HARVEST,
+              value: SkyoneerContextActionEnum.CLEARED_DEAD_CROPS,
             },
           },
         };
@@ -145,7 +145,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             clearedHarvest: {
               type: 'contextAction',
-              value: SkyoneerContextActionEnum.CLEARED_HARVEST,
+              value: SkyoneerContextActionEnum.CLEARED_GROWING_CROPS,
             },
           },
         };

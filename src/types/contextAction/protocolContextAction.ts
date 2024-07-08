@@ -230,16 +230,18 @@ export type BoomboxContextAction =
 export enum SkyoneerContextActionEnum {
   ACTIVATED_A_STARTER_PACK = 'ACTIVATED_A_STARTER_PACK',
   RECEIVED = 'RECEIVED',
-  HARVESTED_PLOT = 'HARVESTED_PLOT',
-  CLEARED_HARVEST = 'CLEARED_HARVEST',
+  HARVESTED = 'HARVESTED',
+  CLEARED_GROWING_CROPS = 'CLEARED_GROWING_CROPS',
+  CLEARED_DEAD_CROPS = 'CLEARED_DEAD_CROPS',
   PLANTED = 'PLANTED',
 }
 
 export type SkyoneerContextAction =
   | SkyoneerContextActionEnum.ACTIVATED_A_STARTER_PACK
   | SkyoneerContextActionEnum.RECEIVED
-  | SkyoneerContextActionEnum.HARVESTED_PLOT
-  | SkyoneerContextActionEnum.CLEARED_HARVEST
+  | SkyoneerContextActionEnum.HARVESTED
+  | SkyoneerContextActionEnum.CLEARED_GROWING_CROPS
+  | SkyoneerContextActionEnum.CLEARED_DEAD_CROPS
   | SkyoneerContextActionEnum.PLANTED;
 
 export enum Protocols {
