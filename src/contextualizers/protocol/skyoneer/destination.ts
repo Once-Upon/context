@@ -154,19 +154,14 @@ export function generate(transaction: Transaction): Transaction {
         title: `Skyoneer`,
         default:
           plotIds?.length === 2
-            ? '[[activator]][[received]]plots[[plotId0]]and[[plotId1]]and[[crop]]and[[zGold]]'
-            : '[[activator]][[received]][[plots]]and[[crop]]and[[zGold]]',
+            ? '[[activator]][[received]]plots[[plotId0]]and[[plotId1]]and[[zGold]]'
+            : '[[activator]][[received]][[plots]]and[[zGold]]',
       },
     },
     variables: {
       activator: {
         type: 'address',
         value: activator,
-      },
-      crop: {
-        type: AssetType.ERC20,
-        token: erc20Payments[1].contract,
-        value: erc20Payments[1].value,
       },
       zGold: {
         type: AssetType.ERC20,
@@ -186,6 +181,18 @@ export function generate(transaction: Transaction): Transaction {
       transaction.context.variables.plotId1 = erc721PlotArray[1];
     } else {
       transaction.context.variables.plots = erc721ManyPlotsVariable;
+    }
+
+    if (erc20Payments.length > 2 && transaction.context.summaries) {
+      transaction.context.summaries.en.default += 'and[[crop]]';
+      transaction.context.variables = {
+        ...transaction.context.variables,
+        crop: {
+          type: AssetType.ERC20,
+          token: erc20Payments[1].contract,
+          value: erc20Payments[1].value,
+        },
+      };
     }
   }
 
