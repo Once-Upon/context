@@ -35,7 +35,7 @@ describe('Skyoneer PlotAction', () => {
     );
     expect(transaction1.context?.summaries?.en.title).toBe('Skyoneer');
     expect(contextSummary(transaction1.context)).toBe(
-      '0x402533d5240a0c51e02d3714c0d0a057384d4872 HARVESTED 257 0x9c82ca3332898bea9c9fa5f9642ba4a4628e1321',
+      '0x402533d5240a0c51e02d3714c0d0a057384d4872 HARVESTED 257 0x9c82ca3332898bea9c9fa5f9642ba4a4628e1321 on plot 78',
     );
     expect(containsBigInt(transaction1.context)).toBe(false);
 
@@ -44,7 +44,7 @@ describe('Skyoneer PlotAction', () => {
     );
     expect(transaction2.context?.summaries?.en.title).toBe('Skyoneer');
     expect(contextSummary(transaction2.context)).toBe(
-      '0xf1fbb7b98d1fd2037e80ac41486d761ccf7735e7 CLEARED_GROWING_CROPS',
+      '0xf1fbb7b98d1fd2037e80ac41486d761ccf7735e7 CLEARED_GROWING_CROPS on plot 10',
     );
     expect(containsBigInt(transaction2.context)).toBe(false);
 
@@ -53,7 +53,7 @@ describe('Skyoneer PlotAction', () => {
     );
     expect(transaction3.context?.summaries?.en.title).toBe('Skyoneer');
     expect(contextSummary(transaction3.context)).toBe(
-      '0x402533d5240a0c51e02d3714c0d0a057384d4872 PLANTED 36 0x9c82ca3332898bea9c9fa5f9642ba4a4628e1321',
+      '0x402533d5240a0c51e02d3714c0d0a057384d4872 PLANTED 36 0x9c82ca3332898bea9c9fa5f9642ba4a4628e1321 on plot 69',
     );
     expect(containsBigInt(transaction3.context)).toBe(false);
 
@@ -62,7 +62,7 @@ describe('Skyoneer PlotAction', () => {
     );
     expect(transaction4.context?.summaries?.en.title).toBe('Skyoneer');
     expect(contextSummary(transaction4.context)).toBe(
-      '0xf1fbb7b98d1fd2037e80ac41486d761ccf7735e7 CLEARED_DEAD_CROPS',
+      '0xf1fbb7b98d1fd2037e80ac41486d761ccf7735e7 CLEARED_DEAD_CROPS on plot 10',
     );
     expect(containsBigInt(transaction4.context)).toBe(false);
   });

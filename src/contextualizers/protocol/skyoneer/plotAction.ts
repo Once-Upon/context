@@ -78,15 +78,17 @@ export function generate(transaction: Transaction): Transaction {
     if (!decoded) continue;
 
     let player = '';
+    let plotId = '';
     switch (decoded.eventName) {
       case 'HarvestedPlot':
         player = decoded.args['player'].toLowerCase();
+        plotId = decoded.args['plotId'].toString();
         transaction.context = {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: `Skyoneer`,
-              default: '[[player]][[harvested]][[crop]]',
+              default: '[[player]][[harvested]][[crop]]on plot[[plotId]]',
             },
           },
           variables: {
@@ -98,6 +100,10 @@ export function generate(transaction: Transaction): Transaction {
               type: AssetType.ERC20,
               token: erc20Payments[0].contract,
               value: erc20Payments[0].value,
+            },
+            plotId: {
+              type: 'string',
+              value: plotId,
             },
             harvested: {
               type: 'contextAction',
@@ -108,18 +114,23 @@ export function generate(transaction: Transaction): Transaction {
         return transaction;
       case 'ClearedDiedHarvest':
         player = decoded.args['player'].toLowerCase();
+        plotId = decoded.args['plotId'].toString();
         transaction.context = {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: `Skyoneer`,
-              default: '[[player]][[clearedHarvest]]',
+              default: '[[player]][[clearedHarvest]]on plot[[plotId]]',
             },
           },
           variables: {
             player: {
               type: 'address',
               value: player,
+            },
+            plotId: {
+              type: 'string',
+              value: plotId,
             },
             clearedHarvest: {
               type: 'contextAction',
@@ -130,18 +141,23 @@ export function generate(transaction: Transaction): Transaction {
         return transaction;
       case 'ClearedHarvest':
         player = decoded.args['player'].toLowerCase();
+        plotId = decoded.args['plotId'].toString();
         transaction.context = {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: `Skyoneer`,
-              default: '[[player]][[clearedHarvest]]',
+              default: '[[player]][[clearedHarvest]]on plot[[plotId]]',
             },
           },
           variables: {
             player: {
               type: 'address',
               value: player,
+            },
+            plotId: {
+              type: 'string',
+              value: plotId,
             },
             clearedHarvest: {
               type: 'contextAction',
@@ -152,12 +168,13 @@ export function generate(transaction: Transaction): Transaction {
         return transaction;
       case 'StakedCrop':
         player = decoded.args['player'].toLowerCase();
+        plotId = decoded.args['plotId'].toString();
         transaction.context = {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: `Skyoneer`,
-              default: '[[player]][[planted]][[crop]]',
+              default: '[[player]][[planted]][[crop]]on plot[[plotId]]',
             },
           },
           variables: {
@@ -169,6 +186,10 @@ export function generate(transaction: Transaction): Transaction {
               type: AssetType.ERC20,
               token: erc20Payments[0].contract,
               value: erc20Payments[0].value,
+            },
+            plotId: {
+              type: 'string',
+              value: plotId,
             },
             planted: {
               type: 'contextAction',
