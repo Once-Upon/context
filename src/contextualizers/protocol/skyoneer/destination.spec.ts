@@ -32,8 +32,9 @@ describe('Skyoneer Destination', () => {
         skyoneerPlotAction0x8f2296de as unknown as Transaction,
       );
       expect(transaction2.context?.summaries?.en.title).toBe('Skyoneer');
+      // TODO: Change this
       expect(contextSummary(transaction2.context)).toBe(
-        '0x747ae38aa9595360febaae72e49840834bb9fcf2 RECEIVED 1 plot and 1369000 0x387d73bd8682dceb3327b940213d5de50ee2bba2',
+        '0x747ae38aa9595360febaae72e49840834bb9fcf2 RECEIVED plot 0xe2f275b2a5c376fd10006b67a9be0cc3bd5488e8 #2259 and 1369000 0x387d73bd8682dceb3327b940213d5de50ee2bba2',
       );
       expect(containsBigInt(transaction2.context)).toBe(false);
     });

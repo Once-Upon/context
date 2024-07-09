@@ -155,7 +155,9 @@ export function generate(transaction: Transaction): Transaction {
         default:
           plotIds?.length === 2
             ? '[[activator]][[received]]plots[[plotId0]]and[[plotId1]]and[[zGold]]'
-            : '[[activator]][[received]][[plots]]and[[zGold]]',
+            : plotIds?.length === 1
+              ? '[[activator]][[received]]plot[[plotId0]]and[[zGold]]'
+              : '[[activator]][[received]][[plots]]and[[zGold]]',
       },
     },
     variables: {
@@ -179,6 +181,8 @@ export function generate(transaction: Transaction): Transaction {
     if (erc721PlotArray?.length === 2) {
       transaction.context.variables.plotId0 = erc721PlotArray[0];
       transaction.context.variables.plotId1 = erc721PlotArray[1];
+    } else if (erc721PlotArray?.length === 1) {
+      transaction.context.variables.plotId0 = erc721PlotArray[0];
     } else {
       transaction.context.variables.plots = erc721ManyPlotsVariable;
     }
