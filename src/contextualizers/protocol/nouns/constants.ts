@@ -1,5 +1,5 @@
-import NounsAuctionHouse from './abis/NounsAuctionHouse';
-import NounsDAOLogicV3 from './abis/NounsDAOLogicV3';
+import NounsAuctionHouseV2 from './abis/NounsAuctionHouseV2';
+import NounsDAOLogicV4 from './abis/NounsDAOLogicV4';
 
 export const NounsContracts = {
   AuctionHouse: '0x830bd73e4184cef73443c15111a1df14e495c706',
@@ -8,6 +8,6 @@ export const NounsContracts = {
 };
 
 export const ABIs = {
-  NounsAuctionHouse,
-  NounsDAOLogicV3,
+  NounsAuctionHouse: NounsAuctionHouseV2,
+  NounsDAOLogic: NounsDAOLogicV4,
 };
