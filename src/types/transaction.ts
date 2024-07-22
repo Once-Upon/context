@@ -95,7 +95,7 @@ export type Transaction = BaseTransaction & {
   isoTimestamp: string;
 };
 
-export type RealTimeTransaction = BaseTransaction & {
+export type TurboTransaction = BaseTransaction & {
   assetTransfers?: AssetTransfer[];
   pseudotransactions?: PseudoTransaction[];
   sigHash: string;
