@@ -234,6 +234,7 @@ export enum SkyoneerContextActionEnum {
   CLEARED_GROWING_CROPS = 'CLEARED_GROWING_CROPS',
   CLEARED_DEAD_CROPS = 'CLEARED_DEAD_CROPS',
   PLANTED = 'PLANTED',
+  TRANSFER = 'TRANSFER',
 }
 
 export type SkyoneerContextAction =
@@ -242,7 +243,8 @@ export type SkyoneerContextAction =
   | SkyoneerContextActionEnum.HARVESTED
   | SkyoneerContextActionEnum.CLEARED_GROWING_CROPS
   | SkyoneerContextActionEnum.CLEARED_DEAD_CROPS
-  | SkyoneerContextActionEnum.PLANTED;
+  | SkyoneerContextActionEnum.PLANTED
+  | SkyoneerContextActionEnum.TRANSFER;
 
 export enum Protocols {
   WETH = 'WETH',
