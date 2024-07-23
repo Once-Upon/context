@@ -74,7 +74,7 @@ export function generate(transaction: Transaction): Transaction {
       category: 'PROTOCOL_1',
       en: {
         title: `Skyoneer`,
-        default: '[[sender]][[contextAction]][[token]][[receiver]]',
+        default: '[[sender]][[contextAction]][[token]]to[[receiver]]',
       },
     },
     variables: {
