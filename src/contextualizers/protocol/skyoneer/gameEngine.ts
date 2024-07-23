@@ -46,7 +46,6 @@ export function detect(transaction: Transaction): boolean {
 export function generate(transaction: Transaction): Transaction {
   if (!transaction.logs || !transaction.chainId) return transaction;
 
-  // decode ActivatedStarterPackOnSource event
   let decoded;
   for (const log of transaction.logs) {
     if (log.address !== GAME_ENGINE_CONTRACT_ADDRESS) continue;
