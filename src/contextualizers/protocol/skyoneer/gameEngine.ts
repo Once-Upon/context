@@ -94,7 +94,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       contextAction: {
         type: 'contextAction',
-        value: SkyoneerContextActionEnum.TRANSFER,
+        value: SkyoneerContextActionEnum.TRANSFERRED,
       },
     },
   };
