@@ -76,7 +76,6 @@ export type TransactionContextType = {
   variables?: ContextVariable;
   summaries?: ContextSummaryType;
   crossChainTx?: Transaction[];
-  actions?: ContextAction[];
 };
 
 // MongoDB document
