@@ -46,7 +46,7 @@ export const detect = (transaction: Transaction): boolean => {
   try {
     const decoded = decodeTransactionInput(
       transaction.input as Hex,
-      ABIs.NounsDAOLogicV3,
+      ABIs.NounsDAOLogic,
     );
     if (!decoded) return false;
 
@@ -76,7 +76,7 @@ export const detect = (transaction: Transaction): boolean => {
 export const generate = (transaction: Transaction): Transaction => {
   const decoded = decodeTransactionInput(
     transaction.input as Hex,
-    ABIs.NounsDAOLogicV3,
+    ABIs.NounsDAOLogic,
   );
   if (!decoded) return transaction;
 
@@ -89,7 +89,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const registerLog = transaction.logs?.find((log) => {
         try {
           const decoded = decodeLog(
-            ABIs.NounsDAOLogicV3,
+            ABIs.NounsDAOLogic,
             log.data as Hex,
             [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
           );
@@ -103,7 +103,7 @@ export const generate = (transaction: Transaction): Transaction => {
       if (registerLog) {
         try {
           const decoded = decodeLog(
-            ABIs.NounsDAOLogicV3,
+            ABIs.NounsDAOLogic,
             registerLog.data as Hex,
             [
               registerLog.topic0,
@@ -164,7 +164,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const registerLog = transaction.logs?.find((log) => {
         try {
           const decoded = decodeLog(
-            ABIs.NounsDAOLogicV3,
+            ABIs.NounsDAOLogic,
             log.data as Hex,
             [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
           );
@@ -178,7 +178,7 @@ export const generate = (transaction: Transaction): Transaction => {
       if (registerLog) {
         try {
           const decoded = decodeLog(
-            ABIs.NounsDAOLogicV3,
+            ABIs.NounsDAOLogic,
             registerLog.data as Hex,
             [
               registerLog.topic0,
@@ -305,7 +305,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const registerLog = transaction.logs?.find((log) => {
         try {
           const decoded = decodeLog(
-            ABIs.NounsDAOLogicV3,
+            ABIs.NounsDAOLogic,
             log.data as Hex,
             [log.topic0, log.topic1, log.topic2, log.topic3] as EventLogTopics,
           );
@@ -319,7 +319,7 @@ export const generate = (transaction: Transaction): Transaction => {
       if (registerLog) {
         try {
           const decoded = decodeLog(
-            ABIs.NounsDAOLogicV3,
+            ABIs.NounsDAOLogic,
             registerLog.data as Hex,
             [
               registerLog.topic0,

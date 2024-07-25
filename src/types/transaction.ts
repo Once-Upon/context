@@ -11,6 +11,7 @@ import { ContextActionID } from './contextAction';
 import { NetAssetTransfers, AssetTransfer } from './asset';
 import { InternalHashType, StdObj } from './shared';
 import { Contract } from './contract';
+import { ContextAction } from './contextAction';
 
 export type SigHash = {
   from: Address;
@@ -75,6 +76,7 @@ export type TransactionContextType = {
   variables?: ContextVariable;
   summaries?: ContextSummaryType;
   crossChainTx?: Transaction[];
+  actions?: ContextAction[];
 };
 
 // MongoDB document
@@ -93,6 +95,26 @@ export type Transaction = BaseTransaction & {
   delegateCalls: RawTrace[];
   timestamp: number;
   isoTimestamp: string;
+};
+
+export type TurboTransaction = BaseTransaction & {
+  assetTransfers?: AssetTransfer[];
+  pseudotransactions?: PseudoTransaction[];
+  sigHash: string;
+  internalSigHashes: SigHash[];
+  parties: string[];
+  decoded?: TransactionDescription;
+  netAssetTransfers?: NetAssetTransfers;
+  receipt?: Receipt;
+  canCopy?: boolean;
+  contextCached?: TransactionContextType;
+  logs?: Log[];
+  delegateCalls: RawTrace[];
+  timestamp: number;
+  isoTimestamp: string;
+  contextActions: ContextAction[];
+  contextActionSpecific: ContextAction;
+  contextActionGeneric: ContextAction;
 };
 
 export type PartialTransaction = Omit<BaseTransaction, 'hash'> & {

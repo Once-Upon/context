@@ -2,6 +2,7 @@ import { Transaction } from '../../../types';
 import { contextSummary, containsBigInt } from '../../../helpers/utils';
 import { detect, generate } from './auctionHouse';
 import nounsAuctionHouseBid0x4efdef57 from '../../test/transactions/nouns-auction-house-bid-0x4efdef57.json';
+import nounsAuctionHouseV2Bid0x034346af from '../../test/transactions/nouns-auction-house-v2-bid-0x034346af.json';
 import nounsAuctionHouseSettleAndCreate0x354aea2d from '../../test/transactions/nouns-auction-house-settle-and-create-0x354aea2d.json';
 import catchall0xc35c01ac from '../../test/transactions/catchall-0xc35c01ac.json';
 
@@ -14,13 +15,24 @@ describe('Nouns Auction House', () => {
       expect(match).toBe(true);
     });
 
-    it('Should generate context', () => {
+    it('Should generate context for V1', () => {
       const transaction = generate(
         nounsAuctionHouseBid0x4efdef57 as unknown as Transaction,
       );
       expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
       expect(contextSummary(transaction.context)).toBe(
         '0xa86882277e69fbf0a51805cdc8b0a3a113079e63 BID 12 ETH on 0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03 #938',
+      );
+      expect(containsBigInt(transaction.context)).toBe(false);
+    });
+
+    it('Should generate context for V2', () => {
+      const transaction = generate(
+        nounsAuctionHouseV2Bid0x034346af as unknown as Transaction,
+      );
+      expect(transaction?.context?.summaries?.en.title).toBe('Nouns');
+      expect(contextSummary(transaction.context)).toBe(
+        '0xbdfeb5439f5daecb78a17ff846645a8bdbbf5725 BID 2 ETH on 0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03 #1163',
       );
       expect(containsBigInt(transaction.context)).toBe(false);
     });

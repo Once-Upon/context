@@ -79,15 +79,17 @@ export function generate(transaction: Transaction): Transaction {
     if (!decoded) continue;
 
     let player = '';
+    let plotId = '';
     switch (decoded.eventName) {
       case 'HarvestedPlot':
         player = decoded.args['player'].toLowerCase();
+        plotId = decoded.args['plotId'].toString();
         transaction.context = {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: `Skyoneer`,
-              default: '[[player]][[harvested]][[crop]]',
+              default: '[[player]][[harvested]][[crop]]on plot[[plotId]]',
             },
           },
           variables: {
@@ -100,22 +102,27 @@ export function generate(transaction: Transaction): Transaction {
               token: erc20Payments[0].contract,
               value: erc20Payments[0].value,
             },
+            plotId: {
+              type: 'string',
+              value: plotId,
+            },
             harvested: {
               type: 'contextAction',
-              id: `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.HARVESTED_PLOT}`,
-              value: SkyoneerContextActionEnum.HARVESTED_PLOT,
+              id: `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.HARVESTED}`,
+              value: SkyoneerContextActionEnum.HARVESTED,
             },
           },
         };
         return transaction;
       case 'ClearedDiedHarvest':
         player = decoded.args['player'].toLowerCase();
+        plotId = decoded.args['plotId'].toString();
         transaction.context = {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: `Skyoneer`,
-              default: '[[player]][[clearedHarvest]]',
+              default: '[[player]][[clearedHarvest]]on plot[[plotId]]',
             },
           },
           variables: {
@@ -123,22 +130,27 @@ export function generate(transaction: Transaction): Transaction {
               type: 'address',
               value: player,
             },
+            plotId: {
+              type: 'string',
+              value: plotId,
+            },
             clearedHarvest: {
               type: 'contextAction',
-              id: `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.CLEARED_HARVEST}`,
-              value: SkyoneerContextActionEnum.CLEARED_HARVEST,
+              id: `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.CLEARED_DEAD_CROPS}`,
+              value: SkyoneerContextActionEnum.CLEARED_DEAD_CROPS,
             },
           },
         };
         return transaction;
       case 'ClearedHarvest':
         player = decoded.args['player'].toLowerCase();
+        plotId = decoded.args['plotId'].toString();
         transaction.context = {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: `Skyoneer`,
-              default: '[[player]][[clearedHarvest]]',
+              default: '[[player]][[clearedHarvest]]on plot[[plotId]]',
             },
           },
           variables: {
@@ -146,22 +158,27 @@ export function generate(transaction: Transaction): Transaction {
               type: 'address',
               value: player,
             },
+            plotId: {
+              type: 'string',
+              value: plotId,
+            },
             clearedHarvest: {
               type: 'contextAction',
-              id: `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.CLEARED_HARVEST}`,
-              value: SkyoneerContextActionEnum.CLEARED_HARVEST,
+              id: `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.CLEARED_GROWING_CROPS}`,
+              value: SkyoneerContextActionEnum.CLEARED_GROWING_CROPS,
             },
           },
         };
         return transaction;
       case 'StakedCrop':
         player = decoded.args['player'].toLowerCase();
+        plotId = decoded.args['plotId'].toString();
         transaction.context = {
           summaries: {
             category: 'PROTOCOL_1',
             en: {
               title: `Skyoneer`,
-              default: '[[player]][[planted]][[crop]]',
+              default: '[[player]][[planted]][[crop]]on plot[[plotId]]',
             },
           },
           variables: {
@@ -173,6 +190,10 @@ export function generate(transaction: Transaction): Transaction {
               type: AssetType.ERC20,
               token: erc20Payments[0].contract,
               value: erc20Payments[0].value,
+            },
+            plotId: {
+              type: 'string',
+              value: plotId,
             },
             planted: {
               type: 'contextAction',
