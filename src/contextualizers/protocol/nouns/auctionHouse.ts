@@ -6,7 +6,11 @@ import {
   Transaction,
 } from '../../../types';
 import { NounsContracts, ABIs } from './constants';
-import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeLog,
+  decodeTransactionInput,
+  grabLogsFromTransaction,
+} from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isNouns = detect(transaction);
@@ -58,6 +62,8 @@ export const generate = (transaction: Transaction): Transaction => {
 
   if (!decoded) return transaction;
 
+  const logs = grabLogsFromTransaction(transaction);
+
   switch (decoded.functionName) {
     case 'createBid': {
       transaction.context = {
@@ -97,7 +103,7 @@ export const generate = (transaction: Transaction): Transaction => {
       let nounId = '';
       let winner = '';
 
-      const registerLog = transaction.logs?.find((log) => {
+      const registerLog = logs.find((log) => {
         try {
           const decoded = decodeLog(
             ABIs.NounsAuctionHouse,

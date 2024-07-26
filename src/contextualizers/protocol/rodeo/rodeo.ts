@@ -4,7 +4,7 @@ import {
   MULTI_TOKEN_DROP_MARKET_ABI,
   MULTI_TOKEN_DROP_MARKET_CONTRACT,
 } from './constants';
-import { decodeLog } from '../../../helpers/utils';
+import { decodeLog, grabLogsFromTransaction } from '../../../helpers/utils';
 import { generate as erc721Generate } from '../../heuristics/erc721Mint/erc721Mint';
 import { generate as erc1155Generate } from '../../heuristics/erc1155Mint/erc1155Mint';
 
@@ -17,8 +17,7 @@ export const contextualize = (transaction: Transaction): Transaction => {
 
 export const detect = (transaction: Transaction): boolean => {
   // check if there is 'MintFromFixedPriceSale' log emitted
-  const logs =
-    transaction.logs && transaction.logs.length > 0 ? transaction.logs : [];
+  const logs = grabLogsFromTransaction(transaction);
   const mintFromFixedPriceSaleLog = findMintFromFixedPriceSaleLog(logs);
 
   if (!mintFromFixedPriceSaleLog) return false;
@@ -40,8 +39,7 @@ export const generate = (transaction: Transaction): Transaction => {
   transaction.context.summaries.category = 'PROTOCOL_1';
   transaction.context.summaries.en.title = 'Rodeo';
 
-  const logs =
-    transaction.logs && transaction.logs.length > 0 ? transaction.logs : [];
+  const logs = grabLogsFromTransaction(transaction);
   const mintFromFixedPriceSaleLog = findMintFromFixedPriceSaleLog(logs);
   if (!mintFromFixedPriceSaleLog) return transaction;
   const decodedLog = decodeLog(

@@ -5,7 +5,11 @@ import {
   EventLogTopics,
   EASContextActionEnum,
 } from '../../../types';
-import { decodeTransactionInput, decodeLog } from '../../../helpers/utils';
+import {
+  decodeTransactionInput,
+  decodeLog,
+  grabLogsFromTransaction,
+} from '../../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -70,7 +74,8 @@ const getAttestationID = (transaction: Transaction): string | null => {
     return null;
   }
   // TODO: Confirm that the event matches the expected name
-  const transactionLog = transaction?.logs?.[0];
+  const logs = grabLogsFromTransaction(transaction);
+  const transactionLog = logs?.[0];
   const decoded = decodeLog(
     ABIs.EAS,
     transactionLog?.data as Hex,

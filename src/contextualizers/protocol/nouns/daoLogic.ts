@@ -5,7 +5,11 @@ import {
   Transaction,
 } from '../../../types';
 import { NounsContracts, ABIs } from './constants';
-import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeLog,
+  decodeTransactionInput,
+  grabLogsFromTransaction,
+} from '../../../helpers/utils';
 
 const translateSupport = (support: number) => {
   if (support === 0) return NounsGovernorActionEnum.VOTED_AGAINST;
@@ -77,6 +81,7 @@ export const generate = (transaction: Transaction): Transaction => {
     ABIs.NounsDAOLogic,
   );
   if (!decoded) return transaction;
+  const logs = grabLogsFromTransaction(transaction);
 
   switch (decoded.functionName) {
     case 'propose': {
@@ -84,7 +89,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
       let proposalId: bigint = BigInt(0);
 
-      const registerLog = transaction.logs?.find((log) => {
+      const registerLog = logs.find((log) => {
         try {
           const decoded = decodeLog(
             ABIs.NounsDAOLogic,
@@ -155,7 +160,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
       let proposalId: bigint = BigInt(0);
 
-      const registerLog = transaction.logs?.find((log) => {
+      const registerLog = logs.find((log) => {
         try {
           const decoded = decodeLog(
             ABIs.NounsDAOLogic,
@@ -290,7 +295,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
       let voter: string = '';
 
-      const registerLog = transaction.logs?.find((log) => {
+      const registerLog = logs.find((log) => {
         try {
           const decoded = decodeLog(
             ABIs.NounsDAOLogic,

@@ -1,6 +1,7 @@
 import {
   decodeLog,
   decodeTransactionInput,
+  grabLogsFromTransaction,
   processAssetTransfers,
 } from '../../../helpers/utils';
 import { CHAIN_IDS } from '../../../helpers/constants';
@@ -35,9 +36,10 @@ export function detect(transaction: Transaction): boolean {
     return false;
   }
   // check logs
-  if (!transaction.logs) return false;
+  const logs = grabLogsFromTransaction(transaction);
+  if (logs.length === 0) return false;
 
-  for (const log of transaction.logs) {
+  for (const log of logs) {
     if (log.address !== PACK_ACTIVATION_DESTINATION_CONTRACT) continue;
 
     const decoded = decodeLog(PACK_ACTIVATION_DESTINATION_ABI, log.data, [
@@ -56,8 +58,9 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
+  const logs = grabLogsFromTransaction(transaction);
   if (
-    !transaction.logs ||
+    logs.length === 0 ||
     transaction.chainId !== CHAIN_IDS.gold ||
     !transaction.assetTransfers ||
     !transaction.netAssetTransfers
@@ -81,7 +84,7 @@ export function generate(transaction: Transaction): Transaction {
   // decode ActivatedStarterPackOnDestination event
   let activatedStarterPackOnDestinationDecoded, mintedPlotPackActivateDecoded;
   // const gameMintedTokenDecoded: any[] = [];
-  for (const log of transaction.logs) {
+  for (const log of logs) {
     const decoded = decodeLog(PACK_ACTIVATION_DESTINATION_ABI, log.data, [
       log.topic0,
       log.topic1,

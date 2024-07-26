@@ -23,6 +23,7 @@ import {
   ETHAssetTransfer,
   ERC20AssetTransfer,
   ERC20Asset,
+  Log,
 } from '../types';
 
 const VALID_CHARS =
@@ -496,4 +497,24 @@ export const addAssetTransfersToContext = (
   }
 
   return transaction;
+};
+
+export const grabLogsFromTransaction = (transaction: Transaction): Log[] => {
+  if (transaction.logs) return transaction.logs;
+
+  if (transaction.receipt?.logs) {
+    return transaction.receipt.logs.map((log) => {
+      return {
+        address: log.address,
+        topics: log.topics,
+        data: log.data,
+        topic0: log.topics?.[0],
+        topic1: log.topics?.[1],
+        topic2: log.topics?.[2],
+        topic3: log.topics?.[3],
+      } as Log;
+    });
+  }
+
+  return [];
 };
