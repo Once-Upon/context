@@ -51,6 +51,7 @@ import skyoneerPlotAction0x496c6309 from './test/transactions/skyoneerPlotAction
 // untransformed transactions
 import registrarWithConfigRaw0x5d31a49e from './test/transactions/registrarWithConfig-raw-0x5d31a49e.json';
 import ensRegistrarRaw0xb14b4771 from './test/transactions/ensRegistrar-raw-0xb14b4771.json';
+import nftMintRaw0xf264bbc2685 from './test/transactions/nft-mint-raw-0xf264bbc2685.json';
 
 describe('ContextualizerService', () => {
   describe('Detect transactions correctly', () => {
@@ -269,6 +270,11 @@ describe('ContextualizerService', () => {
         registrarWithConfigRaw0x5d31a49e as unknown as Transaction,
       );
       expect(ens2.context?.summaries?.en.title).toBe('ENS');
+
+      const nftMint1 = contextualizer.contextualize(
+        nftMintRaw0xf264bbc2685 as unknown as Transaction,
+      );
+      expect(nftMint1.context?.summaries?.en.title).toBe('NFT Mint');
     });
   });
 });
