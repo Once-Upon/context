@@ -1,11 +1,9 @@
-import { grabLogsFromTransaction } from '../../../helpers/utils';
 import { Transaction } from '../../../types';
 import { FRIEND_TECH_ADDRESSES } from './constants';
 
 export const detect = (transaction: Transaction): boolean => {
-  const logs = grabLogsFromTransaction(transaction);
   /** implement your detection logic */
-  if (transaction.to !== FRIEND_TECH_ADDRESSES || logs.length === 0) {
+  if (transaction.to !== FRIEND_TECH_ADDRESSES) {
     return false;
   }
   // buyShares(address sharesSubject, uint256 amount)
