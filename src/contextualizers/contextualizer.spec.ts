@@ -48,6 +48,9 @@ import ensBulkRenew0x25add712 from './test/transactions/ensBulkRenew-0x25add712.
 import skyoneerPlotAction0x9436b659 from './test/transactions/skyoneerPlotAction-0x9436b659.json';
 import skyoneerPlotAction0x9bb5a737 from './test/transactions/skyoneerPlotAction-0x9bb5a737.json';
 import skyoneerPlotAction0x496c6309 from './test/transactions/skyoneerPlotAction-0x496c6309.json';
+// untransformed transactions
+import registrarWithConfigRaw0x5d31a49e from './test/transactions/registrarWithConfig-raw-0x5d31a49e.json';
+import ensRegistrarRaw0xb14b4771 from './test/transactions/ensRegistrar-raw-0xb14b4771.json';
 
 describe('ContextualizerService', () => {
   describe('Detect transactions correctly', () => {
@@ -254,6 +257,18 @@ describe('ContextualizerService', () => {
         skyoneerPlotAction0x496c6309 as unknown as Transaction,
       );
       expect(plotAction3.context?.summaries?.en.title).toBe('Skyoneer');
+    });
+
+    it('Should detect raw transactions', () => {
+      const ens1 = contextualizer.contextualize(
+        ensRegistrarRaw0xb14b4771 as unknown as Transaction,
+      );
+      expect(ens1.context?.summaries?.en.title).toBe('ENS');
+
+      const ens2 = contextualizer.contextualize(
+        registrarWithConfigRaw0x5d31a49e as unknown as Transaction,
+      );
+      expect(ens2.context?.summaries?.en.title).toBe('ENS');
     });
   });
 });
