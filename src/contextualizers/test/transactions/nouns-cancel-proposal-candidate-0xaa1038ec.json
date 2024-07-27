@@ -1,0 +1,272 @@
+{
+  "blockHash": "0xadf1cf1ae36da063d29ee54c02180c77b3b11070a154256d260131d6418c9c99",
+  "blockNumber": 20223993,
+  "from": "0x9097cdff0329382df4a17e86195cc664385656cb",
+  "gas": 33122,
+  "gasPrice": "2488298584",
+  "maxPriorityFeePerGas": "400865713",
+  "maxFeePerGas": "3216756208",
+  "hash": "0xaa106ebdd2ca0775f9e020dee8dbf2f728363f8f0e75dadbd3be2e2e69d938ec",
+  "input": "0x2a03c079000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000346e6f756e732d61742d6677622d666573742d323032342d686f737465642d62792d667269646179732d61742d7468652d7061726b000000000000000000000000",
+  "nonce": 755,
+  "to": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+  "transactionIndex": 140,
+  "value": "0",
+  "type": 2,
+  "accessList": [],
+  "chainId": 1,
+  "v": "0x0",
+  "yParity": "0x0",
+  "r": "0xe1ae298eb2a0c69f034282a56a9ee42f350eb91569535cff61a3fcab48a1a2",
+  "s": "0x79d725126b8ffbb094561abeb75bb0f00789798987cdbf03d5d1a57b4418e8e6",
+  "receipt": {
+    "blockHash": "0xadf1cf1ae36da063d29ee54c02180c77b3b11070a154256d260131d6418c9c99",
+    "blockNumber": 20223993,
+    "contractAddress": null,
+    "cumulativeGasUsed": 13242390,
+    "effectiveGasPrice": 2488298584,
+    "from": "0x9097cdff0329382df4a17e86195cc664385656cb",
+    "gasUsed": 32766,
+    "logsBloom": "0x00000000000000000000000000004000000000000000000800000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000080000000000002000000000000000000000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+    "transactionHash": "0xaa106ebdd2ca0775f9e020dee8dbf2f728363f8f0e75dadbd3be2e2e69d938ec",
+    "transactionIndex": 140,
+    "type": "0x2",
+    "logs": [
+      {
+        "address": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+        "data": "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000346e6f756e732d61742d6677622d666573742d323032342d686f737465642d62792d667269646179732d61742d7468652d7061726b000000000000000000000000",
+        "blockNumber": 20223993,
+        "transactionHash": "0xaa106ebdd2ca0775f9e020dee8dbf2f728363f8f0e75dadbd3be2e2e69d938ec",
+        "transactionIndex": 140,
+        "blockHash": "0xadf1cf1ae36da063d29ee54c02180c77b3b11070a154256d260131d6418c9c99",
+        "logIndex": 450,
+        "removed": false,
+        "decoded": {
+          "signature": "ProposalCandidateCanceled(address,string)",
+          "signature_with_arg_names": "ProposalCandidateCanceled(address indexed msgSender,string slug)",
+          "name": "ProposalCandidateCanceled",
+          "decoded": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "msgSender",
+              "type": "address",
+              "decoded": "0x9097cdff0329382df4a17e86195cc664385656cb"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "slug",
+              "type": "string",
+              "decoded": "nouns-at-fwb-fest-2024-hosted-by-fridays-at-the-park"
+            }
+          ]
+        },
+        "chainId": 1,
+        "topic0": "0x535f3f195da71b37d09a686916267ef7ad39d15bef95c61e85224d35f8b8fbad",
+        "topic1": "0x0000000000000000000000009097cdff0329382df4a17e86195cc664385656cb"
+      }
+    ]
+  },
+  "decoded": {
+    "signature": "cancelProposalCandidate(string)",
+    "signature_with_arg_names": "cancelProposalCandidate(string arg1)",
+    "name": "cancelProposalCandidate",
+    "decoded": [
+      {
+        "internalType": "string",
+        "name": "arg1",
+        "type": "string",
+        "decoded": "nouns-at-fwb-fest-2024-hosted-by-fridays-at-the-park"
+      }
+    ]
+  },
+  "pseudoTransactions": [],
+  "delegateCalls": [
+    {
+      "action": {
+        "from": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+        "callType": "delegatecall",
+        "gas": "0x172c",
+        "input": "0x2a03c079000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000346e6f756e732d61742d6677622d666573742d323032342d686f737465642d62792d667269646179732d61742d7468652d7061726b000000000000000000000000",
+        "to": "0x624efaba6e7df177ad8ca5bee3bd62f78b304b6e",
+        "value": "0x0"
+      },
+      "blockHash": "0xadf1cf1ae36da063d29ee54c02180c77b3b11070a154256d260131d6418c9c99",
+      "blockNumber": 20223993,
+      "result": {
+        "gasUsed": "0x1600",
+        "output": "0x"
+      },
+      "subtraces": 0,
+      "traceAddress": [
+        0
+      ],
+      "transactionHash": "0xaa106ebdd2ca0775f9e020dee8dbf2f728363f8f0e75dadbd3be2e2e69d938ec",
+      "transactionPosition": 140,
+      "type": "call"
+    }
+  ],
+  "errors": [],
+  "parties": [
+    "0x9097cdff0329382df4a17e86195cc664385656cb",
+    "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+    "0x624efaba6e7df177ad8ca5bee3bd62f78b304b6e"
+  ],
+  "sigHash": "0x2a03c079",
+  "internalSigHashes": [
+    {
+      "from": "0x9097cdff0329382df4a17e86195cc664385656cb",
+      "to": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+      "sigHash": "0x2a03c079"
+    },
+    {
+      "from": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+      "to": "0x624efaba6e7df177ad8ca5bee3bd62f78b304b6e",
+      "sigHash": "0x2a03c079"
+    }
+  ],
+  "timestamp": 1719985691,
+  "baseFeePerGas": 2087432871,
+  "transactionFee": "81531591403344",
+  "contextActions": [
+    "INTERACTED_WITH",
+    "HEURISTIC.INTERACTED_WITH"
+  ],
+  "logs": [
+    {
+      "address": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+      "data": "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000346e6f756e732d61742d6677622d666573742d323032342d686f737465642d62792d667269646179732d61742d7468652d7061726b000000000000000000000000",
+      "blockNumber": 20223993,
+      "transactionHash": "0xaa106ebdd2ca0775f9e020dee8dbf2f728363f8f0e75dadbd3be2e2e69d938ec",
+      "transactionIndex": 140,
+      "blockHash": "0xadf1cf1ae36da063d29ee54c02180c77b3b11070a154256d260131d6418c9c99",
+      "logIndex": 450,
+      "removed": false,
+      "decoded": {
+        "signature": "ProposalCandidateCanceled(address,string)",
+        "signature_with_arg_names": "ProposalCandidateCanceled(address indexed msgSender,string slug)",
+        "name": "ProposalCandidateCanceled",
+        "decoded": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "msgSender",
+            "type": "address",
+            "decoded": "0x9097cdff0329382df4a17e86195cc664385656cb"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "slug",
+            "type": "string",
+            "decoded": "nouns-at-fwb-fest-2024-hosted-by-fridays-at-the-park"
+          }
+        ]
+      },
+      "chainId": 1,
+      "topic0": "0x535f3f195da71b37d09a686916267ef7ad39d15bef95c61e85224d35f8b8fbad",
+      "topic1": "0x0000000000000000000000009097cdff0329382df4a17e86195cc664385656cb"
+    }
+  ],
+  "netAssetTransfers": {},
+  "pseudotransactions": [],
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x9097cdff0329382df4a17e86195cc664385656cb": [
+      {
+        "chainId": 0,
+        "isContract": false,
+        "ensNew": {
+          "handle": "dddvvv.eth",
+          "avatar": "https://assets.airstack.xyz/image/nft/nNBFvZ6wvuIHqDzTFi5pM/pM0Q1IAUgJRNTJrw7f4s3dnhNugRMdhMj91Fd2V5h6Vt1mEkHU2fm6SgUVubetODWjKFdxAH8rMXuOMggVlXBiHUHLbilNYgvzVxk7q/6CUN9UlVVqlJYHdyDDTbDtVVrUAwX8KDrpMD5JUy+lpTU=/medium.svg"
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0xf790a5f59678dd733fb3de93493a91f472ca1365": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": 0,
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x624efaba6e7df177ad8ca5bee3bd62f78b304b6e": [
+      {
+        "chainId": 11155111,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": 0,
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 1,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": 0,
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
+}
