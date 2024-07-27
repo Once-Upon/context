@@ -265,9 +265,8 @@ export const generate = (transaction: Transaction): Transaction => {
       };
 
       if (reason) {
-        transaction.context!.summaries!.en.long = `[[subject]][[contextAction]]${
-          action === NounsGovernorActionEnum.ABSTAINED ? 'from voting on ' : ''
-        }proposal[[proposalId]][[reason]]`;
+        transaction.context!.summaries!.en.long =
+          transaction.context!.summaries!.en.default + `[[reason]]`;
       }
 
       return transaction;
