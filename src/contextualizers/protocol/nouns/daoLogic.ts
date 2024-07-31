@@ -2,6 +2,8 @@ import { Hex } from 'viem';
 import {
   EventLogTopics,
   NounsGovernorActionEnum,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { NounsContracts, ABIs } from './constants';
@@ -114,9 +116,13 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [
+          `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.CREATED_PROPOSAL}`,
+        ],
         variables: {
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.CREATED_PROPOSAL}`,
             value: NounsGovernorActionEnum.CREATED_PROPOSAL,
           },
           subject: {
@@ -136,7 +142,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Nouns',
+            title: ProtocolMap[Protocols.NOUNS_GOVERNOR],
             default: `[[subject]][[contextAction]][[proposalId]]`,
           },
         },
@@ -185,9 +191,13 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [
+          `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.CREATED_PROPOSAL}`,
+        ],
         variables: {
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.CREATED_PROPOSAL}`,
             value: NounsGovernorActionEnum.CREATED_PROPOSAL,
           },
           subject: {
@@ -207,7 +217,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Nouns',
+            title: ProtocolMap[Protocols.NOUNS_GOVERNOR],
             default: `[[subject]][[contextAction]][[proposalId]]`,
           },
         },
@@ -233,9 +243,11 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [`${Protocols.NOUNS_GOVERNOR}.${action}`],
         variables: {
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_GOVERNOR}.${action}`,
             value: action,
           },
           subject: {
@@ -259,7 +271,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Nouns',
+            title: ProtocolMap[Protocols.NOUNS_GOVERNOR],
             default: `[[subject]][[contextAction]]${
               action === NounsGovernorActionEnum.ABSTAINED
                 ? 'from voting on '
@@ -320,9 +332,11 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [`${Protocols.NOUNS_GOVERNOR}.${action}`],
         variables: {
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_GOVERNOR}.${action}`,
             value: action,
           },
           voter: {
@@ -338,7 +352,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Nouns',
+            title: ProtocolMap[Protocols.NOUNS_GOVERNOR],
             default: `[[voter]][[contextAction]]${
               action === NounsGovernorActionEnum.ABSTAINED
                 ? 'from voting on '
@@ -361,9 +375,11 @@ export const generate = (transaction: Transaction): Transaction => {
         FUNCTION_CONTEXT_ACTION_MAPPING[decoded.functionName];
 
       transaction.context = {
+        actions: [`${Protocols.NOUNS_GOVERNOR}.${contextAction}`],
         variables: {
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_GOVERNOR}.${contextAction}`,
             value: contextAction,
           },
           subject: {
@@ -379,7 +395,7 @@ export const generate = (transaction: Transaction): Transaction => {
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Nouns',
+            title: ProtocolMap[Protocols.NOUNS_GOVERNOR],
             default: `[[subject]][[contextAction]]proposal[[proposalId]]`,
           },
         },

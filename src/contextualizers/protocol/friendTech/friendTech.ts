@@ -3,6 +3,8 @@ import {
   AssetType,
   EventLogTopics,
   FriendTechContextActionEnum,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import { ABIs } from './constants';
@@ -36,6 +38,10 @@ export const generate = (transaction: Transaction): Transaction => {
       const subject = parsedTx.args[0].toString();
       const shareAmount = Number(parsedTx.args[1]);
       transaction.context = {
+        actions: [
+          `${Protocols.FRIENDTECH}.${FriendTechContextActionEnum.FAILED_TO_BUY_KEYS}`,
+        ],
+
         variables: {
           price: {
             type: AssetType.ETH,
@@ -57,13 +63,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           failedToBuyKeys: {
             type: 'contextAction',
+            id: `${Protocols.FRIENDTECH}.${FriendTechContextActionEnum.FAILED_TO_BUY_KEYS}`,
             value: FriendTechContextActionEnum.FAILED_TO_BUY_KEYS,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'friend.tech',
+            title: ProtocolMap[Protocols.FRIENDTECH],
             default:
               '[[buyer]][[failedToBuyKeys]][[numOfKeys]]of[[subject]]for[[price]]',
           },
@@ -95,13 +103,18 @@ export const generate = (transaction: Transaction): Transaction => {
       // Check if this is a user signing up
       if (trader === subject && ethAmount === '0' && supply === 1) {
         transaction.context = {
+          actions: [
+            `${Protocols.FRIENDTECH}.${FriendTechContextActionEnum.SIGNED_UP}`,
+          ],
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'friend.tech',
+              title: ProtocolMap[Protocols.FRIENDTECH],
               default: '[[subject]][[signedUp]]',
             },
           },
+
           variables: {
             subject: {
               type: 'address',
@@ -109,6 +122,7 @@ export const generate = (transaction: Transaction): Transaction => {
             },
             signedUp: {
               type: 'contextAction',
+              id: `${Protocols.FRIENDTECH}.${FriendTechContextActionEnum.SIGNED_UP}`,
               value: FriendTechContextActionEnum.SIGNED_UP,
             },
           },
@@ -117,6 +131,10 @@ export const generate = (transaction: Transaction): Transaction => {
       }
 
       transaction.context = {
+        actions: [
+          `${Protocols.FRIENDTECH}.${FriendTechContextActionEnum.BOUGHT_KEYS}`,
+        ],
+
         variables: {
           price: {
             type: AssetType.ETH,
@@ -138,13 +156,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           boughtKeys: {
             type: 'contextAction',
+            id: `${Protocols.FRIENDTECH}.${FriendTechContextActionEnum.BOUGHT_KEYS}`,
             value: FriendTechContextActionEnum.BOUGHT_KEYS,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'friend.tech',
+            title: ProtocolMap[Protocols.FRIENDTECH],
             default:
               '[[buyer]][[boughtKeys]][[numOfKeys]]of[[subject]]for[[price]]',
           },
@@ -177,6 +197,10 @@ export const generate = (transaction: Transaction): Transaction => {
       const shareAmount = Number(parsedLog.args['shareAmount']);
 
       transaction.context = {
+        actions: [
+          `${Protocols.FRIENDTECH}.${FriendTechContextActionEnum.SOLD_KEYS}`,
+        ],
+
         variables: {
           price: {
             type: AssetType.ETH,
@@ -198,13 +222,15 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           soldKeys: {
             type: 'contextAction',
+            id: `${Protocols.FRIENDTECH}.${FriendTechContextActionEnum.SOLD_KEYS}`,
             value: FriendTechContextActionEnum.SOLD_KEYS,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'friend.tech',
+            title: ProtocolMap[Protocols.FRIENDTECH],
             default:
               '[[trader]][[soldKeys]][[numOfKeys]]of[[subject]]for[[price]]',
           },

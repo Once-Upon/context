@@ -101,6 +101,8 @@ export enum FarcasterContextActionEnum {
   RENTED = 'RENTED',
   REMOVED_A_KEY = 'REMOVED_A_KEY',
   ADDED_A_KEY = 'ADDED_A_KEY',
+  MINTED = 'MINTED',
+  BOUGHT = 'BOUGHT',
 }
 
 export type FarcasterContextAction =
@@ -109,7 +111,15 @@ export type FarcasterContextAction =
   | FarcasterContextActionEnum.TRANSFERRED_FARCASTER_ID
   | FarcasterContextActionEnum.RENTED
   | FarcasterContextActionEnum.REMOVED_A_KEY
-  | FarcasterContextActionEnum.ADDED_A_KEY;
+  | FarcasterContextActionEnum.ADDED_A_KEY
+  | FarcasterContextActionEnum.MINTED
+  | FarcasterContextActionEnum.BOUGHT;
+
+export enum WarpcastContextActionEnum {
+  MINTED = 'MINTED',
+}
+
+export type WarpcastContextAction = WarpcastContextActionEnum.MINTED;
 
 export enum EASContextActionEnum {
   ATTESTED = 'ATTESTED',
@@ -193,6 +203,11 @@ export enum UniswapV2RouterActionEnum {
 
 export type UniswapV2RouterAction = UniswapV2RouterActionEnum.ADDED_LIQUIDITY;
 
+export enum UniswapV3PairActionEnum {
+  SWAPPED = 'SWAPPED',
+}
+export type UniswapV3PairAction = UniswapV3PairActionEnum.SWAPPED;
+
 export enum ClaimCampaignsActionEnum {
   CLAIMED = 'CLAIMED',
 }
@@ -264,41 +279,90 @@ export type SkyoneerContextAction =
   | SkyoneerContextActionEnum.CLEARED_DEAD_CROPS
   | SkyoneerContextActionEnum.PLANTED;
 
-export enum Protocols {
-  WETH = 'WETH',
-  ENS = 'ENS',
-  CRYPTOPUNKS = 'CRYPTOPUNKS',
-  LEEROY = 'LEEROY',
-  FRENPET = 'FRENPET',
-  FARCASTER = 'FARCASTER',
-  EAS = 'EAS',
-  FRIENDTECH = 'FRIENDTECH',
-  NOUNS_AUCTION_HOUSE = 'NOUNS_AUCTION_HOUSE',
-  NOUNS_GOVERNOR = 'NOUNS_GOVERNOR',
-  UNISWAP_V2_ROUTER = 'UNISWAP_V2_ROUTER',
-  CLAIM_CAMPAIGNS = 'CLAIM_CAMPAIGNS',
-  BASEPAINT = 'BASEPAINT',
-  DISPERSE = 'DISPERSE',
-  BNS = 'BNS',
-  BOOMBOX = 'BOOMBOX',
-  GOLD = 'GOLD',
+// Zora-pattern minting contracts
+export enum ZoraContextActionEnum {
+  MINTED = 'MINTED',
 }
+export type ZoraContextAction = ZoraContextActionEnum.MINTED;
+export enum HighlightContextActionEnum {
+  MINTED = 'MINTED',
+}
+export type HighlightContextAction = HighlightContextActionEnum.MINTED;
+export enum RodeoContextActionEnum {
+  MINTED = 'MINTED',
+}
+export type RodeoContextAction = RodeoContextActionEnum.MINTED;
 
 export type ProtocolContextAction =
+  | ZoraContextAction
+  | HighlightContextAction
+  | RodeoContextAction
   | WETHContextAction
   | ENSContextAction
   | CryptoPunksContextAction
   | LeeroyContextAction
   | FrenpetContextAction
   | FarcasterContextAction
+  | WarpcastContextAction
   | EASContextAction
   | FriendTechContextAction
   | NounsAuctionHouseAction
   | NounsGovernorAction
   | UniswapV2RouterAction
+  | UniswapV3PairAction
   | ClaimCampaignsAction
   | BasepaintAction
   | DisperseAction
   | BNSContextAction
   | BoomboxContextAction
   | SkyoneerContextAction;
+
+export enum Protocols {
+  ZORA = 'ZORA',
+  HIGHLIGHT = 'HIGHLIGHT',
+  RODEO = 'RODEO',
+  WETH = 'WETH',
+  ENS = 'ENS',
+  CRYPTOPUNKS = 'CRYPTOPUNKS',
+  LEEROY = 'LEEROY',
+  FRENPET = 'FRENPET',
+  FARCASTER = 'FARCASTER',
+  WARPCAST = 'WARPCAST',
+  EAS = 'EAS',
+  FRIENDTECH = 'FRIENDTECH',
+  NOUNS_AUCTION_HOUSE = 'NOUNS_AUCTION_HOUSE',
+  NOUNS_GOVERNOR = 'NOUNS_GOVERNOR',
+  UNISWAP_V2_ROUTER = 'UNISWAP_V2_ROUTER',
+  UNISWAP_V3_PAIR = 'UNISWAP_V3_PAIR',
+  CLAIM_CAMPAIGNS = 'CLAIM_CAMPAIGNS',
+  BASEPAINT = 'BASEPAINT',
+  DISPERSE = 'DISPERSE',
+  BNS = 'BNS',
+  BOOMBOX = 'BOOMBOX',
+  SKYONEER = 'SKYONEER',
+}
+
+export const ProtocolMap = {
+  [Protocols.BASEPAINT]: 'Basepaint',
+  [Protocols.BNS]: 'BNS',
+  [Protocols.BOOMBOX]: 'Boombox',
+  [Protocols.CLAIM_CAMPAIGNS]: 'Claim',
+  [Protocols.CRYPTOPUNKS]: 'CryptoPunks',
+  [Protocols.DISPERSE]: 'Disperse',
+  [Protocols.EAS]: 'EAS',
+  [Protocols.ENS]: 'ENS',
+  [Protocols.FARCASTER]: 'Farcaster',
+  [Protocols.HIGHLIGHT]: 'Highlight',
+  [Protocols.WARPCAST]: 'Warpcast',
+  [Protocols.FRENPET]: 'Fren Pet',
+  [Protocols.FRIENDTECH]: 'friend.tech',
+  [Protocols.SKYONEER]: 'Skyoneer',
+  [Protocols.LEEROY]: 'Leeroy',
+  [Protocols.NOUNS_GOVERNOR]: 'Nouns',
+  [Protocols.NOUNS_AUCTION_HOUSE]: 'Nouns',
+  [Protocols.RODEO]: 'Rodeo',
+  [Protocols.UNISWAP_V2_ROUTER]: 'Uniswap',
+  [Protocols.UNISWAP_V3_PAIR]: 'Uniswap',
+  [Protocols.WETH]: 'WETH',
+  [Protocols.ZORA]: 'Zora',
+};

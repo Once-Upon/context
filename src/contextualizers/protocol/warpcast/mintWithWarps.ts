@@ -4,7 +4,10 @@ import {
   ERC721Asset,
   ETHAsset,
   HeuristicContextActionEnum,
+  ProtocolMap,
+  Protocols,
   Transaction,
+  WarpcastContextActionEnum,
 } from '../../../types';
 
 const WARPCAST_MINT_ADDRESSES = [
@@ -87,6 +90,11 @@ export function generate(transaction: Transaction): Transaction {
   if (!sent) return transaction;
 
   transaction.context = {
+    actions: [
+      `${Protocols.WARPCAST}.${WarpcastContextActionEnum.MINTED}`,
+      HeuristicContextActionEnum.MINTED,
+    ],
+
     variables: {
       buyer: {
         type: 'address',
@@ -100,13 +108,15 @@ export function generate(transaction: Transaction): Transaction {
       minted,
       contextAction: {
         type: 'contextAction',
-        value: HeuristicContextActionEnum.MINTED,
+        id: `${Protocols.WARPCAST}.${WarpcastContextActionEnum.MINTED}`,
+        value: WarpcastContextActionEnum.MINTED,
       },
     },
+
     summaries: {
       category: 'PROTOCOL_1',
       en: {
-        title: 'Warpcast',
+        title: ProtocolMap[Protocols.WARPCAST],
         default: '[[buyer]][[contextAction]][[minted]]with Warps for[[cost]]',
       },
     },

@@ -1,5 +1,10 @@
 import { Hex } from 'viem';
-import { FarcasterContextActionEnum, Transaction } from '../../../types';
+import {
+  FarcasterContextActionEnum,
+  ProtocolMap,
+  Protocols,
+  Transaction,
+} from '../../../types';
 import { FarcasterContracts } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -40,9 +45,14 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'rent': {
       const units = Number(decoded.args[1]);
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.RENTED}`,
+        ],
+
         variables: {
           rented: {
             type: 'contextAction',
+            id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.RENTED}`,
             value: FarcasterContextActionEnum.RENTED,
           },
           caller: {
@@ -60,10 +70,11 @@ export const generate = (transaction: Transaction): Transaction => {
             unit: `storage unit${units > 1 ? 's' : ''}`,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Farcaster',
+            title: ProtocolMap[Protocols.FARCASTER],
             default: `[[caller]][[rented]][[units]]for Farcaster ID[[fid]]`,
           },
         },
@@ -77,9 +88,14 @@ export const generate = (transaction: Transaction): Transaction => {
       const unitsArg = decoded.args[1];
       const units = unitsArg.reduce((acc, curr) => acc + curr);
       transaction.context = {
+        actions: [
+          `${Protocols.FARCASTER}.${FarcasterContextActionEnum.RENTED}`,
+        ],
+
         variables: {
           rented: {
             type: 'contextAction',
+            id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.RENTED}`,
             value: FarcasterContextActionEnum.RENTED,
           },
           caller: {
@@ -99,10 +115,11 @@ export const generate = (transaction: Transaction): Transaction => {
             unit: `storage unit${units > 1 ? 's' : ''}`,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Farcaster',
+            title: ProtocolMap[Protocols.FARCASTER],
             default: `[[caller]][[rented]][[units]]for[[fids]]`,
           },
         },

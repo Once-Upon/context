@@ -5,6 +5,7 @@ import {
   ERC721Asset,
   ETHAsset,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Transaction,
 } from '../../types';
 
@@ -30,6 +31,11 @@ export function generate(transaction: Transaction): Transaction {
   const functionName = transaction?.decoded?.name || '';
 
   transaction.context = {
+    actions: [
+      HeuristicContextActionEnum.INTERACTED_WITH,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.INTERACTED_WITH}`,
+    ],
+
     variables: {
       address: {
         type: 'address',
@@ -46,13 +52,16 @@ export function generate(transaction: Transaction): Transaction {
       },
       interactedWith: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.INTERACTED_WITH,
         value: HeuristicContextActionEnum.INTERACTED_WITH,
       },
       called: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.CALLED,
         value: HeuristicContextActionEnum.CALLED,
       },
     },
+
     summaries: {
       category: 'UNKNOWN',
       en: {

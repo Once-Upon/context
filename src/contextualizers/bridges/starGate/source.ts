@@ -3,6 +3,7 @@ import {
   AssetType,
   EventLogTopics,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Log,
   Transaction,
 } from '../../../types';
@@ -106,6 +107,11 @@ export function generate(transaction: Transaction): Transaction {
   const amount = formatEther(decodedSwapLog.args['amountSD'] as bigint);
 
   transaction.context = {
+    actions: [
+      HeuristicContextActionEnum.BRIDGED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BRIDGED}`,
+    ],
+
     variables: {
       subject: {
         type: 'address',
@@ -122,9 +128,11 @@ export function generate(transaction: Transaction): Transaction {
       },
       bridged: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.BRIDGED,
         value: HeuristicContextActionEnum.BRIDGED,
       },
     },
+
     summaries: {
       category: 'MULTICHAIN',
       en: {

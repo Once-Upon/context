@@ -4,7 +4,10 @@ import {
   ERC20Asset,
   EventLogTopics,
   HeuristicContextActionEnum,
+  ProtocolMap,
+  Protocols,
   Transaction,
+  UniswapV3PairActionEnum,
 } from '../../../types';
 import { UNISWAP_V3_PAIR_ABI, UNIVERSAL_ROUTERS } from './constants';
 import { decodeLog, grabLogsFromTransaction } from '../../../helpers/utils';
@@ -79,6 +82,11 @@ export const generate = (transaction: Transaction): Transaction => {
   ) as ERC20Asset;
 
   transaction.context = {
+    actions: [
+      `${Protocols.UNISWAP_V3_PAIR}.${UniswapV3PairActionEnum.SWAPPED}`,
+      HeuristicContextActionEnum.SWAPPED,
+    ],
+
     variables: {
       sender: {
         type: 'address',
@@ -100,13 +108,15 @@ export const generate = (transaction: Transaction): Transaction => {
       },
       contextAction: {
         type: 'contextAction',
-        value: HeuristicContextActionEnum.SWAPPED, // TODO: Make a Uniswap version of this
+        id: `${Protocols.UNISWAP_V3_PAIR}.${UniswapV3PairActionEnum.SWAPPED}`,
+        value: UniswapV3PairActionEnum.SWAPPED,
       },
     },
+
     summaries: {
       category: 'PROTOCOL_1',
       en: {
-        title: 'Uniswap',
+        title: ProtocolMap[Protocols.UNISWAP_V3_PAIR],
         default: '[[sender]]swapped[[tokenIn]]for[[tokenOut]]',
       },
     },

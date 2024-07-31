@@ -3,6 +3,7 @@ import {
   AssetType,
   EventLogTopics,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Transaction,
 } from '../../../types';
 import { HOP_TRANSFER_SENT_TO_L2_EVENT_ABI, HOP_RELAYERS } from './constants';
@@ -73,6 +74,11 @@ export function generate(transaction: Transaction): Transaction {
     decodedTransferSentToL2Log.args['amount'] as bigint,
   );
   transaction.context = {
+    actions: [
+      HeuristicContextActionEnum.BRIDGED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BRIDGED}`,
+    ],
+
     variables: {
       subject: {
         type: 'address',
@@ -89,9 +95,11 @@ export function generate(transaction: Transaction): Transaction {
       },
       bridged: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.BRIDGED,
         value: HeuristicContextActionEnum.BRIDGED,
       },
     },
+
     summaries: {
       category: 'MULTICHAIN',
       en: {

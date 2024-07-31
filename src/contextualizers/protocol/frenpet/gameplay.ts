@@ -10,6 +10,9 @@ import {
   ContextERC721Type,
   ERC721Asset,
   FrenpetContextActionEnum,
+  ProtocolMap,
+  Protocols,
+  HeuristicContextActionEnum,
 } from '../../../types';
 import {
   decodeFunction,
@@ -68,37 +71,49 @@ export const generate = (transaction: Transaction): Transaction => {
           value: asset.value,
         };
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.BOUGHT_ACCESSORY}`,
+          ],
+
           variables: {
             buyer,
             pet,
             purchasePrice,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.BOUGHT_ACCESSORY}`,
               value: FrenpetContextActionEnum.BOUGHT_ACCESSORY,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Fren Pet',
+              title: ProtocolMap[Protocols.FRENPET],
               default: `[[buyer]][[contextAction]]${accessory} for[[pet]]for[[purchasePrice]]`,
             },
           },
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.BOUGHT_ACCESSORY}`,
+          ],
+
           variables: {
             buyer,
             pet,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.BOUGHT_ACCESSORY}`,
               value: FrenpetContextActionEnum.BOUGHT_ACCESSORY,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Fren Pet',
+              title: ProtocolMap[Protocols.FRENPET],
               default: `Failed:[[buyer]][[contextAction]]${accessory} for[[pet]]`,
             },
           },
@@ -150,36 +165,48 @@ export const generate = (transaction: Transaction): Transaction => {
         const scoresWon = (scoresWonArg / BigInt(100000000000)).toString();
         const winOrLose = attackerArg === winnerArg ? 'won' : 'lost';
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.ATTACKED}`,
+          ],
+
           variables: {
             attacker,
             attacked,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.ATTACKED}`,
               value: FrenpetContextActionEnum.ATTACKED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Fren Pet',
+              title: ProtocolMap[Protocols.FRENPET],
               default: `[[attacker]][[contextAction]][[attacked]]and ${winOrLose} ${scoresWon} points`,
             },
           },
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.ATTACKED}`,
+          ],
+
           variables: {
             attacker,
             attacked,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.ATTACKED}`,
               value: FrenpetContextActionEnum.ATTACKED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Fren Pet',
+              title: ProtocolMap[Protocols.FRENPET],
               default: `Failed:[[attacker]][[contextAction]][[attacked]]`,
             },
           },
@@ -213,36 +240,50 @@ export const generate = (transaction: Transaction): Transaction => {
           value: assetSent.value,
         };
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.MINTED}`,
+            HeuristicContextActionEnum.MINTED,
+          ],
+
           variables: {
             minter,
             pet,
             cost,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.MINTED}`,
               value: FrenpetContextActionEnum.MINTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Fren Pet',
+              title: ProtocolMap[Protocols.FRENPET],
               default: `[[minter]][[contextAction]][[pet]]for[[cost]]`,
             },
           },
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.MINTED}`,
+            HeuristicContextActionEnum.MINTED,
+          ],
+
           variables: {
             minter,
             contextAction: {
               type: 'contextAction',
-              value: FrenpetContextActionEnum.MINTED, // TODO: Make a Frenpet version of this
+              id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.MINTED}`,
+              value: FrenpetContextActionEnum.MINTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Fren Pet',
+              title: ProtocolMap[Protocols.FRENPET],
               default: `Failed:[[minter]][[contextAction]]a Fren Pet`,
             },
           },
@@ -267,18 +308,24 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       const name = parsed.args[1];
       transaction.context = {
+        actions: [
+          `${Protocols.FRENPET}.${FrenpetContextActionEnum.SET_PET_NAME}`,
+        ],
+
         variables: {
           user,
           pet,
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.SET_PET_NAME}`,
             value: FrenpetContextActionEnum.SET_PET_NAME,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Fren Pet',
+            title: ProtocolMap[Protocols.FRENPET],
             default: `[[user]][[contextAction]]for[[pet]]to ${name}`,
           },
         },
@@ -293,34 +340,46 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       if (transaction.receipt?.status) {
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.WHEEL_COMMITTED}`,
+          ],
+
           variables: {
             user,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.WHEEL_COMMITTED}`,
               value: FrenpetContextActionEnum.WHEEL_COMMITTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Fren Pet',
+              title: ProtocolMap[Protocols.FRENPET],
               default: `[[user]][[contextAction]]`,
             },
           },
         };
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.WHEEL_COMMITTED}`,
+          ],
+
           variables: {
             user,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.WHEEL_COMMITTED}`,
               value: FrenpetContextActionEnum.WHEEL_COMMITTED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Fren Pet',
+              title: ProtocolMap[Protocols.FRENPET],
               default: `[[user]][[contextAction]]`,
             },
           },
@@ -348,18 +407,24 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       if (!transaction.receipt?.status) {
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.REDEEMED}`,
+          ],
+
           variables: {
             user,
             pet,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.REDEEMED}`,
               value: FrenpetContextActionEnum.REDEEMED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Fren Pet',
+              title: ProtocolMap[Protocols.FRENPET],
               default: `[[user]][[contextAction]]for[[pet]]`,
             },
           },
@@ -387,19 +452,25 @@ export const generate = (transaction: Transaction): Transaction => {
           value: redeemedAmountString,
         };
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.REDEEMED}`,
+          ],
+
           variables: {
             user,
             pet,
             redeemedAmount,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.REDEEMED}`,
               value: FrenpetContextActionEnum.REDEEMED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Fren Pet',
+              title: ProtocolMap[Protocols.FRENPET],
               default: `[[user]][[contextAction]][[redeemedAmount]]for[[pet]]`,
             },
           },
@@ -432,19 +503,25 @@ export const generate = (transaction: Transaction): Transaction => {
       };
 
       transaction.context = {
+        actions: [
+          `${Protocols.FRENPET}.${FrenpetContextActionEnum.COMMITTED_TO_ATTACKING}`,
+        ],
+
         variables: {
           user,
           attacker,
           target,
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.COMMITTED_TO_ATTACKING}`,
             value: FrenpetContextActionEnum.COMMITTED_TO_ATTACKING,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Fren Pet',
+            title: ProtocolMap[Protocols.FRENPET],
             default: `[[user]][[contextAction]]with[[attacker]]attacking[[target]]`,
           },
         },
@@ -483,18 +560,24 @@ export const generate = (transaction: Transaction): Transaction => {
         ) {
           // bonkTooSlowEvent
           transaction.context = {
+            actions: [
+              `${Protocols.FRENPET}.${FrenpetContextActionEnum.TOO_SLOW_TO_ATTACK}`,
+            ],
+
             variables: {
               user,
               attacker,
               contextAction: {
                 type: 'contextAction',
+                id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.TOO_SLOW_TO_ATTACK}`,
                 value: FrenpetContextActionEnum.TOO_SLOW_TO_ATTACK,
               },
             },
+
             summaries: {
               category: 'PROTOCOL_1',
               en: {
-                title: 'Fren Pet',
+                title: ProtocolMap[Protocols.FRENPET],
                 default: `[[user]][[contextAction]]with[[attacker]]`,
               },
             },
@@ -531,6 +614,10 @@ export const generate = (transaction: Transaction): Transaction => {
             scoresWon / BigInt(100000000000)
           ).toString();
           transaction.context = {
+            actions: [
+              `${Protocols.FRENPET}.${FrenpetContextActionEnum.ATTACKED}`,
+            ],
+
             variables: {
               user,
               attacker,
@@ -548,13 +635,15 @@ export const generate = (transaction: Transaction): Transaction => {
               },
               contextAction: {
                 type: 'contextAction',
+                id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.ATTACKED}`,
                 value: FrenpetContextActionEnum.ATTACKED,
               },
             },
+
             summaries: {
               category: 'PROTOCOL_1',
               en: {
-                title: 'Fren Pet',
+                title: ProtocolMap[Protocols.FRENPET],
                 default: `[[user]][[contextAction]]with[[attacker]]attacking[[loser]]and ${winOrLose} ${scoresWonFormatted} points`,
               },
             },
@@ -562,18 +651,24 @@ export const generate = (transaction: Transaction): Transaction => {
         }
       } else {
         transaction.context = {
+          actions: [
+            `${Protocols.FRENPET}.${FrenpetContextActionEnum.ATTACKED}`,
+          ],
+
           variables: {
             user,
             attacker,
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.ATTACKED}`,
               value: FrenpetContextActionEnum.ATTACKED,
             },
           },
+
           summaries: {
             category: 'PROTOCOL_1',
             en: {
-              title: 'Fren Pet',
+              title: ProtocolMap[Protocols.FRENPET],
               default: `[[user]][[contextAction]]with[[attacker]]`,
             },
           },
@@ -604,19 +699,23 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: (parsed.args[1] as bigint).toString(),
       };
       transaction.context = {
+        actions: [`${Protocols.FRENPET}.${FrenpetContextActionEnum.KILLED}`],
+
         variables: {
           user,
           dead,
           killer,
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.KILLED}`,
             value: FrenpetContextActionEnum.KILLED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Fren Pet',
+            title: ProtocolMap[Protocols.FRENPET],
             default: `[[user]][[contextAction]][[dead]]with[[killer]]`,
           },
         },
@@ -641,18 +740,24 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: (parsed.args[0] as bigint).toString(),
       };
       transaction.context = {
+        actions: [
+          `${Protocols.FRENPET}.${FrenpetContextActionEnum.WHEEL_COMMITTED}`,
+        ],
+
         variables: {
           user,
           pet,
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.WHEEL_COMMITTED}`,
             value: FrenpetContextActionEnum.WHEEL_COMMITTED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Fren Pet',
+            title: ProtocolMap[Protocols.FRENPET],
             default: `[[user]][[contextAction]]with[[pet]]`,
           },
         },
@@ -677,18 +782,24 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: (parsed.args[0] as bigint).toString(),
       };
       transaction.context = {
+        actions: [
+          `${Protocols.FRENPET}.${FrenpetContextActionEnum.WHEEL_REVEALED}`,
+        ],
+
         variables: {
           user,
           pet,
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.FRENPET}.${FrenpetContextActionEnum.WHEEL_REVEALED}`,
             value: FrenpetContextActionEnum.WHEEL_REVEALED,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Fren Pet',
+            title: ProtocolMap[Protocols.FRENPET],
             default: `[[user]][[contextAction]]with[[pet]]`,
           },
         },

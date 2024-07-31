@@ -2,6 +2,7 @@ import { grabLogsFromTransaction } from '../../../helpers/utils';
 import {
   AssetType,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Transaction,
 } from '../../../types';
 
@@ -33,6 +34,11 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
+    actions: [
+      HeuristicContextActionEnum.SENT,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.SENT}`,
+    ],
+
     variables: {
       sender: {
         type: 'address',
@@ -50,9 +56,11 @@ export function generate(transaction: Transaction): Transaction {
       },
       sent: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.SENT,
         value: HeuristicContextActionEnum.SENT,
       },
     },
+
     summaries: {
       category: 'CORE',
       en: {

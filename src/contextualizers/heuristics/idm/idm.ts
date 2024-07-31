@@ -1,4 +1,8 @@
-import { HeuristicContextActionEnum, Transaction } from '../../../types';
+import {
+  HeuristicContextActionEnum,
+  HeuristicPrefix,
+  Transaction,
+} from '../../../types';
 import { hexToString, countValidChars } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -29,6 +33,11 @@ function generate(transaction: Transaction): Transaction {
   if (!transaction.to) return transaction;
 
   transaction.context = {
+    actions: [
+      HeuristicContextActionEnum.SENT_MESSAGE,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.SENT_MESSAGE}`,
+    ],
+
     variables: {
       messageSender: {
         type: 'address',
@@ -40,6 +49,7 @@ function generate(transaction: Transaction): Transaction {
       },
       sentMessage: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.SENT_MESSAGE,
         value: HeuristicContextActionEnum.SENT_MESSAGE,
       },
       receiver: {
@@ -47,6 +57,7 @@ function generate(transaction: Transaction): Transaction {
         value: transaction.to,
       },
     },
+
     summaries: {
       category: 'OTHER',
       en: {

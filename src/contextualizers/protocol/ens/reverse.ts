@@ -1,5 +1,10 @@
 import { Hex } from 'viem';
-import { ENSContextActionEnum, Transaction } from '../../../types';
+import {
+  ENSContextActionEnum,
+  ProtocolMap,
+  Protocols,
+  Transaction,
+} from '../../../types';
 import { ENS_CONTRACTS, ENS_ADDRESSES } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 
@@ -41,13 +46,18 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'setName': {
       const name = decode.args[0];
       transaction.context = {
+        actions: [
+          `${Protocols.ENS}.${ENSContextActionEnum.SET_REVERSE_ENS_TO}`,
+        ],
+
         summaries: {
           category: 'IDENTITY',
           en: {
-            title: 'ENS',
+            title: ProtocolMap[Protocols.ENS],
             default: `[[setter]][[reversed]][[name]]`,
           },
         },
+
         variables: {
           setter: {
             type: 'address',
@@ -60,6 +70,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           reversed: {
             type: 'contextAction',
+            id: `${Protocols.ENS}.${ENSContextActionEnum.SET_REVERSE_ENS_TO}`,
             value: ENSContextActionEnum.SET_REVERSE_ENS_TO,
           },
         },

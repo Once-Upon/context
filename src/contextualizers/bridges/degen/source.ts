@@ -8,6 +8,7 @@ import {
   ContextETHType,
   AssetTransfer,
   ContextSummaryVariableType,
+  HeuristicPrefix,
 } from '../../../types';
 import { DEGEN_BRIDGES } from './constants';
 
@@ -88,6 +89,11 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
+    actions: [
+      HeuristicContextActionEnum.BRIDGED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BRIDGED}`,
+    ],
+
     summaries: {
       category: 'MULTICHAIN',
       en: {
@@ -96,6 +102,7 @@ export function generate(transaction: Transaction): Transaction {
           '[[person]][[bridged]]via[[address]]and[[asset]]was transferred',
       },
     },
+
     variables: {
       person: {
         type: 'address',
@@ -108,6 +115,7 @@ export function generate(transaction: Transaction): Transaction {
       asset,
       bridged: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.BRIDGED,
         value: HeuristicContextActionEnum.BRIDGED,
       },
     },

@@ -8,6 +8,7 @@ import {
   AssetType,
   ERC20Asset,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Transaction,
 } from '../../../types';
 
@@ -107,6 +108,11 @@ export function generate(transaction: Transaction): Transaction {
     (totalETHPayment > BigInt(0) ? 1 : 0);
 
   transaction.context = {
+    actions: [
+      HeuristicContextActionEnum.BOUGHT,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BOUGHT}`,
+    ],
+
     variables: {
       userOrUsers:
         receivingAddresses.length > 1
@@ -173,9 +179,11 @@ export function generate(transaction: Transaction): Transaction {
             },
       bought: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.BOUGHT,
         value: HeuristicContextActionEnum.BOUGHT,
       },
     },
+
     summaries: {
       category: 'NFT',
       en: {

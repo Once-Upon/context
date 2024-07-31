@@ -2,6 +2,9 @@ import {
   AssetType,
   ERC20Asset,
   Transaction,
+  ProtocolMap,
+  Protocols,
+  FarcasterContextActionEnum,
   HeuristicContextActionEnum,
 } from '../../../types';
 
@@ -87,6 +90,11 @@ export function generate(transaction: Transaction): Transaction {
 
   // Pull out relevant data for faucet transaction
   transaction.context = {
+    actions: [
+      `${Protocols.FARCASTER}.${FarcasterContextActionEnum.BOUGHT}`,
+      HeuristicContextActionEnum.BOUGHT,
+    ],
+
     variables: {
       buyer: {
         type: 'address',
@@ -102,13 +110,15 @@ export function generate(transaction: Transaction): Transaction {
       },
       bought: {
         type: 'contextAction',
-        value: HeuristicContextActionEnum.BOUGHT,
+        id: `${Protocols.FARCASTER}.${FarcasterContextActionEnum.BOUGHT}`,
+        value: FarcasterContextActionEnum.BOUGHT,
       },
     },
+
     summaries: {
       category: 'PROTOCOL_1',
       en: {
-        title: 'Farcaster',
+        title: ProtocolMap[Protocols.FARCASTER],
         default: '[[buyer]][[bought]][[costInUSDC]]of Warps for[[cost]]',
       },
     },

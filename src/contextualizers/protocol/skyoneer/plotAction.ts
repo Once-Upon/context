@@ -3,6 +3,7 @@ import {
   EventLogTopics,
   SkyoneerContextActionEnum,
   AssetType,
+  Protocols,
 } from '../../../types';
 import { PLOT_ACTION_CONTRACT_ADDRESS, PLOT_ACTION_ABI } from './constants';
 import {
@@ -113,6 +114,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             harvested: {
               type: 'contextAction',
+              id: `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.HARVESTED}`,
               value: SkyoneerContextActionEnum.HARVESTED,
             },
           },
@@ -140,6 +142,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             clearedHarvest: {
               type: 'contextAction',
+              id: `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.CLEARED_DEAD_CROPS}`,
               value: SkyoneerContextActionEnum.CLEARED_DEAD_CROPS,
             },
           },
@@ -167,6 +170,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             clearedHarvest: {
               type: 'contextAction',
+              id: `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.CLEARED_GROWING_CROPS}`,
               value: SkyoneerContextActionEnum.CLEARED_GROWING_CROPS,
             },
           },
@@ -199,6 +203,7 @@ export function generate(transaction: Transaction): Transaction {
             },
             planted: {
               type: 'contextAction',
+              id: `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.PLANTED}`,
               value: SkyoneerContextActionEnum.PLANTED,
             },
           },

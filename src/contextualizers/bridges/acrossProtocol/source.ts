@@ -5,6 +5,7 @@ import {
   Transaction,
   HeuristicContextActionEnum,
   Log,
+  HeuristicPrefix,
 } from '../../../types';
 import {
   ACROSS_PROTOCOL_RELAYER_ABI,
@@ -75,6 +76,11 @@ export function generate(transaction: Transaction): Transaction {
   );
   const amount = formatEther(fundsDepositedEvent.args['amount'] as bigint);
   transaction.context = {
+    actions: [
+      HeuristicContextActionEnum.BRIDGED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BRIDGED}`,
+    ],
+
     summaries: {
       category: 'MULTICHAIN',
       en: {
@@ -82,6 +88,7 @@ export function generate(transaction: Transaction): Transaction {
         default: '[[subject]][[bridged]][[amount]]to[[chainID]]',
       },
     },
+
     variables: {
       subject: {
         type: 'address',
@@ -98,6 +105,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       bridged: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.BRIDGED,
         value: HeuristicContextActionEnum.BRIDGED,
       },
     },

@@ -3,6 +3,7 @@ import {
   AssetType,
   EventLogTopics,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Transaction,
 } from '../../../types';
 import { HOP_TRANSFER_SENT_EVENT_ABI, HOP_RELAYERS } from './constants';
@@ -70,6 +71,11 @@ export function generate(transaction: Transaction): Transaction {
   const amount = formatEther(decodedTransferSentLog.args['amount'] as bigint);
 
   transaction.context = {
+    actions: [
+      HeuristicContextActionEnum.BRIDGED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BRIDGED}`,
+    ],
+
     summaries: {
       category: 'MULTICHAIN',
       en: {
@@ -77,6 +83,7 @@ export function generate(transaction: Transaction): Transaction {
         default: '[[subject]][[bridged]][[amount]]to[[chainID]]',
       },
     },
+
     variables: {
       subject: {
         type: 'address',
@@ -93,6 +100,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       bridged: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.BRIDGED,
         value: HeuristicContextActionEnum.BRIDGED,
       },
     },

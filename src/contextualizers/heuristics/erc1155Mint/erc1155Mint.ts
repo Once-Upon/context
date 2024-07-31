@@ -4,6 +4,7 @@ import {
   ERC20Asset,
   ERC1155AssetTransfer,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
 } from '../../../types';
 import { KNOWN_ADDRESSES } from '../../../helpers/constants';
 import {
@@ -101,6 +102,11 @@ export function generate(transaction: Transaction): Transaction {
     Object.keys(totalERC20Payment).length > 0;
 
   transaction.context = {
+    actions: [
+      HeuristicContextActionEnum.MINTED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.MINTED}`,
+    ],
+
     variables: {
       token: {
         type: AssetType.ERC1155,
@@ -118,6 +124,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       minted: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.MINTED,
         value: HeuristicContextActionEnum.MINTED,
       },
     },

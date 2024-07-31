@@ -3,6 +3,7 @@ import {
   AssetType,
   ContextSummaryVariableType,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
   Transaction,
 } from '../../../types';
 import ERC20ERC721transferABI from './abis/combined';
@@ -68,6 +69,11 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
+    actions: [
+      HeuristicContextActionEnum.SENT,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.SENT}`,
+    ],
+
     variables: {
       sender: {
         type: 'address',
@@ -80,9 +86,11 @@ export function generate(transaction: Transaction): Transaction {
       },
       sent: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.SENT,
         value: HeuristicContextActionEnum.SENT,
       },
     },
+
     summaries: {
       category: 'FUNGIBLE_TOKEN',
       en: {

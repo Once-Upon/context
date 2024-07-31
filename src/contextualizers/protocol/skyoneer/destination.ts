@@ -11,6 +11,9 @@ import {
   SkyoneerContextActionEnum,
   AssetType,
   ContextNumberType,
+  Protocols,
+  ProtocolMap,
+  HeuristicContextActionEnum,
 } from '../../../types';
 import {
   PACK_ACTIVATION_DESTINATION_ABI,
@@ -151,10 +154,15 @@ export function generate(transaction: Transaction): Transaction {
   };
 
   transaction.context = {
+    actions: [
+      `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.RECEIVED}`,
+      HeuristicContextActionEnum.RECEIVED,
+    ],
+
     summaries: {
       category: 'PROTOCOL_1',
       en: {
-        title: `Skyoneer`,
+        title: ProtocolMap[Protocols.SKYONEER],
         default:
           plotIds?.length === 2
             ? '[[activator]][[received]]plots[[plotId0]]and[[plotId1]]and[[zGold]]'
@@ -163,6 +171,7 @@ export function generate(transaction: Transaction): Transaction {
               : '[[activator]][[received]][[plots]]and[[zGold]]',
       },
     },
+
     variables: {
       activator: {
         type: 'address',
@@ -175,6 +184,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       received: {
         type: 'contextAction',
+        id: `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.RECEIVED}`,
         value: SkyoneerContextActionEnum.RECEIVED,
       },
     },

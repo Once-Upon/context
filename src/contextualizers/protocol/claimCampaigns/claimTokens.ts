@@ -2,6 +2,8 @@ import { Hex } from 'viem';
 import {
   AssetType,
   ClaimCampaignsActionEnum,
+  ProtocolMap,
+  Protocols,
   Transaction,
 } from '../../../types';
 import {
@@ -56,6 +58,10 @@ export const generate = (transaction: Transaction): Transaction => {
   switch (decoded.functionName) {
     case 'claimTokens': {
       transaction.context = {
+        actions: [
+          `${Protocols.CLAIM_CAMPAIGNS}.${ClaimCampaignsActionEnum.CLAIMED}`,
+        ],
+
         variables: {
           receiver: {
             type: 'address',
@@ -63,6 +69,7 @@ export const generate = (transaction: Transaction): Transaction => {
           },
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.CLAIM_CAMPAIGNS}.${ClaimCampaignsActionEnum.CLAIMED}`,
             value: ClaimCampaignsActionEnum.CLAIMED,
           },
           numTokens: {
@@ -71,10 +78,11 @@ export const generate = (transaction: Transaction): Transaction => {
             token: ENJOY_CONTRACT_ADDRESS,
           },
         },
+
         summaries: {
           category: 'PROTOCOL_1',
           en: {
-            title: 'Claim',
+            title: ProtocolMap[Protocols.CLAIM_CAMPAIGNS],
             default: '[[receiver]][[contextAction]][[numTokens]]',
           },
         },

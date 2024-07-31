@@ -7,6 +7,7 @@ import {
   ETHAsset,
   ContextETHType,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
 } from '../../../types';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -111,15 +112,22 @@ export function generate(transaction: Transaction): Transaction {
   // Net asset transfers calls the token contract 'asset' instead of 'token'
 
   transaction.context = {
+    actions: [
+      HeuristicContextActionEnum.SWAPPED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.SWAPPED}`,
+    ],
+
     variables: {
       swapper,
       swapFrom,
       swapTo,
       swapped: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.SWAPPED,
         value: HeuristicContextActionEnum.SWAPPED,
       },
     },
+
     summaries: {
       category: 'FUNGIBLE_TOKEN',
       en: {

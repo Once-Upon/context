@@ -12,6 +12,7 @@ import {
   ContextERC1155Type,
   EventLogTopics,
   HeuristicContextActionEnum,
+  HeuristicPrefix,
 } from '../../../types';
 import {
   GATEWAY_CHAIN_ID_MAPPING,
@@ -100,6 +101,11 @@ export function generate(transaction: Transaction): Transaction {
   }
 
   transaction.context = {
+    actions: [
+      HeuristicContextActionEnum.BRIDGED,
+      `${HeuristicPrefix}.${HeuristicContextActionEnum.BRIDGED}`,
+    ],
+
     summaries: {
       category: 'MULTICHAIN',
       en: {
@@ -107,6 +113,7 @@ export function generate(transaction: Transaction): Transaction {
         default: '[[sender]][[bridged]][[asset]]',
       },
     },
+
     variables: {
       sender: {
         type: 'address',
@@ -114,6 +121,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       bridged: {
         type: 'contextAction',
+        id: HeuristicContextActionEnum.BRIDGED,
         value: HeuristicContextActionEnum.BRIDGED,
       },
       asset,

@@ -2,6 +2,8 @@ import {
   Transaction,
   EventLogTopics,
   SkyoneerContextActionEnum,
+  ProtocolMap,
+  Protocols,
 } from '../../../types';
 import {
   PACK_ACTIVATION_SOURCE_CONTRACT,
@@ -76,13 +78,18 @@ export function generate(transaction: Transaction): Transaction {
       : '';
 
   transaction.context = {
+    actions: [
+      `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.ACTIVATED_A_STARTER_PACK}`,
+    ],
+
     summaries: {
       category: 'PROTOCOL_1',
       en: {
-        title: `Skyoneer`,
+        title: ProtocolMap[Protocols.SKYONEER],
         default: '[[activator]][[activated]]',
       },
     },
+
     variables: {
       activator: {
         type: 'address',
@@ -90,6 +97,7 @@ export function generate(transaction: Transaction): Transaction {
       },
       activated: {
         type: 'contextAction',
+        id: `${Protocols.SKYONEER}.${SkyoneerContextActionEnum.ACTIVATED_A_STARTER_PACK}`,
         value: SkyoneerContextActionEnum.ACTIVATED_A_STARTER_PACK,
       },
     },
