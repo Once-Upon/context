@@ -503,6 +503,9 @@ export const grabLogsFromTransaction = (transaction: Transaction): Log[] => {
   if (transaction.logs) return transaction.logs;
 
   if (transaction.receipt?.logs) {
+    // This mapping doesn't get the result to perfect parity with
+    // the Once Upon API's format, but it's got all the required parts that
+    // contextualizations depend on
     return transaction.receipt.logs.map((log) => {
       return {
         address: log.address,
