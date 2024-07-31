@@ -7,7 +7,11 @@ import {
   Transaction,
 } from '../../../types';
 import { FarcasterContracts } from './constants';
-import { decodeTransactionInput, decodeLog } from '../../../helpers/utils';
+import {
+  decodeTransactionInput,
+  decodeLog,
+  grabLogsFromTransaction,
+} from '../../../helpers/utils';
 
 // Contextualizer for the Bundler contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IBundler.sol
@@ -43,6 +47,7 @@ export const generate = (transaction: Transaction): Transaction => {
   );
   if (!decoded) return transaction;
 
+  const logs = grabLogsFromTransaction(transaction);
   const caller = transaction.from;
 
   switch (decoded.functionName) {
@@ -59,7 +64,7 @@ export const generate = (transaction: Transaction): Transaction => {
       // Capture FID
       let fid = '';
       if (transaction.receipt?.status) {
-        const registerLog = transaction.logs?.find((log) => {
+        const registerLog = logs.find((log) => {
           return log.address === FarcasterContracts.IdRegistry.address;
         });
         if (registerLog) {

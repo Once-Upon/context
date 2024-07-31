@@ -9,7 +9,7 @@ import {
   HOP_TRANSFER_FROM_L1_COMPLETED_EVENT_ABI,
   HOP_RELAYERS,
 } from './constants';
-import { decodeLog } from '../../../helpers/utils';
+import { decodeLog, grabLogsFromTransaction } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isHopTransferToL1 = detect(transaction);
@@ -27,7 +27,7 @@ export function detect(transaction: Transaction): boolean {
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
   const originChainId = transaction.chainId ?? 1;
-  const logs = transaction.logs ?? [];
+  const logs = grabLogsFromTransaction(transaction);
   const transferFromL1CompletedLog = logs.find((log: any) => {
     if (log.address !== HOP_RELAYERS[originChainId]) return false;
 
@@ -51,7 +51,7 @@ export function generate(transaction: Transaction): Transaction {
   const chainId = transaction.chainId;
   if (!chainId) return transaction;
 
-  const logs = transaction.logs ?? [];
+  const logs = grabLogsFromTransaction(transaction);
   let decodedTransferFromL1CompletedLog;
   for (const log of logs) {
     if (log.address !== HOP_RELAYERS[chainId]) continue;

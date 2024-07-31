@@ -11,7 +11,11 @@ import {
   ERC721Asset,
   FrenpetContextActionEnum,
 } from '../../../types';
-import { decodeFunction, decodeLog } from '../../../helpers/utils';
+import {
+  decodeFunction,
+  decodeLog,
+  grabLogsFromTransaction,
+} from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isFrenPet = detect(transaction);
@@ -33,6 +37,8 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
+  const logs = grabLogsFromTransaction(transaction);
+
   switch (transaction.sigHash) {
     case '0x715488b0': {
       // buyAccessory(uint256,uint256)
@@ -122,18 +128,18 @@ export const generate = (transaction: Transaction): Transaction => {
         tokenId: (parsed.args[1] as bigint).toString(),
       };
       if (transaction.receipt?.status) {
-        if (!transaction.logs || transaction.logs?.length) {
+        if (logs.length === 0) {
           return transaction;
         }
 
         const parsedLog = decodeLog(
           parseAbi(abi),
-          transaction.logs[0]?.data as Hex,
+          logs[0]?.data as Hex,
           [
-            transaction.logs[0]?.topic0,
-            transaction.logs[0]?.topic1,
-            transaction.logs[0]?.topic2,
-            transaction.logs[0]?.topic3,
+            logs[0]?.topic0,
+            logs[0]?.topic1,
+            logs[0]?.topic2,
+            logs[0]?.topic3,
           ] as EventLogTopics,
         );
         if (!parsedLog) return transaction;
@@ -359,17 +365,17 @@ export const generate = (transaction: Transaction): Transaction => {
           },
         };
       } else {
-        if (!transaction || !transaction.logs?.length) {
+        if (!transaction || logs.length === 0) {
           return transaction;
         }
         const parsedLog = decodeLog(
           parseAbi(abi),
-          transaction.logs[0]?.data as Hex,
+          logs[0]?.data as Hex,
           [
-            transaction.logs[0]?.topic0,
-            transaction.logs[0]?.topic1,
-            transaction.logs[0]?.topic2,
-            transaction.logs[0]?.topic3,
+            logs[0]?.topic0,
+            logs[0]?.topic1,
+            logs[0]?.topic2,
+            logs[0]?.topic3,
           ] as EventLogTopics,
         );
         if (!parsedLog) return transaction;
@@ -468,8 +474,8 @@ export const generate = (transaction: Transaction): Transaction => {
       };
       if (transaction.receipt?.status) {
         if (
-          transaction.logs &&
-          transaction.logs?.filter(
+          logs &&
+          logs.filter(
             (log) =>
               log.topic0 ===
               '0x8d02746aaac19768ccd257b3b666918a78b779c9f3d243bf3720313655a28004',
@@ -494,7 +500,7 @@ export const generate = (transaction: Transaction): Transaction => {
             },
           };
         } else {
-          const attackLogs = transaction.logs?.filter(
+          const attackLogs = logs.filter(
             (log) =>
               log.topic0 ===
               '0xcf2d586a11b0df2dc974a66369ad4e68566a0635fd2448e810592eac3d3bedae', // Attack(uint256 attacker, uint256 winner, uint256 loser, uint256 scoresWon)

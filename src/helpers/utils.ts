@@ -23,6 +23,7 @@ import {
   ETHAssetTransfer,
   ERC20AssetTransfer,
   ERC20Asset,
+  Log,
 } from '../types';
 
 const VALID_CHARS =
@@ -496,4 +497,27 @@ export const addAssetTransfersToContext = (
   }
 
   return transaction;
+};
+
+export const grabLogsFromTransaction = (transaction: Transaction): Log[] => {
+  if (transaction.logs) return transaction.logs;
+
+  if (transaction.receipt?.logs) {
+    // This mapping doesn't get the result to perfect parity with
+    // the Once Upon API's format, but it's got all the required parts that
+    // contextualizations depend on
+    return transaction.receipt.logs.map((log) => {
+      return {
+        address: log.address,
+        topics: log.topics,
+        data: log.data,
+        topic0: log.topics?.[0],
+        topic1: log.topics?.[1],
+        topic2: log.topics?.[2],
+        topic3: log.topics?.[3],
+      } as Log;
+    });
+  }
+
+  return [];
 };

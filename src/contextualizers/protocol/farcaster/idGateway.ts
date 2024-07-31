@@ -5,7 +5,11 @@ import {
   Transaction,
 } from '../../../types';
 import { FarcasterContracts } from './constants';
-import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeLog,
+  decodeTransactionInput,
+  grabLogsFromTransaction,
+} from '../../../helpers/utils';
 
 // Contextualizer for the IdGateway contract:
 // https://github.com/farcasterxyz/contracts/blob/main/src/interfaces/IIdGateway.sol
@@ -39,10 +43,12 @@ export const generate = (transaction: Transaction): Transaction => {
   );
   if (!decoded) return transaction;
 
+  const logs = grabLogsFromTransaction(transaction);
+
   // Capture FID
   let fid = '';
   if (transaction.receipt?.status) {
-    const registerLog = transaction.logs?.find((log) => {
+    const registerLog = logs.find((log) => {
       return log.address === FarcasterContracts.IdRegistry.address;
     });
     if (registerLog) {

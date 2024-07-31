@@ -5,7 +5,11 @@ import {
   AssetType,
 } from '../../../types';
 import { PLOT_ACTION_CONTRACT_ADDRESS, PLOT_ACTION_ABI } from './constants';
-import { decodeLog, processAssetTransfers } from '../../../helpers/utils';
+import {
+  decodeLog,
+  grabLogsFromTransaction,
+  processAssetTransfers,
+} from '../../../helpers/utils';
 import { CHAIN_IDS } from '../../../helpers/constants';
 
 export function contextualize(transaction: Transaction): Transaction {
@@ -24,9 +28,10 @@ export function detect(transaction: Transaction): boolean {
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
   // check logs
-  if (!transaction.logs) return false;
+  const logs = grabLogsFromTransaction(transaction);
+  if (logs.length === 0) return false;
 
-  for (const log of transaction.logs) {
+  for (const log of logs) {
     if (log.address !== PLOT_ACTION_CONTRACT_ADDRESS) continue;
 
     const decoded = decodeLog(PLOT_ACTION_ABI, log.data, [
@@ -51,8 +56,9 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
+  const logs = grabLogsFromTransaction(transaction);
   if (
-    !transaction.logs ||
+    logs.length === 0 ||
     transaction.chainId !== CHAIN_IDS.gold ||
     !transaction.assetTransfers ||
     !transaction.netAssetTransfers
@@ -65,7 +71,7 @@ export function generate(transaction: Transaction): Transaction {
   );
 
   let decoded;
-  for (const log of transaction.logs) {
+  for (const log of logs) {
     if (log.address !== PLOT_ACTION_CONTRACT_ADDRESS) continue;
 
     decoded = decodeLog(PLOT_ACTION_ABI, log.data, [

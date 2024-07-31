@@ -7,7 +7,7 @@ import {
   Transaction,
 } from '../../../types';
 import { UNISWAP_V3_PAIR_ABI, UNIVERSAL_ROUTERS } from './constants';
-import { decodeLog } from '../../../helpers/utils';
+import { decodeLog, grabLogsFromTransaction } from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isSwap = detect(transaction);
@@ -18,8 +18,8 @@ export const contextualize = (transaction: Transaction): Transaction => {
 
 export const detect = (transaction: Transaction): boolean => {
   // check logs
-  const logs = transaction.logs;
-  if (!logs) return false;
+  const logs = grabLogsFromTransaction(transaction);
+  if (logs.length === 0) return false;
 
   for (const log of logs) {
     const decoded = decodeLog(
@@ -35,14 +35,15 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
+  const logs = grabLogsFromTransaction(transaction);
   if (
     !transaction.netAssetTransfers ||
-    !transaction.logs ||
+    logs.length === 0 ||
     !transaction.chainId
   )
     return transaction;
   let decoded;
-  for (const log of transaction.logs) {
+  for (const log of logs) {
     decoded = decodeLog(
       UNISWAP_V3_PAIR_ABI as Abi,
       log.data as Hex,

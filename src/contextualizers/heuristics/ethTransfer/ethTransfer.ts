@@ -1,3 +1,4 @@
+import { grabLogsFromTransaction } from '../../../helpers/utils';
 import {
   AssetType,
   HeuristicContextActionEnum,
@@ -12,12 +13,13 @@ export function contextualize(transaction: Transaction): Transaction {
 }
 
 export function detect(transaction: Transaction): boolean {
+  const logs = grabLogsFromTransaction(transaction);
   // TODO; check logs from transaction
   if (
     transaction.to &&
     transaction.input === '0x' &&
     transaction.value !== BigInt(0) &&
-    transaction.logs?.length === 0
+    logs.length === 0
   ) {
     return true;
   }

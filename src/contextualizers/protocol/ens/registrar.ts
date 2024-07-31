@@ -5,7 +5,11 @@ import {
   Transaction,
 } from '../../../types';
 import { ENS_CONTRACTS, ENS_ADDRESSES } from './constants';
-import { convertDate, decodeLog } from '../../../helpers/utils';
+import {
+  convertDate,
+  decodeLog,
+  grabLogsFromTransaction,
+} from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isENS = detect(transaction);
@@ -15,12 +19,13 @@ export const contextualize = (transaction: Transaction): Transaction => {
 };
 
 export const detect = (transaction: Transaction): boolean => {
+  const logs = grabLogsFromTransaction(transaction);
   // detect logs
-  if (!transaction.logs) {
+  if (logs.length === 0) {
     return false;
   }
 
-  for (const log of transaction.logs) {
+  for (const log of logs) {
     if (
       log.address !== ENS_ADDRESSES.registrarV2 &&
       log.address !== ENS_ADDRESSES.registrarV3
@@ -49,9 +54,10 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
-  if (!transaction.logs) return transaction;
+  const logs = grabLogsFromTransaction(transaction);
+  if (logs.length === 0) return transaction;
 
-  for (const log of transaction.logs) {
+  for (const log of logs) {
     if (
       log.address !== ENS_ADDRESSES.registrarV2 &&
       log.address !== ENS_ADDRESSES.registrarV3

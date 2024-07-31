@@ -8,6 +8,7 @@ import {
 import {
   decodeEVMAddress,
   decodeTransactionInput,
+  grabLogsFromTransaction,
 } from '../../../helpers/utils';
 import { CHAIN_IDS } from '../../../helpers/constants';
 
@@ -123,12 +124,11 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'distribute':
       const distributeArtistId =
         decoded.args && decoded.args.length > 0 ? decoded.args[0] : '';
+      const logs = grabLogsFromTransaction(transaction);
       // decode logs
-      const distributeLogs = transaction.logs
-        ? transaction.logs.filter(
-            (log) => log.topic0 === EVENT_DISTRIBUTE_TOPIC,
-          )
-        : [];
+      const distributeLogs = logs.filter(
+        (log) => log.topic0 === EVENT_DISTRIBUTE_TOPIC,
+      );
       const recipients = distributeLogs.map((log) =>
         decodeEVMAddress(log.topic2),
       );

@@ -7,6 +7,7 @@ import ens0xea1b4ab6 from '../../test/transactions/ens-0xea1b4ab6.json';
 import ensBulkRenew0x25add712 from '../../test/transactions/ensBulkRenew-0x25add712.json';
 import registrarWithConfig0x5d31a49e from '../../test/transactions/registrarWithConfig-0x5d31a49e.json';
 import ensRegistrar0xb14b4771 from '../../test/transactions/ensRegistrar-0xb14b4771.json';
+import ensRegistrarRaw0xb14b4771 from '../../test/transactions/ensRegistrar-raw-0xb14b4771.json';
 
 describe('ENS Registrar', () => {
   it('Should detect ens registrar', () => {
@@ -28,6 +29,11 @@ describe('ENS Registrar', () => {
       ensRegistrar0xb14b4771 as unknown as Transaction,
     );
     expect(ensRegistrar3).toBe(true);
+
+    const ensRegistrar4 = detect(
+      ensRegistrarRaw0xb14b4771 as unknown as Transaction,
+    );
+    expect(ensRegistrar4).toBe(true);
   });
 
   it('Should generate ens context', () => {
@@ -81,6 +87,16 @@ describe('ENS Registrar', () => {
       '0x53c40473dcdfd927c4201ccfe24e314a7d7c3584 REGISTERED lyricist.eth with an expiration of 2025-03-15',
     );
     expect(containsBigInt(registrar1.context)).toBe(false);
+
+    const registrar2 = generate(
+      ensRegistrarRaw0xb14b4771 as unknown as Transaction,
+    );
+    expect(registrar2.context?.summaries?.en.title).toBe('ENS');
+    const desc5 = contextSummary(registrar1.context);
+    expect(desc5).toBe(
+      '0x53c40473dcdfd927c4201ccfe24e314a7d7c3584 REGISTERED lyricist.eth with an expiration of 2025-03-15',
+    );
+    expect(containsBigInt(registrar2.context)).toBe(false);
   });
 
   it('Should not detect as ens registrar', () => {
