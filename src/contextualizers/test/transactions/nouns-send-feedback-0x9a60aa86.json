@@ -1,0 +1,316 @@
+{
+  "blockHash": "0x8d8af0fac09dcf05d3bd1d9aca711ff3ee69e3dc740a96f52124410cbed33848",
+  "blockNumber": 20385319,
+  "from": "0xca72c93172ba6eff168e59e7f17c3c7a8fea9b62",
+  "gas": 51873,
+  "gasPrice": "4916064392",
+  "maxPriorityFeePerGas": "100000000",
+  "maxFeePerGas": "100000000000",
+  "hash": "0x9a60ba1cb33e2886594173f9c021b71b4c28bc7e5af1f0e85b7c5c0775b9aa86",
+  "input": "0xff4ca184000000000000000000000000000000000000000000000000000000000000024b0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a00a0a596573206f6e206d616e79206c6576656c732e20416e206f70706f7274756e69747920746f20656e68616e636520746865204e6f756e732078204a6170616e206c6f7265207768696c65206265696e6720726570726573656e746564206174204544434f4e20616e64204654432e200a0a4974206c6f6f6b732067726561742e20456e6a6f796564207468652064657369676e2070726f636573732e0a0a",
+  "nonce": 1613,
+  "to": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+  "transactionIndex": 73,
+  "value": "0",
+  "type": 2,
+  "accessList": [],
+  "chainId": 1,
+  "v": "0x0",
+  "yParity": "0x0",
+  "r": "0x163bf1d0b4f871db26f24c40ecf99411c38df3f9d01d489bd536f8c07ac733a5",
+  "s": "0xbb901a9cad8c52fe7bf169997d4e89b650790a0d7f305a11d68afa04bee3c82",
+  "receipt": {
+    "blockHash": "0x8d8af0fac09dcf05d3bd1d9aca711ff3ee69e3dc740a96f52124410cbed33848",
+    "blockNumber": 20385319,
+    "contractAddress": null,
+    "cumulativeGasUsed": 10954111,
+    "effectiveGasPrice": 4916064392,
+    "from": "0xca72c93172ba6eff168e59e7f17c3c7a8fea9b62",
+    "gasUsed": 34223,
+    "logsBloom": "0x00000000000000000000000000000000000000000000000800000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000080200000000000002000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+    "transactionHash": "0x9a60ba1cb33e2886594173f9c021b71b4c28bc7e5af1f0e85b7c5c0775b9aa86",
+    "transactionIndex": 73,
+    "type": "0x2",
+    "logs": [
+      {
+        "address": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+        "data": "0x000000000000000000000000000000000000000000000000000000000000024b0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a00a0a596573206f6e206d616e79206c6576656c732e20416e206f70706f7274756e69747920746f20656e68616e636520746865204e6f756e732078204a6170616e206c6f7265207768696c65206265696e6720726570726573656e746564206174204544434f4e20616e64204654432e200a0a4974206c6f6f6b732067726561742e20456e6a6f796564207468652064657369676e2070726f636573732e0a0a",
+        "blockNumber": 20385319,
+        "transactionHash": "0x9a60ba1cb33e2886594173f9c021b71b4c28bc7e5af1f0e85b7c5c0775b9aa86",
+        "transactionIndex": 73,
+        "blockHash": "0x8d8af0fac09dcf05d3bd1d9aca711ff3ee69e3dc740a96f52124410cbed33848",
+        "logIndex": 425,
+        "removed": false,
+        "decoded": {
+          "signature": "FeedbackSent(address,uint256,uint8,string)",
+          "signature_with_arg_names": "FeedbackSent(address indexed msgSender,uint256 proposalId,uint8 support,string reason)",
+          "name": "FeedbackSent",
+          "decoded": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "msgSender",
+              "type": "address",
+              "decoded": "0xca72c93172ba6eff168e59e7f17c3c7a8fea9b62"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "proposalId",
+              "type": "uint256",
+              "decoded": "587"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint8",
+              "name": "support",
+              "type": "uint8",
+              "decoded": "1"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "reason",
+              "type": "string",
+              "decoded": "\n\nYes on many levels. An opportunity to enhance the Nouns x Japan lore while being represented at EDCON and FTC. \n\nIt looks great. Enjoyed the design process.\n\n"
+            }
+          ]
+        },
+        "chainId": 1,
+        "topic0": "0x66777d398af2d3ad91be043f4ee15e0058fd64a2badd9977e29334dc608bbfa6",
+        "topic1": "0x000000000000000000000000ca72c93172ba6eff168e59e7f17c3c7a8fea9b62"
+      }
+    ]
+  },
+  "decoded": {
+    "signature": "sendFeedback(uint256,uint8,string)",
+    "signature_with_arg_names": "sendFeedback(uint256 arg1,uint8 arg2,string arg3)",
+    "name": "sendFeedback",
+    "decoded": [
+      {
+        "internalType": "uint256",
+        "name": "arg1",
+        "type": "uint256",
+        "decoded": "587"
+      },
+      {
+        "internalType": "uint8",
+        "name": "arg2",
+        "type": "uint8",
+        "decoded": "1"
+      },
+      {
+        "internalType": "string",
+        "name": "arg3",
+        "type": "string",
+        "decoded": "\n\nYes on many levels. An opportunity to enhance the Nouns x Japan lore while being represented at EDCON and FTC. \n\nIt looks great. Enjoyed the design process.\n\n"
+      }
+    ]
+  },
+  "pseudoTransactions": [],
+  "delegateCalls": [
+    {
+      "action": {
+        "from": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+        "callType": "delegatecall",
+        "gas": "0x5794",
+        "input": "0xff4ca184000000000000000000000000000000000000000000000000000000000000024b0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a00a0a596573206f6e206d616e79206c6576656c732e20416e206f70706f7274756e69747920746f20656e68616e636520746865204e6f756e732078204a6170616e206c6f7265207768696c65206265696e6720726570726573656e746564206174204544434f4e20616e64204654432e200a0a4974206c6f6f6b732067726561742e20456e6a6f796564207468652064657369676e2070726f636573732e0a0a",
+        "to": "0x624efaba6e7df177ad8ca5bee3bd62f78b304b6e",
+        "value": "0x0"
+      },
+      "blockHash": "0x8d8af0fac09dcf05d3bd1d9aca711ff3ee69e3dc740a96f52124410cbed33848",
+      "blockNumber": 20385319,
+      "result": {
+        "gasUsed": "0x13df",
+        "output": "0x"
+      },
+      "subtraces": 0,
+      "traceAddress": [
+        0
+      ],
+      "transactionHash": "0x9a60ba1cb33e2886594173f9c021b71b4c28bc7e5af1f0e85b7c5c0775b9aa86",
+      "transactionPosition": 73,
+      "type": "call"
+    }
+  ],
+  "errors": [],
+  "parties": [
+    "0xca72c93172ba6eff168e59e7f17c3c7a8fea9b62",
+    "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+    "0x624efaba6e7df177ad8ca5bee3bd62f78b304b6e"
+  ],
+  "sigHash": "0xff4ca184",
+  "internalSigHashes": [
+    {
+      "from": "0xca72c93172ba6eff168e59e7f17c3c7a8fea9b62",
+      "to": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+      "sigHash": "0xff4ca184"
+    },
+    {
+      "from": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+      "to": "0x624efaba6e7df177ad8ca5bee3bd62f78b304b6e",
+      "sigHash": "0xff4ca184"
+    }
+  ],
+  "timestamp": 1721931659,
+  "baseFeePerGas": 4816064392,
+  "transactionFee": "168242471687416",
+  "contextActions": [
+    "INTERACTED_WITH",
+    "HEURISTIC.INTERACTED_WITH"
+  ],
+  "logs": [
+    {
+      "address": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+      "data": "0x000000000000000000000000000000000000000000000000000000000000024b0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a00a0a596573206f6e206d616e79206c6576656c732e20416e206f70706f7274756e69747920746f20656e68616e636520746865204e6f756e732078204a6170616e206c6f7265207768696c65206265696e6720726570726573656e746564206174204544434f4e20616e64204654432e200a0a4974206c6f6f6b732067726561742e20456e6a6f796564207468652064657369676e2070726f636573732e0a0a",
+      "blockNumber": 20385319,
+      "transactionHash": "0x9a60ba1cb33e2886594173f9c021b71b4c28bc7e5af1f0e85b7c5c0775b9aa86",
+      "transactionIndex": 73,
+      "blockHash": "0x8d8af0fac09dcf05d3bd1d9aca711ff3ee69e3dc740a96f52124410cbed33848",
+      "logIndex": 425,
+      "removed": false,
+      "decoded": {
+        "signature": "FeedbackSent(address,uint256,uint8,string)",
+        "signature_with_arg_names": "FeedbackSent(address indexed msgSender,uint256 proposalId,uint8 support,string reason)",
+        "name": "FeedbackSent",
+        "decoded": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "msgSender",
+            "type": "address",
+            "decoded": "0xca72c93172ba6eff168e59e7f17c3c7a8fea9b62"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "proposalId",
+            "type": "uint256",
+            "decoded": "587"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint8",
+            "name": "support",
+            "type": "uint8",
+            "decoded": "1"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "reason",
+            "type": "string",
+            "decoded": "\n\nYes on many levels. An opportunity to enhance the Nouns x Japan lore while being represented at EDCON and FTC. \n\nIt looks great. Enjoyed the design process.\n\n"
+          }
+        ]
+      },
+      "chainId": 1,
+      "topic0": "0x66777d398af2d3ad91be043f4ee15e0058fd64a2badd9977e29334dc608bbfa6",
+      "topic1": "0x000000000000000000000000ca72c93172ba6eff168e59e7f17c3c7a8fea9b62"
+    }
+  ],
+  "netAssetTransfers": {},
+  "pseudotransactions": [],
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0xca72c93172ba6eff168e59e7f17c3c7a8fea9b62": [
+      {
+        "chainId": 0,
+        "isContract": false,
+        "ensNew": {
+          "handle": "carlosjmelgar.eth",
+          "avatar": "https://assets.airstack.xyz/image/nft/nNBFvZ6wvuIHqDzTFi5pM/pM0Q1IAUgJRNTJrw7f4s3rkExkEfn7qzxkKgTjxnms6fkuHg9qBwoKy/te/me/9cctUJsmwMw16TgGHNjXfQeRZXjuVcU+SYmTXB39nAdVmA1PG1OJOHc2ZYyK4nei0TCdRVaaal0UjNfvH1r+yZ0=/medium.svg"
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": "carlosjmelgar",
+          "avatar": "https://i.imgur.com/I0k1e2z.jpg",
+          "fid": 18560,
+          "linkedAddresses": [
+            "0x77f273801d51a1374427eb2bef80389052e0e94a",
+            "0xca72c93172ba6eff168e59e7f17c3c7a8fea9b62"
+          ]
+        }
+      }
+    ],
+    "0xf790a5f59678dd733fb3de93493a91f472ca1365": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": 0,
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x624efaba6e7df177ad8ca5bee3bd62f78b304b6e": [
+      {
+        "chainId": 11155111,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": 0,
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 1,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": 0,
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
+}
