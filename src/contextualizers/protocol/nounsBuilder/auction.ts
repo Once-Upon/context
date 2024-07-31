@@ -9,7 +9,11 @@ import {
 } from '../../../types';
 import { ABIs, NOUNS_BUILDER_INSTANCES } from './constants';
 import { NounsContracts } from '../nouns/constants';
-import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeLog,
+  decodeTransactionInput,
+  grabLogsFromTransaction,
+} from '../../../helpers/utils';
 
 const daoByAuctionAuctionHouseContract = (address: string) => {
   return NOUNS_BUILDER_INSTANCES.find((v) => v.auctionHouse === address);
@@ -61,6 +65,7 @@ export const generate = (transaction: Transaction): Transaction => {
   );
 
   if (!decoded) return transaction;
+  const logs = grabLogsFromTransaction(transaction);
 
   switch (decoded.functionName) {
     case 'createBid': {
@@ -133,7 +138,7 @@ export const generate = (transaction: Transaction): Transaction => {
       let tokenId = '';
       let winner = '';
 
-      const registerLog = transaction.logs?.find((log) => {
+      const registerLog = logs.find((log) => {
         try {
           const decoded = decodeLog(
             ABIs.IAuction,

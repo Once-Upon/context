@@ -7,7 +7,7 @@ import {
   Transaction,
 } from '../../../types';
 import { HOP_WITHDRAWAL_BONDED_EVENT_ABI, HOP_RELAYERS } from './constants';
-import { decodeLog } from '../../../helpers/utils';
+import { decodeLog, grabLogsFromTransaction } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isHopTransferToL1 = detect(transaction);
@@ -25,7 +25,7 @@ export function detect(transaction: Transaction): boolean {
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
   const originChainId = transaction.chainId ?? 1;
-  const logs = transaction.logs ?? [];
+  const logs = grabLogsFromTransaction(transaction);
   const withdrawalBondedLog = logs.find((log: any) => {
     if (log.address !== HOP_RELAYERS[originChainId]) return false;
 
@@ -50,7 +50,7 @@ export function generate(transaction: Transaction): Transaction {
   const chainId = transaction.chainId;
   if (!chainId) return transaction;
 
-  const logs = transaction.logs ?? [];
+  const logs = grabLogsFromTransaction(transaction);
   let decodedWithdrawalBondedLog;
   for (const log of logs) {
     if (log.address !== HOP_RELAYERS[originChainId]) continue;

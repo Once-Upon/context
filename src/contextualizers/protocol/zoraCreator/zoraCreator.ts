@@ -11,7 +11,7 @@ import {
   PROTOCOL_REWARDS_CONTRACT,
   REWARDS_DEPOSIT_TOPIC,
 } from './constants';
-import { decodeLog } from '../../../helpers/utils';
+import { decodeLog, grabLogsFromTransaction } from '../../../helpers/utils';
 import { generate as erc721Generate } from '../../heuristics/erc721Mint/erc721Mint';
 import { generate as erc1155Generate } from '../../heuristics/erc1155Mint/erc1155Mint';
 
@@ -24,8 +24,7 @@ export const contextualize = (transaction: Transaction): Transaction => {
 
 export const detect = (transaction: Transaction): boolean => {
   // check if there is 'RewardsDeposit' log emitted
-  const logs =
-    transaction.logs && transaction.logs.length > 0 ? transaction.logs : [];
+  const logs = grabLogsFromTransaction(transaction);
   const rewardsDepositLog = logs.find(
     (log) =>
       log.topic0 === REWARDS_DEPOSIT_TOPIC &&
@@ -38,6 +37,7 @@ export const detect = (transaction: Transaction): boolean => {
 
 // Contextualize for mined txs
 export const generate = (transaction: Transaction): Transaction => {
+  const logs = grabLogsFromTransaction(transaction);
   // detect as heuristic erc721 or erc1155 mint
   transaction = erc721Generate(transaction);
   if (transaction.context?.summaries?.en.title !== 'NFT Mint') {
@@ -50,8 +50,6 @@ export const generate = (transaction: Transaction): Transaction => {
   transaction.context.summaries.category = 'PROTOCOL_1';
   transaction.context.summaries.en.title = 'Zora';
 
-  const logs =
-    transaction.logs && transaction.logs.length > 0 ? transaction.logs : [];
   const rewardsDepositLog = logs.find(
     (log) => log.topic0 === REWARDS_DEPOSIT_TOPIC,
   );

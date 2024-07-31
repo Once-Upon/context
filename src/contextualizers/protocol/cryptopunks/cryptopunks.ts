@@ -9,7 +9,10 @@ import {
   Transaction,
 } from '../../../types';
 import { CryptopunksContracts, CRYPTOPUNK_ABIS } from './constants';
-import { decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeTransactionInput,
+  grabLogsFromTransaction,
+} from '../../../helpers/utils';
 
 export const contextualize = (transaction: Transaction): Transaction => {
   const isENS = detect(transaction);
@@ -419,7 +422,8 @@ export const generate = (transaction: Transaction): Transaction => {
         unit: 'wei',
       };
       if (transaction.receipt?.status) {
-        const transferTopic = transaction.logs?.filter(
+        const logs = grabLogsFromTransaction(transaction);
+        const transferTopic = logs.filter(
           (log) =>
             log.topic0 ===
             '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',

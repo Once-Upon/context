@@ -1,0 +1,362 @@
+{
+  "blockHash": "0x88eaefe491d3cfe1f7c65a85e035157a6f90eed86e2fd78a1ab4d7972d6e8356",
+  "blockNumber": 20379030,
+  "from": "0x4bf88042de0220647acb314af3c5f310aec3bcc0",
+  "gas": 55221,
+  "gasPrice": "5876766196",
+  "maxPriorityFeePerGas": "940900000",
+  "maxFeePerGas": "7000000000",
+  "hash": "0x1ff9267eb67e8bf6095491793fcb0d33354f83dcd9d98d36f93727c9c85d22b4",
+  "input": "0x38e861a00000000000000000000000003eefaa9d6e2ab7972c1001d41c82bb48813892570000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000e000000000000000000000000000000000000000000000000000000000000000377461626c65746f702d2d2d73706f6e736f722d612d626f61726467616d696e672d636f6d6d756e6974792d6f6e2d666172636173746572000000000000000000000000000000000000000000000000000000000000000000000000000000001c47726f77696e67206e6f756e73207468726f7567682067616d65732e00000000",
+  "nonce": 275,
+  "to": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+  "transactionIndex": 47,
+  "value": "0",
+  "type": 2,
+  "accessList": [],
+  "chainId": 1,
+  "v": "0x0",
+  "yParity": "0x0",
+  "r": "0x15a6864807ecca7181f62561fbbcbd1957227f786e9fcaf7f52dab48f1e15f7",
+  "s": "0x190906d1ba7660c9942d58e252ceb0985904941cd39689110a3dd11aafcf3a95",
+  "receipt": {
+    "blockHash": "0x88eaefe491d3cfe1f7c65a85e035157a6f90eed86e2fd78a1ab4d7972d6e8356",
+    "blockNumber": 20379030,
+    "contractAddress": null,
+    "cumulativeGasUsed": 6005648,
+    "effectiveGasPrice": 5876766196,
+    "from": "0x4bf88042de0220647acb314af3c5f310aec3bcc0",
+    "gasUsed": 36451,
+    "logsBloom": "0x00000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000100000400000800000000000000000000000000000000000000040008000000000000000000000000000000000000000000000000000080000000000000000000000100000004000000000000000000800100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "status": true,
+    "to": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+    "transactionHash": "0x1ff9267eb67e8bf6095491793fcb0d33354f83dcd9d98d36f93727c9c85d22b4",
+    "transactionIndex": 47,
+    "type": "0x2",
+    "logs": [
+      {
+        "address": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+        "data": "0x0000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000c000000000000000000000000000000000000000000000000000000000000000377461626c65746f702d2d2d73706f6e736f722d612d626f61726467616d696e672d636f6d6d756e6974792d6f6e2d666172636173746572000000000000000000000000000000000000000000000000000000000000000000000000000000001c47726f77696e67206e6f756e73207468726f7567682067616d65732e00000000",
+        "blockNumber": 20379030,
+        "transactionHash": "0x1ff9267eb67e8bf6095491793fcb0d33354f83dcd9d98d36f93727c9c85d22b4",
+        "transactionIndex": 47,
+        "blockHash": "0x88eaefe491d3cfe1f7c65a85e035157a6f90eed86e2fd78a1ab4d7972d6e8356",
+        "logIndex": 191,
+        "removed": false,
+        "decoded": {
+          "signature": "CandidateFeedbackSent(address,address,string,uint8,string)",
+          "signature_with_arg_names": "CandidateFeedbackSent(address indexed msgSender,address indexed proposer,string slug,uint8 support,string reason)",
+          "name": "CandidateFeedbackSent",
+          "decoded": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "msgSender",
+              "type": "address",
+              "decoded": "0x4bf88042de0220647acb314af3c5f310aec3bcc0"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "proposer",
+              "type": "address",
+              "decoded": "0x3eefaa9d6e2ab7972c1001d41c82bb4881389257"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "slug",
+              "type": "string",
+              "decoded": "tabletop---sponsor-a-boardgaming-community-on-farcaster"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint8",
+              "name": "support",
+              "type": "uint8",
+              "decoded": "1"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "reason",
+              "type": "string",
+              "decoded": "Growing nouns through games."
+            }
+          ]
+        },
+        "chainId": 1,
+        "topic0": "0x1e071c52ea06b433aac74cdba4ed70ff3e6635d5a6b344d654c04b4c762f054e",
+        "topic1": "0x0000000000000000000000004bf88042de0220647acb314af3c5f310aec3bcc0",
+        "topic2": "0x0000000000000000000000003eefaa9d6e2ab7972c1001d41c82bb4881389257"
+      }
+    ]
+  },
+  "decoded": {
+    "signature": "sendCandidateFeedback(address,string,uint8,string)",
+    "signature_with_arg_names": "sendCandidateFeedback(address arg1,string arg2,uint8 arg3,string arg4)",
+    "name": "sendCandidateFeedback",
+    "decoded": [
+      {
+        "internalType": "address",
+        "name": "arg1",
+        "type": "address",
+        "decoded": "0x3eefaa9d6e2ab7972c1001d41c82bb4881389257"
+      },
+      {
+        "internalType": "string",
+        "name": "arg2",
+        "type": "string",
+        "decoded": "tabletop---sponsor-a-boardgaming-community-on-farcaster"
+      },
+      {
+        "internalType": "uint8",
+        "name": "arg3",
+        "type": "uint8",
+        "decoded": "1"
+      },
+      {
+        "internalType": "string",
+        "name": "arg4",
+        "type": "string",
+        "decoded": "Growing nouns through games."
+      }
+    ]
+  },
+  "pseudoTransactions": [],
+  "delegateCalls": [
+    {
+      "action": {
+        "from": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+        "callType": "delegatecall",
+        "gas": "0x6715",
+        "input": "0x38e861a00000000000000000000000003eefaa9d6e2ab7972c1001d41c82bb48813892570000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000e000000000000000000000000000000000000000000000000000000000000000377461626c65746f702d2d2d73706f6e736f722d612d626f61726467616d696e672d636f6d6d756e6974792d6f6e2d666172636173746572000000000000000000000000000000000000000000000000000000000000000000000000000000001c47726f77696e67206e6f756e73207468726f7567682067616d65732e00000000",
+        "to": "0x624efaba6e7df177ad8ca5bee3bd62f78b304b6e",
+        "value": "0x0"
+      },
+      "blockHash": "0x88eaefe491d3cfe1f7c65a85e035157a6f90eed86e2fd78a1ab4d7972d6e8356",
+      "blockNumber": 20379030,
+      "result": {
+        "gasUsed": "0x1f3f",
+        "output": "0x"
+      },
+      "subtraces": 0,
+      "traceAddress": [
+        0
+      ],
+      "transactionHash": "0x1ff9267eb67e8bf6095491793fcb0d33354f83dcd9d98d36f93727c9c85d22b4",
+      "transactionPosition": 47,
+      "type": "call"
+    }
+  ],
+  "errors": [],
+  "parties": [
+    "0x4bf88042de0220647acb314af3c5f310aec3bcc0",
+    "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+    "0x624efaba6e7df177ad8ca5bee3bd62f78b304b6e",
+    "0x3eefaa9d6e2ab7972c1001d41c82bb4881389257"
+  ],
+  "sigHash": "0x38e861a0",
+  "internalSigHashes": [
+    {
+      "from": "0x4bf88042de0220647acb314af3c5f310aec3bcc0",
+      "to": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+      "sigHash": "0x38e861a0"
+    },
+    {
+      "from": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+      "to": "0x624efaba6e7df177ad8ca5bee3bd62f78b304b6e",
+      "sigHash": "0x38e861a0"
+    }
+  ],
+  "timestamp": 1721855831,
+  "baseFeePerGas": 4935866196,
+  "transactionFee": "214214004610396",
+  "contextActions": [
+    "INTERACTED_WITH",
+    "HEURISTIC.INTERACTED_WITH"
+  ],
+  "logs": [
+    {
+      "address": "0xf790a5f59678dd733fb3de93493a91f472ca1365",
+      "data": "0x0000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000c000000000000000000000000000000000000000000000000000000000000000377461626c65746f702d2d2d73706f6e736f722d612d626f61726467616d696e672d636f6d6d756e6974792d6f6e2d666172636173746572000000000000000000000000000000000000000000000000000000000000000000000000000000001c47726f77696e67206e6f756e73207468726f7567682067616d65732e00000000",
+      "blockNumber": 20379030,
+      "transactionHash": "0x1ff9267eb67e8bf6095491793fcb0d33354f83dcd9d98d36f93727c9c85d22b4",
+      "transactionIndex": 47,
+      "blockHash": "0x88eaefe491d3cfe1f7c65a85e035157a6f90eed86e2fd78a1ab4d7972d6e8356",
+      "logIndex": 191,
+      "removed": false,
+      "decoded": {
+        "signature": "CandidateFeedbackSent(address,address,string,uint8,string)",
+        "signature_with_arg_names": "CandidateFeedbackSent(address indexed msgSender,address indexed proposer,string slug,uint8 support,string reason)",
+        "name": "CandidateFeedbackSent",
+        "decoded": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "msgSender",
+            "type": "address",
+            "decoded": "0x4bf88042de0220647acb314af3c5f310aec3bcc0"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "proposer",
+            "type": "address",
+            "decoded": "0x3eefaa9d6e2ab7972c1001d41c82bb4881389257"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "slug",
+            "type": "string",
+            "decoded": "tabletop---sponsor-a-boardgaming-community-on-farcaster"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint8",
+            "name": "support",
+            "type": "uint8",
+            "decoded": "1"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "reason",
+            "type": "string",
+            "decoded": "Growing nouns through games."
+          }
+        ]
+      },
+      "chainId": 1,
+      "topic0": "0x1e071c52ea06b433aac74cdba4ed70ff3e6635d5a6b344d654c04b4c762f054e",
+      "topic1": "0x0000000000000000000000004bf88042de0220647acb314af3c5f310aec3bcc0",
+      "topic2": "0x0000000000000000000000003eefaa9d6e2ab7972c1001d41c82bb4881389257"
+    }
+  ],
+  "netAssetTransfers": {},
+  "pseudotransactions": [],
+  "contractsCreated": [],
+  "enrichedParties": {
+    "0x4bf88042de0220647acb314af3c5f310aec3bcc0": [
+      {
+        "chainId": 0,
+        "isContract": false,
+        "ensNew": {
+          "handle": "yes2crypto.eth",
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": "yes2crypto.eth",
+          "avatar": "https://i.imgur.com/dBoVmnG.jpg",
+          "fid": 214447,
+          "linkedAddresses": [
+            "0xb1f55f9b6adf2dbe565385f59f7d2c5e58730340",
+            "0x4bf88042de0220647acb314af3c5f310aec3bcc0"
+          ]
+        }
+      }
+    ],
+    "0xf790a5f59678dd733fb3de93493a91f472ca1365": [
+      {
+        "chainId": 1,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": 0,
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x624efaba6e7df177ad8ca5bee3bd62f78b304b6e": [
+      {
+        "chainId": 11155111,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": 0,
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      },
+      {
+        "chainId": 1,
+        "label": {
+          "public": ""
+        },
+        "isContract": true,
+        "imgUrl": "",
+        "decimals": 0,
+        "symbol": "",
+        "ensNew": {
+          "handle": null,
+          "avatar": null
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": null,
+          "avatar": null,
+          "fid": null
+        }
+      }
+    ],
+    "0x3eefaa9d6e2ab7972c1001d41c82bb4881389257": [
+      {
+        "chainId": 0,
+        "isContract": false,
+        "ensNew": {
+          "handle": "ispeaknerd.eth",
+          "avatar": "https://assets.airstack.xyz/image/nft/3L76i8P9fDemoa2A1kLtYWtrGjyqPEwnjzleKmFEy3LMBjG/j7MNio7jfCZ2lhOpioL0yWhL+uVF2fvOnlW250CLOeyBi5/2mBf0nB3iTrZ19ByCV4eHnmDGDS+aNhpBd7iyMEJDAHzJErTeLgRdNl8ymXI9uyNYAQ4bOZM64js=/medium.svg"
+        },
+        "bns": {
+          "handle": null,
+          "avatar": null
+        },
+        "farcaster": {
+          "handle": "ispeaknerd.eth",
+          "avatar": "https://i.imgur.com/rVl8j4n.gif",
+          "fid": 9391,
+          "linkedAddresses": [
+            "0x3c35741d76c0076f070bdb90bd20c8632aba3846",
+            "0x3eefaa9d6e2ab7972c1001d41c82bb4881389257"
+          ]
+        }
+      }
+    ]
+  },
+  "assetsEnriched": {}
+}

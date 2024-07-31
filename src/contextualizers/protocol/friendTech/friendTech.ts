@@ -8,7 +8,11 @@ import {
   Transaction,
 } from '../../../types';
 import { ABIs } from './constants';
-import { decodeTransactionInput, decodeLog } from '../../../helpers/utils';
+import {
+  decodeTransactionInput,
+  decodeLog,
+  grabLogsFromTransaction,
+} from '../../../helpers/utils';
 import { detect } from './detect';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -20,6 +24,7 @@ export const contextualize = (transaction: Transaction): Transaction => {
 
 // Contextualize for txs
 export const generate = (transaction: Transaction): Transaction => {
+  const logs = grabLogsFromTransaction(transaction);
   // Failed transaction
   if (!transaction.receipt?.status) {
     // buyShares(address sharesSubject, uint256 amount)
@@ -79,9 +84,9 @@ export const generate = (transaction: Transaction): Transaction => {
   // buyShares(address sharesSubject, uint256 amount)
   if (transaction.sigHash === '0x6945b123') {
     try {
-      if (!transaction.logs) return transaction;
+      if (logs.length === 0) return transaction;
 
-      const log = transaction.logs[0];
+      const log = logs[0];
       const parsedLog = decodeLog(
         ABIs.FriendTech,
         log.data as Hex,
@@ -176,9 +181,9 @@ export const generate = (transaction: Transaction): Transaction => {
   // sellShares(address sharesSubject, uint256 amount)
   if (transaction.sigHash === '0xb51d0534') {
     try {
-      if (!transaction.logs) return transaction;
+      if (logs.length === 0) return transaction;
 
-      const log = transaction.logs[0];
+      const log = logs[0];
       const parsedLog = decodeLog(
         ABIs.FriendTech,
         log.data as Hex,

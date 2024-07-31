@@ -19,7 +19,7 @@ import {
   TRANSACTION_DEPOSITED_EVENT_ABI,
   TRANSACTION_DEPOSITED_EVENT_HASH,
 } from './constants';
-import { decodeLog } from '../../../helpers/utils';
+import { decodeLog, grabLogsFromTransaction } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isOpStack = detect(transaction);
@@ -37,7 +37,7 @@ export function detect(transaction: Transaction): boolean {
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
   if (transaction.chainId === 1) {
-    const logs = transaction.logs ?? [];
+    const logs = grabLogsFromTransaction(transaction);
     const transactionDepositedLog = logs.find((log: any) => {
       return log.topic0 === TRANSACTION_DEPOSITED_EVENT_HASH;
     });
@@ -59,7 +59,7 @@ export function generate(transaction: Transaction): Transaction {
   }
   const assetTransfer: Asset = assetSent[0];
 
-  const logs = transaction.logs ?? [];
+  const logs = grabLogsFromTransaction(transaction);
   const transactionDepositedLog = logs.find((log: any) => {
     return log.topic0 === TRANSACTION_DEPOSITED_EVENT_HASH;
   });

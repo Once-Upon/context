@@ -7,7 +7,7 @@ import {
   Transaction,
 } from '../../../types';
 import { MINT_MANAGER_ABI, MINT_MANAGER_CONTRACT } from './constants';
-import { decodeLog } from '../../../helpers/utils';
+import { decodeLog, grabLogsFromTransaction } from '../../../helpers/utils';
 import { generate as erc721Generate } from '../../heuristics/erc721Mint/erc721Mint';
 import { generate as erc1155Generate } from '../../heuristics/erc1155Mint/erc1155Mint';
 
@@ -45,7 +45,7 @@ export const generate = (transaction: Transaction): Transaction => {
   transaction.context.summaries.en.title = 'Highlight';
 
   // check if mint with rewards
-  const logs = transaction.logs ?? [];
+  const logs = grabLogsFromTransaction(transaction);
   let decodedLog;
   for (const log of logs) {
     decodedLog = decodeLog(

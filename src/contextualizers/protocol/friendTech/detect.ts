@@ -3,7 +3,7 @@ import { FRIEND_TECH_ADDRESSES } from './constants';
 
 export const detect = (transaction: Transaction): boolean => {
   /** implement your detection logic */
-  if (transaction.to !== FRIEND_TECH_ADDRESSES || !transaction.logs) {
+  if (transaction.to !== FRIEND_TECH_ADDRESSES) {
     return false;
   }
   // buyShares(address sharesSubject, uint256 amount)

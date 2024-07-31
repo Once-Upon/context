@@ -9,7 +9,7 @@ import {
   PACK_ACTIVATION_SOURCE_CONTRACT,
   PACK_ACTIVATION_SOURCE_ABI,
 } from './constants';
-import { decodeLog } from '../../../helpers/utils';
+import { decodeLog, grabLogsFromTransaction } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isPackActivationSource = detect(transaction);
@@ -27,9 +27,10 @@ export function detect(transaction: Transaction): boolean {
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
   // check logs
-  if (!transaction.logs) return false;
+  const logs = grabLogsFromTransaction(transaction);
+  if (logs.length === 0) return false;
 
-  for (const log of transaction.logs) {
+  for (const log of logs) {
     if (log.address !== PACK_ACTIVATION_SOURCE_CONTRACT) continue;
 
     const decoded = decodeLog(PACK_ACTIVATION_SOURCE_ABI, log.data, [
@@ -48,11 +49,12 @@ export function detect(transaction: Transaction): boolean {
 }
 
 export function generate(transaction: Transaction): Transaction {
-  if (!transaction.logs || !transaction.chainId) return transaction;
+  const logs = grabLogsFromTransaction(transaction);
+  if (logs.length === 0 || !transaction.chainId) return transaction;
 
   // decode ActivatedStarterPackOnSource event
   let decoded;
-  for (const log of transaction.logs) {
+  for (const log of logs) {
     if (log.address !== PACK_ACTIVATION_SOURCE_CONTRACT) continue;
 
     decoded = decodeLog(PACK_ACTIVATION_SOURCE_ABI, log.data, [

@@ -17,7 +17,7 @@ import {
   STAR_GATE_PACKET_RECEIVED_EVENT_ABI,
   STAR_GATE_CHAIN_IDS,
 } from './constants';
-import { decodeLog } from '../../../helpers/utils';
+import { decodeLog, grabLogsFromTransaction } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isStarGate = detect(transaction);
@@ -35,7 +35,7 @@ export function detect(transaction: Transaction): boolean {
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
   const originChainId = transaction.chainId ?? 1;
-  const logs = transaction.logs ?? [];
+  const logs = grabLogsFromTransaction(transaction);
 
   const packetReceivedLog = logs.find((log: Log) => {
     if (log.address !== STAR_GATE_RELAYERS[originChainId]) return false;
@@ -59,7 +59,7 @@ export function detect(transaction: Transaction): boolean {
 
 export function generate(transaction: Transaction): Transaction {
   const originChainId = transaction.chainId ?? 1;
-  const logs = transaction.logs ?? [];
+  const logs = grabLogsFromTransaction(transaction);
   let decodedPacketReceivedLog;
 
   for (const log of logs) {

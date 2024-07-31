@@ -158,24 +158,44 @@ export type NounsAuctionHouseAction =
 
 export enum NounsGovernorActionEnum {
   CREATED_PROPOSAL = 'CREATED_PROPOSAL',
+  UPDATED_PROPOSAL = 'UPDATED_PROPOSAL',
+  SPONSORED_PROPOSAL = 'SPONSORED_PROPOSAL',
   VOTED_FOR = 'VOTED_FOR',
   VOTED_AGAINST = 'VOTED_AGAINST',
   ABSTAINED = 'ABSTAINED',
+  SIGNALED_FOR = 'SIGNALED_FOR',
+  SIGNALED_AGAINST = 'SIGNALED_AGAINST',
   QUEUED = 'QUEUED',
   EXECUTED = 'EXECUTED',
   CANCELED = 'CANCELED',
   VETOED = 'VETOED',
+  CREATED_CANDIDATE = 'CREATED_CANDIDATE',
+  UPDATED_CANDIDATE = 'UPDATED_CANDIDATE',
+  CANCELED_CANDIDATE = 'CANCELED_CANDIDATE',
+  SPONSORED_CANDIDATE = 'SPONSORED_CANDIDATE',
+  SENT_FEEDBACK = 'SENT_FEEDBACK',
+  SENT_CANDIDATE_FEEDBACK = 'SENT_CANDIDATE_FEEDBACK',
 }
 
 export type NounsGovernorAction =
   | NounsGovernorActionEnum.CREATED_PROPOSAL
+  | NounsGovernorActionEnum.UPDATED_PROPOSAL
+  | NounsGovernorActionEnum.SPONSORED_PROPOSAL
   | NounsGovernorActionEnum.VOTED_FOR
   | NounsGovernorActionEnum.VOTED_AGAINST
   | NounsGovernorActionEnum.ABSTAINED
+  | NounsGovernorActionEnum.SIGNALED_FOR
+  | NounsGovernorActionEnum.SIGNALED_AGAINST
   | NounsGovernorActionEnum.QUEUED
   | NounsGovernorActionEnum.EXECUTED
   | NounsGovernorActionEnum.CANCELED
-  | NounsGovernorActionEnum.VETOED;
+  | NounsGovernorActionEnum.VETOED
+  | NounsGovernorActionEnum.CREATED_CANDIDATE
+  | NounsGovernorActionEnum.UPDATED_CANDIDATE
+  | NounsGovernorActionEnum.CANCELED_CANDIDATE
+  | NounsGovernorActionEnum.SPONSORED_CANDIDATE
+  | NounsGovernorActionEnum.SENT_FEEDBACK
+  | NounsGovernorActionEnum.SENT_CANDIDATE_FEEDBACK;
 
 export enum UniswapV2RouterActionEnum {
   ADDED_LIQUIDITY = 'ADDED_LIQUIDITY',

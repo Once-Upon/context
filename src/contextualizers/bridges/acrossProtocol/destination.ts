@@ -11,7 +11,7 @@ import {
   ACROSS_PROTOCOL_RELAYER_ABI,
   ACROSS_PROTOCOL_RELAYERS,
 } from './constants';
-import { decodeLog } from '../../../helpers/utils';
+import { decodeLog, grabLogsFromTransaction } from '../../../helpers/utils';
 
 export function contextualize(transaction: Transaction): Transaction {
   const isAcrossProtocol = detect(transaction);
@@ -29,7 +29,7 @@ export function detect(transaction: Transaction): boolean {
    * and it also serves to decouple the logic, thereby simplifying the testing process
    */
   const originChainId = transaction.chainId ?? 1;
-  const logs = transaction.logs ?? [];
+  const logs = grabLogsFromTransaction(transaction);
   const filledRelayLog = logs.find((log: Log) => {
     if (log.address !== ACROSS_PROTOCOL_RELAYERS[originChainId]) return false;
 
@@ -51,7 +51,7 @@ export function detect(transaction: Transaction): boolean {
 
 export function generate(transaction: Transaction): Transaction {
   const originChainId = transaction.chainId ?? 1;
-  const logs = transaction.logs ?? [];
+  const logs = grabLogsFromTransaction(transaction);
   let filledRelayEvent;
   const filledRelayLog = logs.find((log: Log) => {
     if (log.address !== ACROSS_PROTOCOL_RELAYERS[originChainId]) return false;

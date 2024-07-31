@@ -6,7 +6,11 @@ import {
   Protocols,
   Transaction,
 } from '../../../types';
-import { decodeTransactionInput, decodeLog } from '../../../helpers/utils';
+import {
+  decodeTransactionInput,
+  decodeLog,
+  grabLogsFromTransaction,
+} from '../../../helpers/utils';
 import { ABIs, EAS_LINKS } from './constants';
 
 export const contextualize = (transaction: Transaction): Transaction => {
@@ -56,11 +60,13 @@ export const generate = (transaction: Transaction): Transaction => {
   }
   if (!transaction.chainId) return transaction;
 
+  const logs = grabLogsFromTransaction(transaction);
+
   switch (decoded.functionName) {
     case 'register': {
       let id = '';
       if (transaction.receipt?.status) {
-        const registerLog = transaction.logs?.find((log) => {
+        const registerLog = logs.find((log) => {
           const decoded = decodeLog(
             ABIs.SchemaRegistry,
             log.data as Hex,

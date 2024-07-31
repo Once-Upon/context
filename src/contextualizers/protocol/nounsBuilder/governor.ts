@@ -13,7 +13,11 @@ import {
   NounsBuilderInstance,
 } from './constants';
 import { NounsContracts } from '../nouns/constants';
-import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
+import {
+  decodeLog,
+  decodeTransactionInput,
+  grabLogsFromTransaction,
+} from '../../../helpers/utils';
 
 const translateSupport = (support: bigint) => {
   if (support === 0n) return NounsGovernorActionEnum.VOTED_AGAINST;
@@ -90,6 +94,7 @@ export const generate = (transaction: Transaction): Transaction => {
 
   if (!transaction.to) return transaction;
   const dao = daoByAuctionGovernorContract(transaction.to);
+  const logs = grabLogsFromTransaction(transaction);
 
   const getDynamicVariables = (
     proposalId: string,
@@ -123,7 +128,7 @@ export const generate = (transaction: Transaction): Transaction => {
       const description = decoded.args[3];
       let proposalId = '';
 
-      const registerLog = transaction.logs?.find((log) => {
+      const registerLog = logs.find((log) => {
         try {
           const decoded = decodeLog(
             ABIs.IGovernor,
@@ -280,7 +285,7 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'execute': {
       let proposalId = '';
 
-      const registerLog = transaction.logs?.find((log) => {
+      const registerLog = logs.find((log) => {
         try {
           const decoded = decodeLog(
             ABIs.IGovernor,
