@@ -27,4 +27,15 @@ describe('Rodeo Mint', () => {
     );
     expect(zoraMintWithRewards1).toBe(false);
   });
+
+  it('Should have protocol-specific context action', () => {
+    const rodeo1 = detect(rodeo0x3c346a6d as unknown as Transaction);
+    expect(rodeo1).toBe(true);
+
+    const contextualized = generate(rodeo0x3c346a6d as unknown as Transaction);
+    if (!contextualized.context) {
+      throw new Error('Context is undefined');
+    }
+    expect(contextualized['context']['actions']).toContain('RODEO.MINTED');
+  });
 });
