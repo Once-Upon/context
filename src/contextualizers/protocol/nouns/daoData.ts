@@ -1,5 +1,9 @@
 import { Hex } from 'viem';
-import { NounsGovernorActionEnum, Transaction } from '../../../types';
+import {
+  NounsGovernorActionEnum,
+  Protocols,
+  Transaction,
+} from '../../../types';
 import { NounsContracts, ABIs } from './constants';
 import { decodeTransactionInput } from '../../../helpers/utils';
 import {
@@ -70,6 +74,7 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.UPDATED_PROPOSAL}`,
               value: NounsGovernorActionEnum.UPDATED_PROPOSAL,
             },
             subject: {
@@ -99,6 +104,7 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.CREATED_CANDIDATE}`,
               value: NounsGovernorActionEnum.CREATED_CANDIDATE,
             },
             subject: {
@@ -140,6 +146,7 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.UPDATED_PROPOSAL}`,
               value: NounsGovernorActionEnum.UPDATED_PROPOSAL,
             },
             subject: {
@@ -173,6 +180,7 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.UPDATED_CANDIDATE}`,
               value: NounsGovernorActionEnum.UPDATED_CANDIDATE,
             },
             subject: {
@@ -215,10 +223,12 @@ export const generate = (transaction: Transaction): Transaction => {
     case 'addSignature': {
       const [
         ,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         _expirationTimestamp,
         proposer,
         slug,
         proposalIdToUpdate,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         _encodedProp,
         reason,
       ] = decoded.args;
@@ -230,6 +240,7 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.SPONSORED_PROPOSAL}`,
               value: NounsGovernorActionEnum.SPONSORED_PROPOSAL,
             },
             subject: {
@@ -259,6 +270,7 @@ export const generate = (transaction: Transaction): Transaction => {
           variables: {
             contextAction: {
               type: 'contextAction',
+              id: `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.SPONSORED_CANDIDATE}`,
               value: NounsGovernorActionEnum.SPONSORED_CANDIDATE,
             },
             subject: {
@@ -302,6 +314,7 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_GOVERNOR}.${action}`,
             value: action,
           },
           subject: {
@@ -345,6 +358,7 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_GOVERNOR}.${action}`,
             value: action,
           },
           subject: {
@@ -388,6 +402,7 @@ export const generate = (transaction: Transaction): Transaction => {
         variables: {
           contextAction: {
             type: 'contextAction',
+            id: `${Protocols.NOUNS_GOVERNOR}.${NounsGovernorActionEnum.CANCELED_CANDIDATE}`,
             value: NounsGovernorActionEnum.CANCELED_CANDIDATE,
           },
           subject: {
