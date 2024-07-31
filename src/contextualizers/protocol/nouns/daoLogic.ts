@@ -6,17 +6,7 @@ import {
 } from '../../../types';
 import { NounsContracts, ABIs } from './constants';
 import { decodeLog, decodeTransactionInput } from '../../../helpers/utils';
-
-const translateSupport = (support: number) => {
-  if (support === 0) return NounsGovernorActionEnum.VOTED_AGAINST;
-  if (support === 1) return NounsGovernorActionEnum.VOTED_FOR;
-
-  return NounsGovernorActionEnum.ABSTAINED;
-};
-
-const proposalUrl = (proposalId: bigint | number) => {
-  return `https://nouns.camp/proposals/${proposalId}`;
-};
+import { translateSupport, proposalUrl } from './utils';
 
 const FUNCTION_CONTEXT_ACTION_MAPPING = {
   execute: NounsGovernorActionEnum.EXECUTED,
@@ -275,9 +265,8 @@ export const generate = (transaction: Transaction): Transaction => {
       };
 
       if (reason) {
-        transaction.context!.summaries!.en.long = `[[subject]][[contextAction]]${
-          action === NounsGovernorActionEnum.ABSTAINED ? 'from voting on ' : ''
-        }proposal[[proposalId]][[reason]]`;
+        transaction.context!.summaries!.en.long =
+          transaction.context!.summaries!.en.default + `[[reason]]`;
       }
 
       return transaction;
