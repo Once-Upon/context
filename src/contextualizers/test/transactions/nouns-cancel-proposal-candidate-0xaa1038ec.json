@@ -83,7 +83,6 @@
       }
     ]
   },
-  "pseudoTransactions": [],
   "delegateCalls": [
     {
       "action": {
@@ -101,9 +100,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0xaa106ebdd2ca0775f9e020dee8dbf2f728363f8f0e75dadbd3be2e2e69d938ec",
       "transactionPosition": 140,
       "type": "call"
@@ -131,10 +128,7 @@
   "timestamp": 1719985691,
   "baseFeePerGas": 2087432871,
   "transactionFee": "81531591403344",
-  "contextActions": [
-    "INTERACTED_WITH",
-    "HEURISTIC.INTERACTED_WITH"
-  ],
+  "contextActions": ["INTERACTED_WITH", "HEURISTIC.INTERACTED_WITH"],
   "logs": [
     {
       "address": "0xf790a5f59678dd733fb3de93493a91f472ca1365",

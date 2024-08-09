@@ -2,7 +2,7 @@ import { decodeEventLog, decodeFunctionData, Hex } from 'viem';
 import type {
   EventLogTopics,
   PartialTransaction,
-  PseudoTransaction,
+  Pseudotransaction,
   RawReceipt,
   RawLog,
   RawTrace,
@@ -134,7 +134,7 @@ const isPresent = <T>(t: T | undefined | null): t is T =>
 
 export const unpackERC4337Transactions = (
   transaction: PartialTransaction,
-): PseudoTransaction[] => {
+): Pseudotransaction[] => {
   if (
     !transaction.to ||
     transaction.to !== ENTRY_POINT_V060 ||
@@ -250,7 +250,7 @@ export const unpackERC4337Transactions = (
 export const transform: TxnTransformer = (_block, tx) => {
   if (!isRawTransaction(tx)) return tx;
 
-  const pseudoTransactions = unpackERC4337Transactions(tx);
+  const pseudotransactions = unpackERC4337Transactions(tx);
 
-  return { ...tx, pseudoTransactions };
+  return { ...tx, pseudotransactions };
 };

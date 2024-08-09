@@ -100,7 +100,6 @@
     ]
   },
   "decoded": null,
-  "pseudoTransactions": [],
   "assetTransfers": [
     {
       "from": "0xbdfeb5439f5daecb78a17ff846645a8bdbbf5725",
@@ -132,9 +131,7 @@
         "output": "0x"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x034309636e7eb4a3091a50606633413e4283a6dae82eb64f413b4dc2a79b46af",
       "transactionPosition": 103,
       "type": "call"
@@ -168,10 +165,7 @@
   "timestamp": 1719644039,
   "baseFeePerGas": 2003596278,
   "transactionFee": "112097677738316",
-  "contextActions": [
-    "INTERACTED_WITH",
-    "HEURISTIC.INTERACTED_WITH"
-  ],
+  "contextActions": ["INTERACTED_WITH", "HEURISTIC.INTERACTED_WITH"],
   "logs": [
     {
       "address": "0x830bd73e4184cef73443c15111a1df14e495c706",

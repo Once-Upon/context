@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import type { PseudoTransaction } from '../../../../types';
+import type { Pseudotransaction } from '../../../../types';
 import { decodeTransactionInput } from '../../../../helpers/utils';
 
 // https://github.com/okx/AccountAbstraction/blob/main/contracts/wallet/v2/SmartAccountV2.sol
@@ -75,7 +75,7 @@ const abi = [
   },
 ] as const;
 
-export const decode = (transaction: PseudoTransaction) => {
+export const decode = (transaction: Pseudotransaction) => {
   const decoded = decodeTransactionInput(transaction.input as Hex, abi);
 
   if (decoded?.functionName === 'execTransactionFromEntrypoint') {

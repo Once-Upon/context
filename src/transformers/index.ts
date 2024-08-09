@@ -2,11 +2,11 @@ import {
   AssetTransfer,
   NetAssetTransfers,
   PartialTransaction,
-  PseudoTransaction,
+  Pseudotransaction,
   RawBlock,
 } from 'src/types';
 import { makeTransform } from '../helpers/utils';
-import * as pseudoTransactionsFromUserOps from './_common/accountAbstraction';
+import * as pseudotransactionsFromUserOps from './_common/accountAbstraction';
 import * as transactionAssetTransfers from './_common/assetTransfers';
 import * as transactionDelegateCalls from './_common/delegateCalls';
 import * as transactionDerivativesNeighbors from './_common/derivativesNeighbors';
@@ -21,7 +21,7 @@ import * as transactionFees from './ethereum/fees';
 import * as transactionForks from './ethereum/forks';
 
 const children = {
-  pseudoTransactionsFromUserOps,
+  pseudotransactionsFromUserOps,
   transactionAssetTransfers,
   transactionAssetTransfersOldNFTs,
   transactionAssetTransfersCryptopunks,
@@ -40,7 +40,7 @@ const utils: Utils = {
   extractNetAssetTransfers:
     transactionNetAssetTransfers.extractNetAssetTransfers,
   unpackERC4337Transactions:
-    pseudoTransactionsFromUserOps.unpackERC4337Transactions,
+    pseudotransactionsFromUserOps.unpackERC4337Transactions,
 };
 
 const transformers = Object.fromEntries(
@@ -55,7 +55,7 @@ type Utils = {
   ) => NetAssetTransfers;
   unpackERC4337Transactions: (
     transaction: PartialTransaction,
-  ) => PseudoTransaction[];
+  ) => Pseudotransaction[];
 };
 
 type UsabilityTransformer = {

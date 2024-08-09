@@ -233,7 +233,6 @@
     ]
   },
   "decoded": null,
-  "pseudoTransactions": [],
   "assetTransfers": [
     {
       "from": "0x1e474b50bdc2b39dccaa2b8ddf37b3f022b128a8",

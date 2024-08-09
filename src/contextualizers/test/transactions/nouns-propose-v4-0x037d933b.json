@@ -64,7 +64,6 @@
     ]
   },
   "decoded": null,
-  "pseudoTransactions": [],
   "delegateCalls": [
     {
       "action": {
@@ -82,9 +81,7 @@
         "output": "0x000000000000000000000000000000000000000000000000000000000000023b"
       },
       "subtraces": 5,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x037d03aeac039fd96951a2199e242254116be1be0210cac88902b2615a8f933b",
       "transactionPosition": 2,
       "type": "call"
@@ -105,11 +102,7 @@
         "output": "0x00000000000000000000000000000000000000000000000000000000001baf80"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        4,
-        0
-      ],
+      "traceAddress": [0, 4, 0],
       "transactionHash": "0x037d03aeac039fd96951a2199e242254116be1be0210cac88902b2615a8f933b",
       "transactionPosition": 2,
       "type": "call"
@@ -176,10 +169,7 @@
   "timestamp": 1719596075,
   "baseFeePerGas": 3368210476,
   "transactionFee": "4244677266681550",
-  "contextActions": [
-    "INTERACTED_WITH",
-    "HEURISTIC.INTERACTED_WITH"
-  ],
+  "contextActions": ["INTERACTED_WITH", "HEURISTIC.INTERACTED_WITH"],
   "logs": [
     {
       "address": "0x6f3e6272a167e8accb32072d08e0957f9c79223d",
