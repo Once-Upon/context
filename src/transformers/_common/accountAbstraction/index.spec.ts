@@ -8,7 +8,7 @@ import { ERC20_TRANSFER_EVENT } from '../../../helpers/constants';
 const transform = makeTransform({ test: _transform });
 
 describe('erc4337userOps', () => {
-  it('should unpack pseudoTransactions', () => {
+  it('should unpack pseudotransactions', () => {
     const block = loadBlockFixture('ethereum', 19_298_068);
     const result = transform(block);
 
@@ -19,12 +19,12 @@ describe('erc4337userOps', () => {
     );
     expect(txn).toBeDefined();
 
-    expect(txn?.pseudoTransactions).toBeDefined();
-    expect(txn?.pseudoTransactions?.length).toBe(1);
+    expect(txn?.pseudotransactions).toBeDefined();
+    expect(txn?.pseudotransactions?.length).toBe(1);
 
-    const pseudoTransaction = txn!.pseudoTransactions![0];
+    const pseudotransaction = txn!.pseudotransactions![0];
 
-    expect(pseudoTransaction).toMatchObject({
+    expect(pseudotransaction).toMatchObject({
       from: '0x2991c3845396c9f1d262b2ca0674111a59e2c90a',
       to: '0x5d72015cc621025c265fabffc2fa55ac4821d79f',
       receipt: expect.objectContaining({ status: 1 }),
@@ -41,8 +41,8 @@ describe('erc4337userOps', () => {
         '0x7a5e7d32380ae2ca3064b7fbc41e0d698cb7826f61a941737902f4a74a979ca7',
     );
 
-    const pseudoTransaction = txn!.pseudoTransactions![0];
-    expect(pseudoTransaction).toMatchObject({
+    const pseudotransaction = txn!.pseudotransactions![0];
+    expect(pseudotransaction).toMatchObject({
       from: '0x2991c3845396c9f1d262b2ca0674111a59e2c90a',
       to: '0x5d72015cc621025c265fabffc2fa55ac4821d79f',
       input: '0x',
@@ -70,8 +70,8 @@ describe('erc4337userOps', () => {
     });
 
     // Check that the pseudoTransaction does NOT have logs from the entry point
-    const pseudoTransaction = txn.pseudoTransactions![0];
-    expect(pseudoTransaction.receipt).toMatchObject({
+    const pseudotransaction = txn.pseudotransactions![0];
+    expect(pseudotransaction.receipt).toMatchObject({
       logs: expect.not.arrayContaining([
         expect.objectContaining({
           address: ENTRY_POINT_V060,
@@ -79,10 +79,12 @@ describe('erc4337userOps', () => {
       ]),
     });
 
-    const ERC20_TRANSFER_EVENT_SIGNATURE = getEventSelector(ERC20_TRANSFER_EVENT[0]);
+    const ERC20_TRANSFER_EVENT_SIGNATURE = getEventSelector(
+      ERC20_TRANSFER_EVENT[0],
+    );
 
     // Check that the pseudoTransaction does include transfer log
-    expect(pseudoTransaction.receipt).toMatchObject({
+    expect(pseudotransaction.receipt).toMatchObject({
       logs: expect.arrayContaining([
         expect.objectContaining({
           topics: expect.arrayContaining([ERC20_TRANSFER_EVENT_SIGNATURE]),
@@ -101,10 +103,10 @@ describe('erc4337userOps', () => {
         '0xc7d4c93fefb9f56383d9a9e4cbafa53696610b777ac5797f751652db928b9ad1',
     )!;
 
-    expect(txn.pseudoTransactions!.length).toBe(2);
+    expect(txn.pseudotransactions!.length).toBe(2);
 
-    expect(txn.pseudoTransactions![0].receipt.logs.length).toBe(1);
-    expect(txn.pseudoTransactions![1].receipt.logs.length).toBe(4);
+    expect(txn.pseudotransactions![0].receipt.logs.length).toBe(1);
+    expect(txn.pseudotransactions![1].receipt.logs.length).toBe(4);
   });
 
   it('should only include traces from user op', () => {
@@ -117,7 +119,7 @@ describe('erc4337userOps', () => {
         '0xa8c9957193c0be795a1a032564728bda9bcea9899317b2e6298ec55ce19a689f',
     )!;
 
-    const pseudoTxn = txn.pseudoTransactions![0];
+    const pseudoTxn = txn.pseudotransactions![0];
 
     expect(txn.traces.length > pseudoTxn.traces.length);
     expect(pseudoTxn.traces.map((v) => v.traceAddress)).toEqual([
@@ -139,10 +141,12 @@ describe('erc4337userOps', () => {
     )!;
 
     expect(
-      txn.pseudoTransactions![0].traces.map((v) => v.traceAddress),
+      txn.pseudotransactions![0].traces.map((v) => v.traceAddress),
     ).toEqual([[4], [4, 0], [4, 0, 0], [4, 0, 0, 0], [4, 0, 0, 0, 0]]);
 
-    expect(txn.pseudoTransactions![1].traces.map((v) => v.traceAddress)).toEqual([
+    expect(
+      txn.pseudotransactions![1].traces.map((v) => v.traceAddress),
+    ).toEqual([
       [5],
       [5, 0],
       [5, 0, 0],
@@ -154,7 +158,7 @@ describe('erc4337userOps', () => {
       [5, 0, 0, 0, 2, 0],
       [5, 0, 0, 0, 2, 1],
       [5, 0, 0, 0, 2, 1, 0],
-      [5, 0, 0, 0, 2, 2]
+      [5, 0, 0, 0, 2, 2],
     ]);
   });
 
@@ -168,7 +172,7 @@ describe('erc4337userOps', () => {
         '0x2f54574405fda5bedfa9d6df46188550033d3a18829f46456fa009199911b596',
     )!;
 
-    const pseudoTxn = txn.pseudoTransactions![0];
+    const pseudoTxn = txn.pseudotransactions![0];
 
     expect(pseudoTxn.receipt.status).toBe(0);
   });

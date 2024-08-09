@@ -232,7 +232,6 @@
     ]
   },
   "decoded": null,
-  "pseudoTransactions": [],
   "assetTransfers": [
     {
       "contract": "0xeb54dacb4c2ccb64f8074eceea33b5ebb38e5387",
@@ -278,9 +277,7 @@
         "output": "0x000000000000000000000000000000000000000000000094ff657ad22227d416"
       },
       "subtraces": 1,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x96f589b8be6e5d69557d3c98f1ef8de688cf94e98992284b51f07953e7bfe3fb",
       "transactionPosition": 4,
       "type": "call"
@@ -301,12 +298,7 @@
         "output": "0x0000000000000000000000000000000000000000000c70c798d4fcfa34ec3cfd"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        1,
-        0
-      ],
+      "traceAddress": [0, 0, 1, 0],
       "transactionHash": "0x96f589b8be6e5d69557d3c98f1ef8de688cf94e98992284b51f07953e7bfe3fb",
       "transactionPosition": 4,
       "type": "call"
@@ -327,13 +319,7 @@
         "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        2,
-        0,
-        0
-      ],
+      "traceAddress": [0, 0, 2, 0, 0],
       "transactionHash": "0x96f589b8be6e5d69557d3c98f1ef8de688cf94e98992284b51f07953e7bfe3fb",
       "transactionPosition": 4,
       "type": "call"
@@ -354,12 +340,7 @@
         "output": "0x0000000000000000000000000000000000000000000c75196c940c25eb794f97"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        0,
-        3,
-        0
-      ],
+      "traceAddress": [0, 0, 3, 0],
       "transactionHash": "0x96f589b8be6e5d69557d3c98f1ef8de688cf94e98992284b51f07953e7bfe3fb",
       "transactionPosition": 4,
       "type": "call"
@@ -380,9 +361,7 @@
         "output": "0x0"
       },
       "subtraces": 3,
-      "traceAddress": [
-        1
-      ],
+      "traceAddress": [1],
       "transactionHash": "0x96f589b8be6e5d69557d3c98f1ef8de688cf94e98992284b51f07953e7bfe3fb",
       "transactionPosition": 4,
       "type": "call"

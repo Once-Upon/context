@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import type { PseudoTransaction } from '../../../../types';
+import type { Pseudotransaction } from '../../../../types';
 import { decodeTransactionInput } from '../../../../helpers/utils';
 
 // https://github.com/0xProject/protocol/blob/development/contracts/zero-ex/contracts/src/external/FlashWallet.sol
@@ -27,11 +27,8 @@ const abi = [
   },
 ] as const;
 
-export const decode = (transaction: PseudoTransaction) => {
-  const decoded = decodeTransactionInput(
-    transaction.input as Hex,
-    abi,
-  );
+export const decode = (transaction: Pseudotransaction) => {
+  const decoded = decodeTransactionInput(transaction.input as Hex, abi);
 
   if (decoded?.functionName === 'executeCall') {
     const [to, input, value] = decoded.args;

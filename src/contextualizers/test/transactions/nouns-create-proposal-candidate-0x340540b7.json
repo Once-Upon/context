@@ -51,7 +51,6 @@
     ]
   },
   "decoded": null,
-  "pseudoTransactions": [],
   "assetTransfers": [
     {
       "from": "0x9c87a1065994f156f0b7b87aaa8b3c5f7bd67e02",
@@ -83,9 +82,7 @@
         "output": "0x"
       },
       "subtraces": 2,
-      "traceAddress": [
-        0
-      ],
+      "traceAddress": [0],
       "transactionHash": "0x3405d8db97241c2adb1558fbacf9c5834aad6284a8b93c607239a846d27540b7",
       "transactionPosition": 20,
       "type": "call"
@@ -106,11 +103,7 @@
         "output": "0x"
       },
       "subtraces": 0,
-      "traceAddress": [
-        0,
-        1,
-        0
-      ],
+      "traceAddress": [0, 1, 0],
       "transactionHash": "0x3405d8db97241c2adb1558fbacf9c5834aad6284a8b93c607239a846d27540b7",
       "transactionPosition": 20,
       "type": "call"
@@ -156,10 +149,7 @@
   "timestamp": 1721801255,
   "baseFeePerGas": 2453132179,
   "transactionFee": "7621374911510844",
-  "contextActions": [
-    "SENT_MESSAGE",
-    "HEURISTIC.SENT_MESSAGE"
-  ],
+  "contextActions": ["SENT_MESSAGE", "HEURISTIC.SENT_MESSAGE"],
   "logs": [
     {
       "address": "0xf790a5f59678dd733fb3de93493a91f472ca1365",

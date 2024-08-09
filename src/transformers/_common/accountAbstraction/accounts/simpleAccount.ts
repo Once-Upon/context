@@ -1,5 +1,5 @@
 import { Hex } from 'viem';
-import type { PseudoTransaction } from '../../../../types';
+import type { Pseudotransaction } from '../../../../types';
 import { decodeTransactionInput } from '../../../../helpers/utils';
 
 // https://github.com/eth-infinitism/account-abstraction/blob/v0.6.0/contracts/samples/SimpleAccount.sol
@@ -52,7 +52,7 @@ const abi = [
   },
 ] as const;
 
-export const decode = (transaction: PseudoTransaction) => {
+export const decode = (transaction: Pseudotransaction) => {
   const decoded = decodeTransactionInput(transaction.input as Hex, abi);
 
   if (decoded?.functionName === 'execute') {

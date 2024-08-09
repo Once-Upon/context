@@ -80,7 +80,7 @@ export type TransactionContextType = {
 // MongoDB document
 export type Transaction = BaseTransaction & {
   assetTransfers?: AssetTransfer[];
-  pseudotransactions?: PseudoTransaction[];
+  pseudotransactions?: Pseudotransaction[];
   sigHash: string;
   internalSigHashes: SigHash[];
   parties: string[];
@@ -97,7 +97,7 @@ export type Transaction = BaseTransaction & {
 
 export type TurboTransaction = BaseTransaction & {
   assetTransfers?: AssetTransfer[];
-  pseudotransactions?: PseudoTransaction[];
+  pseudotransactions?: Pseudotransaction[];
   sigHash: string;
   internalSigHashes: SigHash[];
   parties: string[];
@@ -137,7 +137,7 @@ export type PartialTransaction = Omit<BaseTransaction, 'hash'> & {
   transactionFee?: string;
 };
 
-export type PseudoTransaction = PartialTransaction & {
+export type Pseudotransaction = PartialTransaction & {
   meta: {
     type: 'ERC4337';
     key: string;
@@ -148,7 +148,7 @@ export type RawTransaction = PartialTransaction & {
   hash: Hex;
   accessList?: StdObj[];
 
-  pseudoTransactions?: PseudoTransaction[];
+  pseudotransactions?: Pseudotransaction[];
 };
 
 export type RawTraceAction = StdObj & {
